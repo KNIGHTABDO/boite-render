@@ -1,0 +1,228 @@
+{
+ "characters": {
+  "mohammed": {
+   "model": "mohammed",
+   "age": 6,
+   "palette": [
+    "#e8e0cc",
+    "#b3142c"
+   ],
+   "ref": "art/src/mohammed.png",
+   "notes": "white djellaba, shaved head with a tuft; from s15 on, the cherry-red braided gilet (#b3142c) over a white shirt when he tries it on"
+  },
+  "zoubida": {
+   "model": "zoubida",
+   "costumes": {
+    "haik": "zoubida_haik"
+   },
+   "age": 22,
+   "palette": [
+    "#534e62",
+    "#7d5f5e",
+    "#de9b60"
+   ],
+   "ref": "art/src/zoubida.png",
+   "notes": "the mother; grey-violet dress at home; outdoors (s10-s16) white haik, white cotton face veil, black babouches"
+  },
+  "father": {
+   "model": "father",
+   "age": 45,
+   "palette": [
+    "#edd0a8",
+    "#c18852"
+   ],
+   "ref": "art/src/father.png",
+   "notes": "cream djellaba, white turban"
+  },
+  "fqih": {
+   "model": "fqih",
+   "age": 50,
+   "palette": [
+    "#ebe0d2",
+    "#a47f67"
+   ],
+   "ref": "art/src/fqih.png",
+   "notes": "white robe and turban, quince rod"
+  },
+  "fatma": {
+   "model": "fatma",
+   "age": 35,
+   "palette": [
+    "#4f4c13",
+    "#846c3c",
+    "#d2a97e"
+   ],
+   "ref": "art/src/fatma.png",
+   "notes": "Fatma Bziouya, olive dress, at her window"
+  },
+  "rahma": {
+   "model": "rahma",
+   "age": 35,
+   "palette": [
+    "#d76b45",
+    "#7a2527"
+   ],
+   "ref": "art/src/rahma.png",
+   "notes": "orange-red dress, the storyteller"
+  },
+  "zineb": {
+   "model": "zineb",
+   "age": 5,
+   "palette": [
+    "#7da74b",
+    "#2b2116"
+   ],
+   "ref": "art/src/zineb.png",
+   "notes": "Rahma's daughter, green dress, black hair; holds a tiny round mirror"
+  },
+  "kanza": {
+   "model": "chouafa",
+   "age": 65,
+   "palette": [
+    "#982e1b",
+    "#9fb3b4"
+   ],
+   "ref": "art/src/chouafa.png",
+   "notes": "Lalla Kanza the chouafa, main tenant, rust-red robe"
+  },
+  "driss": {
+   "model": "driss",
+   "age": 8,
+   "palette": [
+    "#9c7353",
+    "#755038"
+   ],
+   "ref": "art/src/driss.png",
+   "notes": "Msid pupil, brown djellaba; falls into a bucket (s05)"
+  },
+  "voisine": {
+   "model": "woman2",
+   "age": 50,
+   "palette": [
+    "#b54f4e",
+    "#e8e2d4"
+   ],
+   "ref": "art/src/woman2.png",
+   "notes": "Lalla Aicha's neighbour, married three times; in the street wears a rough white veil over the red dress"
+  },
+  "marchand": {
+   "model": "man1",
+   "age": 25,
+   "palette": [
+    "#90887c",
+    "#f2efe6"
+   ],
+   "ref": "art/src/man1.png",
+   "notes": "young, handsome, well-groomed Kissaria gilet merchant, white turban, grey-beige djellaba"
+  },
+  "si_othman": {
+   "model": "paint:si_othman",
+   "painting_only": true,
+   "age": 70,
+   "palette": [
+    "#efe6d2",
+    "#6b5a3c"
+   ],
+   "ref": "art/src/si_othman.png",
+   "notes": "only inside Rahma's story: a cheerful old man, white beard, white turban, worn beige djellaba, straw basket (cabas)"
+  },
+  "khadija": {
+   "model": "paint:khadija",
+   "painting_only": true,
+   "age": 25,
+   "palette": [
+    "#2f6f6a"
+   ],
+   "ref": "art/ep06/p09f_porte.png",
+   "notes": "young wife of Si Othman; only a voice singing + an arm at the door in the story"
+  },
+  "salem": {
+   "model": "paint:salem",
+   "painting_only": true,
+   "age": 40,
+   "palette": [
+    "#7a1e1e",
+    "#d8d0c0"
+   ],
+   "ref": "art/src/salem.png",
+   "notes": "big Black butcher at Joutyia, red chechia, blood-stained apron, axe and cleaver; only in the story"
+  },
+  "kid1": {
+   "model": "kid1",
+   "scale": 1.04,
+   "notes": "own Rodin model (art/src/kid1.png): red chechia, brown djellaba"
+  },
+  "kid2": {
+   "model": "kid2",
+   "scale": 0.95,
+   "notes": "own Rodin model (art/src/kid2.png): shaved head, big ears, slate djellaba"
+  },
+  "kid3": {
+   "model": "kid3",
+   "scale": 1.0,
+   "notes": "own Rodin model (art/src/kid3.png): white skullcap, rust djellaba, gap-toothed"
+  },
+  "kid4": {
+   "model": "mohammed_rodin",
+   "extra": true,
+   "vary": [
+    "cap",
+    "robe",
+    "scale"
+   ],
+   "cap": "brown hood up",
+   "robe": "#5d6b3f",
+   "scale": 1.07
+  },
+  "grand1": {
+   "model": "grand1",
+   "scale": 1.22,
+   "notes": "own Rodin model (art/src/grand1.png): lanky ~12, red chechia, grey-beige djellaba, babouches"
+  },
+  "grand2": {
+   "model": "grand2",
+   "scale": 1.25,
+   "notes": "own Rodin model (art/src/grand2.png): sturdy ~13, white skullcap, slate-blue djellaba with ochre trim"
+  }
+ },
+ "animals": {
+  "chat": {
+   "model": "cat",
+   "file": "art/models/cat.glb",
+   "credit": "Cat by Quaternius (CC0), poly.pizza/m/qKICY6xla2",
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Jump_Start",
+    "Jump_Loop",
+    "Headbutt",
+    "Idle_Eating"
+   ],
+   "clip_prefix": "AnimalArmature|AnimalArmature|AnimalArmature|",
+   "notes": "Zineb's GREY cat (ep05 continuity). Low-poly grey tabby, skinned; s17 b096 paws mirror (Idle/Headbutt), b097 bolts (Run)."
+  }
+ },
+ "lexicon": [
+  "balayette",
+  "baguette",
+  "gilet",
+  "chiffon",
+  "glace",
+  "rose",
+  "turban",
+  "hache",
+  "coutelas",
+  "cabas",
+  "chien",
+  "natte",
+  "chaux",
+  "sacoche",
+  "satinette",
+  "cotonnade",
+  "navet",
+  "voile",
+  "etagere",
+  "alose"
+ ]
+}
