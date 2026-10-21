@@ -4,7 +4,7 @@
 import puppeteer from 'puppeteer-core'; import { serve } from './serve.mjs'; import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs'; import path from 'node:path';
 const EP = process.env.EP || 'ep01', TITLE = { ep01: 'Épisode 1 · Dar Chouafa', ep02: 'Épisode 2 · Sidi Ali Boughaleb', ep03: 'Épisode 3 · La lampe à pétrole', ep04: 'Épisode 4 · Chez Lalla Aïcha' }[EP];
-const FPS = 24, PAGE = `episodes/${EP}/film.html`;
+const FPS = +process.env.FPS || 24, PAGE = `episodes/${EP}/film.html`;
 const EDGE = process.env.CHROME || '/usr/bin/google-chrome';
 
 async function worker(f0, f1, out, width) {
