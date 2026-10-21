@@ -1,0 +1,57 @@
+name: render-speed
+on:
+  workflow_dispatch:
+    inputs:
+      f0: { default: '14900' }
+      n:  { default: '240' }
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: w1-1080, workers: 1, render_h: '' }
+          - { name: w4-1080, workers: 4, render_h: '' }
+          - { name: w4-720up, workers: 4, render_h: '720' }
+          - { name: w6-720up, workers: 6, render_h: '720' }
+    name: ${{ matrix.name }}
+    env:
+      EP: ep05
+      CHROME: /usr/bin/google-chrome
+      CHROME_EXTRA: --no-sandbox --enable-unsafe-swiftshader
+      X264_PRESET: veryfast
+      RENDER_H: ${{ matrix.render_h }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - name: deps
+        run: |
+          T=$(date +%s)
+          (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null) &
+          npm ci --no-audit --no-fund --silent
+          wait
+          echo "deps $(( $(date +%s)-T ))s"; nproc; free -h | head -2
+      - name: render
+        run: |
+          mkdir -p out
+          F0=${{ inputs.f0 }}; N=${{ inputs.n }}; W=${{ matrix.workers }}
+          T=$(date +%s.%N)
+          for i in $(seq 0 $((W-1))); do
+            a=$((F0 + N*i/W)); b=$((F0 + N*(i+1)/W))
+            node tools/render_film.mjs --worker $a $b out/c$i.mp4 1920 &
+          done
+          wait
+          E=$(echo "$(date +%s.%N) - $T" | bc)
+          for i in $(seq 0 $((W-1))); do echo "file 'c$i.mp4'" >> out/list.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i out/list.txt -c copy out/${{ matrix.name }}.mp4
+          ffmpeg -y -loglevel error -ss 5 -i out/${{ matrix.name }}.mp4 -frames:v 1 out/${{ matrix.name }}_check.jpg
+          SPF=$(echo "scale=3; $E / $N" | bc)
+          echo "### ${{ matrix.name }}: $N frames in ${E}s → ${SPF} s/frame (wall, incl. Chrome startup)" | tee -a $GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: |
+            out/${{ matrix.name }}.mp4
+            out/${{ matrix.name }}_check.jpg

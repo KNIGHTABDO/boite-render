@@ -1,0 +1,165 @@
+{
+ "_": "Stage3D calibration per plate (canvas px, 1920x1080), checked in test/proto/plate.html with a true-size 3D prop over its painted twin.",
+ "chambre_jour": {
+  "h": 1.1,
+  "horizon": 425,
+  "fov": 50,
+  "check": "3D tabla r.25 on the painted tabla at ~4.1 m"
+ },
+ "patio_poisson": {
+  "h": 0.66,
+  "horizon": 493,
+  "fov": 45,
+  "stools": [
+   [
+    905,
+    727
+   ],
+   [
+    1224,
+    727
+   ]
+  ],
+  "stool": {
+   "h": 0.26,
+   "w": 0.32
+  },
+  "check": "painter drew stools 26 cm, not 15: solved h from door/stool ratio; 3D stool .26x.32 overlays the painted one; back wall ~4 m"
+ },
+ "chambre_penombre": {
+  "h": 1.0,
+  "horizon": 447,
+  "fov": 50,
+  "tabla": [
+   680,
+   750
+  ],
+  "light": {
+   "dir": [
+    -3,
+    1.2,
+    1
+   ],
+   "note": "warm low streaks from the door ajar at left + window slit at right; scene is dim: keyI ~1.2, fill ~.6"
+  },
+  "check": "matches the prompt numbers: 3D tabla r.25 h.28 lands on the painted one at 4.06 m"
+ },
+ "terrasse_peau": {
+  "h": 1.3,
+  "horizon": 378,
+  "fov": 45,
+  "sheepskin": [
+   400,
+   880
+  ],
+  "light": {
+   "dir": [
+    -1.2,
+    2.5,
+    -2
+   ],
+   "note": "sun from back-left, shadows fall toward camera-right"
+  },
+  "check": "painter used a standing eye (asked .8): true horizon at the far city line (378); 60 cm block = painted jar; parapet ~.7 m"
+ },
+ "maison_coiffeur": {
+  "h": 1.46,
+  "horizon": 228,
+  "fov": 45,
+  "brazier": [
+   1476,
+   766
+  ],
+  "light": {
+   "dir": [
+    1.5,
+    2.5,
+    1.5
+   ],
+   "note": "soft daylight from the open court above; white drapes at right"
+  },
+  "check": "painter used a standing eye (asked .7): horizon from door tops/bases (~1.3-1.5 m); Zoubida 1.62 at 4.2 m reads right against the 2.2 m back doors"
+ },
+ "galerie_jour": {
+  "h": 1.15,
+  "horizon": 471,
+  "fov": 45,
+  "railFoot": [
+   831,
+   809
+  ],
+  "railZ": -4.72,
+  "railH": 0.9,
+  "light": {
+   "dir": [
+    -2,
+    2.5,
+    -1
+   ],
+   "note": "late sun from upper left/back, spindle stripes on the tiles toward camera-right"
+  },
+  "check": "horizon solved from near rail (foot 395/top 272 in 960 view) vs far rail (270/245): 238 -> canvas 471; 0.9 m post top 545 px vs painted 544; rail is at 4.7 m, not the 2.2 asked"
+ },
+ "patio_vide": {
+  "h": 0.66,
+  "horizon": 493,
+  "fov": 45,
+  "stools": [
+   [
+    905,
+    727
+   ],
+   [
+    1224,
+    727
+   ]
+  ],
+  "stool": {
+   "h": 0.26,
+   "w": 0.32
+  },
+  "check": "copy of patio_poisson (same camera; ChatGPT edit without the stools/basin) - verify alignment"
+ },
+ "ep03/msid_estrade": {
+  "h": 1.1,
+  "horizon": 480,
+  "fov": 50,
+  "estrade": {
+   "front": [
+    960,
+    795
+   ],
+   "top": [
+    960,
+    700
+   ]
+  },
+  "light": {
+   "dir": [
+    -2,
+    2.5,
+    1.5
+   ],
+   "note": "sun from the high window at left, warm patch on the mats"
+  },
+  "check": "estimated from the estrade front face (top 700 / foot 795 -> .33 m) and the side-wall vanishing point (~1610, 478); verify"
+ },
+ "ep03/msid_face": {
+  "h": 1.1,
+  "horizon": 374,
+  "fov": 50,
+  "door": [
+   760,
+   630
+  ],
+  "light": {
+   "dir": [
+    1,
+    2.5,
+    2
+   ],
+   "note": "daylight through the open door and the window at right"
+  },
+  "check": "door foot 630 / top 188 measured over the 3D run in film.html; h 1.1 assumed (same Msid camera) -> horizon 374"
+ }
+}

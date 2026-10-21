@@ -1,0 +1,1064 @@
+[
+ {
+  "id": "s01_cris",
+  "start": 0,
+  "end": 17.64,
+  "lines": [
+   {
+    "who": "femmes",
+    "text": "Qui est mort ? Qui est mort ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/3736326acea2.wav",
+    "start": 1.5,
+    "dur": 3.28
+   },
+   {
+    "who": "narrator",
+    "text": "Ce jour-là, la mort est entrée dans notre impasse. Mais tout avait commencé, le matin même, par un sourire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/0feabeec919f.wav",
+    "start": 5.23,
+    "dur": 10.96
+   }
+  ]
+ },
+ {
+  "id": "s02_titre",
+  "start": 17.64,
+  "end": 26.64,
+  "lines": []
+ },
+ {
+  "id": "s03_msid",
+  "start": 26.64,
+  "end": 102.45,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Je n'avais jamais vu le maître du Msid aussi souriant que ce mercredi. Pas un élève ne reçut la bastonnade. La verge de cognassier n'était plus qu'un jouet, qu'il tournait entre ses doigts.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/5c8c44bf9d95.wav",
+    "start": 27.64,
+    "dur": 15.56
+   },
+   {
+    "who": "fqih",
+    "text": "C'est bien, mon fils. Tu seras, s'il plaît à Dieu, un taleb, un mendiant de la science. Qu'Allah t'ouvre les portes du savoir !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/bde3b444d1e6.wav",
+    "start": 43.65,
+    "dur": 11.52
+   },
+   {
+    "who": "fqih",
+    "text": "Silence ! Dans quinze jours, c'est l'Achoura, la fête du Nouvel An. Notre Msid sera illuminé à partir de minuit. Chacun apportera un bol d'huile d'olive pour les lampes. L'école sera blanchie à la chaux, et les vieilles nattes seront remplacées par des nattes neuves.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/cb2dba32f27a.wav",
+    "start": 55.62,
+    "dur": 28.28
+   },
+   {
+    "who": "fqih",
+    "text": "Dites-le à vos parents. Je compte sur leur générosité. Et maintenant… congé pour le reste de la journée !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/a65f54b848b3.wav",
+    "start": 84.35,
+    "dur": 10.28
+   },
+   {
+    "who": "narrator",
+    "text": "Quel bonheur ! Je courus à la maison annoncer la nouvelle à ma mère.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7c8f84278ec7.wav",
+    "start": 95.08,
+    "dur": 5.92
+   }
+  ]
+ },
+ {
+  "id": "s04_absente",
+  "start": 102.45,
+  "end": 131.91,
+  "lines": [
+   {
+    "who": "fatma",
+    "text": "Ta mère n'est pas là, mon petit. Lalla Aïcha est venue la chercher, il y a une heure à peu près.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/9b751cb1f2c8.wav",
+    "start": 103.45,
+    "dur": 6.32
+   },
+   {
+    "who": "narrator",
+    "text": "Ma joie se changea en inquiétude. Cette sortie avait sûrement un rapport avec l'affaire de Moulay Larbi, le mari de Lalla Aïcha. Encore ce démon d'Abdelkader, fils de je ne sais qui ? Ça sentait le pacha, le prévôt et leurs sbires.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/4e43aa91e39f.wav",
+    "start": 110.22,
+    "dur": 20.24
+   }
+  ]
+ },
+ {
+  "id": "s05_monstres",
+  "start": 131.91,
+  "end": 180.51,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Ma mère avait laissé la clef sur la porte de la chambre. J'entrai. Les objets ne me reconnaissaient plus.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/e9809f719d58.wav",
+    "start": 132.91,
+    "dur": 10.28
+   },
+   {
+    "who": "narrator",
+    "text": "Ils devenaient des monstres, redevenaient des objets familiers, puis prenaient de nouveaux masques, des bêtes de fin du monde.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/6df9fc2ab067.wav",
+    "start": 143.64,
+    "dur": 10.68
+   },
+   {
+    "who": "narrator",
+    "text": "Assis sur un matelas, la gorge sèche, je n'osais plus bouger. Des siècles passèrent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/091a0641f2da.wav",
+    "start": 154.77,
+    "dur": 8.72
+   },
+   {
+    "who": "narrator",
+    "text": "Enfin, les pas traînants de ma mère montèrent du rez-de-chaussée. Je l'entendis tousser. Et la chambre redevint une chambre. Un rayon de soleil ranima les vieilles mosaïques.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/28819dca0f0e.wav",
+    "start": 163.94,
+    "dur": 15.12
+   }
+  ]
+ },
+ {
+  "id": "s06_chuchotements",
+  "start": 180.51,
+  "end": 245.16,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Fatma Bziouya écaillait de petits poissons, brillants comme des bijoux. Elle posa son couteau, s'essuya les mains à son torchon, et attendit.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/574b08e1e545.wav",
+    "start": 181.51,
+    "dur": 11.36
+   },
+   {
+    "who": "zoubida",
+    "text": "Jure-moi, Fatma… pas un mot à personne !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/4a79ab9b5b3c.wav",
+    "start": 193.32,
+    "dur": 6.16
+   },
+   {
+    "who": "narrator",
+    "text": "Et ma mère se lança dans un long récit chuchoté, de bouche à oreille, avec des soupirs, des hochements de tête, de grands gestes des deux bras. Fatma répondait aux soupirs par des soupirs, aux hochements de tête par des hochements de tête.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/35fb730e81dd.wav",
+    "start": 199.93,
+    "dur": 20.6
+   },
+   {
+    "who": "fatma",
+    "text": "Allah ! Allah ! Allah ! Mon Dieu… mon Dieu… mon Dieu !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/b811338157c9.wav",
+    "start": 220.98,
+    "dur": 11.0
+   },
+   {
+    "who": "zoubida",
+    "text": "Oui ! Ça fend le cœur, a khti. On ne souhaite pas ça à son pire ennemi. Mais le croyant doit remercier Dieu, même dans le malheur.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/8be7808eb28b.wav",
+    "start": 232.43,
+    "dur": 11.28
+   }
+  ]
+ },
+ {
+  "id": "s07_khlii",
+  "start": 245.16,
+  "end": 294.88,
+  "lines": [
+   {
+    "who": "zoubida",
+    "text": "Ah, tu es là, toi ? Viens, tu dois mourir de faim.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/f7dccdf7ba6e.wav",
+    "start": 246.16,
+    "dur": 4.76
+   },
+   {
+    "who": "narrator",
+    "text": "De la réserve, elle sortit une jarre vernissée, d'un brun rouge. Elle y plongea tout l'avant-bras, et en tira une longue lanière de viande de conserve, le khlii.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/d9d1288898cb.wav",
+    "start": 251.37,
+    "dur": 14.0
+   },
+   {
+    "who": "narrator",
+    "text": "Des morceaux gros comme le pouce, nageant dans une graisse délicieuse. Le pain était frais, parfumé à l'anis. Je mangeai seul.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/0a1279031bfc.wav",
+    "start": 265.82,
+    "dur": 12.36
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère avait disparu. Je savais qu'elle chuchotait déjà quelque part la même histoire à Rahma. Je n'avais qu'à attendre. Un mot ici, un mot là, et je saurais tout.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/e4911c64d4a7.wav",
+    "start": 278.63,
+    "dur": 14.8
+   }
+  ]
+ },
+ {
+  "id": "s08_terrasse",
+  "start": 294.88,
+  "end": 367.68,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Sur la terrasse, Rahma, assise à l'ombre sur une peau de mouton, se peignait les cheveux. Sa chevelure noire, enduite d'huile d'olive, coulait sur ses épaules.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/1752164627e5.wav",
+    "start": 295.88,
+    "dur": 14.24
+   },
+   {
+    "who": "zoubida",
+    "text": "La pauvre femme a tout vendu. Même les rats n'ont plus rien à se mettre sous la dent !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/2431822ad695.wav",
+    "start": 310.57,
+    "dur": 6.56
+   },
+   {
+    "who": "rahma",
+    "text": "Et l'argent ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/67f482df5ff5.wav",
+    "start": 317.58,
+    "dur": 1.64
+   },
+   {
+    "who": "zoubida",
+    "text": "Pour acheter du matériel à Moulay Larbi, et payer son nouvel atelier. Lalla Aïcha est une chérifa de grande famille ! Elle ne peut pas laisser son mari, un patron, devenir simple ouvrier devant toute la corporation des babouchiers !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/3a871fd12a6d.wav",
+    "start": 319.67,
+    "dur": 14.6
+   },
+   {
+    "who": "rahma",
+    "text": "C'est très bien ! Très bien !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/b5b754596907.wav",
+    "start": 334.72,
+    "dur": 2.88
+   },
+   {
+    "who": "zoubida",
+    "text": "Elle a donné ses bijoux, ses meubles… Dieu le lui rendra au centuple, le Jour où le fils ne pourra rien pour son père. Ce jour-là, seules nos actions pèseront dans la Balance.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/65113b6e11a8.wav",
+    "start": 338.05,
+    "dur": 14.72
+   },
+   {
+    "who": "rahma",
+    "text": "Qu'Il soit glorifié ! Il n'y a de Dieu que Lui.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/09e4f0471a21.wav",
+    "start": 353.22,
+    "dur": 4.4
+   },
+   {
+    "who": "zoubida",
+    "text": "J'ai aidé Lalla Aïcha de mon mieux… Maintenant, je suis triste, et fatiguée.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/dac91013fc2a.wav",
+    "start": 358.07,
+    "dur": 8.16
+   }
+  ]
+ },
+ {
+  "id": "s09_mort",
+  "start": 367.68,
+  "end": 460.64,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Nous descendions l'escalier, quand des cris déchirèrent l'air. Des hurlements, une tempête de pleurs, qui venait de la maison voisine. Nous remontâmes en courant.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/c6b33235f963.wav",
+    "start": 368.68,
+    "dur": 13.4
+   },
+   {
+    "who": "femmes",
+    "text": "Qui est mort ? Qui est mort ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/e66ac2977427.wav",
+    "start": 382.53,
+    "dur": 3.68
+   },
+   {
+    "who": "narrator",
+    "text": "Sur les murs qui dominaient les terrasses, des groupes de femmes se formaient. Elles arrivaient des terrasses lointaines, sautaient les murs, se battaient avec une échelle trop courte. Certaines à califourchon, d'autres les jambes pendantes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/a8746b114a72.wav",
+    "start": 386.66,
+    "dur": 19.8
+   },
+   {
+    "who": "narrator",
+    "text": "Alors une vieille esclave noire, dont je ne voyais que la tête et les deux bras luisants, leva les mains. Ses paumes roses me fascinaient. Les femmes se turent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7d5a7eab58a6.wav",
+    "start": 406.91,
+    "dur": 15.28
+   },
+   {
+    "who": "esclave",
+    "text": "Je sais qui est mort. Sidi Mohammed ben Tahar, le coiffeur. Il était malade depuis deux mois.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/d65600a674f2.wav",
+    "start": 422.64,
+    "dur": 11.24
+   },
+   {
+    "who": "foulard",
+    "text": "Et de quoi est-il mort ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/4e38c27da5e8.wav",
+    "start": 434.33,
+    "dur": 2.68
+   },
+   {
+    "who": "esclave",
+    "text": "Dieu seul le sait. Mais c'est bien lui, Sidi Mohammed ben Tahar, le coiffeur, qui est mort.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7056264d2abc.wav",
+    "start": 437.46,
+    "dur": 11.28
+   },
+   {
+    "who": "narrator",
+    "text": "La tête de l'esclave disparut. Ses mains restèrent un moment sur l'arête du mur, puis s'évanouirent à leur tour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/09cf7acd4e34.wav",
+    "start": 449.19,
+    "dur": 10.0
+   }
+  ]
+ },
+ {
+  "id": "s10_coiffeur",
+  "start": 460.64,
+  "end": 491.38,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Tout le quartier connaissait Sidi Mohammed ben Tahar. Toujours vêtu de blanc, une barbe rare, et sur les lèvres un éternel sourire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/0c339fa4dba9.wav",
+    "start": 461.64,
+    "dur": 13.0
+   },
+   {
+    "who": "narrator",
+    "text": "Il faisait son marché lui-même. Souvent je l'avais croisé dans notre impasse, son couffin d'alfa au bras : des légumes de saison, parfois un morceau de viande rose, des oignons, de l'ail.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/1aa7add02b86.wav",
+    "start": 475.09,
+    "dur": 14.84
+   }
+  ]
+ },
+ {
+  "id": "s11_gifle",
+  "start": 491.38,
+  "end": 546.73,
+  "lines": [
+   {
+    "who": "zoubida",
+    "text": "Je vais passer par-dessus le mur. Ça me fera du bien d'aller pleurer un peu.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/88df1f6e10b2.wav",
+    "start": 492.38,
+    "dur": 6.16
+   },
+   {
+    "who": "mohammed",
+    "text": "Mé ! Emmène-moi ! Moi aussi, je veux pleurer un peu !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/db18738fa2a0.wav",
+    "start": 498.99,
+    "dur": 6.4
+   },
+   {
+    "who": "zoubida",
+    "text": "Non. Tu es trop petit, et puis tu es un garçon. Tout à l'heure, les récitateurs du Coran viendront, tu pourras te joindre à eux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/92d835225991.wav",
+    "start": 505.84,
+    "dur": 9.48
+   },
+   {
+    "who": "mohammed",
+    "text": "Je veux pleurer ! Je veux pleurer !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7c9fd1670cf1.wav",
+    "start": 515.77,
+    "dur": 3.6
+   },
+   {
+    "who": "zoubida",
+    "text": "Tiens ! Attrape, et pleure pour de bon !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/61e1982d2a47.wav",
+    "start": 519.82,
+    "dur": 3.52
+   },
+   {
+    "who": "narrator",
+    "text": "La phrase fut accompagnée d'une gifle magistrale. Je me mis à sangloter.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/57294d015280.wav",
+    "start": 523.79,
+    "dur": 8.08
+   },
+   {
+    "who": "narrator",
+    "text": "Rahma prit ma défense, et finit par convaincre ma mère. Les deux femmes me firent passer le mur. Je ne pleurais plus. Je descendis les marches quatre à quatre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7a53333c8d80.wav",
+    "start": 532.32,
+    "dur": 12.96
+   }
+  ]
+ },
+ {
+  "id": "s12_pleureuses",
+  "start": 546.73,
+  "end": 620.66,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "En bas, elles étaient une vingtaine. Par terre, des matelas, des nattes. Chaque nouvelle pleureuse s'annonçait dès l'entrée par des cris stridents, et les autres lui répondaient.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/52f125444c29.wav",
+    "start": 547.73,
+    "dur": 14.72
+   },
+   {
+    "who": "narrator",
+    "text": "La femme du coiffeur, la voix cassée, se frappait les joues et les cuisses du plat de la main. J'étais venu pour pleurer, et je ne pleurais pas. Je regardais une vieille femme échevelée, qui baissait la tête jusqu'au sol, la relevait, et chantait.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/5359c345f457.wav",
+    "start": 562.9,
+    "dur": 19.28
+   },
+   {
+    "who": "pleureuse",
+    "text": "Tu étais le pilier de ma maison… Tu étais mon parasol et mon bouclier… Tu étais le cavalier courageux…",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/ffd1996db83e.wav",
+    "start": 582.63,
+    "dur": 14.16
+   },
+   {
+    "who": "pleureuse",
+    "text": "Sans toi, la maison deviendra sombre… Sans toi, le soleil deviendra froid… Mes yeux verseront des larmes de sang…",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/a8e87c1f3da3.wav",
+    "start": 597.24,
+    "dur": 15.44
+   },
+   {
+    "who": "femme_haik",
+    "text": "Ô ma mère ! Ô ma pauvre mère ! Je t'aimais plus que tout au monde !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/56cd21ed3461.wav",
+    "start": 613.13,
+    "dur": 6.08
+   }
+  ]
+ },
+ {
+  "id": "s13_zineb",
+  "start": 620.66,
+  "end": 669.83,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Dans un coin, des enfants pleurnichaient. Parmi eux, Zineb.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/6ef09494223a.wav",
+    "start": 621.66,
+    "dur": 6.04
+   },
+   {
+    "who": "narrator",
+    "text": "Elle se frottait les yeux pour faire comme les grandes, mais pas une larme ne coulait. Ses yeux restaient secs et brillants, comme quand elle me jouait un mauvais tour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/16e8b29b656d.wav",
+    "start": 628.15,
+    "dur": 13.76
+   },
+   {
+    "who": "narrator",
+    "text": "Je la regardai un moment. Et d'un geste aussi rapide qu'inattendu, je lui envoyai un coup de poing sur le nez.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/2a6eb6448a36.wav",
+    "start": 642.36,
+    "dur": 8.76
+   },
+   {
+    "who": "zineb",
+    "text": "Aïïïe ! Mmmaaa !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/a8576f9424b8.wav",
+    "start": 651.57,
+    "dur": 5.88
+   },
+   {
+    "who": "narrator",
+    "text": "Des torrents de larmes inondèrent son visage. Ses cris couvrirent tout le vacarme. Je me sauvai sur la terrasse.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/42be7098a0aa.wav",
+    "start": 657.9,
+    "dur": 10.48
+   }
+  ]
+ },
+ {
+  "id": "s14_psalmistes",
+  "start": 669.83,
+  "end": 727.6,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "On annonça les récitateurs du Coran à la porte. Les femmes montèrent se réfugier au premier étage, et continuèrent à pleurer en sourdine, pendant que les hommes commençaient un long chapitre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/118309eb1815.wav",
+    "start": 670.83,
+    "dur": 14.6
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère remonta enfin, me prit par la main, et me fit repasser le mur.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/bb009e239458.wav",
+    "start": 685.88,
+    "dur": 7.96
+   },
+   {
+    "who": "fatma",
+    "text": "Alors, comment va la femme du coiffeur ? Qui était là ? Et sa mère, elle est encore vivante ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/022b95e678c4.wav",
+    "start": 694.29,
+    "dur": 7.2
+   },
+   {
+    "who": "kanza",
+    "text": "Tous les êtres sont mortels, mes filles. Tôt ou tard, viendra notre tour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/af419d96c66a.wav",
+    "start": 701.94,
+    "dur": 9.44
+   },
+   {
+    "who": "narrator",
+    "text": "Le bourdonnement des récitateurs traversait les murs. De temps en temps, la femme du coiffeur poussait un long hurlement, et ma mère soupirait. Je n'osais pas jouer.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/349d268c111c.wav",
+    "start": 711.83,
+    "dur": 14.32
+   }
+  ]
+ },
+ {
+  "id": "s15_cortege",
+  "start": 727.6,
+  "end": 783.64,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Accoudé à la balustrade de notre fenêtre, je rêvais. Tout à l'heure, on le vêtirait de blanc pour la dernière fois. Des hommes le porteraient sur leur tête, sur une civière de cèdre, et la terre se refermerait sur lui, pour l'éternité.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/fdd20e229f20.wav",
+    "start": 728.6,
+    "dur": 21.44
+   },
+   {
+    "who": "narrator",
+    "text": "Je le voyais, cousu dans sa cotonnade blanche, voyager sur une mer de têtes enturbannées. Une mer de litanies et de prières.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/53ffa75c8940.wav",
+    "start": 750.49,
+    "dur": 12.12
+   },
+   {
+    "who": "narrator",
+    "text": "J'avais vu, une fois, un mort posé tout seul sur sa civière, que personne n'accompagnait. J'avais trouvé cela infiniment triste.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/91470a00ad42.wav",
+    "start": 763.06,
+    "dur": 13.52
+   },
+   {
+    "who": "narrator",
+    "text": "Pour me consoler, mon père m'avait raconté une histoire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/2c8adabddc4a.wav",
+    "start": 777.03,
+    "dur": 5.16
+   }
+  ]
+ },
+ {
+  "id": "s16_babouches",
+  "start": 783.64,
+  "end": 881.36,
+  "lines": [
+   {
+    "who": "father",
+    "text": "Dans un souk très fréquenté, vivait un boutiquier pieux, honnête et courtois. Chaque fois qu'un cortège passait, il enfilait ses babouches, et accompagnait le mort jusqu'au cimetière.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/6e2d3851587f.wav",
+    "start": 784.64,
+    "dur": 17.16
+   },
+   {
+    "who": "father",
+    "text": "Un jour, deux croque-morts passèrent, portant un mendiant que personne ne suivait. Le boutiquier prit ses babouches sur l'étagère… mais resta debout, sans les enfiler. Puis il les remit à leur place.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/3c6790aaf9dd.wav",
+    "start": 802.25,
+    "dur": 19.96
+   },
+   {
+    "who": "boutiquiers",
+    "text": "Tu as vu ça ? Il n'accompagne que les enterrements des riches !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/dcf9614a186b.wav",
+    "start": 822.66,
+    "dur": 5.12
+   },
+   {
+    "who": "sidi",
+    "text": "Êtes-vous des croyants ? Alors écoutez. Derrière cette civière, j'ai vu une foule immense d'êtres d'une beauté sans pareille. Les anges du Paradis.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/b40aaee6d9f6.wav",
+    "start": 828.23,
+    "dur": 15.8
+   },
+   {
+    "who": "sidi",
+    "text": "Moi, simple pécheur, je n'ai pas osé me mêler à ces formes de lumière. Un ami de Dieu s'en allait vers son Créateur. Et je me suis rassis, heureux, parmi mes épices.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/a88f1574409a.wav",
+    "start": 844.48,
+    "dur": 14.8
+   },
+   {
+    "who": "narrator",
+    "text": "Depuis, chaque fois que je croisais deux croque-morts portant un mort tout seul, je répétais avec eux :",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/2b3897206ce4.wav",
+    "start": 859.73,
+    "dur": 8.12
+   },
+   {
+    "who": "mohammed",
+    "text": "Dieu t'accompagne, ô étranger, sur cette terre !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/ae75c1af7bdb.wav",
+    "start": 868.3,
+    "dur": 4.04
+   },
+   {
+    "who": "narrator",
+    "text": "Et j'ajoutais tout bas : lui aussi, des anges l'accompagnent. Et j'étais tout heureux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7fff496d9dfb.wav",
+    "start": 872.79,
+    "dur": 7.12
+   }
+  ]
+ },
+ {
+  "id": "s17_sanglots",
+  "start": 881.36,
+  "end": 940.24,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Les cris reprirent, plus forts que jamais. Ils traversaient les murs, comme des vagues, comme une tempête. Les femmes de notre maison lâchèrent leur ouvrage, et se mirent à gémir près de leurs braseros.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/24e1e9f66598.wav",
+    "start": 882.36,
+    "dur": 17.92
+   },
+   {
+    "who": "narrator",
+    "text": "Le corps quittait la maison. Le soleil se cacha derrière un nuage. Une immense peine s'abattit sur la terre. Et j'éclatai en sanglots.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/c0c23971966f.wav",
+    "start": 900.73,
+    "dur": 13.64
+   },
+   {
+    "who": "zoubida",
+    "text": "Qu'est-ce que tu as ? Où tu t'es fait mal ? Un insecte t'a piqué ? Tu as des coliques ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/052faaab6d92.wav",
+    "start": 914.82,
+    "dur": 5.68
+   },
+   {
+    "who": "narrator",
+    "text": "Je reniflais de plus belle, sans répondre. Je refusai même les lentilles à la tomate et aux oignons, que j'aimais tant. Ma mère étendit sur moi une couverture de laine grège, bordée de bandes rouges.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/e44ef817f5fb.wav",
+    "start": 920.95,
+    "dur": 17.84
+   }
+  ]
+ },
+ {
+  "id": "s18_fievre",
+  "start": 940.24,
+  "end": 1029.79,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Mon père rentra tard dans la soirée. Il me toucha les tempes, me prit la main, arrangea ma couverture avec des gestes d'officiant. Ses lèvres remuaient. Il récitait un verset, pour me protéger.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/d0447d23b40b.wav",
+    "start": 941.24,
+    "dur": 18.92
+   },
+   {
+    "who": "mohammed",
+    "text": "Je vais peut-être mourir, moi aussi… Peut-être que derrière mon cercueil, il y aura des anges, beaux comme la lumière du jour…",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/804330f933a3.wav",
+    "start": 960.61,
+    "dur": 11.4
+   },
+   {
+    "who": "narrator",
+    "text": "J'imaginais le cortège : le fqih, mon père, plus grave que jamais, et des milliers d'anges vêtus de soie blanche. Et ma mère, toute seule le soir, à attendre le retour de mon père.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/0ca516ca9e19.wav",
+    "start": 972.46,
+    "dur": 17.52
+   },
+   {
+    "who": "mohammed",
+    "text": "Non ! Je ne veux pas mourir ! Je ne veux pas mourir !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/b3686d80a70f.wav",
+    "start": 990.43,
+    "dur": 4.32
+   },
+   {
+    "who": "father",
+    "text": "Chhh… doucement, mon fils. Personne ne va mourir. Dors.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/b2739867ecf7.wav",
+    "start": 995.2,
+    "dur": 7.84
+   },
+   {
+    "who": "zoubida",
+    "text": "Mon petit enfant… Mon petit enfant !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/f4b9edd2731c.wav",
+    "start": 1003.49,
+    "dur": 5.56
+   },
+   {
+    "who": "narrator",
+    "text": "Je me calmai. Mes oreilles sifflaient. À travers ce bruit d'eau, j'entendais ma mère raconter la journée : le coiffeur, les bijoux de Lalla Aïcha, et cet Abdelkader, fils de je ne sais qui.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7027de7643bf.wav",
+    "start": 1009.5,
+    "dur": 18.84
+   }
+  ]
+ },
+ {
+  "id": "s19_reve",
+  "start": 1029.79,
+  "end": 1092.07,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Entre les franges de mes cils, je vis descendre du plafond de beaux anges blancs, aux ailes couleur d'argent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/fe58fdfb115a.wav",
+    "start": 1030.79,
+    "dur": 9.52
+   },
+   {
+    "who": "narrator",
+    "text": "L'un d'eux posa sur mon lit ma Boîte à Merveilles. Elle grandit, grandit, et devint un cercueil. Tout heureux, j'y entrai. Le couvercle tomba.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/2f0637237eef.wav",
+    "start": 1040.76,
+    "dur": 14.88
+   },
+   {
+    "who": "narrator",
+    "text": "Dedans régnait une fraîcheur de roses et de fleurs d'oranger. La Boîte s'envola par-delà les nuages, jusqu'à des palais d'émeraude. Tous les oiseaux chantaient. Et je retrouvai mes deux moineaux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/b726c94bde9b.wav",
+    "start": 1056.09,
+    "dur": 17.76
+   },
+   {
+    "who": "moineau1",
+    "text": "J'aime les figues sèches !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/8dedc6f6ec51.wav",
+    "start": 1074.3,
+    "dur": 1.92
+   },
+   {
+    "who": "moineau2",
+    "text": "Pourquoi tu aimes les figues sèches ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/565b06f75ba5.wav",
+    "start": 1076.67,
+    "dur": 2.32
+   },
+   {
+    "who": "moineau1",
+    "text": "Tout le monde aime les figues sèches !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/6476d90540ab.wav",
+    "start": 1079.44,
+    "dur": 2.56
+   },
+   {
+    "who": "moineau2",
+    "text": "Oui ! Oui ! Oui ! Les figues sèches !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/23b5658e6ba3.wav",
+    "start": 1082.45,
+    "dur": 3.08
+   },
+   {
+    "who": "moineau1",
+    "text": "Les figues sèches ! Les figues sèches !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/d8069616254d.wav",
+    "start": 1085.98,
+    "dur": 4.64
+   }
+  ]
+ },
+ {
+  "id": "s20_matin",
+  "start": 1092.07,
+  "end": 1133.44,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Une brûlure sur les paupières m'obligea à ouvrir les yeux. Un rayon de soleil me tombait droit sur le visage. Et les moineaux chantaient toujours les vertus des figues sèches.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/0e616958cf9d.wav",
+    "start": 1093.07,
+    "dur": 14.8
+   },
+   {
+    "who": "zoubida",
+    "text": "Que ta matinée soit bénie, mon petit ! Tu avais un peu de fièvre cette nuit. Aujourd'hui, tu n'iras pas à l'école.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/c86f533754c8.wav",
+    "start": 1108.32,
+    "dur": 7.24
+   },
+   {
+    "who": "mohammed",
+    "text": "Je ne suis pas malade !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/ffedc00c00a9.wav",
+    "start": 1116.01,
+    "dur": 1.88
+   },
+   {
+    "who": "zoubida",
+    "text": "Je sais ! Je sais ! Joue tranquille dans ton coin. Tiens, mange ce beignet, il est tout chaud.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/1e2374c410bc.wav",
+    "start": 1118.34,
+    "dur": 9.2
+   },
+   {
+    "who": "fatma",
+    "text": "Déjà de la mauve ! Qu'elle est verte !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7bbd00235fb4.wav",
+    "start": 1127.99,
+    "dur": 4.0
+   }
+  ]
+ },
+ {
+  "id": "s21_soufflets",
+  "start": 1133.44,
+  "end": 1203.02,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Ma mère remua ses seaux, actionna son soufflet, pila ses épices dans le mortier de bronze. Au premier, Rahma faisait de même.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7174f79be6b5.wav",
+    "start": 1134.44,
+    "dur": 11.76
+   },
+   {
+    "who": "narrator",
+    "text": "Notre vieux soufflet était fatigué. Il ne savait dire que trois mots :",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/856d50dac21d.wav",
+    "start": 1146.65,
+    "dur": 5.72
+   },
+   {
+    "who": "mohammed",
+    "text": "Des mouches ! Des mouches ! Des mouches !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7ccf06eb9df9.wav",
+    "start": 1152.82,
+    "dur": 5.84
+   },
+   {
+    "who": "narrator",
+    "text": "Celui de Rahma avait plus de répertoire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/7948dbb6d963.wav",
+    "start": 1159.11,
+    "dur": 3.64
+   },
+   {
+    "who": "mohammed",
+    "text": "J'ai chaud ! J'ai chaud ! J'ai chaud ! Je souffre ! Je souffre ! Je souffre !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/ae102534508a.wav",
+    "start": 1163.2,
+    "dur": 15.08
+   },
+   {
+    "who": "narrator",
+    "text": "Puis d'autres bruits m'appelèrent. Des étincelles roulaient comme des billes sur les mosaïques. Fatma Bziouya cardait sa laine. En bas, Lalla Kanza chuchotait avec une cliente. Un pigeon roucoulait sur la terrasse, des mots si jolis que je souriais aux anges.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/8e87f34547c4.wav",
+    "start": 1178.73,
+    "dur": 22.84
+   }
+  ]
+ },
+ {
+  "id": "s22_bourdon",
+  "start": 1203.02,
+  "end": 1254.01,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Du ciel coula jusqu'à moi un chant frêle, fin comme un fil de la vierge. Le muezzin appelait à la prière. Allahou akbar. Le chant mourait dans le bleu du ciel, puis renaissait.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/720e2d124709.wav",
+    "start": 1204.02,
+    "dur": 19.92
+   },
+   {
+    "who": "narrator",
+    "text": "Soudain, un gros bourdon d'un noir métallique tomba par l'ouverture du patio, claqua contre le mur, et fonça par notre fenêtre, droit sur le verre de la lampe à pétrole.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/e645f721667a.wav",
+    "start": 1224.39,
+    "dur": 13.4
+   },
+   {
+    "who": "narrator",
+    "text": "Le verre tinta, mais résista. Le bourdon repartit aussi vite qu'il était venu. Cette visite m'enchanta. Je riais, je tapais des mains.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/beb3cf371fa4.wav",
+    "start": 1238.24,
+    "dur": 14.32
+   }
+  ]
+ },
+ {
+  "id": "s23_coran",
+  "start": 1254.01,
+  "end": 1293.28,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Pour m'occuper, je récitai le peu de Coran que je savais. D'abord à mi-voix, puis de toutes mes forces.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/f2787f8d4e78.wav",
+    "start": 1255.01,
+    "dur": 9.44
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mémoire tarit. J'hésitai un instant… puis je repris, avec plus de ferveur encore. J'inventais mon propre Coran. Des mots sans suite s'envolaient dans la chambre, comme des essaims de papillons colorés.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/02c1a41ae60d.wav",
+    "start": 1264.9,
+    "dur": 17.92
+   },
+   {
+    "who": "zoubida",
+    "text": "Doucement, pas si fort, tu vas te redonner la fièvre. Tiens. Ajoute ceci à tes merveilles.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/9a1aaf6141a8.wav",
+    "start": 1283.27,
+    "dur": 8.56
+   }
+  ]
+ },
+ {
+  "id": "s24_chaine",
+  "start": 1293.28,
+  "end": 1357.04,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "C'était une petite chaîne de cuivre, finement travaillée, rongée de vert-de-gris. Je la contemplai longtemps.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/da99eca85abd.wav",
+    "start": 1294.28,
+    "dur": 10.36
+   },
+   {
+    "who": "narrator",
+    "text": "Je savais, moi, changer ce vil cuivre en or pur. Sur le palier, dans une boîte de conserve cabossée, je trouvai le sable fin qui servait à nettoyer les plateaux à thé.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/45c6a6eb7996.wav",
+    "start": 1305.09,
+    "dur": 15.04
+   },
+   {
+    "who": "narrator",
+    "text": "Je frottai, je frottai, j'en avais mal aux doigts. Je rinçai dans un seau d'eau noirâtre, où nageait un petit balai de doum. Et ma chaîne devint un bijou d'or.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/a5c9cec94888.wav",
+    "start": 1320.58,
+    "dur": 14.0
+   },
+   {
+    "who": "narrator",
+    "text": "Je la mis à mon poignet, sur ma poitrine, sur mon front. Puis je sortis ma Boîte, et j'étalai tous mes trésors sur une couverture. Mes plus humbles boutons, mes plus humbles clous, se changèrent en joyaux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/8c91bb349229.wav",
+    "start": 1335.03,
+    "dur": 20.56
+   }
+  ]
+ },
+ {
+  "id": "s25_chat",
+  "start": 1357.04,
+  "end": 1422.86,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Je n'avais pas vu entrer le chat de Zineb. Il ronronna tout contre moi. Je décidai de lui ouvrir les portes de mon univers.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/4e24c9f7254d.wav",
+    "start": 1358.04,
+    "dur": 10.2
+   },
+   {
+    "who": "narrator",
+    "text": "Il écouta gravement mes discours, allongea la patte vers mon cabochon de verre taillé, regarda ma chaîne d'or avec étonnement. Je lui en fis un collier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/886c4546a410.wav",
+    "start": 1368.69,
+    "dur": 13.72
+   },
+   {
+    "who": "narrator",
+    "text": "D'abord, il fut très fier. Puis il voulut l'arracher. La chaîne résista à ses griffes. Alors il s'affola, et partit comme une flèche, la queue hérissée, les yeux fous.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/6d94415ff026.wav",
+    "start": 1382.86,
+    "dur": 16.72
+   },
+   {
+    "who": "mohammed",
+    "text": "Reviens ! Ma chaîne ! Reviens, sale chat !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/830f5089c558.wav",
+    "start": 1400.03,
+    "dur": 4.28
+   },
+   {
+    "who": "narrator",
+    "text": "Le maudit chat grimpait l'escalier en crachant des menaces. Tout le monde se précipita sur la terrasse. Mais le chat escaladait déjà un mur d'une hauteur vertigineuse.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/fd90d5b529a3.wav",
+    "start": 1404.76,
+    "dur": 11.8
+   },
+   {
+    "who": "femmes",
+    "text": "Il reviendra ce soir ! Zineb te rendra ta chaîne !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/89ae170d1b9b.wav",
+    "start": 1417.01,
+    "dur": 4.4
+   }
+  ]
+ },
+ {
+  "id": "s26_bagarre",
+  "start": 1422.86,
+  "end": 1477.11,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Zineb ! C'était elle ! Elle avait envoyé son chat se frotter contre moi, pour me voler mon plus beau bijou !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/84d3d8e7e0a6.wav",
+    "start": 1423.86,
+    "dur": 11.24
+   },
+   {
+    "who": "narrator",
+    "text": "Ma rage éclata. Je me jetai sur Zineb. Ongles, cheveux, coups de pied. Elle se défendit comme une brute, me tira les oreilles, me renversa, me marcha sur la poitrine.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/aec63dc2b78c.wav",
+    "start": 1435.55,
+    "dur": 14.8
+   },
+   {
+    "who": "femmes",
+    "text": "Arrêtez ! Séparez-les ! Aïe, ma tête !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/752cd96fd113.wav",
+    "start": 1450.8,
+    "dur": 4.68
+   },
+   {
+    "who": "narrator",
+    "text": "Enfin ma mère réussit à me maîtriser. Elle me plongea la tête dans un seau d'eau, m'essuya le visage avec un torchon, et m'ordonna de me coucher.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/587a180482ff.wav",
+    "start": 1455.93,
+    "dur": 12.56
+   },
+   {
+    "who": "narrator",
+    "text": "La poitrine encore secouée de sanglots, je m'endormis presque aussitôt.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep05/9415e43100d4.wav",
+    "start": 1468.94,
+    "dur": 6.72
+   }
+  ]
+ },
+ {
+  "id": "s27_fin",
+  "start": 1477.11,
+  "end": 1494.11,
+  "lines": []
+ }
+]
