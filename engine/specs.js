@@ -16,10 +16,15 @@ const OVERRIDE = {
   fatma: { neck: .53, head: .59 },
   driss: { neck: .52, head: .57 },
   moqadma: { neck: .53, head: .59 },
-  zoubida_haik: { neck: .48, head: .54 },
+  zoubida_haik: { neck: .48, head: .54, armMinY: .02, smooth: 2, armR: .05, capeHands: true, elbow: [.29, .2], wrist: [.31, -.01], hand: [.34, -.17] },
   aicha_haik: { neck: .53, head: .56 },
   mohammed_gris: { shoulder: [.17, .34], elbow: [.27, .06], headR: .1, fixSkin: '#d99c70' },
   guerrab: { neck: .41, head: .46 },
+  kid1: { headR: .1 },
+  kid2: { headR: .1 },
+  kid3: { headR: .1 },
+  grand1: { headR: .09 },
+  grand2: { headR: .09 },
   mohammed_rodin: { shoulder: [.17, .34], elbow: [.27, .06], headR: .1, fixSkin: '#d99c70' },
 };
 function torsoFn(tab) {

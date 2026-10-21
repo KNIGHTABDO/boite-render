@@ -1,0 +1,45 @@
+{
+ "_": "Stage3D calibration per plate (canvas px, 1920x1080). ep06 seeds: h/fov from mk_plates.py spec, horizon read by eye from vanishing lines; verify with a true-size prop in test/proto/plate.html when staging (step 6).",
+ "msid_menage": {
+  "h": 1.0,
+  "horizon": 464,
+  "fov": 50,
+  "check": "SEED spec 42%; VP of floor/ceiling ~43%. buckets 0.45 m by left wall"
+ },
+ "msid_soupente": {
+  "h": 0.9,
+  "horizon": 497,
+  "fov": 50,
+  "check": "SEED spec 45%; loft floor, beams 1.6 m above floor"
+ },
+ "kissaria": {
+  "h": 1.1,
+  "horizon": 432,
+  "fov": 45,
+  "check": "SEED spec 42%; alley VP left at ~40%. booth floor 0.80 m above street"
+ },
+ "kissaria_rev": {
+  "h": 1.1,
+  "horizon": 454,
+  "fov": 45,
+  "check": "SEED spec 44%; alley end at ~42%"
+ },
+ "rue_mosquee": {
+  "h": 1.1,
+  "horizon": 626,
+  "fov": 45,
+  "check": "SEED spec 42% NOT followed: alley-end VP ~58%; re-solve h with bench 0.40 m"
+ },
+ "rue_epices": {
+  "h": 1.1,
+  "horizon": 486,
+  "fov": 45,
+  "check": "SEED spec 42%; door-end VP ~45%"
+ },
+ "rahma_pauvre": {
+  "h": 1.0,
+  "horizon": 464,
+  "fov": 50,
+  "check": "SEED spec 44%; back wall/floor ~43%. mattresses 0.20 m"
+ }
+}

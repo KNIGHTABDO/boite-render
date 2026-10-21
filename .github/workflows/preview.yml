@@ -1,0 +1,67 @@
+name: preview
+# Low-res QA preview of a whole episode: N parallel jobs (1 Chrome each, SwiftShader), then one merge job adds the mix.
+on:
+  workflow_dispatch:
+    inputs:
+      ep:   { default: 'ep06' }
+      dur:  { default: '1421.39', description: 'episode length (s)' }
+      fps:  { default: '12' }
+      h:    { default: '480' }
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    env:
+      EP: ${{ inputs.ep }}
+      FPS: ${{ inputs.fps }}
+      CHROME: /usr/bin/google-chrome
+      CHROME_EXTRA: --no-sandbox --enable-unsafe-swiftshader
+      X264_PRESET: veryfast
+      RENDER_H: ${{ inputs.h }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - name: deps
+        run: |
+          (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null) &
+          npm ci --no-audit --no-fund --silent
+          wait
+      - name: render
+        run: |
+          mkdir -p out
+          N=$(python3 -c "import math;print(math.ceil(${{ inputs.dur }}*${{ inputs.fps }}))"); P=20; i=${{ matrix.part }}
+          a=$((N*i/P)); b=$((N*(i+1)/P)); W=$(( (${{ inputs.h }}*16/9 + 1) / 2 * 2 ))
+          T=$(date +%s)
+          node tools/render_film.mjs --worker $a $b out/p$(printf %02d $i).mp4 $W 2>&1 | grep -v "^PAGE log" | tail -40
+          echo "### part $i: frames $a-$b in $(( $(date +%s)-T ))s" | tee -a $GITHUB_STEP_SUMMARY
+          test -s out/p$(printf %02d $i).mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.part }}
+          path: out/*.mp4
+          retention-days: 3
+  merge:
+    needs: render
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: parts, pattern: part-*, merge-multiple: true }
+      - name: merge
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null
+          ls parts | wc -l
+          for f in $(ls parts/*.mp4 | sort); do echo "file '$PWD/$f'" >> list.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -i audio/${{ inputs.ep }}_mix.m4a -map 0:v -map 1:a -c:v copy -c:a copy -shortest ${{ inputs.ep }}_preview.mp4
+          ls -la ${{ inputs.ep }}_preview.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.ep }}_preview
+          path: ${{ inputs.ep }}_preview.mp4
+          retention-days: 7

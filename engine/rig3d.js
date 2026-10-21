@@ -70,6 +70,8 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
     armW[i] = (1 - ss(.85, 1.25, bd)) * gate * (ax > S.shoulder[0] * .75 ? 1 : 0);
     // how much diffused arm weight a vertex may take: robe flanks below the hips stay on the body (raised arms pulled them into spikes)
     keep[i] = (p.y > S.shoulder[1] - S.armR * 1.2 ? 1 : ss(inner - S.armR * 1.6, inner + S.armR * .2, ax)) * (p.y < S.hip + .05 ? 1 - ss(1, 1.6, bd) : 1);
+    // cape actors (haik): the arms are hidden under the cloth, only the hands come out, so only they may move
+    if (S.armMinY != null && p.y > S.armMinY) { armW[i] = 0; keep[i] = 0; }
     // position along the chain: 0 shoulder .. 1 elbow .. 2 wrist .. 3 hand end
     const k = armSide[i], chain = [V(k * S.shoulder[0], S.shoulder[1]), V(k * S.elbow[0], S.elbow[1]), V(k * S.wrist[0], S.wrist[1]), V(k * S.hand[0], S.hand[1])];
     let bestT = 0, bestD = 1e9; for (let sgi = 0; sgi < 3; sgi++) { const A = chain[sgi], Z = chain[sgi + 1], ab = Z.clone().sub(A), t = Math.max(0, Math.min(1, p.clone().sub(A).dot(ab) / ab.lengthSq())), d = p.distanceTo(A.clone().addScaledVector(ab, t)); if (d < bestD) { bestD = d; bestT = sgi + t; } }
@@ -89,10 +91,12 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
   }
   for (let i = 0; i < n; i++) cur[i] = Math.max(armW[i], cur[i] * keep[i]);
   const si = new Uint16Array(n * 4), sw = new Float32Array(n * 4);
+  const awH = new Uint8Array(n); let patchGeo = null;
   for (let i = 0; i < n; i++) {
     p.set(pos.getX(i), pos.getY(i), 0); const w = {};
     const add = (k, v) => { if (v > 1e-3) w[k] = (w[k] || 0) + v; };
-    const aw = Math.min(1, Math.max(0, cur[i] * 1.15));
+    let aw = Math.min(1, Math.max(0, cur[i] * 1.15));
+    if (S.capeHands) aw = awH[i] = aw > .5 ? 1 : 0;
     if (aw > 0) {
       const s = armSide[i] > 0 ? 'L' : 'R', t = along[i];
       // chain blend: shoulder region shares with chest, elbow/wrist blend smoothly
@@ -121,6 +125,18 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
     if (!top.length) { si[i * 4] = idx.root; sw[i * 4] = 1; continue; }
     top.forEach(([k, v], j) => { si[i * 4 + j] = idx[k]; sw[i * 4 + j] = v / tot; });
   }
+  // cape hands: cut the triangles joining a hand to the cloth, so a raised hand comes out of the haik instead of dragging a strip of it
+  if (S.capeHands) { const ix = geo.index ? geo.index.array : Array.from({ length: n }, (_, i) => i), kept = [];
+    for (let t = 0; t < ix.length; t += 3) if (awH[ix[t]] === awH[ix[t + 1]] && awH[ix[t]] === awH[ix[t + 2]]) kept.push(ix[t], ix[t + 1], ix[t + 2]);
+    geo.setIndex(kept);
+    // and a cloth-coloured patch where the hands were (on the hips, set 4 mm into the body so a resting hand covers it)
+    const hk = []; for (let t = 0; t < ix.length; t += 3) if (awH[ix[t]] && awH[ix[t + 1]] && awH[ix[t + 2]]) hk.push(ix[t], ix[t + 1], ix[t + 2]);
+    const pg = new THREE.BufferGeometry(), nrm = geo.attributes.normal, pp = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) { pp[i * 3] = pos.getX(i) - nrm.getX(i) * .004; pp[i * 3 + 1] = pos.getY(i) - nrm.getY(i) * .004; pp[i * 3 + 2] = pos.getZ(i) - nrm.getZ(i) * .004; }
+    pg.setAttribute('position', new THREE.BufferAttribute(pp, 3)); pg.setAttribute('normal', nrm); pg.setIndex(hk);
+    pg.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(new Uint16Array(n * 4), 4));   // all on the root (hips)
+    const pw = new Float32Array(n * 4); for (let i = 0; i < n; i++) pw[i * 4] = 1; pg.setAttribute('skinWeight', new THREE.Float32BufferAttribute(pw, 4));
+    patchGeo = pg; }
   geo.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(si, 4));
   geo.setAttribute('skinWeight', new THREE.Float32BufferAttribute(sw, 4));
 
@@ -136,6 +152,7 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
   mesh.frustumCulled = hull.frustumCulled = false;
   // normalise: feet on y=0, height 1
   const inner = new THREE.Group(); inner.add(mesh, hull);
+  if (patchGeo) { const pm = new THREE.SkinnedMesh(patchGeo, new THREE.MeshToonMaterial({ color: S.capeColor ?? 0xe6dfcf, gradientMap: grad, side: THREE.DoubleSide })); pm.bind(skel); pm.frustumCulled = false; inner.add(pm); }
   const h = S.top - S.bottom; inner.scale.setScalar(1 / h); inner.position.y = -S.bottom / h;
   const group = new THREE.Group(); group.add(inner);
   for (const b of list) b.userData.rest = b.quaternion.clone();
