@@ -1,0 +1,90 @@
+name: final
+# Full-res render of a whole episode. Frame ranges are cost-balanced (not equal time): COST is the measured minutes per
+# 1/20 of the timeline (ep06 preview run #3), so every part finishes at about the same time. Then one merge job adds the mix.
+on:
+  workflow_dispatch:
+    inputs:
+      ep:    { default: 'ep06' }
+      dur:   { default: '1421.39', description: 'episode length (s)' }
+      fps:   { default: '24' }
+      h:     { default: '1080' }
+      parts: { default: '40' }
+      cost:  { default: '58,48,77,42,55,22,10,31,56,20,31,40,42,68,76,13,45,46,35,7', description: 'relative cost per equal slice of the timeline' }
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      parts: ${{ steps.p.outputs.parts }}
+    steps:
+      - id: p
+        run: |
+          python3 - <<'PY' >> $GITHUB_OUTPUT
+          import json, math
+          N = math.ceil(${{ inputs.dur }} * ${{ inputs.fps }}); P = int('${{ inputs.parts }}')
+          C = [float(x) for x in '${{ inputs.cost }}'.split(',')]; S = len(C); tot = sum(C)
+          def frame(target):  # invert the piecewise-linear cumulative cost
+              acc = 0
+              for s, c in enumerate(C):
+                  if acc + c >= target: return round(N * (s + (target - acc) / c) / S)
+                  acc += c
+              return N
+          cuts = [0] + [frame(tot * k / P) for k in range(1, P)] + [N]
+          print('parts=' + json.dumps([{'i': '%02d' % k, 'a': cuts[k], 'b': cuts[k + 1]} for k in range(P)]))
+          PY
+          cat $GITHUB_OUTPUT
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        part: ${{ fromJson(needs.plan.outputs.parts) }}
+    env:
+      EP: ${{ inputs.ep }}
+      FPS: ${{ inputs.fps }}
+      CHROME: /usr/bin/google-chrome
+      CHROME_EXTRA: --no-sandbox --enable-unsafe-swiftshader
+      X264_PRESET: medium
+      RENDER_H: ${{ inputs.h }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - name: deps
+        run: |
+          (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null) &
+          npm ci --no-audit --no-fund --silent
+          wait
+      - name: render
+        run: |
+          mkdir -p out; i=${{ matrix.part.i }}; a=${{ matrix.part.a }}; b=${{ matrix.part.b }}
+          W=$(( (${{ inputs.h }}*16/9 + 1) / 2 * 2 )); T=$(date +%s)
+          node tools/render_film.mjs --worker $a $b out/p$i.mp4 $W 2>&1 | grep -v "^PAGE log" | tail -40
+          echo "### part $i: frames $a-$b in $(( $(date +%s)-T ))s" | tee -a $GITHUB_STEP_SUMMARY
+          test -s out/p$i.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.part.i }}
+          path: out/*.mp4
+          retention-days: 3
+  merge:
+    needs: render
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: parts, pattern: part-*, merge-multiple: true }
+      - name: merge
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null
+          ls parts | wc -l
+          for f in $(ls parts/*.mp4 | sort); do echo "file '$PWD/$f'" >> list.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -i audio/${{ inputs.ep }}_mix.m4a -map 0:v -map 1:a -c:v copy -c:a copy -shortest -movflags +faststart ${{ inputs.ep }}_final.mp4
+          ffprobe -v error -show_entries format=duration -of csv=p=0 ${{ inputs.ep }}_final.mp4; ls -la ${{ inputs.ep }}_final.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.ep }}_final
+          path: ${{ inputs.ep }}_final.mp4
+          retention-days: 14
