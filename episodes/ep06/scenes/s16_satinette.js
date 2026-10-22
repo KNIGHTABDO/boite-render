@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import * as K from '../../../engine/core.js';
 import * as PO from '../../../engine/poses.js';
 import * as IK from '../../../engine/ik.js';
-import { rest, idlePose } from '../../../engine/rig3d.js';
+import { rest, idlePose, walkPose } from '../../../engine/rig3d.js';
 import { travel } from '../../../engine/clips.js';
 import * as PR from '../../../engine/props3d.js';
 import { make, ac } from './_pt.js';
@@ -24,15 +24,15 @@ const SC = (await (await fetch(new URL('../timing.json', import.meta.url))).json
 const L = SC.lines.map(l => [l.start - SC.start, l.start - SC.start + l.dur]);
 const T_FIND = L[2][0] + 5.5, T_PAY = L[2][0] + 9.5, T_GIVE = L[3][0] + 4.2;
 
-/** the black satinette: a rolled bolt of black glossy cloth, axis +y, 40 cm long */
+/** the black satinette: a modest folded piece of glossy black cloth (two folds), long axis +y, 26 cm */
 function satinette() {
-  const g = new THREE.Group();
-  g.add(new THREE.Mesh(new THREE.CylinderGeometry(.06, .06, .4, 14), PR.toon(0x17171c)), new THREE.Mesh(new THREE.CylinderGeometry(.062, .062, .02, 14).translate(0, .1, 0), PR.toon(0x6a6a74)));
+  const g = new THREE.Group(), m = PR.toon(0x17171c);
+  g.add(new THREE.Mesh(new THREE.BoxGeometry(.15, .26, .035), m), new THREE.Mesh(new THREE.BoxGeometry(.15, .26, .03).translate(.004, 0, .032), m));
   g.traverse(o => { if (o.isMesh) o.castShadow = true; }); return g;
 }
 function coins() {
   const g = new THREE.Group();
-  for (let i = 0; i < 4; i++) g.add(new THREE.Mesh(new THREE.CylinderGeometry(.017, .017, .003, 12).translate(i * .006, i * .004, 0), PR.toon(0xcfcfc4)));
+  for (let i = 0; i < 2; i++) g.add(new THREE.Mesh(new THREE.CylinderGeometry(.015, .015, .003, 14).translate(i * .004, i * .004, 0), PR.toon(0xdcdcd4)));
   return g;
 }
 
@@ -67,12 +67,12 @@ const ep = shot({
         PO.look(zo, IK.wpos(mo.B.head), .4 * tug); PO.look(mo, IK.wpos(zo.B.head), .6);
       } else if (t < L[2][0]) {   // 1: cursing, patting her pockets (hands low at the hips, quick), head shakes
         const pat = Math.abs(Math.sin(t * 5));
-        PO.reach(zo, 'R', zh.clone().addScaledVector(zs, -.24).addScaledVector(zf, .14).add(V(0, .08 * pat, 0)), { grip: .03 });
-        PO.reach(zo, 'L', zh.clone().addScaledVector(zs, .24).addScaledVector(zf, .14).add(V(0, .08 * (1 - pat), 0)), { grip: .03 });
+        PO.reach(zo, 'R', zh.clone().addScaledVector(zs, -.13).addScaledVector(zf, .19).add(V(0, -.04 + .08 * pat, 0)), { grip: .03 });
+        PO.reach(zo, 'L', zh.clone().addScaledVector(zs, .13).addScaledVector(zf, .19).add(V(0, -.04 + .08 * (1 - pat), 0)), { grip: .03 });
         zo.B.head.rotation.y += .25 * Math.sin(t * 4); PO.look(mo, IK.wpos(zo.B.head), .5);
       } else {   // 2: digs deeper, finds the coins, pays, takes the satinette
         const dig = sm(L[2][0], L[2][0] + .5, t) * (1 - sm(T_FIND - .3, T_FIND, t)), j = Math.sin(t * 9) * .03 * dig;
-        const pk = zh.clone().addScaledVector(zs, -.24).addScaledVector(zf, .1);
+        const pk = zh.clone().addScaledVector(zs, -.1).addScaledVector(zf, .17).add(V(0, -.06, 0));
         if (t < T_FIND) PO.reach(zo, 'R', IK.wpos(zo.B.handR).lerp(pk.clone().add(V(0, -.04 + j, j)), dig), { grip: .03 });
         else {   // the coins in her palm, held out low
           const out = sm(T_FIND, T_FIND + .6, t) * (1 - sm(T_PAY + 1, T_PAY + 1.6, t));
@@ -80,9 +80,9 @@ const ep = shot({
           cn.visible = true; cn.position.copy(palm(zo, 'R')).add(V(0, .015, 0)); cn.updateMatrixWorld(true);
           if (t > T_PAY + .6) { cn.visible = false; }
         }
-        if (t >= T_PAY) {   // the satinette arrives in her left arm
-          sat.visible = true; PO.reach(zo, 'L', zc.clone().addScaledVector(zf, .22).addScaledVector(zs, .12).add(V(0, -.32, 0)), { grip: .03 });
-          inHand(sat, palm(zo, 'L'), dirW(zo, .5, .15, .7));
+        if (t >= T_PAY + 1) {   // paid: she receives a folded black cloth in her left arm
+          sat.visible = true; PO.reach(zo, 'L', zc.clone().addScaledVector(zf, .26).addScaledVector(zs, .04).add(V(0, -.3, 0)), { grip: .03 });
+          inHand(sat, palm(zo, 'L'), dirW(zo, .9, .1, .2));
         }
         PO.look(zo, t < T_FIND ? zc.clone().addScaledVector(zf, .3).add(V(0, -.4, 0)) : cam.clone().add(V(0, 1.5, 0)), .55);
         PO.look(mo, IK.wpos(zo.B.head), .5);
@@ -98,14 +98,21 @@ const esc = shot({
   async build(S3) {
     const F = (x, y, h = 0) => S3.floorAt(x, y, h), cam = S3.cam.position.clone().setY(0);
     const zo = await role('zoubida', { costume: 'haik' }), ka = await role('kanza');
-    const from = F(1750, 1050), meet = F(1020, 1000), kp = F(900, 1000), door = F(640, 800);
+    const from = F(1750, 1050), meet = F(1330, 1010), kp = F(1170, 1005), door = F(640, 800);
+    // the painted flight: tread .28 m, riser .17 m, climbing away from the camera; find the horizontal heading that puts the top step at the painted top (plate px 1330, 380)
+    const RISE = .17, TREAD = .28, m = RISE / TREAD; let best = [1e9, 0, 0];
+    for (let th = Math.PI - 1; th < Math.PI + 1; th += .02) for (let l = .5; l < 7; l += .05) {
+      const p = meet.clone().add(V(Math.sin(th) * l, m * l, Math.cos(th) * l)), q = S3.project(p), e = Math.hypot(q[0] - 1330, q[1] - 380);
+      if (e < best[0]) best = [e, th, l];
+    }
+    const climb = { th: best[1], len: best[2], RISE, TREAD };
     S3.add(zo, from.x, from.z, yawTo(from, meet)); S3.add(ka, kp.x, kp.z, yawTo(kp, meet));
     const sat = S3.prop(satinette());
-    return { actors: [zo, ka], zo, ka, from, meet, kp, door, cam, sat, faces: [[zo, null, 1], [ka, null, 2]] };
+    return { actors: [zo, ka], zo, ka, from, meet, kp, door, cam, sat, climb, faces: [[zo, null, 1], [ka, null, 2]] };
   },
   cover: [{ t: L[3][0], size: 'W' }, { t: L[3][0] + 3, size: 'M', on: 'kanza', dy: 40 }, { t: T_GIVE + 2, size: 'W' }],
   frame(lt, u, t, S, st) {
-    const { zo, ka, from, meet, kp, door, cam, sat } = st, t0 = L[3][0], len = from.distanceTo(meet), wk = (T_GIVE - .3) - t0 - .2, T2 = T_GIVE + 2.2;
+    const { zo, ka, from, meet, kp, door, cam, sat, climb } = st, t0 = L[3][0], len = from.distanceTo(meet), wk = (T_GIVE - .3) - t0 - .2, T2 = T_GIVE + 2.2;
     rest(ka.B); idlePose(ka.B, t + 2, 1); ka.group.rotation.y = yawTo(kp, meet); ka.group.updateMatrixWorld(true);
     sat.visible = true;
     if (t < T2) {   // arrives with the satinette in her left arm, holds it out; the chouafa takes it
@@ -123,8 +130,13 @@ const esc = shot({
         PO.look(zo, IK.wpos(ka.B.head), .5); PO.look(ka, IK.wpos(zo.B.head), .6);
       }
     } else {   // she climbs away, bent and slow, one hand at her lower back, groaning at each step (head drops with the beat)
-      const step = Math.PI * 1.1, ph = (t - T2) * step * 1.0, r = door.clone(), len2 = meet.distanceTo(r);
-      travel(zo, [[meet.x, meet.z], [r.x, r.z]], t, { t0: T2, speed: .38 });
+      // up the flight: one cycle = two treads, height follows the treads (the planted foot is always on one), bent and slow
+      const { th, len: CL, RISE, TREAD } = climb, d = V(Math.sin(th), 0, Math.cos(th)), spd = CL / (L[3][1] + 1.1 - T2 - 1), ph = (t - T2) * Math.PI * 1.1;
+      const turn = sm(T2, T2 + .8, t), s0 = clamp((t - T2 - .8) * spd, 0, CL), n = s0 / TREAD, ni = Math.floor(n), y = RISE * (ni + sm(.45, .95, n - ni));
+      rest(zo.B); walkPose(zo.B, s0 / (TREAD * 2), t > T2 + .8 && s0 < CL ? 1 : 0, { stride: .5, lift: 1.2, arms: .12 });
+      zo.group.position.set(meet.x + d.x * s0, y, meet.z + d.z * s0);
+      zo.group.rotation.y = yawTo(meet, kp) + (th - yawTo(meet, kp) + Math.PI * 2 * Math.round((yawTo(meet, kp) - th) / (Math.PI * 2))) * turn;
+      zo.group.updateMatrixWorld(true);
       const zs = dirW(zo, 1, 0, 0), zc = IK.wpos(zo.B.chest), zf = dirW(zo, 0, 0, 1);
       PO.reach(zo, 'L', zc.clone().addScaledVector(zs, .22).addScaledVector(zf, -.1).add(V(0, -.35, 0)), { grip: .03 });
       zo.B.spine.rotation.x += .18 + .06 * Math.abs(Math.sin(ph)); zo.B.head.rotation.x += .12 * Math.abs(Math.sin(ph));

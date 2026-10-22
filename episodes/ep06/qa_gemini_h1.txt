@@ -1,0 +1,172 @@
+1. Rig / 3D glitches
+
+0:00–0:11 & 1:54–2:48 — Mohammed's right sleeve has a large black triangular web/wing stretched between his forearm and his side when he raises the broom; the broom handle also passes straight through his hand and forearm.
+
+0:32–0:41 — The fqih's quince rod has a black web connecting it to his sleeve and clips through the rolled mats in the loft.
+
+0:58–1:02 — Two older boys carry a rolled mat; the mat cylinder passes through their hands and chests, and a second mat on the right at 1:01 floats horizontal with no one holding its front end.
+
+1:06 — The boy on the left (kid3) pushes a rolled mat straight through the wooden tub of whitewash.
+
+2:30–2:42 — When Mohammed falls and sits on the floor, his white djellaba skirt splits open into jagged polygons, exposing bare legs and a black void inside the mesh.
+
+2:57–3:11 — Mohammed's outstretched left arm pulls a huge triangular sheet of white cloth from his waist, with a black wedge underneath.
+
+3:34–3:40 — Mohammed's sitting pose on the floor folds his legs into his torso; at 3:40 he pops instantly to standing without an animation transition.
+
+4:34–4:54 — Driss's "fall into the bucket" is a rigid 90-degree tilt of his whole standing mesh; his head and shoulders stick straight through the side of a tiny grey bucket floating above a blue disc, while his feet remain hovering in the air.
+
+4:50–4:55 — Driss pops from his horizontal "in the bucket" pose back to standing upright in a single frame at 4:50, then pops back into the bucket at 4:55.
+
+5:34–5:51 — On the bed, Mohammed's sleeping mesh floats several inches above the mattress, and a grey rectangular slab (a stray prop or pillow mesh) floats in mid-air beside his knees with its own drop shadow. When Zoubida tucks him in at 5:42, her hands pass through the floating slab and his body.
+
+6:09–6:28 — In the living room, the front of Mohammed's white djellaba is torn open into jagged black shards across his chest and stomach whenever he clasps his hands.
+
+6:43–6:50 — When Mohammed dances, a long spike of white cloth shoots out from his left shoulder/sleeve.
+
+7:26–7:33 — In the courtyard, Mohammed's right arm is fused to his skirt by a wide sheet of stretched white geometry.
+
+7:35–8:00 & 8:39–8:53 — On the roof terrace, the stick Mohammed holds has a black triangular web attached to his hand and slices through his skirt on every swing.
+
+8:55–9:06 — At the bottom of the stairs, Zoubida's hand clips into Mohammed's skull when she grabs his shoulder.
+
+9:07–9:20 — In the courtyard, veiled Zoubida's haik is a rigid cylinder; as she walks away (9:15–9:20), she and Mohammed shrink to doll size against the giant courtyard columns (wrong scale) and slide across the floor.
+
+9:21–10:55 — Outdoors, Zoubida wears bright yellow babouches instead of the black babouches specified, and her haik has a thick black cartoon outline that doesn't match the other characters' shading.
+
+10:12–10:55 — When the neighbour (voisine) approaches Zoubida by the mosque, the three meshes (Zoubida, Mohammed, voisine) overlap and intersect: Mohammed's head and body clip straight through Zoubida's haik and the neighbour's red dress, and Zoubida's face veil develops black holes/tears (10:51–10:55).
+
+11:16–11:30 — Walking down the souk street, Mohammed has two huge yellow banana-shaped blobs stuck to his upper back (meant to be babouches in his hood, but they look like yellow wings growing out of his shoulders).
+
+11:44–11:50 — The Kissaria merchant stands on top of the counter/floor with his feet in bright yellow babouches, wearing a red chechia instead of a white turban, and his head is a 50-year-old bald/bearded man instead of a handsome 25-year-old.
+
+2. Identity
+
+zoubida (outdoors, 9:07–11:45) — Wears bright yellow babouches in every street shot; character sheet specifies black babouches outdoors.
+
+voisine (10:12–10:55) — Lalla Aicha's neighbour has her face completely uncovered; the character sheet and narration (« Elle colla son voile rêche sur ma joue ») require a rough white veil over her face.
+
+marchand (11:44–11:50) — Shown as an older man (~50) with a grey beard and red chechia; character sheet specifies age 25, young, handsome, well-groomed, white turban.
+
+3. Story vs picture
+
+0:42–0:55 — Narration: « Pour les nattes neuves, chacun donna selon ses moyens. Le père d'un élève, qui était chaufournier, offrit à l'école une charge d'âne de chaux. » Picture: a single 13-second Ken Burns pan on a still painting of a man with a donkey outside a door.
+
+1:08–1:13 — Narration: « On emprunta des seaux, et des balayettes de doum. » Picture: the fqih and two boys stand motionless in the empty Msid; no buckets or brooms are borrowed or brought in.
+
+1:14–1:48 — Narration describes the boys sweeping spiderwebs from the ceiling with long reeds and whitewashing the walls, splashing lime into their eyes. Picture: two back-to-back still paintings (1:14–1:29 and 1:30–1:48) totaling 34 seconds of Ken Burns pans instead of 3D animation of the main action of the scene.
+
+2:30–2:38 — Narration: « je me retrouvai assis dans une flaque d'eau, qui me gelait le derrière. » Picture: the floor under Mohammed is dry painted wood/plaster; there is no puddle.
+
+2:39–2:48 — Narration: « Je me relevai, décidé à reprendre mon bien, et je me jetai dans la mêlée. » Picture: Mohammed stands up in place and does not lunge or touch the other boys at all; they stand frozen holding the broom.
+
+3:46–3:59 — Narration: « Une vingtaine d'élèves, chargés d'énormes seaux, allaient chercher l'eau à la fontaine d'une zaouïa… Le sol fut inondé. » Picture: a still painting of boys at a fountain; we never see the Msid floor flooded (in 4:00–5:00 the Msid floor is the exact same dry background as before).
+
+4:08–4:17 — Narration: « Dans l'eau jusqu'aux chevilles, pieds nus, bousculé par celui-ci, insulté par celui-là, j'étais heureux ! » Picture: five boys stand spaced apart on a dry floor scrubbing in place; nobody jostles or insults Mohammed, and there is no water on the floor.
+
+4:24–4:29 — Kid1 cries « Aïe ! Tu m'as donné un coup de coude dans l'œil ! » Picture: nobody is near him or elbows him; Mohammed isseveral feet away scrubbing the floor.
+
+4:30–4:33 — A boy says « Fais attention ! Tu m'as mouillé jusqu'à la ceinture ! » Picture: no water is splashed and nobody is wet.
+
+4:55–5:00 — Narration: « Avec des chiffons de jute, nous essuyâmes partout. » Picture: the boys are still holding wooden brooms and sticks; no one has a jute rag or wipes the floor.
+
+8:18–8:38 — Zoubida calls up the stairwell to Mohammed on the terrace, escalating from « mon chérif » to « tête de mule » and « chien galeux » because he doesn't answer. Picture: she stands calmly in the stairwell touching her earring with a neutral expression, with no pause between her sweet call and her furious insults.
+
+9:56–10:00 — Narration: « Ma mère me poussa vers la maison. » Picture: Zoubida stands still under the archway; she does not push Mohammed, who walks toward Kanza on his own.
+
+10:18–10:23 — Narration: « Elle colla son voile rêche sur ma joue, pour m'embrasser. » Picture: the neighbour has no face veil and does not bend down or kiss Mohammed's cheek; instead the three 3D models just walk into each other and clip together.
+
+4. Camera and editing
+
+0:00–0:11 — Cold open is a verbatim duplicate of 1:59–2:11 (same shot, same animation, same voiceover word-for-word).
+
+0:21–1:13 — We stay inside the same Msid room for 52 seconds (plus the 35 seconds of paintings and the 1:49–3:33 et 3:34–5:00 Msid scenes: nearly 4.5 minutes of the first 5 minutes are in this one room with the same camera angle facing the fqih's platform).
+
+1:14–1:29 (15 s) & 1:30–1:48 (18 s) — Two consecutive still paintings held for 15 s and 18 s with slow zooms.
+
+2:49–2:50 — The fqih yells « Silence ! » in a medium shot, then at 2:57–3:11 during the boys' argument the camera cuts to a low angle that chops off the fqih's head at the top of the frame.
+
+3:46–3:59 (13 s) — Still painting held for 13 seconds.
+
+4:00–5:00 — 60 seconds in the Msid with the camera locked on the same wide/medium-wide axis; during Driss's fall into the bucket (the comic climax of the scene, 4:34–4:46), there is no close-up on Driss or the laughing boys.
+
+7:08–7:25 (17 s) — Single static painting held for 17 seconds.
+
+8:00–8:17 (17 s) — Single static painting held for 17 seconds.
+
+9:21–9:28 — Both Zoubida and Mohammed are seen only from behind while Rahma speaks to them.
+
+10:08–10:55 (47 s) — One single wide street shot held for 47 seconds without a single cut or close-up while the neighbour hugs Mohammed and delivers a whole monologue about her three marriages.
+
+10:56–11:15 (19 s) — Still painting of the souk held for 19 seconds.
+
+5. Paintings
+
+Total painting time in this 11:50 (710 s) half: 127 seconds (17.9% of runtime).
+
+0:42–0:55 (13 s) — Lime-burner's donkey outside the door. Should be 3D (only 1 man and 1 donkey; not a dream, flashback, macro, or >6 crowd).
+
+1:14–1:29 (15 s) — Boys sweeping cobwebs from the Msid ceiling. Borderline / Should be 3D: there are ~10 boys (crowd >6), but this is the main physical action of the Msid scene and its arquitectura (blue zellige arch, carved plaster) completely contradicts the rustic 3D Msid room shown 1 second earlier.
+
+1:30–1:48 (18 s) — Boys whitewashing the Msid walls and crying from lime in their eyes. Borderline / Should be 3D: ~11 boys shown, but holding two paintings back-to-back for 33 seconds kills the scene's energy, and the cute anime-style faces don't match the 3D character designs at all.
+
+3:46–3:59 (13 s) — Twenty pupils fetching water at the zaouïa fountain. Justified (crowd of >20 pupils in a one-off exterior location), though 13 s is too long.
+
+7:08–7:25 (17 s) — Vignette of Zineb, her cat, the gold chain, and the quince rod. Justified (mental image / memory), but 17 s is far too long for a static insert.
+
+8:00–8:17 (17 s) — Mohammed as alittle horseman on a white steed. Justified (daydream/fantasy), but 17 s is too long.
+
+10:56–11:15 (19 s) — Crowded street of the grocers with donkeys. Justified (crowd >6), but 19 s is too long.
+
+11:31–11:44 (13 s) — Kissaria fabric stalls. Should be 3D (only 4–5 people visible, and Mohammed is the main character walking through the market; his 2D painted face here looks nothing like his 3D model).
+
+6. Audio
+
+2:49–2:50 — The fqih shouts « Silence ! » pronounced in English ("SY-lence!") instead of French.
+
+9:37–9:52 — Lalla Kanza's entire dialogue is spoken in English / Franglais gibberish ("Lalla Zoubida! It must be coudées satinette noire, for calming the roy Bel Lahmer. And Lalla Mira me ronge, it must be a robe yellow flame") with a creepy, slow American-accented witch voice while the French subtitles show the normal French lines.
+
+4:34–4:46 — When Driss falls into the bucket, there is no splash or bucket clatter SFX; the girls/boys' laughter track (« Hahaha il va se noyer ») sounds like a young adult female TTS voice rather than 7-year-old schoolboys.
+
+8:19–8:38 — Zoubida's transition from sweet (« Descends vite, mon chéri ! ») to furious (« Qu'attends-tu pour descendre, tête de mule ? … Chien galeux ! Juif sans dignité ! ») is read with the exact same calm, flat, polite inflection; there is no anger or shouting in the voice performance.
+
+11:30 — At the end of Zoubida's line « On va te les voler ! », the voice glitches into a harsh vocal fry/screech on « voler ».
+
+7. Hook and pacing
+
+Cold open (0:00–0:11): 11 seconds (slightly over the 10 s limit). Visually weak because three boys stand frozen against a wall while Mohammed waves a broom clipped through his arm, and the exact same shot is repeated at 1:59.
+
+Title card (0:11–0:20): 9 seconds — more than double the 4-second maximum.
+
+3 most boring stretches:
+
+10:08–10:55 (47 s): Uncut wide shot of Zoubida, Mohammed, and the neighbour standing in an empty street while their 3D models clip into each other and the neighbour talks about her husbands.
+
+0:21–1:13 (52 s): Slow exposition in the Msid where the fqih stands on his platform and boys walk back and forth with mats at a snail's pace before any cleaning starts.
+
+7:08–7:59 (51 s): A 17-second static painting of Zineb/cat followed by Mohammed standing alone in a courtyard and then pacing back and forth on a terrace hitting a wall with a stick.
+
+8. Top fixes
+
+9:37–9:52 (Audio — Lalla Kanza): Re-record Lalla Kanza's lines in French; right now she speaks English ("It must be a robe yellow flame").
+
+2:49 (Audio — Fqih): Re-record the fqih's « Silence ! » in French instead of English ("SY-lence!").
+
+4:34–4:55 (3D animation — Driss in the bucket): Animate Driss actually bending or falling into a properly scaled tub with a water splash SFX, instead of tilting his rigid standing mesh 90° through a tiny floating bucket and popping him upright in 1 frame.
+
+10:12–10:55 (Layout & Camera — Mosque street scene): Separate Zoubida, Mohammed, and the neighbour so their bodies don't walk inside each other; put a white face veil on the neighbour; add close-ups on the neighbour and Zoubida during the 47-second conversation.
+
+5:34–5:51 (3D scene — Bedroom): Delete the floating grey rectangular slab next to Mohammed's bed and lower Mohammed's sleeping mesh onto the mattress so he isn't levitating.
+
+11:44–11:50 (Identity — Kissaria merchant): Replace the old bearded man in a red chechia with the young, handsome 25-year-old merchant in a white turban per the character sheet.
+
+0:00–0:20 (Editing — Cold open & Title): Trim the title card from 9 s down to 3.5 s, and replace the duplicated cold open shot with a punchy 7-second cut of the Msid chaos and the fqih's shout.
+
+0:00–0:11, 1:54–3:11, 6:09–6:50, 7:26–7:33 (Rigging — Mohammed's djellaba): Fix the skinning weights on Mohammed's white djellaba so raising his arms doesn't create black underarm wings or tear open his chest/skirt into black holes.
+
+11:16–11:30 & 9:07–11:45 (Props/Look — Babouches): Remove the two giant yellow banana blobs stuck to Mohammed's back in the souk (put small babouches inside his hood), and change Zoubida's outdoor babouches from yellow to black.
+
+8:18–8:38 (Voice & Acting — Zoubida at the stairs): Add a 2-second pause after Zoubida's sweet call, and re-record her second and third lines with real anger and volume so the escalation to « chien galeux » makes sense.
+
+thumb_up
+thumb_down

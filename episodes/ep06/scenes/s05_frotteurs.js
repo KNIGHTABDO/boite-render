@@ -1,6 +1,6 @@
 // s05: next day, wet Msid floor (plate msid_menage). L0 the fqih hands Mohammed a broom, chief of the scrubbers; L1 painting p03_fontaine
 // (water carriers); L2-3 Mohammed scrubs barefoot, straightens up hand on his back; L4-L9 quarrels (kid1 eye, kid2 soaked), Driss trips
-// into a bucket (fallClip), laughing, "Frottez, paresseux !"; L10 everybody wipes.
+// onto a bucket (slip-and-sit), laughing, "Frottez, paresseux !"; L10 everybody wipes.
 // Contacts (st.M): brooms gripped in palms and tips on the floor, hand on the back, fqih holds the broom out to Mohammed's palm.
 import * as K from '../../../engine/core.js';
 import * as PO from '../../../engine/poses.js';
@@ -8,9 +8,8 @@ import * as IK from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import * as THREE from 'three';
 import { rest, idlePose } from '../../../engine/rig3d.js';
-import { fallClip } from '../../../engine/clips.js';
 import { make, ac, st } from './_pt.js';
-import { shot, all, breathe, V, role } from './_3d.js';
+import { shot, all, breathe, V, role, blend, memoPose } from './_3d.js';
 import { balayette, inHand } from './_props.js';
 const { clamp, ease } = K;
 const sm = (a, b, x) => ease(clamp((x - a) / (b - a)));
@@ -20,7 +19,7 @@ const dirW = (a, x, y, z) => V(x, y, z).normalize().applyAxisAngle(V(0, 1, 0), a
 const SC = (await (await fetch(new URL('../timing.json', import.meta.url))).json()).find(s => s.id === 's05_frotteurs');
 const L = SC.lines.map(l => [l.start - SC.start, l.start - SC.start + l.dur]);
 const LIGHT = { key: 0xffe8c8, keyI: 1.7, dir: [2.5, 3, .8], sky: 0xd8d4c8, ground: 0x8a6a48, fillI: 1.5, rim: 0xffe0a0, rimI: .6, rimDir: [-2, 2, -3], shadow: .3 };
-const T_HIT = L[6][0] + .6;
+const T_HIT = L[6][0] + .6, UPD = L[9][0], BUCKET = { sc: 1.5, h: .26 * 1.5 };   // the whitewash bucket, 1.5x the prop: r .21 m, rim .39 m
 
 /** bent-over scrubbing: broom tip on the floor sweeping in front, left hand on the knee. bend 0 = upright */
 function scrub(a, br, t, bend = .8, ph = 0, M, key) {
@@ -36,34 +35,36 @@ const shot1 = shot({
   plate: 'msid_menage', light: LIGHT,
   async build(S3) {
     const M = {}, F = (x, y, h = 0) => S3.floorAt(x, y, h);
-    const [mo, k1, k2, k3, dr, fq] = await Promise.all(['mohammed', 'kid1', 'kid2', 'kid3', 'driss', 'fqih'].map(n => role(n)));
+    const [mo, k1, k2, k3, dr, fq] = await Promise.all(['mohammed', 'kid1', 'kid2', 'kid3', 'driss', 'fqih'].map(n => role(n, n === 'driss' ? { seat: true } : {})));
     const cam0 = S3.cam.position.clone().setY(0);
     const fqAt = F(1046, 613, .35); S3.add(fq, fqAt.x, fqAt.z, yawTo(fqAt, cam0) * .8); fq.group.position.y = .35;
     const sp = { mo: F(640, 890), k1: F(960, 905), k2: F(1700, 895), k3: F(330, 870) }, moE = fqAt.clone().add(V(-.95, 0, .5));
     S3.add(mo, sp.mo.x, sp.mo.z, .55); S3.add(k1, sp.k1.x, sp.k1.z, -.5); S3.add(k2, sp.k2.x, sp.k2.z, .5); S3.add(k3, sp.k3.x, sp.k3.z, -.4);
-    // Driss walks nowhere: stands where he trips, falling toward screen right so the bucket catches his head
-    const bAt = F(1480, 905);
-    S3.add(dr, 0, 0, Math.PI / 2 - .2);
-    const fall = fallClip(dr); fall.at(1); dr.group.updateMatrixWorld(true);
-    const hd = IK.wpos(dr.B.head); fall.at(0);
-    const off = V(bAt.x - hd.x, 0, bAt.z - hd.z); dr.group.position.set(off.x, 0, off.z); dr.group.updateMatrixWorld(true);
-    const dBase = dr.group.position.clone();
+    // Driss stands scrubbing, slips backward and lands sitting on the rim of the bucket behind him (seat-rig robe: closed skirt)
+    const bAt = F(1480, 905), yawD = -1.1, fD = V(Math.sin(yawD), 0, Math.cos(yawD)), dBase = bAt.clone().addScaledVector(fD, .55);
+    S3.add(dr, bAt.x, bAt.z, yawD);
+    const dStand = PO.snap(dr);
+    dr.B.spine.rotation.x -= .3; dr.B.head.rotation.x += .2; dr.B.upperArmL.rotation.x -= .9; dr.B.upperArmR.rotation.x -= .9; dr.B.upperArmL.rotation.z += .45; dr.B.upperArmR.rotation.z -= .45; dr.group.updateMatrixWorld(true);
+    const dTrip = PO.snap(dr); PO.apply(dr, dStand);
+    M.dSit = memoPose('driss-sit', dr, [yawD], () => { const r = PO.stool(dr, { seat: BUCKET.h * .95, lean: -.1, hands: false }); return +(r.seatLow - BUCKET.h * .95).toFixed(3); });
+    const dSit = PO.snap(dr); PO.apply(dr, dStand);
     const brooms = [mo, k1, k2, k3, dr].map(() => S3.prop(balayette({ wet: 0 }))), fb = S3.prop(balayette({ wet: 0 }));
     const bucket = S3.prop(PR.bucket({ water: .8 })), bucket2 = S3.prop(PR.bucket({ water: .8 }));
+    bucket.scale.setScalar(BUCKET.sc); bucket2.scale.setScalar(BUCKET.sc);
     const puddle = S3.prop(new THREE.Mesh(new THREE.CircleGeometry(.55, 24).rotateX(-Math.PI / 2), PR.toon(0x7a9aa8, { opacity: .55 })));
     puddle.visible = false;
-    return { moE, actors: [fq, mo, k1, k2, k3, dr], M, mo, k1, k2, k3, dr, fq, fqAt, sp, brooms, fb, bucket, bucket2, bAt, dBase, fall, puddle,
+    return { moE, actors: [fq, mo, k1, k2, k3, dr], M, mo, k1, k2, k3, dr, fq, fqAt, sp, brooms, fb, bucket, bucket2, bAt, dBase, dStand, dTrip, dSit, puddle,
       b2: F(520, 830), faces: [[fq, 'fqih', 1], [mo, 'mohammed', 5], [k1, 'kid1', 2], [k2, 'kid2', 3], [k3, 'kid3', 4], [dr, 'driss', 8]] };
   },
   cover: [
-    { t: 0, size: 'M', on: 'fqih', dy: -90 }, { t: 5.5, size: 'M', on: 'mohammed', dy: -140 }, { t: 9, size: 'W' },
+    { t: 0, size: 'W' }, { t: 5.5, size: 'M', on: 'mohammed', dy: -140 }, { t: 9, size: 'W' },
     { t: L[2][0], size: 'W' }, { t: L[2][0] + 3.5, size: 'M', on: 'mohammed', dy: -130 },
     { t: L[3][0], size: 'M', on: 'mohammed', dy: -40 }, { t: L[3][0] + 7, size: 'W' }, { t: L[3][0] + 11, size: 'M', on: 'kid1', dy: -40 },
     { t: L[4][0], size: 'M', on: 'kid1', dy: -60 }, { t: L[5][0], size: 'M', on: 'kid2', dy: -60 }, { t: L[6][0], size: 'W' },
     { t: L[7][0], size: 'M', on: 'kid2', dy: -60 }, { t: L[8][0], size: 'M', on: 'mohammed', dy: -70 }, { t: L[9][0], size: 'M', on: 'kid2', dy: -60 },
     { t: L[10][0], size: 'W' }],
   frame(lt, u, t, S, s, S3) {
-    const { M, moE, mo, k1, k2, k3, dr, fq, fqAt, sp, brooms, fb, bucket, bucket2, bAt, dBase, fall, puddle } = s, A = [mo, k1, k2, k3];
+    const { M, moE, mo, k1, k2, k3, dr, fq, fqAt, sp, brooms, fb, bucket, bucket2, bAt, dBase, dStand, dTrip, dSit, puddle } = s, A = [mo, k1, k2, k3];
     for (const a of [mo, k1, k2, k3, dr, fq]) { rest(a.B); idlePose(a.B, t + a.name.length, 1); }
     const early = t < L[1][0];
     mo.group.position.set(early ? moE.x : sp.mo.x, 0, early ? moE.z : sp.mo.z); mo.group.rotation.y = early ? 1.15 : .55; mo.group.updateMatrixWorld(true);
@@ -76,7 +77,7 @@ const shot1 = shot({
     brooms.forEach(b => b.visible = false); fb.visible = false;
     mo.group.position.set(sp.mo.x, 0, sp.mo.z); mo.group.rotation.y = .55;
     if (early) { mo.group.position.set(moE.x, 0, moE.z); mo.group.rotation.y = 1.15; }
-    dr.group.position.copy(dBase); k3.group.visible = true;
+    k3.group.visible = true;
     puddle.visible = false;
     bucket.position.set(bAt.x, 0, bAt.z); bucket.rotation.set(0, 0, 0); bucket2.position.set(s.b2.x, 0, s.b2.z);
     if (early) {
@@ -85,9 +86,9 @@ const shot1 = shot({
       // fqih right hand stretches the broom (grip toward Mohammed's reach), Mohammed's right hand meets it
       const meet = mch.clone().addScaledVector(dirW(mo, 0, 0, 1), .3).add(V(0, -.2, 0)), toward = meet.clone().sub(fch).setY(0).normalize();
       const rt = fch.clone().addScaledVector(ff, .12).add(V(0, -.35, 0)).lerp(fch.clone().addScaledVector(toward, .5).add(V(0, -.1, 0)), give);
-      M.fq = +PO.reach(fq, 'R', rt, { grip: .02 }).toFixed(3);
-      if (take < .5) { fb.visible = true; inHand(fb, PO.handPts(fq, 'R').palm, V(0, 1, 0).addScaledVector(toward, .3 * give)); }
-      M.moR = +PO.reach(mo, 'R', meet.clone().lerp(mch.clone().addScaledVector(dirW(mo, 0, 0, 1), .2).add(V(0, -.55, 0)), sm(4.2, 5.2, t)), { grip: .02 }).toFixed(3);
+      M.fq = +PO.reach(fq, 'R', rt, { grip: .02, pole: [-.1, -.25, -.05] }).toFixed(3);
+      if (take < .5) { fb.visible = true; inHand(fb, PO.handPts(fq, 'R').palm, V(0, .8, 0).addScaledVector(toward, .3 + .5 * give)); }
+      M.moR = +PO.reach(mo, 'R', meet.clone().lerp(mch.clone().addScaledVector(dirW(mo, 0, 0, 1), .2).add(V(0, -.55, 0)), sm(4.2, 5.2, t)), { grip: .02, pole: [-.1, -.25, -.05] }).toFixed(3);
       brooms[0].visible = take >= .5; if (take >= .5) inHand(brooms[0], PO.handPts(mo, 'R').palm, V(0, 1, 0).addScaledVector(dirW(mo, 0, 0, 1), .3).add(V(0, -.2, 0)).multiplyScalar(1));
       const puff = sm(5, 5.8, t) * (1 - sm(9, 9.8, t)); mo.B.chest.rotation.x -= .14 * puff; mo.B.head.rotation.x -= .1 * puff; mo.group.updateMatrixWorld(true);
       PO.look(mo, fh, .55);
@@ -159,18 +160,21 @@ const shot1 = shot({
       const pt = IK.wpos(dr.B.head); M.k3R = +PO.reach(k3, 'R', IK.wpos(k3.B.chest).addScaledVector(pt.clone().sub(IK.wpos(k3.B.chest)).setY(0).normalize(), .4).add(V(0, .08, 0)), { grip: .02 }).toFixed(3);
       PO.look(k3, V(pt.x, .5, pt.z), .5); k3.B.spine.rotation.x += .1 * Math.sin(t * 12 + 2); k3.group.updateMatrixWorld(true);
     } else sc(k3, 3, .65, 'k3');
-    // ---- Driss trips into the bucket at T_HIT (he stands scrubbing before), stays kicking, gets up at the end
-    const k = (t - T_HIT) / .9;
-    if (k > 0 && t < L[9][0] + 1) {
-      fall.at(Math.min(1, k));
-      if (k > 1) { const ks = Math.sin(t * 14) * .5 * (1 - sm(L[8][0], L[9][0], t)); dr.B.shinL.rotation.x += .4 + ks * .5; dr.B.shinR.rotation.x += .4 - ks * .5; dr.B.thighL.rotation.x += ks * .2; dr.B.thighR.rotation.x -= ks * .2; dr.group.updateMatrixWorld(true); }
-      bucket.rotation.set(0, 0, Math.PI / 2); bucket.position.set(bAt.x + .1, .14, bAt.z); puddle.visible = true; puddle.position.set(bAt.x - .1, .004, bAt.z);
-      // the bucket tips toward the fall and the head goes into its mouth
-      const hd = IK.wpos(dr.B.head); bucket.position.set(hd.x + .12, Math.max(.14, hd.y), hd.z); bucket.rotation.set(0, 0, -Math.PI / 2);
-    } else if (t >= L[9][0] + 1) {   // after the gag he is back on his feet wiping
-      dr.group.position.set(bAt.x - 1.2, 0, bAt.z + .3); dr.group.rotation.y = .3; scrub(dr, brooms[4], t, .8, 5.2, M, 'dr'); brooms[4].visible = true; puddle.visible = true; puddle.position.set(bAt.x - .1, .004, bAt.z);
+    // ---- Driss slips back onto the bucket at T_HIT, sits flailing his arms, climbs out and scrubs again
+    const kf = clamp((t - T_HIT) / .9), up = sm(UPD, UPD + .8, t);
+    dr.group.position.copy(dBase);
+    if (t >= T_HIT && up < 1) {
+      if (kf < .45) blend(dr, dStand, dTrip, sm(0, .45, kf)); else blend(dr, dTrip, dSit, sm(.45, 1, kf));
+      if (up > 0) blend(dr, dSit, dStand, up);
+      const fl = (1 - up) * sm(.7, 1, kf), pos = dBase.clone().lerp(bAt, sm(0, 1, kf) * (1 - up));
+      dr.group.position.set(pos.x, 0, pos.z);
+      if (fl > 0) { const w = Math.sin(t * 11) * .4 * fl; dr.B.upperArmL.rotation.x -= .9 * fl + w; dr.B.upperArmR.rotation.x -= .9 * fl - w; dr.B.upperArmL.rotation.z += .4 * fl; dr.B.upperArmR.rotation.z -= .4 * fl; }
+      dr.group.updateMatrixWorld(true);
+      puddle.visible = true; puddle.position.set(bAt.x, .004, bAt.z);
+    } else if (t >= UPD + .8) {
+      scrub(dr, brooms[4], t, .8 * sm(UPD + .8, UPD + 1.6, t), 5.2, M, 'dr'); brooms[4].visible = true; puddle.visible = true; puddle.position.set(bAt.x, .004, bAt.z);
     } else {
-      rest(dr.B); idlePose(dr.B, t, 1); PO.look(dr, IK.wpos(mo.B.head), .4);
+      PO.look(dr, IK.wpos(mo.B.head), .4);
     }
     // ---- L10: everybody wipes with rags (same scrub)
   },

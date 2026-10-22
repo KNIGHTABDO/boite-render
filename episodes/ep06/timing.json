@@ -442,14 +442,14 @@
     "text": "Qu'attends-tu pour descendre, tête de mule ? Tu ne m'entends pas, âne à face de goudron ?",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/437aee439020.wav",
     "start": 509.01,
-    "dur": 7.12
+    "dur": 6.16
    },
    {
     "who": "zoubida",
     "text": "Chien galeux ! Attends que je monte te chercher, juif sans dignité !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/3e25207a5150.wav",
     "start": 516.58,
-    "dur": 6.16
+    "dur": 5.72
    },
    {
     "who": "narrator",
@@ -498,7 +498,7 @@
     "text": "Lalla Zoubida ! Il me faut des coudées de satinette noire, pour calmer le roi Bel Lahmer. Et Lalla Mira me ronge, il me faudrait une robe jaune flamme...",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/1869793fdc88.wav",
     "start": 581.48,
-    "dur": 15.68
+    "dur": 13.8
    },
    {
     "who": "zoubida",
@@ -673,7 +673,7 @@
     "text": "Deux réaux ? Je te le jure, ce n'est même pas le prix de revient ! Devrais-je mendier ce soir pour nourrir mes enfants ?",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/62061c2038ce.wav",
     "start": 819.33,
-    "dur": 9.6
+    "dur": 7.64
    },
    {
     "who": "zoubida",
@@ -904,7 +904,7 @@
     "text": "Âh, yâ lalli... âh, yâ lalli, yâ lalli...",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/8b73300fa364.wav",
     "start": 1142.45,
-    "dur": 6.6
+    "dur": 6.93
    },
    {
     "who": "zoubida",
@@ -1058,7 +1058,7 @@
     "text": "Continue ! Continue !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/35e52383c56d.wav",
     "start": 1337.13,
-    "dur": 3.6
+    "dur": 3.94
    },
    {
     "who": "rahma",
@@ -1079,7 +1079,7 @@
     "text": "Il ramasse son turban, il respire longuement sa rose... et en me voyant, il me fait un grand sourire !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep06/1443cd6d4da4.wav",
     "start": 1370.32,
-    "dur": 13.64
+    "dur": 9.56
    }
   ]
  },

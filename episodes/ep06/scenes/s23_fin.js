@@ -17,17 +17,15 @@ const NIGHT = { key: 0x8898e0, keyI: 1.0, dir: [1, 3, 1.5], sky: 0x303a80, groun
 const bed = shot({
   plate: 'chambre_nuit', light: NIGHT,
   async build(S3, cal) {
-    const M = {}, hz = cal.horizon, tb = S3.floorAt(862, 747), mF = S3.floorAt(862, 685), mH = cal.h * (1 - (644 - hz) / (685 - hz));
-    const mo = await role('mohammed', { seat: true }), mAt = V(tb.x, 0, mF.z - .36);
+    const M = {}, hz = cal.horizon, tb = S3.floorAt(862, 747), mF = S3.floorAt(862, 677), mH = cal.h * (1 - (590 - hz) / (677 - hz));   // back divan top edge y 590, floor line y 677
+    const mo = await role('mohammed', { seat: true }), mAt = V(tb.x, 0, mF.z - .42);
     S3.add(mo, mAt.x, mAt.z, 0);
-    memoPose('s23sit', mo, [mAt, mH], () => PO.crossLegged(mo, { seat: mH, lean: .12 }).map(e => +e.toFixed(3)));
     mo.group.rotation.y = Math.PI / 2; mo.group.updateMatrixWorld(true);
-    M.lie = memoPose('s23lie', mo, [mAt, mH], () => { const r = PO.lie(mo, { top: mH, turn: -.35, pillow: .07 }); return { low: +(r.low - mH).toFixed(3), heel: r.heel, pil: r.pillowAt.toArray() }; });
+    M.lie = memoPose('s23lie2', mo, [mAt, mH], () => { const r = PO.lie(mo, { top: mH, turn: -.35, pillow: .07 }); return { low: +(r.low - mH).toFixed(3), heel: r.heel, pil: r.pillowAt.toArray() }; });
     const lieS = PO.snap(mo);
     S3.prop(PR.cushion({ w: .4, d: .3, h: .07, col: 0xd0c098 }), M.lie.pil[0], mH, M.lie.pil[2]);
     const hd = IK.wpos(mo.B.head), fx = IK.wpos(mo.B.chest);
-    const blk = S3.prop(PR.mattress({ w: 1.0, d: .7, h: .1, col: 0x4a5a98 }), fx.x, mH + .1, fx.z + .02, Math.PI / 2);
-    return { actors: [mo], mo, lieS, M, faces: [[mo, 'mohammed', 5, (lt, t) => ({ lid: 1, open: 0, sad: -.35 })]], blk };
+    return { actors: [mo], mo, lieS, M, faces: [[mo, 'mohammed', 5, (lt, t) => ({ lid: 1, open: 0, sad: -.35 })]] };
   },
   frame(lt, u, t, S, st) { PO.apply(st.mo, st.lieS); breathe(st.mo, t, .6, 0); },
   cover: [{ t: B1, size: 'M', on: 'mohammed' }],

@@ -95,7 +95,7 @@ const shotB = shot({
     M.zou = memoPose('s06zou2', zou, [zAt], () => PO.kneel(zou, { lean: .1 }) ?? 0);
     // leave Mohammed seated for the coverage projection
     PO.apply(mo, sitS); mo.group.rotation.y = ySit; mo.group.updateMatrixWorld(true);
-    return { actors: [mo, zou], M, mo, zou, sitS, lieS, sk, pil, ySit, zBase: PO.snap(zou), zAt, mAt, hp: 0,
+    return { actors: [mo, zou], M, mo, zou, sitS, lieS, sk, pil, ySit, mH, zBase: PO.snap(zou), zAt, mAt, hp: 0,
       faces: [[mo, 'mohammed', 5, (lt, t) => ({ blink: 1, ...(t < L[5][0] - .1 && t > L[4][0] + 2 ? { open: Math.abs(Math.sin(t * 9)) > .4 ? .66 : .2 } : t < L[4][0] + 2 ? { open: 0 } : {}) })], [zou, 'zoubida', 3]] };
   },
   cover: [{ t: L[4][0], size: 'W' }, { t: L[4][0] + 3, size: 'M', on: 'mohammed', dy: -40 }, { t: L[4][0] + 8, size: 'M', on: 'zoubida', dy: -40 },
@@ -107,7 +107,7 @@ const shotB = shot({
     const upA = sm(L[4][0] + 3, L[4][0] + 4.4, t) * (1 - sm(L[4][0] + 8.8, L[4][0] + 11, t)), upB = sm(L[5][0] - .5, L[5][0] + .5, t), up = Math.max(upA, upB);
     mo.group.rotation.y = Math.PI / 2 + (ySit - Math.PI / 2) * up; mo.group.updateMatrixWorld(true);
     blend(mo, lieS, sitS, up);
-    sk.visible = up > .95; if (sk.userData.hem) sk.userData.hem.visible = up > .95; st.pil.visible = up < .5 ? true : true;
+    sk.visible = up > .95; if (sk.userData.hem) sk.userData.hem.visible = up > .95; st.pil.visible = up < .5;
     if (up > .9) {   // shouting orders: right fist up and pumping, left hand pointing out, head thrown forward
       const c = IK.wpos(mo.B.chest), f = dirW(mo, 0, 0, 1), s = dirW(mo, 1, 0, 0), k = mo.group.scale.y / 1.6, sw = Math.sin(t * 6);
       M.mR = +PO.reach(mo, 'R', c.clone().addScaledVector(f, .3 * k).addScaledVector(s, -.28 * k).add(V(0, (.18 + .1 * sw) * k, 0)), { grip: .02 }).toFixed(3);
@@ -119,9 +119,10 @@ const shotB = shot({
     const p = sm(L[4][0] + 8, L[4][0] + 8.8, t) * (1 - sm(L[4][0] + 11.2, L[4][0] + 12, t));
     if (p > 0) {
       zou.B.spine.rotation.x += .35 * p; zou.group.updateMatrixWorld(true);
-      const c = IK.wpos(mo.B.chest), s = dirW(mo, 1, 0, 0);
-      M.zR = +PO.reach(zou, 'R', IK.wpos(zou.B.handR).lerp(c.clone().addScaledVector(s, -.1), p), { grip: .04 }).toFixed(3);
-      M.zL = +PO.reach(zou, 'L', IK.wpos(zou.B.handL).lerp(c.clone().addScaledVector(s, .12).add(V(0, .03, 0)), p), { grip: .04 }).toFixed(3);
+      const c = IK.wpos(mo.B.chest), d = IK.wpos(zou.B.chest).sub(c).setY(0).normalize(), tg = V(-d.z, 0, d.x), y = Math.min(c.y, st.mH + .16) + .04, sw = Math.sin(t * 3) * .1;
+      const at = (o, sd) => V(c.x + d.x * (.24 + sd) + tg.x * o, y, c.z + d.z * (.24 + sd) + tg.z * o);
+      M.zR = +PO.reach(zou, 'R', IK.wpos(zou.B.handR).lerp(at(-.08 + sw, 0), p), { grip: .04 }).toFixed(3);
+      M.zL = +PO.reach(zou, 'L', IK.wpos(zou.B.handL).lerp(at(.14 - sw, .03), p), { grip: .04 }).toFixed(3);
     }
     PO.look(zou, IK.wpos(mo.B.head), .3); breathe(zou, t, 1, 2);
   },

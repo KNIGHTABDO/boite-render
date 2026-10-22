@@ -1,0 +1,420 @@
+Tu es expert de Fès (années 1920-30), de la darija fassie et du roman « La Boîte à Merveilles » d'Ahmed Sefrioui. Ci-dessous : (A) le TEXTE INTÉGRAL du chapitre VI, puis (B) les répliques s01 à s12 d'un épisode animé pour élèves du bac (français, accent fassi, petits mots de darija). Personnages : narrateur (Mohammed adulte), Mohammed 6 ans, Zoubida (mère), le père, le fqih, les élèves (kid1, kid2), Driss, Zineb, Lalla Kanza (la chouafa), Fatma Bziouya, Rahma, la voisine, le marchand de la Kissaria, Lalla Khadija (dans le récit de Rahma), groupe de femmes.
+
+RÈGLES STRICTES :
+1. Le texte de Sefrioui FAIT FOI. Un mot, un nom, un fait ou une expression qui figure dans le texte (A) est CORRECT, même s'il te semble étrange (ex. « balayette », « tête de loup », « chien galeux », « gilet cerise », « poisson », « satinette », « alose » sont dans le roman : ne les touche pas).
+2. Signale seulement : (a) contresens ou fait qui CONTREDIT le texte (A) ; (b) un ajout inventé qui n'est pas dans le roman et qui fausse l'histoire ; (c) faute de français ; (d) phrase confuse pour un élève ; (e) darija mal transcrite ou impossible à prononcer par une voix française.
+3. N'utilise QUE les identifiants exacts de la partie (B) (forme sNN_nom#i). N'invente aucun identifiant.
+4. Pour chaque problème, cite entre guillemets le passage du roman qui le prouve.
+Réponds UNIQUEMENT en JSON : [{"line":"id#i","problem":"...","quote":"passage du roman","fix":"who | texte corrigé complet"}]. Si tout est bon, réponds [].
+
+(A) TEXTE DU CHAPITRE VI
+Chapitre VI
+ 
+ 
+  On accédait à la salle d’école par quatre marches. Le Msid, longue pièce quelque peu rustique, com-
+portait une vaste soupente. Le maître installa là-haut deux jarres en poterie vernissée, pour recueillir 
+l’huile d’olive que les élèves apportaient par bouteilles et par bols. Les grands en avaient la responsabilité.
+Pour l’achat des nattes neuves, chacun y contribua selon ses moyens. Le père d’un élève exerçait le mé-
+tier de chaufournier. Il fit don à l’école d’une charge d’âne de chaux. Le lundi, huit jours avant la fête de 
+l’Achoura, les vieilles nattes furent remisées dans la soupente. Le maître forma des équipes et en nomma 
+les chefs. On emprunta des seaux et des balayettes de doum.
+Le travail commença. Dans un vacarme d’injures, d’exclamations, de pleurs et d’éclats de rire, quelques-
+uns s’emparèrent des têtes de loup, hautement perchées sur des roseaux, s’escrimèrent longtemps afin de 
+nettoyer le plafond et les murs de leurs toiles d’araignées.
+Deux seaux énormes de lait de chaux furent préparés. Une dizaine d’élèves, armés de balayettes, entre-
+prirent de badigeonner les murs.
+Ils maniaient hardiment leurs balais, éclaboussaient au passage des enfants qui piaillaient. Ils recevaient 
+dans les yeux la chaux vive, se mettaient à hurler, abandonnant leur besogne. D’autres les remplaçaient, 
+pleins d’ardeur. Des disputes éclataient. T out le monde criait à la fois. Parfois, au-dessus de cette marée, 
+grondait la voix du maître. Le bruit cessait une seconde, puis reprenait, plus exaspéré, plus aigu.
+ Je réussis à  m’emparer d’une balayette, je la plongeai dans le lait de chaux et, tout heureux, je fonçai 
+sur le mur pour montrer à toutes ces larves comment on badigeonnait sérieusement. Je me heurtai à un 
+rempart de bras roses, de bouches ouvertes, d’yeux exorbités de fureur.
+ Des mains s’agrippèrent à ma balayette. Je résistai de toutes mes forces, mais la lutte s’avérait inégale. 
+Je lâchai le précieux instrument et me trouvai assis dans une flaque d’eau qui me gelait le derrière. Je ne 
+songeai pas à pleurer, je me relevai, décidé à reprendre mon bien. Je me jetai dans la mêlée, mais la voix 
+du maître domina le tumulte.
+ Nous nous arrêtâmes, frémissants de colère. Étendant nos bras et nos mains, les doigts écartés, nous 
+nous mîmes tous à expliquer l’objet du malentendu; nous demandions tous justice; la voix de chacun de 
+nous essayait de dominer celle des autres.
+Le maître nous imposa silence, nous releva de nos fonctions et voyant nos mines dépitées, nous conseilla 
+d’attendre qu’il eût besoin de nous. Nous attendîmes dans un coin. Le fqih décréta que, seuls, les grands 
+étaient admis à passer les murs au lait de chaux. Nous attendîmes jusqu’au soir que le maître nous char-
+geât de rendre le moindre service. Il n’en fut rien!
+Les murs étaient blanchis. Le lendemain, des équipes furent de nouveau constituées, chaque groupe 
+39
+avait sa spécialité. Je devins un personnage important. Je fus nommé chef des frotteurs. On procéda au 
+lavage du sol. Une vingtaine d’élèves, chargés d’énormes seaux, faisait la corvée d’eau. Ils allaient la cher-
+cher à la fontaine d’une zaouïa située à cinquante pas de notre école.
+Le sol fut inondé. Je pris très au sérieux mon travail et, pour donner l’exemple, je maniai avec énergie 
+ma balayette. J’en avais mal aux reins. De temps à autre, je me redressais tout rouge. Les muscles des bras 
+me faisaient mal. Au repos, je les sentais trembler. Dans l’eau jusqu’aux chevilles, pieds nus, bousculé par 
+celui-ci, insulté par celui-là, j’étais heureux! Adieu les leçons, les récitations collectives, les planchettes 
+rigides, rébarbatives, inhumaines! Frottons le sol en terre battue, incrusté de poussière et de crasse, orné 
+d’énormes étoiles de chaux, qui résistaient à notre brossage énergique.
+- Aïe! T u m’as donné un coup de coude dans l’œil.
+- Fais attention ! T u m’as mouillé jusqu’à la ceinture.
+- Regarde Driss, il est tombé dans le seau.
+- Ha ! Ha ! Il va se noyer ! Il va se noyer!
+- Frottez paresseux.
+- Paresseux toi-même, notre coin est plus propre que le tien.
+Avec des chiffons de jute, nous essuyâmes partout.
+Le soir, je revins à la maison mort de fatigue, mais très fier de ma journée.
+Devant mes parents je me vantai de mes multiples exploits.
+ Je réussis à les convaincre que sans moi aucun résultat sérieux n’aurait été obtenu. Mon père me féli-
+cita. Il dit à ma mère que je devenais vraiment un homme. Je me mis au lit.
+Pendant mon sommeil, il m’arriva de me mettre sur mon séant, de hurler des ordres, de distribuer des 
+injures. Ma mère me recouchait avec des gestes tendres, des phrases affectueuses.
+Le matin, je me préparai pour partir à l’école, ma mère m’en empêcha. Elle m’expliqua qu’elle avait 
+besoin de moi pour l’accompagner à la Kissaria, le marché des tissus. Il était temps de songer à mes habits 
+de fête. J’applaudis avec enthousiasme.
+- Est-ce que j’aurai une chemise neuve?
+- T u auras une chemise neuve.
+- Est-ce que je porterai un gilet avec des soutaches?
+- T u porteras un gilet avec des soutaches.
+- Est-ce que je mettrai ma djellaba blanche que tu as rangée dans le coffre ?
+- T u porteras ta djellaba blanche, des babouches neuves que te fabrique Moulay Larbi, le mari de Lalla 
+Aicha et une belle sacoche brodée.
+Je me dressai de toute ma taille, je bombai le torse; j’esquissai même quelques pas d’une danse barbare. 
+Je ne me livrais à de telles excentricités que dans des circonstances exceptionnelles. J’allais même pousser 
+un ou deux hululements quand ma mère me rappela à plus de dignité.
+Fatma Bziouya riait à gorge déployée. Son rire ne me choquait pas. Ce matin, je me sentais capable de 
+bonté, d’indulgence, j’étais d’une générosité sans bornes. Je pardonnais à  Zineb, dans mon for intérieur, 
+40
+toutes les misères qu’elle m’avait fait subir; je pardonnais à son chat qui était revenu après s’être débarrassé 
+de son collier, ma belle chaîne d’or, je pardonnais aux mardis d’être des jours trop longs, à la baguette de 
+cognassier de mordre si souvent la chair fragile de mes oreilles, je pardonnais aux jours de lessive d’être 
+particulièrement froids et tristes, je pardonnais tout au monde ou du moins à ce que je connaissais du 
+monde.
+Je laissai ma mère vaquer à ses multiples besognes avant de se préparer pour sortir et je montai sur 
+la terrasse où personne ne pouvait me voir éparpiller aux quatre vents l’excès de joie dont je me sentais 
+déborder. Je courais, je chantais, je battais violemment les murs avec une baguette trouvée là par le plus 
+heureux des hasards. La baguette devenait un sabre. Je la maniais avec adresse. Je pourfendais des ennemis 
+invisibles, je coupais la tête aux pachas, aux prévôts des marchands et à leurs sbires. La baguette devenait 
+cheval et je paradais, tortillant du derrière, lançant des ruades. J’étais le cavalier courageux, vêtu d’une 
+djellaba immaculée et d’un gilet à soutaches. Ma sacoche brodée me tirait l’épaule tant ma provision de 
+cartouches pesait lourd. Je lâchai ma baguette, je dégringolai l’escalier pour répondre à l’appel de ma 
+mère.
+Quand je l’avais entendue, elle me traitait déjà de juif, de chien galeux et de bien d’autres noms peu 
+flatteurs. Cela ne devait pas être son premier appel. Elle avait dû, comme toujours, m’appâter par des 
+mots gentils, des phrases du genre :
+- Est-ce que mon chérif a assez joué ?
+- Mon chérif ne veut-il pas répondre à sa maman ?
+- Descends vite, mon chérif!
+- Qu’attends-tu pour descendre, tête de mule?
+- T u ne m’entends pas, âne à face de goudron?
+- Que t’arrive-t-il, chien galeux?
+- Attends que je monte te chercher, juif sans dignité!
+Dans la fièvre du jeu, l’ivresse de la cavalcade, je n’avais pas entendu toute cette oraison. Seuls les 
+termes insultants de juif et de chien galeux m’avaient brutalement jeté dans le monde du réel.
+Je rejoignis ma mère, l’oreille basse, le coude levé en bouclier pour parer à toute tentative de violence.
+Ma mère, tout en me reprochant avec véhémence ma conduite, se contenta de me prendre par les 
+épaules et de me secouer. Elle était prête pour sortir. Drapée dans son haïk blanc, des babouches noires 
+aux pieds, elle se hâta de se voiler le visage étroitement de cotonnade blanche et nous partîmes.
+Rahma la pria de se renseigner sur les prix actuels des tissus, notamment sur le prix de cette mousseline 
+appelée « persil » et de ce satin à la mode, qui portait le joli nom de « bouquet du sultan ».
+Nous avions déjà parcouru un certain trajet, nous arrivions presque au tournant de la ruelle, quand 
+Lalla Kanza, la chouafa, nous rappela.
+Ma mère répugnait à refaire le même chemin. Elle lui dem1nda de loin ce qu’elle voulait. De la mai -
+son, la principale locataire manifesta son intention de renouveler le stock de ses robes de confréries. Il 
+lui fallait un nombre important de coudées de satinette noire pour calmer l’humeur du grand génie 
+bienfaisant, le roi Bel Lahmer. Depuis quelque temps, elle sentait aussi un mal sournois, dû à l’action 
+de Lalla Mira. Pour faire cesser le mal, une robe d’un jaune de flamme s’avérait nécessaire. Il y avait bien 
+Sidi Moussa à satisfaire, sa couleur était le bleu roi, mais la robe de l’année dernière pouvait encore servir.
+- Donne l’argent à mon fils.
+41
+Ma mère me poussa dans la direction de la maison.
+- Je pourrai en effet t’éviter toutes ces courses.
+La chouafa me donna l’argent. Elle ne voulait plus acheter que la satinette noire. Enfin, nous nous 
+trouvâmes bientôt dans la rue.
+Près de Sidi Ahmed Tijani, cette mosquée aux portes richement décorées, une femme se précipita sur 
+ma mère. Elle débordait de joie, remerciait Dieu de nous avoir mis sur son chemin. Elle se pencha sur 
+moi et colla son voile rêche sur ma joue pour m’embrasser. C’était une voisine de Lalla Aicha, l’amie de 
+ma mère. Les deux femmes s’appuyèrent au mur de la mosquée et entamèrent une longue conversation 
+sur l’affaire Moulay Larbi qui, grâce au  dévouement de Lalla Aicha, s’était si heureusement terminée. 
+Moulay Larbi méritait d’ailleurs un tel sacrifice. Dès que son atelier serait prospère, il ne manquerait pas 
+de racheter à sa femme bijoux, meubles et couvertures. 11 n’était pas homme à oublier les services rendus. 
+T outefois, avant de nous quitter, la voisine ajouta cette phrase perfide:
+- Mais qui peut se fier aux hommes? J’ai été mariée trois fois, chaque fois mon époux ne songeait qu’à 
+me dépouiller du peu de bien que je possédais. Espérons que Lalla Aicha n’est pas tombée sur un ingrat 
+et un odieux simulateur.
+Ma mère dit sentencieusement :
+- Dieu seul est juge.
+Nous abandonnâmes la voisine bavarde. Les quartiers commerçants avaient un air de fête. Une foule de 
+citadins et de campagnards se pressait dans la rue des épiciers, la place des notaires, le marché des fruits 
+secs. Des âniers poussaient des bêtes chétives lourdement chargées de sacs de sucre, de caisses de bougies, 
+de ballots de cotonnades, de vaisselle de faïence et de bimbeloterie.
+Il  se formait à chaque carrefour un embouteillage compliqué. Nous finissions toujours par nous fau -
+filer à travers les groupes de badauds. Pour circuler plus aisément, j’avais enlevé mes babouches. Je les 
+mis dans mon capuchon. A chaque pas ma mère me recommandait d’y faire très attention. Je pouvais les 
+perdre dans la bousculade ou me les faire voler. Je la rassurais. Je les sentais battre légèrement mon dos.
+J’aperçus les premières boutiques de tissus. On les reconnaissait de loin. Les marchands, pour attirer les 
+chalands, accrochaient à leurs auvents des banderoles de soie, des tricots de couleur fanée, des mouchoirs 
+brodés au point plat.
+La Kisaran, rendez-vous de toutes les élégantes de la ville, me parut contenir les fabuleux trésors de 
+Soleiman, fils de David. Des caftans de drap amarante, des gilets précieusement ornementés de passe -
+menterie et de boutons de soie, des djellabas en voile de laine, des burnous somptueux voisinaient avec 
+des tulles irisés comme des toiles d’araignée sous  la rosée, des taffetas, des satins moirés et des cretonnes 
+aux couleurs sauvages .
+Le gazouillis des femmes prêtait à ce lieu je ne sais quelle atmosphère d’intimité. Les marchands ne 
+ressemblaient pas à ceux des autres souks. La plupart étaient des jeunes gens, beaux de visage, très soignés 
+dans leur mise, courtois dans leur langage. Ils ne se mettaient jamais en colère, faisaient montre d’une 
+patience sans limite, se dérangeaient pour montrer à une cliente une étoffe posée sur le plus haut rayon, 
+dépliaient la pièce, la repliaient pour la remettre à sa place, la cliente ayant déniché sous une pile de soie-
+ries, une étoffe qui lui plaisait mieux.
+Nous fîmes cinq ou six boutiques avant d’acheter trois coudées de cotonnade blanche. Elle devait ser-
+vir à me faire confectionner une chemise. C’était de la cotonnade de bonne qualité, la qualité « Poisson 
+». Ma mère ne voulait pas d’autre marque. Le marchand nous montra, imprimé en bleu sur une assez 
+42
+grande longueur de la pièce, un poisson avec toutes ses écailles. Le cérémonial du marchandage dura 
+beaucoup moins que lorsqu’il fallut payer le gilet rouge à soutaches.
+Nous nous arrêtâmes devant une dizaine de magasins. Les marchands s’empressaient de nous montrer 
+des piles de gilets de ma taille. T outes les nuances du rouge défilaient sous nos yeux ;  aucune ne corres-
+pondait au ton que désirait ma mère. Finalement elle fixa son choix sur un gilet cerise abondamment 
+orné de serpentins et de fleurons en passementerie, légèrement plus foncée que le tissu.
+Elle m’enleva la djellaba, m’essaya le gilet, me le boutonna jusqu’au cou, s’éloigna pour se rendre 
+compte de l’effet, me fit signe de tourner à droite, puis de tourner à gauche, mit un temps infini à  le 
+déboutonner, en fit une boule qu’elle fourra brutalement entre les mains du marchand. Le boutiquier 
+s’informa :
+- Cet article te plaît-il ?
+- C’est le prix qui en décidera, répondit ma mère.
+- Alors, je prépare le paquet; aux clients sérieux, je consens toujours un rabais. Ce gilet vendu couram-
+ment cinq réaux, je te le laisse pour quatre réaux seulement.
+- Coupons court à toute discussion, je t’en offre deux réaux.
+- T u ne m’en offres pas le prix de revient, j’en fais le serment! Je ne le céderai pas à ce prix, devrais-je 
+mendier ce soir pour nourrir mes enfants.
+Le marchand avait fini de plier le gilet soigneusement et cherchait un papier pour faire le paquet.
+- Écoute, dit ma mère, je suis mère de famille, je m’occupe de ma maison, je n’ai guère le temps de 
+marchander. Voudrais-tu me laisser ce gilet à deux réaux un quart? Je fais ce sacrifice pour mon fils qui 
+aimerait tellement porter ce vêtement le jour de l’Achoura.
+- Ce garçon me plaît, je ferai un effort en sa faveur, donne- moi trois réaux et demi.
+Le marchand tendit la main. Il s’attendait à recevoir l’argent.
+Ma mère lui tourna le dos, me prit par le poignet et m’entraîna quelques pas.
+- Viens! me dit-elle, les gilets ne manquent pas à la Kissaria. Nous trouverons bien un boutiquier sé -
+rieux qui sache parler raisonnablement.
+Le marchand se mit à nous rappeler d’un ton pressant.
+- Reviens Lalla! Reviens donc! Le gilet plaît à  cet enfant.
+Je te l’abandonnerais plutôt que de le priver du plaisir de le porter. Certes, les gilets ne manquent pas 
+dans les boutiques de la Kissaria, mais pourras-tu vraiment en trouver de cette qualité ? Admire avec quel 
+soin ont été faites toutes les coutures. Regarde l’exécution des boutons ... Prends ce gilet; paie-moi le prix 
+que tu estimes raisonnable. T u me parais être une chérifa pleine de baraka, je te demanderai de ne pas 
+m’oublier dans tes prières afin que le Prophète intercède en ma faveur le jour du jugement.
+Ma mère perdait la tête quand, d’aventure, quelqu’un la traitait de chérifa. Elle fouilla dans ses poches, 
+sortit un chiffon noué plusieurs fois, s’acharna un bon moment à le dénouer. Elle tira deux réaux et demi 
+qu’elle allongea au marchand sans rien dire. Elle ne prit pas le temps d’écouter le boutiquier réclamer un 
+supplément. Elle se saisit du paquet et m’entraîna.
+Nous flânâmes encore un moment dans le souk. Ma mère se documenta sur le prix des tissus, les ten-
+dances de la mode, la signification de tel ou tel dessin.
+43
+Nous quittâmes cette atmosphère de faste pour nous trouver dans le quartier des épices. Nous étions 
+près de la médersa Attarine, cette belle maison où logent les étudiants, quand je rappelai à ma mère la 
+satinette de Lalla Kanza la chouafa. Ma mère me félicita d’avoir une si bonne mémoire. Elle rebroussa 
+chemin. Le long de la rue elle maudissait toutes les chouafas de la terre, ces femmes calamiteuses qui ne 
+manquaient aucune occasion de vous empoisonner la vie. Elle se demandait ce qu’elle avait bien pu faire 
+de l’argent de cette maudite sorcière de Kanza qui pouvait, si elle le voulait, faire ses commissions elle-
+même. Elle se mit à l’angle d’une boutique, entreprit de minutieuses recherches, s’énerva, s’agita, lança 
+de nouvelles imprécations contre les chouafas et leurs acolytes, finit par retrouver l’argent au fond d’une 
+poche de son caftan.
+Nous ne tardâmes pas à  trouver un marchand de satinette.
+Sans discuter le prix, ma mère demanda un certain nombre de coudées. Elle le paya et nous partîmes 
+enfin.
+La bonne humeur de ma mère avait disparu. Elle ne cessa pas de me gourmander sans raison jusqu’à 
+l’arrivée chez nous. Elle remit à Lalla Kanza sa satinette noire, lui rendit sa monnaie et monta l’escalier, 
+gémissant et soupirant à chaque marche.
+Rahma sortit sur le palier. Elle nous invita dans sa chambre. Elle demanda à ma mère de lui montrer 
+ses acquisitions.
+La chambre de Rahma était de mêmes dimensions que la nôtre. Une cloison de bois patinée par l’âge, la 
+coupait aux trois quarts. Derrière cette cloison, Rahma entassait ses provisions d’hiver. Elles consistaient 
+surtout en pains de sel d’un rose taché de gris et en grappes d’oignons. La pièce meublée pauvrement de 
+matelas bosselés et d’une natte de jonc, comportait, comme seul luxe, une longue étagère peinturlurée. 
+Cette étagère supportait une dizaine de bols de faïence à fleurs, deux assiettes décorées de coqs superbes 
+et une demi-douzaine de verres en forme de gobelets.
+Zineb jouait dans un coin avec son chat. Elle lui présentait une minuscule glace. L ’animal voyait un 
+œil rond qui le regardait fixement. Inquiet, il allongeait la patte, mais ses griffes grattaient la surface lisse 
+du verre. Il recommença son manège deux ou trois fois, regarda derrière le miroir ; le mystère demeurait 
+entier. Il flaira quelque supercherie, se fâcha, cracha des grossièretés dans son langage, partit en flèche, la 
+queue hérissée. Zineb riait aux éclats.
+Depuis longtemps, je désirais une petite glace ronde comme la sienne. Je n’osais pas demander à ma -
+man de m’en acheter une. Elle se serait imaginé que je la désirais pour me regarder et n’aurait pas manqué 
+de me traiter de garçon efféminé.
+Rahma faisait des compliments à ma mère sur ses achats et admirait mon gilet. Il faisait sombre dans 
+cette chambre. Le rouge du gilet prenait des tons de velours cramoisi. Une belle couleur profonde, dis -
+crète et royale à la fois qui m’enivrait. Je me sentais gonflé d’un noble orgueil. Ce vêtement était le mien. 
+Le jour de l’Achoura, j’allais éblouir nos amis et connaissances. Les élèves du Msid me parleraient avec 
+déférence. Aux princes de légende, petits et grands s’adressent avec respect.
+Ne serais-je pas un prince de légende avec ce gilet somptueux, ma future chemise de qualité « poisson 
+»  et la paire de babouches que me promettait Moulay Larbi, le meilleur babouchier de toute la ville ?
+Ma, mère chuchotait, penchée sur notre voisine à lui frôler la joue. Cela ne me regardait pas. Ce que 
+chuchotent mystérieusement les femmes dans une pièce sombre ne peut intéresser les petits garçons qui 
+rêvent de devenir princes de légende vêtus de drap cramoisi.
+Zineb me fit une horrible grimace, je lui en fis une encore plus épouvantable. Elle se mit à hurler, à 
+ameuter tout le quartier:
+44
+- Maman! Maman! Sidi Mohammed me fait des grimaces. J’essayai de me défendre.
+- C’est elle qui a commencé ! C’est elle!
+Personne ne me croyait. J’éclatai en sanglots. Furieuse, ma mère me saisit brutalement par le bras et 
+m’entraîna jusqu’à notre chambre. Elle se plaignait à haute voix de son mauvais destin, de la cruauté du 
+sort, de la vie d’enfer qu’elle menait à cause de moi.
+Je me demandais avec sincérité ce que je faisais de méchant pour la rendre si malheureuse. Elle m’aban-
+donna dans un coin, me laissa renifler tout à mon aise, le cœur gros, les lèvres boudeuses et s’enferma 
+dans sa cuisine. J’eus faim à force de pleurer silencieusement. D’ailleurs, l’heure du déjeuner était depuis 
+longtemps passée. Je me mis sur le dos et entrepris de composer un menu fastueux pour le jour où, 
+prince reconnu et aimé, j’aurais à recevoir des personnes de mon rang. Je réfléchis un moment et me dis: 
+« Les princes mangent très bien chez eux. Je ne les inviterai pas. Mes hôtes seront tous les affamés, les 
+mendiants, les psalmistes qui font rarement un bon repas. Je leur distribuerai de beaux vêtements : des 
+gilets rouges richement ornementés, des djellabas d’une blancheur de lait, des babouches safran dont le 
+cuir crisse à chaque pas. Je n’oublierai pas de leur offrir des turbans de mousseline. Moi, je serai habillé 
+de blanc. Sur la tête, je mettrai le bonnet conique, d’un rouge amarante, apanage des gens de cour et des 
+derviches. Des esclaves noires nous serviront dans des plats de porcelaine des ...
+- Voudrais-tu te mettre sur ton séant pour manger.
+ Je me redressai. Ma mère avait disposé la table ronde, basse sur pattes. De la viande aux navets! Je 
+n’aimais pas les navets! Je pensai refuser cette pitance. Ma mère était assez malheureuse ainsi. J’aurais 
+déclenché une nouvelle crise, je ne m’en sentis pas le courage. Je fis honneur au repas. La faim qui me 
+dévorait transforma le goût du navet en saveur exquise.
+Quelqu’un sur la terrasse se mit à chanter. Des lambeaux d’une cantilène, mollement balancés par le 
+souffle du printemps naissant, parvenaient jusqu’à nous. Ma mère s’arrêta de mastiquer, tendit l’oreille. 
+La voix s’éloigna. Un instant après, elle éclata en jet de lumière, chaude, enivrante et nostalgique comme 
+une bouffée d’encens.
+Ma mère alla se pencher à la fenêtre. Elle appela
+- Fatma Bziouya, sais-tu qui chante ainsi?
+- Lalla Khadija, la femme de l’oncle Othman.
+- Je ne comprends pas qu’elle manifeste tant de gaîté alors qu’elle a épousé un vieillard qui pourrait 
+être son père.
+- Elle n’est pas malheureuse! L ’oncle Othman fait ses quatre volontés. Il la traite comme sa fille.         
+- Et elle? Comment le traite-t-elle ? Nos voisines partirent d’un grand rire.
+- Moi, je sais comment elle le traite. La vieille M’Barka, l’ancienne esclave de l’oncle Othman, m’a 
+raconté une histoire fort amusante. Elle est trop longue pour que je vous la répète, répartit Rahma.
+- Raconte-la, raconte-la, demandèrent toutes les femmes d’une seule voix.
+Rahma se fit prier un moment. Puis elle commença :
+- Vous connaissez l’oncle Othman, un homme qui a vu des temps meilleurs. Ses parents lui laissèrent 
+à leur mort une grosse fortune. Il eut une jeunesse dissipée et mangea capital et bénéfices. Il ne lui resta 
+que la petite maison qui s’appuie à la nôtre. Fidèle, M’Barka partagea la bonne et la mauvaise fortune. Si 
+Othman s’était marié plusieurs fois, mais aucune de ses épouses successives n’avait su en faire vraiment 
+la conquête. Lalla Khadija seule réussit à le dominer, à le faire manger dans le creux de sa main, comme 
+45
+un agneau. Il est vrai que Khadija, si elle n’a pas de fortune, possède au moins la jeunesse et le charme. 
+Patientez, j’en arrive à mon histoire.
+J’allai me pencher à la fenêtre aux côtés de ma mère. T outes les femmes avaient abandonné leur be -
+sogne et s’accoudaient aux grilles et balustrades de leurs balcons. Lalla Kanza sortit un vieux tapis de 
+prières, s’installa pour écouter dans le patio.
+Rahma, dont on ne voyait que le buste, reprit le fil de son histoire.
+Nous étions tous pressés de connaître la suite.
+- Si Othman sortit vendredi dernier de bonne heure pour faire son marché. II balançait gaiement son 
+cabas, saluait les uns la main sur le cœur, faisait de larges sourires aux autres. Car il connaît tous les gens 
+du quartier. II arriva à  Joutyia. Un seul marchand, de viande était ouvert. Inutile de vous dire qu’il y avait 
+foule autour de sa boutique. C’était Salem le nègre. Il brandissait tantôt une hache impressionnante, 
+tantôt un coutelas phénoménal. Il découpait de gros quartiers de mouton qui disparaissaient dans les 
+couffins et les cabas des clients. Il y avait foule, je vous dis. Les gens s’écrasaient les pieds avec bonheur, 
+échangeaient courtoisement des bourrades et des mots venimeux. Si Othman, pour attirer l’attention 
+de Salem le nègre, agit les deux bras, étala sur son visage un large sourire, hurla un ensemble de mots 
+qui pouvait signifier: « Avale ton coutelas »  ou bien « tu mérites la bastonnade » ou, plus simplement, « 
+donne-moi un gigot ».Le nègre furieux le menaça de loin de sa hache et continua son travail.
+T out le monde riait aux larmes. Rahma savait si bien raconter. Elle reprit, heureuse de son succès :
+  Si Othman recommença son jeu un moment après. Salem montra les dents, leva haut sa hache, hésita 
+entre le désir de l’envoyer à  la tête de ce client désagréable et le devoir de continuer à servir son monde. 
+Le devoir l’emporta, au grand soulagement de Si Othman. Un chien, comme il y en a toujours aux 
+abords des boucheries, vint flairer les talons de Si Othman. Ce dernier, impatienté, lui envoya un grand 
+coup de pied. Sa babouche sauta. Le chien s’en empara, la saisit entre ses crocs et se sauva. Si Othman le 
+suivit, clopin-clopant.
+Nous étions de nouveau pris de fou rire et Rahma dut s’arrêter un instant avant de poursuivre.
+- Il réussit à récupérer sa babouche dans les environs du pont de Bin Lemdoun. De retour à Joutyia, il 
+constata qu’il n’y avait plus personne devant la boucherie. Le nègre somnolait, la chéchia sur l’oreille, le 
+chasse-mouches entre les doigts. Aux crochets de la boutique pendaient de gros morceaux de mou pour 
+les chats. Il s’aperçut aussi que tous les marchands de légumes dormaient au milieu de cageots vides ou 
+derrière leurs étalages où jaunissaient trois bottes de radis. Si Othman n’osait pas rentrer bredouille. Dieu 
+seul sait comment Lalla Khadija l’aurait reçu. Dans un fondouk, il découvrit un bien curieux spectacle. 
+Des gens s’écrasaient les pieds consciencieusement. Des aloses naissaient de ce remous, surnageaient un 
+moment au-dessus des têtes et disparaissaient. Si Othman, plein de bonne volonté, attendit longtemps, 
+espérant un miracle. Comme le miracle tardait, les démangeaisons de son nez devinrent intolérables. Il 
+quitta le marché pour se rendre chez le marchand de tabac le plus proche. Il espérait s’envoyer une bonne 
+prise dans les narines. Peut-être s’était-il un peu attardé chez le marchand de tabac. A son retour, plus de 
+poissons et plus d’acheteurs.
+Les femmes hurlaient de joie. Moi, je trépignais d’enthousiasme. Je réclamais la suite.
+- Continue! Continue! disait ma mère. Rahma continua.
+- Si Othman se mit en colère; des personnes l’entendirent vociférer des injures. Il brandissait les poings 
+et disait : « Le maudit vieillard! Avais-je besoin d’écouter le récit de son mariage, à ce cocu? Pourquoi 
+m’a-t-il raconté la mort de sa sœur et qu’ai-je à faire avec les fiançailles de sa fille! » Pour finir Si Othman 
+rebroussa chemin. Chez le marchand de menthe du petit carrefour de la rue Sagha, il tomba en arrêt 
+devant une magnifique rose. Il pensa que s’il l’offrait à Lala Khadija, elle lui pardonnerait de ne rien 
+46
+rapporter de comestible. J étais dans la rue quand il entra chez lui, fier de sa belle rose qui embaumait et 
+j’ai assisté de mes yeux au dénouement. Il entra, puis la porte se rouvrit presque immédiatement, la rose 
+s’écrasa sous ses pieds, puis, le turban de Si Othman vint la rejoindre suivi d’un Si Othman pâle et défait. 
+Il ramassa son couvre-chef, prit  la rose qu’il respira longuement et, me voyant là qui le dévisageait, Il me 
+gratifia d’un large sourire.
+Nous riions à nous tordre. Rahma termina ainsi :
+- La rose, le turban et l’attitude de Si Othman m’intriguèrent et j’ai demandé à M’Barka ce qui était 
+arrivé, j’ai appris comment Lalla Khadija traitait son vieux mari.
+T out le monde fit des compliments à Rahma sur sa façon de peindre les événements les plus insigni -
+fiants. Ces propos avaient « du sel ».
+Le récit de Rahma m’obséda toute la soirée, la nuit, j’y rêvai encore.
+47
+
+(B) RÉPLIQUES
+s01_hook#1 [narrator] Huit jours avant l'Achoura, notre Msid devint un champ de bataille. Et moi, j'allais me jeter au milieu.
+s03_preparatifs#1 [narrator] On montait au Msid par quatre marches. C'était une longue pièce un peu rustique, avec une vaste soupente.
+s03_preparatifs#2 [narrator] Là-haut, le maître installa deux jarres en poterie vernissée, pour l'huile d'olive que les élèves apportaient, par bouteilles et par bols.
+s03_preparatifs#3 [narrator] Pour les nattes neuves, chacun donna selon ses moyens. Le père d'un élève, qui était chaufournier, offrit à l'école une charge d'âne de chaux.
+s03_preparatifs#4 [narrator] Le lundi, huit jours avant la fête, les vieilles nattes furent montées dans la soupente. Le maître forma des équipes, et nomma les chefs. On emprunta des seaux, et des balayettes de doum.
+s04_badigeon#1 [narrator] Le travail commença, dans un vacarme d'injures, de pleurs, et d'éclats de rire. Perchées sur de longs roseaux, des têtes de loup chassaient les toiles d'araignées du plafond.
+s04_badigeon#2 [narrator] Une dizaine d'élèves, armés de balayettes, badigeonnaient les murs au lait de chaux. Ils éclaboussaient tout le monde. La chaux vive leur entrait dans les yeux, ils hurlaient, d'autres prenaient leur place. Tout le monde criait à la fois.
+s04_badigeon#3 [fqih] Doucement ! Doucement, bande de diables !
+s04_badigeon#4 [narrator] Je réussis à m'emparer d'une balayette. Je la plongeai dans le lait de chaux, et, tout heureux, je fonçai sur le mur, pour montrer à ces larves comment on badigeonne sérieusement.
+s04_badigeon#5 [narrator] Je me heurtai à un rempart de bras, de bouches ouvertes, d'yeux exorbités de fureur. Des mains s'agrippèrent à ma balayette.
+s04_badigeon#6 [narrator] Je résistai de toutes mes forces. Mais la lutte était inégale. Je lâchai le précieux instrument, et je me retrouvai assis dans une flaque d'eau, qui me gelait le derrière.
+s04_badigeon#7 [narrator] Je ne pensai pas à pleurer. Je me relevai, décidé à reprendre mon bien, et je me jetai dans la mêlée.
+s04_badigeon#8 [fqih] Silence !
+s04_badigeon#9 [narrator] Nous nous arrêtâmes, frémissants de colère. Les bras tendus, les doigts écartés, nous expliquions tous en même temps, nous demandions tous justice.
+s04_badigeon#10 [kid1] C'est lui ! C'est lui qui a commencé !
+s04_badigeon#11 [kid2] Non, maître, la balayette est à moi !
+s04_badigeon#12 [fqih] Assez ! Seuls les grands passeront les murs à la chaux. Les petits, allez attendre dans le coin. J'aurai besoin de vous plus tard.
+s04_badigeon#13 [narrator] Nous attendîmes dans un coin, jusqu'au soir, qu'il nous confie le moindre service. Il n'en fut rien !
+s05_frotteurs#1 [narrator] Le lendemain, de nouvelles équipes furent formées. Je devins un personnage important. Je fus nommé chef des frotteurs !
+s05_frotteurs#2 [narrator] Une vingtaine d'élèves, chargés d'énormes seaux, allaient chercher l'eau à la fontaine d'une zaouïa, à cinquante pas de l'école. Le sol fut inondé.
+s05_frotteurs#3 [narrator] Je maniais ma balayette avec énergie, pour donner l'exemple. J'en avais mal aux reins. De temps en temps, je me redressais, tout rouge.
+s05_frotteurs#4 [narrator] Dans l'eau jusqu'aux chevilles, pieds nus, bousculé par celui-ci, insulté par celui-là, j'étais heureux ! Adieu les leçons, adieu les planchettes rigides et inhumaines !
+s05_frotteurs#5 [kid1] Aïe ! Tu m'as donné un coup de coude dans l'œil !
+s05_frotteurs#6 [kid2] Fais attention ! Tu m'as mouillé jusqu'à la ceinture !
+s05_frotteurs#7 [kid1] Regardez Driss ! Il est tombé dans le seau !
+s05_frotteurs#8 [kid2] Ha ! Ha ! Il va se noyer ! Il va se noyer !
+s05_frotteurs#9 [mohammed] Frottez, paresseux !
+s05_frotteurs#10 [kid2] Paresseux toi-même ! Notre coin est plus propre que le tien !
+s05_frotteurs#11 [narrator] Avec des chiffons de jute, nous essuyâmes partout.
+s06_soir#1 [narrator] Le soir, je revins à la maison mort de fatigue, mais très fier de ma journée.
+s06_soir#2 [mohammed] Sans moi, le Msid serait encore tout sale ! C'est moi le chef des frotteurs ! Moi !
+s06_soir#3 [narrator] Je réussis à convaincre mes parents, que sans moi, aucun résultat sérieux n'aurait été obtenu.
+s06_soir#4 [father] C'est bien, mon fils. Tu vois, Lalla Zoubida, il devient vraiment un homme.
+s06_soir#5 [narrator] Pendant mon sommeil, je me mettais sur mon séant, je hurlais des ordres, je distribuais des injures. Ma mère me recouchait, avec des gestes tendres.
+s06_soir#6 [mohammed] Frottez ! Plus vite ! Paresseux !
+s07_matin#1 [narrator] Le matin, je me préparais pour l'école, quand ma mère m'arrêta.
+s07_matin#2 [zoubida] Aujourd'hui, tu ne vas pas au Msid. Tu m'accompagnes à la Kissaria, le marché des tissus. Il est temps de penser à tes habits de fête.
+s07_matin#3 [narrator] J'applaudis avec enthousiasme.
+s07_matin#4 [mohammed] Est-ce que j'aurai une chemise neuve ?
+s07_matin#5 [zoubida] Tu auras une chemise neuve.
+s07_matin#6 [mohammed] Est-ce que je porterai un gilet avec des soutaches ?
+s07_matin#7 [zoubida] Tu porteras un gilet avec des soutaches.
+s07_matin#8 [mohammed] Et ma djellaba blanche, celle qui est rangée dans le coffre ?
+s07_matin#9 [zoubida] Ta djellaba blanche, des babouches neuves que te fabrique Moulay Larbi, et une belle sacoche brodée.
+s07_matin#10 [narrator] Je me dressai de toute ma taille. Je bombai le torse. J'esquissai même quelques pas d'une danse barbare. J'allais pousser un hululement, quand ma mère me rappela à plus de dignité.
+s07_matin#11 [zoubida] Un peu de dignité, mon fils !
+s08_pardon#1 [narrator] Fatma Bziouya riait à gorge déployée. Son rire ne me choquait pas. Ce matin, j'étais d'une générosité sans bornes.
+s08_pardon#2 [narrator] Je pardonnais à Zineb toutes les misères qu'elle m'avait faites. Je pardonnais à son chat, revenu sans son collier, ma belle chaîne d'or. Je pardonnais aux mardis d'être trop longs, et à la baguette de cognassier de mordre mes oreilles.
+s08_pardon#3 [narrator] Je pardonnais tout au monde, ou du moins, à ce que je connaissais du monde.
+s09_cavalier#1 [narrator] Je montai sur la terrasse, où personne ne pouvait me voir. Je courais, je chantais, je battais les murs avec une baguette trouvée là.
+s09_cavalier#2 [narrator] La baguette devint un sabre. Je pourfendais des ennemis invisibles. Je coupais la tête aux pachas, aux prévôts des marchands, et à leurs sbires !
+s09_cavalier#3 [narrator] Puis la baguette devint cheval. J'étais le cavalier courageux, vêtu d'une djellaba immaculée, et d'un gilet à soutaches. Ma sacoche brodée me tirait l'épaule, tant mes cartouches pesaient lourd.
+s10_appels#1 [zoubida] Est-ce que mon chérif a assez joué ? Descends vite, mon chérif !
+s10_appels#2 [zoubida] Qu'attends-tu pour descendre, tête de mule ? Tu ne m'entends pas, âne à face de goudron ?
+s10_appels#3 [zoubida] Chien galeux ! Attends que je monte te chercher, juif sans dignité !
+s10_appels#4 [narrator] Dans la fièvre de la cavalcade, je n'avais rien entendu. Seuls les mots juif et chien galeux me jetèrent brutalement dans le monde réel. Je lâchai ma baguette, et je dégringolai l'escalier.
+s10_appels#5 [narrator] Je rejoignis ma mère, l'oreille basse, le coude levé en bouclier. Elle se contenta de me prendre par les épaules, et de me secouer.
+s10_appels#6 [narrator] Elle était prête. Drapée dans son haïk blanc, des babouches noires aux pieds, elle se voila le visage de cotonnade blanche, et nous partîmes.
+s11_kanza#1 [rahma] Zoubida ! Renseigne-toi sur le prix de la mousseline persil, et du satin bouquet du sultan !
+s11_kanza#2 [narrator] Nous arrivions presque au tournant de la ruelle, quand Lalla Kanza, la chouafa, nous rappela.
+s11_kanza#3 [kanza] Lalla Zoubida ! Il me faut des coudées de satinette noire, pour calmer le roi Bel Lahmer. Et Lalla Mira me ronge, il me faudrait une robe jaune flamme...
+s11_kanza#4 [zoubida] Donne l'argent à mon fils.
+s11_kanza#5 [narrator] Ma mère me poussa vers la maison. La chouafa me donna l'argent. Finalement, elle ne voulait plus que la satinette noire.
+s12_voisine#1 [narrator] Près de Sidi Ahmed Tijani, cette mosquée aux portes richement décorées, une femme se précipita sur ma mère. Elle colla son voile rêche sur ma joue, pour m'embrasser.
+s12_voisine#2 [narrator] C'était une voisine de Lalla Aïcha. Les deux femmes s'appuyèrent au mur de la mosquée, et parlèrent longtemps de l'affaire Moulay Larbi, si heureusement terminée.
+s12_voisine#3 [voisine] Mais qui peut se fier aux hommes ? J'ai été mariée trois fois. Chaque fois, mon mari ne pensait qu'à me dépouiller. Espérons que Lalla Aïcha n'est pas tombée sur un ingrat.
+s12_voisine#4 [zoubida] Dieu seul est juge.

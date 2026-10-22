@@ -68,9 +68,14 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
     // inside the torso silhouette only the top of the shoulder belongs to the arm
     const gate = p.y > S.shoulder[1] - S.armR * 1.2 ? 1 : ss(inner - S.armR * .6, inner + S.armR * .2, ax);
     armW[i] = (1 - ss(.85, 1.25, bd)) * gate * (ax > S.shoulder[0] * .75 ? 1 : 0);
+    // the hand itself is always arm, even where the drawn fingers overlap the robe (gated fingertips stayed on the body and
+    // stretched into skin spikes when the hand moved)
+    const onHand = best.b.startsWith('hand') && bd < 1;
+    if (onHand) armW[i] = Math.max(armW[i], 1 - ss(.85, 1, bd));
     // how much diffused arm weight a vertex may take: robe flanks below the hips stay on the body (raised arms pulled them into spikes)
     keep[i] = (p.y > S.shoulder[1] - S.armR * 1.2 ? 1 : ss(inner - S.armR * 1.6, inner + S.armR * .2, ax)) * (p.y < S.hip + .05 ? 1 - ss(1, 1.6, bd) : 1);
     // cape actors (haik): the arms are hidden under the cloth, only the hands come out, so only they may move
+    if (onHand) keep[i] = 1;
     if (S.armMinY != null && p.y > S.armMinY) { armW[i] = 0; keep[i] = 0; }
     // position along the chain: 0 shoulder .. 1 elbow .. 2 wrist .. 3 hand end
     const k = armSide[i], chain = [V(k * S.shoulder[0], S.shoulder[1]), V(k * S.elbow[0], S.elbow[1]), V(k * S.wrist[0], S.wrist[1]), V(k * S.hand[0], S.hand[1])];
@@ -145,7 +150,10 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
   let map = src.material.map; if (map) map.colorSpace = THREE.SRGBColorSpace; if (map && spec.fixSkin) map = fixSkin(map, spec.fixSkin);
   const mat = new THREE.MeshToonMaterial({ map, gradientMap: grad, color: tint || 0xffffff, side: THREE.DoubleSide });
   const inkMat = new THREE.MeshBasicMaterial({ color: 0x1f1612, side: THREE.BackSide });
-  inkMat.onBeforeCompile = sh => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n transformed += normalize(objectNormal) * ${outline.toFixed(4)};`); };
+  // ink hull pushed 1.5 cm away from the camera: silhouettes keep their line, but the hull no longer shows as black wedges
+  // through open cloth (sleeve gaps against the torso)
+  inkMat.onBeforeCompile = sh => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n transformed += normalize(objectNormal) * ${outline.toFixed(4)};`)
+    .replace('#include <project_vertex>', '#include <project_vertex>\n gl_Position = projectionMatrix * (mvPosition + vec4(0., 0., -.015, 0.));'); };
   const skel = new THREE.Skeleton(list);
   const mesh = new THREE.SkinnedMesh(geo, mat), hull = new THREE.SkinnedMesh(geo, inkMat); hull.visible = outline > 0;
   mesh.add(B.root); mesh.bind(skel); hull.bind(skel);

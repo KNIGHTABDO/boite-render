@@ -8,7 +8,7 @@ import * as IK from '../../../engine/ik.js';
 import { rest, idlePose } from '../../../engine/rig3d.js';
 import { travel } from '../../../engine/clips.js';
 import { make, ac } from './_pt.js';
-import { shot, all, breathe, V, role, CAL } from './_3d.js';
+import { shot, all, breathe, V, role, CAL, faceCloth } from './_3d.js';
 const { clamp, ease } = K;
 const sm = (a, b, x) => ease(clamp((x - a) / (b - a)));
 const dirW = (a, x, y, z) => V(x, y, z).normalize().applyAxisAngle(V(0, 1, 0), a.group.rotation.y);
@@ -24,8 +24,8 @@ const sh = shot({
   light: { key: 0xfff0d0, keyI: 1.9, dir: [-1.5, 3, 2], sky: 0xc0d0f0, ground: 0xd8b080, fillI: 1.5, rim: 0xffe0a0, rimI: .7, rimDir: [2, 2, -3], shadow: .3, area: 4 },
   async build(S3) {
     const F = (x, y) => S3.floorAt(x, y);
-    const zo = await role('zoubida', { costume: 'haik' }), vo = await role('voisine'), mo = await role('mohammed');
-    const zp = F(840, 870), np = zp.clone().add(V(.62, 0, .03)), mp = zp.clone().add(V(.34, 0, .52)), from = F(330, 1000), door = F(850, 770);
+    const zo = await role('zoubida', { costume: 'haik' }), vo = await role('voisine'), mo = await role('mohammed'); faceCloth(vo);
+    const zp = F(840, 870), np = zp.clone().add(V(.62, 0, .03)), mp = zp.clone().add(V(.5, 0, .78)), from = F(330, 1000), door = F(850, 770);
     S3.add(zo, zp.x, zp.z, .85); S3.add(vo, np.x, np.z, -.85); S3.add(mo, mp.x, mp.z, .5);
     return { actors: [zo, vo, mo], zo, vo, mo, zp, np, mp, from, door,
       faces: [[zo, 'zoubida', 1], [vo, 'voisine', 2, (lt, t) => ({ sad: t > L[2][1] - 4 ? -.4 : 0 })], [mo, null, 3, (lt, t) => ({ sad: t > T_KISS && t < T_END ? .6 : 0 })]] };
@@ -58,6 +58,7 @@ const sh = shot({
     if (t >= T_HUG - .3) {
       const hug = sm(T_HUG - .3, T_HUG + .4, t) * (1 - sm(T_KISS - .5, T_KISS, t));
       const kiss = sm(T_KISS - .3, T_KISS + .5, t) * (1 - sm(T_END - .6, T_END, t));
+      vo.group.rotation.y = -.85 + (yawTo(s.np, s.mp) + .85) * kiss; vo.group.updateMatrixWorld(true);
       const zc = IK.wpos(zo.B.chest), nc = IK.wpos(vo.B.chest), zr = dirW(zo, -1, 0, 0), nr = dirW(vo, -1, 0, 0);
       // neighbour: arms around Zoubida's back (hug), then both hands on the boy's head, body bent, her cheek against his
       const around = n => zc.clone().add(V(0, .12, 0)).addScaledVector(zr, n * .3).addScaledVector(dirW(zo, 0, 0, 1), .08);

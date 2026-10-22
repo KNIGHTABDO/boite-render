@@ -7,7 +7,7 @@ import { patioShot, timing } from './s20_chant.js';
 const { L } = await timing('s21_recit');
 const WALK = 3.5, SPREAD = 8.5, A1 = L[1][0], A2 = L[2][0];
 const patio = patioShot([
-  { t: 0, v: [1300, 440, 1.4] }, { t: 5, v: [1150, 650, 1.35] }, { t: 11.5, v: [1330, 440, 1.5] },
+  { t: 0, v: [1300, 440, 1.4] }, { t: 3, on: 'rahma', z: 2.7, hy: .3, dy: 10 }, { t: 5.5, v: [1150, 650, 1.35] }, { t: 10, on: 'rahma', z: 2.4, hy: .32, dy: 10 }, { t: 11.5, v: [1330, 440, 1.5] },
   { t: A1, on: 'rahma', z: 2.7, hy: .3, dy: 10 }, { t: A1 + 8, on: 'rahma', z: 2.3, hy: .32, dy: 10 }, { t: A2, on: 'rahma', z: 3.0, hy: .3, dy: 10 },
 ], (t) => {
   const r1 = t >= A1 && t < A1 + L[1][1] - L[1][0], r2 = t >= A2;

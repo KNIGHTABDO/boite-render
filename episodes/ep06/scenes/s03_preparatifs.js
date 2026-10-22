@@ -38,16 +38,17 @@ function bottle() {
   b.castShadow = n.castShadow = true; g.add(b, n); return g;
 }
 
-/** two carriers hold a roll between them (A in front, B behind along p0->p1); exit hides them at the end */
+/** two carriers walk in line (A in front, B d behind along p0->p1); the roll hangs at their camera-side hip, a left hand on it at
+ *  each end (it spans d + .6, so keep d = length - .6); exit hides them at the end */
 function carry(roll, A, B, p0, p1, t, t0, speed, d, exit = false, y = .72) {
-  const f = p1.clone().sub(p0).setY(0).normalize(), left = V(f.z, 0, -f.x);
+  const f = p1.clone().sub(p0).setY(0).normalize(), left = V(f.z, 0, -f.x), yr = y - .17;
   const ra = travel(A, [[p0.x, p0.z], [p1.x, p1.z]], t, { t0, speed, exit }), rb = travel(B, [[p0.x - f.x * d, p0.z - f.z * d], [p1.x - f.x * d, p1.z - f.z * d]], t, { t0, speed, exit });
   const yaw = Math.atan2(f.x, f.z); A.group.rotation.y = B.group.rotation.y = yaw; A.group.updateMatrixWorld(true); B.group.updateMatrixWorld(true);
   const pa = A.group.position, pb = B.group.position, M = {};
-  for (const [a, p] of [[A, pa], [B, pb]]) for (const [side, sg] of [['L', 1], ['R', -1]])
-    M[a.name + side] = +PO.reach(a, side, V(p.x, y, p.z).addScaledVector(f, .3).addScaledVector(left, .13 * sg), { grip: .02 }).toFixed(3);
-  roll.position.set((pa.x + pb.x) / 2 + f.x * .3, y + .015 * Math.sin(t * 6), (pa.z + pb.z) / 2 + f.z * .3);
-  roll.quaternion.setFromUnitVectors(V(0, 1, 0), V(f.x, .05, f.z).normalize()); roll.updateMatrixWorld(true);
+  for (const [a, p, sf] of [[A, pa, .15], [B, pb, -.15]])
+    M[a.name + 'L'] = +PO.reach(a, 'L', V(p.x, yr + .05, p.z).addScaledVector(f, sf).addScaledVector(left, .27), { grip: .02, pole: [.12, -.25, -.05] }).toFixed(3);
+  roll.position.set((pa.x + pb.x) / 2 + left.x * .27, yr + .015 * Math.sin(t * 6), (pa.z + pb.z) / 2 + left.z * .27);
+  roll.quaternion.setFromUnitVectors(V(0, 1, 0), V(f.x, 0, f.z).normalize()); roll.updateMatrixWorld(true);
   roll.visible = !(exit && ra.done) && rb.pos !== null;
   return M;
 }
@@ -103,8 +104,8 @@ const shM = shot({
       mo.B.chest.rotation.x -= .12 * puff; mo.B.head.rotation.x -= .08 * puff; mo.group.updateMatrixWorld(true);
       rolls[0].visible = rolls[1].visible = true;
       const dist1 = cr[0].distanceTo(cr[1]);
-      Object.assign(M, carry(rolls[0], g1, g2, cr[0], cr[1], t, L[3][0] + .4, dist1 / 7.5, 1.3, true));
-      Object.assign(M, carry(rolls[1], k2, k3, cr[2], cr[3], t, L[3][0] + 4.2, dist1 / 7.5, 1.0, true, .62));
+      Object.assign(M, carry(rolls[0], g1, g2, cr[0], cr[1], t, L[3][0] + .4, dist1 / 7.5, 1.0, true));
+      Object.assign(M, carry(rolls[1], k2, k3, cr[2], cr[3], t, L[3][0] + 4.2, dist1 / 7.5, .6, true, .62));
       for (const a of [g1, g2, k2, k3]) a.group.visible = a.group.visible && true;
       PO.look(mo, IK.wpos(fq.B.head), .9);
     }
@@ -118,7 +119,7 @@ const shL = shot({
     const M = {}, F = (x, y, h = 0) => S3.floorAt(x, y, h);
     const [k1, k2, g1, fq] = await Promise.all(['kid1', 'kid2', 'grand1', 'fqih'].map(n => role(n)));
     const cam0 = S3.cam.position.clone().setY(0), jar = F(1504, 677), toCam = cam0.clone().sub(jar).normalize();
-    const fqAt = jar.clone().addScaledVector(toCam, .3).add(V(-.95, 0, 0)), g1At = fqAt.clone().add(V(-.75, 0, .15));
+    const fqAt = jar.clone().addScaledVector(toCam, .3).add(V(-.72, 0, 0)), g1At = fqAt.clone().add(V(-.75, 0, .15));
     S3.add(fq, fqAt.x, fqAt.z, yawTo(fqAt, jar) * .8 + yawTo(fqAt, cam0) * .2); S3.add(g1, g1At.x, g1At.z, yawTo(g1At, fqAt) * .6 + yawTo(g1At, cam0) * .4);
     const p0 = F(-150, 940), p1 = F(1050, 720); S3.add(k1, p1.x, p1.z, 0); S3.add(k2, p1.x - 1, p1.z, 0);
     const roll = S3.prop(rollMat(1.3, .08)), bt = S3.prop(bottle()), rd = S3.prop(rod());
@@ -132,9 +133,9 @@ const shL = shot({
     const pat = sm(T + .8, T + 1.8, t) * (1 - sm(T + 8.5, T + 9.5, t)), shoulder = jar.clone().setY(.85).addScaledVector(toCam, .3).add(V(-.4, 0, 0));
     const fch = IK.wpos(fq.B.chest), rest0 = fch.clone().addScaledVector(dirW(fq, 0, 0, 1), .18).addScaledVector(dirW(fq, -1, 0, 0), .2).add(V(0, -.35, 0));
     const tgt = rest0.lerp(shoulder.clone().add(V(Math.sin(t * 3) * .02 * pat, Math.sin(t * 5) * .03 * pat, 0)), pat);
-    M.fqR = +PO.reach(fq, 'R', tgt, { grip: .02 }).toFixed(3);
-    const fs = dirW(fq, 1, 0, 0); inHand(rd, PO.handPts(fq, 'L').palm, V(0, -.6, .1)); M.fqL = +PO.reach(fq, 'L', fch.clone().addScaledVector(dirW(fq, 0, 0, 1), .2).addScaledVector(fs, .22).add(V(0, -.35, 0)), { grip: .02 }).toFixed(3);
-    inHand(rd, PO.handPts(fq, 'L').palm, dirW(fq, 0, -.5, .5));
+    M.fqR = +PO.reach(fq, 'R', tgt, { grip: .02, pole: [-.1, -.25, -.05] }).toFixed(3);
+    const fs = dirW(fq, 1, 0, 0); M.fqL = +PO.reach(fq, 'L', fch.clone().addScaledVector(dirW(fq, 0, 0, 1), .15).addScaledVector(fs, .22).add(V(0, -.5, 0)), { grip: .02, pole: [.1, -.25, -.05] }).toFixed(3);
+    inHand(rd, PO.handPts(fq, 'L').palm, dirW(fq, 0, -1, .2));
     PO.look(fq, pat > .5 ? shoulder : IK.wpos(g1.B.head), .5); breathe(fq, t, 1, 1);
     // grand1: holds the oil bottle at his chest, lifts it toward the master when he brings it
     const off = sm(T + 3, T + 4, t) * (1 - sm(T + 6.5, T + 7.5, t)), gch = IK.wpos(g1.B.chest), gf = dirW(g1, 0, 0, 1);
@@ -144,7 +145,7 @@ const shL = shot({
     PO.look(g1, IK.wpos(fq.B.head), .6);
     // kid1 + kid2 bring an old roll from the left, stopping near the mat stack
     const dist = p0.distanceTo(p1);
-    Object.assign(M, carry(roll, k1, k2, p0, p1, t, T + .3, dist / 6.5, 1.0, false, .62));
+    Object.assign(M, carry(roll, k1, k2, p0, p1, t, T + .3, dist / 6.5, .7, false, .62));
   },
 });
 

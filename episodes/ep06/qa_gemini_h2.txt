@@ -1,0 +1,174 @@
+1. Rig / 3D glitches
+
+11:49–14:52: The Kissaria merchant stands on the wooden counter platform, but his yellow babouches float several inches above the wood surface in every wide and medium shot (11:49, 12:16, 12:25, 13:07, 14:06, 14:47).
+
+12:24–12:38: When the merchant holds out the bolt of white cotton, two long, rigid grey spikes (stretched sleeve mesh) shoot downward from his wrists to his knees.
+
+12:36–12:39: In the low-angle shot, the merchant's lower body is cut off at the shins and his yellow shoes float in mid-air above Zoubida's head.
+
+12:59–13:06: Zoubida holds the cherry-red gilet up in front of her face; it is a rigid, hollow 3D cylinder floating in front of her veil rather than a piece of cloth held in her hands.
+
+13:07–13:21: During the fitting, Zoubida stands directly on top of Mohammed, clipping through his body while the red gilet cylinder floats untouched in the merchant's hands.
+
+13:21–13:23: The gilet shrinks to the size of a coffee mug in the merchant's hands, then pops back to the size of a lantern at 13:27.
+
+14:00–14:44: Whenever the merchant raises his hands to his head (« Reviens, Lalla ! »), two long grey spikes stretch from his elbows down to his waist.
+
+14:30–14:43: Zoubida holds a black-and-white knotted cloth that clips through her hands and chest like a rigid rock.
+
+15:19–15:23: Zoubida's right hand is twisted backward and clips through her white haik as she rummages for the coin; at 15:20 she pulls out a giant black cylinder (the satinette roll) from her pocket instead of a coin.
+
+15:23–15:39: On the stairs, Zoubida's white haik has no feet or legs underneath—the bottom of the skirt is a flat horizontal cut that hovers a foot above the steps as she glides upward.
+
+15:41–16:28: In Rahma's room, the grey cat is a rigid, un-textured blocky low-poly mesh (looks like a grey stone). When it "runs away" at 16:24, it slides backward out of the frame without moving its legs.
+
+16:02–16:23: Zineb holds the tiny mirror on a long rigid stick that clips through her hand; her knees sink into the floor.
+
+16:29–16:54: Rahma holds the gilet out to Mohammed; her forearms stretch into long, flat, paddle-like spikes that clip through the rigid red cylinder of the gilet, which floats around Mohammed's torso without touching his shoulders.
+
+16:58–17:19: Mohammed stands facing Rahma, but his head is twisted 180 degrees backward on his neck (or the back-of-head texture is mapped onto his face), leaving him with a blank, faceless brown sphere where his face should be while he makes faces at Zineb.
+
+17:15–17:18: Mohammed's left arm stretches into a wide white triangular wing as he grabs his mother's dress.
+
+17:38–17:50: Mohammed sits in the corner of his room; his lower body sinks into the floor tiles and his arms clip into his chest.
+
+17:50–18:04 & 18:28–18:30: Mohammed lies "on his back" by hovering horizontally a foot above the divan cushions like a stiff plank, then pops upright at 18:31.
+
+18:33–18:51: At dinner, Zoubida's legs are completely missing/sunk into the divan, and Mohammed floats cross-legged several inches above the cushion while a black spoon-spike protrudes from his chin/hand.
+
+18:52–19:00: Sitting on the floor, Zoubida's lower body is a round, legless blob; when she leans back to listen at 18:58, her head tips backward at a broken 90-degree angle.
+
+19:08–19:14: On the balcony, Zoubida's face is a solid black void inside her headscarf as she calls out to Fatma.
+
+19:39–23:09: In all courtyard shots, the women on the upper balcony (Rahma, Zoubida, Fatma) are cut off at the waist and float behind the balustrade; Rahma's orange headscarf has a black horizontal band across her eyes that looks like sunglasses, and her hand is fused to her cheek.
+
+23:10–23:18: Mohammed lies in bed at night as a rigid horizontal cylinder with a blue block on his chest, floating above the mattress while the oil lamp sits on the table in front of him.
+
+2. Identity
+
+11:49–14:52: The Kissaria merchant is supposed to be a young, handsome 25-year-old in a white turban and grey-beige djellaba (as the narration says at 12:14: « C'étaient des jeunes gens beaux, soignés »). Instead, the 3D model is a 55-year-old man with a grey beard and red fez/chechia.
+
+11:49–15:39: Zoubida wears yellow babouches outdoors instead of the black babouches specified in the character sheet.
+
+20:46–20:59: In the painted flashback of the butcher shop, Salem the butcher is depicted as a light-skinned man with a dark beard, whereas the character sheet specifies a "big Black butcher".
+
+3. Story vs picture
+
+12:08–12:23: The narrator describes the young, handsome merchants of the Kissaria in the plural, while the camera stays on a single grey-bearded old man standing alone in an empty street.
+
+12:25–12:39: The narrator says they visited "five or six shops" before buying white cotton; we stay at the exact same stall with the same merchant.
+
+12:55–13:06: The narrator says "all the shades of red passed before our eyes" before his mother chose a cherry gilet; Zoubida simply pulls one red cylinder out of thin air in the middle of the street.
+
+13:07–13:21: The narrator says his mother took off his djellaba, buttoned the gilet up to his neck, stepped back to judge the effect, and made him turn right and left. On screen, Mohammed never takes off his djellaba, never puts on the gilet, and doesn't turn; Zoubida just crouches in front of him while the merchant holds the gilet above them.
+
+14:43–14:50: Zoubida is supposed to hand two and a half réaux to the merchant and take the package; the coins are invisible, and the brown box pops into the merchant's hand at 14:46 and vanishes at 14:47 without Zoubida carrying it away.
+
+15:19–15:23: Zoubida searches her pocket for Lalla Kanza's money and "pays for the satinette without arguing". On screen, there is no satinette merchant—she is standing alone with Mohammed in an empty street and pulls the black roll of satinette itself out of her pocket.
+
+15:50–16:01: The narrator describes Rahma's poor room with its "brightly painted shelf loaded with flowered bowls"; the shelf is never shown (only three plain bowls in a wall niche).
+
+16:02–16:26: The narrator says the cat stretched out its paw, scratched the glass, looked behind the mirror, spat curses, and bolted like an arrow. In the shot, the cat is a motionless grey block that never moves a paw or head, then slides backward out of frame.
+
+16:30–16:54: Mohammed is supposed to be wearing the gilet over his white shirt, or Rahma is admiring it in her hands; instead, the rigid red tube is wedged around Mohammed's arms over his djellaba while Rahma's spiked arms poke at his face.
+
+16:55–16:59: "My mother whispered, leaning toward our neighbour." On screen, Zoubida and Rahma stand stiffly apart without leaning or moving their lips.
+
+16:59–17:06: "Zineb made a horrible face at me. I made an even more dreadful one back." Zineb's face barely changes, and Mohammed's head is turned backward so he has no face at all.
+
+17:19–17:30: Mohammed says he burst into sobs and his mother grabbed him by the arm and dragged him to their room; on screen, they glide out the door side-by-side without touching.
+
+18:33–18:51: At dinner, Zoubida sets out a round table with "meat with turnips". The table is completely bare—no dish, tagine, or bread—while Mohammed waves a black stick in front of his face.
+
+19:58–20:07: The narrator says Lalla Kanza spread an old prayer rug in the patio to listen. On screen, she walks across the patio carrying a small red square in her hand, walks off-screen left, and at 21:13 she is standing upright in the corner rather than sitting on a prayer rug.
+
+4. Camera and editing
+
+11:49–13:52: We stay in the exact same Kissaria street/stall setup for over 2 minutes (123 s) with only repetitive front/side angle toggles and no cutaway.
+
+13:07–13:21: During the gilet fitting, Zoubida is seen entirely from behind as a featureless white cone blocking Mohammed.
+
+15:23–15:39: On the staircase, Zoubida is filmed from behind/side with her face hidden while the narrator describes her scolding him and groaning on every step (16 s shot).
+
+16:58–17:06: During the grimace exchange between Zineb and Mohammed, Mohammed's face is not visible at all (back of head/faceless).
+
+19:08–19:14: Zoubida speaks her line (« Fatma Bziouya ! Sais-tu qui chante ainsi ? ») with her head turned away into a black shadow so no face or lip-sync is visible.
+
+19:39–20:45: We stay in the same wide/medium courtyard angle for 66 seconds while Rahma sets up her story from the top balcony, too far away to read expressions.
+
+5. Paintings
+
+Total runtime of this half (excluding end credits 23:20–23:36): ~11m 32s (692 s). Total painted time: 91 s (13.1% of runtime).
+
+11:48–11:49 (1 s — 0.1%): Boy in white djellaba walking through a crowded Kissaria fabric souk. Justified (crowd > 6 people / establishing shot), though at 1 second it flashes by too fast to read, and the boy's face looks like generic AI cartoon art rather than the 3D Mohammed model.
+
+12:39–12:49 (10 s — 1.4%): Macro insert of the blue fish trademark on the white cotton cloth held by two disembodied hands. Justified (macro insert), though the four severed fingers floating at the top edge of the cloth look uncanny.
+
+18:05–18:27 (22 s — 3.2%): Mohammed's daydream of being a prince serving a feast and red gilets to beggars and blind psalmists in a palace courtyard. Justified (dream and crowd > 6), though held too long as a static image (22 s).
+
+19:01–19:07 (6 s — 0.9%): Sunny terrace with potted plants and laundry overlooking the Fes skyline while Lalla Khadija sings off-screen. Unjustified (no crowd, dream, flashbacks, or macro—this is a standard establishing cutaway of the house terrace that should match the 3D/painted-BG style or have 3D actors).
+
+20:46–20:59 (13 s — 1.9%): Flashback to Salem the butcher's stall at Joutyia surrounded by a crowd. Justified (flashback + crowd > 6).
+
+21:00–21:12 (12 s — 1.7%): Flashback to Si Othman arguing with Salem the butcher. Justified (flashback + crowd).
+
+21:19–21:31 (12 s — 1.7%): Flashback to a dog running off with Si Othman's yellow babouche in the street. Justified (flashback).
+
+21:49–22:04 (15 s — 2.2%): Flashback to the fish market (fondouk) with shad fish flying overhead while Si Othman sneezes. Justified (flashback + crowd).
+
+22:17–22:29 (12 s — 1.7%): Flashback to Si Othman smelling a pink rose at the mint seller's stall. Justified (flashback).
+
+22:30–22:45 (15 s — 2.2%): Flashback to Si Othman being thrown out the door in mid-air with his basket and rose. Justified (flashback).
+
+22:46–23:00 (14 s — 2.0%): Flashback to Si Othman sitting on the cobblestones smelling his rose. Justified (flashback).
+
+(Note: Including all 7 Si Othman flashback panels, total painted time is 132 s / 19.1% of this half. All flashback panels are justified by the style rules.)
+
+6. Audio
+
+13:47–13:48: In the merchant's line « Devrais-je mendier ce soir pour nourrir mes enfants ? », there is an audible audio splice/glitch on « nourrir mes » (« nourri-r mes »).
+
+19:01–19:07: Lalla Khadija's singing (« Ah, ya lalli... ») is spoken/sighed in a breathy, monotone TTS voice rather than sung with a melody, contradicting the narration (« se mit à chanter », « Tant de gaîté »).
+
+20:11, 20:35, 22:29: The name "Si Othman" is pronounced inconsistently across takes—sometimes with a hard French "t" (« Ot-man » at 20:09, 20:35) and sometimes with an "s" or "th" (« Os-man » at 19:17, 19:29, 21:54, 22:42).
+
+22:12–22:16: Zoubida's line « Continue ! Continue ! » has a heavy English-accent drift, sounding like English "Continue! Continue!" (« Kantine-you ! ») instead of French.
+
+22:52–23:00: Rahma's giggling during the last sentence of her story sounds like a synthetic, robotic TTS chuckle (« he-he-he-he ») that clips the words « et en me voyant ».
+
+7. Hook and pacing
+
+(Judging only this second half, 11:48–23:41)
+
+3 most boring stretches:
+
+11:49–13:35 (106 s): The Kissaria shopping sequence. Nearly two minutes in a single static street background with stiff characters standing still, slow narration, and repetitive bargaining shots where the gilet fitting isn't even animated.
+
+17:38–19:00 (82 s): Mohammed's punishment and the turnip dinner in Zoubida's room. Aside from the static 22-second prince painting, the 3D scenes consist of Mohammed sitting/floating motionlessly in a bare room and eating invisible food from an empty table.
+
+19:39–20:45 (66 s): The courtyard buildup to Rahma's story. Over a minute of static wide/medium shots of the courtyard balconies where tiny, waist-cropped figures talk without visible facial expressions.
+
+8. Top fixes
+
+Fix Zoubida's English "Continue!" TTS take (22:12–22:16): Regenerate the 4-second audio clip in proper French; right now it sounds 100% like an English speaker saying "Continue!" (High impact, very low effort).
+
+Replace the Kissaria merchant's 3D model (11:49–14:52): Swap the grey-bearded old man in a fez for the young 25-year-old merchant in a white turban and grey-beige djellaba so the picture doesn't directly contradict the narration at 12:14.
+
+Fix Mohammed's backward/faceless head in Rahma's room (16:58–17:19): Rotate Mohammed's head 180° toward Zineb and animate the grimace so the scene's emotional turning point isn't played by the back of his skull.
+
+Fix the merchant's sleeve spikes and floating feet (11:49–14:52): Ground the merchant's yellow babouches on the wooden counter and weight-paint his sleeves so they don't shoot long grey spikes to his knees whenever he raises his arms (12:24, 14:00).
+
+Put a tagine/dish on the dinner table and ground the actors (18:33–18:51): Add a 3D dish of meat and turnips on the round table, fix Zoubida's missing legs, and lower Mohammed onto the cushion.
+
+Fix the gilet fitting in Rahma's room (16:29–16:54): Remove the stretched paddle-spikes on Rahma's forearms and put the cherry-red gilet properly on Mohammed's shoulders instead of floating a hollow cylinder around his arms.
+
+Animate or cut the gilet fitting in the Kissaria (13:07–13:21): Instead of Zoubida clipping into Mohammed from behind while the merchant holds a shrinking/growing red cylinder, show Mohammed wearing the gilet and turning left and right as narrated.
+
+Fix Zoubida pulling the satinette roll from her pocket (15:19–15:23) and gliding leglessly up the stairs (15:23–15:39): Have her pull out a coin (not the black fabric roll) at 15:20, and restore her legs/babouches on the staircase.
+
+Animate Zineb's cat or use a painted insert (16:02–16:28): The cat scratching the mirror and bolting is a key comic beat in the text; replace the sliding grey rock with a rigged cat animation or a quick 2D animated insert.
+
+Replace Lalla Khadija's spoken "singing" with actual melodic singing (19:01–19:07) and fix Zoubida's blacked-out face on the balcony (19:08–19:14): Use a sung vocal take for « Ah, ya lalli » and fix the lighting/normals on Zoubida's face in the following shot.
+
+thumb_up
+thumb_down

@@ -106,13 +106,13 @@
    "notes": "Lalla Aicha's neighbour, married three times; in the street wears a rough white veil over the red dress"
   },
   "marchand": {
-   "model": "man1",
+   "model": "marchand",
    "age": 25,
    "palette": [
     "#90887c",
     "#f2efe6"
    ],
-   "ref": "art/src/man1.png",
+   "ref": "art/src/marchand.png",
    "notes": "young, handsome, well-groomed Kissaria gilet merchant, white turban, grey-beige djellaba"
   },
   "si_othman": {

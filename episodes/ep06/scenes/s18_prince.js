@@ -25,8 +25,8 @@ const shA = shot({
   async build(S3, cal) {
     const M = {}, mo = await role('mohammed', { seat: true }), cam = S3.cam.position.clone().setY(0), at = S3.floorAt(1400, 800);
     S3.add(mo, at.x, at.z, yawTo(at, cam) * .75 - .35);
-    M.sit = memoPose('s18corner', mo, [at], () => PO.crossLegged(mo, { seat: 0, lean: .32 }).map(e => +e.toFixed(3)));
-    const base = PO.snap(mo); skirt(S3, mo, 0);
+    M.sit = memoPose('s18corner2', mo, [at], () => PO.kneel(mo, { lean: .3 }).map?.(e => +e.toFixed(3)));
+    const base = PO.snap(mo);
     return { actors: [mo], faces: [[mo, null, 5, (lt, t) => ({ sad: 1, lid: .35, open: 0 })]], M, mo, base };
   },
   cover: [{ t: 0, size: 'W' }, { t: a0 + 2.5, size: 'M', on: 'mohammed', dy: 40 }, { t: a0 + 6.5, size: 'CU', on: 'mohammed' }],
@@ -45,11 +45,11 @@ const shA = shot({
 const shB = shot({
   plate: 'chambre_jour', light: { ...LIGHT_JOUR, keyI: 1.0, fillI: 1.15 },
   async build(S3, cal) {
-    const M = {}, hz = cal.horizon, tb = S3.floorAt(862, 747), mF = S3.floorAt(862, 685), mH = cal.h * (1 - (644 - hz) / (685 - hz));
+    const M = {}, hz = cal.horizon, tb = S3.floorAt(862, 747), mF = S3.floorAt(862, 677), mH = cal.h * (1 - (590 - hz) / (677 - hz));   // the back divan: painted top edge y 590, floor line y 677 (.38 m)
     S3.prop(PR.tabla({ r: .25, h: cal.h * (1 - (676 - hz) / (747 - hz)) }), tb.x, 0, tb.z - .12);
-    const mo = await role('mohammed', { seat: true }), mAt = V(tb.x, 0, mF.z - .36);
+    const mo = await role('mohammed', { seat: true }), mAt = V(tb.x, 0, mF.z - .42);
     S3.add(mo, mAt.x, mAt.z, 0); mo.group.rotation.y = Math.PI / 2; mo.group.updateMatrixWorld(true);
-    M.lie = memoPose('s18lie', mo, [mAt, mH], () => { const r = PO.lie(mo, { top: mH, turn: -.35, pillow: .07 }); return { low: +(r.low - mH).toFixed(3), pil: r.pillowAt.toArray() }; });
+    M.lie = memoPose('s18lie2', mo, [mAt, mH], () => { const r = PO.lie(mo, { top: mH, turn: -.35, pillow: .07 }); return { low: +(r.low - mH).toFixed(3), pil: r.pillowAt.toArray() }; });
     const base = PO.snap(mo); S3.prop(PR.cushion({ w: .4, d: .3, h: .07, col: 0xe0d0a8 }), M.lie.pil[0], mH, M.lie.pil[2]);
     return { actors: [mo], faces: [[mo, null, 5, (lt, t) => ({ lid: .55 + .3 * sm(a1 + 8, a1 + 10, t), sad: .3 })]], M, mo, base };
   },

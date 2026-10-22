@@ -79,12 +79,13 @@ const esc = shot({
     zo.B.spine.rotation.x += .04; zo.B.head.rotation.x += .05; zo.group.updateMatrixWorld(true);
     zo.group.rotation.y = .75;
     if (arrived) {
-      const ch = IK.wpos(mo.B.chest), r = dirW(mo, -1, 0, 0), sy = V(0, -.1, 0);   // upper arms, not shoulder tops: from this camera his big head hides the far shoulder
-      const grab = sm(HIT - .5, HIT, t);
+      const arm = n => IK.wpos(mo.B['upperArm' + n]).lerp(IK.wpos(mo.B['foreArm' + n]), .55).add(V(0, -.03, 0));   // upper arm just below the shoulder: outside the big head
+      const grab = sm(HIT - .5, HIT, t), zc0 = IK.wpos(zo.B.chest), far = IK.wpos(mo.B.upperArmL).distanceTo(zc0) > IK.wpos(mo.B.upperArmR).distanceTo(zc0) ? 'L' : 'R';
+      const hold = n => n === far ? arm(n).lerp(IK.wpos(mo.B.chest).add(V(0, -.1, 0)), .55) : arm(n);   // the far hand stays on his front: no long cross-body reach through the robe
       const lerpTo = (side, rest_, tgt) => rest_.clone().lerp(tgt, grab);
       const zc = IK.wpos(zo.B.chest), fw = dirW(zo, 0, 0, 1), rt = dirW(zo, -1, 0, 0);
-      PO.reach(zo, 'L', lerpTo('L', zc.clone().addScaledVector(fw, .3).addScaledVector(rt, -.2).add(V(0, -.05, 0)), ch.clone().addScaledVector(r, -.17).add(sy)));
-      PO.reach(zo, 'R', lerpTo('R', zc.clone().addScaledVector(fw, .3).addScaledVector(rt, .2).add(V(0, -.05, 0)), ch.clone().addScaledVector(r, .17).add(sy)));
+      PO.reach(zo, 'L', lerpTo('L', zc.clone().addScaledVector(fw, .3).addScaledVector(rt, -.2).add(V(0, -.05, 0)), hold('L')));
+      PO.reach(zo, 'R', lerpTo('R', zc.clone().addScaledVector(fw, .3).addScaledVector(rt, .2).add(V(0, -.05, 0)), hold('R')));
       zo.B.head.rotation.x += .1; zo.B.head.rotation.z += .08 * shk;
     }
     breathe(zo, t, 1, 1);
@@ -163,6 +164,11 @@ const pat = shot({
     return { actors: [zo, mo], zo, mo, zp, mp, door, faces: [[zo, null, 1], [mo, null, 2, () => ({ sad: .3 })]] };
   },
   cover: [{ t: 0, size: 'W' }, { t: T5 + 3, size: 'M', on: 'zoubida', dy: 80 }, { t: GO - .2, size: 'W' }],
+  view(lt, u, t) {   // from the walk on, follow the pair to the door (they stay a readable size instead of shrinking into the colonnade)
+    const s = pat.st; if (!s || t < GO - .2) return null;
+    const k = clamp((t - GO) / 8), p = s.zp.clone().lerp(s.door, k * Math.min(1, 8 / s.zp.distanceTo(s.door))).add(V(.3, 0, 0)), q = pat.S3.project(V(p.x, .8, p.z));
+    return [q[0], q[1], 1.5 + .6 * k];
+  },
   frame(lt, u, t, S, s) {
     const { zo, mo } = s;
     const path = (a, from) => [[from.x, from.z], [s.door.x + (a === zo ? -.25 : .25), s.door.z + .4]];

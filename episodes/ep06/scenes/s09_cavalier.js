@@ -66,13 +66,13 @@ const frame = {
       const run = t > tw ? (((t - tw) * 1.7) % 1) : 0, hit = t > tw ? Math.sin(Math.PI * clamp(run / .55)) : 0;
       // toward the parapet (it is on the -wn side of the runner)
       const toWall = s.wn.clone().negate(), side = toWall.dot(rt) > 0 ? 1 : -1;   // wall on his right (1) or left (-1)
-      let hand = ch.clone().addScaledVector(rt, .2).addScaledVector(fw, .25).add(V(0, -.02 + .08 * Math.sin(t * 8), 0)); dir = fw.clone().multiplyScalar(.7).add(V(0, .6, 0));
+      let hand = ch.clone().addScaledVector(rt, .2).addScaledVector(fw, .18).add(V(0, -.14 + .06 * Math.sin(t * 8), 0)); dir = fw.clone().multiplyScalar(.7).add(V(0, .6, 0));
       if (t > tw && side > 0) {   // the stroke: stick out to the wall, tip on its face
         const wallPt = IK.wpos(mo.B.chest).addScaledVector(toWall, .55 + .0).setY(.62 - .1 * hit);
-        hand = ch.clone().addScaledVector(rt, .2 + .15 * hit).addScaledVector(fw, .2).add(V(0, .12 - .25 * hit, 0));
+        hand = ch.clone().addScaledVector(rt, .2 + .15 * hit).addScaledVector(fw, .18).add(V(0, -.08 - .1 * hit, 0));
         dir = wallPt.clone().sub(hand).setY(wallPt.y - hand.y).normalize(); M.tipWall = +Math.abs(hit).toFixed(2);
       }
-      PO.reach(mo, 'R', hand, { grip: .02 });
+      PO.reach(mo, 'R', hand, { grip: .02, pole: [-.3, -.12, -.02] });
       inHand(stick, palm(), dir);
       PO.look(mo, IK.wpos(mo.B.head).addScaledVector(fw, 2).add(V(0, -.1, 0)), .4);
     } else {   // sabre: wind-up, cut, lunge toward the next "enemy"
@@ -83,8 +83,8 @@ const frame = {
       mo.B.thighL.rotation.x -= .55 * cut; mo.B.shinL.rotation.x += .5 * cut; mo.B.thighR.rotation.x += .3 * cut; mo.B.footL.rotation.x += .1 * cut;
       mo.group.updateMatrixWorld(true);
       const ch = IK.wpos(mo.B.chest), fw = dirW(mo, 0, 0, 1), rt = dirW(mo, -1, 0, 0), up = V(0, 1, 0);
-      const hand = ch.clone().addScaledVector(rt, .28 * (wind - cut)).addScaledVector(fw, .1 + .3 * cut).addScaledVector(up, .3 * wind - .22 * cut - .05);
-      PO.reach(mo, 'R', hand, { grip: .02 });
+      const hand = ch.clone().addScaledVector(rt, .2 * (wind - cut)).addScaledVector(fw, .18 + .12 * cut).addScaledVector(up, .12 * wind - .1 * cut - .2);
+      PO.reach(mo, 'R', hand, { grip: .02, pole: [-.3, -.12, -.02] });
       dir = hand.clone().sub(ch.clone().addScaledVector(fw, -.05).add(V(0, .1, 0))).normalize();
       inHand(stick, palm(), dir);
       PO.reach(mo, 'L', ch.clone().addScaledVector(rt, -.3).addScaledVector(fw, .08).add(V(0, -.1 + .1 * cut, 0)), { grip: .03 });   // left arm out for balance

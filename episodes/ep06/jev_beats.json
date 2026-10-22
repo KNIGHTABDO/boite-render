@@ -1,0 +1,824 @@
+[
+ {
+  "item": "b001",
+  "q": "agrees",
+  "noul": 0.47,
+  "route": "?claude"
+ },
+ {
+  "item": "b002",
+  "q": "agrees",
+  "noul": 0.32,
+  "route": "?claude"
+ },
+ {
+  "item": "b003",
+  "q": "agrees",
+  "noul": 0.78,
+  "route": "?claude"
+ },
+ {
+  "item": "b004",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b005",
+  "q": "agrees",
+  "noul": 0.86,
+  "route": "pass"
+ },
+ {
+  "item": "b006",
+  "q": "agrees",
+  "noul": 0.67,
+  "route": "?claude"
+ },
+ {
+  "item": "b007",
+  "q": "agrees",
+  "noul": 0.8,
+  "route": "pass"
+ },
+ {
+  "item": "b008",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b009",
+  "q": "agrees",
+  "noul": 0.76,
+  "route": "?claude"
+ },
+ {
+  "item": "b010",
+  "q": "agrees",
+  "noul": 0.91,
+  "route": "pass"
+ },
+ {
+  "item": "b011",
+  "q": "agrees",
+  "noul": 0.78,
+  "route": "?claude"
+ },
+ {
+  "item": "b012",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b013",
+  "q": "agrees",
+  "noul": 0.89,
+  "route": "pass"
+ },
+ {
+  "item": "b014",
+  "q": "agrees",
+  "noul": 0.61,
+  "route": "?claude"
+ },
+ {
+  "item": "b015",
+  "q": "agrees",
+  "noul": 0.79,
+  "route": "?claude"
+ },
+ {
+  "item": "b016",
+  "q": "agrees",
+  "noul": 0.72,
+  "route": "?claude"
+ },
+ {
+  "item": "b017",
+  "q": "agrees",
+  "noul": 0.8,
+  "route": "pass"
+ },
+ {
+  "item": "b018",
+  "q": "agrees",
+  "noul": 0.76,
+  "route": "?claude"
+ },
+ {
+  "item": "b019",
+  "q": "agrees",
+  "noul": 0.79,
+  "route": "?claude"
+ },
+ {
+  "item": "b020",
+  "q": "agrees",
+  "noul": 0.77,
+  "route": "?claude"
+ },
+ {
+  "item": "b021",
+  "q": "agrees",
+  "noul": 0.9,
+  "route": "pass"
+ },
+ {
+  "item": "b022",
+  "q": "agrees",
+  "noul": 0.9,
+  "route": "pass"
+ },
+ {
+  "item": "b023",
+  "q": "agrees",
+  "noul": 0.66,
+  "route": "?claude"
+ },
+ {
+  "item": "b024",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b025",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b026",
+  "q": "agrees",
+  "noul": 0.9,
+  "route": "pass"
+ },
+ {
+  "item": "b027",
+  "q": "agrees",
+  "noul": 0.73,
+  "route": "?claude"
+ },
+ {
+  "item": "b028",
+  "q": "agrees",
+  "noul": 0.44,
+  "route": "?claude"
+ },
+ {
+  "item": "b029",
+  "q": "agrees",
+  "noul": 0.78,
+  "route": "?claude"
+ },
+ {
+  "item": "b030",
+  "q": "agrees",
+  "noul": 0.74,
+  "route": "?claude"
+ },
+ {
+  "item": "b031",
+  "q": "agrees",
+  "noul": 0.92,
+  "route": "pass"
+ },
+ {
+  "item": "b032",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b033",
+  "q": "agrees",
+  "noul": 0.54,
+  "route": "?claude"
+ },
+ {
+  "item": "b034",
+  "q": "agrees",
+  "noul": 0.78,
+  "route": "?claude"
+ },
+ {
+  "item": "b035",
+  "q": "agrees",
+  "noul": 0.94,
+  "route": "pass"
+ },
+ {
+  "item": "b036",
+  "q": "agrees",
+  "noul": 0.67,
+  "route": "?claude"
+ },
+ {
+  "item": "b037",
+  "q": "agrees",
+  "noul": 0.91,
+  "route": "pass"
+ },
+ {
+  "item": "b038",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b039",
+  "q": "agrees",
+  "noul": 0.84,
+  "route": "pass"
+ },
+ {
+  "item": "b040",
+  "q": "agrees",
+  "noul": 0.74,
+  "route": "?claude"
+ },
+ {
+  "item": "b041",
+  "q": "agrees",
+  "noul": 0.31,
+  "route": "?claude"
+ },
+ {
+  "item": "b042",
+  "q": "agrees",
+  "noul": 0.26,
+  "route": "?claude"
+ },
+ {
+  "item": "b043",
+  "q": "agrees",
+  "noul": 0.24,
+  "route": "?claude"
+ },
+ {
+  "item": "b044",
+  "q": "agrees",
+  "noul": 0.86,
+  "route": "pass"
+ },
+ {
+  "item": "b045",
+  "q": "agrees",
+  "noul": 0.68,
+  "route": "?claude"
+ },
+ {
+  "item": "b046",
+  "q": "agrees",
+  "noul": 0.79,
+  "route": "?claude"
+ },
+ {
+  "item": "b047",
+  "q": "agrees",
+  "noul": 0.62,
+  "route": "?claude"
+ },
+ {
+  "item": "b048",
+  "q": "agrees",
+  "noul": 0.85,
+  "route": "pass"
+ },
+ {
+  "item": "b049",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b050",
+  "q": "agrees",
+  "noul": 0.63,
+  "route": "?claude"
+ },
+ {
+  "item": "b051",
+  "q": "agrees",
+  "noul": 0.89,
+  "route": "pass"
+ },
+ {
+  "item": "b052",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b053",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b054",
+  "q": "agrees",
+  "noul": 0.84,
+  "route": "pass"
+ },
+ {
+  "item": "b055",
+  "q": "agrees",
+  "noul": 0.37,
+  "route": "?claude"
+ },
+ {
+  "item": "b056",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b057",
+  "q": "agrees",
+  "noul": 0.79,
+  "route": "?claude"
+ },
+ {
+  "item": "b058",
+  "q": "agrees",
+  "noul": 0.91,
+  "route": "pass"
+ },
+ {
+  "item": "b059",
+  "q": "agrees",
+  "noul": 0.92,
+  "route": "pass"
+ },
+ {
+  "item": "b060",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b061",
+  "q": "agrees",
+  "noul": 0.78,
+  "route": "?claude"
+ },
+ {
+  "item": "b062",
+  "q": "agrees",
+  "noul": 0.64,
+  "route": "?claude"
+ },
+ {
+  "item": "b063",
+  "q": "agrees",
+  "noul": 0.27,
+  "route": "?claude"
+ },
+ {
+  "item": "b064",
+  "q": "agrees",
+  "noul": 0.68,
+  "route": "?claude"
+ },
+ {
+  "item": "b065",
+  "q": "agrees",
+  "noul": 0.86,
+  "route": "pass"
+ },
+ {
+  "item": "b066",
+  "q": "agrees",
+  "noul": 0.83,
+  "route": "pass"
+ },
+ {
+  "item": "b067",
+  "q": "agrees",
+  "noul": 0.37,
+  "route": "?claude"
+ },
+ {
+  "item": "b068",
+  "q": "agrees",
+  "noul": 0.37,
+  "route": "?claude"
+ },
+ {
+  "item": "b069",
+  "q": "agrees",
+  "noul": 0.85,
+  "route": "pass"
+ },
+ {
+  "item": "b070",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b071",
+  "q": "agrees",
+  "noul": 0.66,
+  "route": "?claude"
+ },
+ {
+  "item": "b072",
+  "q": "agrees",
+  "noul": 0.69,
+  "route": "?claude"
+ },
+ {
+  "item": "b073",
+  "q": "agrees",
+  "noul": 0.61,
+  "route": "?claude"
+ },
+ {
+  "item": "b074",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b075",
+  "q": "agrees",
+  "noul": 0.79,
+  "route": "?claude"
+ },
+ {
+  "item": "b076",
+  "q": "agrees",
+  "noul": 0.7,
+  "route": "?claude"
+ },
+ {
+  "item": "b077",
+  "q": "agrees",
+  "noul": 0.78,
+  "route": "?claude"
+ },
+ {
+  "item": "b078",
+  "q": "agrees",
+  "noul": 0.86,
+  "route": "pass"
+ },
+ {
+  "item": "b079",
+  "q": "agrees",
+  "noul": 0.41,
+  "route": "?claude"
+ },
+ {
+  "item": "b080",
+  "q": "agrees",
+  "noul": 0.35,
+  "route": "?claude"
+ },
+ {
+  "item": "b081",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b082",
+  "q": "agrees",
+  "noul": 0.24,
+  "route": "?claude"
+ },
+ {
+  "item": "b083",
+  "q": "agrees",
+  "noul": 0.75,
+  "route": "?claude"
+ },
+ {
+  "item": "b084",
+  "q": "agrees",
+  "noul": 0.69,
+  "route": "?claude"
+ },
+ {
+  "item": "b085",
+  "q": "agrees",
+  "noul": 0.46,
+  "route": "?claude"
+ },
+ {
+  "item": "b086",
+  "q": "agrees",
+  "noul": 0.85,
+  "route": "pass"
+ },
+ {
+  "item": "b087",
+  "q": "agrees",
+  "noul": 0.21,
+  "route": "?claude"
+ },
+ {
+  "item": "b088",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b089",
+  "q": "agrees",
+  "noul": 0.72,
+  "route": "?claude"
+ },
+ {
+  "item": "b090",
+  "q": "agrees",
+  "noul": 0.91,
+  "route": "pass"
+ },
+ {
+  "item": "b091",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b092",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b093",
+  "q": "agrees",
+  "noul": 0.9,
+  "route": "pass"
+ },
+ {
+  "item": "b094",
+  "q": "agrees",
+  "noul": 0.86,
+  "route": "pass"
+ },
+ {
+  "item": "b095",
+  "q": "agrees",
+  "noul": 0.84,
+  "route": "pass"
+ },
+ {
+  "item": "b096",
+  "q": "agrees",
+  "noul": 0.87,
+  "route": "pass"
+ },
+ {
+  "item": "b097",
+  "q": "agrees",
+  "noul": 0.07,
+  "route": "FAIL"
+ },
+ {
+  "item": "b098",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b099",
+  "q": "agrees",
+  "noul": 0.87,
+  "route": "pass"
+ },
+ {
+  "item": "b100",
+  "q": "agrees",
+  "noul": 0.91,
+  "route": "pass"
+ },
+ {
+  "item": "b101",
+  "q": "agrees",
+  "noul": 0.64,
+  "route": "?claude"
+ },
+ {
+  "item": "b102",
+  "q": "agrees",
+  "noul": 0.25,
+  "route": "?claude"
+ },
+ {
+  "item": "b103",
+  "q": "agrees",
+  "noul": 0.51,
+  "route": "?claude"
+ },
+ {
+  "item": "b104",
+  "q": "agrees",
+  "noul": 0.63,
+  "route": "?claude"
+ },
+ {
+  "item": "b105",
+  "q": "agrees",
+  "noul": 0.87,
+  "route": "pass"
+ },
+ {
+  "item": "b106",
+  "q": "agrees",
+  "noul": 0.82,
+  "route": "pass"
+ },
+ {
+  "item": "b107",
+  "q": "agrees",
+  "noul": 0.75,
+  "route": "?claude"
+ },
+ {
+  "item": "b108",
+  "q": "agrees",
+  "noul": 0.58,
+  "route": "?claude"
+ },
+ {
+  "item": "b109",
+  "q": "agrees",
+  "noul": 0.75,
+  "route": "?claude"
+ },
+ {
+  "item": "b110",
+  "q": "agrees",
+  "noul": 0.86,
+  "route": "pass"
+ },
+ {
+  "item": "b111",
+  "q": "agrees",
+  "noul": 0.47,
+  "route": "?claude"
+ },
+ {
+  "item": "b112",
+  "q": "agrees",
+  "noul": 0.47,
+  "route": "?claude"
+ },
+ {
+  "item": "b113",
+  "q": "agrees",
+  "noul": 0.22,
+  "route": "?claude"
+ },
+ {
+  "item": "b114",
+  "q": "agrees",
+  "noul": 0.43,
+  "route": "?claude"
+ },
+ {
+  "item": "b115",
+  "q": "agrees",
+  "noul": 0.43,
+  "route": "?claude"
+ },
+ {
+  "item": "b116",
+  "q": "agrees",
+  "noul": 0.35,
+  "route": "?claude"
+ },
+ {
+  "item": "b117",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b118",
+  "q": "agrees",
+  "noul": 0.26,
+  "route": "?claude"
+ },
+ {
+  "item": "b119",
+  "q": "agrees",
+  "noul": 0.65,
+  "route": "?claude"
+ },
+ {
+  "item": "b120",
+  "q": "agrees",
+  "noul": 0.63,
+  "route": "?claude"
+ },
+ {
+  "item": "b121",
+  "q": "agrees",
+  "noul": 0.24,
+  "route": "?claude"
+ },
+ {
+  "item": "b122",
+  "q": "agrees",
+  "noul": 0.22,
+  "route": "?claude"
+ },
+ {
+  "item": "b123",
+  "q": "agrees",
+  "noul": 0.7,
+  "route": "?claude"
+ },
+ {
+  "item": "b124",
+  "q": "agrees",
+  "noul": 0.8,
+  "route": "pass"
+ },
+ {
+  "item": "b125",
+  "q": "agrees",
+  "noul": 0.88,
+  "route": "pass"
+ },
+ {
+  "item": "b126",
+  "q": "agrees",
+  "noul": 0.62,
+  "route": "?claude"
+ },
+ {
+  "item": "b127",
+  "q": "agrees",
+  "noul": 0.88,
+  "route": "pass"
+ },
+ {
+  "item": "b128",
+  "q": "agrees",
+  "noul": 0.71,
+  "route": "?claude"
+ },
+ {
+  "item": "b129",
+  "q": "agrees",
+  "noul": 0.62,
+  "route": "?claude"
+ },
+ {
+  "item": "b130",
+  "q": "agrees",
+  "noul": 0.72,
+  "route": "?claude"
+ },
+ {
+  "item": "b131",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b132",
+  "q": "agrees",
+  "noul": 0.84,
+  "route": "pass"
+ },
+ {
+  "item": "b133",
+  "q": "agrees",
+  "noul": 0.8,
+  "route": "pass"
+ },
+ {
+  "item": "b134",
+  "q": "agrees",
+  "noul": 0.9,
+  "route": "pass"
+ },
+ {
+  "item": "b135",
+  "q": "agrees",
+  "noul": 0.81,
+  "route": "pass"
+ },
+ {
+  "item": "b136",
+  "q": "agrees",
+  "noul": 0.53,
+  "route": "?claude"
+ },
+ {
+  "item": "b137",
+  "q": "agrees",
+  "noul": 0.43,
+  "route": "?claude"
+ }
+]

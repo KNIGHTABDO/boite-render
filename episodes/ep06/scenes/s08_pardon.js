@@ -55,7 +55,7 @@ const pat = shot({
     const sw = sm(L[2][0] + 1, L[2][0] + 2.2, t) * (1 - sm(L[2][0] + 4.5, L[2][0] + 5.5, t)), ch = IK.wpos(m.B.chest), hp = IK.wpos(m.B.root);
     const fw = dirW(m, 0, 0, 1), sd = dirW(m, 1, 0, 0);
     PO.reach(m, 'L', hp.clone().addScaledVector(sd, .21).addScaledVector(fw, .02).add(V(0, .04, 0)), { grip: .03 });   // left fist on the hip
-    const out = ch.clone().addScaledVector(sd, -.5).addScaledVector(fw, .25).add(V(0, .05 + .1 * Math.sin(t * 2), 0));   // right arm sweeps over the world
+    const out = ch.clone().addScaledVector(sd, -.3).addScaledVector(fw, .3).add(V(0, -.1 + .06 * Math.sin(t * 2), 0));   // right arm sweeps over the world
     PO.reach(m, 'R', hp.clone().addScaledVector(sd, -.21).addScaledVector(fw, .02).add(V(0, .04, 0)).lerp(out, sw), { grip: .03 });
     breathe(m, t, 1, 1);
   },

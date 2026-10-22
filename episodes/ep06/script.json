@@ -1,0 +1,936 @@
+{
+ "episode": 6,
+ "title": "Le gilet cerise",
+ "chapter": 6,
+ "voices": {
+  "narrator": {
+   "voice": "Gacrux",
+   "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm, slow, nostalgic storyteller, close to the microphone"
+  },
+  "mohammed": {
+   "voice": "Leda",
+   "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent"
+  },
+  "zoubida": {
+   "voice": "Kore",
+   "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic"
+  },
+  "father": {
+   "voice": "Charon",
+   "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words"
+  },
+  "femmes": {
+   "voice": "Aoede",
+   "style": "a group of Moroccan women answering together from the balconies of a courtyard house, warm, loud, in unison"
+  },
+  "zineb": {
+   "voice": "Achernar",
+   "style": "little Moroccan girl of 5 from Fès, shrill, spoiled, speaks French with a Fassi accent"
+  },
+  "fqih": {
+   "voice": "Schedar",
+   "style": "Moroccan Koranic schoolmaster from Fès, about 50, grave, nasal, a booming voice when angry, speaks French with a Fassi accent"
+  },
+  "fatma": {
+   "voice": "Despina",
+   "style": "poor but generous Moroccan neighbour from Fès, about 35, warm, laughing, speaks French with a Fassi accent"
+  },
+  "rahma": {
+   "voice": "Autonoe",
+   "style": "Moroccan woman from Fès, about 35, loud, a gifted comic storyteller, speaks French with a Fassi accent"
+  },
+  "kanza": {
+   "voice": "Algenib",
+   "style": "old Moroccan fortune-teller from Fès, raspy, slow, mysterious, speaks French with a Fassi accent"
+  },
+  "kid1": {
+   "voice": "Zephyr",
+   "style": "Moroccan schoolboy of 8 from Fès, loud, cheeky, speaks French with a Fassi accent"
+  },
+  "kid2": {
+   "voice": "Pulcherrima",
+   "style": "Moroccan schoolboy of 9 from Fès, bossy, quarrelsome, speaks French with a Fassi accent"
+  },
+  "voisine": {
+   "voice": "Erinome",
+   "style": "talkative Moroccan woman from Fès, about 50, married three times, gossipy, a little venomous, speaks French with a Fassi accent"
+  },
+  "marchand": {
+   "voice": "Puck",
+   "style": "young handsome cloth merchant in the Kissaria of Fès, about 25, smooth, courteous, theatrical when bargaining, speaks French with a Fassi accent"
+  },
+  "khadija": {
+   "voice": "Sulafat",
+   "style": "young Moroccan woman from Fès singing far away on a rooftop, warm, nostalgic, Andalusian-style vocalise, no words"
+  }
+ },
+ "scenes": [
+  {
+   "id": "s01_hook",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Huit jours avant l'Achoura, <short pause> notre Msid devint un champ de bataille. <short pause> Et moi, <short pause> j'allais me jeter au milieu.",
+     "sub": "Huit jours avant l'Achoura, notre Msid devint un champ de bataille. Et moi, j'allais me jeter au milieu."
+    }
+   ],
+   "lead": 1.0
+  },
+  {
+   "id": "s02_titre",
+   "lines": [],
+   "lead": 0,
+   "tail": 0,
+   "hold": 9
+  },
+  {
+   "id": "s03_preparatifs",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "On montait au Msid par quatre marches. <short pause> C'était une longue pièce un peu rustique, <short pause> avec une vaste soupente.",
+     "sub": "On montait au Msid par quatre marches. C'était une longue pièce un peu rustique, avec une vaste soupente."
+    },
+    {
+     "who": "narrator",
+     "text": "Là-haut, <short pause> le maître installa deux jarres en poterie vernissée, <short pause> pour l'huile d'olive que les élèves apportaient, <short pause> par bouteilles et par bols.",
+     "sub": "Là-haut, le maître installa deux jarres en poterie vernissée, pour l'huile d'olive que les élèves apportaient, par bouteilles et par bols."
+    },
+    {
+     "who": "narrator",
+     "text": "Pour les nattes neuves, <short pause> chacun donna selon ses moyens. <short pause> Le père d'un élève, <short pause> qui était chaufournier, <short pause> offrit à l'école une charge d'âne de chaux.",
+     "sub": "Pour les nattes neuves, chacun donna selon ses moyens. Le père d'un élève, qui était chaufournier, offrit à l'école une charge d'âne de chaux."
+    },
+    {
+     "who": "narrator",
+     "text": "Le lundi, <short pause> huit jours avant la fête, <short pause> les vieilles nattes furent montées dans la soupente. <short pause> Le maître forma des équipes, <short pause> et nomma les chefs. <short pause> On emprunta des seaux, <short pause> et des balayettes de doum.",
+     "sub": "Le lundi, huit jours avant la fête, les vieilles nattes furent montées dans la soupente. Le maître forma des équipes, et nomma les chefs. On emprunta des seaux, et des balayettes de doum."
+    }
+   ]
+  },
+  {
+   "id": "s04_badigeon",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Le travail commença, <short pause> dans un vacarme d'injures, <short pause> de pleurs, <short pause> et d'éclats de rire. <short pause> Perchées sur de longs roseaux, <short pause> des têtes de loup chassaient les toiles d'araignées du plafond.",
+     "sub": "Le travail commença, dans un vacarme d'injures, de pleurs, et d'éclats de rire. Perchées sur de longs roseaux, des têtes de loup chassaient les toiles d'araignées du plafond."
+    },
+    {
+     "who": "narrator",
+     "text": "Une dizaine d'élèves, <short pause> armés de balayettes, <short pause> badigeonnaient les murs au lait de chaux. <short pause> Ils éclaboussaient tout le monde. <short pause> La chaux vive leur entrait dans les yeux, <short pause> ils hurlaient, <short pause> d'autres prenaient leur place. <short pause> Tout le monde criait à la fois.",
+     "sub": "Une dizaine d'élèves, armés de balayettes, badigeonnaient les murs au lait de chaux. Ils éclaboussaient tout le monde. La chaux vive leur entrait dans les yeux, ils hurlaient, d'autres prenaient leur place. Tout le monde criait à la fois."
+    },
+    {
+     "who": "fqih",
+     "text": "Doucement ! <short pause> Doucement, bande de diables !",
+     "style": "schoolmaster roaring over a noisy crowd of children, exasperated, booming",
+     "sub": "Doucement ! Doucement, bande de diables !"
+    },
+    {
+     "who": "narrator",
+     "text": "Je réussis à m'emparer d'une balayette. <short pause> Je la plongeai dans le lait de chaux, <short pause> et, tout heureux, <short pause> je fonçai sur le mur, <short pause> pour montrer à ces larves comment on badigeonne sérieusement.",
+     "sub": "Je réussis à m'emparer d'une balayette. Je la plongeai dans le lait de chaux, et, tout heureux, je fonçai sur le mur, pour montrer à ces larves comment on badigeonne sérieusement."
+    },
+    {
+     "who": "narrator",
+     "text": "Je me heurtai à un rempart de bras, <short pause> de bouches ouvertes, <short pause> d'yeux exorbités de fureur. <short pause> Des mains s'agrippèrent à ma balayette.",
+     "sub": "Je me heurtai à un rempart de bras, de bouches ouvertes, d'yeux exorbités de fureur. Des mains s'agrippèrent à ma balayette."
+    },
+    {
+     "who": "narrator",
+     "text": "Je résistai de toutes mes forces. <short pause> Mais la lutte était inégale. <short pause> Je lâchai le précieux instrument, <short pause> et je me retrouvai assis dans une flaque d'eau, <short pause> qui me gelait le derrière.",
+     "sub": "Je résistai de toutes mes forces. Mais la lutte était inégale. Je lâchai le précieux instrument, et je me retrouvai assis dans une flaque d'eau, qui me gelait le derrière."
+    },
+    {
+     "who": "narrator",
+     "text": "Je ne pensai pas à pleurer. <short pause> Je me relevai, <short pause> décidé à reprendre mon bien, <short pause> et je me jetai dans la mêlée.",
+     "sub": "Je ne pensai pas à pleurer. Je me relevai, décidé à reprendre mon bien, et je me jetai dans la mêlée."
+    },
+    {
+     "who": "fqih",
+     "text": "Silence !",
+     "style": "schoolmaster's voice suddenly dominating a brawl, one thunderous word",
+     "sub": "Silence !"
+    },
+    {
+     "who": "narrator",
+     "text": "Nous nous arrêtâmes, <short pause> frémissants de colère. <short pause> Les bras tendus, <short pause> les doigts écartés, <short pause> nous expliquions tous en même temps, <short pause> nous demandions tous justice.",
+     "sub": "Nous nous arrêtâmes, frémissants de colère. Les bras tendus, les doigts écartés, nous expliquions tous en même temps, nous demandions tous justice."
+    },
+    {
+     "who": "kid1",
+     "text": "C'est lui ! <short pause> C'est lui qui a commencé !",
+     "style": "small boy pleading his case to the schoolmaster, outraged, talking over others",
+     "sub": "C'est lui ! C'est lui qui a commencé !"
+    },
+    {
+     "who": "kid2",
+     "text": "Non, maître, <short pause> la balayette est à moi !",
+     "style": "schoolboy pleading at the same time, indignant",
+     "sub": "Non, maître, la balayette est à moi !"
+    },
+    {
+     "who": "fqih",
+     "text": "Assez ! <short pause> Seuls les grands passeront les murs à la chaux. <short pause> Les petits, <short pause> allez attendre dans le coin. <short pause> J'aurai besoin de vous plus tard.",
+     "style": "schoolmaster imposing silence, then handing out a stern verdict, slow and final",
+     "sub": "Assez ! Seuls les grands passeront les murs à la chaux. Les petits, allez attendre dans le coin. J'aurai besoin de vous plus tard."
+    },
+    {
+     "who": "narrator",
+     "text": "Nous attendîmes dans un coin, <short pause> jusqu'au soir, <short pause> qu'il nous confie le moindre service. <short pause> Il n'en fut rien !",
+     "sub": "Nous attendîmes dans un coin, jusqu'au soir, qu'il nous confie le moindre service. Il n'en fut rien !"
+    }
+   ]
+  },
+  {
+   "id": "s05_frotteurs",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Le lendemain, <short pause> de nouvelles équipes furent formées. <short pause> Je devins un personnage important. <short pause> Je fus nommé chef des frotteurs !",
+     "sub": "Le lendemain, de nouvelles équipes furent formées. Je devins un personnage important. Je fus nommé chef des frotteurs !"
+    },
+    {
+     "who": "narrator",
+     "text": "Une vingtaine d'élèves, <short pause> chargés d'énormes seaux, <short pause> allaient chercher l'eau à la fontaine d'une zaouïa, <short pause> à cinquante pas de l'école. <short pause> Le sol fut inondé.",
+     "sub": "Une vingtaine d'élèves, chargés d'énormes seaux, allaient chercher l'eau à la fontaine d'une zaouïa, à cinquante pas de l'école. Le sol fut inondé."
+    },
+    {
+     "who": "narrator",
+     "text": "Je maniais ma balayette avec énergie, <short pause> pour donner l'exemple. <short pause> J'en avais mal aux reins. <short pause> De temps en temps, <short pause> je me redressais, <short pause> tout rouge.",
+     "sub": "Je maniais ma balayette avec énergie, pour donner l'exemple. J'en avais mal aux reins. De temps en temps, je me redressais, tout rouge."
+    },
+    {
+     "who": "narrator",
+     "text": "Dans l'eau jusqu'aux chevilles, <short pause> pieds nus, <short pause> bousculé par celui-ci, <short pause> insulté par celui-là, <short pause> j'étais heureux ! <short pause> Adieu les leçons, <short pause> adieu les planchettes rigides et inhumaines !",
+     "sub": "Dans l'eau jusqu'aux chevilles, pieds nus, bousculé par celui-ci, insulté par celui-là, j'étais heureux ! Adieu les leçons, adieu les planchettes rigides et inhumaines !"
+    },
+    {
+     "who": "kid1",
+     "text": "Aïe ! <short pause> Tu m'as donné un coup de coude dans l'œil !",
+     "style": "schoolboy scrubbing a floor, hit in the eye by an elbow, whining",
+     "sub": "Aïe ! Tu m'as donné un coup de coude dans l'œil !"
+    },
+    {
+     "who": "kid2",
+     "text": "Fais attention ! <short pause> Tu m'as mouillé jusqu'à la ceinture !",
+     "style": "schoolboy soaked with water, angry",
+     "sub": "Fais attention ! Tu m'as mouillé jusqu'à la ceinture !"
+    },
+    {
+     "who": "kid1",
+     "text": "Regardez Driss ! <short pause> Il est tombé dans le seau !",
+     "style": "schoolboy pointing and laughing, delighted",
+     "sub": "Regardez Driss ! Il est tombé dans le seau !"
+    },
+    {
+     "who": "kid2",
+     "text": "Ha ! Ha ! <short pause> Il va se noyer ! <short pause> Il va se noyer !",
+     "style": "schoolboy laughing hard, teasing",
+     "sub": "Ha ! Ha ! Il va se noyer ! Il va se noyer !"
+    },
+    {
+     "who": "mohammed",
+     "text": "Frottez, <short pause> paresseux !",
+     "style": "small boy acting as team leader, bossy, proud, a bit ridiculous",
+     "sub": "Frottez, paresseux !"
+    },
+    {
+     "who": "kid2",
+     "text": "Paresseux toi-même ! <short pause> Notre coin est plus propre que le tien !",
+     "style": "schoolboy answering back, cheeky",
+     "sub": "Paresseux toi-même ! Notre coin est plus propre que le tien !"
+    },
+    {
+     "who": "narrator",
+     "text": "Avec des chiffons de jute, <short pause> nous essuyâmes partout.",
+     "sub": "Avec des chiffons de jute, nous essuyâmes partout."
+    }
+   ]
+  },
+  {
+   "id": "s06_soir",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Le soir, <short pause> je revins à la maison mort de fatigue, <short pause> mais très fier de ma journée.",
+     "sub": "Le soir, je revins à la maison mort de fatigue, mais très fier de ma journée."
+    },
+    {
+     "who": "mohammed",
+     "text": "Sans moi, <short pause> le Msid serait encore tout sale ! <short pause> C'est moi le chef des frotteurs ! <short pause> Moi !",
+     "style": "small boy boasting to his parents at dinner, arms wide, very proud",
+     "sub": "Sans moi, le Msid serait encore tout sale ! C'est moi le chef des frotteurs ! Moi !"
+    },
+    {
+     "who": "narrator",
+     "text": "Je réussis à convaincre mes parents, <short pause> que sans moi, <short pause> aucun résultat sérieux n'aurait été obtenu.",
+     "sub": "Je réussis à convaincre mes parents, que sans moi, aucun résultat sérieux n'aurait été obtenu."
+    },
+    {
+     "who": "father",
+     "text": "C'est bien, mon fils. <short pause> Tu vois, Lalla Zoubida, <short pause> il devient vraiment un homme.",
+     "style": "father smiling at his wife about their little boy, proud, gentle",
+     "sub": "C'est bien, mon fils. Tu vois, Lalla Zoubida, il devient vraiment un homme."
+    },
+    {
+     "who": "narrator",
+     "text": "Pendant mon sommeil, <short pause> je me mettais sur mon séant, <short pause> je hurlais des ordres, <short pause> je distribuais des injures. <short pause> Ma mère me recouchait, <short pause> avec des gestes tendres.",
+     "sub": "Pendant mon sommeil, je me mettais sur mon séant, je hurlais des ordres, je distribuais des injures. Ma mère me recouchait, avec des gestes tendres."
+    },
+    {
+     "who": "mohammed",
+     "text": "Frottez ! <short pause> Plus vite ! <short pause> Paresseux !",
+     "style": "small boy shouting orders in his sleep, half asleep, mumbling then loud",
+     "sub": "Frottez ! Plus vite ! Paresseux !"
+    }
+   ]
+  },
+  {
+   "id": "s07_matin",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Le matin, <short pause> je me préparais pour l'école, <short pause> quand ma mère m'arrêta.",
+     "sub": "Le matin, je me préparais pour l'école, quand ma mère m'arrêta."
+    },
+    {
+     "who": "zoubida",
+     "text": "Aujourd'hui, <short pause> tu ne vas pas au Msid. <short pause> Tu m'accompagnes à la Kissaria, <short pause> le marché des tissus. <short pause> Il est temps de penser à tes habits de fête.",
+     "style": "mother announcing good news to her son in the morning, brisk, a little proud",
+     "sub": "Aujourd'hui, tu ne vas pas au Msid. Tu m'accompagnes à la Kissaria, le marché des tissus. Il est temps de penser à tes habits de fête."
+    },
+    {
+     "who": "narrator",
+     "text": "J'applaudis avec enthousiasme.",
+     "sub": "J'applaudis avec enthousiasme."
+    },
+    {
+     "who": "mohammed",
+     "text": "Est-ce que j'aurai une chemise neuve ?",
+     "style": "small boy, excited, asking his mother, hopeful",
+     "sub": "Est-ce que j'aurai une chemise neuve ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Tu auras une chemise neuve.",
+     "style": "mother answering patiently, amused",
+     "sub": "Tu auras une chemise neuve."
+    },
+    {
+     "who": "mohammed",
+     "text": "Est-ce que je porterai un gilet avec des soutaches ?",
+     "style": "small boy, more and more excited",
+     "sub": "Est-ce que je porterai un gilet avec des soutaches ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Tu porteras un gilet avec des soutaches.",
+     "style": "mother answering patiently, smiling",
+     "sub": "Tu porteras un gilet avec des soutaches."
+    },
+    {
+     "who": "mohammed",
+     "text": "Et ma djellaba blanche, <short pause> celle qui est rangée dans le coffre ?",
+     "style": "small boy, breathless with joy",
+     "sub": "Et ma djellaba blanche, celle qui est rangée dans le coffre ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Ta djellaba blanche, <short pause> des babouches neuves que te fabrique Moulay Larbi, <short pause> et une belle sacoche brodée.",
+     "style": "mother finishing the list grandly, generous",
+     "sub": "Ta djellaba blanche, des babouches neuves que te fabrique Moulay Larbi, et une belle sacoche brodée."
+    },
+    {
+     "who": "narrator",
+     "text": "Je me dressai de toute ma taille. <short pause> Je bombai le torse. <short pause> J'esquissai même quelques pas d'une danse barbare. <short pause> J'allais pousser un hululement, <short pause> quand ma mère me rappela à plus de dignité.",
+     "sub": "Je me dressai de toute ma taille. Je bombai le torse. J'esquissai même quelques pas d'une danse barbare. J'allais pousser un hululement, quand ma mère me rappela à plus de dignité."
+    },
+    {
+     "who": "zoubida",
+     "text": "Un peu de dignité, <short pause> mon fils !",
+     "style": "mother scolding mildly, holding back a smile",
+     "sub": "Un peu de dignité, mon fils !"
+    }
+   ]
+  },
+  {
+   "id": "s08_pardon",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Fatma Bziouya riait à gorge déployée. <short pause> Son rire ne me choquait pas. <short pause> Ce matin, <short pause> j'étais d'une générosité sans bornes.",
+     "sub": "Fatma Bziouya riait à gorge déployée. Son rire ne me choquait pas. Ce matin, j'étais d'une générosité sans bornes."
+    },
+    {
+     "who": "narrator",
+     "text": "Je pardonnais à Zineb toutes les misères qu'elle m'avait faites. <short pause> Je pardonnais à son chat, <short pause> revenu sans son collier, <short pause> ma belle chaîne d'or. <short pause> Je pardonnais aux mardis d'être trop longs, <short pause> et à la baguette de cognassier de mordre mes oreilles.",
+     "sub": "Je pardonnais à Zineb toutes les misères qu'elle m'avait faites. Je pardonnais à son chat, revenu sans son collier, ma belle chaîne d'or. Je pardonnais aux mardis d'être trop longs, et à la baguette de cognassier de mordre mes oreilles."
+    },
+    {
+     "who": "narrator",
+     "text": "Je pardonnais tout au monde, <short pause> ou du moins, <short pause> à ce que je connaissais du monde.",
+     "sub": "Je pardonnais tout au monde, ou du moins, à ce que je connaissais du monde."
+    }
+   ]
+  },
+  {
+   "id": "s09_cavalier",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Je montai sur la terrasse, <short pause> où personne ne pouvait me voir. <short pause> Je courais, <short pause> je chantais, <short pause> je battais les murs avec une baguette trouvée là.",
+     "sub": "Je montai sur la terrasse, où personne ne pouvait me voir. Je courais, je chantais, je battais les murs avec une baguette trouvée là."
+    },
+    {
+     "who": "narrator",
+     "text": "La baguette devint un sabre. <short pause> Je pourfendais des ennemis invisibles. <short pause> Je coupais la tête aux pachas, <short pause> aux prévôts des marchands, <short pause> et à leurs sbires !",
+     "sub": "La baguette devint un sabre. Je pourfendais des ennemis invisibles. Je coupais la tête aux pachas, aux prévôts des marchands, et à leurs sbires !"
+    },
+    {
+     "who": "narrator",
+     "text": "Puis la baguette devint cheval. <short pause> J'étais le cavalier courageux, <short pause> vêtu d'une djellaba immaculée, <short pause> et d'un gilet à soutaches. <short pause> Ma sacoche brodée me tirait l'épaule, <short pause> tant mes cartouches pesaient lourd.",
+     "sub": "Puis la baguette devint cheval. J'étais le cavalier courageux, vêtu d'une djellaba immaculée, et d'un gilet à soutaches. Ma sacoche brodée me tirait l'épaule, tant mes cartouches pesaient lourd."
+    }
+   ]
+  },
+  {
+   "id": "s10_appels",
+   "lines": [
+    {
+     "who": "zoubida",
+     "text": "Est-ce que mon chérif a assez joué ? <short pause> Descends vite, <short pause> mon chérif !",
+     "style": "mother calling sweetly up the stairs to her son on the roof, honeyed",
+     "sub": "Est-ce que mon chérif a assez joué ? Descends vite, mon chérif !"
+    },
+    {
+     "who": "zoubida",
+     "text": "Qu'attends-tu pour descendre, <short pause> tête de mule ? <short pause> Tu ne m'entends pas, <short pause> âne à face de goudron ?",
+     "style": "same mother calling again, losing patience, sharper",
+     "sub": "Qu'attends-tu pour descendre, tête de mule ? Tu ne m'entends pas, âne à face de goudron ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Chien galeux ! <short pause> Attends que je monte te chercher, <short pause> juif sans dignité !",
+     "style": "same mother screaming up the stairs, furious, insulting",
+     "sub": "Chien galeux ! Attends que je monte te chercher, juif sans dignité !"
+    },
+    {
+     "who": "narrator",
+     "text": "Dans la fièvre de la cavalcade, <short pause> je n'avais rien entendu. <short pause> Seuls les mots juif et chien galeux <short pause> me jetèrent brutalement dans le monde réel. <short pause> Je lâchai ma baguette, <short pause> et je dégringolai l'escalier.",
+     "sub": "Dans la fièvre de la cavalcade, je n'avais rien entendu. Seuls les mots juif et chien galeux me jetèrent brutalement dans le monde réel. Je lâchai ma baguette, et je dégringolai l'escalier."
+    },
+    {
+     "who": "narrator",
+     "text": "Je rejoignis ma mère, <short pause> l'oreille basse, <short pause> le coude levé en bouclier. <short pause> Elle se contenta de me prendre par les épaules, <short pause> et de me secouer.",
+     "sub": "Je rejoignis ma mère, l'oreille basse, le coude levé en bouclier. Elle se contenta de me prendre par les épaules, et de me secouer."
+    },
+    {
+     "who": "narrator",
+     "text": "Elle était prête. <short pause> Drapée dans son haïk blanc, <short pause> des babouches noires aux pieds, <short pause> elle se voila le visage de cotonnade blanche, <short pause> et nous partîmes.",
+     "sub": "Elle était prête. Drapée dans son haïk blanc, des babouches noires aux pieds, elle se voila le visage de cotonnade blanche, et nous partîmes."
+    }
+   ]
+  },
+  {
+   "id": "s11_kanza",
+   "lines": [
+    {
+     "who": "rahma",
+     "text": "Zoubida ! <short pause> Renseigne-toi sur le prix de la mousseline persil, <short pause> et du satin bouquet du sultan !",
+     "style": "neighbour calling from a doorway, curious, insistent",
+     "sub": "Zoubida ! Renseigne-toi sur le prix de la mousseline persil, et du satin bouquet du sultan !"
+    },
+    {
+     "who": "narrator",
+     "text": "Nous arrivions presque au tournant de la ruelle, <short pause> quand Lalla Kanza, <short pause> la chouafa, <short pause> nous rappela.",
+     "sub": "Nous arrivions presque au tournant de la ruelle, quand Lalla Kanza, la chouafa, nous rappela."
+    },
+    {
+     "who": "kanza",
+     "text": "Lalla Zoubida ! <short pause> Il me faut des coudées de satinette noire, <short pause> pour calmer le roi Bel Lahmer. <short pause> Et Lalla Mira me ronge, <short pause> il me faudrait une robe jaune flamme...",
+     "style": "old fortune-teller calling down an alley, raspy, mysterious, listing her needs for the spirits",
+     "sub": "Lalla Zoubida ! Il me faut des coudées de satinette noire, pour calmer le roi Bel Lahmer. Et Lalla Mira me ronge, il me faudrait une robe jaune flamme..."
+    },
+    {
+     "who": "zoubida",
+     "text": "Donne l'argent à mon fils.",
+     "style": "mother calling back from far, curt, not wanting to walk back",
+     "sub": "Donne l'argent à mon fils."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère me poussa vers la maison. <short pause> La chouafa me donna l'argent. <short pause> Finalement, <short pause> elle ne voulait plus que la satinette noire.",
+     "sub": "Ma mère me poussa vers la maison. La chouafa me donna l'argent. Finalement, elle ne voulait plus que la satinette noire."
+    }
+   ]
+  },
+  {
+   "id": "s12_voisine",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Près de Sidi Ahmed Tijani, <short pause> cette mosquée aux portes richement décorées, <short pause> une femme se précipita sur ma mère. <short pause> Elle colla son voile rêche sur ma joue, <short pause> pour m'embrasser.",
+     "sub": "Près de Sidi Ahmed Tijani, cette mosquée aux portes richement décorées, une femme se précipita sur ma mère. Elle colla son voile rêche sur ma joue, pour m'embrasser."
+    },
+    {
+     "who": "narrator",
+     "text": "C'était une voisine de Lalla Aïcha. <short pause> Les deux femmes s'appuyèrent au mur de la mosquée, <short pause> et parlèrent longtemps de l'affaire Moulay Larbi, <short pause> si heureusement terminée.",
+     "sub": "C'était une voisine de Lalla Aïcha. Les deux femmes s'appuyèrent au mur de la mosquée, et parlèrent longtemps de l'affaire Moulay Larbi, si heureusement terminée."
+    },
+    {
+     "who": "voisine",
+     "text": "Mais qui peut se fier aux hommes ? <short pause> J'ai été mariée trois fois. <short pause> Chaque fois, <short pause> mon mari ne pensait qu'à me dépouiller. <short pause> Espérons que Lalla Aïcha <short pause> n'est pas tombée sur un ingrat.",
+     "style": "gossiping neighbour leaning on a mosque wall, sighing, then venomous on the last sentence",
+     "sub": "Mais qui peut se fier aux hommes ? J'ai été mariée trois fois. Chaque fois, mon mari ne pensait qu'à me dépouiller. Espérons que Lalla Aïcha n'est pas tombée sur un ingrat."
+    },
+    {
+     "who": "zoubida",
+     "text": "Dieu seul est juge.",
+     "style": "mother answering sententiously, dignified, closing the topic",
+     "sub": "Dieu seul est juge."
+    }
+   ]
+  },
+  {
+   "id": "s13_souk",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Les quartiers commerçants avaient un air de fête. <short pause> Une foule de citadins et de campagnards <short pause> se pressait dans la rue des épiciers. <short pause> Des âniers poussaient des bêtes chétives, <short pause> chargées de sucre, <short pause> de bougies, <short pause> et de ballots de cotonnade.",
+     "sub": "Les quartiers commerçants avaient un air de fête. Une foule de citadins et de campagnards se pressait dans la rue des épiciers. Des âniers poussaient des bêtes chétives, chargées de sucre, de bougies, et de ballots de cotonnade."
+    },
+    {
+     "who": "narrator",
+     "text": "Pour circuler plus facilement, <short pause> j'avais enlevé mes babouches, <short pause> et je les avais mises dans mon capuchon. <short pause> Je les sentais battre légèrement mon dos.",
+     "sub": "Pour circuler plus facilement, j'avais enlevé mes babouches, et je les avais mises dans mon capuchon. Je les sentais battre légèrement mon dos."
+    },
+    {
+     "who": "zoubida",
+     "text": "Fais attention à tes babouches ! <short pause> On va te les voler !",
+     "style": "mother in a crowded souk, worried, raising her voice over the noise",
+     "sub": "Fais attention à tes babouches ! On va te les voler !"
+    },
+    {
+     "who": "narrator",
+     "text": "La Kissaria, <short pause> rendez-vous de toutes les élégantes de la ville, <short pause> me parut contenir les trésors fabuleux de Soleiman, <short pause> fils de David.",
+     "sub": "La Kissaria, rendez-vous de toutes les élégantes de la ville, me parut contenir les trésors fabuleux de Soleiman, fils de David."
+    },
+    {
+     "who": "narrator",
+     "text": "Des caftans amarante, <short pause> des gilets ornés de passementerie, <short pause> des burnous somptueux, <short pause> des tulles irisés comme des toiles d'araignée sous la rosée, <short pause> des satins moirés, <short pause> des cretonnes aux couleurs sauvages.",
+     "sub": "Des caftans amarante, des gilets ornés de passementerie, des burnous somptueux, des tulles irisés comme des toiles d'araignée sous la rosée, des satins moirés, des cretonnes aux couleurs sauvages."
+    },
+    {
+     "who": "narrator",
+     "text": "Les marchands ne ressemblaient pas à ceux des autres souks. <short pause> C'étaient des jeunes gens beaux, <short pause> soignés, <short pause> courtois, <short pause> d'une patience sans limite.",
+     "sub": "Les marchands ne ressemblaient pas à ceux des autres souks. C'étaient des jeunes gens beaux, soignés, courtois, d'une patience sans limite."
+    }
+   ]
+  },
+  {
+   "id": "s14_poisson",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Après cinq ou six boutiques, <short pause> nous achetâmes trois coudées de cotonnade blanche, <short pause> pour ma chemise. <short pause> La qualité Poisson. <short pause> Ma mère ne voulait pas d'autre marque.",
+     "sub": "Après cinq ou six boutiques, nous achetâmes trois coudées de cotonnade blanche, pour ma chemise. La qualité Poisson. Ma mère ne voulait pas d'autre marque."
+    },
+    {
+     "who": "narrator",
+     "text": "Le marchand nous montra, <short pause> imprimé en bleu sur la pièce, <short pause> un poisson avec toutes ses écailles.",
+     "sub": "Le marchand nous montra, imprimé en bleu sur la pièce, un poisson avec toutes ses écailles."
+    }
+   ]
+  },
+  {
+   "id": "s15_gilet",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Pour le gilet, <short pause> ce fut une autre affaire. <short pause> Toutes les nuances du rouge défilèrent sous nos yeux. <short pause> Enfin, <short pause> ma mère choisit un gilet cerise, <short pause> orné de serpentins et de fleurons.",
+     "sub": "Pour le gilet, ce fut une autre affaire. Toutes les nuances du rouge défilèrent sous nos yeux. Enfin, ma mère choisit un gilet cerise, orné de serpentins et de fleurons."
+    },
+    {
+     "who": "narrator",
+     "text": "Elle m'enleva la djellaba, <short pause> me boutonna le gilet jusqu'au cou, <short pause> recula pour juger de l'effet, <short pause> me fit tourner à droite, <short pause> puis à gauche, <short pause> puis le roula en boule, <short pause> et le fourra dans les mains du marchand.",
+     "sub": "Elle m'enleva la djellaba, me boutonna le gilet jusqu'au cou, recula pour juger de l'effet, me fit tourner à droite, puis à gauche, puis le roula en boule, et le fourra dans les mains du marchand."
+    },
+    {
+     "who": "marchand",
+     "text": "Cet article te plaît-il ?",
+     "style": "young cloth merchant, polite, smiling, inviting",
+     "sub": "Cet article te plaît-il ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "C'est le prix qui en décidera.",
+     "style": "mother bargaining, cool, poker-faced",
+     "sub": "C'est le prix qui en décidera."
+    },
+    {
+     "who": "marchand",
+     "text": "Aux clients sérieux, <short pause> je fais toujours un rabais. <short pause> Je le vends cinq réaux, <short pause> je te le laisse à quatre.",
+     "style": "merchant starting a bargaining ritual, generous tone",
+     "sub": "Aux clients sérieux, je fais toujours un rabais. Je le vends cinq réaux, je te le laisse à quatre."
+    },
+    {
+     "who": "zoubida",
+     "text": "Coupons court. <short pause> Je t'en offre deux réaux.",
+     "style": "mother bargaining, flat and firm",
+     "sub": "Coupons court. Je t'en offre deux réaux."
+    },
+    {
+     "who": "marchand",
+     "text": "Deux réaux ? <short pause> Je te le jure, <short pause> ce n'est même pas le prix de revient ! <short pause> Devrais-je mendier ce soir pour nourrir mes enfants ?",
+     "style": "merchant swearing theatrically, offended, dramatic",
+     "sub": "Deux réaux ? Je te le jure, ce n'est même pas le prix de revient ! Devrais-je mendier ce soir pour nourrir mes enfants ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Écoute, <short pause> je suis mère de famille, <short pause> je n'ai pas le temps de marchander. <short pause> Deux réaux et un quart. <short pause> C'est pour mon fils, <short pause> pour le jour de l'Achoura.",
+     "style": "mother pleading cleverly, playing the tired mother",
+     "sub": "Écoute, je suis mère de famille, je n'ai pas le temps de marchander. Deux réaux et un quart. C'est pour mon fils, pour le jour de l'Achoura."
+    },
+    {
+     "who": "marchand",
+     "text": "Ce garçon me plaît. <short pause> Pour lui, <short pause> trois réaux et demi.",
+     "style": "merchant pretending to soften, holding out his hand",
+     "sub": "Ce garçon me plaît. Pour lui, trois réaux et demi."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère lui tourna le dos, <short pause> me prit par le poignet, <short pause> et m'entraîna.",
+     "sub": "Ma mère lui tourna le dos, me prit par le poignet, et m'entraîna."
+    },
+    {
+     "who": "zoubida",
+     "text": "Viens ! <short pause> Les gilets ne manquent pas à la Kissaria !",
+     "style": "mother walking away loudly so the merchant hears, proud",
+     "sub": "Viens ! Les gilets ne manquent pas à la Kissaria !"
+    },
+    {
+     "who": "marchand",
+     "text": "Reviens, Lalla ! <short pause> Reviens donc ! <short pause> Admire ces coutures, <short pause> ces boutons ! <short pause> Paie-moi ce que tu veux. <short pause> Tu me parais être une chérifa pleine de baraka. <short pause> Ne m'oublie pas dans tes prières !",
+     "style": "merchant calling after a leaving customer, urgent, then flattering, honeyed",
+     "sub": "Reviens, Lalla ! Reviens donc ! Admire ces coutures, ces boutons ! Paie-moi ce que tu veux. Tu me parais être une chérifa pleine de baraka. Ne m'oublie pas dans tes prières !"
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère perdait la tête quand on la traitait de chérifa. <short pause> Elle sortit un chiffon noué plusieurs fois, <short pause> et s'acharna à le dénouer.",
+     "sub": "Ma mère perdait la tête quand on la traitait de chérifa. Elle sortit un chiffon noué plusieurs fois, et s'acharna à le dénouer."
+    },
+    {
+     "who": "narrator",
+     "text": "Elle tendit deux réaux et demi au marchand, <short pause> sans rien dire, <short pause> saisit le paquet, <short pause> et m'entraîna.",
+     "sub": "Elle tendit deux réaux et demi au marchand, sans rien dire, saisit le paquet, et m'entraîna."
+    }
+   ]
+  },
+  {
+   "id": "s16_satinette",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Nous étions près de la médersa Attarine, <short pause> quand je rappelai à ma mère <short pause> la satinette de Lalla Kanza.",
+     "sub": "Nous étions près de la médersa Attarine, quand je rappelai à ma mère la satinette de Lalla Kanza."
+    },
+    {
+     "who": "zoubida",
+     "text": "Que Dieu maudisse toutes les chouafas de la terre ! <short pause> Où ai-je mis l'argent de cette sorcière ? <short pause> Elle ne peut pas faire ses courses elle-même ?",
+     "style": "mother cursing while searching her pockets in the street, flustered, muttering then loud",
+     "sub": "Que Dieu maudisse toutes les chouafas de la terre ! Où ai-je mis l'argent de cette sorcière ? Elle ne peut pas faire ses courses elle-même ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Elle fouilla, <short pause> s'énerva, <short pause> s'agita, <short pause> et finit par retrouver l'argent, <short pause> au fond d'une poche de son caftan. <short pause> Elle paya la satinette sans discuter.",
+     "sub": "Elle fouilla, s'énerva, s'agita, et finit par retrouver l'argent, au fond d'une poche de son caftan. Elle paya la satinette sans discuter."
+    },
+    {
+     "who": "narrator",
+     "text": "Sa bonne humeur avait disparu. <short pause> Elle me gronda sans raison jusqu'à la maison, <short pause> remit la satinette à la chouafa, <short pause> et monta l'escalier, <short pause> en gémissant à chaque marche.",
+     "sub": "Sa bonne humeur avait disparu. Elle me gronda sans raison jusqu'à la maison, remit la satinette à la chouafa, et monta l'escalier, en gémissant à chaque marche."
+    }
+   ]
+  },
+  {
+   "id": "s17_rahma",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Rahma sortit sur le palier, <short pause> et nous invita dans sa chambre, <short pause> pour voir nos achats. <short pause> Une chambre pauvre, <short pause> des matelas bosselés, <short pause> et pour seul luxe, <short pause> une étagère peinturlurée, <short pause> chargée de bols à fleurs.",
+     "sub": "Rahma sortit sur le palier, et nous invita dans sa chambre, pour voir nos achats. Une chambre pauvre, des matelas bosselés, et pour seul luxe, une étagère peinturlurée, chargée de bols à fleurs."
+    },
+    {
+     "who": "narrator",
+     "text": "Zineb jouait dans un coin avec son chat. <short pause> Elle lui présentait une minuscule glace ronde. <short pause> Le chat allongea la patte. <short pause> Ses griffes grattèrent le verre. <short pause> Il regarda derrière le miroir. <short pause> Le mystère restait entier.",
+     "sub": "Zineb jouait dans un coin avec son chat. Elle lui présentait une minuscule glace ronde. Le chat allongea la patte. Ses griffes grattèrent le verre. Il regarda derrière le miroir. Le mystère restait entier."
+    },
+    {
+     "who": "narrator",
+     "text": "Il se fâcha, <short pause> cracha des grossièretés dans son langage, <short pause> et partit comme une flèche. <short pause> Zineb riait aux éclats.",
+     "sub": "Il se fâcha, cracha des grossièretés dans son langage, et partit comme une flèche. Zineb riait aux éclats."
+    },
+    {
+     "who": "rahma",
+     "text": "Qu'il est beau, ce gilet ! <short pause> Un vrai gilet de prince !",
+     "style": "neighbour admiring a child's new red waistcoat, warm, flattering",
+     "sub": "Qu'il est beau, ce gilet ! Un vrai gilet de prince !"
+    },
+    {
+     "who": "narrator",
+     "text": "Il faisait sombre dans cette chambre. <short pause> Le rouge du gilet prenait des tons de velours cramoisi. <short pause> Ce vêtement était le mien ! <short pause> Le jour de l'Achoura, <short pause> j'allais éblouir tout le monde. <short pause> Je serais un prince de légende.",
+     "sub": "Il faisait sombre dans cette chambre. Le rouge du gilet prenait des tons de velours cramoisi. Ce vêtement était le mien ! Le jour de l'Achoura, j'allais éblouir tout le monde. Je serais un prince de légende."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère chuchotait, <short pause> penchée sur notre voisine. <short pause> Zineb me fit une horrible grimace. <short pause> Je lui en fis une, <short pause> encore plus épouvantable.",
+     "sub": "Ma mère chuchotait, penchée sur notre voisine. Zineb me fit une horrible grimace. Je lui en fis une, encore plus épouvantable."
+    },
+    {
+     "who": "zineb",
+     "text": "Maman ! <short pause> Maman ! <short pause> Sidi Mohammed me fait des grimaces !",
+     "style": "little girl screaming to alert the whole neighbourhood, whiny, fake tears",
+     "sub": "Maman ! Maman ! Sidi Mohammed me fait des grimaces !"
+    },
+    {
+     "who": "mohammed",
+     "text": "C'est elle qui a commencé ! <short pause> C'est elle !",
+     "style": "small boy defending himself, desperate, nobody believes him",
+     "sub": "C'est elle qui a commencé ! C'est elle !"
+    },
+    {
+     "who": "narrator",
+     "text": "Personne ne me croyait. <short pause> J'éclatai en sanglots. <short pause> Ma mère me saisit par le bras, <short pause> et m'entraîna jusqu'à notre chambre.",
+     "sub": "Personne ne me croyait. J'éclatai en sanglots. Ma mère me saisit par le bras, et m'entraîna jusqu'à notre chambre."
+    },
+    {
+     "who": "zoubida",
+     "text": "Quelle vie d'enfer je mène à cause de toi ! <short pause> Quel destin cruel !",
+     "style": "mother dragging her crying son away, lamenting loudly to the whole house",
+     "sub": "Quelle vie d'enfer je mène à cause de toi ! Quel destin cruel !"
+    }
+   ]
+  },
+  {
+   "id": "s18_prince",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Elle m'abandonna dans un coin, <short pause> et s'enferma dans sa cuisine. <short pause> J'eus faim, <short pause> à force de pleurer en silence.",
+     "sub": "Elle m'abandonna dans un coin, et s'enferma dans sa cuisine. J'eus faim, à force de pleurer en silence."
+    },
+    {
+     "who": "narrator",
+     "text": "Je me mis sur le dos, <short pause> et je composai un menu fastueux, <short pause> pour le jour où je serais prince. <short pause> Je n'inviterais pas les princes. <short pause> Ils mangent très bien chez eux.",
+     "sub": "Je me mis sur le dos, et je composai un menu fastueux, pour le jour où je serais prince. Je n'inviterais pas les princes. Ils mangent très bien chez eux."
+    },
+    {
+     "who": "narrator",
+     "text": "Mes hôtes seraient les affamés, <short pause> les mendiants, <short pause> les psalmistes. <short pause> Je leur donnerais des gilets rouges, <short pause> des djellabas blanches comme le lait, <short pause> des babouches safran. <short pause> Moi, <short pause> je serais en blanc, <short pause> avec le bonnet rouge des gens de cour.",
+     "sub": "Mes hôtes seraient les affamés, les mendiants, les psalmistes. Je leur donnerais des gilets rouges, des djellabas blanches comme le lait, des babouches safran. Moi, je serais en blanc, avec le bonnet rouge des gens de cour."
+    }
+   ]
+  },
+  {
+   "id": "s19_navets",
+   "lines": [
+    {
+     "who": "zoubida",
+     "text": "Voudrais-tu te mettre sur ton séant <short pause> pour manger ?",
+     "style": "mother, still cold but softer, putting food down",
+     "sub": "Voudrais-tu te mettre sur ton séant pour manger ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère avait disposé la table ronde, <short pause> basse sur pattes. <short pause> De la viande aux navets ! <short pause> Je n'aimais pas les navets. <short pause> Mais je n'eus pas le courage d'une nouvelle crise. <short pause> La faim transforma le navet en saveur exquise.",
+     "sub": "Ma mère avait disposé la table ronde, basse sur pattes. De la viande aux navets ! Je n'aimais pas les navets. Mais je n'eus pas le courage d'une nouvelle crise. La faim transforma le navet en saveur exquise."
+    }
+   ]
+  },
+  {
+   "id": "s20_chant",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Quelqu'un sur la terrasse se mit à chanter. <short pause> Ma mère s'arrêta de mâcher, <short pause> et tendit l'oreille.",
+     "sub": "Quelqu'un sur la terrasse se mit à chanter. Ma mère s'arrêta de mâcher, et tendit l'oreille."
+    },
+    {
+     "who": "khadija",
+     "text": "Âh, yâ lalli... <short pause> âh, yâ lalli, yâ lalli...",
+     "style": "a woman singing an old Andalusian melody far away on a rooftop, slow, nostalgic, carried by the wind",
+     "sub": "Âh, yâ lalli... âh, yâ lalli, yâ lalli..."
+    },
+    {
+     "who": "zoubida",
+     "text": "Fatma Bziouya ! <short pause> Sais-tu qui chante ainsi ?",
+     "style": "mother leaning out of a window, calling across the courtyard, curious",
+     "sub": "Fatma Bziouya ! Sais-tu qui chante ainsi ?"
+    },
+    {
+     "who": "fatma",
+     "text": "C'est Lalla Khadija, <short pause> la femme de l'oncle Othman !",
+     "style": "neighbour answering from her own window across the courtyard, amused",
+     "sub": "C'est Lalla Khadija, la femme de l'oncle Othman !"
+    },
+    {
+     "who": "zoubida",
+     "text": "Tant de gaîté, <short pause> alors qu'elle a épousé un vieillard qui pourrait être son père ?",
+     "style": "mother gossiping across a courtyard, surprised, a little disapproving",
+     "sub": "Tant de gaîté, alors qu'elle a épousé un vieillard qui pourrait être son père ?"
+    },
+    {
+     "who": "fatma",
+     "text": "Elle n'est pas malheureuse ! <short pause> L'oncle Othman fait ses quatre volontés. <short pause> Il la traite comme sa fille.",
+     "style": "neighbour laughing, knowing",
+     "sub": "Elle n'est pas malheureuse ! L'oncle Othman fait ses quatre volontés. Il la traite comme sa fille."
+    },
+    {
+     "who": "zoubida",
+     "text": "Et elle ? <short pause> Comment le traite-t-elle ?",
+     "style": "mother asking mischievously",
+     "sub": "Et elle ? Comment le traite-t-elle ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Toutes les voisines partirent d'un grand rire.",
+     "sub": "Toutes les voisines partirent d'un grand rire."
+    },
+    {
+     "who": "rahma",
+     "text": "Moi, <short pause> je sais comment elle le traite ! <short pause> La vieille M'Barka m'a raconté une histoire... <short pause> mais elle est trop longue.",
+     "style": "neighbour teasing her audience, playing hard to get",
+     "sub": "Moi, je sais comment elle le traite ! La vieille M'Barka m'a raconté une histoire... mais elle est trop longue."
+    },
+    {
+     "who": "femmes",
+     "text": "Raconte-la ! <short pause> Raconte-la !",
+     "style": "women on several balconies begging together, laughing, eager",
+     "sub": "Raconte-la ! Raconte-la !"
+    }
+   ]
+  },
+  {
+   "id": "s21_recit",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Toutes les femmes avaient abandonné leur besogne. <short pause> Elles s'accoudaient aux balustrades de leurs balcons. <short pause> Lalla Kanza étala un vieux tapis de prière dans le patio, <short pause> pour écouter.",
+     "sub": "Toutes les femmes avaient abandonné leur besogne. Elles s'accoudaient aux balustrades de leurs balcons. Lalla Kanza étala un vieux tapis de prière dans le patio, pour écouter."
+    },
+    {
+     "who": "rahma",
+     "text": "Vous connaissez l'oncle Othman. <short pause> Ses parents lui ont laissé une grosse fortune. <short pause> Il a tout mangé, <short pause> capital et bénéfices. <short pause> Il ne lui reste que la petite maison collée à la nôtre.",
+     "style": "gifted storyteller starting a comic tale to neighbours, relishing every word",
+     "sub": "Vous connaissez l'oncle Othman. Ses parents lui ont laissé une grosse fortune. Il a tout mangé, capital et bénéfices. Il ne lui reste que la petite maison collée à la nôtre."
+    },
+    {
+     "who": "rahma",
+     "text": "Il s'est marié plusieurs fois. <short pause> Mais seule Lalla Khadija a réussi à le dominer. <short pause> Elle le fait manger dans le creux de sa main, <short pause> comme un agneau.",
+     "style": "storyteller, mock-serious, lowering her voice",
+     "sub": "Il s'est marié plusieurs fois. Mais seule Lalla Khadija a réussi à le dominer. Elle le fait manger dans le creux de sa main, comme un agneau."
+    }
+   ]
+  },
+  {
+   "id": "s22_othman",
+   "lines": [
+    {
+     "who": "rahma",
+     "text": "Vendredi dernier, <short pause> Si Othman sort de bonne heure faire son marché. <short pause> Il balance gaiement son cabas, <short pause> il salue tout le monde, <short pause> la main sur le cœur.",
+     "style": "comic storyteller, lively, imitating a cheerful old man",
+     "sub": "Vendredi dernier, Si Othman sort de bonne heure faire son marché. Il balance gaiement son cabas, il salue tout le monde, la main sur le cœur."
+    },
+    {
+     "who": "rahma",
+     "text": "À Joutyia, <short pause> un seul boucher est ouvert : <short pause> Salem. <short pause> Il brandit tantôt une hache, <short pause> tantôt un coutelas énorme. <short pause> Et il y a foule, <short pause> je vous dis !",
+     "style": "comic storyteller, building up the scene, dramatic",
+     "sub": "À Joutyia, un seul boucher est ouvert : Salem. Il brandit tantôt une hache, tantôt un coutelas énorme. Et il y a foule, je vous dis !"
+    },
+    {
+     "who": "rahma",
+     "text": "Si Othman agite les deux bras, <short pause> et crie quelque chose qui peut vouloir dire : <short pause> avale ton coutelas, <short pause> ou bien : <short pause> donne-moi un gigot ! <short pause> Salem, furieux, <short pause> le menace de sa hache.",
+     "style": "comic storyteller, imitating an old man shouting in a crowd, then the furious butcher",
+     "sub": "Si Othman agite les deux bras, et crie quelque chose qui peut vouloir dire : avale ton coutelas, ou bien : donne-moi un gigot ! Salem, furieux, le menace de sa hache."
+    },
+    {
+     "who": "narrator",
+     "text": "Tout le monde riait aux larmes. <short pause> Rahma savait si bien raconter.",
+     "sub": "Tout le monde riait aux larmes. Rahma savait si bien raconter."
+    },
+    {
+     "who": "rahma",
+     "text": "Un chien vient flairer ses talons. <short pause> Si Othman lui envoie un grand coup de pied. <short pause> Sa babouche saute ! <short pause> Le chien l'attrape entre ses crocs, <short pause> et se sauve ! <short pause> Et Si Othman le suit, <short pause> clopin-clopant !",
+     "style": "comic storyteller, acting out a chase, laughing herself",
+     "sub": "Un chien vient flairer ses talons. Si Othman lui envoie un grand coup de pied. Sa babouche saute ! Le chien l'attrape entre ses crocs, et se sauve ! Et Si Othman le suit, clopin-clopant !"
+    },
+    {
+     "who": "rahma",
+     "text": "Il retrouve sa babouche près du pont de Bin Lemdoun. <short pause> Il revient à la boucherie : <short pause> plus personne. <short pause> Salem somnole, <short pause> la chéchia sur l'oreille. <short pause> Il ne reste que du mou pour les chats !",
+     "style": "storyteller, comic deflation, slower",
+     "sub": "Il retrouve sa babouche près du pont de Bin Lemdoun. Il revient à la boucherie : plus personne. Salem somnole, la chéchia sur l'oreille. Il ne reste que du mou pour les chats !"
+    },
+    {
+     "who": "rahma",
+     "text": "Dans un fondouk, <short pause> des aloses passent au-dessus des têtes. <short pause> Si Othman attend un miracle. <short pause> Mais son nez le démange. <short pause> Il court chez le marchand de tabac. <short pause> À son retour : <short pause> plus de poissons !",
+     "style": "storyteller, comic rhythm, punchline",
+     "sub": "Dans un fondouk, des aloses passent au-dessus des têtes. Si Othman attend un miracle. Mais son nez le démange. Il court chez le marchand de tabac. À son retour : plus de poissons !"
+    },
+    {
+     "who": "narrator",
+     "text": "Les femmes hurlaient de joie. <short pause> Moi, <short pause> je trépignais d'enthousiasme.",
+     "sub": "Les femmes hurlaient de joie. Moi, je trépignais d'enthousiasme."
+    },
+    {
+     "who": "zoubida",
+     "text": "Continue ! <short pause> Continue !",
+     "style": "mother laughing, begging for the rest of a story",
+     "sub": "Continue ! Continue !"
+    },
+    {
+     "who": "rahma",
+     "text": "Alors, <short pause> chez le marchand de menthe de la rue Sagha, <short pause> il voit une rose magnifique. <short pause> Il se dit : <short pause> si je l'offre à Lalla Khadija, <short pause> elle me pardonnera.",
+     "style": "storyteller, tender mock-romantic tone",
+     "sub": "Alors, chez le marchand de menthe de la rue Sagha, il voit une rose magnifique. Il se dit : si je l'offre à Lalla Khadija, elle me pardonnera."
+    },
+    {
+     "who": "rahma",
+     "text": "J'étais dans la rue quand il est rentré, <short pause> tout fier de sa rose. <short pause> La porte se referme... <short pause> et se rouvre aussitôt ! <short pause> La rose s'écrase sous ses pieds. <short pause> Puis son turban vole la rejoindre ! <short pause> Puis Si Othman lui-même, <short pause> pâle et défait !",
+     "style": "storyteller delivering the climax, fast, then a big comic pause",
+     "sub": "J'étais dans la rue quand il est rentré, tout fier de sa rose. La porte se referme... et se rouvre aussitôt ! La rose s'écrase sous ses pieds. Puis son turban vole la rejoindre ! Puis Si Othman lui-même, pâle et défait !"
+    },
+    {
+     "who": "rahma",
+     "text": "Il ramasse son turban, <short pause> il respire longuement sa rose... <short pause> et en me voyant, <short pause> il me fait un grand sourire !",
+     "style": "storyteller, final punchline, deadpan then bursting into laughter",
+     "sub": "Il ramasse son turban, il respire longuement sa rose... et en me voyant, il me fait un grand sourire !"
+    }
+   ]
+  },
+  {
+   "id": "s23_fin",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Nous riions à nous tordre. <short pause> Tout le monde félicita Rahma. <short pause> Ses histoires avaient du sel.",
+     "sub": "Nous riions à nous tordre. Tout le monde félicita Rahma. Ses histoires avaient du sel."
+    },
+    {
+     "who": "narrator",
+     "text": "Le récit de Rahma m'obséda toute la soirée. <short pause> Et la nuit, <short pause> j'en rêvai encore.",
+     "sub": "Le récit de Rahma m'obséda toute la soirée. Et la nuit, j'en rêvai encore."
+    }
+   ],
+   "tail": 2
+  },
+  {
+   "id": "s24_fin",
+   "lines": [],
+   "lead": 0,
+   "tail": 0,
+   "hold": 17
+  }
+ ]
+}

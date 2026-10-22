@@ -32,7 +32,7 @@ const rue = shot({
     const A = F(1000, 1009), B = F(1090, 817), dir = B.clone().sub(A).setY(0).normalize(), side = V(dir.z, 0, -dir.x);
     const mA = A.clone().addScaledVector(dir, -1).addScaledVector(side, .45), mB = B.clone().addScaledVector(dir, -1).addScaledVector(side, .45);
     S3.add(zo, B.x, B.z, yawTo(B, cam)); S3.add(mo, mB.x, mB.z, yawTo(mB, B));
-    const bab = S3.prop(PR.babouches());
+    const bab = S3.prop(PR.babouches()); bab.scale.setScalar(.55);
     return { actors: [zo, mo], zo, mo, A, B, mA, mB, bab, len: A.distanceTo(B), faces: [[zo, 'zoubida', 1], [mo, null, 2]] };
   },
   cover: [{ t: L[1][0], size: 'W' }, { t: L[1][0] + 4, size: 'M', on: 'mohammed' }],
@@ -48,7 +48,7 @@ const rue = shot({
     travel(mo, [[mA.x, mA.z], [mB.x, mB.z]], t, { t0, speed: mA.distanceTo(mB) / T1 });
     // babouches in the hood: hanging on his back between the shoulder blades, bouncing with each step
     const n = IK.wpos(mo.B.neck), back = dirW(mo, 0, 0, -1), bounce = .02 * Math.abs(Math.sin(t * Math.PI * 1.9));
-    bab.position.copy(n).addScaledVector(back, .1).add(V(0, -.07 + bounce, 0));
+    bab.position.copy(n).addScaledVector(back, .085).add(V(0, -.035 + bounce, 0));
     bab.rotation.set(1.1, mo.group.rotation.y + Math.PI, 0, 'YXZ'); bab.updateMatrixWorld(true);
     breathe(zo, t, 1, 1); breathe(mo, t, 1, 2);
   },
@@ -61,7 +61,7 @@ const rue2 = shot({
     const zo = await role('zoubida', { costume: 'haik' }), mo = await role('mohammed');
     const zp = F(1090, 985), mp = F(800, 1010);
     S3.add(zo, zp.x, zp.z, yawTo(zp, cam) + .5); S3.add(mo, mp.x, mp.z, yawTo(mp, zp) + .4);
-    const bab = S3.prop(PR.babouches());
+    const bab = S3.prop(PR.babouches()); bab.scale.setScalar(.55);
     return { actors: [zo, mo], zo, mo, zp, mp, bab, faces: [[zo, 'zoubida', 1], [mo, null, 2]] };
   },
   cover: [{ t: L[2][0], size: 'CU', on: 'zoubida', dy: -30 }],
@@ -70,7 +70,7 @@ const rue2 = shot({
     rest(zo.B); idlePose(zo.B, t, 1); rest(mo.B); idlePose(mo.B, t + 1, 1);
     PO.look(zo, IK.wpos(mo.B.head), .6); PO.look(mo, IK.wpos(zo.B.head), .5); zo.B.head.rotation.z += .06 * Math.sin(t * 7); zo.B.head.rotation.x += .05 * Math.abs(Math.sin(t * 7));   // scolding nods
     const n = IK.wpos(mo.B.neck), back = dirW(mo, 0, 0, -1);
-    bab.position.copy(n).addScaledVector(back, .1).add(V(0, -.07, 0)); bab.rotation.set(1.1, mo.group.rotation.y + Math.PI, 0, 'YXZ'); bab.updateMatrixWorld(true);
+    bab.position.copy(n).addScaledVector(back, .085).add(V(0, -.035, 0)); bab.rotation.set(1.1, mo.group.rotation.y + Math.PI, 0, 'YXZ'); bab.updateMatrixWorld(true);
     breathe(zo, t, 1, 1); breathe(mo, t, 1, 2);
   },
 });
@@ -83,8 +83,8 @@ const kis = shot({
     const F = (x, y, h = 0) => S3.floorAt(x, y, h), cam = S3.cam.position.clone().setY(0);
     const zo = await role('zoubida', { costume: 'haik' }), mo = await role('mohammed'), ma = await role('marchand');
     const A = F(-60, 925), B = F(1190, 985), dir = B.clone().sub(A).setY(0).normalize(), mA = A.clone().addScaledVector(dir, -1), mB = B.clone().addScaledVector(dir, -.95).addScaledVector(V(dir.z, 0, -dir.x), .35);
-    const mp = F(1470, 717, .8);
-    S3.add(zo, B.x, B.z, yawTo(B, mp)); S3.add(mo, mB.x, mB.z, yawTo(mB, mp)); S3.add(ma, mp.x, mp.z, yawTo(mp, cam)); ma.group.position.y = .8;
+    const mp = F(1470, 745, .72);
+    S3.add(zo, B.x, B.z, yawTo(B, mp)); S3.add(mo, mB.x, mB.z, yawTo(mB, mp)); S3.add(ma, mp.x, mp.z, yawTo(mp, cam)); rest(ma.B); ma.group.updateMatrixWorld(true); ma.group.position.y += .72 - Math.min(PO.lowestOf(ma, ['footL']), PO.lowestOf(ma, ['footR'])); ma.group.updateMatrixWorld(true);
     return { actors: [zo, mo, ma], zo, mo, ma, A, B, mA, mB, mp, cam, len: A.distanceTo(B), faces: [[zo, null, 1], [mo, null, 2], [ma, null, 3]] };
   },
   cover: [{ t: L[4][0], size: 'W' }, { t: L[4][0] + 10, size: 'M', on: 'zoubida', dx: 150, dy: -150 }, { t: L[5][0], size: 'M', on: 'marchand' }, { t: L[5][0] + 8, size: 'W' }],

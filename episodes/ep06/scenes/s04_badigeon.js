@@ -22,6 +22,7 @@ const dirW = (a, x, y, z) => V(x, y, z).normalize().applyAxisAngle(V(0, 1, 0), a
 const SC = (await (await fetch(new URL('../timing.json', import.meta.url))).json()).find(s => s.id === 's04_badigeon');
 export const L = SC.lines.map(l => [l.start - SC.start, l.start - SC.start + l.dur]);
 const DIP = L[3][0] + 2, RUN = L[3][0] + 6, GRAB = L[4][0] + 1.5, DROP = L[5][0] + 9, UP = L[6][0] + 2.5, BACK = UP + 1.2;
+const LOW_R = [-.1, -.25, -.05], LOW_L = [.1, -.25, -.05];   // elbow tucked down by the ribs: no sleeve web
 const FREEZE = L[7][0], ARMS = L[8][0] + 1, CORNER = L[12][0];
 
 const sh = shot({
@@ -35,7 +36,7 @@ const sh = shot({
     const at = (s, n) => w0.clone().lerp(w1, s).addScaledVector(wn, n);
     const bucket = F(336, 802).addScaledVector(wn, .1), dipAt = bucket.clone().addScaledVector(wn, .5).addScaledVector(wd, .25);
     const kids = await Promise.all(['kid1', 'kid2', 'kid3'].map(n => role(n))), [k1, k2, k3] = kids;
-    const g1 = await role('grand1'), g2 = await role('grand2'), mo = await role('mohammed'), fq = await role('fqih');
+    const g1 = await role('grand1'), g2 = await role('grand2'), mo = await role('mohammed'), mos = await role('mohammed', { seat: true, copy: 's' }), fq = await role('fqih');
     const spots = [at(.6, .5), at(.72, .5), at(.84, .55)], scrum = at(.72, 1.15), sitAt = scrum.clone().addScaledVector(wn, .4);
     kids.forEach((a, i) => S3.add(a, spots[i].x, spots[i].z, yawTo(spots[i], at(.6 + .12 * i, 0))));
     [g1, g2].forEach((a, i) => { const p = at(.62 + .16 * i, .55); S3.add(a, p.x, p.z, yawTo(p, at(.62 + .16 * i, 0))); });
@@ -45,20 +46,21 @@ const sh = shot({
     const corner = [F(1250, 800), F(1380, 790), F(1310, 870), F(1170, 860)];
     // Mohammed: build pose at the scrum (coverage frames him there); the fall's seated pose solved once
     S3.add(mo, scrum.x, scrum.z, yawTo(scrum, spots[1]));
-    const stand = PO.snap(mo);
-    M.sit = +(+PO.crossLegged(mo, { seat: 0, lean: -.12, hands: false }) || 0).toFixed(3);
-    const sit = PO.snap(mo); PO.apply(mo, stand);
+    S3.add(mos, scrum.x, scrum.z, yawTo(scrum, spots[1]));   // the seat-rig copy (closed robe skirt) takes over for the fall
+    const stand = PO.snap(mos);
+    M.sit = +(+PO.crossLegged(mos, { seat: 0, lean: -.12, hands: false }) || 0).toFixed(3);
+    const sit = PO.snap(mos); PO.apply(mos, stand);
     const brooms = [0, 1, 2, 3, 4].map(i => S3.prop(balayette({ wet: 1 })));   // 0 Mohammed's, 1-2 kid1/kid3's, 3-4 the big ones'
     const rd = S3.prop(rod());
-    return { actors: [k1, k2, k3, g1, g2, mo, fq], M, kids, k1, k2, k3, g1, g2, mo, fq, spots, scrum, sitAt, bucket, dipAt, wd, wn, at, corner, stand, sit, brooms, rd,
-      faces: [[fq, 'fqih', 1, (lt, t) => ({ sad: t > FREEZE - .2 ? .2 : 0 })], [k1, 'kid1', 2], [k2, 'kid2', 3], [k3, null, 4], [mo, null, 5, (lt, t) => ({ sad: t > DROP && t < BACK ? .5 : 0 })], [g1, null, 6], [g2, null, 7]] };
+    return { actors: [k1, k2, k3, g1, g2, mo, mos, fq], M, kids, k1, k2, k3, g1, g2, mo, mos, fq, spots, scrum, sitAt, bucket, dipAt, wd, wn, at, corner, stand, sit, brooms, rd,
+      faces: [[fq, 'fqih', 1, (lt, t) => ({ sad: t > FREEZE - .2 ? .2 : 0 })], [k1, 'kid1', 2], [k2, 'kid2', 3], [k3, null, 4], [mo, null, 5, (lt, t) => ({ sad: t > DROP && t < BACK ? .5 : 0 })], [mos, null, 5, { sad: .5 }], [g1, null, 6], [g2, null, 7]] };
   },
   cover: [{ t: L[2][0], size: 'M', on: 'fqih' }, { t: L[3][0], size: 'W' }, { t: RUN + 2.5, size: 'M', on: 'kid2', dx: 60, dy: -110 },
     { t: L[4][0], size: 'CU', on: 'kid2', dx: 40 }, { t: L[4][0] + 7, size: 'CU', on: 'kid1' }, { t: L[5][0], size: 'M', on: 'mohammed', dy: -110 },
-    { t: L[6][0], size: 'W' }, { t: L[7][0], size: 'CU', on: 'fqih' }, { t: L[8][0], size: 'W' }, { t: L[8][0] + 6, size: 'M', on: 'kid3' },
+    { t: L[6][0], size: 'W' }, { t: L[7][0], size: 'CU', on: 'fqih' }, { t: L[8][0], size: 'W' }, { t: L[8][0] + 6, size: 'M', on: 'kid3', dx: 120, dy: -190 },
     { t: L[9][0], size: 'M', on: 'kid1' }, { t: L[10][0], size: 'M', on: 'kid2' }, { t: L[11][0], size: 'M', on: 'fqih' }, { t: L[11][0] + 6, size: 'W' }, { t: CORNER, size: 'W' }],
   frame(lt, u, t, S, st) {
-    const { M, kids, k1, k2, k3, g1, g2, mo, fq, spots, scrum, brooms: [b0, b1, b3, bg1, bg2], wn, wd } = st;
+    const { M, kids, k1, k2, k3, g1, g2, mo, mos, fq, spots, scrum, brooms: [b0, b1, b3, bg1, bg2], wn, wd } = st;
     const corner = t >= CORNER, frozen = t >= FREEZE, palm = (a, s) => PO.handPts(a, s).palm;
     const wallHand = (a, s, ph, br) => {   // whitewash stroke: hand 42 cm off the wall, broom tip sweeping on it
       const base = IK.wpos(a.B.chest), wallP = base.clone().addScaledVector(wn, -base.clone().sub(st.at(0, 0)).dot(wn));
@@ -93,7 +95,7 @@ const sh = shot({
     }
     if (t < GRAB - 1.2) { PO.reach(k2, 'R', IK.wpos(k2.B.chest).addScaledVector(dirW(k2, 0, 0, 1), .25).add(V(0, .25 + .08 * Math.sin(t * 3), 0)), { grip: .02 }); }
     // ---- Mohammed
-    let mPos, hold = null;
+    let mPos, hold = null; mos.group.visible = false; mo.group.visible = true;
     if (corner) {
       const p = st.corner[3]; mo.group.position.set(p.x, 0, p.z); mo.group.rotation.y = yawTo(p, st.scrum) - .2; rest(mo.B); idlePose(mo.B, t, 1);
       mo.B.head.rotation.x += .3; mo.group.updateMatrixWorld(true);
@@ -101,17 +103,18 @@ const sh = shot({
       mo.group.position.copy(st.dipAt); mo.group.rotation.y = yawTo(st.dipAt, st.bucket); rest(mo.B); idlePose(mo.B, t, 1); mo.group.updateMatrixWorld(true);
       const dip = Math.sin(Math.PI * clamp((t - DIP) / 2.4)), rim = st.bucket.clone().setY(.45);
       const hand = IK.wpos(mo.B.chest).addScaledVector(dirW(mo, 0, 0, 1), .22).add(V(0, -.05, 0)).lerp(rim.clone().add(V(0, .22, 0)).addScaledVector(dirW(mo, 0, 0, -1), .12), dip);
-      M.dip = +PO.reach(mo, 'R', hand, { grip: .02 }).toFixed(3); hold = rim.clone().add(V(0, -.2, 0)).lerp(hand.clone().add(V(0, .4, 0)), 1 - dip);
+      M.dip = +PO.reach(mo, 'R', hand, { grip: .02, pole: LOW_R }).toFixed(3); hold = rim.clone().add(V(0, -.2, 0)).lerp(hand.clone().add(V(0, .4, 0)), 1 - dip);
     } else if (t < DROP) {   // runs to the wall, then the tug of war
       travel(mo, [[st.dipAt.x, st.dipAt.z], [scrum.x, scrum.z]], t, { t0: RUN, speed: 2.2, gait: 'run' });
       if (t > RUN + 1.6) { mo.group.rotation.y = yawTo(scrum, k2.group.position); mo.group.updateMatrixWorld(true); }
     } else if (t < UP + .6) {   // lets go: falls back and lands sitting in the puddle, then gets up
       const k = clamp((t - DROP) / .5) * (1 - sm(UP, UP + .6, t)), p = scrum.clone().lerp(st.sitAt, clamp((t - DROP) / .45));
-      mo.group.position.set(p.x, 0, p.z); mo.group.rotation.y = yawTo(scrum, k2.group.position); mo.group.updateMatrixWorld(true);
-      blend(mo, st.stand, st.sit, k * k);
-      if (k > .9) { M.sitLow = +PO.lowestOf(mo, Object.keys(mo.B)).toFixed(3); }
-      PO.reach(mo, 'L', st.sitAt.clone().addScaledVector(dirW(mo, 1, 0, -.6), .3).setY(.02), { grip: .02 });
-      PO.reach(mo, 'R', st.sitAt.clone().addScaledVector(dirW(mo, -1, 0, -.6), .3).setY(.02), { grip: .02 });
+      mo.group.visible = false; mos.group.visible = true;
+      mos.group.position.set(p.x, 0, p.z); mos.group.rotation.y = yawTo(scrum, k2.group.position); mos.group.updateMatrixWorld(true);
+      blend(mos, st.stand, st.sit, k * k);
+      if (k > .9) { M.sitLow = +PO.lowestOf(mos, Object.keys(mos.B)).toFixed(3); }
+      PO.reach(mos, 'L', st.sitAt.clone().addScaledVector(dirW(mos, 1, 0, -.6), .3).setY(.02), { grip: .02, pole: [.15, -.2, -.1] });
+      PO.reach(mos, 'R', st.sitAt.clone().addScaledVector(dirW(mos, -1, 0, -.6), .3).setY(.02), { grip: .02, pole: [-.15, -.2, -.1] });
     } else {   // back into the scrum, then frozen with the others
       travel(mo, [[st.sitAt.x, st.sitAt.z], [scrum.x, scrum.z]], t, { t0: UP + .6, speed: 1.6, gait: 'run' });
       if (t > BACK) { mo.group.rotation.y = frozen && t > ARMS - .5 ? yawTo(scrum, fq.group.position) : yawTo(scrum, k2.group.position); rest(mo.B); idlePose(mo.B, t, 1); mo.group.updateMatrixWorld(true); }
@@ -119,8 +122,8 @@ const sh = shot({
     // the broom fight: Mohammed holds it out, three pairs of hands on it, it jerks back and forth
     if (!corner && t >= RUN && t < DROP) {
       const ch = IK.wpos(mo.B.chest), f = dirW(mo, 0, 0, 1), tug = t > GRAB ? Math.sin((t - GRAB) * 5.5) * .07 + Math.sin((t - GRAB) * 2.3) * .04 : 0;
-      const gH = ch.clone().addScaledVector(f, .26 + tug).add(V(0, -.12, 0)), dir = f.clone().add(V(0, .12, 0)).normalize();
-      M.moR = +PO.reach(mo, 'R', gH, { grip: .02 }).toFixed(3); M.moL = +PO.reach(mo, 'L', gH.clone().addScaledVector(dir, .1), { grip: .02 }).toFixed(3);
+      const gH = ch.clone().addScaledVector(f, .2 + tug).add(V(0, -.2, 0)), dir = f.clone().add(V(0, .12, 0)).normalize();
+      M.moR = +PO.reach(mo, 'R', gH, { grip: .02, pole: LOW_R }).toFixed(3); M.moL = +PO.reach(mo, 'L', ch.clone().addScaledVector(f, .14).addScaledVector(dirW(mo, 1, 0, 0), .2).add(V(0, -.4, 0)), { grip: .02, pole: LOW_L }).toFixed(3);
       inHand(b0, palm(mo, 'R'), dir); hold = null;
       if (t > GRAB - .6) {
         const g = sm(GRAB - .6, GRAB, t);
@@ -146,7 +149,8 @@ const sh = shot({
         if (a === k2 && t > L[10][0]) continue;
         if (a === k1 && t > L[9][0]) continue;
         const ch = IK.wpos(a.B.chest), f = dirW(a, 0, 0, 1), s = dirW(a, 1, 0, 0), j = Math.sin(t * 6 + i * 1.7) * .05;
-        for (const [side, sg] of [['L', 1], ['R', -1]]) PO.reach(a, side, IK.wpos(a.B['hand' + side]).lerp(ch.clone().addScaledVector(f, .3 + j).addScaledVector(s, .26 * sg).add(V(0, -.1 + j, 0)), talk), { grip: .0 });
+        const m = a === mo;
+        for (const [side, sg] of [['L', 1], ['R', -1]]) PO.reach(a, side, IK.wpos(a.B['hand' + side]).lerp(ch.clone().addScaledVector(f, (m ? .2 : .3) + j).addScaledVector(s, (m ? .14 : .26) * sg).add(V(0, (m ? -.22 : -.1) + j, 0)), talk), { grip: .0, ...(m && { pole: sg > 0 ? LOW_L : LOW_R }) });
         if (t < ARMS - .5) { a.B.chest.rotation.x += Math.sin(t * 30 + i) * .01; a.group.updateMatrixWorld(true); }   // trembling with anger
       }
       if (t > L[9][0]) {   // kid1 points at Mohammed, pleading to the fqih

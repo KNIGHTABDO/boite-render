@@ -1,6 +1,6 @@
 // s17: Rahma's poor room (plate rahma_pauvre, ep06 new, cal SEED h 1.0 / horizon 464 / fov 50: scale checked on the door and the mattresses),
 // then the gallery. L0 Rahma, Zoubida and Mohammed come in from the palier; L1-2 Zineb kneels in her corner holding a round
-// mirror up to her grey cat (3D cat, Quaternius: Idle, Headbutt = the paw on the glass, Run = bolts out of frame) and laughs;
+// mirror up to her tabby cat (Rodin static mesh, procedural: rears to paw the glass, peeks behind, puffs and spits, gallops out) and laughs;
 // L3-4 Rahma holds the cherry gilet against Mohammed (dim room, crimson glow); L5 the mothers whisper, grimace war;
 // L6 Zineb screams; L7 Mohammed pleads; L8 he sobs, Zoubida seizes his hand and drags him out of the door (travel);
 // L9 the gallery (galerie_jour): she drags him along it lamenting.
@@ -37,11 +37,15 @@ function mirrorProp() {   // 12 cm round hand mirror, gold rim, pale glass, disc
   const glass = new THREE.Mesh(new THREE.CylinderGeometry(.052, .052, .016, 24).rotateX(Math.PI / 2), PR.toon(0xd8e8f0));
   g.add(rim, glass); g.traverse(o => { if (o.isMesh) o.castShadow = true; }); return g;
 }
-function gilet() {   // the s15 waistcoat: open cherry tube (30 cm tall, boy-sized), gold hems, buttons and braid down the front (+z)
-  const g = new THREE.Group(), red = PR.toon(0xb3142c, { side: THREE.DoubleSide }), gold = PR.toon(0xd4a52a);
-  const tube = new THREE.Mesh(new THREE.CylinderGeometry(.15, .16, .3, 28, 1, true), red); tube.scale.set(.82, 1, .6); g.add(tube);
-  for (const y of [-.15, .15]) { const r = new THREE.Mesh(new THREE.TorusGeometry(.155, .008, 6, 28).rotateX(Math.PI / 2).translate(0, y, 0), gold); r.scale.set(.82, 1, .6); g.add(r); }
-  for (let i = 0; i < 7; i++) { const b = new THREE.Mesh(new THREE.SphereGeometry(.012, 8, 6), gold); b.position.set(0, .12 - i * .04, .096); g.add(b); }
+function gilet() {   // the s15 waistcoat: cherry body open down the front (the white shirt shows), gold hems and braided front edges
+  const g = new THREE.Group(), red = PR.toon(0xb3142c, { side: THREE.DoubleSide }), gold = PR.toon(0xd4a52a), GAP = .5;
+  const tube = new THREE.Mesh(new THREE.CylinderGeometry(.15, .16, .26, 28, 1, true, GAP, Math.PI * 2 - 2 * GAP), red); tube.scale.set(.82, 1, .6); g.add(tube);
+  for (const y of [-.13, .13]) { const r = new THREE.Mesh(new THREE.TorusGeometry(.155, .008, 6, 28, Math.PI * 2 - 2 * GAP).rotateX(Math.PI / 2).rotateY(-Math.PI / 2 - GAP).translate(0, y, 0), gold); r.scale.set(.82, 1, .6); g.add(r); }
+  for (const k of [-1, 1]) {   // braid down each front edge, with three gold buttons
+    const ex = Math.sin(GAP) * .155 * .82 * k, ez = Math.cos(GAP) * .155 * .6;
+    const br = new THREE.Mesh(new THREE.BoxGeometry(.012, .26, .006), gold); br.position.set(ex, 0, ez); g.add(br);
+    if (k > 0) for (let i = 0; i < 3; i++) { const b = new THREE.Mesh(new THREE.SphereGeometry(.011, 8, 6), gold); b.position.set(ex, .08 - i * .07, ez + .006); g.add(b); }
+  }
   g.traverse(o => { if (o.isMesh) o.castShadow = true; }); return g;
 }
 const LIGHT = { key: 0xffd8a0, keyI: 1.5, dir: [3, 2.5, 1.2], sky: 0xc8a888, ground: 0x8a5a3a, fillI: 1.45, rim: 0xffc070, rimI: .5, rimDir: [-2, 2, -3], shadow: .3, area: 3 };
@@ -65,23 +69,25 @@ const sh = shot({
   async build(S3) {
     const M = {}, F = (x, y) => S3.floorAt(x, y), cam = S3.cam.position.clone().setY(0);
     const rah = await role('rahma'), zou = await role('zoubida'), mo = await role('mohammed'), zn = await role('zineb', { seat: true });
-    const MO = F(1010, 880), R1 = MO.clone().add(V(.75, 0, -.1)), Z1 = R1.clone().add(V(.7, 0, .0)), ZN = F(700, 830), D = F(1480, 735);
+    const MO = F(1010, 880), R1 = MO.clone().add(V(.6, 0, -.08)), Z1 = R1.clone().add(V(.72, 0, .0)), ZN = F(700, 830), D = F(1480, 735);
     const toward = (p, q, k = .6) => angLerp(yawTo(p, q), yawTo(p, cam), 1 - k);
     S3.add(mo, MO.x, MO.z, toward(MO, R1)); S3.add(rah, R1.x, R1.z, toward(R1, MO)); S3.add(zou, Z1.x, Z1.z, toward(Z1, R1));
     // Zineb kneels in her corner facing the cat (screen right)
     S3.add(zn, ZN.x, ZN.z, Math.PI / 2);
-    M.zn = memoPose('s17zn', zn, [ZN], () => PO.kneel(zn, { lean: .22 }).map?.(e => +e.toFixed(3)));
+    M.zn = memoPose('s17zn2', zn, [ZN], () => (PO.kneel(zn, { lean: .22 }), PO.settle(zn, .004)));
     const znBase = PO.snap(zn);
-    const cat = await loadAnimal('/art/models/cat.glb', { height: .3, prefix: 'AnimalArmature|AnimalArmature|AnimalArmature|' });
+    // Rodin tabby (static mesh, faces +z): body motion is procedural, pivoting on the hind feet (pv sits 8 cm behind centre)
+    const cat = await loadAnimal('/art/models/cat2__base_basic_pbr.glb', { height: .3 }), pv = new THREE.Group();
+    const body = cat.root.children[0]; cat.root.remove(body); pv.add(body); body.position.z += .08; pv.position.z = -.08; cat.root.add(pv); cat.pv = pv;
     cat.root.traverse(o => { if (o.isMesh) o.castShadow = true; }); S3.scene.add(cat.root);
     const mirror = S3.prop(mirrorProp()), gil = S3.prop(gilet());
-    const Mp = ZN.clone().add(V(.34, .3, 0)), cat0 = Mp.clone().add(V(.34, -.3, 0));
+    const Mp = ZN.clone().add(V(.34, .3, 0)), cat0 = F(835, 905);   // in front of Mohammed's legs, facing the mirror
     return { actors: [rah, zou, mo, zn], M, rah, zou, mo, zn, cat, mirror, gil, MO, R1, Z1, ZN, D, Mp, cat0, znBase, cam,
-      faces: [[rah, 'rahma', 1], [zou, 'zoubida', 2, { sad: .2 }], [mo, 'mohammed', 3, (lt, t) => ({ sad: t > a8 - .5 ? 1 : t > a6 ? .5 : 0, ...(t > a5 + 3.5 && t < a6 ? { lid: .7, open: .8 } : {}) })],
+      faces: [[rah, 'rahma', 1], [zou, 'zoubida', 2, { sad: .2 }], [mo, 'mohammed', 3, (lt, t) => ({ sad: t > a8 - .5 ? 1 : t > a6 ? .5 : 0, ...(t > a5 + 1 && t < a6 ? { lid: .7, open: .5 + .4 * Math.abs(Math.sin(t * 6)) } : {}) })],
         [zn, 'zineb', 4, (lt, t) => ({ ...(t > a2 + 3.8 && t < a3 ? { open: .5 + .4 * Math.sin(t * 15), lid: .5 } : {}), ...(t > a5 + 3 && t < a6 ? { lid: .6, open: .7 } : {}) })]] };
   },
   cover: [{ t: 0, size: 'W' }, { t: a0 + 8, size: 'M', on: 'rahma', dx: -130 }, { t: a0 + 15, size: 'W' },
-    { t: a1, size: 'M', on: 'zineb', dx: 110 }, { t: a1 + 8, size: 'CU', on: 'zineb', dx: 150 }, { t: a1 + 14, size: 'M', on: 'zineb', dx: 110 },
+    { t: a1, size: 'M', on: 'zineb', dx: 110 }, { t: a1 + 8, size: 'M', on: 'zineb', dx: 60 }, { t: a1 + 14, size: 'M', on: 'zineb', dx: 110 },
     { t: a2, size: 'M', on: 'zineb', dx: 190 }, { t: a3, size: 'M', on: 'rahma', dx: -110 },
     { t: a4, size: 'M', on: 'mohammed', dx: 80 }, { t: a4 + 7, size: 'CU', on: 'mohammed', dx: 40 }, { t: a4 + 13, size: 'M', on: 'rahma', dx: -80 },
     { t: a5, size: 'W' }, { t: a5 + 3.5, size: 'M', on: 'mohammed', dx: -150 }, { t: a5 + 8, size: 'M', on: 'zineb', dx: 140 },
@@ -95,14 +101,14 @@ const sh = shot({
       { t0: a8 + 20, pts: [[R1.x, R1.z], [R1.x, R1.z]], speed: 1, face: 0 }], t, 1);
     walker(zou, [{ t0: a0 + 3, pts: [[D.x, D.z], [Z1.x, Z1.z]], speed: 1.3, face: toward(Z1, R1) }], t, 2);
     // the drag: Zoubida walks to him, takes his hand, leads him to the door and out (both on the same line, 65 cm apart)
-    const out = D.clone().add(V(1.5, 0, -1.2)), dir = out.clone().sub(MO).setY(0).normalize(), Zg = MO.clone().addScaledVector(dir, .65);
+    const out = D.clone().add(V(1.5, 0, -1.2)), dir = out.clone().sub(MO).setY(0).normalize(), Zg = MO.clone().addScaledVector(dir, .55);
     const TG = a8 + 5.8, TD = a8 + 8.4, dd = Math.hypot(out.x - Zg.x, out.z - Zg.z);
     const sp = dd / (a8 + 11.8 - TD);
     const zr = walker(zou, [{ t0: a0 + 3, pts: [[D.x, D.z], [Z1.x, Z1.z]], speed: 1.3, face: toward(Z1, R1) },
       { t0: TG, pts: [[Z1.x, Z1.z], [Zg.x, Zg.z]], speed: 1.3, face: yawTo(Zg, out) },
       { t0: TD, pts: [[Zg.x, Zg.z], [out.x, out.z]], speed: sp, face: 0, exit: true }], t, 2);
     walker(mo, [{ t0: a0 + 3.8, pts: [[D.x, D.z], [MO.x, MO.z]], speed: 1.3, face: toward(MO, R1) },
-      { t0: TD, pts: [[MO.x, MO.z], [out.x - dir.x * .65, out.z - dir.z * .65]], speed: sp, face: 0, exit: true }], t, 3);
+      { t0: TD, pts: [[MO.x, MO.z], [out.x - dir.x * .55, out.z - dir.z * .55]], speed: sp, face: 0, exit: true }], t, 3);
     const standing = t >= a0 + 5.5;
     // ---------------- Rahma
     if (t > a0 + 6.5 && t < a3 - 1.2) {   // inviting us in: right hand sweeps toward the painted shelf (screen left), then down
@@ -110,13 +116,15 @@ const sh = shot({
       if (k > 0) PO.reach(rah, 'R', IK.wpos(rah.B.chest).add(V(-.25 * k, .0 + .1 * k, .2 * k)).lerp(IK.wpos(rah.B.handR), 1 - k), { grip: .03 });
     }
     const f1 = t >= a3 - 1, f2 = t < a5 - .2;
-    const Mch = IK.wpos(mo.B.chest), G = Mch.clone().add(V(0, -.13, 0));   // around his chest, over the djellaba
+    const Mch = IK.wpos(mo.B.chest), G = Mch.clone().add(V(0, -.07, 0));   // worn over his white shirt, resting on the shoulders
     gil.visible = f1 && f2;
-    if (f1 && f2) {   // gilet held against his chest in both palms, facing the camera
-      const w = sm(a3 - 1, a3 - .2, t), side = dirW(rah, 1, 0, 0);
-      const sway = Math.sin(t * 1.2) * .01;
-      for (const [s, k] of [['L', 1], ['R', -1]]) M['gil' + s] = +PO.reach(rah, s, IK.wpos(rah.B['hand' + s]).lerp(G.clone().addScaledVector(side, .13 * k).add(V(0, sway, 0)), w), { grip: .03 }).toFixed(3);
-      gil.position.copy(G).lerp(IK.wpos(rah.B.chest).add(V(0, .05, .25)), 1 - w); gil.rotation.set(0, mo.group.rotation.y, 0); gil.scale.set(1.08, .9, 1.45);
+    if (f1 && f2) {   // she holds the gilet on him by its front edges: hands low, elbows bent
+      const w = sm(a3 - 1, a3 - .2, t), mf = dirW(mo, 0, 0, 1), ms = dirW(rah, 1, 0, 0);
+      const sway = Math.sin(t * 1.2) * .008;
+      for (const [s, k] of [['L', 1], ['R', -1]]) {
+        M['gil' + s] = +PO.reach(rah, s, IK.wpos(rah.B['hand' + s]).lerp(G.clone().addScaledVector(ms, .17 * k).addScaledVector(mf, .12).add(V(0, -.1 + sway, 0)), w), { grip: .03 }).toFixed(3);
+      }
+      gil.position.copy(G).lerp(IK.wpos(rah.B.chest).add(V(0, .05, .25)), 1 - w); gil.rotation.set(0, mo.group.rotation.y, 0); gil.scale.set(1.35, .9, 1.8);
     }
     if (t >= a5 - .2 && t < a6) {   // she leans to Zoubida: the mothers whisper, heads together
       const k = sm(a5, a5 + .8, t);
@@ -141,12 +149,12 @@ const sh = shot({
     if (t < a3) {
       mp = mp.clone().setY(mp.y).add(V(0, Math.sin(t * 2) * .004, 0));
       M.mir = +PO.reach(zn, 'R', mp, { grip: .03 }).toFixed(3);
-      mirror.position.copy(palm(zn, 'R')).add(V(.05, .0, 0)); mirror.rotation.set(0, Math.PI / 2, 0); mirror.visible = true;
+      mirror.position.copy(palm(zn, 'R')).add(V(.02, .05, .02)); mirror.rotation.set(-.3, .9, 0); mirror.visible = true;
       if (t > a2 + 3.8) { zn.B.head.rotation.x -= .3 * sm(a2 + 3.8, a2 + 4.4, t); zn.B.chest.rotation.x += Math.sin(t * 18) * .035; zn.group.updateMatrixWorld(true); }
       else PO.look(zn, t < paw1 + 1 ? cat0.clone().add(V(0, .1, 0)) : IK.wpos(mo.B.head), .6);
     } else {
-      mirror.visible = true; mirror.rotation.set(0, Math.PI / 2, 0);
-      mirror.position.copy(palm(zn, 'R')).add(V(.02, 0, 0));
+      mirror.visible = true; mirror.rotation.set(-.3, .6, 0);
+      mirror.position.copy(palm(zn, 'R')).add(V(.02, .05, .02));
       if (t < a5 - .3) { zn.B.head.rotation.x -= .15; PO.look(zn, IK.wpos(mo.B.head), .3); }
     }
     if (t >= a5 - .3 && t < a6) {   // grimace: head forward and jabbing, tongue-out mouth (face open + squint)
@@ -160,31 +168,43 @@ const sh = shot({
     if (t >= a7) { PO.look(zn, IK.wpos(mo.B.head), .4); zn.B.head.rotation.x -= .1; }
     zn.group.updateMatrixWorld(true); breathe(zn, t, 1, 4);
     // ---------------- the cat: idles, paws the mirror, peers behind it, spits, bolts
-    cat.root.visible = t < a2 + 6;
-    const RUN = a2 + 3.7;
-    const cp = cat0.clone(); let yaw = -Math.PI / 2, clip = 'Idle', ct = t, sc = 1;
-    if (t >= paw0 && t < paw1) { clip = 'Headbutt'; ct = (t - paw0) * .8; }
-    else if (t >= paw1 && t < a2) { const k = sm(paw1, paw1 + 1.2, t); cp.add(V(-.02 * k, 0, .13 * k)); yaw = -Math.PI / 2 - .5 * k; }
-    else if (t >= a2 && t < RUN) { const b = sm(a2, a2 + .3, t); cp.add(V(0, 0, .13)); yaw = -Math.PI / 2 - .5 + .5 * b; sc = 1 + .12 * b * (1 + Math.sin(t * 25) * .3); }
-    if (t >= RUN) {
-      const dst = S3.floorAt(1900, 800), p0 = cat0.clone().add(V(0, 0, .13));
-      const dist = clamp((t - RUN) * 5, 0, Math.hypot(dst.x - p0.x, dst.z - p0.z)), fr = dist / Math.hypot(dst.x - p0.x, dst.z - p0.z);
-      cp.set(p0.x + (dst.x - p0.x) * fr, 0, p0.z + (dst.z - p0.z) * fr); yaw = Math.atan2(dst.x - p0.x, dst.z - p0.z); clip = 'Run'; ct = t - RUN;
+    const RUN = a2 + 3.7, cf = yawTo(cat0, Mp);
+    cat.root.visible = t < RUN + 1.6;
+    const cp = cat0.clone(); let yaw = cf, pitch = 0, sc = 1, bob = 0;
+    if (t >= paw0 && t < paw1) {   // rears up on the hind legs and paws the glass, twice
+      const k = sm(paw0, paw0 + .5, t) * (1 - sm(paw1 - .5, paw1, t)); pitch = (.38 + .1 * Math.max(0, Math.sin((t - paw0) * 7))) * k;
+    } else if (t >= paw1 && t < a2) {   // walks round to peer behind the mirror (small trot bob)
+      const k = sm(paw1, paw1 + 1.2, t); cp.lerp(Mp.clone().setY(0).add(V(.12, 0, -.18)), .8 * k); yaw = cf + 1.2 * k;
+      bob = k < 1 ? .012 * Math.abs(Math.sin(t * 14)) : 0;
+    } else if (t >= a2 && t < RUN) {   // turns back, puffs up, arches and spits
+      const b = sm(a2, a2 + .3, t); cp.lerp(Mp.clone().setY(0).add(V(.12, 0, -.18)), .8); yaw = cf + 1.2 * (1 - b);
+      sc = 1 + .14 * b * (1 + Math.sin(t * 25) * .3); pitch = -.08 * b + .05 * Math.sin(t * 30) * b;
     }
-    cat.play(clip); cat.at(ct);
-    cat.root.position.set(cp.x, cp.y, cp.z); cat.root.rotation.y = yaw; cat.root.scale.setScalar(sc); cat.root.updateMatrixWorld(true);
+    if (t >= RUN) {   // bolts: bounding gallop out of frame, screen right
+      const dst = S3.floorAt(1900, 800), p0 = cat0.clone().lerp(Mp.clone().setY(0).add(V(.12, 0, -.18)), .8);
+      const L = Math.hypot(dst.x - p0.x, dst.z - p0.z), fr = clamp((t - RUN) * 3.2, 0, L) / L, ph = (t - RUN) * 16;
+      cp.set(p0.x + (dst.x - p0.x) * fr, 0, p0.z + (dst.z - p0.z) * fr); yaw = Math.atan2(dst.x - p0.x, dst.z - p0.z);
+      bob = .05 * Math.abs(Math.sin(ph)); pitch = .22 * Math.cos(ph); sc = 1;
+    }
+    const br = 1 + .015 * Math.sin(t * 5);
+    cat.pv.rotation.x = -pitch;   // rotation.x < 0 lifts the +z head end
+    cat.root.position.set(cp.x, cp.y + bob, cp.z); cat.root.rotation.y = yaw; cat.root.scale.set(sc, sc * br, sc); cat.root.updateMatrixWorld(true);
     // ---------------- Mohammed
     if (t >= a0 + 5.5 && t < TD) {
       mo.B.head.rotation.x += t < a3 ? 0 : 0;
       if (t >= a4 && t < a5) { mo.B.chest.rotation.x -= .06 * sm(a4, a4 + 1, t); mo.B.head.rotation.x -= .1; }
-      if (t >= a5 && t < a6) {   // grimace war: head jutting, jaw working
-        PO.look(mo, IK.wpos(zn.B.head), .9); mo.B.head.rotation.z += Math.sin(t * 9 + 1) * .14; mo.B.head.rotation.x += .12 * sm(a5 + 3, a5 + 4, t);
+      if (t >= a5 - .3 && t < TD) {   // turns 3/4 so his face stays on camera while he pulls faces at Zineb
+        const k = sm(a5 - .3, a5 + .6, t);
+        mo.group.rotation.y = angLerp(mo.group.rotation.y, angLerp(yawTo(MO, ZN), yawTo(MO, cam), .7), k); mo.group.updateMatrixWorld(true);
       }
-      if (t >= a6 && t < a7) PO.look(mo, IK.wpos(zn.B.head), .7);
+      if (t >= a5 && t < a6) {   // grimace war: head jutting, jaw working
+        PO.look(mo, IK.wpos(zn.B.head), .5); mo.B.head.rotation.z += Math.sin(t * 9 + 1) * .14; mo.B.head.rotation.x += .12 * sm(a5 + 3, a5 + 4, t);
+      }
+      if (t >= a6 && t < a7) PO.look(mo, IK.wpos(zn.B.head), .5);
       if (t >= a7 && t < a8) {   // "C'est elle !": arms out, palms up, desperate
         const k = sm(a7, a7 + .3, t), ch = IK.wpos(mo.B.chest), f = dirW(mo, 0, 0, 1), s = dirW(mo, 1, 0, 0);
-        for (const [sd, g] of [['L', 1], ['R', -1]]) PO.reach(mo, sd, IK.wpos(mo.B['hand' + sd]).lerp(ch.clone().addScaledVector(f, .2).addScaledVector(s, .38 * g).add(V(0, -.05 + Math.sin(t * 9 + g) * .03, 0)), k), { grip: .0 });
-        mo.B.head.rotation.x += .08; PO.look(mo, IK.wpos(rah.B.head), .5);
+        for (const [sd, g] of [['L', 1], ['R', -1]]) PO.reach(mo, sd, IK.wpos(mo.B['hand' + sd]).lerp(ch.clone().addScaledVector(f, .26).addScaledVector(s, .15 * g).add(V(0, -.12 + Math.sin(t * 9 + g) * .02, 0)), k), { grip: .0 });
+        mo.B.head.rotation.x += .08; PO.look(mo, IK.wpos(rah.B.head), .4);
       }
       if (t >= a8) {   // sobbing: right hand at the eyes; left hand joins Zoubida's
         const hd = IK.wpos(mo.B.head), f = dirW(mo, 0, 0, 1), s = dirW(mo, 1, 0, 0);
@@ -197,17 +217,15 @@ const sh = shot({
       }
     }
     if (t >= a8 && t < a8 + 6.4 && t < TD) { /* sobbing before Zoubida arrives */ }
-    // the joined hands: both left hands to one point between them
-    if (t >= a8 + 6.4 && zr && !zr.done || (t >= TD - 1.6 && t < TD + 3.5)) {
-      const w = sm(a8 + 6.8, a8 + 7.6, t);
-      if (w > 0 && zou.group.visible) {
-        const zp = IK.wpos(zou.B.chest), mp2 = IK.wpos(mo.B.chest), T = zp.clone().lerp(mp2, .5).setY(.82), sd = dirW(zou, 1, 0, 0);
-        T.addScaledVector(sd, .12);
-        M.jz = +PO.reach(zou, 'L', IK.wpos(zou.B.handL).lerp(T, w), { grip: .03 }).toFixed(3);
-        M.jm = +PO.reach(mo, 'L', IK.wpos(mo.B.handL).lerp(T, w), { grip: .03 }).toFixed(3);
-        if (t > TD) { mo.B.chest.rotation.x -= .12; mo.group.updateMatrixWorld(true); }
-        PO.look(zou, V(out.x, 1.2, out.z), .5);
-      }
+    // the drag: she grips his wrist (her hand to his hand, his arm lifted toward her), from the moment she reaches him until they are out
+    if (t >= TG + .3 && zou.group.visible && mo.group.visible) {
+      const w = sm(TG + .3, TG + 1.1, t), side = IK.wpos(zou.B.chest).sub(IK.wpos(mo.B.chest)).setY(0).normalize();
+      const T = IK.wpos(zou.B.chest).lerp(IK.wpos(mo.B.chest), .5).setY(.8).addScaledVector(dirW(zou, 1, 0, 0), .1);
+      M.jm = +PO.reach(mo, 'L', IK.wpos(mo.B.handL).lerp(T.clone().addScaledVector(side, -.04), w), { grip: .03 }).toFixed(3);
+      M.jz = +PO.reach(zou, 'L', IK.wpos(zou.B.handL).lerp(T.clone().addScaledVector(side, .04), w), { grip: .03 }).toFixed(3);
+      if (t > TD) { mo.B.chest.rotation.x -= .12; mo.group.updateMatrixWorld(true); }
+      PO.look(zou, V(out.x, 1.2, out.z), .5);
+      if (t < TD) PO.look(mo, IK.wpos(zou.B.head), .5);
     }
     if (mo.group.visible) breathe(mo, t, 1, 3);
   },

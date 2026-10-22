@@ -66,15 +66,15 @@ const sh = shot({
     const clap = sm(L[2][0] - .2, L[2][0] + .3, t) * (1 - sm(L[2][1] + 1, L[2][1] + 1.6, t));
     if (clap > 0) {
       const c = IK.wpos(mo.B.chest), f = dirW(mo, 0, 0, 1), s = dirW(mo, 1, 0, 0), g = (.04 + .1 * Math.abs(Math.cos(t * 9))) * k;
-      M.cL = +PO.reach(mo, 'L', c.clone().addScaledVector(f, .25 * k).addScaledVector(s, g).add(V(0, .04 * k, 0)), { grip: .02 }).toFixed(3);
-      M.cR = +PO.reach(mo, 'R', c.clone().addScaledVector(f, .25 * k).addScaledVector(s, -g).add(V(0, .04 * k, 0)), { grip: .02 }).toFixed(3);
+      M.cL = +PO.reach(mo, 'L', c.clone().addScaledVector(f, .34 * k).addScaledVector(s, g + .08 * k).add(V(0, .0, 0)), { grip: .02, pole: [.4, -.05, .05] }).toFixed(3);
+      M.cR = +PO.reach(mo, 'R', c.clone().addScaledVector(f, .34 * k).addScaledVector(s, -g - .08 * k).add(V(0, .0, 0)), { grip: .02, pole: [-.4, -.05, .05] }).toFixed(3);
       mo.B.chest.rotation.x -= .06; mo.group.updateMatrixWorld(true);
     }
     const asking = [3, 5, 7].some(i => t > L[i][0] - .2 && t < L[i][1] + .3);
     if (asking && t > L[3][0]) {
       const c = IK.wpos(mo.B.chest), f = dirW(mo, 0, 0, 1), s = dirW(mo, 1, 0, 0);
-      M.hL = +PO.reach(mo, 'L', c.clone().addScaledVector(f, .22 * k).addScaledVector(s, .05 * k).add(V(0, -.05 * k, 0)), { grip: .02 }).toFixed(3);
-      M.hR = +PO.reach(mo, 'R', c.clone().addScaledVector(f, .22 * k).addScaledVector(s, -.05 * k).add(V(0, -.05 * k, 0)), { grip: .02 }).toFixed(3);
+      M.hL = +PO.reach(mo, 'L', c.clone().addScaledVector(f, .36 * k).addScaledVector(s, .12 * k).add(V(0, .02 * k, 0)), { grip: .02, pole: [.4, -.05, .05] }).toFixed(3);
+      M.hR = +PO.reach(mo, 'R', c.clone().addScaledVector(f, .36 * k).addScaledVector(s, -.12 * k).add(V(0, .02 * k, 0)), { grip: .02, pole: [-.4, -.05, .05] }).toFixed(3);
     }
     // ---- the big moment: stands tall, chest out, stomps on the spot, arms up swaying
     if (t >= L[9][0]) {
@@ -84,8 +84,8 @@ const sh = shot({
         const ph = (t - L[9][0] - 5) * 1.6; walkPose(mo.B, ph, dance, { stride: .38, lift: .9, arms: 0 }); mo.group.updateMatrixWorld(true);
         mo.B.chest.rotation.x -= .16 * tall; mo.B.chest.rotation.z += Math.sin(ph * 6.28) * .08 * dance; mo.group.updateMatrixWorld(true);
         const c = IK.wpos(mo.B.chest), s = dirW(mo, 1, 0, 0), f = dirW(mo, 0, 0, 1), sw = Math.sin(ph * 6.28);
-        M.dL = +PO.reach(mo, 'L', c.clone().addScaledVector(s, .28 * k).addScaledVector(f, .28 * k).add(V(0, (.12 + .1 * sw) * k, 0)), { grip: .02 }).toFixed(3);
-        M.dR = +PO.reach(mo, 'R', c.clone().addScaledVector(s, -.28 * k).addScaledVector(f, .28 * k).add(V(0, (.12 - .1 * sw) * k, 0)), { grip: .02 }).toFixed(3);
+        M.dL = +PO.reach(mo, 'L', c.clone().addScaledVector(s, .3 * k).addScaledVector(f, .22 * k).add(V(0, (-.1 + .06 * sw) * k, 0)), { grip: .02, pole: [.4, -.05, .05] }).toFixed(3);
+        M.dR = +PO.reach(mo, 'R', c.clone().addScaledVector(s, -.3 * k).addScaledVector(f, .22 * k).add(V(0, (-.1 - .06 * sw) * k, 0)), { grip: .02, pole: [-.4, -.05, .05] }).toFixed(3);
       }
     }
     const gl = t > L[7][0] - .3 && t < L[7][1] + .6;

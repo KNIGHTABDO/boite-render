@@ -1,0 +1,2291 @@
+{
+ "episode": "ep06",
+ "chapter": 6,
+ "beats": [
+  {
+   "id": "b001",
+   "scene": "s01_hook",
+   "text": "Huit jours avant l'Achoura, notre Msid devint un champ de bataille. Et moi, j'allais me jeter au milieu.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3"
+   ],
+   "props": [
+    "balayette",
+    "seau"
+   ],
+   "visual": "Mohammed (6) runs at the whitewashed wall with a dripping doum broom; three boys' hands grab the broom.",
+   "action": "run"
+  },
+  {
+   "id": "b002",
+   "scene": "s02_titre",
+   "mode": "title",
+   "text": "La Boîte à merveilles — Chapitre VI",
+   "dur": 3.5,
+   "visual": "title card"
+  },
+  {
+   "id": "b003",
+   "scene": "s03_preparatifs",
+   "text": "On montait au Msid par quatre marches. C'était une longue pièce un peu rustique, avec une vaste soupente.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid",
+   "cast": [
+    "fqih",
+    "mohammed",
+    "kid1",
+    "kid2"
+   ],
+   "props": [
+    "marches",
+    "soupente"
+   ],
+   "visual": "Wide of the long rustic Msid: four steps up from the door, the vast soupente (loft) above; kids enter up the steps.",
+   "action": "walk"
+  },
+  {
+   "id": "b004",
+   "scene": "s03_preparatifs",
+   "text": "Là-haut, le maître installa deux jarres en poterie vernissée, pour l'huile d'olive que les élèves apportaient, par bouteilles et par bols.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_haut",
+   "cast": [
+    "fqih",
+    "grand1"
+   ],
+   "props": [
+    "jarre",
+    "soupente",
+    "bouteille",
+    "bol"
+   ],
+   "visual": "In the loft, the fqih sets two glazed pottery jars; a big pupil pours oil from a bottle; a bowl beside."
+  },
+  {
+   "id": "b005",
+   "scene": "s03_preparatifs",
+   "text": "Pour les nattes neuves, chacun donna selon ses moyens. Le père d'un élève, qui était chaufournier, offrit à l'école une charge d'âne de chaux.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "ane",
+    "chaux",
+    "natte"
+   ],
+   "visual": "A donkey loaded with sacks of lime at the Msid door; the lime-burner father beside it (one donkey)."
+  },
+  {
+   "id": "b006",
+   "scene": "s03_preparatifs",
+   "text": "Le lundi, huit jours avant la fête, les vieilles nattes furent montées dans la soupente. Le maître forma des équipes, et nomma les chefs. On emprunta des seaux, et des balayettes de doum.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "fqih",
+    "grand1",
+    "grand2",
+    "mohammed",
+    "kid1"
+   ],
+   "props": [
+    "natte",
+    "seau",
+    "balayette",
+    "soupente"
+   ],
+   "visual": "Big pupils carry rolled old mats up into the loft; the fqih points, naming team leaders; buckets and doum brooms on the floor.",
+   "action": "carry"
+  },
+  {
+   "id": "b007",
+   "scene": "s04_badigeon",
+   "text": "Le travail commença, dans un vacarme d'injures, de pleurs, et d'éclats de rire. Perchées sur de longs roseaux, des têtes de loup chassaient les toiles d'araignées du plafond.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "roseau",
+    "tete de loup"
+   ],
+   "visual": "Chaos: about ten boys, round brushes (têtes de loup) on long reeds sweep cobwebs off the ceiling; shouting, laughing, one crying."
+  },
+  {
+   "id": "b008",
+   "scene": "s04_badigeon",
+   "text": "Une dizaine d'élèves, armés de balayettes, badigeonnaient les murs au lait de chaux. Ils éclaboussaient tout le monde. La chaux vive leur entrait dans les yeux, ils hurlaient, d'autres prenaient leur place. Tout le monde criait à la fois.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "balayette",
+    "seau",
+    "chaux"
+   ],
+   "visual": "About ten boys whitewashing the walls with doum brooms from two huge buckets of lime-wash; splashes; a boy screams with lime in his eyes."
+  },
+  {
+   "id": "b009",
+   "scene": "s04_badigeon",
+   "text": "Doucement ! Doucement, bande de diables !",
+   "speaker": "fqih",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "fqih"
+   ],
+   "props": [],
+   "visual": "The fqih roars from his estrade, rod raised.",
+   "cam": "estrade"
+  },
+  {
+   "id": "b010",
+   "scene": "s04_badigeon",
+   "text": "Je réussis à m'emparer d'une balayette. Je la plongeai dans le lait de chaux, et, tout heureux, je fonçai sur le mur, pour montrer à ces larves comment on badigeonne sérieusement.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "balayette",
+    "seau",
+    "chaux"
+   ],
+   "visual": "Mohammed grabs a broom, dips it in the lime bucket, beaming, and runs at the wall.",
+   "action": "run"
+  },
+  {
+   "id": "b011",
+   "scene": "s04_badigeon",
+   "text": "Je me heurtai à un rempart de bras, de bouches ouvertes, d'yeux exorbités de fureur. Des mains s'agrippèrent à ma balayette.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "Close: a wall of arms, open mouths, furious eyes; hands grip his broom.",
+   "peak": true,
+   "action": "grab"
+  },
+  {
+   "id": "b012",
+   "scene": "s04_badigeon",
+   "text": "Je résistai de toutes mes forces. Mais la lutte était inégale. Je lâchai le précieux instrument, et je me retrouvai assis dans une flaque d'eau, qui me gelait le derrière.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2"
+   ],
+   "props": [
+    "balayette",
+    "flaque"
+   ],
+   "visual": "Tug of war; he lets go and falls sitting in a puddle of water.",
+   "action": "fall"
+  },
+  {
+   "id": "b013",
+   "scene": "s04_badigeon",
+   "text": "Je ne pensai pas à pleurer. Je me relevai, décidé à reprendre mon bien, et je me jetai dans la mêlée.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "He gets up, no tears, and throws himself back into the scrum.",
+   "action": "run"
+  },
+  {
+   "id": "b014",
+   "scene": "s04_badigeon",
+   "text": "Silence !",
+   "speaker": "fqih",
+   "mode": "3d",
+   "size": "CU",
+   "room": "msid",
+   "cast": [
+    "fqih"
+   ],
+   "props": [],
+   "visual": "The fqih: one thunderous word.",
+   "cam": "estrade",
+   "peak": true
+  },
+  {
+   "id": "b015",
+   "scene": "s04_badigeon",
+   "text": "Nous nous arrêtâmes, frémissants de colère. Les bras tendus, les doigts écartés, nous expliquions tous en même temps, nous demandions tous justice.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3",
+    "fqih"
+   ],
+   "props": [],
+   "visual": "Everyone frozen, trembling with anger; then all explain at once, arms out, fingers spread.",
+   "action": "gesture"
+  },
+  {
+   "id": "b016",
+   "scene": "s04_badigeon",
+   "text": "C'est lui ! C'est lui qui a commencé !",
+   "speaker": "kid1",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "kid1",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "A boy points at Mohammed, pleading to the fqih.",
+   "action": "point"
+  },
+  {
+   "id": "b017",
+   "scene": "s04_badigeon",
+   "text": "Non, maître, la balayette est à moi !",
+   "speaker": "kid2",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "kid2"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "Another boy clutches the broom to his chest, pleading."
+  },
+  {
+   "id": "b018",
+   "scene": "s04_badigeon",
+   "text": "Assez ! Seuls les grands passeront les murs à la chaux. Les petits, allez attendre dans le coin. J'aurai besoin de vous plus tard.",
+   "speaker": "fqih",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "fqih"
+   ],
+   "props": [
+    "baguette",
+    "chaux"
+   ],
+   "visual": "The fqih imposes silence and gives the verdict, rod pointing to the corner.",
+   "cam": "estrade"
+  },
+  {
+   "id": "b019",
+   "scene": "s04_badigeon",
+   "text": "Nous attendîmes dans un coin, jusqu'au soir, qu'il nous confie le moindre service. Il n'en fut rien !",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3",
+    "grand1",
+    "grand2"
+   ],
+   "props": [],
+   "visual": "The small ones sulk in a corner while the big ones whitewash; the light turns to evening.",
+   "light": "evening"
+  },
+  {
+   "id": "b020",
+   "scene": "s05_frotteurs",
+   "text": "Le lendemain, de nouvelles équipes furent formées. Je devins un personnage important. Je fus nommé chef des frotteurs !",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "fqih"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "Next morning: the fqih hands Mohammed a broom; he puffs up his chest — chief of the scrubbers.",
+   "light": "morning"
+  },
+  {
+   "id": "b021",
+   "scene": "s05_frotteurs",
+   "text": "Une vingtaine d'élèves, chargés d'énormes seaux, allaient chercher l'eau à la fontaine d'une zaouïa, à cinquante pas de l'école. Le sol fut inondé.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "seau",
+    "fontaine"
+   ],
+   "visual": "About twenty boys with huge buckets at the fountain of a zaouïa, fifty steps from the school; the Msid floor flooded.",
+   "room": "zaouia"
+  },
+  {
+   "id": "b022",
+   "scene": "s05_frotteurs",
+   "text": "Je maniais ma balayette avec énergie, pour donner l'exemple. J'en avais mal aux reins. De temps en temps, je me redressais, tout rouge.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "Mohammed scrubs the wet earth floor with energy, then straightens up, red-faced, hand on his back.",
+   "action": "scrub"
+  },
+  {
+   "id": "b023",
+   "scene": "s05_frotteurs",
+   "text": "Dans l'eau jusqu'aux chevilles, pieds nus, bousculé par celui-ci, insulté par celui-là, j'étais heureux ! Adieu les leçons, adieu les planchettes rigides et inhumaines !",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "msid",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "Close: barefoot, ankle-deep in water, jostled, beaming with happiness.",
+   "action": "scrub"
+  },
+  {
+   "id": "b024",
+   "scene": "s05_frotteurs",
+   "text": "Aïe ! Tu m'as donné un coup de coude dans l'œil !",
+   "speaker": "kid1",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "kid1",
+    "kid2"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "A boy holds his eye after an elbow.",
+   "action": "scrub"
+  },
+  {
+   "id": "b025",
+   "scene": "s05_frotteurs",
+   "text": "Fais attention ! Tu m'as mouillé jusqu'à la ceinture !",
+   "speaker": "kid2",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "kid2",
+    "kid3"
+   ],
+   "props": [
+    "seau"
+   ],
+   "visual": "A boy soaked to the waist shouts at another.",
+   "cam": "b"
+  },
+  {
+   "id": "b026",
+   "scene": "s05_frotteurs",
+   "text": "Regardez Driss ! Il est tombé dans le seau !",
+   "speaker": "kid1",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid",
+   "cast": [
+    "kid1",
+    "driss",
+    "kid2",
+    "kid3"
+   ],
+   "props": [
+    "seau"
+   ],
+   "visual": "Driss has fallen into a bucket, legs kicking; a boy points and laughs.",
+   "action": "fall"
+  },
+  {
+   "id": "b027",
+   "scene": "s05_frotteurs",
+   "text": "Ha ! Ha ! Il va se noyer ! Il va se noyer !",
+   "speaker": "kid2",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "kid2",
+    "kid3",
+    "driss"
+   ],
+   "props": [
+    "seau"
+   ],
+   "visual": "The boys laugh, pointing at Driss in the bucket.",
+   "cam": "b"
+  },
+  {
+   "id": "b028",
+   "scene": "s05_frotteurs",
+   "text": "Frottez, paresseux !",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "Mohammed, chief, orders the others, broom like a sceptre."
+  },
+  {
+   "id": "b029",
+   "scene": "s05_frotteurs",
+   "text": "Paresseux toi-même ! Notre coin est plus propre que le tien !",
+   "speaker": "kid2",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "kid2",
+    "mohammed"
+   ],
+   "props": [
+    "balayette"
+   ],
+   "visual": "A boy answers back, pointing at his own clean corner.",
+   "cam": "b"
+  },
+  {
+   "id": "b030",
+   "scene": "s05_frotteurs",
+   "text": "Avec des chiffons de jute, nous essuyâmes partout.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2",
+    "driss"
+   ],
+   "props": [
+    "chiffon"
+   ],
+   "visual": "The boys wipe everything with jute rags.",
+   "action": "wipe"
+  },
+  {
+   "id": "b031",
+   "scene": "s06_soir",
+   "text": "Le soir, je revins à la maison mort de fatigue, mais très fier de ma journée.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed",
+    "zoubida",
+    "father"
+   ],
+   "props": [
+    "lampe"
+   ],
+   "visual": "Evening, lamp-lit room: Mohammed comes in, dead tired but proud.",
+   "action": "walk",
+   "light": "night",
+   "fade": true
+  },
+  {
+   "id": "b032",
+   "scene": "s06_soir",
+   "text": "Sans moi, le Msid serait encore tout sale ! C'est moi le chef des frotteurs ! Moi !",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed boasting, arms wide.",
+   "action": "gesture"
+  },
+  {
+   "id": "b033",
+   "scene": "s06_soir",
+   "text": "Je réussis à convaincre mes parents, que sans moi, aucun résultat sérieux n'aurait été obtenu.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Father and mother listen, amused.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b034",
+   "scene": "s06_soir",
+   "text": "C'est bien, mon fils. Tu vois, Lalla Zoubida, il devient vraiment un homme.",
+   "speaker": "father",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "The father congratulates him, turning to Zoubida.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b035",
+   "scene": "s06_soir",
+   "text": "Pendant mon sommeil, je me mettais sur mon séant, je hurlais des ordres, je distribuais des injures. Ma mère me recouchait, avec des gestes tendres.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "matelas",
+    "couverture"
+   ],
+   "visual": "Night: Mohammed sits up in his sleep shouting orders; Zoubida lays him back down tenderly.",
+   "action": "sit_up"
+  },
+  {
+   "id": "b036",
+   "scene": "s06_soir",
+   "text": "Frottez ! Plus vite ! Paresseux !",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "couverture"
+   ],
+   "visual": "Close: Mohammed shouting in his sleep, eyes closed."
+  },
+  {
+   "id": "b037",
+   "scene": "s07_matin",
+   "text": "Le matin, je me préparais pour l'école, quand ma mère m'arrêta.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "planchette"
+   ],
+   "visual": "Morning: Mohammed ready with his slate; Zoubida stops him at the door.",
+   "light": "morning"
+  },
+  {
+   "id": "b038",
+   "scene": "s07_matin",
+   "text": "Aujourd'hui, tu ne vas pas au Msid. Tu m'accompagnes à la Kissaria, le marché des tissus. Il est temps de penser à tes habits de fête.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida announces the Kissaria trip.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b039",
+   "scene": "s07_matin",
+   "text": "J'applaudis avec enthousiasme.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed claps with enthusiasm.",
+   "action": "clap"
+  },
+  {
+   "id": "b040",
+   "scene": "s07_matin",
+   "text": "Est-ce que j'aurai une chemise neuve ?",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed asks, hopeful."
+  },
+  {
+   "id": "b041",
+   "scene": "s07_matin",
+   "text": "Tu auras une chemise neuve.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida answers, amused.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b042",
+   "scene": "s07_matin",
+   "text": "Est-ce que je porterai un gilet avec des soutaches ?",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "Mohammed, more excited."
+  },
+  {
+   "id": "b043",
+   "scene": "s07_matin",
+   "text": "Tu porteras un gilet avec des soutaches.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "Zoubida answers, smiling.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b044",
+   "scene": "s07_matin",
+   "text": "Et ma djellaba blanche, celle qui est rangée dans le coffre ?",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "djellaba",
+    "coffre"
+   ],
+   "visual": "Mohammed glances at the chest where his white djellaba is kept."
+  },
+  {
+   "id": "b045",
+   "scene": "s07_matin",
+   "text": "Ta djellaba blanche, des babouches neuves que te fabrique Moulay Larbi, et une belle sacoche brodée.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "babouche",
+    "sacoche",
+    "djellaba"
+   ],
+   "visual": "Zoubida lists the babouches from Moulay Larbi and an embroidered satchel."
+  },
+  {
+   "id": "b046",
+   "scene": "s07_matin",
+   "text": "Je me dressai de toute ma taille. Je bombai le torse. J'esquissai même quelques pas d'une danse barbare. J'allais pousser un hululement, quand ma mère me rappela à plus de dignité.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Mohammed stands tall, chest out, and does a little wild dance; Zoubida raises a hand.",
+   "action": "dance"
+  },
+  {
+   "id": "b047",
+   "scene": "s07_matin",
+   "text": "Un peu de dignité, mon fils !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida: 'un peu de dignité', holding back a smile.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b048",
+   "scene": "s08_pardon",
+   "text": "Fatma Bziouya riait à gorge déployée. Son rire ne me choquait pas. Ce matin, j'étais d'une générosité sans bornes.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "fenetre_fatma",
+   "cast": [
+    "fatma"
+   ],
+   "props": [],
+   "visual": "Fatma Bziouya laughs heartily at her window."
+  },
+  {
+   "id": "b049",
+   "scene": "s08_pardon",
+   "text": "Je pardonnais à Zineb toutes les misères qu'elle m'avait faites. Je pardonnais à son chat, revenu sans son collier, ma belle chaîne d'or. Je pardonnais aux mardis d'être trop longs, et à la baguette de cognassier de mordre mes oreilles.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "chat",
+    "or",
+    "baguette"
+   ],
+   "visual": "Imagination: floating vignettes he forgives — Zineb's face, her grey cat (no collar), a gold chain, a quince rod — in soft light."
+  },
+  {
+   "id": "b050",
+   "scene": "s08_pardon",
+   "text": "Je pardonnais tout au monde, ou du moins, à ce que je connaissais du monde.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed beaming, magnanimous."
+  },
+  {
+   "id": "b051",
+   "scene": "s09_cavalier",
+   "text": "Je montai sur la terrasse, où personne ne pouvait me voir. Je courais, je chantais, je battais les murs avec une baguette trouvée là.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "terrasse",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "baguette"
+   ],
+   "visual": "Alone on the terrace, Mohammed runs, sings, beats the low walls with a stick.",
+   "action": "run"
+  },
+  {
+   "id": "b052",
+   "scene": "s09_cavalier",
+   "text": "La baguette devint un sabre. Je pourfendais des ennemis invisibles. Je coupais la tête aux pachas, aux prévôts des marchands, et à leurs sbires !",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "terrasse",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "baguette"
+   ],
+   "visual": "The stick is a sabre: he slashes invisible enemies.",
+   "action": "slash"
+  },
+  {
+   "id": "b053",
+   "scene": "s09_cavalier",
+   "text": "Puis la baguette devint cheval. J'étais le cavalier courageux, vêtu d'une djellaba immaculée, et d'un gilet à soutaches. Ma sacoche brodée me tirait l'épaule, tant mes cartouches pesaient lourd.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "djellaba",
+    "gilet",
+    "sacoche",
+    "baguette"
+   ],
+   "visual": "Dream: Mohammed as a brave horseman in a spotless white djellaba and red braided gilet, embroidered satchel heavy with cartridges, riding a stick that becomes a horse."
+  },
+  {
+   "id": "b054",
+   "scene": "s10_appels",
+   "text": "Est-ce que mon chérif a assez joué ? Descends vite, mon chérif !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida at the foot of the stairs, calling sweetly upward."
+  },
+  {
+   "id": "b055",
+   "scene": "s10_appels",
+   "text": "Qu'attends-tu pour descendre, tête de mule ? Tu ne m'entends pas, âne à face de goudron ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida again, sharper.",
+   "figurative": [
+    "tete",
+    "mule",
+    "ane"
+   ]
+  },
+  {
+   "id": "b056",
+   "scene": "s10_appels",
+   "text": "Chien galeux ! Attends que je monte te chercher, juif sans dignité !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida screaming insults up the stairs.",
+   "peak": true,
+   "figurative": [
+    "chien"
+   ],
+   "cam": "b"
+  },
+  {
+   "id": "b057",
+   "scene": "s10_appels",
+   "text": "Dans la fièvre de la cavalcade, je n'avais rien entendu. Seuls les mots juif et chien galeux me jetèrent brutalement dans le monde réel. Je lâchai ma baguette, et je dégringolai l'escalier.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "terrasse",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "baguette",
+    "escalier"
+   ],
+   "visual": "On the terrace he freezes, drops the stick and tumbles down the stairs.",
+   "action": "run",
+   "cam": "b",
+   "figurative": [
+    "chien"
+   ]
+  },
+  {
+   "id": "b058",
+   "scene": "s10_appels",
+   "text": "Je rejoignis ma mère, l'oreille basse, le coude levé en bouclier. Elle se contenta de me prendre par les épaules, et de me secouer.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "He reaches her, ear low, elbow up as a shield; she takes him by the shoulders and shakes him.",
+   "action": "shake"
+  },
+  {
+   "id": "b059",
+   "scene": "s10_appels",
+   "text": "Elle était prête. Drapée dans son haïk blanc, des babouches noires aux pieds, elle se voila le visage de cotonnade blanche, et nous partîmes.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "haik",
+    "babouche",
+    "voile",
+    "cotonnade"
+   ],
+   "visual": "Zoubida draped in her white haïk, black babouches, veils her face with white cotton; they leave.",
+   "action": "walk"
+  },
+  {
+   "id": "b060",
+   "scene": "s11_kanza",
+   "text": "Zoubida ! Renseigne-toi sur le prix de la mousseline persil, et du satin bouquet du sultan !",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "rahma",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Rahma at her door calls after Zoubida about the cloth prices."
+  },
+  {
+   "id": "b061",
+   "scene": "s11_kanza",
+   "text": "Nous arrivions presque au tournant de la ruelle, quand Lalla Kanza, la chouafa, nous rappela.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "impasse",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "kanza"
+   ],
+   "props": [],
+   "visual": "In the alley, near the corner; far back at the house door, the chouafa calls.",
+   "action": "walk"
+  },
+  {
+   "id": "b062",
+   "scene": "s11_kanza",
+   "text": "Lalla Zoubida ! Il me faut des coudées de satinette noire, pour calmer le roi Bel Lahmer. Et Lalla Mira me ronge, il me faudrait une robe jaune flamme...",
+   "speaker": "kanza",
+   "mode": "3d",
+   "size": "M",
+   "room": "impasse",
+   "cast": [
+    "kanza"
+   ],
+   "props": [
+    "satinette"
+   ],
+   "visual": "The chouafa (Lalla Kanza) at the house door, listing her needs for the spirits.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b063",
+   "scene": "s11_kanza",
+   "text": "Donne l'argent à mon fils.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "impasse",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida answers from afar and pushes the boy back toward the house."
+  },
+  {
+   "id": "b064",
+   "scene": "s11_kanza",
+   "text": "Ma mère me poussa vers la maison. La chouafa me donna l'argent. Finalement, elle ne voulait plus que la satinette noire.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "impasse",
+   "cast": [
+    "kanza",
+    "mohammed"
+   ],
+   "props": [
+    "argent",
+    "satinette"
+   ],
+   "visual": "The chouafa gives the money to Mohammed.",
+   "action": "give",
+   "cam": "reverse"
+  },
+  {
+   "id": "b065",
+   "scene": "s12_voisine",
+   "text": "Près de Sidi Ahmed Tijani, cette mosquée aux portes richement décorées, une femme se précipita sur ma mère. Elle colla son voile rêche sur ma joue, pour m'embrasser.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_mosquee",
+   "cast": [
+    "voisine",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "porte",
+    "voile"
+   ],
+   "visual": "By the richly decorated doors of the Sidi Ahmed Tijani mosque, a veiled woman rushes at Zoubida and presses her rough veil on Mohammed's cheek.",
+   "action": "hug"
+  },
+  {
+   "id": "b066",
+   "scene": "s12_voisine",
+   "text": "C'était une voisine de Lalla Aïcha. Les deux femmes s'appuyèrent au mur de la mosquée, et parlèrent longtemps de l'affaire Moulay Larbi, si heureusement terminée.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "rue_mosquee",
+   "cast": [
+    "voisine",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The two women lean on the mosque wall, talking; Mohammed waits."
+  },
+  {
+   "id": "b067",
+   "scene": "s12_voisine",
+   "text": "Mais qui peut se fier aux hommes ? J'ai été mariée trois fois. Chaque fois, mon mari ne pensait qu'à me dépouiller. Espérons que Lalla Aïcha n'est pas tombée sur un ingrat.",
+   "speaker": "voisine",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_mosquee",
+   "cast": [
+    "voisine"
+   ],
+   "props": [],
+   "visual": "The neighbour, venomous on the last words.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b068",
+   "scene": "s12_voisine",
+   "text": "Dieu seul est juge.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_mosquee",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, sententious."
+  },
+  {
+   "id": "b069",
+   "scene": "s13_souk",
+   "text": "Les quartiers commerçants avaient un air de fête. Une foule de citadins et de campagnards se pressait dans la rue des épiciers. Des âniers poussaient des bêtes chétives, chargées de sucre, de bougies, et de ballots de cotonnade.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "ane",
+    "bougie",
+    "sucre",
+    "cotonnade"
+   ],
+   "visual": "A festive crowd of townspeople and country folk in the grocers' street; scrawny donkeys loaded with sugar, candles and bales of cotton."
+  },
+  {
+   "id": "b070",
+   "scene": "s13_souk",
+   "text": "Pour circuler plus facilement, j'avais enlevé mes babouches, et je les avais mises dans mon capuchon. Je les sentais battre légèrement mon dos.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_foule",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "babouche",
+    "capuchon"
+   ],
+   "visual": "Mohammed barefoot, his babouches in his hood bouncing on his back, walking behind his mother.",
+   "action": "walk"
+  },
+  {
+   "id": "b071",
+   "scene": "s13_souk",
+   "text": "Fais attention à tes babouches ! On va te les voler !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_foule",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "babouche"
+   ],
+   "visual": "Zoubida turns back, warning him.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b072",
+   "scene": "s13_souk",
+   "text": "La Kissaria, rendez-vous de toutes les élégantes de la ville, me parut contenir les trésors fabuleux de Soleiman, fils de David.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "caftan",
+    "gilet"
+   ],
+   "visual": "The Kissaria as Solomon's treasure: silks and kaftans glowing like a treasure cave, seen through the boy's eyes."
+  },
+  {
+   "id": "b073",
+   "scene": "s13_souk",
+   "text": "Des caftans amarante, des gilets ornés de passementerie, des burnous somptueux, des tulles irisés comme des toiles d'araignée sous la rosée, des satins moirés, des cretonnes aux couleurs sauvages.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "kissaria",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "marchand"
+   ],
+   "props": [
+    "caftan",
+    "gilet",
+    "burnous",
+    "tulle"
+   ],
+   "visual": "Kissaria alley: amaranth kaftans, braided gilets, burnouses, iridescent tulle hung on the awnings.",
+   "action": "walk"
+  },
+  {
+   "id": "b074",
+   "scene": "s13_souk",
+   "text": "Les marchands ne ressemblaient pas à ceux des autres souks. C'étaient des jeunes gens beaux, soignés, courtois, d'une patience sans limite.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "marchand"
+   ],
+   "props": [],
+   "visual": "A young, handsome, well-groomed merchant, patient and courteous.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b075",
+   "scene": "s14_poisson",
+   "text": "Après cinq ou six boutiques, nous achetâmes trois coudées de cotonnade blanche, pour ma chemise. La qualité Poisson. Ma mère ne voulait pas d'autre marque.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "marchand"
+   ],
+   "props": [
+    "cotonnade"
+   ],
+   "visual": "Zoubida buys three cubits of white cotton."
+  },
+  {
+   "id": "b076",
+   "scene": "s14_poisson",
+   "text": "Le marchand nous montra, imprimé en bleu sur la pièce, un poisson avec toutes ses écailles.",
+   "speaker": "narrator",
+   "mode": "insert",
+   "size": "insert",
+   "room": "kissaria",
+   "props": [
+    "cotonnade",
+    "poisson"
+   ],
+   "visual": "3D insert (cloth prop, top-down): a blue fish with all its scales printed on white cotton."
+  },
+  {
+   "id": "b077",
+   "scene": "s15_gilet",
+   "text": "Pour le gilet, ce fut une autre affaire. Toutes les nuances du rouge défilèrent sous nos yeux. Enfin, ma mère choisit un gilet cerise, orné de serpentins et de fleurons.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria_rev",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "A pile of red gilets; Zoubida picks a cherry gilet with braid scrolls and fleurons.",
+   "cam": "rev"
+  },
+  {
+   "id": "b078",
+   "scene": "s15_gilet",
+   "text": "Elle m'enleva la djellaba, me boutonna le gilet jusqu'au cou, recula pour juger de l'effet, me fit tourner à droite, puis à gauche, puis le roula en boule, et le fourra dans les mains du marchand.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "djellaba",
+    "gilet"
+   ],
+   "visual": "She takes off his djellaba, buttons the gilet to his neck, steps back, makes him turn right then left, balls it up into the merchant's hands.",
+   "action": "turn"
+  },
+  {
+   "id": "b079",
+   "scene": "s15_gilet",
+   "text": "Cet article te plaît-il ?",
+   "speaker": "marchand",
+   "mode": "3d",
+   "size": "CU",
+   "room": "kissaria",
+   "cast": [
+    "marchand"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "The merchant, smiling.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b080",
+   "scene": "s15_gilet",
+   "text": "C'est le prix qui en décidera.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "kissaria_rev",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, poker-faced.",
+   "cam": "rev"
+  },
+  {
+   "id": "b081",
+   "scene": "s15_gilet",
+   "text": "Aux clients sérieux, je fais toujours un rabais. Je le vends cinq réaux, je te le laisse à quatre.",
+   "speaker": "marchand",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "marchand"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "The merchant folds the gilet, offering a 'discount'.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b082",
+   "scene": "s15_gilet",
+   "text": "Coupons court. Je t'en offre deux réaux.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria_rev",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida, flat and firm.",
+   "cam": "rev"
+  },
+  {
+   "id": "b083",
+   "scene": "s15_gilet",
+   "text": "Deux réaux ? Je te le jure, ce n'est même pas le prix de revient ! Devrais-je mendier ce soir pour nourrir mes enfants ?",
+   "speaker": "marchand",
+   "mode": "3d",
+   "size": "CU",
+   "room": "kissaria",
+   "cast": [
+    "marchand"
+   ],
+   "props": [],
+   "visual": "The merchant swears, hand on heart, theatrical.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b084",
+   "scene": "s15_gilet",
+   "text": "Écoute, je suis mère de famille, je n'ai pas le temps de marchander. Deux réaux et un quart. C'est pour mon fils, pour le jour de l'Achoura.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria_rev",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida pleads, hand on the boy's shoulder.",
+   "cam": "rev"
+  },
+  {
+   "id": "b085",
+   "scene": "s15_gilet",
+   "text": "Ce garçon me plaît. Pour lui, trois réaux et demi.",
+   "speaker": "marchand",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "marchand",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The merchant smiles at the boy and holds out his hand.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b086",
+   "scene": "s15_gilet",
+   "text": "Ma mère lui tourna le dos, me prit par le poignet, et m'entraîna.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "kissaria",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "marchand"
+   ],
+   "props": [],
+   "visual": "Zoubida turns her back, takes Mohammed by the wrist and drags him a few steps.",
+   "action": "walk"
+  },
+  {
+   "id": "b087",
+   "scene": "s15_gilet",
+   "text": "Viens ! Les gilets ne manquent pas à la Kissaria !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria_rev",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "Zoubida walking away, loud.",
+   "cam": "rev"
+  },
+  {
+   "id": "b088",
+   "scene": "s15_gilet",
+   "text": "Reviens, Lalla ! Reviens donc ! Admire ces coutures, ces boutons ! Paie-moi ce que tu veux. Tu me parais être une chérifa pleine de baraka. Ne m'oublie pas dans tes prières !",
+   "speaker": "marchand",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "marchand"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "The merchant calls after them, holding up the gilet's seams and buttons.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b089",
+   "scene": "s15_gilet",
+   "text": "Ma mère perdait la tête quand on la traitait de chérifa. Elle sortit un chiffon noué plusieurs fois, et s'acharna à le dénouer.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "kissaria",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "chiffon"
+   ],
+   "visual": "Flattered, Zoubida pulls out a rag knotted many times and fights to untie it.",
+   "action": "untie"
+  },
+  {
+   "id": "b090",
+   "scene": "s15_gilet",
+   "text": "Elle tendit deux réaux et demi au marchand, sans rien dire, saisit le paquet, et m'entraîna.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "kissaria",
+   "cast": [
+    "zoubida",
+    "marchand",
+    "mohammed"
+   ],
+   "props": [
+    "argent"
+   ],
+   "visual": "She hands over two and a half réaux without a word, grabs the parcel and drags the boy off.",
+   "action": "give",
+   "cam": "reverse"
+  },
+  {
+   "id": "b091",
+   "scene": "s16_satinette",
+   "text": "Nous étions près de la médersa Attarine, quand je rappelai à ma mère la satinette de Lalla Kanza.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_epices",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "satinette"
+   ],
+   "visual": "Near the Attarine medersa, Mohammed tugs at her haïk, remembering."
+  },
+  {
+   "id": "b092",
+   "scene": "s16_satinette",
+   "text": "Que Dieu maudisse toutes les chouafas de la terre ! Où ai-je mis l'argent de cette sorcière ? Elle ne peut pas faire ses courses elle-même ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_epices",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "poche"
+   ],
+   "visual": "At a shop corner she searches her pockets, cursing.",
+   "action": "search",
+   "cam": "b"
+  },
+  {
+   "id": "b093",
+   "scene": "s16_satinette",
+   "text": "Elle fouilla, s'énerva, s'agita, et finit par retrouver l'argent, au fond d'une poche de son caftan. Elle paya la satinette sans discuter.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_epices",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "argent",
+    "satinette"
+   ],
+   "visual": "She finds the money deep in her kaftan pocket.",
+   "action": "search"
+  },
+  {
+   "id": "b094",
+   "scene": "s16_satinette",
+   "text": "Sa bonne humeur avait disparu. Elle me gronda sans raison jusqu'à la maison, remit la satinette à la chouafa, et monta l'escalier, en gémissant à chaque marche.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "zoubida",
+    "kanza"
+   ],
+   "props": [
+    "satinette",
+    "escalier"
+   ],
+   "visual": "Home: she hands the black satinette to the chouafa, then climbs the stairs groaning at each step.",
+   "action": "climb"
+  },
+  {
+   "id": "b095",
+   "scene": "s17_rahma",
+   "text": "Rahma sortit sur le palier, et nous invita dans sa chambre, pour voir nos achats. Une chambre pauvre, des matelas bosselés, et pour seul luxe, une étagère peinturlurée, chargée de bols à fleurs.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "rahma_chambre",
+   "cast": [
+    "rahma",
+    "zoubida",
+    "mohammed",
+    "zineb"
+   ],
+   "props": [
+    "matelas",
+    "etagere",
+    "bol"
+   ],
+   "visual": "Rahma's poor dark room: lumpy mattresses, a painted shelf with flowered bowls.",
+   "action": "walk"
+  },
+  {
+   "id": "b096",
+   "scene": "s17_rahma",
+   "text": "Zineb jouait dans un coin avec son chat. Elle lui présentait une minuscule glace ronde. Le chat allongea la patte. Ses griffes grattèrent le verre. Il regarda derrière le miroir. Le mystère restait entier.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rahma_chambre",
+   "cast": [
+    "zineb"
+   ],
+   "props": [
+    "chat",
+    "miroir",
+    "glace",
+    "verre"
+   ],
+   "visual": "In a corner Zineb holds a tiny round mirror up to her grey cat; the cat paws the glass, claws scratching, then peers behind the mirror.",
+   "cam": "coin"
+  },
+  {
+   "id": "b097",
+   "scene": "s17_rahma",
+   "text": "Il se fâcha, cracha des grossièretés dans son langage, et partit comme une flèche. Zineb riait aux éclats.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "rahma_chambre",
+   "cast": [
+    "zineb"
+   ],
+   "props": [
+    "chat"
+   ],
+   "visual": "The grey cat spits, tail bristling, and bolts out of frame like an arrow; Zineb bursts out laughing.",
+   "cam": "coin",
+   "action": "run"
+  },
+  {
+   "id": "b098",
+   "scene": "s17_rahma",
+   "text": "Qu'il est beau, ce gilet ! Un vrai gilet de prince !",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "M",
+   "room": "rahma_chambre",
+   "cast": [
+    "rahma",
+    "mohammed"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "Rahma admires the gilet held against Mohammed."
+  },
+  {
+   "id": "b099",
+   "scene": "s17_rahma",
+   "text": "Il faisait sombre dans cette chambre. Le rouge du gilet prenait des tons de velours cramoisi. Ce vêtement était le mien ! Le jour de l'Achoura, j'allais éblouir tout le monde. Je serais un prince de légende.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "rahma_chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "gilet"
+   ],
+   "visual": "Close: the red gilet turns deep crimson velvet in the dark; Mohammed glows with pride (imagination glow)."
+  },
+  {
+   "id": "b100",
+   "scene": "s17_rahma",
+   "text": "Ma mère chuchotait, penchée sur notre voisine. Zineb me fit une horrible grimace. Je lui en fis une, encore plus épouvantable.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rahma_chambre",
+   "cast": [
+    "zoubida",
+    "rahma",
+    "zineb",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The mothers whisper; Zineb makes a horrible face at Mohammed; he makes a worse one.",
+   "cam": "coin"
+  },
+  {
+   "id": "b101",
+   "scene": "s17_rahma",
+   "text": "Maman ! Maman ! Sidi Mohammed me fait des grimaces !",
+   "speaker": "zineb",
+   "mode": "3d",
+   "size": "CU",
+   "room": "rahma_chambre",
+   "cast": [
+    "zineb"
+   ],
+   "props": [],
+   "visual": "Zineb screams for her mother.",
+   "peak": true,
+   "cam": "coin"
+  },
+  {
+   "id": "b102",
+   "scene": "s17_rahma",
+   "text": "C'est elle qui a commencé ! C'est elle !",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "rahma_chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed, desperate.",
+   "peak": true
+  },
+  {
+   "id": "b103",
+   "scene": "s17_rahma",
+   "text": "Personne ne me croyait. J'éclatai en sanglots. Ma mère me saisit par le bras, et m'entraîna jusqu'à notre chambre.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rahma_chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "He bursts into sobs; Zoubida grabs his arm and drags him out.",
+   "action": "drag"
+  },
+  {
+   "id": "b104",
+   "scene": "s17_rahma",
+   "text": "Quelle vie d'enfer je mène à cause de toi ! Quel destin cruel !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "galerie",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "On the gallery Zoubida laments loudly, dragging him to their room.",
+   "action": "walk"
+  },
+  {
+   "id": "b105",
+   "scene": "s18_prince",
+   "text": "Elle m'abandonna dans un coin, et s'enferma dans sa cuisine. J'eus faim, à force de pleurer en silence.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Alone in a corner, sniffling; the kitchen curtain closes."
+  },
+  {
+   "id": "b106",
+   "scene": "s18_prince",
+   "text": "Je me mis sur le dos, et je composai un menu fastueux, pour le jour où je serais prince. Je n'inviterais pas les princes. Ils mangent très bien chez eux.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_jour",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "matelas"
+   ],
+   "visual": "He lies on his back on the mattress, staring at the ceiling, dreaming.",
+   "action": "lie"
+  },
+  {
+   "id": "b107",
+   "scene": "s18_prince",
+   "text": "Mes hôtes seraient les affamés, les mendiants, les psalmistes. Je leur donnerais des gilets rouges, des djellabas blanches comme le lait, des babouches safran. Moi, je serais en blanc, avec le bonnet rouge des gens de cour.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "gilet",
+    "djellaba",
+    "babouche",
+    "bonnet"
+   ],
+   "visual": "Dream: Prince Mohammed in white with a red conical cap serves a feast to beggars and psalmists, handing out red gilets, milk-white djellabas, saffron babouches."
+  },
+  {
+   "id": "b108",
+   "scene": "s19_navets",
+   "text": "Voudrais-tu te mettre sur ton séant pour manger ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "table"
+   ],
+   "visual": "Zoubida sets down the low round table; he sits up.",
+   "action": "sit_up"
+  },
+  {
+   "id": "b109",
+   "scene": "s19_navets",
+   "text": "Ma mère avait disposé la table ronde, basse sur pattes. De la viande aux navets ! Je n'aimais pas les navets. Mais je n'eus pas le courage d'une nouvelle crise. La faim transforma le navet en saveur exquise.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "table",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "table",
+    "navet",
+    "viande"
+   ],
+   "visual": "Meat with turnips; he grimaces, then eats with hunger.",
+   "action": "eat"
+  },
+  {
+   "id": "b110",
+   "scene": "s20_chant",
+   "text": "Quelqu'un sur la terrasse se mit à chanter. Ma mère s'arrêta de mâcher, et tendit l'oreille.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_jour",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "table"
+   ],
+   "visual": "Zoubida stops chewing, listening up."
+  },
+  {
+   "id": "b111",
+   "scene": "s20_chant",
+   "text": "Âh, yâ lalli... âh, yâ lalli, yâ lalli...",
+   "speaker": "khadija",
+   "mode": "3d",
+   "size": "W",
+   "room": "terrasse",
+   "cast": [],
+   "props": [],
+   "visual": "Empty terrace in the spring breeze; a far voice sings (no one visible).",
+   "light": "day"
+  },
+  {
+   "id": "b112",
+   "scene": "s20_chant",
+   "text": "Fatma Bziouya ! Sais-tu qui chante ainsi ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "galerie",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "fenetre"
+   ],
+   "visual": "Zoubida leans out of the window, calling across the courtyard.",
+   "action": "lean"
+  },
+  {
+   "id": "b113",
+   "scene": "s20_chant",
+   "text": "C'est Lalla Khadija, la femme de l'oncle Othman !",
+   "speaker": "fatma",
+   "mode": "3d",
+   "size": "M",
+   "room": "fenetre_fatma",
+   "cast": [
+    "fatma"
+   ],
+   "props": [
+    "fenetre"
+   ],
+   "visual": "Fatma answers from her window.",
+   "cam": "fatma"
+  },
+  {
+   "id": "b114",
+   "scene": "s20_chant",
+   "text": "Tant de gaîté, alors qu'elle a épousé un vieillard qui pourrait être son père ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "galerie",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "fenetre"
+   ],
+   "visual": "Zoubida, surprised."
+  },
+  {
+   "id": "b115",
+   "scene": "s20_chant",
+   "text": "Elle n'est pas malheureuse ! L'oncle Othman fait ses quatre volontés. Il la traite comme sa fille.",
+   "speaker": "fatma",
+   "mode": "3d",
+   "size": "M",
+   "room": "fenetre_fatma",
+   "cast": [
+    "fatma"
+   ],
+   "props": [],
+   "visual": "Fatma laughs, knowing.",
+   "cam": "fatma"
+  },
+  {
+   "id": "b116",
+   "scene": "s20_chant",
+   "text": "Et elle ? Comment le traite-t-elle ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "galerie",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, mischievous."
+  },
+  {
+   "id": "b117",
+   "scene": "s20_chant",
+   "text": "Toutes les voisines partirent d'un grand rire.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "patio_balcons",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "rahma"
+   ],
+   "props": [],
+   "visual": "All the neighbours burst out laughing at their windows."
+  },
+  {
+   "id": "b118",
+   "scene": "s20_chant",
+   "text": "Moi, je sais comment elle le traite ! La vieille M'Barka m'a raconté une histoire... mais elle est trop longue.",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_balcons",
+   "cast": [
+    "rahma"
+   ],
+   "props": [],
+   "visual": "Rahma, teasing, at her balcony.",
+   "cam": "rahma"
+  },
+  {
+   "id": "b119",
+   "scene": "s20_chant",
+   "text": "Raconte-la ! Raconte-la !",
+   "speaker": "femmes",
+   "mode": "3d",
+   "size": "W",
+   "room": "patio_balcons",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "kanza"
+   ],
+   "props": [],
+   "visual": "Women on several balconies beg together."
+  },
+  {
+   "id": "b120",
+   "scene": "s21_recit",
+   "text": "Toutes les femmes avaient abandonné leur besogne. Elles s'accoudaient aux balustrades de leurs balcons. Lalla Kanza étala un vieux tapis de prière dans le patio, pour écouter.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "patio_balcons",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "fatma",
+    "kanza"
+   ],
+   "props": [
+    "tapis",
+    "balustrade"
+   ],
+   "visual": "Women lean on their balcony rails; Lalla Kanza spreads an old prayer rug in the patio; Mohammed beside his mother.",
+   "action": "sit"
+  },
+  {
+   "id": "b121",
+   "scene": "s21_recit",
+   "text": "Vous connaissez l'oncle Othman. Ses parents lui ont laissé une grosse fortune. Il a tout mangé, capital et bénéfices. Il ne lui reste que la petite maison collée à la nôtre.",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_balcons",
+   "cast": [
+    "rahma"
+   ],
+   "props": [],
+   "visual": "Rahma, seen to the chest at her balcony, starts her story.",
+   "cam": "rahma"
+  },
+  {
+   "id": "b122",
+   "scene": "s21_recit",
+   "text": "Il s'est marié plusieurs fois. Mais seule Lalla Khadija a réussi à le dominer. Elle le fait manger dans le creux de sa main, comme un agneau.",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio_balcons",
+   "cast": [
+    "rahma"
+   ],
+   "props": [],
+   "visual": "Rahma, lowering her voice, mock-serious.",
+   "cam": "rahma"
+  },
+  {
+   "id": "b123",
+   "scene": "s22_othman",
+   "text": "Vendredi dernier, Si Othman sort de bonne heure faire son marché. Il balance gaiement son cabas, il salue tout le monde, la main sur le cœur.",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_balcons",
+   "cast": [
+    "rahma"
+   ],
+   "props": [
+    "cabas"
+   ],
+   "visual": "Rahma acts out Si Othman swinging his basket, hand on heart, greeting everyone.",
+   "cam": "rahma",
+   "action": "mime"
+  },
+  {
+   "id": "b124",
+   "scene": "s22_othman",
+   "text": "À Joutyia, un seul boucher est ouvert : Salem. Il brandit tantôt une hache, tantôt un coutelas énorme. Et il y a foule, je vous dis !",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "hache",
+    "coutelas"
+   ],
+   "visual": "Story: Joutyia, one butcher open — Salem, brandishing an axe — and a crowd around his stall."
+  },
+  {
+   "id": "b125",
+   "scene": "s22_othman",
+   "text": "Si Othman agite les deux bras, et crie quelque chose qui peut vouloir dire : avale ton coutelas, ou bien : donne-moi un gigot ! Salem, furieux, le menace de sa hache.",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "hache"
+   ],
+   "visual": "Story: Si Othman waving both arms, grinning, shouting; Salem threatens him with the axe."
+  },
+  {
+   "id": "b126",
+   "scene": "s22_othman",
+   "text": "Tout le monde riait aux larmes. Rahma savait si bien raconter.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "patio_balcons",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "fatma",
+    "kanza"
+   ],
+   "props": [],
+   "visual": "The women laugh to tears on their balconies."
+  },
+  {
+   "id": "b127",
+   "scene": "s22_othman",
+   "text": "Un chien vient flairer ses talons. Si Othman lui envoie un grand coup de pied. Sa babouche saute ! Le chien l'attrape entre ses crocs, et se sauve ! Et Si Othman le suit, clopin-clopant !",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "babouche",
+    "chien"
+   ],
+   "visual": "Story: a dog runs off with Si Othman's babouche in its teeth; he hobbles after it on one shoe."
+  },
+  {
+   "id": "b128",
+   "scene": "s22_othman",
+   "text": "Il retrouve sa babouche près du pont de Bin Lemdoun. Il revient à la boucherie : plus personne. Salem somnole, la chéchia sur l'oreille. Il ne reste que du mou pour les chats !",
+   "speaker": "rahma",
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio_balcons",
+   "cast": [
+    "rahma"
+   ],
+   "props": [
+    "babouche",
+    "chat",
+    "chechia"
+   ],
+   "visual": "Rahma mimes the dozing butcher, head tilted, chechia over the ear; the women giggle.",
+   "cam": "rahma",
+   "action": "mime"
+  },
+  {
+   "id": "b129",
+   "scene": "s22_othman",
+   "text": "Dans un fondouk, des aloses passent au-dessus des têtes. Si Othman attend un miracle. Mais son nez le démange. Il court chez le marchand de tabac. À son retour : plus de poissons !",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "alose"
+   ],
+   "visual": "Story: shad fish passing over heads in a packed fondouk; Si Othman waiting, nose itching."
+  },
+  {
+   "id": "b130",
+   "scene": "s22_othman",
+   "text": "Les femmes hurlaient de joie. Moi, je trépignais d'enthousiasme.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_balcons",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Mohammed stamps with enthusiasm beside his laughing mother.",
+   "action": "stamp"
+  },
+  {
+   "id": "b131",
+   "scene": "s22_othman",
+   "text": "Continue ! Continue !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "galerie",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, laughing: 'Continue !'"
+  },
+  {
+   "id": "b132",
+   "scene": "s22_othman",
+   "text": "Alors, chez le marchand de menthe de la rue Sagha, il voit une rose magnifique. Il se dit : si je l'offre à Lalla Khadija, elle me pardonnera.",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "rose"
+   ],
+   "visual": "Story: at the mint-seller's, Si Othman stops before a magnificent rose."
+  },
+  {
+   "id": "b133",
+   "scene": "s22_othman",
+   "text": "J'étais dans la rue quand il est rentré, tout fier de sa rose. La porte se referme... et se rouvre aussitôt ! La rose s'écrase sous ses pieds. Puis son turban vole la rejoindre ! Puis Si Othman lui-même, pâle et défait !",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "porte",
+    "rose",
+    "turban"
+   ],
+   "visual": "Story: the door reopens — the rose crushed underfoot, the turban flying out, then Si Othman himself, pale."
+  },
+  {
+   "id": "b134",
+   "scene": "s22_othman",
+   "text": "Il ramasse son turban, il respire longuement sa rose... et en me voyant, il me fait un grand sourire !",
+   "speaker": "rahma",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "turban",
+    "rose"
+   ],
+   "visual": "Story: Si Othman picks up his turban, sniffs the rose, and gives a big smile."
+  },
+  {
+   "id": "b135",
+   "scene": "s23_fin",
+   "text": "Nous riions à nous tordre. Tout le monde félicita Rahma. Ses histoires avaient du sel.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "patio_balcons",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "rahma",
+    "kanza"
+   ],
+   "props": [],
+   "visual": "Everyone doubled up with laughter, complimenting Rahma.",
+   "cam": "rahma"
+  },
+  {
+   "id": "b136",
+   "scene": "s23_fin",
+   "text": "Le récit de Rahma m'obséda toute la soirée. Et la nuit, j'en rêvai encore.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "couverture"
+   ],
+   "visual": "Night: Mohammed in bed, smiling in his sleep.",
+   "light": "night",
+   "fade": true
+  },
+  {
+   "id": "b137",
+   "scene": "s24_fin",
+   "mode": "title",
+   "text": "fin",
+   "dur": 4,
+   "visual": "end card"
+  }
+ ]
+}

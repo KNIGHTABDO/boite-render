@@ -58,15 +58,15 @@ const sh = shot({
   async build(S3) {
     const F = (x, y, h = 0) => S3.floorAt(x, y, h), cam = S3.cam.position.clone().setY(0);
     const zo = await role('zoubida', { costume: 'haik' }), mo = await role('mohammed'), ma = await role('marchand');
-    const mp = F(1470, 717, .8), zp = F(1330, 965), mp2 = F(1180, 985);
-    S3.add(zo, zp.x, zp.z, yawTo(zp, mp)); S3.add(mo, mp2.x, mp2.z, yawTo(mp2, mp)); S3.add(ma, mp.x, mp.z, yawTo(mp, cam)); ma.group.position.y = .8;
+    const mp = F(1470, 745, .72), zp = F(1330, 965), mp2 = F(1180, 985);
+    S3.add(zo, zp.x, zp.z, yawTo(zp, mp)); S3.add(mo, mp2.x, mp2.z, yawTo(mp2, mp)); S3.add(ma, mp.x, mp.z, yawTo(mp, cam)); rest(ma.B); ma.group.updateMatrixWorld(true); ma.group.position.y += .72 - Math.min(PO.lowestOf(ma, ['footL']), PO.lowestOf(ma, ['footR'])); ma.group.updateMatrixWorld(true);
     const b = S3.prop(bolt()), s = S3.prop(strip()), cloth = S3.prop(fishCloth());
     return { actors: [zo, mo, ma], zo, mo, ma, mp, cam, zp, b, s, cloth, faces: [[zo, null, 1], [mo, null, 2], [ma, null, 3]] };
   },
   cover: [{ t: L[0][0], size: 'W' }, { t: L[0][0] + 5, size: 'M', on: 'marchand' }, { t: L[0][0] + 10, size: 'M', on: 'zoubida' }, { t: INS, size: 'CU', on: 'marchand' }],
   view(lt, u, t) {   // insert: tight on the banner of cloth, a slow push
     if (!sh.st || t < INS) return null;
-    const { mp, cam } = sh.st, c = mp.clone().add(cam.clone().sub(mp).setY(0).normalize().multiplyScalar(.42)); c.y = .8 + 1.38; const p = sh.S3.project(c), z = 3.2 + .5 * clamp((t - INS) / (L[1][1] - INS));
+    const { mp, cam } = sh.st, c = mp.clone().add(cam.clone().sub(mp).setY(0).normalize().multiplyScalar(.42)); c.y = .72 + 1.38; const p = sh.S3.project(c), z = 3.2 + .5 * clamp((t - INS) / (L[1][1] - INS));
     return [p[0], p[1], z];
   },
   frame(lt, u, t, S, st) {
@@ -75,7 +75,7 @@ const sh = shot({
     const ch = IK.wpos(ma.B.chest), f = dirW(ma, 0, 0, 1), sd = dirW(ma, 1, 0, 0), palm = (a, q) => PO.handPts(a, q).palm;
     b.visible = s.visible = !ins; cloth.visible = ins;
     if (!ins) {   // measures a cubit of cloth off the bolt along his outstretched arm, twice
-      const ext = .55 + .45 * Math.abs(Math.sin(t * .9)), rH = ch.clone().addScaledVector(f, .36).addScaledVector(sd, -.14).add(V(0, -.05, 0)), lH = ch.clone().addScaledVector(f, .4).addScaledVector(sd, .14 + ext * .5).add(V(0, -.02, 0));
+      const ext = .5 + .3 * Math.abs(Math.sin(t * .9)), rH = ch.clone().addScaledVector(f, .36).addScaledVector(sd, -.14).add(V(0, -.05, 0)), lH = ch.clone().addScaledVector(f, .4).addScaledVector(sd, .14 + ext * .3).add(V(0, -.02, 0));
       PO.reach(ma, 'R', rH, { grip: .02 }); PO.reach(ma, 'L', lH, { grip: .02 });
       inHand(b, palm(ma, 'R'), sd.clone().add(V(0, .001, 0)));
       s.position.copy(palm(ma, 'R')); s.lookAt(palm(ma, 'L')); s.scale.set(1, 1, palm(ma, 'R').distanceTo(palm(ma, 'L'))); s.updateMatrixWorld(true);
@@ -86,7 +86,7 @@ const sh = shot({
     } else {   // the merchant holds the printed cloth up by its top corners, facing the camera, smiling
       const c0 = ch.clone().addScaledVector(f, .42).add(V(0, .12, 0)), tilt = -.04 * Math.sin(t * 1.3);
       cloth.position.copy(c0); cloth.rotation.set(0, ma.group.rotation.y, tilt); cloth.updateMatrixWorld(true);
-      for (const [q, sg] of [['R', -1], ['L', 1]]) PO.reach(ma, q, c0.clone().addScaledVector(sd, sg * .33).add(V(0, .25, 0)), { grip: .02 });
+      for (const [q, sg] of [['R', -1], ['L', 1]]) PO.reach(ma, q, c0.clone().addScaledVector(sd, sg * .28).add(V(0, .12, 0)), { grip: .02 });
       PO.look(ma, V(0, 1.4, 0).add(cam), .6); PO.look(zo, c0, .6); PO.look(mo, c0, .6);
     }
     breathe(zo, t, 1, 1); breathe(mo, t, 1, 2); breathe(ma, t, 1, 3);

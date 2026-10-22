@@ -73,12 +73,12 @@ const chambre = shot({
   async build(S3) {
     const M = {}, F = (x, y) => S3.floorAt(x, y), camP = S3.cam.position.clone().setY(0), tb = F(862, 747);
     const zou = await role('zoubida', { seat: true }), mo = await role('mohammed', { seat: true });
-    const zAt = tb.clone().add(V(1.0, 0, .15)), mAt = tb.clone().add(V(-.95, 0, .2));
-    S3.add(zou, zAt.x, zAt.z, yawTo(zAt, tb) * .55 + yawTo(zAt, camP) * .45); S3.add(mo, mAt.x, mAt.z, yawTo(mAt, tb) * .5 + yawTo(mAt, camP) * .5);
-    M.zou = memoPose('s20zou', zou, [zAt], () => PO.crossLegged(zou, { seat: 0, lean: .12 }).map(e => +e.toFixed(3)));
-    const zS = PO.snap(zou), zk = skirt(S3, zou, 0);
-    M.mo = memoPose('s20mo', mo, [mAt], () => PO.crossLegged(mo, { seat: 0, lean: .12 }).map(e => +e.toFixed(3)));
-    const mS = PO.snap(mo), mk = skirt(S3, mo, 0);
+    const zAt = tb.clone().add(V(-.3, 0, -.62)), mAt = tb.clone().add(V(.55, 0, .04));   // kneeling on the floor around the painted tabla, as in s19
+    S3.add(zou, zAt.x, zAt.z, yawTo(zAt, tb) * .65 + yawTo(zAt, camP) * .35); S3.add(mo, mAt.x, mAt.z, yawTo(mAt, tb) * .5 + yawTo(mAt, camP) * .5);
+    M.zou = memoPose('s20zou2', zou, [zAt], () => PO.kneel(zou, { lean: .2 }).map?.(e => +e.toFixed(3)));
+    const zS = PO.snap(zou);
+    M.mo = memoPose('s20mo2', mo, [mAt], () => PO.kneel(mo, { lean: .12 }).map?.(e => +e.toFixed(3)));
+    const mS = PO.snap(mo);
     return { actors: [zou, mo], M, zou, mo, zS, mS, win: V(zAt.x + 2.0, .85, zAt.z - 1.2),
       faces: [[zou, null, 2, (lt, t) => ({ open: t < STOP ? .12 + .3 * Math.abs(Math.sin(t * 7)) : 0 })], [mo, null, 5, (lt, t) => ({ open: t < STOP + 1.2 ? .1 + .25 * Math.abs(Math.sin(t * 6 + 1)) : 0 })]] };
   },
@@ -89,6 +89,7 @@ const chambre = shot({
     zou.B.head.rotation.x += .14 * (1 - hear);   // looking down at the food, then up toward the song
     zou.B.spine.rotation.x -= .05 * hear; zou.group.updateMatrixWorld(true);
     PO.look(zou, st.win, .5 * hear);
+    zou.B.head.rotation.x = Math.max(-.3, Math.min(.3, zou.B.head.rotation.x)); zou.B.head.rotation.z = Math.max(-.25, Math.min(.25, zou.B.head.rotation.z)); zou.B.neck.rotation.x = Math.max(-.2, zou.B.neck.rotation.x); zou.group.updateMatrixWorld(true);
     if (hear > .05) PO.reach(zou, 'R', IK.wpos(zou.B.head).add(loc(zou, -.15, -.02, .02)), { grip: .02 });   // hand cupped behind the ear
     PO.look(mo, IK.wpos(zou.B.head), .6 * sm(STOP + .5, STOP + 1.2, t)); breathe(zou, t, 1, 1); breathe(mo, t, 1, 2);
   },
@@ -127,7 +128,7 @@ export function galPose(st, t, o = {}) {
 const gal = galShot([{ t: L[2][0], on: 'zoubida', z: 1.5, hy: .38 }, { t: L[4][0], on: 'zoubida', z: 2.0, hy: .42, dx: -30 }, { t: L[6][0], on: 'zoubida', z: 2.5, hy: .42 }],
   (t, st) => ({
     call: t < L[3][0] ? sm(L[2][0], L[2][0] + .5, t) : 0, yaw: t < L[3][0] ? -.8 : t < L[5][0] ? -.5 : .2,
-    look: t < L[3][0] ? V(-12, 2.2, -14) : null, laugh: t > L[6][0] + 2.2 ? .5 : 0,
+    look: t < L[3][0] ? V(-8, 2.2, 2) : null, laugh: t > L[6][0] + 2.2 ? .5 : 0,
     talk: t >= L[4][0] && t < L[5][0] ? 1 : t >= L[6][0] && t < L[6][1] ? 1 : 0,
   }));
 
@@ -160,6 +161,8 @@ const terrace = (lt, u, t) => {
 
 // =============================================================== the patio: balconies of patio_matin
 export const RAIL = .92, H1 = 4.2, H2 = 7.3;
+// the plate's rails read taller than .92 m: lift the women so the rail meets their hips (they read as cut at the chest otherwise)
+const LIFT = .1, LIFT2 = .2;
 const BASE1 = [[1000, 585], [1090, 570], [1250, 550], [1400, 537], [1500, 525], [1600, 512], [1660, 505]], TOP1 = [[1000, 523], [1090, 510], [1250, 495], [1400, 470], [1500, 457], [1600, 447], [1660, 442]];
 const BASE2 = [[1380, 280], [1450, 275], [1550, 267], [1620, 262]], TOP2 = [[1380, 222], [1450, 210], [1550, 195], [1620, 188]];
 const itp = (P, x) => { for (let i = 0; i < P.length - 1; i++) if (x <= P[i + 1][0] || i === P.length - 2) return P[i][1] + (P[i + 1][1] - P[i][1]) * (x - P[i][0]) / (P[i + 1][0] - P[i][0]); };
@@ -179,7 +182,7 @@ export function patioShot(entries, act, { rug = true } = {}) {
       const zou = await role('zoubida'), moh = await role('mohammed'), fat = await role('fatma'), rah = await role('rahma'), kan = await role('kanza');
       const pz = on(1450, BASE1, H1, 10), pm = on(1370, BASE1, H1, 10), pf = on(1565, BASE1, H1, 10), pr = on(1500, BASE2, H2, 8);
       S3.add(zou, pz.x, pz.z, yawTo(pz, camP) + .08); S3.add(moh, pm.x, pm.z, yawTo(pm, camP) + .25); S3.add(fat, pf.x, pf.z, yawTo(pf, camP) - .2); S3.add(rah, pr.x, pr.z, yawTo(pr, camP) - .1);
-      zou.group.position.y = fat.group.position.y = H1; moh.group.position.y = H1 + .24; rah.group.position.y = H2;
+      zou.group.position.y = fat.group.position.y = H1 + LIFT; moh.group.position.y = H1 + .24; rah.group.position.y = H2 + LIFT2;
       const rc = F(640, 930), ke = V(rc.x - .65 - .45, 0, rc.z), from = F(1250, 900);
       S3.add(kan, ke.x, ke.z, Math.PI / 2);
       const rugA = S3.prop(PR.mat({ w: 1.3, d: .85, col: 0xa03a4c }), 0, 0, 0), rugB = S3.prop(PR.mat({ w: 1.05, d: .62, col: 0x294a78 }), 0, .006, 0);
@@ -188,7 +191,7 @@ export function patioShot(entries, act, { rug = true } = {}) {
         let open = Math.max(who && s ? mouth(s, who, t) : 0, name !== 'rahma' && s ? mouth(s, 'femmes', t) : 0); if (o.open) open = Math.max(open, o.open);
         return { open, lid: Math.max(o.lid || 0, lid[name] || 0), sad: 0 }; };
       const top = { zoubida: H1 + RAIL + .06, mohammed: H1 + RAIL + .06, fatma: H1 + RAIL + .06, rahma: H2 + RAIL + .06 };
-      return { actors: [zou, moh, fat, rah, kan], zou, moh, fat, rah, kan, by: { zoubida: zou, mohammed: moh, fatma: fat, rahma: rah, kanza: kan }, top, base: { zoubida: H1, mohammed: H1 + .24, fatma: H1, rahma: H2 },
+      return { actors: [zou, moh, fat, rah, kan], zou, moh, fat, rah, kan, by: { zoubida: zou, mohammed: moh, fatma: fat, rahma: rah, kanza: kan }, top, base: { zoubida: H1 + LIFT, mohammed: H1 + .24, fatma: H1 + LIFT, rahma: H2 + LIFT2 },
         lau, lid, rc, ke, from, rugA, rugB, M: {},
         faces: [[zou, 'zoubida', 2, opt('zoubida', 'zoubida', 1)], [moh, null, 5, opt('mohammed', null, 2)], [fat, 'fatma', 3, opt('fatma', 'fatma', 3)], [rah, 'rahma', 4, opt('rahma', 'rahma', 4)], [kan, null, 6, opt('kanza', null, 5)]] };
     },
@@ -213,9 +216,10 @@ function perch(st, a, t, seed, p = {}) {
   if (heart) hl = hl.lerp(ch.clone().add(loc(a, .08, 0, .15)), heart);
   if (cheer) { hl = hl.lerp(ch.clone().add(loc(a, .3, .4 + .12 * Math.sin(t * 10 + seed), .12)), cheer); hr = hr.lerp(ch.clone().add(loc(a, -.3, .4 + .12 * Math.sin(t * 10 + seed + 2), .12)), cheer); }
   if (plead) { hl = hl.lerp(ch.clone().add(loc(a, .05, .14 + .02 * Math.sin(t * 6 + seed), .28)), plead); hr = hr.lerp(ch.clone().add(loc(a, -.05, .14 + .02 * Math.sin(t * 6 + seed), .28)), plead); }
-  if (laugh > .4 && !cheer && !plead && !talk) hr = hr.lerp(IK.wpos(B.head).add(loc(a, -.04, -.1, .13)), .8);   // hand to the mouth
+  if (laugh > .4 && !cheer && !plead && !talk) hr = hr.lerp(IK.wpos(B.head).add(loc(a, -.1, -.17, .2)), .6);   // hand to the mouth
   PO.reach(a, 'L', hl, { grip: .02 }); PO.reach(a, 'R', hr, { grip: .02 });
   if (look && st.by[look]) PO.look(a, IK.wpos(st.by[look].B.head), .6);
+  B.head.rotation.x = Math.min(B.head.rotation.x, .1); B.neck.rotation.x = Math.min(B.neck.rotation.x, .06);   // looking down onto the court tips the fringe/scarf band over the eyes: keep the face up
   breathe(a, t, 1, seed);
 }
 /** Kanza on the ground: idle at the rug's left end; k = { walk: t0 (enters from the door at the right), spread: t0 (unrolls the rug over 3.2 s), done (rug already down), laugh, look } */

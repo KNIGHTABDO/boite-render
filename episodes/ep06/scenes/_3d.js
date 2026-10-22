@@ -33,9 +33,36 @@ const CAST = (await (await fetch(new URL('../cast.json', import.meta.url))).json
  *  a.name = the role, so cover: [{on: 'kid1'}] and faces use cast.json names. o: { seat, costume, copy } */
 export async function role(name, o = {}) {
   const r = CAST[name] || { model: name }, model = (o.costume && r.costumes?.[o.costume]) || r.model;
-  const a = await cast(model, { seat: o.seat, copy: name + (o.copy ?? '') });
+  const hk = model === 'zoubida_haik', a = await cast(model, { seat: o.seat, copy: name + (o.copy ?? ''), ...(hk ? { outline: .002 } : {}) });
+  if (hk) blackFeet(a);
   a.name = name; a.group.scale.setScalar(heightOf(a.S) * (r.scale || 1));
   return a;
+}
+
+/** haik costume: the painted babouches are yellow, cast.json wants black outdoors: paint the texels of the triangles below the ankle (once per actor) */
+function blackFeet(a) {
+  if (a.feetFixed) return; a.feetFixed = true;
+  a.group.traverse(o => {
+    if (!o.isSkinnedMesh || !o.material.map || o.material.map.isCanvasTexture) return;
+    const m = o.material.map, im = m.image, w = im.width, h = im.height, cv = new OffscreenCanvas(w, h), g = cv.getContext('2d');
+    g.drawImage(im, 0, 0, w, h);
+    const pos = o.geometry.attributes.position, uv = o.geometry.attributes.uv, ix = o.geometry.index?.array, n = ix ? ix.length : pos.count, lim = a.S.ankle + .035;
+    g.fillStyle = '#1c1a1c'; g.strokeStyle = '#1c1a1c'; g.lineWidth = 2;
+    for (let t = 0; t < n; t += 3) {
+      const v = [0, 1, 2].map(k => ix ? ix[t + k] : t + k);
+      if (v.some(i => pos.getY(i) > lim)) continue;
+      g.beginPath(); v.forEach((i, k) => { const x = uv.getX(i) * w, y = (m.flipY ? 1 - uv.getY(i) : uv.getY(i)) * h; k ? g.lineTo(x, y) : g.moveTo(x, y); });
+      g.closePath(); g.fill(); g.stroke();
+    }
+    const tex = new THREE.CanvasTexture(cv); tex.flipY = m.flipY; tex.colorSpace = m.colorSpace; tex.anisotropy = m.anisotropy; o.material.map = tex; o.material.needsUpdate = true;
+  });
+}
+
+/** a rough white cloth over the lower face (nose to chin), parented to the head bone, in model units (a.S head frame) */
+export function faceCloth(a, col = 0xf0ebe0) {
+  const g = new THREE.Mesh(new THREE.SphereGeometry(.12, 20, 10, Math.PI / 2 - 1.15, 2.3, 1.62, 1.05), PR.toon(col));
+  g.material.side = THREE.DoubleSide; g.position.set(0, .08, -.012); g.scale.set(1.08, 1, 1.28); g.castShadow = true;
+  a.B.head.add(g); return g;
 }
 
 /** mouth openness: real lipsync when the line has a wav, else a speech-like flap so unvoiced previews still talk */

@@ -142,7 +142,9 @@ export function stage() {
       const F = Sp.face, eL = wp('head', rel(F.eyeL)), eR = wp('head', rel(F.eyeR)), mo = wp('head', rel(F.mouth));
       const fwd = wp('head', [0, 0, 1]).sub(wp('head')).normalize(), toCam = cam.position.clone().sub(wp('head')).normalize();
       const dist = cam.position.distanceTo(eL), fpx = (H / 2) / Math.tan(cam.fov * D2R / 2);
-      out.face = { eyeL: pr(eL), eyeR: pr(eR), mouth: pr(mo), eyePx: m * fpx / dist * .92, facing: fwd.dot(toCam), beard: F.beard, veil: F.veil, skinL: skinAt(eL), skinR: skinAt(eR), roll: a.B.head.rotation.z };
+      // per eye: hidden once the head turns that eye away (> ~45°), so a far-eye lid decal never lands off the face in profile
+      const mid = eL.clone().add(eR).multiplyScalar(.5), side = e => e.clone().sub(mid).normalize().dot(toCam), fc = fwd.dot(toCam);
+      out.face = { eyeL: pr(eL), eyeR: pr(eR), mouth: pr(mo), eyePx: m * fpx / dist * .92, facing: fc, eyeVis: [fc + side(eL) > .05, fc + side(eR) > .05], beard: F.beard, veil: F.veil, skinL: skinAt(eL), skinR: skinAt(eR), roll: a.B.head.rotation.z };
     }
     return out;
   };

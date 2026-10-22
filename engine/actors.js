@@ -117,7 +117,8 @@ export function faceFX(f, { blink = 0, lid = 0, open = 0, sad = 0 } = {}) {
   const vis = Math.min(1, (f.facing - .25) / .2), r = f.eyePx;
   c.save(); c.globalAlpha *= vis;
   const cl = Math.max(blink, lid);
-  if (cl > .02) for (const [e, skin, sd] of [[f.eyeL, f.skinL, -1], [f.eyeR, f.skinR, 1]]) {
+  if (cl > .02) for (const [e, skin, sd, i] of [[f.eyeL, f.skinL, -1, 0], [f.eyeR, f.skinR, 1, 1]]) {
+    if (f.eyeVis && !f.eyeVis[i]) continue;
     const [x, y] = e, rx = r * 1.35, ry = r * 1.2, edge = y - ry + 2 * ry * cl;
     c.save(); c.beginPath(); c.ellipse(x, y, rx, ry, 0, 0, 7); c.clip();
     c.fillStyle = skin; c.fillRect(x - rx, y - ry - 2, rx * 2, edge - (y - ry) + 2);
