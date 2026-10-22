@@ -9,6 +9,7 @@ on:
       fps:   { default: '24' }
       h:     { default: '1080' }
       parts: { default: '40' }
+      only:  { default: '', description: 'comma list of part numbers to (re)render, empty = all' }
       cost:  { default: '58,48,77,42,55,22,10,31,56,20,31,40,42,68,76,13,45,46,35,7', description: 'relative cost per equal slice of the timeline' }
 jobs:
   plan:
@@ -29,7 +30,8 @@ jobs:
                   acc += c
               return N
           cuts = [0] + [frame(tot * k / P) for k in range(1, P)] + [N]
-          print('parts=' + json.dumps([{'i': '%02d' % k, 'a': cuts[k], 'b': cuts[k + 1]} for k in range(P)]))
+          only = [int(x) for x in '${{ inputs.only }}'.split(',') if x.strip()] or range(P)
+          print('parts=' + json.dumps([{'i': '%02d' % k, 'a': cuts[k], 'b': cuts[k + 1]} for k in only]))
           PY
           cat $GITHUB_OUTPUT
   render:
@@ -52,8 +54,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - name: deps
+        timeout-minutes: 15
         run: |
-          (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null) &
+          inst() { sudo timeout 300 apt-get update -qq && sudo timeout 300 apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null; }
+          (inst || inst) &
           npm ci --no-audit --no-fund --silent
           wait
       - name: render
@@ -70,7 +74,7 @@ jobs:
           retention-days: 3
   merge:
     needs: render
-    if: always()
+    if: ${{ always() && inputs.only == '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
