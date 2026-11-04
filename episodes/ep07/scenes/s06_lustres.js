@@ -38,7 +38,7 @@ const lu = shot({
       k1: sitAt(S3, k1, 's06-k1', 1070, 860, cam.clone().lerp(mid, .1)),
       k2: sitAt(S3, k2, 's06-k2', 1330, 960, cam.clone().lerp(mid, .5)),
     };
-    for (const a of [mo, k1, k2]) S3.qa.supports[a.name] = 0;
+    for (const a of [mo, k1, k2]) (S3.qa?.supports || {})[a.name] = 0;
     return { actors: [mo, k1, k2], mo, k1, k2, P, cam, faces: [[mo, null, 3], [k1, null, 6], [k2, null, 7]] };
   },
   frame(lt, u, t, S, st) {
@@ -70,8 +70,8 @@ const rv = shot({
     };
     const spots = [[620, 950, mo], [820, 1020, kids[0]], [1110, 1020, kids[1]], [1310, 950, kids[2]]];
     spots.forEach(([x, y, a], i) => { P[a.name] = sitAt(S3, a, 's06-r' + i, x, y, fp); });
-    for (const a of [fq, mo, ...kids]) S3.qa.supports[a.name] = 0;
-    S3.qa.supports.grand1 = lad.userData.steps[2].y;
+    for (const a of [fq, mo, ...kids]) (S3.qa?.supports || {})[a.name] = 0;
+    (S3.qa?.supports || {}).grand1 = lad.userData.steps[2].y;
     return {
       actors: [g1, g2, ha, fq, mo, ...kids], g1, g2, ha, fq, mo, kids, lad, lp, under, sx, P, cam,
       faces: [[g1, null, 8], [g2, null, 9], [ha, null, 4], [fq, null, 10, chant(10)], [mo, null, 3, chant(3)], ...kids.map((a, i) => [a, null, 6 + i, chant(6 + i)])],

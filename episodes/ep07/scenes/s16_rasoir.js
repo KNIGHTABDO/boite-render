@@ -24,7 +24,7 @@ const sh = shot({
     S3.add(mo, P.stool.x, P.stool.z, Math.atan2(P.cam.x - P.stool.x, P.cam.z - P.stool.z));
     memoPose('mo-stool', mo, [seat], () => PO.stool(mo, { seat, floor: rung, hands: false, fz: .26, ankle: .05, spread: .1 }));
     const R = { mo: PO.snap(mo) };
-    S3.qa.supports.mohammed = rung;
+    (S3.qa?.supports || {}).mohammed = rung;
     const bp = P.stool.clone().addScaledVector(dirW(mo, 0, 0, -1), .5).addScaledVector(dirW(mo, -1, 0, 0), -.28);
     S3.add(ba, bp.x, bp.z, Math.atan2(P.stool.x - bp.x, P.stool.z - bp.z) - .25);
     // the platform: the father cross-legged at the back, Lamrani on the front edge
@@ -32,7 +32,7 @@ const sh = shot({
     const lp = edge.clone().addScaledVector(inward, .14);
     R.fa = sitTop(S3, fa, 's12-fa', P.seat(230, 700), P.ph, P.stool.clone().lerp(P.cam, .3));
     R.la = sitStool(S3, la, 's15-la', lp, P.ph, lp.clone().lerp(P.cam, .5).add(V(.4, 0, 0)), { lean: .1, fz: .4 });
-    S3.qa.supports.lamrani = P.ph;
+    (S3.qa?.supports || {}).lamrani = P.ph;
     const neck = at(mo, 'neck'), towel = S3.prop(serviette(.06, .21, neck.y - seat + .02), neck.x, neck.y + .03, neck.z);
     const raz = S3.prop(rasoir()); raz.userData.qa = { grip: true, hand: 'R', owner: 'barber' };
     return {

@@ -18,7 +18,7 @@ const rv = shot({
     const P = shopRev(S3);
     const ha = await role('hammad', { seat: true }), hw = await role('hammad', { copy: '_w' }), ba = await role('barber');
     const R = sitStool(S3, ha, 's13-ha', P.stool, P.sh, P.cam, { lean: .25 });
-    S3.qa.supports.hammad = P.sh;
+    (S3.qa?.supports || {}).hammad = P.sh;
     const bp = S3.floorAt(640, 960); S3.add(ba, bp.x, bp.z, Math.atan2(P.stool.x - bp.x, P.stool.z - bp.z));
     const near = P.stool.clone().add(P.stool.clone().sub(P.door).setY(0).normalize().multiplyScalar(-.25));
     S3.add(hw, P.door.x, P.door.z, 0); hw.name = 'hammad';

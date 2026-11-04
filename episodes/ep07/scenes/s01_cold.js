@@ -23,7 +23,7 @@ const ba = shot({
     S3.add(br, bp.x, bp.z, Math.atan2(p.x - bp.x, p.z - bp.z) - .25);
     const neck = at(mo, 'neck'), towel = S3.prop(serviette(.06, .21, neck.y - seat + .02), neck.x, neck.y + .03, neck.z);
     const raz = S3.prop(rasoir());
-    S3.qa.supports.mohammed = rung;
+    (S3.qa?.supports || {}).mohammed = rung;
     raz.userData.qa = { grip: true, hand: 'R', owner: 'barber' };
     return { actors: [mo, br], mo, br, sit, towel, raz, cam, faces: [[mo, 'mohammed', 1], [br, null, 2, (lt, t) => ({ open: t < L[1][0] ? K.clamp((K.noise(t * 8, 3) - .3) * 1.8) * .7 : 0 })]] };
   },

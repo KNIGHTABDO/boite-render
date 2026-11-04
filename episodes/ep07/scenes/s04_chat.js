@@ -31,7 +31,7 @@ const te = shot({
     const body = cat.root.children[0]; cat.root.remove(body); pv.add(body); body.position.z += .08; pv.position.z = -.08; cat.root.add(pv); cat.pv = pv;
     cat.root.traverse(o => { if (o.isMesh) o.castShadow = true; }); S3.scene.add(cat.root);
     const hn = S3.prop(trompette()); hn.userData.qa = { grip: true, hand: 'R', owner: 'mohammed' };
-    S3.qa.supports.rahma = wh - 1.6;
+    (S3.qa?.supports || {}).rahma = wh - 1.6;
     return { actors: [mo, ne], mo, ne, cat, catAt, wh, wall, hn, cam, faces: [[mo, null, 3], [ne, null, 5]] };
   },
   frame(lt, u, t, S, st) {

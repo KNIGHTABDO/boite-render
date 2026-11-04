@@ -22,7 +22,7 @@ export function shopRev(S3) {
 export function sitTop(S3, a, key, p, h, face) {
   S3.add(a, p.x, p.z, yawTo(p, face));
   memoPose(key, a, [h, p.x, p.z], () => PO.crossLegged(a, { seat: h, lean: .1 }));
-  S3.qa.supports[a.name] = h;
+  (S3.qa?.supports || {})[a.name] = h;
   return PO.snap(a);
 }
 /** on a stool of seat height h at floor p, facing a world point */

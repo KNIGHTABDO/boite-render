@@ -43,7 +43,7 @@ const es = shot({
     const s = mo.group.position.clone().sub(C).dot(dir);   // distance along the axis
     const h = RISE * K.clamp((s - r1 + .12) / GO, 0, STOP) + (w > 0 && w < 1 ? .025 * Math.abs(Math.sin((t - t0) * 1.6 * Math.PI / 2)) : 0);
     mo.group.position.y = h; mo.group.updateMatrixWorld(true);
-    S3.qa.supports.mohammed = RISE * Math.max(0, Math.min(STOP, Math.floor((s - r1) / GO) + 1));
+    (S3.qa?.supports || {}).mohammed = RISE * Math.max(0, Math.min(STOP, Math.floor((s - r1) / GO) + 1));
     if (w > 0 && w < 1) { mo.B.thighL.rotation.x -= .25 * Math.max(0, Math.sin((t - t0) * 2.5)); mo.B.thighR.rotation.x -= .25 * Math.max(0, -Math.sin((t - t0) * 2.5)); }
     // b030-b032: stopped, he half-turns toward us (listening with his right ear), head tipped up to the doorway
     const turn = sm(L[1][0] - .4, L[1][0] + .6, t);

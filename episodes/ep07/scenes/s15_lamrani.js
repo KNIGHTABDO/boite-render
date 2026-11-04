@@ -25,7 +25,7 @@ const sh = shot({
       mo: sitTop(S3, mo, 's12-mo', P.seat(470, 770), P.ph, P.stool.clone().lerp(P.cam, .55)),
       la: sitStool(S3, la, 's15-la', lp, P.ph, face, { lean: .1, fz: .4 }),
     };
-    S3.qa.supports.lamrani = P.ph;
+    (S3.qa?.supports || {}).lamrani = P.ph;
     const bp = S3.floorAt(1250, 930); S3.add(ba, bp.x, bp.z, Math.atan2(lp.x - bp.x, lp.z - bp.z));
     const w0 = S3.floorAt(1750, 1060), w1 = edge.clone().addScaledVector(inward, -.45);
     S3.add(lw, w0.x, w0.z, 0);

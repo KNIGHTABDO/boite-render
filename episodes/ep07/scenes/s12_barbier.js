@@ -22,7 +22,7 @@ const sh = shot({
       fa: sitTop(S3, fa, 's12-fa', P.seat(230, 700), P.ph, P.stool.clone().lerp(P.cam, .3)),
       mo: sitTop(S3, mo, 's12-mo', P.seat(470, 770), P.ph, P.stool.clone().lerp(P.cam, .55)),
     };
-    S3.qa.supports.client = P.sh;
+    (S3.qa?.supports || {}).client = P.sh;
     const bp = S3.floorAt(1250, 930); S3.add(ba, bp.x, bp.z, Math.atan2(P.stool.x - bp.x, P.stool.z - bp.z));
     return {
       actors: [ba, cl, fa, mo], ba, cl, fa, mo, R, P, bp,

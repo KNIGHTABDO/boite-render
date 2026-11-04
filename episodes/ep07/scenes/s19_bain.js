@@ -29,7 +29,7 @@ const bt = shot({
     S3.add(mo, tc.x, tc.z, yawTo(tc, cam) + .25);
     memoPose('s19-mo', mo, [SEAT], () => PO.crossLegged(mo, { seat: SEAT, lean: .05, hands: false }));
     const R = { mo: PO.snap(mo) };
-    S3.qa.supports.mohammed = SEAT;
+    (S3.qa?.supports || {}).mohammed = SEAT;
     const pw = S3.floorAt(1290, 1040); S3.add(mw, pw.x, pw.z, yawTo(pw, tc) + .5); mw.name = 'mohammed';
     // pouring from the left end of the trough; kneeling at the right end afterwards
     const pz = S3.floorAt(640, 1035); S3.add(zw, pz.x, pz.z, yawTo(pz, tc) - .3);

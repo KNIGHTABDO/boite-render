@@ -22,7 +22,7 @@ const sh = shot({
     S3.add(mo, P.stool.x, P.stool.z, Math.atan2(P.cam.x - P.stool.x, P.cam.z - P.stool.z));
     memoPose('mo-stool', mo, [seat], () => PO.stool(mo, { seat, floor: rung, hands: false, fz: .26, ankle: .05, spread: .1 }));
     const R = PO.snap(mo);
-    S3.qa.supports.mohammed = rung;
+    (S3.qa?.supports || {}).mohammed = rung;
     // the standing copy, just in front of the stool, for the slide-off
     const down = P.stool.clone().addScaledVector(dirW(mo, 0, 0, 1), .32);
     S3.add(ms, down.x, down.z, mo.group.rotation.y); ms.name = 'mohammed';

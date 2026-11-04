@@ -24,7 +24,7 @@ const ch = shot({
     put(S3, mo, 1150, 900, cam.clone().lerp(fp, .7));
     memoPose('s10-mo', mo, [1], () => PO.crossLegged(mo, { seat: 0, lean: .15 }));
     const P = { fa: PO.snap(fa), mo: PO.snap(mo) };
-    S3.qa.supports.father = mh; S3.qa.supports.mohammed = 0;
+    (S3.qa?.supports || {}).father = mh; (S3.qa?.supports || {}).mohammed = 0;
     const door = S3.floorAt(-150, 1000).add(V(0, 1.2, 0));
     return {
       actors: [fa, mo], fa, mo, P, door, cam,
