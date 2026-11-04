@@ -29,7 +29,7 @@ const ch = shot({
     const exit = S3.floorAt(-150, 1000);
     const bt = S3.prop(bouteille(0)), bt2 = S3.prop(bouteille(.8));
     bt.userData.qa = { grip: true, hand: 'R', owner: 'zoubida' }; bt2.userData.qa = { grip: true, hand: 'R', owner: 'zoubida' };
-    return { actors: [zo, mo], zo, mo, zp, mp, wp, win, exit, lamp, bt, bt2, cam, faces: [[zo, 'zoubida', 1], [mo, 'mohammed', 3]] };
+    return { actors: [zo, mo], my: mo.group.rotation.y, zo, mo, zp, mp, wp, win, exit, lamp, bt, bt2, cam, faces: [[zo, 'zoubida', 1], [mo, 'mohammed', 3]] };
   },
   frame(lt, u, t, S, st) {
     const { zo, mo, zp, mp, wp, win, exit, lamp, bt, bt2, cam } = st;
@@ -67,7 +67,7 @@ const ch = shot({
     // ---- Mohammed: b019 at the window (back to us, head up and turned to the grille); then by the table, eyes on the lamp
     const atWin = t >= L[1][0] - .1 && t < L[2][0] - .1;
     mo.group.position.copy(atWin ? wp : mp); const tw = win.clone().lerp(st.cam.clone().setY(1.2), .55);   // three-quarter between the window and us: the CU needs his face
-    mo.group.rotation.y = atWin ? Math.atan2(tw.x - wp.x, tw.z - wp.z) : mo.group.rotation.y; mo.group.updateMatrixWorld(true);
+    mo.group.rotation.y = atWin ? Math.atan2(tw.x - wp.x, tw.z - wp.z) : st.my;   // the build yaw back (the window yaw stuck: b020 showed his back) mo.group.updateMatrixWorld(true);
     if (atWin) { PO.look(mo, win.clone().lerp(tw, .4), .9); mo.B.head.rotation.z += .2; mo.B.head.updateWorldMatrix(false, true); }
     else PO.look(mo, t >= L[5][0] ? at(zo, 'head') : lamp, .8);
   },

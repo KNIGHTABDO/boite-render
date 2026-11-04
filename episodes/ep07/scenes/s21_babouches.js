@@ -28,7 +28,7 @@ const coin = () => { const m = new THREE.Mesh(new THREE.CylinderGeometry(.013, .
 
 const ru = shot({
   plate: 'rue_nuit',
-  light: { keyI: .5 },
+  light: { keyI: .5, shade: 0x040814 },
   async build(S3) {
     const fa = await role('father'), mo = await role('mohammed', { costume: 'fete' });
     const p0 = S3.floorAt(1120, 700), p1 = S3.floorAt(1010, 930);
@@ -36,7 +36,7 @@ const ru = shot({
     const off = (p, s) => p.clone().addScaledVector(left, s * .3);
     const cam = S3.cam.position.clone().setY(0);
     S3.add(fa, off(p1, -1).x, off(p1, -1).z, yawTo(p1, cam)); S3.add(mo, off(p1, 1).x, off(p1, 1).z, yawTo(p1, cam));   // built at the stop: the M crops frame them there
-    const door = S3.floorAt(250, 720).lerp(cam, .5).add(V(0, 1.4, 0));   // half toward us: the dark doorway is deep left, a full turn showed only their backs
+    const door = S3.floorAt(120, 1060).lerp(cam, .3).add(V(0, 1.4, 0));   // front-left, toward us: the doorway behind them gave two backs (dl10 b079)   // half toward us: the dark doorway is deep left, a full turn showed only their backs
     const bb = S3.prop(PR.babouche({ col: 0xe8b830 })); bb.scale.setScalar(1.25);
     const cd = S3.prop(cierge()), cn = S3.prop(coin());
     cd.userData.qa = { grip: true, hand: 'L', owner: 'father' }; cn.userData.qa = { grip: true, hand: 'R', owner: 'father' };

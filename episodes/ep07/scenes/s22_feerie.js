@@ -125,7 +125,7 @@ const fe = shot({
       // b085: he stops chanting and lifts his eyes to the flames
       const lk = sm(L[4][0] - .2, L[4][0] + 1, t);
       if (lk > 0) { mo.B.spine.rotation.x -= .1 * lk; mo.B.spine.updateWorldMatrix(false, true); }
-      PO.look(mo, at(fq, 'head').lerp(up, lk), .5 + .4 * lk);
+      PO.look(mo, at(fq, 'head').lerp(up, .6 * lk), .5 + .2 * lk);   // eyes up, but the face must still read (a full tilt showed only his crown)
       PO.look(k1, t > L[3][0] && t < L[4][0] ? at(mo, 'head') : at(fq, 'head'), .5);
     }
   },

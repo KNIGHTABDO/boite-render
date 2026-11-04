@@ -98,7 +98,7 @@ export function stage() {
     const d = new THREE.Vector3(...(L.dir ?? [-2, 3, 2.5])).normalize().multiplyScalar(12), ctr = new THREE.Vector3(...(L.center ?? [0, 0, 0]));
     key.position.copy(ctr).add(d); key.target.position.copy(ctr); key.target.updateMatrixWorld();
     const A = L.area ?? 4, sc = key.shadow.camera; sc.left = sc.bottom = -A; sc.right = sc.top = A; sc.near = .5; sc.far = 30; sc.updateProjectionMatrix();
-    key.shadow.radius = L.soft ?? 4; catcher.material.opacity = L.shadow ?? .32;
+    key.shadow.radius = L.soft ?? 4; catcher.material.opacity = L.shadow ?? .32; catcher.material.color.set(L.shade ?? 0x1a0c23);   // shade: night plates want a blue-black (the purple read maroon on s21's blue street)
     fill.color.set(L.sky ?? 0xcfd8ff); fill.groundColor.set(L.ground ?? 0x7a6450); fill.intensity = L.fillI ?? 1.4;
     rim.color.set(L.rim ?? 0xffd9a0); rim.intensity = L.rimI ?? 0; rim.position.set(...(L.rimDir ?? [2, 2, -3]));
     return S;
@@ -180,7 +180,8 @@ export function stage() {
         for (const off of [[0, -2.2], [0, -1.6], [0, -1.2], [1.6 * o, -.6], [-1.4 * o, -.8]]) {
           const d = px(v.clone().add(new THREE.Vector3(off[0] * m, off[1] * m, 0))); if (d[3] < 128) continue;
           const sum = d[0] + d[1] + d[2] + 1, rs = ref[0] + ref[1] + ref[2];
-          const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0) + (d[2] < d[0] * .3 ? 1 : 0);   // hue first, red>green>blue, not a saturated yellow/orange cloth
+          const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0) + (d[2] < d[0] * .3 ? 1 : 0)   // hue first, red>green>blue, not a saturated yellow/orange cloth
+            + ((Math.max(d[0], d[1], d[2]) - Math.min(d[0], d[1], d[2])) / (Math.max(d[0], d[1], d[2]) + 1) < .14 ? 1.2 : 0) + (sum > rs * 1.45 ? .6 : 0);   // nor the cream eye-white (closed lids came out white: s16, s26)
           if (sc < bs) { bs = sc; best = d; }
         }
         if (!best || bs >= 1) return Sp.fixSkin || '#c08a64';   // every sample hit cloth: the cast skin tone
