@@ -185,11 +185,12 @@ export function stage() {
             + ((Math.max(d[0], d[1], d[2]) - Math.min(d[0], d[1], d[2])) / (Math.max(d[0], d[1], d[2]) + 1) < .2 ? 1.2 : 0) + (sum > rs * 1.3 ? 1.2 : 0);   // nor the cream eye-white (closed lids came out white: s16, s26)
           if (sc < bs) { bs = sc; best = d; }
         }
-        if (!best || bs >= 1) return Sp.fixSkin || '#c08a64';   // every sample hit cloth: the cast skin tone
+        if (!best) return Sp.fixSkin || '#c08a64';
         // hue from the cast skin, light from the scene (clamped): a sample that still hit the eye-white or a highlight can't
         // paint white lids (s16 32.5 s, s26), a shadowed one still darkens them
         const lum = (best[0] * .3 + best[1] * .59 + best[2] * .11) / (ref[0] * .3 + ref[1] * .59 + ref[2] * .11), g = Math.max(.3, Math.min(1, lum));
-        return lum > 1.15 ? `rgb(${ref.map(v => Math.round(Math.min(255, v * g))).join(',')})` : `rgb(${best[0]},${best[1]},${best[2]})`;
+        return lum > 1.15 || bs >= 1 ?   // no clean skin sample (cloth, or a night grade turned it blue): the cast tone at the scene's light (s26)
+           `rgb(${ref.map(v => Math.round(Math.min(255, v * g))).join(',')})` : `rgb(${best[0]},${best[1]},${best[2]})`;
       };
       const F = Sp.face, eL = wp('head', rel(F.eyeL)), eR = wp('head', rel(F.eyeR)), mo = wp('head', rel(F.mouth)), upH = wp('head', [0, 1, 0]).sub(wp('head')).normalize();
       const fwd = wp('head', [0, 0, 1]).sub(wp('head')).normalize(), toCam = cam.position.clone().sub(wp('head')).normalize();
