@@ -185,7 +185,10 @@ export function stage() {
           if (sc < bs) { bs = sc; best = d; }
         }
         if (!best || bs >= 1) return Sp.fixSkin || '#c08a64';   // every sample hit cloth: the cast skin tone
-        return `rgb(${best[0]},${best[1]},${best[2]})`;
+        // hue from the cast skin, light from the scene (clamped): a sample that still hit the eye-white or a highlight can't
+        // paint white lids (s16 32.5 s, s26), a shadowed one still darkens them
+        const lum = (best[0] * .3 + best[1] * .59 + best[2] * .11) / (ref[0] * .3 + ref[1] * .59 + ref[2] * .11), g = Math.max(.35, Math.min(1.05, lum));
+        return `rgb(${ref.map(v => Math.round(Math.min(255, v * g))).join(',')})`;
       };
       const F = Sp.face, eL = wp('head', rel(F.eyeL)), eR = wp('head', rel(F.eyeR)), mo = wp('head', rel(F.mouth));
       const fwd = wp('head', [0, 0, 1]).sub(wp('head')).normalize(), toCam = cam.position.clone().sub(wp('head')).normalize();
