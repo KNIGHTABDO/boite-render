@@ -168,7 +168,7 @@ export function sample({ scene, t, cast = {}, annotations = {}, cut = false, pre
       // Hidden props still need bounds for disappearance detection.
       if (!visible || q.alpha <= .001 || !onScreen) continue;
       const meta = { ...(o.userData.qa || {}), ...(annotations.props?.[name] || {}), ...(stageNotes.props?.[name] || {}) };
-      const anchor = meta.grip ?? o.userData.grip ?? o.userData.handle ?? [0, 0, 0];
+      const anchor = [meta.grip, o.userData.grip, o.userData.handle].find(v => v?.isVector3 || Array.isArray(v)) ?? [0, 0, 0];   // ep07 marks held props qa.grip:true
       const grip = o.localToWorld(anchor.isVector3 ? anchor.clone() : V(...anchor));
       let h = hands.find(h => { for (let p = o.parent; p; p = p.parent) if (p === h.bone) return true; return false; });
       if (!h && meta.hand) h = hands.find(h => `${h.a.name}.${h.side}` === meta.hand);
