@@ -72,6 +72,12 @@ export function heightAt(S3, fx, fy, topPy) {
   for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; (S3.project(V(f.x, m, f.z))[1] > topPy ? lo = m : hi = m); }
   return (lo + hi) / 2;
 }
+/** floor point straight under a painted overhead feature at canvas (px, py) hanging H metres up (a chandelier ring) */
+export function hangAt(S3, px, py, H) {
+  let best = null, e = 1e9;   // scan the floor rows: the one whose point H metres up lands on py
+  for (let m = 0; m <= 1080; m += 1) { const f = S3.floorAt(px, m); if (!f) continue; const d = Math.abs(S3.project(V(f.x, H, f.z))[1] - py); if (d < e) { e = d; best = f; } }
+  return best;
+}
 /** add an actor standing on floor px (x, y), facing a world point (or a yaw in radians) */
 export function put(S3, a, px, py, face) {
   const p = S3.floorAt(px, py), yaw = typeof face === 'number' ? face : yawTo(p, face);

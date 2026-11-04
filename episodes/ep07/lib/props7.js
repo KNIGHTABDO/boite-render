@@ -60,3 +60,46 @@ export function serviette(r0 = .055, r1 = .3, h = .5) {
   const m = new THREE.Mesh(new THREE.LatheGeometry(prof, 32), new THREE.MeshToonMaterial({ map: stripes(['#c42c22', '#e9b83a', '#c42c22', '#f3e6c4'], 16, 256, 64, true), side: THREE.DoubleSide }));
   m.castShadow = true; return m;
 }
+
+/** wooden A-frame step ladder, h tall: origin on the floor at the centre, the stepped side faces +z.
+ *  userData.steps = world-local step top heights (with their z), userData.top = h */
+export function echelle(h = 1.3, w = .42, n = 4) {
+  const g = new THREE.Group(), wood = PR.toon(0x8a6a44), sp = h * .32, tilt = Math.atan2(sp / 2, h), L = Math.hypot(h, sp / 2);
+  const steps = [];
+  for (const s of [1, -1]) {   // front (+z, stepped) and back frames
+    const f = new THREE.Group(); f.position.z = s * sp / 2; f.rotation.x = -s * tilt;
+    for (const x of [-w / 2, w / 2]) { const r = new THREE.Mesh(new THREE.BoxGeometry(.045, L, .03), wood); r.position.set(x, L / 2, 0); f.add(r); }
+    for (let i = 1; i <= n; i++) {
+      const y = i * L / (n + 1), r = new THREE.Mesh(s > 0 ? new THREE.BoxGeometry(w, .025, .1) : new THREE.BoxGeometry(w, .03, .025), wood);
+      r.position.set(0, y, s > 0 ? -.04 : 0); f.add(r);
+      if (s > 0) steps.push({ y: y * Math.cos(tilt) + .0125, z: sp / 2 - y * Math.sin(tilt) - .04 });
+    }
+    g.add(f);
+  }
+  const top = new THREE.Mesh(new THREE.BoxGeometry(w + .04, .04, .16), wood); top.position.y = h; g.add(top);
+  g.userData = { steps, top: h };
+  return shade(g);
+}
+
+/** petrol bottle (thick green glass, cork): origin at the grip (mid body), neck along +y; userData.mouth */
+export function bouteille(fill = 0) {
+  const g = new THREE.Group(), glass = new THREE.MeshToonMaterial({ color: 0x3e6a4a, transparent: true, opacity: .8 });
+  const body = new THREE.Mesh(new THREE.LatheGeometry([[0, -.12], [.045, -.12], [.048, -.1], [.048, .04], [.02, .09], [.014, .13], [.016, .14], [0, .14]].map(([x, y]) => new THREE.Vector2(x, y)), 20), glass);
+  g.add(body);
+  const cork = new THREE.Mesh(new THREE.CylinderGeometry(.012, .011, .025, 10), PR.toon(0xb08a5a)); cork.position.y = .15; g.add(cork);
+  if (fill) { const f = new THREE.Mesh(new THREE.CylinderGeometry(.044, .044, .16 * fill, 16), PR.toon(0xc8a050)); f.position.y = -.118 + .08 * fill; g.add(f); }
+  g.userData = { mouth: new THREE.Vector3(0, .14, 0), cork };
+  return shade(g);
+}
+
+/** a bunch of fresh mint: origin at the grip (stems), leaves along +y */
+export function menthe() {
+  const g = new THREE.Group(), stem = PR.toon(0x5a7a3a), leaf = PR.toon(0x4f9a46);
+  for (let i = 0; i < 9; i++) {
+    const a = i * 2.4, r = .012 + .01 * (i % 3), l = .16 + .03 * ((i * 7) % 3);
+    const s = new THREE.Mesh(new THREE.CylinderGeometry(.002, .002, l, 4), stem); s.position.set(Math.cos(a) * r, l / 2 - .03, Math.sin(a) * r); s.rotation.z = Math.cos(a) * .15; s.rotation.x = Math.sin(a) * .15; g.add(s);
+    for (let j = 0; j < 3; j++) { const lf = new THREE.Mesh(new THREE.SphereGeometry(.022, 6, 4).scale(1, .45, .7), leaf); lf.position.set(Math.cos(a + j) * (r + .02 + j * .006), l - .07 + j * .03, Math.sin(a + j) * (r + .02)); g.add(lf); }
+  }
+  g.userData = { top: .2 };
+  return shade(g);
+}
