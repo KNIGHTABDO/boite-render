@@ -1,0 +1,91 @@
+name: stills
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: 'JSON list of E1 plates/tests (one Chrome per runner)'
+        default: '["barbier","msid_feerie","msid_facade","motion","legacy","calibration"]'
+        type: string
+permissions:
+  contents: read
+jobs:
+  bench:
+    name: E1 (${{ matrix.task }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 40
+      matrix:
+        task: ${{ fromJSON(inputs.jobs) }}
+    env:
+      TASK: ${{ matrix.task }}
+      CHROME: /usr/bin/google-chrome
+      CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Dependencies
+        timeout-minutes: 15
+        run: |
+          npm ci --no-audit --no-fund --silent
+          python3 -m venv /tmp/e1-python
+          /tmp/e1-python/bin/pip -q install pillow==11.3.0
+          if ! test -x "$CHROME"; then
+            curl -fsSL --retry 3 --max-time 180 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/e1-chrome.deb
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq /tmp/e1-chrome.deb
+          fi
+          if [ "$TASK" = motion ]; then
+            ff() { curl -fsSL --retry 3 --max-time 180 https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz | sudo tar -xJ -C /usr/local/bin --strip-components=2 --wildcards '*/bin/ffmpeg' '*/bin/ffprobe'; }
+            ff || (sudo timeout 300 apt-get update -qq && sudo timeout 300 apt-get install -y -qq --no-install-recommends ffmpeg)
+          fi
+          mkdir -p out/e1
+          google-chrome --version
+          free -h
+      - name: Bench and pilot
+        run: |
+          case "$TASK" in
+            barbier|msid_feerie|msid_facade)
+              node tools/e1-pilot.mjs stills "$TASK" 2>&1 | tee "out/e1/$TASK-stills.log"
+              node tools/e1-pilot.mjs stress "$TASK" 2>&1 | tee "out/e1/$TASK-stress.log"
+              /tmp/e1-python/bin/python tools/e1-sheets.py "$TASK"
+              free -h
+              node tools/e1-check.mjs "$TASK" 2>&1 | tee "out/e1/$TASK-checks.log"
+              ;;
+            motion)
+              node tools/e1-pilot.mjs motion 2>&1 | tee out/e1/motion.log
+              /tmp/e1-python/bin/python tools/e1-sheets.py motion
+              ffmpeg -y -loglevel error -framerate 12 -i out/e1/barbier-push/frame_%03d.jpg -frames:v 36 -c:v libx264 -preset fast -pix_fmt yuv420p -movflags +faststart out/e1/barbier-push.mp4
+              ffprobe -v error -show_entries stream=width,height,nb_frames,avg_frame_rate -show_entries format=duration -of json out/e1/barbier-push.mp4 > out/e1/motion-info.json
+              ;;
+            legacy)
+              node tools/e1-legacy.mjs 2>&1 | tee out/e1/legacy.log
+              /tmp/e1-python/bin/python tools/e1-legacy-stats.py
+              ;;
+            calibration)
+              node tools/e1-calibrate.mjs 2>&1 | tee out/e1/calibration.log
+              /tmp/e1-python/bin/python tools/e1-sheets.py calibration
+              ;;
+            *) echo "Unknown E1 task: $TASK" >&2; exit 2 ;;
+          esac
+      - name: Capture provenance
+        if: always()
+        run: |
+          mkdir -p out/e1
+          python3 - <<'PY'
+          import json, os, pathlib
+          keys=['GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_REPOSITORY','GITHUB_SERVER_URL']
+          d={k:os.environ.get(k) for k in keys};d['task']=os.environ['TASK']
+          pathlib.Path('out/e1/provenance-'+d['task']+'.json').write_text(json.dumps(d,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e1-${{ matrix.task }}
+          path: out/e1/
+          if-no-files-found: error
+          retention-days: 14

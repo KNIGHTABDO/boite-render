@@ -34,13 +34,17 @@ export async function cast(name, { seat = false, copy = 0, outline = .0035 } = {
   const S = SPECS[name]; if (!S) throw new Error('no spec for ' + name);
   const a = await loadRigged(`/art/models/${S.file}`, S, { outline, tint: S.tint, seat });
   a.name = name; a.S = S; a.seat = seat; a.group.scale.setScalar(heightOf(S));
+  if (globalThis.window?.QA) {
+    const qa = window.__qa ||= { actors: [], props: [], stages: [], active: [] };
+    qa.actors.push(a); a.qa = { model: name, expectedHeight: heightOf(S) };
+  }
   a.group.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = false; } });
   return cache[id] = a;
 }
 
 // ---------------------------------------------------------------- the stage
 export function stage() {
-  renderer();
+  if (!globalThis.window?.QA?.noRender) renderer();
   const scene = new THREE.Scene();
   const cam = new THREE.PerspectiveCamera(40, W / H, .05, 80);
   const key = new THREE.DirectionalLight(0xfff0dc, 2.2), fill = new THREE.HemisphereLight(0xcfd8ff, 0x7a6450, 1.4), rim = new THREE.DirectionalLight(0xffd9a0, 0);
@@ -49,6 +53,13 @@ export function stage() {
   const catcher = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ color: 0x1a0c23, opacity: .32 }));
   catcher.rotation.x = -Math.PI / 2; catcher.receiveShadow = true; scene.add(catcher);
   const S = { scene, cam, key, fill, rim, catcher, actors: new Set(), cal: null };
+  if (globalThis.window?.QA) {
+    const qa = window.__qa ||= { actors: [], props: [], stages: [], active: [] };
+    // Optional declarations, in world metres: qa.support (default floor), qa.supports[role].
+    // Covers are registered depth-only holdouts; painted occluders can be added explicitly.
+    S.qa = { stage: S, props: [], covers: [], support: 0, supports: {}, faces: new Set() };
+    qa.stages.push(S.qa);
+  }
 
   /**
    * calibrate the camera to a plate.
@@ -97,9 +108,9 @@ export function stage() {
   S.add = (a, x = 0, z = 0, yaw = 0) => { if (!S.actors.has(a)) { S.actors.add(a); scene.add(a.group); } a.group.position.set(x, 0, z); a.group.rotation.set(0, yaw, 0); rest(a.B); return a; };
   S.remove = a => { S.actors.delete(a); scene.remove(a.group); };
   /** a prop (Object3D from props3d.js) */
-  S.prop = (o, x = 0, y = 0, z = 0, yaw = 0) => { if (!o.parent) scene.add(o); o.position.set(x, y, z); o.rotation.y = yaw; return o; };
+  S.prop = (o, x = 0, y = 0, z = 0, yaw = 0) => { if (!o.parent) scene.add(o); o.position.set(x, y, z); o.rotation.y = yaw; if (S.qa) { S.qa.props.push(o); window.__qa.props.push(o); } return o; };
   /** invisible depth-only blocker for something painted in the plate that stands in front of the 3D (a pillar, a door jamb) */
-  S.holdout = (geo, x, y, z) => { const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ colorWrite: false })); m.position.set(x, y, z); m.renderOrder = -1; scene.add(m); return m; };
+  S.holdout = (geo, x, y, z) => { const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ colorWrite: false })); m.position.set(x, y, z); m.renderOrder = -1; scene.add(m); if (S.qa) S.qa.covers.push(m); return m; };
 
   /**
    * render the 3D layer and draw it over what is already on the 2D canvas (the plate), in plate space.
@@ -109,6 +120,12 @@ export function stage() {
   // rectangle at full resolution (setViewOffset) instead of the whole plate upscaled by the 2D zoom (soft close-ups).
   S.draw = (o = {}) => {
     scene.updateMatrixWorld(true);
+    if (S.qa) {
+      S.qa.transform = c.getTransform(); S.qa.canvas = [c.canvas.width, c.canvas.height];
+      S.qa.alpha = c.globalAlpha * (o.alpha ?? 1);
+      window.__qa.camera = cam; window.__qa.scene = scene; window.__qa.active.push(S.qa);
+      if (window.QA.noRender) return;
+    }
     const v = o.view && o.view.z > 1.01 ? o.view : null, pad = 8;   // pad: K.camera's handheld drift moves the frame a few px
     const rx = v ? v.x - W / 2 / v.z - pad : 0, ry = v ? v.y - H / 2 / v.z - pad : 0, rw = v ? W / v.z + 2 * pad : W, rh = v ? H / v.z + 2 * pad : H;
     if (v) cam.setViewOffset(W, H, rx, ry, rw, rh);
@@ -128,8 +145,24 @@ export function stage() {
     c.restore();
   };
 
+  /** E1 set pass: layer 1 only, unlit projected paint, no silhouette ink. Same crop rectangle as draw(). */
+  S.drawSet = (o = {}) => {
+    if (globalThis.window?.QA?.noRender) return;
+    const v = o.view && o.view.z > 1.01 ? o.view : null, pad = 8;
+    const rx = v ? v.x - W / 2 / v.z - pad : 0, ry = v ? v.y - H / 2 / v.z - pad : 0, rw = v ? W / v.z + 2 * pad : W, rh = v ? H / v.z + 2 * pad : H;
+    const mask = cam.layers.mask;
+    try {
+      cam.layers.set(1); if (v) cam.setViewOffset(W, H, rx, ry, rw, rh);
+      gl.render(scene, cam); gl.getContext().finish();
+      c.save();
+      try { if (o.blur > 0) c.filter = `blur(${o.blur}px)`; c.drawImage(gl.domElement, rx, ry, rw, rh); }
+      finally { c.restore(); }
+    } finally { cam.layers.mask = mask; if (v) cam.clearViewOffset(); }
+  };
+
   /** screen anchors of an actor (plate px) for faceFX / speech / FX, same shape as actors.place() */
   S.anchors = a => {
+    if (S.qa) S.qa.faces.add(a);
     const Sp = a.S, wp = (bone, off = [0, 0, 0]) => a.B[bone].localToWorld(new THREE.Vector3(...off));
     const pr = v => S.project(v).slice(0, 2), headAbs = [0, Sp.head, 0], rel = p => [p[0] - headAbs[0], p[1] - headAbs[1], p[2]];
     const hsz = (Sp.headR ?? .09) * (Sp.top - Sp.bottom);

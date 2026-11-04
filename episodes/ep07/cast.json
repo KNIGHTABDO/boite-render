@@ -1,0 +1,32 @@
+{
+ "characters": {
+  "mohammed": {"model": "mohammed", "age": 6, "height": 1.10, "costumes": {"fete": "mohammed_fete"}, "palette": ["#e8e0cc", "#b3142c"], "ref": "art/src/mohammed.png",
+               "notes": "white djellaba, shaved head with a tuft. 'fete' (s20 b086 →): stiff starched shirt, red embroidered gilet (#b3142c) UNDER a white fine-wool djellaba, embroidered satchel strap, oversized yellow babouches. Gilet never over the djellaba (ep06 error)."},
+  "zoubida":  {"model": "zoubida", "age": 22, "height": 1.60, "costumes": {"haik": "zoubida_haik", "fete": "zoubida_fete"}, "palette": ["#5a6a8a"], "ref": "art/src/zoubida.png",
+               "notes": "'fete' (s24 →): mansouria with yellow satin stripes, festive headscarf"},
+  "father":   {"model": "father", "age": 45, "height": 1.76, "palette": ["#d9d2c0"], "notes": "s20 on: fine wool djellaba (same model, lighter tint)"},
+  "fqih":     {"model": "fqih", "age": 50, "height": 1.74, "costumes": {"fete": "fqih_fete"}, "palette": ["#2b2b2b", "#f2f2f2", "#8a8a8a"],
+               "notes": "'fete' (s22-s23): black-and-white striped djellaba, grey burnous, NO quince rod (first time: key image b099)"},
+  "zineb":    {"model": "zineb", "age": 5, "height": 1.05, "palette": ["#c05a3a"]},
+  "kanza":    {"model": "chouafa", "age": 65, "height": 1.55, "palette": ["#6a4a3a"], "notes": "Lalla Kanza the chouafa: old, smiling, eyes half-closed; FEMALE voice (Vindemiatrix)"},
+  "rahma":    {"model": "rahma", "age": 35, "height": 1.60, "palette": ["#7a5a8a"]},
+  "aicha":    {"model": "aicha", "age": 35, "height": 1.62, "costumes": {"haik": "aicha_haik"}, "palette": ["#d98a3a"], "ref": "art/models/aicha__base_basic_pbr.glb",
+               "notes": "Lalla Aïcha (ep02-03 continuity), wife of Moulay Larbi; plump, lively, theatrical hands"},
+  "hammoussa":{"model": "hammoussa", "age": 6, "height": 1.00, "palette": ["#b8a27a"], "notes": "NEW Rodin. Azzouz Berrada 'pois chiche': the tiniest pupil, too-big beige djellaba, sleeves over his hands"},
+  "barber":   {"model": "barber", "age": 45, "height": 1.72, "palette": ["#e8e3d6", "#3a6a4a"], "notes": "NEW Rodin. Si Abderrahman: lively, sly eyes, short beard, white apron over a green-striped shirt, skullcap. Talks with his hands"},
+  "hammad":   {"model": "hammad", "age": 65, "height": 1.75, "palette": ["#c8b89a"], "notes": "NEW Rodin. Oncle Hammad: dry, goat beard, monumental turban, groaning"},
+  "lamrani":  {"model": "lamrani", "age": 28, "height": 1.76, "palette": ["#f0ede4", "#111111"], "notes": "NEW Rodin. Sidi Ahmed Lamrani: young, waxy-white skin, crow-black beard, fine white djellaba, poet's calm"},
+  "client":   {"model": "man1", "extra": true, "vary": ["cap", "robe"], "height": 1.74, "notes": "barber's client: shown from BEHIND only (shaved nape, cherry-red ears)"},
+  "kid1": {"model": "kid1", "height": 1.25}, "kid2": {"model": "kid2", "height": 1.30}, "kid3": {"model": "kid3", "height": 1.28},
+  "grand1": {"model": "grand1", "height": 1.42}, "grand2": {"model": "grand2", "height": 1.45},
+  "teen": {"model": "teen_trompette", "height": 1.50, "notes": "NEW Rodin. older boy roaring on a trumpet (s18 terrace concert)"},
+  "girl1": {"model": "girl1", "height": 1.15, "notes": "NEW Rodin. neighbour girl with a tambourine (s18)"},
+  "girl2": {"model": "girl2", "height": 1.18, "notes": "NEW Rodin. neighbour girl with a tambourine (s18)"},
+  "cat2": {"model": "cat2", "animal": true, "height": 0.25, "notes": "the tabby on the terrace wall (s04); 3D, whole jump in frame"}
+ },
+ "lexicon": ["bendir", "tambourin", "trompette", "tambour", "rasoir", "serviette", "lustre", "meche", "ventouse", "cierge", "chemise", "gilet",
+             "galette", "sesame", "menthe", "petrole", "tarifa", "auge", "chariot", "piece", "lame", "pierre", "encens", "liege", "plat"],
+ "voices": {"narrator": "Gacrux", "mohammed": "Leda", "zoubida": "Kore", "father": "Charon", "zineb": "Achernar", "fqih": "Schedar", "kanza": "Vindemiatrix",
+            "hammoussa": "Laomedeia", "vendeur": "Umbriel", "voisine": "Erinome", "barber": "Fenrir", "hammad": "Algenib", "lamrani": "Achird", "femmes": "Aoede",
+            "eleves": "Puck", "aicha": "Pulcherrima"}
+}

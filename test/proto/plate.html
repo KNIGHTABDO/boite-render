@@ -1,0 +1,39 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#888">
+<canvas id="cv" width="1920" height="1080"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Plate bench: calibrate Stage3D to a painted plate and check that 3D things land at true scale on the painted floor.
+import * as THREE from 'three';
+import * as K from '/engine/core.js';
+import { plate, drawPlate } from '/engine/plates.js';
+import { stage, cast } from '/engine/stage3d.js';
+import * as PR from '/engine/props3d.js';
+import * as PO from '/engine/poses.js';
+const cv = window.cv = document.getElementById('cv'), c = cv.getContext('2d'); K.setCtx(c);
+const q = new URLSearchParams(location.search); let img = await plate(q.get('p') || 'chambre_jour');
+const S = stage(); window.S = S; window.THREE = THREE;
+window.CAL = JSON.parse(q.get('cal') || '{"h":1.1,"horizon":425,"fov":50}');
+window.PT = JSON.parse(q.get('pt') || '{"tabla":[861,752],"stand":[1100,900]}');   // canvas px of a painted prop's foot, and a free floor spot
+let ref = JSON.parse(q.get('ref') || 'null');
+const kind = q.get('prop') || 'tabla', zou = await cast(q.get('actor') || 'zoubida'), tab = kind === 'stool' ? PR.stool({ h: +(q.get('sh') || .15), w: +(q.get('sw') || .3) }) : PR.tabla({ r: .25, h: .28 }); S.prop(tab);
+window.M = {};
+window.draw = () => {
+  S.calibrate(CAL); S.light({ dir: [1.5, 2.5, 1.5], shadow: .3 });
+  const t = S.floorAt(...PT.tabla), s = S.floorAt(...PT.stand);
+  tab.position.copy(t); S.add(zou, s.x, s.z, 0); if (ref?.support) { const p = S.floorAt(...ref.foot, ref.support); zou.group.position.copy(p); } zou.group.updateMatrixWorld(true);
+  M.tabla = t.toArray().map(v => +v.toFixed(2)); M.stand = s.toArray().map(v => +v.toFixed(2));
+  const top = tab.userData.top ?? .28; M.propFootPx = S.project(t).map(v => +v.toFixed(0)); M.propTopPx = S.project(t.clone().setY(top)).map(v => +v.toFixed(0));
+  M.headPx = S.project(PO.hipToWorld(zou, 0, 0, 0).setY(1.62)).map(v => +v.toFixed(0));
+  c.clearRect(0, 0, 1920, 1080); drawPlate(img); S.draw({ ink: 2, alpha: +(q.get('a') || .75) });
+  if (ref) {
+    const support = ref.support || 0, p = S.floorAt(...ref.foot, support), top = S.project(p.clone().setY(support + ref.height)), adult = S.project(p.clone().setY(support + 1.62));
+    M.reference = { painted: ref, projectedTop: top, adultTop: adult, ratio: (ref.foot[1] - adult[1]) / (ref.foot[1] - ref.top) };
+    c.strokeStyle = '#36eddd'; c.lineWidth = 3; c.beginPath(); c.moveTo(...ref.foot); c.lineTo(top[0], top[1]); c.stroke();
+    c.strokeStyle = '#ffcf55'; c.beginPath(); c.moveTo(...ref.foot); c.lineTo(adult[0], adult[1]); c.stroke();
+  }
+  // horizon line, for eye checks
+  c.strokeStyle = '#f0f'; c.lineWidth = 2; c.beginPath(); c.moveTo(0, CAL.horizon); c.lineTo(1920, CAL.horizon); c.stroke();
+};
+window.setPlate = async (name, cal, reference) => { img = await plate(name); window.CAL = cal; ref = reference; window.PT = { tabla: [1100,950], stand: reference?.foot || [1100,900] }; };
+window.drawAt = () => draw(); draw(); window.ready = true;
+</script>

@@ -1,0 +1,69 @@
+<!doctype html><meta charset="utf-8"><title>E1 projected set pilot</title>
+<body style="margin:0;background:#222"><canvas id="cv" width="1920" height="1080"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import * as K from '/engine/core.js';
+import { drawPlate } from '/engine/plates.js';
+import { rest, idlePose } from '/engine/rig3d.js';
+import { sample } from '/tools/shotcheck-browser.mjs';
+import { cam, clampCam } from '/episodes/ep07/lib/kit.js';
+const cv = window.cv = document.getElementById('cv'), c = cv.getContext('2d'); K.setCtx(c);
+const { CAL, shot, role } = await import('/episodes/ep07/scenes/_3d.js');
+const q = new URLSearchParams(location.search), name = q.get('p') || 'barbier', cal = CAL[name];
+if (!cal?.proxy) throw new Error('No pilot proxy for ' + name);
+if (q.has('qa')) window.QA = {};
+window.mv = JSON.parse(q.get('mv') || '{}'); window.reference = q.has('ref'); window.setOnly = q.has('setonly');
+window.samples = q.has('samples') ? JSON.parse(q.get('samples')) : null;
+window.pilotCal = cal;
+window.view = q.has('view') ? JSON.parse(q.get('view')) : null;
+const pivot = () => sh.projected.projector && sh.orbitAt.toArray();
+const sh = shot({ plate:name, move:(lt,u) => {
+  const m = { ...window.mv };
+  if (q.has('anim')) m.dolly = (cal.move_limits.dolly || 1) * K.ease(u);
+  if (m.orbit && !m.orbitAt) m.orbitAt = pivot();
+  return m;
+}, view:() => window.view, ink:2.2, build: async S => {
+  const a = await role(cal.pilot.actor); a.group.scale.setScalar(cal.pilot.actor === 'barber' ? 1.72 : 1.10);
+  const p = S.floorAt(...cal.pilot.stand); S.add(a,p.x,p.z,0); rest(a.B);
+  return { actors:[a], faces:[[a,cal.pilot.actor,1]] };
+}, frame:(lt,u,t,S,st) => { rest(st.actors[0].B); idlePose(st.actors[0].B,t); } });
+await sh.load(); sh.S3.key.shadow.mapSize.set(512,512); sh.orbitAt = sh.S3.floorAt(...cal.pilot.orbitAt); window.sh = sh; window.S = sh.S3; window.THREE = THREE;
+window.drawAt = t => {
+  K.setCtx(c); K.setTime(t); c.setTransform(1,0,0,1,0,0); c.clearRect(0,0,1920,1080);
+  if (window.__qa) window.__qa.active = [];
+  if (q.has('suite')) {
+    window.reference = t === -1;
+    window.mv = t===1 ? {dolly:cal.move_limits.dolly/2} : t===2 ? {dolly:cal.move_limits.dolly} : t===3 ? {orbit:-cal.move_limits.orbit} : t===4 ? {orbit:cal.move_limits.orbit} : t===5 ? {crane:.3} : t===6 ? {dolly:2} : t===7 ? {orbit:15} : t===8 ? {crane:.6} : t===9 ? {truck:.3} : {};
+  }
+  if (window.samples) { window.reference = false; window.mv = window.samples[t] || {}; }
+  if (window.reference || window.setOnly) {
+    sh.projected.move({});
+    c.save(); if (window.view) cam(...window.view);
+    if (window.reference) drawPlate(sh.img); else sh.projected.draw({view:window.view && clampCam(...window.view)});
+    c.restore();
+  } else sh.fn(t,Math.min(1,Math.max(0,t/3)),t,{lines:[]});
+  window.anchors = sh.S3.anchors(sh.st.actors[0]);
+};
+window.identity = (view = null) => {
+  sh.projected.move({});
+  const render = ref => {
+    c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,1920,1080);c.save();
+    if (view) { c.translate(960,540);c.scale(view.z,view.z);c.translate(-view.x,-view.y); }
+    if (ref) drawPlate(sh.img); else sh.projected.draw({view});c.restore();
+    return c.getImageData(0,0,1920,1080).data;
+  };
+  const a = render(true), b = render(false); let sum = 0, max = 0, n = 0, holes = 0;
+  for (let y=8;y<1072;y++) for(let x=8;x<1912;x++) { const i=(y*1920+x)*4; if(b[i+3]!==255) holes++;
+    for(let k=0;k<3;k++){const d=Math.abs(a[i+k]-b[i+k]);sum+=d;max=Math.max(max,d);n++;}}
+  return { mean_abs_255:sum/n, mean_abs:sum/n/255, max, holes, border:8, view };
+};
+window.faceLock = () => {
+  const a = sh.st.actors[0], F=a.S.face;if(!F)return null;
+  const rel = p => new THREE.Vector3(p[0],p[1]-a.S.head,p[2]);
+  const point = p => sh.S3.project(a.B.head.localToWorld(rel(p))).slice(0,2), an = sh.S3.anchors(a).face;
+  return Math.max(...['eyeL','eyeR','mouth'].flatMap(k=>point(F[k]).map((v,i)=>Math.abs(v-an[k][i]))));
+};
+window.qaSample = () => sample({scene:'E1-'+name,t:0,cast:{[cal.pilot.actor]:{height:cal.pilot.actor==='barber'?1.72:1.10}}});
+window.drawAt(0); window.ready = true;
+</script>

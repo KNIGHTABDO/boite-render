@@ -1,0 +1,1322 @@
+{
+ "_": "ep07 calibration: canvas 1920x1080 after .035 source-edge crop. Seeds preserved separately; check = visual evidence. scale_check records measured vertical references and exact perspective fit. Painted inconsistent perspective remains approximate.",
+ "_aliases": {
+  "chambre": "chambre_jour",
+  "patio": "patio_matin"
+ },
+ "_beat_notes": "patio b011/b012 (preparations two days before Achoura), b065/b067 (home after daytime souk) are DAY, use patio_matin; explicit patio_nuit remains night. b086 says dawn despite room msid_facade: stage with msid_facade_aube explicitly; its painting is a different angle.",
+ "chambre_jour": {
+  "h": 1.1,
+  "horizon": 425,
+  "fov": 50,
+  "check": "3D tabla r.25 on the painted tabla at ~4.1 m; copied ep05 exactly; left door floor/lintel also checked in plate bench",
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  },
+  "scale_check": {
+   "foot": [
+    280,
+    960
+   ],
+   "top": 85,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9182,
+   "projected_top": 61.12
+  }
+ },
+ "barbier": {
+  "h": 1.0191,
+  "horizon": 485,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 3.5,
+   "sizes": "estrade 0.40 m high and 0.80 m deep, stool 0.35 m high, shelf 1.30 m above the floor, ceiling 2.40 m",
+   "horizon": 475.20000000000005
+  },
+  "check": "near waiting-platform front face; floor joints and ceiling joists converge around y485; seed 475 close; stool is oversized relative to 0.35 m spec",
+  "scale_check": {
+   "foot": [
+    270,
+    1025
+   ],
+   "top": 815,
+   "height": 0.4,
+   "kind": "platform",
+   "actor": 1.62,
+   "measured_actor_ratio": 4.1249,
+   "projected_top": 815.0
+  },
+  "light": {
+   "dir": [
+    0,
+    2,
+    4
+   ],
+   "key": "#ffe6ba",
+   "keyI": 2.0,
+   "sky": "#d6dafa",
+   "ground": "#95734c",
+   "fillI": 1.0,
+   "shadow": 0.28
+  },
+  "proxy": {
+   "room": {
+    "back": [
+     [
+      600,
+      800
+     ],
+     [
+      1250,
+      800
+     ]
+    ],
+    "left": [
+     45,
+     1060
+    ],
+    "right": [
+     1860,
+     1060
+    ],
+    "ceil": 2.4
+   },
+   "boxes": [
+    {
+     "front": [
+      [
+       50,
+       1035
+      ],
+      [
+       465,
+       1035
+      ]
+     ],
+     "h": 0.4,
+     "d": 1.85,
+     "name": "waiting platform"
+    },
+    {
+     "front": [
+      [
+       905,
+       950
+      ],
+      [
+       1095,
+       950
+      ]
+     ],
+     "h": 0.35,
+     "d": 0.36,
+     "name": "client stool"
+    }
+   ]
+  },
+  "pilot": {
+   "stand": [
+    1270,
+    900
+   ],
+   "orbitAt": [
+    960,
+    820
+   ],
+   "actor": "barber"
+  },
+  "move_limits": {
+   "dolly": 1.0,
+   "orbit": 3,
+   "crane": 0.1,
+   "truck": 0.1,
+   "cover_zoom": 1.08,
+   "orbitAt": [
+    960,
+    820
+   ],
+   "status": "visual pilot: largest usable tested steps, not an exhaustive maximum; lateral limits assume cover_zoom to hide the source border",
+   "full_frame": {
+    "dolly": 1.0,
+    "orbit": 0,
+    "crane": 0,
+    "truck": 0
+   },
+   "rejected": {
+    "orbit": 10,
+    "crane": 0.3,
+    "truck": 0.3
+   },
+   "check": "stool/bench depth is approximate; 1.2 m starts obvious stool/foreground distortion, 2 m also loses framing; raw 3-degree orbit/0.10 m crane still show border stretch, so use the cover or stay on the calibration axis. Limits are component-wise, not safe combined moves."
+  }
+ },
+ "barbier_rev": {
+  "h": 0.9644,
+  "horizon": 480,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 3.0,
+   "sizes": "shop opening 2.20 m wide and 2.10 m high, stool 0.35 m high, street 2.5 m wide",
+   "horizon": 475.20000000000005
+  },
+  "check": "open shop uprights and sill; ceiling rafters converge near y480; seed 475 followed",
+  "scale_check": {
+   "foot": [
+    1060,
+    800
+   ],
+   "top": 95,
+   "height": 2.1,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.7676,
+   "projected_top": 95.02
+  },
+  "light": {
+   "dir": [
+    0,
+    2,
+    4
+   ],
+   "key": "#ffe6ba",
+   "keyI": 2.0,
+   "sky": "#d6dafa",
+   "ground": "#95734c",
+   "fillI": 1.0,
+   "shadow": 0.28
+  }
+ },
+ "barbier_ext": {
+  "h": 1.2169,
+  "horizon": 560,
+  "fov": 45,
+  "seed": {
+   "h": 1.1,
+   "fov": 45,
+   "hor": 42,
+   "dist": 5.0,
+   "sizes": "shop opening 2.20 m wide and 2.10 m high, step 0.25 m, street 2.5 m wide, vine trunk 0.25 m thick",
+   "horizon": 453.6
+  },
+  "check": "shop opening sill/lintel; alley paving and left eaves converge around y560, lower than seed 454",
+  "scale_check": {
+   "foot": [
+    1260,
+    830
+   ],
+   "top": 365,
+   "height": 2.1,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.7723,
+   "projected_top": 364.99
+  },
+  "light": {
+   "dir": [
+    0,
+    2,
+    4
+   ],
+   "key": "#ffe6ba",
+   "keyI": 2.0,
+   "sky": "#d6dafa",
+   "ground": "#95734c",
+   "fillI": 1.0,
+   "shadow": 0.28
+  }
+ },
+ "barbier_ext_rev": {
+  "h": 1.0075,
+  "horizon": 565,
+  "fov": 45,
+  "seed": {
+   "h": 1.1,
+   "fov": 45,
+   "hor": 42,
+   "dist": 10.0,
+   "sizes": "street 2.5 m wide, doors 1.80 m high",
+   "horizon": 453.6
+  },
+  "check": "near right door edge; alley floor/eaves converge near arch y565; seed 454 not followed",
+  "scale_check": {
+   "foot": [
+    1480,
+    995
+   ],
+   "top": 230,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9008,
+   "projected_top": 230.03
+  },
+  "light": {
+   "dir": [
+    0,
+    2,
+    4
+   ],
+   "key": "#ffe6ba",
+   "keyI": 2.0,
+   "sky": "#d6dafa",
+   "ground": "#95734c",
+   "fillI": 1.0,
+   "shadow": 0.28
+  }
+ },
+ "cuisine_auge": {
+  "h": 0.6972,
+  "horizon": 625,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 44,
+   "dist": 3.0,
+   "sizes": "trough 1.10 m long, 0.60 m wide and 0.35 m high, bucket 0.35 m high",
+   "horizon": 475.20000000000005
+  },
+  "check": "rear right doorway; floor slabs and ceiling beams converge around y625; seed 475 not followed",
+  "scale_check": {
+   "foot": [
+    1285,
+    850
+   ],
+   "top": 280,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9027,
+   "projected_top": 280.04
+  },
+  "light": {
+   "dir": [
+    -3,
+    2,
+    1
+   ],
+   "key": "#ffcd83",
+   "keyI": 1.25,
+   "sky": "#566384",
+   "ground": "#423b35",
+   "fillI": 0.5,
+   "shadow": 0.28
+  }
+ },
+ "escalier_nuit": {
+  "h": 0.9,
+  "horizon": 570,
+  "fov": 50,
+  "seed": {
+   "h": 0.9,
+   "fov": 50,
+   "hor": 46,
+   "dist": 3.0,
+   "sizes": "steps 0.20 m high and 0.28 m deep, stair 0.90 m wide",
+   "horizon": 496.8
+  },
+  "check": "lower arched door, not a floor at the camera landing; landing/ceiling edges suggest y570, weak evidence in darkness; stairs need explicit step support; door belongs to a lower flight: scale uses 0.20 m step rise, door check is not a valid same-floor measurement; reference support -2.964 m fits the lower doorway; this does not imply a flat walkable staircase",
+  "scale_check": {
+   "foot": [
+    370,
+    1040
+   ],
+   "top": 820,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "support": -2.964,
+   "measured_actor_ratio": 0.9004,
+   "projected_top": 820.0
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#a1b5e8",
+   "keyI": 0.45,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "msid_facade": {
+  "h": 1.1751,
+  "horizon": 610,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 8.0,
+   "sizes": "Msid door 1.80 m high and 0.90 m wide, street 2.5 m wide, light clusters 0.5 m wide",
+   "horizon": 475.20000000000005
+  },
+  "check": "lit doorway sill/lintel; alley eaves and wall feet converge near y610; seed 475 not followed",
+  "scale_check": {
+   "foot": [
+    915,
+    800
+   ],
+   "top": 510,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9009,
+   "projected_top": 510.0
+  },
+  "light": {
+   "dir": [
+    0,
+    2,
+    -3
+   ],
+   "key": "#ffc271",
+   "keyI": 1.8,
+   "sky": "#435984",
+   "ground": "#584640",
+   "fillI": 0.65,
+   "rim": "#ffad65",
+   "rimI": 0.8,
+   "shadow": 0.2
+  },
+  "proxy": {
+   "planes": [
+    {
+     "front": [
+      [
+       510,
+       820
+      ],
+      [
+       810,
+       820
+      ]
+     ],
+     "h": 7,
+     "name": "facade left"
+    },
+    {
+     "front": [
+      [
+       1010,
+       820
+      ],
+      [
+       1210,
+       820
+      ]
+     ],
+     "h": 7,
+     "name": "facade right"
+    },
+    {
+     "front": [
+      [
+       810,
+       820
+      ],
+      [
+       1010,
+       820
+      ]
+     ],
+     "bottom": 1.8,
+     "h": 5.2,
+     "name": "door lintel"
+    },
+    {
+     "front": [
+      [
+       810,
+       820
+      ],
+      [
+       1010,
+       820
+      ]
+     ],
+     "h": 7,
+     "offset": 0.55,
+     "name": "recessed doorway"
+    },
+    {
+     "front": [
+      [
+       0,
+       1080
+      ],
+      [
+       510,
+       820
+      ]
+     ],
+     "h": 7,
+     "name": "left alley"
+    },
+    {
+     "front": [
+      [
+       1210,
+       820
+      ],
+      [
+       1920,
+       1080
+      ]
+     ],
+     "h": 7,
+     "name": "right alley"
+    }
+   ]
+  },
+  "pilot": {
+   "stand": [
+    1010,
+    1010
+   ],
+   "orbitAt": [
+    960,
+    820
+   ],
+   "actor": "mohammed"
+  },
+  "move_limits": {
+   "dolly": 1.5,
+   "orbit": 3,
+   "crane": 0.1,
+   "truck": 0.1,
+   "cover_zoom": 1.08,
+   "orbitAt": [
+    960,
+    820
+   ],
+   "status": "visual pilot: largest usable tested steps, not an exhaustive maximum; lateral limits assume cover_zoom to hide the source border",
+   "full_frame": {
+    "dolly": 1.5,
+    "orbit": 0,
+    "crane": 0,
+    "truck": 0
+   },
+   "rejected": {
+    "orbit": 10,
+    "crane": 0.3,
+    "truck": 0.3
+   },
+   "check": "2 m is a stress sample; shallow doorway recess and eaves need more geometry for larger moves; raw 3-degree orbit/0.10 m crane still show border stretch, so use the cover or stay on the calibration axis. Limits are component-wise, not safe combined moves."
+  }
+ },
+ "msid_facade_aube": {
+  "h": 0.9891,
+  "horizon": 630,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 8.0,
+   "sizes": "Msid door 1.80 m high and 0.90 m wide, street 2.5 m wide",
+   "horizon": 475.20000000000005
+  },
+  "check": "near right closed door; alley wall feet/eaves converge through far arch at y630; DIFFERENT view from night facade; seed 475 not followed",
+  "scale_check": {
+   "foot": [
+    1430,
+    930
+   ],
+   "top": 390,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9022,
+   "projected_top": 390.03
+  },
+  "light": {
+   "dir": [
+    0,
+    4,
+    -1
+   ],
+   "key": "#c4d5ee",
+   "keyI": 1.0,
+   "sky": "#a5b8cf",
+   "ground": "#6b6b73",
+   "fillI": 1,
+   "shadow": 0.15
+  }
+ },
+ "msid_feerie": {
+  "h": 0.9019,
+  "horizon": 490,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 42,
+   "dist": 6.0,
+   "sizes": "door 1.80 m high, estrade 0.35 m high, lustres 0.90 m wide hanging 2.2 m above the floor, ceiling 3.2 m",
+   "horizon": 453.6
+  },
+  "check": "estrade front bottom/top; mat borders and ceiling joists converge near y490; seed 454 close; no painted door in this angle",
+  "scale_check": {
+   "foot": [
+    970,
+    710
+   ],
+   "top": 625,
+   "height": 0.35,
+   "kind": "platform",
+   "actor": 1.62,
+   "measured_actor_ratio": 4.6756,
+   "projected_top": 625.0
+  },
+  "light": {
+   "dir": [
+    -1,
+    3,
+    1
+   ],
+   "key": "#ffd392",
+   "keyI": 1.7,
+   "sky": "#e8b2a0",
+   "ground": "#8a673c",
+   "fillI": 1.2,
+   "rim": "#ff9c69",
+   "rimI": 0.5,
+   "shadow": 0.2
+  },
+  "proxy": {
+   "room": {
+    "back": [
+     [
+      465,
+      670
+     ],
+     [
+      1370,
+      670
+     ]
+    ],
+    "left": [
+     0,
+     1060
+    ],
+    "right": [
+     1920,
+     1060
+    ],
+    "ceil": 3.2
+   },
+   "boxes": [
+    {
+     "front": [
+      [
+       440,
+       710
+      ],
+      [
+       1400,
+       710
+      ]
+     ],
+     "h": 0.35,
+     "d": 0.8,
+     "name": "estrade"
+    }
+   ]
+  },
+  "pilot": {
+   "stand": [
+    1060,
+    910
+   ],
+   "orbitAt": [
+    960,
+    820
+   ],
+   "actor": "mohammed"
+  },
+  "move_limits": {
+   "dolly": 0.5,
+   "orbit": 3,
+   "crane": 0.1,
+   "truck": 0.1,
+   "cover_zoom": 1.08,
+   "orbitAt": [
+    960,
+    820
+   ],
+   "status": "visual pilot: largest usable tested steps, not an exhaustive maximum; lateral limits assume cover_zoom to hide the source border",
+   "full_frame": {
+    "dolly": 0.5,
+    "orbit": 0,
+    "crane": 0,
+    "truck": 0
+   },
+   "rejected": {
+    "orbit": 10,
+    "crane": 0.3,
+    "truck": 0.3
+   },
+   "check": "1 m visibly bends tablets/jar against the wall; 1.5 m exaggerates flat chandeliers and platform seams; raw 3-degree orbit/0.10 m crane still show border stretch, so use the cover or stay on the calibration axis. Limits are component-wise, not safe combined moves."
+  }
+ },
+ "msid_feerie_rev": {
+  "h": 1.3028,
+  "horizon": 495,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 44,
+   "dist": 5.5,
+   "sizes": "door 1.80 m high and 0.90 m wide, lustres 0.90 m wide hanging 2.2 m above the floor",
+   "horizon": 475.20000000000005
+  },
+  "check": "back open door sill/lintel; mat long edges and joists converge around y495; seed 475 close",
+  "scale_check": {
+   "foot": [
+    980,
+    690
+   ],
+   "top": 420,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8993,
+   "projected_top": 419.99
+  },
+  "light": {
+   "dir": [
+    -1,
+    3,
+    1
+   ],
+   "key": "#ffd392",
+   "keyI": 1.7,
+   "sky": "#e8b2a0",
+   "ground": "#8a673c",
+   "fillI": 1.2,
+   "rim": "#ff9c69",
+   "rimI": 0.5,
+   "shadow": 0.2
+  }
+ },
+ "msid_lustres": {
+  "h": 1.1688,
+  "horizon": 490,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 42,
+   "dist": 6.0,
+   "sizes": "door 1.80 m high, estrade 0.35 m high, ladder 3.0 m long, lustres 0.80 m wide, ceiling 3.2 m",
+   "horizon": 453.6
+  },
+  "check": "estrade front bottom/top; bare floor and ceiling edges converge near y490; seed 454 close; no door in this angle",
+  "scale_check": {
+   "foot": [
+    1000,
+    725
+   ],
+   "top": 655,
+   "height": 0.35,
+   "kind": "platform",
+   "actor": 1.62,
+   "measured_actor_ratio": 4.6669,
+   "projected_top": 655.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "msid_lustres_rev": {
+  "h": 1.3329,
+  "horizon": 490,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 44,
+   "dist": 5.5,
+   "sizes": "door 1.80 m high and 0.90 m wide, ladder 3.0 m long, lustres 0.80 m wide hanging 2.2 m above the floor",
+   "horizon": 475.20000000000005
+  },
+  "check": "back entrance sill/lintel; mat borders and ceiling edges converge near y490; seed 475 close",
+  "scale_check": {
+   "foot": [
+    990,
+    730
+   ],
+   "top": 405,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.899,
+   "projected_top": 405.01
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "patio_nuit_pov": {
+  "h": 0.5217,
+  "horizon": 625,
+  "fov": 50,
+  "seed": {
+   "h": 0.9,
+   "fov": 50,
+   "hor": 46,
+   "dist": 7.0,
+   "sizes": "patio 6 m wide, doors 1.80 m high, braziers 0.25 m high",
+   "horizon": 496.8
+  },
+  "check": "back glowing doorway and patio tile lines; child-height VP around y625 vs seed 497; smoke reduces precision",
+  "scale_check": {
+   "foot": [
+    950,
+    710
+   ],
+   "top": 420,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9014,
+   "projected_top": 420.01
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#ffce8d",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "rue_nuit": {
+  "h": 0.8605,
+  "horizon": 625,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 10.0,
+   "sizes": "street 2.5 m wide, doors 1.80 m high",
+   "horizon": 475.20000000000005
+  },
+  "check": "near right closed door; ascending alley floor/eaves suggest y625; seed 475 not followed; ground is only locally flat",
+  "scale_check": {
+   "foot": [
+    1620,
+    960
+   ],
+   "top": 270,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9027,
+   "projected_top": 269.97
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#a1b5e8",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "rue_nuit_rev": {
+  "h": 1.0886,
+  "horizon": 610,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 9.0,
+   "sizes": "street 2.5 m wide, doors 1.80 m high",
+   "horizon": 475.20000000000005
+  },
+  "check": "far lit door sill/top; alley paving and overhead arch lines suggest y610 vs seed 475",
+  "scale_check": {
+   "foot": [
+    920,
+    780
+   ],
+   "top": 500,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9009,
+   "projected_top": 500.0
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#a1b5e8",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "salon": {
+  "h": 1.0123,
+  "horizon": 470,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 44,
+   "dist": 4.0,
+   "sizes": "divan 0.35 m high and 0.80 m deep, low table 0.30 m high and 0.70 m wide, door 1.80 m",
+   "horizon": 475.20000000000005
+  },
+  "check": "left open doorway; floor slabs and back wall returns near y470; seed 475 followed",
+  "scale_check": {
+   "foot": [
+    210,
+    940
+   ],
+   "top": 90,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8965,
+   "projected_top": 89.99
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "salon_rev": {
+  "h": 0.9538,
+  "horizon": 470,
+  "fov": 50,
+  "seed": {
+   "h": 1.0,
+   "fov": 50,
+   "hor": 44,
+   "dist": 3.5,
+   "sizes": "door 1.80 m high and 1.0 m wide, low table 0.30 m high",
+   "horizon": 475.20000000000005
+  },
+  "check": "right doorway; floor slabs and ceiling returns converge near y470; seed 475 followed",
+  "scale_check": {
+   "foot": [
+    1600,
+    820
+   ],
+   "top": 150,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8973,
+   "projected_top": 149.97
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "souk_jouets": {
+  "h": 0.6332,
+  "horizon": 565,
+  "fov": 45,
+  "seed": {
+   "h": 1.1,
+   "fov": 45,
+   "hor": 42,
+   "dist": 9.0,
+   "sizes": "shop fronts 1.80 m wide and 2.0 m high, counters 0.80 m high, alley 2.8 m wide",
+   "horizon": 453.6
+  },
+  "check": "far shop front upright; stall base/eave edges converge near alley gate at y565; seed 454 not followed",
+  "scale_check": {
+   "foot": [
+    965,
+    665
+   ],
+   "top": 350,
+   "height": 2.0,
+   "kind": "shop",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8106,
+   "projected_top": 350.01
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "terrasse_rampe": {
+  "h": 1.4935,
+  "horizon": 430,
+  "fov": 45,
+  "seed": {
+   "h": 1.0,
+   "fov": 45,
+   "hor": 44,
+   "dist": 4.0,
+   "sizes": "party wall 0.90 m high and 0.25 m thick, gutter 0.15 m wide",
+   "horizon": 475.20000000000005
+  },
+  "check": "back parapet foot/top; city roof receding lines suggest y430; seed 475 high; distant hills are not a reliable geometric horizon",
+  "scale_check": {
+   "foot": [
+    950,
+    815
+   ],
+   "top": 585,
+   "height": 0.9,
+   "kind": "parapet",
+   "actor": 1.62,
+   "measured_actor_ratio": 1.8191,
+   "projected_top": 585.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "chambre_nuit": {
+  "h": 1.2786,
+  "horizon": 450,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "front divan face; floor slabs match bedroom perspective with higher viewpoint; door is outside frame",
+  "scale_check": {
+   "foot": [
+    1150,
+    840
+   ],
+   "top": 735,
+   "height": 0.35,
+   "kind": "platform",
+   "actor": 1.62,
+   "measured_actor_ratio": 4.7352,
+   "projected_top": 735.0
+  },
+  "light": {
+   "dir": [
+    -2,
+    2,
+    1
+   ],
+   "key": "#ffce8d",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "escalier": {
+  "h": 0.9,
+  "horizon": 570,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "lower arched door; ceiling and landing returns suggest y570; reference is below camera landing, adjusted support needed; door belongs to a lower flight: scale uses 0.20 m step rise, door check is not a valid same-floor measurement; reference support -2.6751 m fits the lower doorway; this does not imply a flat walkable staircase",
+  "scale_check": {
+   "foot": [
+    440,
+    1015
+   ],
+   "top": 790,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "support": -2.6751,
+   "measured_actor_ratio": 0.9004,
+   "projected_top": 790.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "patio_nuit": {
+  "h": 3.2062,
+  "horizon": 165,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "back glowing door; gallery returns/tile lines imply high viewpoint, seed unavailable; foreground rail occludes courtyard",
+  "scale_check": {
+   "foot": [
+    960,
+    805
+   ],
+   "top": 470,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8923,
+   "projected_top": 470.0
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#ffce8d",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "terrasse": {
+  "h": 1.7392,
+  "horizon": 445,
+  "fov": 45,
+  "seed": {
+   "h": 1.1,
+   "fov": 45
+  },
+  "check": "left roof door; terrace slab joints and receding roof edges suggest y445; distant hills excluded",
+  "scale_check": {
+   "foot": [
+    650,
+    865
+   ],
+   "top": 430,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8981,
+   "projected_top": 430.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "patio_matin": {
+  "h": 0.7589,
+  "horizon": 700,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "back ground-floor door; courtyard paving and gallery rails converge near y700; upward view, seed unavailable",
+  "scale_check": {
+   "foot": [
+    1100,
+    820
+   ],
+   "top": 540,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9025,
+   "projected_top": 540.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "chambre": {
+  "h": 1.1,
+  "horizon": 425,
+  "fov": 50,
+  "check": "Alias chambre -> chambre_jour. 3D tabla r.25 on the painted tabla at ~4.1 m; copied ep05 exactly; left door floor/lintel also checked in plate bench",
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  },
+  "scale_check": {
+   "foot": [
+    280,
+    960
+   ],
+   "top": 85,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9182,
+   "projected_top": 61.12
+  },
+  "alias": "chambre_jour"
+ },
+ "patio": {
+  "h": 0.7589,
+  "horizon": 700,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "Alias patio -> patio_matin. back ground-floor door; courtyard paving and gallery rails converge near y700; upward view, seed unavailable",
+  "scale_check": {
+   "foot": [
+    1100,
+    820
+   ],
+   "top": 540,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9025,
+   "projected_top": 540.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  },
+  "alias": "patio_matin"
+ },
+ "_canvas": "x_canvas=(x_source-1672*.035)/(1672*.93)*1920; y_canvas=(y_source-941*.035)/(941*.93)*1080. All measured floor/door/proxy coordinates use the cropped canvas."
+}
