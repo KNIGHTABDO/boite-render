@@ -38,7 +38,7 @@ const ch = shot({
   light: { keyI: .55 },
   async build(S3) {
     const cam = S3.cam.position.clone().setY(0);
-    const fa = await role('father', { seat: true }), mo = await role('mohammed', { seat: true }), zo = await role('zoubida');
+    const fa = await role('father', { seat: true }), mo = await role('mohammed', { seat: true }), zo = await role('zoubida', { seat: true });
     // the father on the back banquette, 0.35 m in from its front edge (same spot as s10)
     const mh = heightAt(S3, 900, 700, 650), edge = S3.floorAt(900, 700);
     const fp = edge.clone().add(edge.clone().sub(cam).setY(0).normalize().multiplyScalar(.35));
@@ -77,7 +77,7 @@ const ch = shot({
     PO.look(zo, at(mo, 'head'), .5);
     // Mohammed: b104 slumped, eyes on the mattress; b105 the right hand on his chest, thumb rubbing the soft shirt
     const b5 = sm(L[1][0] - .2, L[1][0] + .6, t) * (1 - sm(L[2][0] - .5, L[2][0], t));
-    if (b5 > 0) PO.reach(mo, 'R', front(mo, 'chest', .11 * km, .03 * km + .012 * Math.sin(t * 2.4), -.02 * km).lerp(front(mo, 'root', .22 * km, .1 * km, .05 * km), 1 - b5), { grip: .04 });
+    if (b5 > 0) PO.reach(mo, 'R', front(mo, 'chest', .11 * km, .03 * km + .012 * Math.sin(t * 2.4), -.08 * km).lerp(front(mo, 'root', .22 * km, .1 * km, .05 * km), 1 - b5), { grip: .04 });
     // b106: the box in his lap, both hands on its sides; the right hand lifts the lid
     const box = t >= L[2][0] - .4;
     bx.visible = box;

@@ -66,8 +66,9 @@ const ch = shot({
     }
     // ---- Mohammed: b019 at the window (back to us, head up and turned to the grille); then by the table, eyes on the lamp
     const atWin = t >= L[1][0] - .1 && t < L[2][0] - .1;
-    mo.group.position.copy(atWin ? wp : mp); mo.group.rotation.y = atWin ? Math.atan2(win.x - wp.x, win.z - wp.z) : mo.group.rotation.y; mo.group.updateMatrixWorld(true);
-    if (atWin) { PO.look(mo, win, .9); mo.B.head.rotation.z += .2; mo.B.head.updateWorldMatrix(false, true); }
+    mo.group.position.copy(atWin ? wp : mp); const tw = win.clone().lerp(st.cam.clone().setY(1.2), .55);   // three-quarter between the window and us: the CU needs his face
+    mo.group.rotation.y = atWin ? Math.atan2(tw.x - wp.x, tw.z - wp.z) : mo.group.rotation.y; mo.group.updateMatrixWorld(true);
+    if (atWin) { PO.look(mo, win.clone().lerp(tw, .4), .9); mo.B.head.rotation.z += .2; mo.B.head.updateWorldMatrix(false, true); }
     else PO.look(mo, t >= L[5][0] ? at(zo, 'head') : lamp, .8);
   },
   over(lt, u, t) {

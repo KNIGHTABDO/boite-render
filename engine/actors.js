@@ -102,7 +102,18 @@ export function place(a, X, Y, hpx, o = {}) {
     const facing = fwd.dot(toCam);
     const eyePx = F.eyeR_ / (S.top - S.bottom) * s * R / (2 * Math.tan(10 * Math.PI / 180) * cam.position.distanceTo(eL));
     // sample the skin just below each eye in the actor frame (for eyelids)
-    const skinAt = v => { const [x, y] = pr(v.clone().add(new THREE.Vector3(0, -F.eyeR_ * 2.2, 0))); const d = tk.getImageData(Math.max(0, Math.min(R - 1, x | 0)), Math.max(0, Math.min(R - 1, y | 0)), 1, 1).data; return `rgb(${d[0]},${d[1]},${d[2]})`; };
+    // several spots round the eye; the first that is neither eye-white nor ink wins (a child's big eyes put the old
+    // single spot on the sclera: closed lids came out white in s16/s26)
+    const skinAt = v => {
+      const e = F.eyeR_, offs = [[0, -2.2], [0, -3], [2.6, -.6], [-2.6, -.6], [0, -4], [0, 2.8]];
+      for (const [ox, oy] of offs) {
+        const [x, y] = pr(v.clone().add(new THREE.Vector3(ox * e, oy * e, 0)));
+        const d = tk.getImageData(Math.max(0, Math.min(R - 1, x | 0)), Math.max(0, Math.min(R - 1, y | 0)), 1, 1).data;
+        const mx = Math.max(d[0], d[1], d[2]), mn = Math.min(d[0], d[1], d[2]);
+        if (mn < 215 && mx > 70 && mx - mn > 18) return `rgb(${d[0]},${d[1]},${d[2]})`;
+      }
+      return '#b98a66';
+    };
     out.face = { eyeL: toScr(eL), eyeR: toScr(eR), mouth: toScr(mo), eyePx: eyePx * .92, facing, beard: F.beard, veil: F.veil, skinL: skinAt(eL), skinR: skinAt(eR), roll: a.group.rotation.z + a.B.head.rotation.z };
   }
   return out;

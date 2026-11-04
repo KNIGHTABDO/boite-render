@@ -109,7 +109,7 @@ const sa = shot({
         PO.reach(as, s, lap.lerp(mid, Math.abs(talk) > 0 ? .7 : 0).lerp(shoulder, sky), { grip: sky > .5 ? .06 : .03 });
       }
       const lookAway = sm(L[5][0] - .2, L[5][0] + .5, t) * (1 - sm(L[6][0], L[6][0] + .5, t));
-      const tgt = sky > .3 ? at(as, 'head').add(V(0, 2, 0)).addScaledVector(dirW(as, 0, 0, 1), 1) : lookAway > 0 ? front(as, 'head', 1, -1.2, -.2) : at(zk.group.visible ? zk : zw, 'head');
+      const tgt = sky > .3 ? at(as, 'head').add(V(0, 1.1, 0)).addScaledVector(dirW(as, 0, 0, 1), 1.6) : lookAway > 0 ? front(as, 'head', 1, -1.2, -.2) : at(zk.group.visible ? zk : zw, 'head');
       PO.look(as, tgt, .7);
       if (LAUGH[0] < t && t < LAUGH[1]) { as.B.chest.rotation.x -= .05 * Math.sin(t * 9); as.B.chest.updateWorldMatrix(false, true); }
     }

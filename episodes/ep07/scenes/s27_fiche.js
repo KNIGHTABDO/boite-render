@@ -48,13 +48,13 @@ export default {
     const h = ease(clamp((t - LN[0]) / .5));
     if (h > 0) {
       c.save(); c.globalAlpha = h; c.textAlign = 'center';
-      c.fillStyle = INK; c.font = `bold 58px ${SERIF}`; c.fillText('Fiche de révision — Chapitre VII', W / 2, 118);
-      c.fillStyle = RED; c.font = `italic 34px ${SERIF}`; c.fillText("La nuit de l'Achoura, en quatre temps", W / 2, 162);
+      c.fillStyle = INK; c.font = `bold 58px ${SERIF}`; c.fillText('Fiche de révision — Chapitre VII', W / 2, 100);
+      c.fillStyle = RED; c.font = `italic 34px ${SERIF}`; c.fillText("La nuit de l'Achoura, en quatre temps", W / 2, 142);
       c.restore();
     }
     // ---- chronology: four cards, a painting each, joined by arrows
-    if (t > LN[1] - .3) heading('Chronologie', 120, 225, ease(clamp((t - LN[1] + .3) / .4)));
-    const cw = 400, gap = 40, cx0 = (W - 4 * cw - 3 * gap) / 2, cy = 250, ph = 150;
+    if (t > LN[1] - .3) heading('Chronologie', 120, 198, ease(clamp((t - LN[1] + .3) / .4)));
+    const cw = 400, gap = 40, cx0 = (W - 4 * cw - 3 * gap) / 2, cy = 218, ph = 150;
     CHRONO.forEach((p, i) => {
       const k = ease(clamp((t - p.at) / .4)); if (k <= 0) return;
       const x = cx0 + i * (cw + gap);
@@ -70,7 +70,7 @@ export default {
       focus(x - 6, cy - 6, cw + 12, ph + 122, t, p.at, i < 3 ? CHRONO[i + 1].at : LN[2]);
     });
     // ---- the detail to remember
-    const dy = 580;
+    const dy = 530;
     if (t > LN[2] - .2) {
       const a = ease(clamp((t - LN[2] + .2) / .4));
       heading('Le détail à retenir', 120, dy, a);
@@ -84,7 +84,7 @@ export default {
     });
     focus(104, dy - 40, W - 208, 268, t, LN[2], LN[3]);
     // ---- themes, quotes, teaser
-    const ty = 880;
+    const ty = 800;
     if (t > LN[3] - .2) {
       const a = ease(clamp((t - LN[3] + .2) / .4));
       heading('Thèmes', 120, ty, a);

@@ -30,7 +30,7 @@ export async function msidCast(S3, { fqih = 'fete', moCostume = 'fete' } = {}) {
   const kids = [];
   for (const [n, x, y] of SEATS) {
     const a = await role(n, { seat: true, ...(n === 'mohammed' ? { costume: moCostume } : {}) });
-    const p = S3.floorAt(x, y); S3.add(a, p.x, p.z, yawTo(p, fp.clone().lerp(cam, .45)));
+    const p = S3.floorAt(x, y); S3.add(a, p.x, p.z, yawTo(p, fp.clone().lerp(cam, n === 'mohammed' ? .75 : .45)));
     memoPose('msid-' + n, a, [x, y], () => PO.crossLegged(a, { seat: 0, lean: .12 }));
     kids.push(a);
   }

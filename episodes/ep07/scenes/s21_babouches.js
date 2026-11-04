@@ -36,7 +36,7 @@ const ru = shot({
     const off = (p, s) => p.clone().addScaledVector(left, s * .3);
     const cam = S3.cam.position.clone().setY(0);
     S3.add(fa, off(p1, -1).x, off(p1, -1).z, yawTo(p1, cam)); S3.add(mo, off(p1, 1).x, off(p1, 1).z, yawTo(p1, cam));   // built at the stop: the M crops frame them there
-    const door = S3.floorAt(250, 720).add(V(0, 1.4, 0));
+    const door = S3.floorAt(250, 720).lerp(cam, .5).add(V(0, 1.4, 0));   // half toward us: the dark doorway is deep left, a full turn showed only their backs
     const bb = S3.prop(PR.babouche({ col: 0xe8b830 })); bb.scale.setScalar(1.25);
     const cd = S3.prop(cierge()), cn = S3.prop(coin());
     cd.userData.qa = { grip: true, hand: 'L', owner: 'father' }; cn.userData.qa = { grip: true, hand: 'R', owner: 'father' };
