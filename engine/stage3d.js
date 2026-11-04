@@ -131,7 +131,7 @@ export function stage() {
     if (v) cam.setViewOffset(W, H, rx, ry, rw, rh);
     gl.render(scene, cam); gl.getContext().finish();
     if (v) cam.clearViewOffset();
-    lk.clearRect(0, 0, W, H); lk.drawImage(gl.domElement, 0, 0, W, H);
+    lk.clearRect(0, 0, W, H); lk.drawImage(gl.domElement, 0, 0, W, H); S.crop = [rx, ry, rw, rh];   // lk holds this rectangle stretched to W×H
     if (o.grade) { lk.globalCompositeOperation = 'source-atop'; lk.fillStyle = o.grade; lk.fillRect(0, 0, W, H); lk.globalCompositeOperation = 'source-over'; }
     c.save(); if (o.alpha != null) c.globalAlpha *= o.alpha;
     const px = (o.ink ?? 2.2) * (v ? v.z : 1);   // ink width in screen px: the crop is drawn back at 1/z
@@ -174,7 +174,8 @@ export function stage() {
       // several candidates (below, beside, toward the nose); keep the most skin-like, so a tipped head never paints the
       // lids with whatever is under the chin (s16: the striped towel)
       const ref = (Sp.fixSkin || '#c08a64').match(/\w\w/g).map(h => parseInt(h, 16));
-      const px = v => { const [x, y] = pr(v); const d = lk.getImageData(Math.max(0, Math.min(W - 1, x | 0)), Math.max(0, Math.min(H - 1, y | 0)), 1, 1).data; return [d[0], d[1], d[2], d[3]]; };
+      const px = v => { const [px0, py0] = pr(v), [cx, cy, cw, ch] = S.crop || [0, 0, W, H], x = (px0 - cx) / cw * W, y = (py0 - cy) / ch * H;   // plate px → the cropped layer (CU lids sampled the wrong spot)
+        const d = lk.getImageData(Math.max(0, Math.min(W - 1, x | 0)), Math.max(0, Math.min(H - 1, y | 0)), 1, 1).data; return [d[0], d[1], d[2], d[3]]; };
       const skinAt = (v, o) => {
         let best = null, bs = 1e9;
         for (const off of [[0, -2.2], [0, -1.6], [0, -1.2], [1.6, -.6], [-1.4, -.8]]) {
@@ -188,7 +189,7 @@ export function stage() {
         // hue from the cast skin, light from the scene (clamped): a sample that still hit the eye-white or a highlight can't
         // paint white lids (s16 32.5 s, s26), a shadowed one still darkens them
         const lum = (best[0] * .3 + best[1] * .59 + best[2] * .11) / (ref[0] * .3 + ref[1] * .59 + ref[2] * .11), g = Math.max(.3, Math.min(1, lum));
-        return `rgb(${ref.map(v => Math.round(Math.min(255, v * g))).join(',')})`;
+        return lum > 1.15 ? `rgb(${ref.map(v => Math.round(Math.min(255, v * g))).join(',')})` : `rgb(${best[0]},${best[1]},${best[2]})`;
       };
       const F = Sp.face, eL = wp('head', rel(F.eyeL)), eR = wp('head', rel(F.eyeR)), mo = wp('head', rel(F.mouth)), upH = wp('head', [0, 1, 0]).sub(wp('head')).normalize();
       const fwd = wp('head', [0, 0, 1]).sub(wp('head')).normalize(), toCam = cam.position.clone().sub(wp('head')).normalize();
