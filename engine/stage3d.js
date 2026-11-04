@@ -181,7 +181,7 @@ export function stage() {
           const d = px(v.clone().add(new THREE.Vector3(off[0] * m, off[1] * m, 0))); if (d[3] < 128) continue;
           const sum = d[0] + d[1] + d[2] + 1, rs = ref[0] + ref[1] + ref[2];
           const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0) + (d[2] < d[0] * .3 ? 1 : 0)   // hue first, red>green>blue, not a saturated yellow/orange cloth
-            + ((Math.max(d[0], d[1], d[2]) - Math.min(d[0], d[1], d[2])) / (Math.max(d[0], d[1], d[2]) + 1) < .14 ? 1.2 : 0) + (sum > rs * 1.45 ? .6 : 0);   // nor the cream eye-white (closed lids came out white: s16, s26)
+            + ((Math.max(d[0], d[1], d[2]) - Math.min(d[0], d[1], d[2])) / (Math.max(d[0], d[1], d[2]) + 1) < .2 ? 1.2 : 0) + (sum > rs * 1.3 ? 1.2 : 0);   // nor the cream eye-white (closed lids came out white: s16, s26)
           if (sc < bs) { bs = sc; best = d; }
         }
         if (!best || bs >= 1) return Sp.fixSkin || '#c08a64';   // every sample hit cloth: the cast skin tone
@@ -192,7 +192,10 @@ export function stage() {
       const dist = cam.position.distanceTo(eL), fpx = (H / 2) / Math.tan(cam.fov * D2R / 2);
       // per eye: hidden once the head turns that eye away (> ~45°), so a far-eye lid decal never lands off the face in profile
       const mid = eL.clone().add(eR).multiplyScalar(.5), side = e => e.clone().sub(mid).normalize().dot(toCam), fc = fwd.dot(toCam);
-      out.face = { eyeL: pr(eL), eyeR: pr(eR), mouth: pr(mo), eyePx: m * fpx / dist * .92, facing: fc, eyeVis: [fc + side(eL) > .05, fc + side(eR) > .05], beard: F.beard, veil: F.veil, skinL: skinAt(eL, eL.clone().sub(eR).x > 0 ? 1 : -1), skinR: skinAt(eR, eR.clone().sub(eL).x > 0 ? 1 : -1), roll: a.B.head.rotation.z };
+      // a bowed head (chin to chest) still faces us: count its horizontal facing, or faceFX skips the lids and the model's
+      // open eyes stare white at the floor (s26 CU)
+      const hz = v => v.clone().setY(0).normalize(), fcB = fwd.y < -.15 ? Math.max(fc, .9 * hz(fwd).dot(hz(toCam))) : fc;
+      out.face = { eyeL: pr(eL), eyeR: pr(eR), mouth: pr(mo), eyePx: m * fpx / dist * .92, facing: fcB, eyeVis: [fc + side(eL) > .05, fc + side(eR) > .05], beard: F.beard, veil: F.veil, skinL: skinAt(eL, eL.clone().sub(eR).x > 0 ? 1 : -1), skinR: skinAt(eR, eR.clone().sub(eL).x > 0 ? 1 : -1), roll: a.B.head.rotation.z };
     }
     return out;
   };
