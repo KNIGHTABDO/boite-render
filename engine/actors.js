@@ -126,14 +126,18 @@ export function faceFX(f, { blink = 0, lid = 0, open = 0, sad = 0 } = {}) {
     c.strokeStyle = INK; c.lineCap = 'round'; c.lineWidth = Math.max(1.2, r * .22);
     c.beginPath(); c.moveTo(x - rx * .95, y + (cl > .9 ? ry * .1 : 0) - sd * sad * r * .2); c.quadraticCurveTo(x, edge + (cl > .9 ? ry * .35 : ry * .15), x + rx * .95, y + (cl > .9 ? ry * .1 : 0) + sd * sad * r * .2); c.stroke();
   }
+  // the mouth is a flat decal: near profile it slid past the face outline (s15 Lamrani), so it fades out earlier and narrows
+  const mv = Math.min(1, Math.max(0, (f.facing - .5) / .2)), fw = .45 + .55 * Math.min(1, f.facing);
+  c.globalAlpha *= mv / Math.max(vis, .001);
+  if (mv <= 0) open = 0;
   if (open > .06 && !f.beard && !f.veil) {
-    const [x, y] = f.mouth, w = r * (1.0 + open * .35), h = r * (.25 + open * 1.0);
+    const [x, y] = f.mouth, w = r * (1.0 + open * .35) * fw, h = r * (.25 + open * 1.0);
     c.fillStyle = '#4a1818'; c.beginPath(); c.ellipse(x, y + h * .25, w, h * .55, 0, 0, 7); c.fill();
     if (open > .45) { c.fillStyle = 'rgba(248,242,232,.95)'; c.beginPath(); c.ellipse(x, y - h * .12, w * .78, h * .16, 0, Math.PI, 0); c.fill(); }
     c.fillStyle = 'rgba(200,90,100,.9)'; c.beginPath(); c.ellipse(x, y + h * .55, w * .55, h * .2, 0, 0, 7); c.fill();
     c.strokeStyle = 'rgba(90,30,30,.7)'; c.lineWidth = Math.max(1, r * .12); c.beginPath(); c.ellipse(x, y + h * .25, w, h * .55, 0, 0, 7); c.stroke();
   } else if (open > .06 && f.beard && !f.veil) {
-    const [x, y] = f.mouth; c.fillStyle = 'rgba(40,15,15,.85)'; c.beginPath(); c.ellipse(x, y + r * .2, r * .9, r * (.15 + open * .6), 0, 0, 7); c.fill();
+    const [x, y] = f.mouth; c.fillStyle = 'rgba(40,15,15,.85)'; c.beginPath(); c.ellipse(x, y + r * .2, r * .9 * fw, r * (.15 + open * .6), 0, 0, 7); c.fill();
   }
   c.restore();
 }

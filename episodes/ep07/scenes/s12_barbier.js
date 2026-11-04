@@ -32,7 +32,7 @@ const sh = shot({
   },
   frame(lt, u, t, S, st) {
     const { ba, cl, fa, mo, R, P, bp } = st;
-    for (const [a, s] of [[cl, 6], [fa, 2], [mo, 3]]) { PO.apply(a, R[a.name]); breathe(a, t, 1, s); }
+    for (const [a, s, r] of [[cl, 6, R.cl], [fa, 2, R.fa], [mo, 3, R.mo]]) { PO.apply(a, r); breathe(a, t, 1, s); }
     idle(ba, t, 5);
     const k = ba.group.scale.y / 1.6, nape = at(cl, 'neck');
     // b040: both hands at the stranger's nape (pressing the cups); b041: turns to the platform, counting on his fingers

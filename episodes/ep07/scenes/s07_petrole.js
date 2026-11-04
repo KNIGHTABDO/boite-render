@@ -42,21 +42,26 @@ const ch = shot({
       const sh = Math.sin(t * 18) * sm(L[0][0] + .5, L[0][0] + 1, t);
       const w = walk(zo, zp, exit, b18e - 1.6, b18e + .4, t, { cps: 2.6 });
       if (w > 0) { idle(zo, t, 1); walk(zo, zp, exit, b18e - 1.6, b18e + .4, t, { cps: 2.6 }); }
-      const ear = at(zo, 'head', [.13, .02, 0]);
-      const hand = w > 0 ? front(zo, 'chest', .18 * k, .12 * k, -.15 * k) : ear.clone().addScaledVector(dirW(zo, 0, 0, 1), .06).add(V(0, -.04 + .025 * sh, 0));
+      const ear = at(zo, 'head').addScaledVector(dirW(zo, -1, 0, 0), .17 * k).addScaledVector(dirW(zo, 0, 0, -1), .03 * k);   // beside her right ear, not over the face
+      const hand = w > 0 ? front(zo, 'chest', .18 * k, .12 * k, -.15 * k) : ear.clone().add(V(0, -.04 + .025 * sh, 0));
       PO.reach(zo, 'R', hand, { grip: .02 });
       orient(bt, PO.handPts(zo, 'R').palm, V(0, 1, 0).applyAxisAngle(dirW(zo, 0, 0, 1), .4 * sh).add(V(0, .001, 0)), dirW(zo, 0, 0, 1));
       PO.look(zo, w > 0 ? exit.clone().setY(1.5) : V(cam.x, 1.5, cam.z), .4);
     } else if (t >= L[3][0]) {
       walk(zo, exit, zp, L[3][0] + .4, L[3][0] + 2.2, t, { cps: 2.4 });
-      if (t > L[3][0] + 2.2) { zo.group.rotation.y = Math.atan2(lamp.x - zp.x, lamp.z - zp.z); zo.group.updateMatrixWorld(true); }
+      if (t > L[3][0] + 2.2) {
+        // b023 she turns from the lamp to him and to us, so her CU shows her face, not the back of her veil
+        const a0 = Math.atan2(lamp.x - zp.x, lamp.z - zp.z), tg = cam.clone().lerp(at(mo, 'root').setY(0), .5), a1 = Math.atan2(tg.x - zp.x, tg.z - zp.z);
+        const dA = Math.atan2(Math.sin(a1 - a0), Math.cos(a1 - a0));
+        zo.group.rotation.y = a0 + dA * sm(L[5][0] - .6, L[5][0] + .2, t); zo.group.updateMatrixWorld(true);
+      }
       // pours: the bottle tips over the lamp mouth, the left hand steadies the lamp
       const p = sm(L[3][0] + 2.4, L[3][0] + 3.2, t) * (1 - sm(LIT - 1.4, LIT - .9, t));
       const mouth = lamp.clone().add(V(0, .12, 0));
       const tip = front(zo, 'chest', .2 * k, .1 * k, -.2 * k).lerp(mouth.clone().add(V(0, .06, 0)).addScaledVector(dirW(zo, 0, 0, -1), .04), p);
       PO.reach(zo, 'R', tip, { grip: .02 });
       orient(bt2, PO.handPts(zo, 'R').palm, V(0, 1, 0).lerp(mouth.clone().sub(tip).normalize(), p).add(V(0, .001, 0)), dirW(zo, 0, 0, 1));
-      if (t > L[3][0] + 2.2) PO.reach(zo, 'L', lamp.clone().add(V(.06, -.02, 0)), { grip: .02 });
+      if (t > L[3][0] + 2.2 && t < L[5][0] - .6) PO.reach(zo, 'L', lamp.clone().add(V(.06, -.02, 0)), { grip: .02 });
       PO.look(zo, t < L[5][0] ? lamp : at(mo, 'head'), .7);
     }
     // ---- Mohammed: b019 at the window (back to us, head up and turned to the grille); then by the table, eyes on the lamp

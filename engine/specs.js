@@ -6,6 +6,8 @@ const OVERRIDE = {
   zoubida: { neck: .48, head: .54 },
   father: { neck: .48, head: .54 },
   rahma: { neck: .54, head: .6 },
+  barber: { handR: 1.45 },
+  lamrani: { handR: 1.45 },
   chouafa: { neck: .53, head: .59, shoulder: [.2, .5], elbow: [.34, .18], wrist: [.45, -.1], hand: [.5, -.24], armR: .08 },
   fqih: { neck: .57, head: .63 },
   abdallah: { neck: .61, head: .67 },

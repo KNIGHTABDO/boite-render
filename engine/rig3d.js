@@ -70,8 +70,11 @@ export async function loadRigged(url, spec, { outline = .004, ramp = [120, 190, 
     armW[i] = (1 - ss(.85, 1.25, bd)) * gate * (ax > S.shoulder[0] * .75 ? 1 : 0);
     // the hand itself is always arm, even where the drawn fingers overlap the robe (gated fingertips stayed on the body and
     // stretched into skin spikes when the hand moved)
-    const onHand = best.b.startsWith('hand') && bd < 1;
-    if (onHand) armW[i] = Math.max(armW[i], 1 - ss(.85, 1, bd));
+    // S.handR (opt-in, default 1): a fatter hand capsule, measured to the hand alone, for models whose fingertips sit
+    // against the robe (barber, Lamrani: the stuck tips stretched into skin rods down to the hips)
+    const hR = S.handR || 1, dh = hR > 1 ? Math.min(...cap.filter(c => c.b.startsWith('hand')).map(c => segDist(p, c.a, c.z) / c.r)) : bd;
+    const onHand = hR > 1 ? dh < hR : best.b.startsWith('hand') && bd < 1;
+    if (onHand) armW[i] = Math.max(armW[i], 1 - ss(hR - .15, hR, dh));
     // how much diffused arm weight a vertex may take: robe flanks below the hips stay on the body (raised arms pulled them into spikes)
     keep[i] = (p.y > S.shoulder[1] - S.armR * 1.2 ? 1 : ss(inner - S.armR * 1.6, inner + S.armR * .2, ax)) * (p.y < S.hip + .05 ? 1 - ss(1, 1.6, bd) : 1);
     // cape actors (haik): the arms are hidden under the cloth, only the hands come out, so only they may move

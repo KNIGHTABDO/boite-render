@@ -171,13 +171,27 @@ export function stage() {
     if (Sp.face) {
       const m = Sp.face.eyeR_ * a.group.scale.y / (Sp.top - Sp.bottom);   // eye radius in metres
       // skin just below each eye, sampled from the last rendered layer (for the painted eyelids)
-      const skinAt = v => { const [x, y] = pr(v.clone().add(new THREE.Vector3(0, -m * 2.2, 0))); const d = lk.getImageData(Math.max(0, Math.min(W - 1, x | 0)), Math.max(0, Math.min(H - 1, y | 0)), 1, 1).data; return `rgb(${d[0]},${d[1]},${d[2]})`; };
+      // several candidates (below, beside, toward the nose); keep the most skin-like, so a tipped head never paints the
+      // lids with whatever is under the chin (s16: the striped towel)
+      const ref = (Sp.fixSkin || '#c08a64').match(/\w\w/g).map(h => parseInt(h, 16));
+      const px = v => { const [x, y] = pr(v); const d = lk.getImageData(Math.max(0, Math.min(W - 1, x | 0)), Math.max(0, Math.min(H - 1, y | 0)), 1, 1).data; return [d[0], d[1], d[2], d[3]]; };
+      const skinAt = (v, o) => {
+        let best = null, bs = 1e9;
+        for (const off of [[0, -2.2], [0, -1.6], [0, -1.2], [1.6 * o, -.6], [-1.4 * o, -.8]]) {
+          const d = px(v.clone().add(new THREE.Vector3(off[0] * m, off[1] * m, 0))); if (d[3] < 128) continue;
+          const sum = d[0] + d[1] + d[2] + 1, rs = ref[0] + ref[1] + ref[2];
+          const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0);   // hue first, red>green>blue
+          if (sc < bs) { bs = sc; best = d; }
+        }
+        best ||= px(v.clone().add(new THREE.Vector3(0, -m * 2.2, 0)));
+        return `rgb(${best[0]},${best[1]},${best[2]})`;
+      };
       const F = Sp.face, eL = wp('head', rel(F.eyeL)), eR = wp('head', rel(F.eyeR)), mo = wp('head', rel(F.mouth));
       const fwd = wp('head', [0, 0, 1]).sub(wp('head')).normalize(), toCam = cam.position.clone().sub(wp('head')).normalize();
       const dist = cam.position.distanceTo(eL), fpx = (H / 2) / Math.tan(cam.fov * D2R / 2);
       // per eye: hidden once the head turns that eye away (> ~45°), so a far-eye lid decal never lands off the face in profile
       const mid = eL.clone().add(eR).multiplyScalar(.5), side = e => e.clone().sub(mid).normalize().dot(toCam), fc = fwd.dot(toCam);
-      out.face = { eyeL: pr(eL), eyeR: pr(eR), mouth: pr(mo), eyePx: m * fpx / dist * .92, facing: fc, eyeVis: [fc + side(eL) > .05, fc + side(eR) > .05], beard: F.beard, veil: F.veil, skinL: skinAt(eL), skinR: skinAt(eR), roll: a.B.head.rotation.z };
+      out.face = { eyeL: pr(eL), eyeR: pr(eR), mouth: pr(mo), eyePx: m * fpx / dist * .92, facing: fc, eyeVis: [fc + side(eL) > .05, fc + side(eR) > .05], beard: F.beard, veil: F.veil, skinL: skinAt(eL, eL.clone().sub(eR).x > 0 ? 1 : -1), skinR: skinAt(eR, eR.clone().sub(eL).x > 0 ? 1 : -1), roll: a.B.head.rotation.z };
     }
     return out;
   };

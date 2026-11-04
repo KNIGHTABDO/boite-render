@@ -1,36 +1,48 @@
 // s09 the stairs. Night stairwell (escalier_nuit): Mohammed climbs calmly, step by step (b029, rim-lit from the landing
 // above). b030-b032 he stops on the fourth step and listens up toward the lit doorway (women's voices off: Zoubida, the
 // neighbour, Zoubida). b033 CU: he holds his breath, eyes up, frozen.
-// Stairs: 0.20 m rise / 0.28 m going, fitted to the painted nosings; the axis runs away-left (its side edge stays at x 535).
+// Stairs: 0.20 m rise / 0.28 m going, fitted to the painted nosings; the axis runs straight away along the newel edge
+// (canvas x 1070, full 1920 scale), the centre line fitted to the middle of the painted treads (x ~1400 at nosing 1).
 import * as K from '../../../engine/core.js';
 import * as PO from '../../../engine/poses.js';
 import { shot, role } from './_3d.js';
-import { beatScene, lines, put, idle, sm, V } from '../lib/beatscene.js';
+import { beatScene, lines, idle, sm, V } from '../lib/beatscene.js';
 import { walk } from '../lib/acts.js';
 import { c } from '../../../engine/core.js';   // live binding
 
 const L = lines('s09_escalier');
 const RISE = .2, GO = .28, STOP = 4;   // he stops on tread 4 (0.8 m up)
 const NOS = [900, 790, 690, 610, 545, 495];   // painted nosings 1..6, canvas y
-const GLOW = [960, 300];   // the lit doorway up the flight (off the top landing), canvas px
+const GLOW = [960, 300];
+const EDGE = 1070, MIDX = 1400;   // the newel / left edge of the flight, and the treads' middle at nosing 1 (canvas px)   // the lit doorway up the flight (off the top landing), canvas px
 
 const es = shot({
   plate: 'escalier_nuit',
   light: { keyI: .55 },
   async build(S3) {
     const mo = await role('mohammed');
-    const O = S3.floorAt(535, 1060), dir = S3.floorAt(535, 620).sub(O).setY(0).normalize();
-    const side = V(-dir.z, 0, dir.x);   // to the right of the climb
-    const C = O.clone().addScaledVector(side, .45);   // stair centre line on the floor
+    const O = S3.floorAt(EDGE, 1060), dir = S3.floorAt(EDGE, 620).sub(O).setY(0).normalize();
+    let side = V(-dir.z, 0, dir.x);   // across the flight
+    if (S3.project(O.clone().addScaledVector(side, .3))[0] < S3.project(O)[0]) side.negate();   // toward canvas right (the treads)
+    let C = O.clone().addScaledVector(side, .7);   // stair centre line on the floor (refined below)
     // fit the first riser's distance along the axis so nosing j (height .2 j) lands on the painted lines
     let r1 = 0, e = 1e9;
     for (let r = -1; r < 4; r += .005) {
       let s = 0; NOS.forEach((y, i) => { const p = C.clone().addScaledVector(dir, r + GO * i).setY(RISE * (i + 1)); s += (S3.project(p)[1] - y) ** 2; });
       if (s < e) { e = s; r1 = r; }
     }
+    // centre line: tread 1's nosing midpoint lands on canvas x MIDX
+    let lat = .7, le = 1e9;
+    for (let l = .1; l < 3; l += .01) { const q = O.clone().addScaledVector(side, l).addScaledVector(dir, r1).setY(RISE); const d = Math.abs(S3.project(q)[0] - MIDX); if (d < le) { le = d; lat = l; } }
+    C = O.clone().addScaledVector(side, lat);
+    for (let r = -1, e2 = 1e9; r < 4; r += .005) {
+      let s = 0; NOS.forEach((y, i) => { const p = C.clone().addScaledVector(dir, r + GO * i).setY(RISE * (i + 1)); s += (S3.project(p)[1] - y) ** 2; });
+      if (s < e2) { e2 = s; r1 = r; }
+    }
     const tread = j => C.clone().addScaledVector(dir, r1 + GO * (j - 1) + GO / 2).setY(0);   // tread j centre (floor x/z)
     const p0 = C.clone().addScaledVector(dir, r1 - .9), p1 = tread(STOP);
-    put(S3, mo, 700, 1060, p1); mo.group.position.copy(p0); mo.group.updateMatrixWorld(true);
+    // built standing on the stop tread (coverage heads are measured at build: the M/CU crops frame him there)
+    S3.add(mo, p1.x, p1.z, Math.atan2(p1.x - p0.x, p1.z - p0.z)); mo.group.position.y = RISE * STOP; mo.group.updateMatrixWorld(true);
     const top = C.clone().addScaledVector(dir, r1 + GO * 7).setY(RISE * 7 + 1.5);   // the doorway he listens toward
     return { actors: [mo], mo, C, dir, r1, p0, p1, top, faces: [[mo, null, 3, (lt, t) => ({ open: 0 })]] };
   },

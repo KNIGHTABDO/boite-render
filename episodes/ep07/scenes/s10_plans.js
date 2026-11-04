@@ -21,8 +21,8 @@ const ch = shot({
     const mp = S3.floorAt(1150, 900);
     S3.add(fa, fp.x, fp.z, Math.atan2(cam.x * .5 + mp.x * .5 - fp.x, cam.z * .5 + mp.z * .5 - fp.z));
     memoPose('s10-fa', fa, [mh], () => PO.crossLegged(fa, { seat: mh, lean: .1 }));
-    put(S3, mo, 1150, 900, cam.clone().lerp(fp, .7));
-    memoPose('s10-mo', mo, [1], () => PO.crossLegged(mo, { seat: 0, lean: .15 }));
+    put(S3, mo, 1150, 900, cam.clone().lerp(fp, .35));   // three-quarter to us: the b035 CU needs his face
+    memoPose('s10-mo', mo, [2], () => PO.crossLegged(mo, { seat: 0, lean: .15 }));
     const P = { fa: PO.snap(fa), mo: PO.snap(mo) };
     (S3.qa?.supports || {}).father = mh; (S3.qa?.supports || {}).mohammed = 0;
     const door = S3.floorAt(-150, 1000).add(V(0, 1.2, 0));

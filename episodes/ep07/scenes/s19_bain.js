@@ -26,14 +26,16 @@ const bt = shot({
     const mo = await role('mohammed', { seat: true }), mw = await role('mohammed', { copy: '_w' });
     const zw = await role('zoubida'), zk = await role('zoubida', { seat: true, copy: '_k' });
     const cam = S3.cam.position.clone().setY(0), tc = S3.floorAt(930, 905);
-    S3.add(mo, tc.x, tc.z, yawTo(tc, cam) + .25);
+    // in the bath he sits toward the trough's right end, his back to her (she kneels just past the end)
+    const tm = S3.floorAt(1130, 895), pk = S3.floorAt(1345, 915);
+    S3.add(mo, tm.x, tm.z, yawTo(tm, tm.clone().add(tm.clone().sub(pk).setY(0).normalize()).add(cam.clone().sub(tm).setY(0).normalize().multiplyScalar(.6))));
     memoPose('s19-mo', mo, [SEAT], () => PO.crossLegged(mo, { seat: SEAT, lean: .05, hands: false }));
     const R = { mo: PO.snap(mo) };
     (S3.qa?.supports || {}).mohammed = SEAT;
     const pw = S3.floorAt(1290, 1040); S3.add(mw, pw.x, pw.z, yawTo(pw, tc) + .5); mw.name = 'mohammed';
     // pouring from the left end of the trough; kneeling at the right end afterwards
     const pz = S3.floorAt(640, 1035); S3.add(zw, pz.x, pz.z, yawTo(pz, tc) - .3);
-    const pk = S3.floorAt(1340, 930); S3.add(zk, pk.x, pk.z, yawTo(pk, tc)); zk.name = 'zoubida';
+    S3.add(zk, pk.x, pk.z, yawTo(pk, tm)); zk.name = 'zoubida';
     memoPose('s19-zk', zk, [pk.x, pk.z], () => PO.kneel(zk, { lean: .3, hands: false }));
     R.zk = PO.snap(zk);
     const bk = S3.prop(PR.bucket({ water: .6, col: 0xb8743a })); bk.userData.qa = { grip: true, hand: 'R', owner: 'zoubida' };
@@ -100,8 +102,8 @@ export { bt };
 export default beatScene('s19_bain', {
   shots: { bt },
   plan: {
-    b070: { shot: 'bt', size: 'M', on: 'zoubida', cover: [{ f: .62, size: 'M', on: 'mohammed' }] },
+    b070: { shot: 'bt', size: 'W', cover: [{ f: .62, size: 'M', on: 'mohammed' }] },
     b071: { shot: 'bt', size: 'CU', on: 'mohammed' },
-    b072: { shot: 'p08_noir_reve' },
+    b072: { shot: 'bt', size: 'CU', on: 'mohammed', segs: [[.25, 'p08_noir_reve']] },   // the cork scrub, then the black
   },
 });
