@@ -120,7 +120,7 @@ export function wearShirt(ch, a, { IK, handPts }) {
   body.rotation.set(0, a.group.rotation.y, 0); body.scale.set(r, neck.y - .02, r * .78);
   ['L', 'R'].forEach((s, i) => {
     const S = s === 'L' ? sL : sR, d = handPts(a, s).palm.sub(S), len = d.length() + .07;
-    const y = d.normalize(), x = new THREE.Vector3(0, 1, 0).cross(y).normalize(), z = y.clone().cross(x);
+    const y = d.normalize(), x = y.clone().cross(new THREE.Vector3(0, 1, 0)).normalize(), z = x.clone().cross(y);
     sl[i].position.copy(S); sl[i].quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z)); sl[i].scale.set(.042, len, .042);
   });
   ch.updateMatrixWorld(true);

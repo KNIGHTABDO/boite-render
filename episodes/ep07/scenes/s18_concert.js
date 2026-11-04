@@ -23,7 +23,7 @@ const pa = shot({
   plate: 'patio_matin',
   async build(S3) {
     const zi = await role('zineb'), zo = await role('zoubida'), ra = await role('rahma');
-    const cam = S3.cam.position.clone().setY(0), up = S3.floorAt(960, 930).add(V(0, 4, 0));
+    const cam = S3.cam.position.clone().setY(0), up = S3.floorAt(960, 930).add(V(0, 2.2, 0));
     const pz = S3.floorAt(760, 990), po = S3.floorAt(1000, 1035), pr = S3.floorAt(1210, 1030);
     S3.add(zi, pz.x, pz.z, yawTo(pz, cam) + .4); S3.add(zo, po.x, po.z, yawTo(po, cam) - .2); S3.add(ra, pr.x, pr.z, yawTo(pr, cam) - .5);
     const tb = S3.prop(tambourin()); tb.userData.qa = { grip: true, hand: 'L', owner: 'zineb' };
@@ -38,7 +38,7 @@ const pa = shot({
     const e = sm(L[2][0] - .4, L[2][0] + .3, t);   // the din from upstairs: hands over the ears
     for (const [a, s] of [[zo, 6], [ra, 8]]) {
       if (e > 0) { earCover(a, 'L', e); earCover(a, 'R', e); }
-      PO.look(a, e > 0 ? up : at(zi, 'head'), .6);
+      PO.look(a, e > 0 ? up : at(zi, 'head'), e > 0 ? .35 : .6);
       if (e > 0) { a.B.spine.rotation.x -= .06 * Math.sin(t * 6 + s) * e; a.B.spine.updateWorldMatrix(false, true); }   // shaking with laughter
     }
   },
@@ -64,7 +64,7 @@ const ch = shot({
     const pz = S3.floorAt(1390, 985); S3.add(zi, pz.x, pz.z, yawTo(pz, cam) - .6);
     const tb = S3.prop(tambourin()); tb.userData.qa = { grip: true, hand: 'L', owner: 'zineb' };
     // the fitting: the mother kneels at the standing boy's left, facing him
-    const pk = p.clone().addScaledVector(dirW(ms, 1, 0, 0), .5).addScaledVector(dirW(ms, 0, 0, 1), .12);
+    const pk = p.clone().addScaledVector(dirW(ms, 1, 0, 0), .52).addScaledVector(dirW(ms, 0, 0, 1), -.02);
     S3.add(zo, pk.x, pk.z, yawTo(pk, p));
     memoPose('s18-zo', zo, [pk.x, pk.z], () => PO.kneel(zo, { lean: .2, hands: false }));
     R.zo = PO.snap(zo);
@@ -118,10 +118,10 @@ export { pa, ch };
 export default beatScene('s18_concert', {
   shots: { pa, ch },
   plan: {
-    b065: { shot: 'pa', size: 'M', on: 'zineb' },
+    b065: { shot: 'pa', size: 'W' },
     b066: { shot: 'ch', size: 'M', on: 'mohammed', cover: [{ f: .55, size: 'W' }] },
     b067: { shot: 'pa', size: 'M', on: 'zoubida' },
-    b068: { shot: 'ch', size: 'M', on: 'mohammed', insAt: .5 },
+    b068: { shot: 'ch', size: 'M', on: 'zoubida', insAt: .5 },   // her kneeling head ~ his standing head (the seated copy's head would crop both)
     b069: { shot: 'p07_concert' },
   },
 });

@@ -96,6 +96,6 @@ export const dirW = (a, x, y, z) => V(x, y, z).normalize().applyAxisAngle(V(0, 1
 export const front = (a, bone, f = 0, r = 0, u = 0) => at(a, bone).addScaledVector(dirW(a, 0, 0, 1), f).addScaledVector(dirW(a, -1, 0, 0), r).add(V(0, u, 0));
 /** orient a grip-origin prop: origin at p, local +y along dir, local +z as close as possible to up2 */
 export function orient(o, p, dir, up2 = V(0, 0, 1)) {
-  const y = dir.clone().normalize(), x = up2.clone().cross(y).normalize(), z = y.clone().cross(x);
+  const y = dir.clone().normalize(), x = y.clone().cross(up2).normalize(), z = x.clone().cross(y);   // right-handed (det +1)
   o.position.copy(p); o.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z)); o.updateMatrixWorld(true);
 }
