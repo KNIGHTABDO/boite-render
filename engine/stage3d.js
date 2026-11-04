@@ -180,10 +180,10 @@ export function stage() {
         for (const off of [[0, -2.2], [0, -1.6], [0, -1.2], [1.6 * o, -.6], [-1.4 * o, -.8]]) {
           const d = px(v.clone().add(new THREE.Vector3(off[0] * m, off[1] * m, 0))); if (d[3] < 128) continue;
           const sum = d[0] + d[1] + d[2] + 1, rs = ref[0] + ref[1] + ref[2];
-          const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0);   // hue first, red>green>blue
+          const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0) + (d[2] < d[0] * .3 ? 1 : 0);   // hue first, red>green>blue, not a saturated yellow/orange cloth
           if (sc < bs) { bs = sc; best = d; }
         }
-        best ||= px(v.clone().add(new THREE.Vector3(0, -m * 2.2, 0)));
+        if (!best || bs >= 1) return Sp.fixSkin || '#c08a64';   // every sample hit cloth: the cast skin tone
         return `rgb(${best[0]},${best[1]},${best[2]})`;
       };
       const F = Sp.face, eL = wp('head', rel(F.eyeL)), eR = wp('head', rel(F.eyeR)), mo = wp('head', rel(F.mouth));

@@ -24,7 +24,7 @@ const ch = shot({
     const zo = await role('zoubida'), mo = await role('mohammed');
     const tableH = heightAt(S3, 700, 790, 690), lamp = S3.floorAt(700, 790).add(V(0, tableH + .1, -.15));
     const zp = put(S3, zo, 900, 860, lamp.clone().setY(0));
-    const mp = put(S3, mo, 1080, 930, cam.clone().lerp(lamp.clone().setY(0), .6));
+    const mp = put(S3, mo, 1080, 930, cam.clone().lerp(lamp.clone().setY(0), .3));   // three-quarter to us: his CUs need the face
     const win = S3.floorAt(1430, 760).add(V(0, 1.4, 0)), wp = S3.floorAt(1300, 830);
     const exit = S3.floorAt(-150, 1000);
     const bt = S3.prop(bouteille(0)), bt2 = S3.prop(bouteille(.8));

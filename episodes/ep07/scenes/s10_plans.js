@@ -31,7 +31,7 @@ const ch = shot({
       faces: [[fa, 'father', 2], [mo, null, 3, (lt, t) => ({ sad: .8 * fade(t), lid: .35 * fade(t) })]],
     };
   },
-  frame(lt, u, t, S, st) {
+  frame(lt, u, t, S, st, S3) {
     const { fa, mo, P, door, cam } = st;
     PO.apply(fa, P.fa); breathe(fa, t, 1, 2); PO.apply(mo, P.mo); breathe(mo, t, 1, 3);
     // the father: right hand opens toward the door on "au souk", back to the knee; eyes on his son
@@ -40,7 +40,7 @@ const ch = shot({
     PO.look(fa, g > .5 ? door : at(mo, 'head'), .6);
     // Mohammed: looks up at his father, leaning in; in b035 his gaze drops to his lap as the smile drains
     const f = fade(t);
-    PO.look(mo, f > .3 ? front(mo, 'root', .5, 0, 0) : at(fa, 'head'), .7);
+    PO.look(mo, f > .3 ? front(mo, 'root', .5, 0, 0) : at(fa, 'head').lerp(S3.cam.position, .55), .6);   // up toward his father but the face kept to us
     mo.B.spine.rotation.x += .08 * (1 - f) - .04 * f; mo.B.spine.updateWorldMatrix(false, true);
   },
 });
