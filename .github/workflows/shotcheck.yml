@@ -1,0 +1,67 @@
+name: Shot geometry gate
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: Episode directory (epNN)
+        required: true
+        default: ep06
+      scenes:
+        description: Comma-separated scene IDs (empty means all)
+        default: ''
+      fps:
+        description: Geometry samples per second
+        default: '4'
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      scenes: ${{ steps.matrix.outputs.scenes }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: matrix
+        env:
+          EPISODE: ${{ inputs.episode }}
+          SCENES: ${{ inputs.scenes }}
+        run: |
+          node --input-type=module <<'JS' >> "$GITHUB_OUTPUT"
+          import fs from 'node:fs';
+          if (!/^ep\d{2}$/.test(process.env.EPISODE)) throw Error('Invalid episode');
+          const all = JSON.parse(fs.readFileSync(`episodes/${process.env.EPISODE}/timing.json`)).map(s => s.id);
+          const ids = process.env.SCENES ? process.env.SCENES.split(',') : all;
+          if (!ids.length || ids.some(id => !all.includes(id))) throw Error('Unknown scenes');
+          console.log('scenes=' + JSON.stringify(ids));
+          JS
+  shotcheck:
+    needs: discover
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 40
+      matrix:
+        scene: ${{ fromJSON(needs.discover.outputs.scenes) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund --silent
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+      - name: Check geometry
+        env:
+          CHROME: ${{ steps.chrome.outputs.chrome-path }}
+          CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
+          EPISODE: ${{ inputs.episode }}
+          SCENE: ${{ matrix.scene }}
+          FPS: ${{ inputs.fps }}
+        run: mkdir -p qa && node tools/shotcheck.mjs "$EPISODE" --scenes "$SCENE" --fps "$FPS" --out "qa/$SCENE.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shotcheck-${{ matrix.scene }}
+          path: qa/*.json
+          if-no-files-found: warn
