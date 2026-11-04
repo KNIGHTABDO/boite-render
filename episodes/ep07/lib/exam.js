@@ -5,7 +5,8 @@
 //   badge : "TEXT @m:ss" chapter badge top-left, 8 s
 // Beat j of a scene (beats with no spoken line excepted) starts with line j of that scene in timing.json.
 import * as K from '../../../engine/core.js';
-const { c, W, H, clamp, ease } = K;
+const { W, H, clamp, ease } = K;
+import { c } from '../../../engine/core.js';   // live binding: film.js imports this before the first setCtx()
 
 const SERIF = '"IM Fell English", Georgia, serif';
 export function examEvents(beats, timing) {

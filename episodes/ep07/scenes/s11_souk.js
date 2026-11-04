@@ -5,25 +5,9 @@
 import * as PO from '../../../engine/poses.js';
 import { shot, role } from './_3d.js';
 import { beatScene, lines, idle, at, front, sm, V } from '../lib/beatscene.js';
-import { walk } from '../lib/acts.js';
+import { pair, hold } from '../lib/acts.js';
 
 const L = lines('s11_souk');
-const GAP = .6;
-
-/** the pair walks p0 -> p1 side by side (kid on the path's left), then links hands at kid hip height */
-function pair(fa, mo, p0, p1, t0, t1, t, { cf = 1.7, cm = 2.5 } = {}) {
-  const d = p1.clone().sub(p0).setY(0).normalize(), left = V(d.z, 0, -d.x);
-  const off = (p, s) => p.clone().addScaledVector(left, s * GAP / 2);
-  const w = walk(fa, off(p0, -1), off(p1, -1), t0, t1, t, { cps: cf });
-  walk(mo, off(p0, 1), off(p1, 1), t0, t1, t, { cps: cm });
-  return w;
-}
-function hold(fa, mo, t) {
-  const g = at(fa, 'root').lerp(at(mo, 'root'), .5); g.y = .68 * mo.group.scale.y / 1.3 + .02 * Math.sin(t * 3);
-  PO.reach(fa, 'R', g.clone().addScaledVector(at(fa, 'root').sub(at(mo, 'root')).setY(0).normalize(), .02), { grip: .03 });
-  PO.reach(mo, 'L', g.clone().addScaledVector(at(mo, 'root').sub(at(fa, 'root')).setY(0).normalize(), .02), { grip: .03 });
-}
-
 const so = shot({
   plate: 'souk_jouets',
   async build(S3) {

@@ -7,7 +7,7 @@ import * as PO from '../../../engine/poses.js';
 import { shot, role } from './_3d.js';
 import { beatScene, lines, put, idle, sm, V } from '../lib/beatscene.js';
 import { walk } from '../lib/acts.js';
-const { c } = K;
+import { c } from '../../../engine/core.js';   // live binding
 
 const L = lines('s09_escalier');
 const RISE = .2, GO = .28, STOP = 4;   // he stops on tread 4 (0.8 m up)

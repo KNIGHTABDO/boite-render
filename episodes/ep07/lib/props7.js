@@ -103,3 +103,25 @@ export function menthe() {
   g.userData = { top: .2 };
   return shade(g);
 }
+
+/** chemise: the new shirt, stiff with starch, falling to the floor, sleeves past the hands. A collar-to-floor flared tube
+ *  and two flared sleeves (unit sizes), fitted every frame to the wearer by wearShirt(). */
+export function chemise() {
+  const m = PR.toon(0xf4f0e2, { side: THREE.DoubleSide }), g = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(1, 1.5, 1, 20, 1, true).translate(0, -.5, 0), m);   // origin at the collar
+  const sl = [0, 1].map(() => new THREE.Mesh(new THREE.CylinderGeometry(1.8, 1, 1, 12, 1, true).translate(0, .5, 0), m));   // origin at the shoulder
+  g.add(body, ...sl); g.userData = { body, sl }; return shade(g);
+}
+/** fit the shirt on actor a this frame: body from the collar to the floor, each sleeve from the shoulder to past the palm */
+export function wearShirt(ch, a, { IK, handPts }) {
+  const w = v => IK.wpos(a.B[v]), sL = w('upperArmL'), sR = w('upperArmR'), neck = w('neck');
+  const r = sL.distanceTo(sR) / 2 + .03, { body, sl } = ch.userData;
+  body.position.set((sL.x + sR.x) / 2, neck.y - .02, (sL.z + sR.z) / 2);
+  body.rotation.set(0, a.group.rotation.y, 0); body.scale.set(r, neck.y - .02, r * .78);
+  ['L', 'R'].forEach((s, i) => {
+    const S = s === 'L' ? sL : sR, d = handPts(a, s).palm.sub(S), len = d.length() + .07;
+    const y = d.normalize(), x = new THREE.Vector3(0, 1, 0).cross(y).normalize(), z = y.clone().cross(x);
+    sl[i].position.copy(S); sl[i].quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z)); sl[i].scale.set(.042, len, .042);
+  });
+  ch.updateMatrixWorld(true);
+}

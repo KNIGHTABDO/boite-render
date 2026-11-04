@@ -9,7 +9,7 @@ import { shot, role } from './_3d.js';
 import { beatScene, lines, put, idle, at, front, dirW, heightAt, orient, sm, V } from '../lib/beatscene.js';
 import { walk } from '../lib/acts.js';
 import { bouteille } from '../lib/props7.js';
-const { c } = K;
+import { c } from '../../../engine/core.js';   // live binding
 
 const L = lines('s07_petrole');
 const D3 = L[3][1] - L[3][0], LIT = L[3][0] + .82 * D3;   // the lamp catches after the two inserts

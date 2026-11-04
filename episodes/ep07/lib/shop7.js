@@ -8,8 +8,8 @@ import { put, heightAt, yawTo, V } from './beatscene.js';
 
 export function shopIn(S3) {
   const cam = S3.cam.position.clone().setY(0);
-  const ph = heightAt(S3, 300, 1030, 820), sh = heightAt(S3, 1010, 960, 740);
-  const stool = S3.floorAt(1010, 960).add(V(0, 0, -.05));
+  const ph = heightAt(S3, 300, 1030, 820), sh = heightAt(S3, 1005, 930, 738);   // same stool point as s01_cold
+  const stool = S3.floorAt(1005, 930);
   const seat = (px, py) => S3.floorAt(px, py, ph).setY(0);   // floor x/z under a point on the platform top
   return { cam, ph, sh, stool, seat, nape: stool.clone().setY(sh + .62) };
 }

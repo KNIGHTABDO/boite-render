@@ -22,7 +22,7 @@ import { cam, clampCam } from '../lib/kit.js';
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import * as IK from '../../../engine/ik.js';
-const { c } = K;
+import { c } from '../../../engine/core.js';   // live binding
 
 export const CAL = await (await fetch(new URL('../cal.json', import.meta.url))).json();
 const OWN = new Set(["barbier", "barbier_rev", "barbier_ext", "barbier_ext_rev", "msid_lustres", "msid_lustres_rev", "msid_feerie", "msid_feerie_rev", "msid_facade", "msid_facade_aube", "patio_nuit_pov", "escalier_nuit", "cuisine_auge", "rue_nuit", "rue_nuit_rev", "souk_jouets", "salon", "salon_rev", "terrasse_rampe"]);   // this episode's own plates (art/plates/ep07/...)
