@@ -1,0 +1,819 @@
+{
+ "episode": 7,
+ "title": "La nuit de l'Achoura",
+ "chapter": 7,
+ "gap": 0.3,
+ "voices": {
+  "narrator": {
+   "voice": "Gacrux",
+   "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone"
+  },
+  "mohammed": {
+   "voice": "Leda",
+   "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent"
+  },
+  "zoubida": {
+   "voice": "Kore",
+   "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic"
+  },
+  "father": {
+   "voice": "Charon",
+   "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words"
+  },
+  "zineb": {
+   "voice": "Achernar",
+   "style": "little Moroccan girl of 5 from Fès, shrill, spoiled, speaks French with a Fassi accent"
+  },
+  "fqih": {
+   "voice": "Schedar",
+   "style": "Moroccan Koranic schoolmaster from Fès, about 50, grave, nasal, speaks French with a Fassi accent"
+  },
+  "kanza": {
+   "voice": "Vindemiatrix",
+   "style": "old Moroccan woman, a fortune-teller from Fès, about 60, raspy, slow, honeyed and mysterious, speaks French with a Fassi accent"
+  },
+  "hammoussa": {
+   "voice": "Laomedeia",
+   "style": "the smallest Moroccan schoolboy, 7 years old, from Fès, out of breath, urgent, squeaky, speaks French with a Fassi accent"
+  },
+  "vendeur": {
+   "voice": "Umbriel",
+   "style": "poor Moroccan street seller calling his goods in a narrow alley at dusk, thin nasal voice, sing-song street cry"
+  },
+  "voisine": {
+   "voice": "Erinome",
+   "style": "Moroccan woman from Fès, about 50, asking a question from another room, speaks French with a Fassi accent"
+  },
+  "barber": {
+   "voice": "Fenrir",
+   "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent"
+  },
+  "hammad": {
+   "voice": "Algenib",
+   "style": "dry old Moroccan man from Fès, about 70, hypochondriac, groaning and whining, speaks French with a Fassi accent"
+  },
+  "lamrani": {
+   "voice": "Achird",
+   "style": "young Moroccan scholar from Fès, about 25, gentle, shy, modest, speaks French with a Fassi accent"
+  },
+  "femmes": {
+   "voice": "Aoede",
+   "style": "a group of Moroccan women in a courtyard house shouting together, laughing and begging for mercy, loud"
+  },
+  "eleves": {
+   "voice": "Puck",
+   "style": "a crowd of Moroccan schoolboys answering together in a Koranic school, loud, in unison"
+  },
+  "aicha": {
+   "voice": "Pulcherrima",
+   "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy"
+  }
+ },
+ "scenes": [
+  {
+   "id": "s01_cold",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Ce jour-là, <short pause> sous le rasoir de Si Abderrahmane, <short pause> j'ai connu la peur.",
+     "sub": "Ce jour-là, sous le rasoir de Si Abderrahman, j'ai connu la peur."
+    },
+    {
+     "who": "narrator",
+     "text": "Et quelques heures plus tard, <short pause> la plus belle nuit de mon enfance.",
+     "sub": "Et quelques heures plus tard, la plus belle nuit de mon enfance."
+    }
+   ],
+   "lead": 2.2,
+   "tail": 1.2,
+   "music": "drone"
+  },
+  {
+   "id": "s02_roadmap",
+   "lines": [],
+   "lead": 0,
+   "tail": 0,
+   "hold": 4.0
+  },
+  {
+   "id": "s03_tambourins",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Deux jours avant l'Achoura, <short pause> les femmes de la maison s'achetèrent toutes des tambourins. <short pause> Ma mère essaya son bendir.",
+     "sub": "Deux jours avant l'Achoura, les femmes de la maison s'achetèrent toutes des tambourins. Ma mère essaya son bendir."
+    },
+    {
+     "who": "narrator",
+     "text": "Des coups graves et des coups secs <short pause> parlèrent un dialecte rude, <short pause> mélange de soleil <short pause> et de vent de haute montagne.",
+     "sub": "Des coups graves et des coups secs parlèrent un dialecte rude, mélange de soleil et de vent de haute montagne."
+    },
+    {
+     "who": "narrator",
+     "text": "Zinèbe tapait comme une sourde <short pause> sur un minuscule tambourin de pacotille. <short pause> Moi, <short pause> j'avais une trompette en fer-blanc. <short pause> Elle éclatait dans la maison comme un cri d'alarme, <short pause> parfois, <short pause> comme un sanglot d'agonisant.",
+     "sub": "Zineb tapait comme une sourde sur un minuscule tambourin de pacotille. Moi, j'avais une trompette en fer-blanc. Elle éclatait dans la maison comme un cri d'alarme, parfois, comme un sanglot d'agonisant."
+    },
+    {
+     "who": "zoubida",
+     "text": "Va donc braire sur la terrasse !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother with her hands over her ears, exasperated but amused",
+     "sub": "Va donc braire sur la terrasse !"
+    }
+   ],
+   "card": "DEUX JOURS AVANT L'ACHOURA",
+   "lead": 0.6
+  },
+  {
+   "id": "s04_chat",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Je gonflai mes joues, <short pause> et soufflai de toutes mes forces. <short pause> On aurait dit un bébé qui perce ses premières dents.",
+     "sub": "Je gonflai mes joues, et soufflai de toutes mes forces. On aurait dit un bébé qui perce ses premières dents."
+    },
+    {
+     "who": "narrator",
+     "text": "Le chat de Zinèbe fit un saut d'épouvante, <short pause> et s'engouffra dans une gouttière. <short pause> Une tête inquiète surgit du mur voisin, <short pause> et disparut.",
+     "sub": "Le chat de Zineb fit un saut d'épouvante, et s'engouffra dans une gouttière. Une tête inquiète surgit du mur voisin, et disparut."
+    }
+   ]
+  },
+  {
+   "id": "s05_hammoussa",
+   "lines": [
+    {
+     "who": "zoubida",
+     "text": "Un de tes camarades t'attend dans le patio. <short pause> Prends tes babouches : <short pause> le fquih a besoin de toi !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother calling up the stairs, loud, from far below",
+     "sub": "Un de tes camarades t'attend dans le patio. Prends tes babouches : le fqih a besoin de toi !"
+    },
+    {
+     "who": "narrator",
+     "text": "C'était Hammoussa, <short pause> « pois chiche », <short pause> le plus petit élève de l'école.",
+     "sub": "C'était Hammoussa, « pois chiche », le plus petit élève de l'école."
+    },
+    {
+     "who": "hammoussa",
+     "text": "Dépêche-toi ! <short pause> Il faut préparer les lustres de l'Achoura !",
+     "sub": "Dépêche-toi ! Il faut préparer les lustres de l'Achoura !"
+    }
+   ]
+  },
+  {
+   "id": "s06_lustres",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Au M'sid, <short pause> on découpait de minuscules mèches <short pause> dans une vieille cotonnade blanche.",
+     "sub": "Au Msid, on découpait de minuscules mèches dans une vieille cotonnade blanche."
+    },
+    {
+     "who": "narrator",
+     "text": "Chaque mèche était agrafée à une lamelle de fer-blanc, <short pause> posée sur le bord d'un verre : <short pause> moitié eau, <short pause> moitié huile d'olive. <short pause> Et dans l'eau, <short pause> des poudres de couleur.",
+     "sub": "Chaque mèche était agrafée à une lamelle de fer-blanc, posée sur le bord d'un verre : moitié eau, moitié huile d'olive. Et dans l'eau, des poudres de couleur."
+    },
+    {
+     "who": "narrator",
+     "text": "Les poudres, <short pause> en petits paquets, <short pause> reposaient dans les babouches du fquih.",
+     "sub": "Les poudres, en petits paquets, reposaient dans les babouches du fqih."
+    },
+    {
+     "who": "narrator",
+     "text": "Les grands, <short pause> suspendus à une échelle branlante, <short pause> accrochaient au plafond les lustres en fer forgé. <short pause> Hammoussa se coupa le pouce avec une lamelle, <short pause> et partit en pleurnichant doucement.",
+     "sub": "Les grands, suspendus à une échelle branlante, accrochaient au plafond les lustres en fer forgé. Hammoussa se coupa le pouce avec une lamelle, et partit en pleurnichant doucement."
+    },
+    {
+     "who": "narrator",
+     "text": "Le soir, <short pause> nous chantâmes des cantiques, <short pause> et le maître pria, <short pause> même pour le Sultan, <short pause> prince des Croyants.",
+     "sub": "Le soir, nous chantâmes des cantiques, et le maître pria, même pour le Sultan, prince des Croyants."
+    }
+   ]
+  },
+  {
+   "id": "s07_petrole",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "À la maison, <short pause> ma mère était très ennuyée : <short pause> plus de pétrole dans la lampe ! <short pause> Driss El Aouad, <short pause> notre voisin, <short pause> accepta d'aller en acheter.",
+     "sub": "À la maison, ma mère était très ennuyée : plus de pétrole dans la lampe ! Driss El Aouad, notre voisin, accepta d'aller en acheter."
+    },
+    {
+     "who": "vendeur",
+     "text": "Des bougies <short pause> et des allumettes !",
+     "style": "poor Moroccan street seller calling his goods in a narrow alley at dusk, thin nasal voice, sing-song street cry. In this line: street seller crying his goods far away in the alley, echoing",
+     "sub": "Des bougies et des allumettes !"
+    },
+    {
+     "who": "narrator",
+     "text": "Les bougies ? <short pause> C'était bon pour les pauvres.",
+     "sub": "Les bougies ? C'était bon pour les pauvres."
+    },
+    {
+     "who": "narrator",
+     "text": "La nuit tomba brusquement. <short pause> Nous attendions dans le noir. <short pause> Enfin, <short pause> quelqu'un toussa à la porte. <short pause> Ma mère courut chercher la bouteille de pétrole, <short pause> et à la lumière d'un bout de chandelle, <short pause> elle remplit la lampe, <short pause> et alluma.",
+     "sub": "La nuit tomba brusquement. Nous attendions dans le noir. Enfin, quelqu'un toussa à la porte. Ma mère courut chercher la bouteille de pétrole, et à la lumière d'un bout de chandelle, elle remplit la lampe, et alluma."
+    },
+    {
+     "who": "mohammed",
+     "text": "Soirée de bénédiction.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: small boy, solemn and proud, saying a ritual greeting",
+     "sub": "Soirée de bénédiction."
+    },
+    {
+     "who": "zoubida",
+     "text": "Que ta soirée soit bénie.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother answering softly, tender, smiling",
+     "sub": "Que ta soirée soit bénie."
+    }
+   ]
+  },
+  {
+   "id": "s08_menthe",
+   "lines": [
+    {
+     "who": "kanza",
+     "text": "Lalla Zoubida, <short pause> bénie soit ta soirée ! <short pause> Pourrais-tu me donner un brin de menthe ?",
+     "style": "old Moroccan woman, a fortune-teller from Fès, about 60, raspy, slow, honeyed and mysterious, speaks French with a Fassi accent. In this line: old woman calling up from the ground floor of a courtyard house, honeyed",
+     "sub": "Lalla Zoubida, bénie soit ta soirée ! Pourrais-tu me donner un brin de menthe ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Sidi Mohammed va te le porter !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother calling down the courtyard, cheerful",
+     "sub": "Sidi Mohammed va te le porter !"
+    },
+    {
+     "who": "narrator",
+     "text": "Dans le patio, <short pause> une odeur d'encens et de benjoin alourdissait l'air. <short pause> J'étais persuadé qu'une assemblée de démons <short pause> se tenait dans la pénombre.",
+     "sub": "Dans le patio, une odeur d'encens et de benjoin alourdissait l'air. J'étais persuadé qu'une assemblée de démons se tenait dans la pénombre."
+    },
+    {
+     "who": "narrator",
+     "text": "Lalla Kenza me donna une poignée de sésame. <short pause> Un repas offert aux génies ? <short pause> J'y goûtai du bout de la langue... <short pause> et je mangeai tout.",
+     "sub": "Lalla Kanza me donna une poignée de sésame. Un repas offert aux génies ? J'y goûtai du bout de la langue... et je mangeai tout."
+    },
+    {
+     "who": "narrator",
+     "text": "Les grains se collaient à mes lèvres, <short pause> et au bout de mon nez.",
+     "sub": "Les grains se collaient à mes lèvres, et au bout de mon nez."
+    }
+   ]
+  },
+  {
+   "id": "s09_escalier",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Il faisait noir dans l'escalier. <short pause> Mais le vide devant moi n'était vide qu'en apparence. <short pause> Des présences muettes s'écartaient pour me laisser passer.",
+     "sub": "Il faisait noir dans l'escalier. Mais le vide devant moi n'était vide qu'en apparence. Des présences muettes s'écartaient pour me laisser passer."
+    },
+    {
+     "who": "zoubida",
+     "text": "Dieu est le plus grand.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother speaking calmly from the next room, solemn, quiet, clear voice (wall muffling is added in the mix)",
+     "sub": "Dieu est le plus grand."
+    },
+    {
+     "who": "voisine",
+     "text": "Est-ce le muezzin de l'Icha que j'entends ?",
+     "style": "Moroccan woman from Fès, about 50, asking a question from another room, speaks French with a Fassi accent. In this line: woman asking quietly from another room, heard through a wall",
+     "sub": "Est-ce le muezzin de l'Achaa que j'entends ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Oui.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother answering calmly from the next room, a soft, warm, clearly spoken yes",
+     "sub": "Oui."
+    },
+    {
+     "who": "narrator",
+     "text": "Je retenais mon souffle. <short pause> Je n'entendais aucun muezzin. <short pause> Les femmes, <short pause> dit-on, <short pause> ont l'oreille plus fine que les hommes.",
+     "sub": "Je retenais mon souffle. Je n'entendais aucun muezzin. Les femmes, dit-on, ont l'oreille plus fine que les hommes."
+    }
+   ]
+  },
+  {
+   "id": "s10_plans",
+   "lines": [
+    {
+     "who": "father",
+     "text": "Demain matin, <short pause> nous irons au souk choisir tes jouets. <short pause> Et à Bab Moulay Idriss, <short pause> nous achèterons un cierge pour ton maître.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: father at night by the lamp, gentle, smiling",
+     "sub": "Demain matin, nous irons au souk choisir tes jouets. Et à Bab Moulay Idriss, nous achèterons un cierge pour ton maître."
+    },
+    {
+     "who": "narrator",
+     "text": "J'étais heureux. <short pause> Une seule chose m'ennuyait : <short pause> je n'échapperais pas au coiffeur, <short pause> Si Abderrahmane. <short pause> Je savais qu'un jour, <short pause> c'est lui qui me circoncirait. <short pause> Je redoutais ce jour.",
+     "sub": "J'étais heureux. Une seule chose m'ennuyait : je n'échapperais pas au coiffeur, Si Abderrahman. Je savais qu'un jour, c'est lui qui me circoncirait. Je redoutais ce jour."
+    },
+    {
+     "who": "narrator",
+     "text": "Je rêvai longtemps de cierges monumentaux, <short pause> de rasoirs étincelants, <short pause> et de lustres chargés de godets de cristal.",
+     "sub": "Je rêvai longtemps de cierges monumentaux, de rasoirs étincelants, et de lustres chargés de godets de cristal."
+    }
+   ]
+  },
+  {
+   "id": "s11_souk",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Mon père ne connaissait rien à l'art de marchander. <short pause> Dans chaque rue <short pause> résonnaient les tambourins, <short pause> les grelots des hochets, <short pause> et le chant des flûtiaux.",
+     "sub": "Mon père ne connaissait rien à l'art de marchander. Dans chaque rue résonnaient les tambourins, les grelots des hochets, et le chant des flûtiaux."
+    },
+    {
+     "who": "narrator",
+     "text": "Je m'accrochais à sa main. <short pause> J'eus mon tambour en forme de sablier, <short pause> un petit chariot en bois, <short pause> et une nouvelle trompette. <short pause> Il payait sans discuter.",
+     "sub": "Je m'accrochais à sa main. J'eus mon tambour en forme de sablier, un petit chariot en bois, et une nouvelle trompette. Il payait sans discuter."
+    },
+    {
+     "who": "narrator",
+     "text": "Pour finir, <short pause> un cierge d'une livre. <short pause> Et tout près, <short pause> sous un pied de vigne séculaire, <short pause> la boutique de Si Abderrahmane.",
+     "sub": "Pour finir, un cierge d'une livre. Et tout près, sous un pied de vigne séculaire, la boutique de Si Abderrahman."
+    }
+   ],
+   "card": "LA VEILLE"
+  },
+  {
+   "id": "s12_barbier",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Il pratiquait une saignée. <short pause> Il planta deux ventouses de fer-blanc sur la nuque d'un inconnu. <short pause> Je détournai les yeux.",
+     "sub": "Il pratiquait une saignée. Il planta deux ventouses de fer-blanc sur la nuque d'un inconnu. Je détournai les yeux."
+    },
+    {
+     "who": "barber",
+     "text": "Je vois que ce jeune homme a été gâté ! <short pause> Un tambour, <short pause> une trompette, <short pause> un chariot, <short pause> et un cierge pour le fquih. <short pause> Il faut toujours être bien avec son maître... <short pause> sinon, <short pause> gare à la baguette de cognassier !",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber teasing a child, jovial, fishing for laughs",
+     "sub": "Je vois que ce jeune homme a été gâté ! Un tambour, une trompette, un chariot, et un cierge pour le fqih. Il faut toujours être bien avec son maître... sinon, gare à la baguette de cognassier !"
+    },
+    {
+     "who": "narrator",
+     "text": "Tout le monde se mit à rire. <short pause> Moi, <short pause> je rougissais d'indignation. <short pause> Ces messieurs n'avaient jamais reçu la baguette sur la plante des pieds. <short pause> Ils pouvaient rire.",
+     "sub": "Tout le monde se mit à rire. Moi, je rougissais d'indignation. Ces messieurs n'avaient jamais reçu la baguette sur la plante des pieds. Ils pouvaient rire."
+    }
+   ]
+  },
+  {
+   "id": "s13_hammad",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Un homme sec, <short pause> avec une barbe de bouc et un turban monumental, <short pause> s'écroula sur une chaise.",
+     "sub": "Un homme sec, avec une barbe de bouc et un turban monumental, s'écroula sur une chaise."
+    },
+    {
+     "who": "hammad",
+     "text": "Si Abderrahmane... <short pause> je vais mourir.",
+     "style": "dry old Moroccan man from Fès, about 70, hypochondriac, groaning and whining, speaks French with a Fassi accent. In this line: old man collapsing on a chair, groaning, theatrical",
+     "sub": "Si Abderrahman... je vais mourir."
+    },
+    {
+     "who": "barber",
+     "text": "Ne dis pas ça, oncle Hammade ! <short pause> Allah seul connaît les secrets de la vie et de la mort. <short pause> Il te faut un fortifiant.",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber, mock-solemn, then curious",
+     "sub": "Ne dis pas ça, oncle Hammad ! Allah seul connaît les secrets de la vie et de la mort. Il te faut un fortifiant."
+    },
+    {
+     "who": "barber",
+     "text": "Fais frire un oignon blanc dans du beurre. <short pause> Ajoute deux cuillerées de miel, <short pause> de l'anis, <short pause> du sésame, <short pause> du gingembre, <short pause> de la cannelle, <short pause> et trois clous de girofle. <short pause> Une bouchée chaque matin !",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber rattling off a remedy at top speed, like a recipe he has said a hundred times",
+     "sub": "Fais frire un oignon blanc dans du beurre. Ajoute deux cuillerées de miel, de l'anis, du sésame, du gingembre, de la cannelle, et trois clous de girofle. Une bouchée chaque matin !"
+    },
+    {
+     "who": "hammad",
+     "text": "Dieu te récompensera, <short pause> le jour du jugement !",
+     "style": "dry old Moroccan man from Fès, about 70, hypochondriac, groaning and whining, speaks French with a Fassi accent. In this line: old man getting up with great effort, groaning, grateful",
+     "sub": "Dieu te récompensera, le jour du jugement !"
+    }
+   ]
+  },
+  {
+   "id": "s14_larbi",
+   "lines": [
+    {
+     "who": "barber",
+     "text": "Hier, <short pause> j'ai fait une saignée à Moulay Larbi, <short pause> le babouchier. <short pause> Un homme digne. <short pause> Ce qui m'étonne, <short pause> c'est qu'il n'ait point d'enfants.",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber gossiping while honing a razor, lowered confidential voice",
+     "sub": "Hier, j'ai fait une saignée à Moulay Larbi, le babouchier. Un homme digne. Ce qui m'étonne, c'est qu'il n'ait point d'enfants."
+    },
+    {
+     "who": "barber",
+     "text": "On dit que sa femme est une Chérifa au cœur généreux. <short pause> Grâce à elle, <short pause> il a payé ses dettes. <short pause> Ne crois-tu pas... <short pause> qu'il devrait prendre une nouvelle épouse ?",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber gossiping, sly, insinuating, slow on the last words",
+     "sub": "On dit que sa femme est une Chérifa au cœur généreux. Grâce à elle, il a payé ses dettes. Ne crois-tu pas... qu'il devrait prendre une nouvelle épouse ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père écoutait, <short pause> indifférent.",
+     "sub": "Mon père écoutait, indifférent."
+    }
+   ],
+   "tag": "À RETENIR : Moulay Larbi, le babouchier, n'a pas d'enfants"
+  },
+  {
+   "id": "s15_lamrani",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Un nouveau client entra : <short pause> jeune, <short pause> la peau d'une blancheur de cire, <short pause> la barbe plus noire que l'aile du corbeau.",
+     "sub": "Un nouveau client entra : jeune, la peau d'une blancheur de cire, la barbe plus noire que l'aile du corbeau."
+    },
+    {
+     "who": "barber",
+     "text": "Sidi Ahmed ! <short pause> Comment va ton vénéré père ? <short pause> Son genou ? <short pause> Mon onguent a agi ! <short pause> Et toi, <short pause> je sais déjà : <short pause> tu épouses la fille de Si Omar le notaire !",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber overjoyed, flattering, answering his own questions, very fast",
+     "sub": "Sidi Ahmed ! Comment va ton vénéré père ? Son genou ? Mon onguent a agi ! Et toi, je sais déjà : tu épouses la fille de Si Omar le notaire !"
+    },
+    {
+     "who": "barber",
+     "text": "Que deviennent tes études ? <short pause> Te voilà un savant !",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber flattering, fast",
+     "sub": "Que deviennent tes études ? Te voilà un savant !"
+    },
+    {
+     "who": "lamrani",
+     "text": "Je ne suis qu'un mendiant de la science.",
+     "style": "young Moroccan scholar from Fès, about 25, gentle, shy, modest, speaks French with a Fassi accent. In this line: young scholar finally getting a word in, modest, quick, almost a whisper",
+     "sub": "Je ne suis qu'un mendiant de la science."
+    },
+    {
+     "who": "barber",
+     "text": "Se marier, <short pause> c'est créer des liens avec une autre famille. <short pause> Moi, <short pause> j'ai une fille en âge d'être mariée. <short pause> Mon futur gendre sera un peu mon fils.",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber suddenly serious and dreamy, slow, meaningful",
+     "sub": "Se marier, c'est créer des liens avec une autre famille. Moi, j'ai une fille en âge d'être mariée. Mon futur gendre sera un peu mon fils."
+    }
+   ]
+  },
+  {
+   "id": "s16_rasoir",
+   "lines": [
+    {
+     "who": "barber",
+     "text": "Je vais commencer par cet enfant. <short pause> Il préférerait sans doute être dans la rue.",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber turning to a child, friendly",
+     "sub": "Je vais commencer par cet enfant. Il préférerait sans doute être dans la rue."
+    },
+    {
+     "who": "barber",
+     "text": "La rue ! <short pause> La rue avec la foule et ses odeurs, <short pause> ses chants, <short pause> et ses cris d'enfants... <short pause> La rue où trottine le petit âne gris, <short pause> où tourbillonnent des vols de moineaux...",
+     "style": "Moroccan barber from Fès, about 55, an endless talker, honeyed, fast, flattering, never stops for breath, speaks French with a Fassi accent. In this line: barber lost in a reverie, lyrical, slowing down, a poem to the street",
+     "sub": "La rue ! La rue avec la foule et ses odeurs, ses chants, et ses cris d'enfants... La rue où trottine le petit âne gris, où tourbillonnent des vols de moineaux..."
+    },
+    {
+     "who": "lamrani",
+     "text": "Tu es un poète, <short pause> Si Abderrahmane !",
+     "style": "young Moroccan scholar from Fès, about 25, gentle, shy, modest, speaks French with a Fassi accent. In this line: young man, sincerely amazed",
+     "sub": "Tu es un poète, Si Abderrahman !"
+    },
+    {
+     "who": "narrator",
+     "text": "Il choisit un rasoir à manche d'ébène, <short pause> et le passa sur une pierre gluante d'huile.",
+     "sub": "Il choisit un rasoir à manche d'ébène, et le passa sur une pierre gluante d'huile."
+    },
+    {
+     "who": "narrator",
+     "text": "Le rasoir me brûlait un peu. <short pause> Je ne disais rien. <short pause> Une torpeur m'envahit. <short pause> Je m'endormis.",
+     "sub": "Le rasoir me brûlait un peu. Je ne disais rien. Une torpeur m'envahit. Je m'endormis."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma tête s'en alla de travers... <short pause> et la lame me mordit.",
+     "sub": "Ma tête s'en alla de travers... et la lame me mordit."
+    }
+   ]
+  },
+  {
+   "id": "s17_rue",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Je me sentis léger, <short pause> comme saigné à blanc.",
+     "sub": "Je me sentis léger, comme saigné à blanc."
+    },
+    {
+     "who": "father",
+     "text": "Viens. <short pause> L'air frais te fera du bien.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: father worried, gentle, helping a child up",
+     "sub": "Viens. L'air frais te fera du bien."
+    },
+    {
+     "who": "narrator",
+     "text": "Nous voici de nouveau dans la rue. <short pause> Jamais elle ne me parut aussi belle, <short pause> aussi enchantée, <short pause> que ce jour-là.",
+     "sub": "Nous voici de nouveau dans la rue. Jamais elle ne me parut aussi belle, aussi enchantée, que ce jour-là."
+    }
+   ]
+  },
+  {
+   "id": "s18_concert",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "À la maison, <short pause> Zinèbe tapait sans rythme sur sa tarifa de quatre sous. <short pause> J'avais hâte de la faire mourir de jalousie.",
+     "sub": "À la maison, Zineb tapait sans rythme sur sa tarifa de quatre sous. J'avais hâte de la faire mourir de jalousie."
+    },
+    {
+     "who": "narrator",
+     "text": "Je m'équipai en homme-orchestre : <short pause> le tambour par terre, <short pause> la trompette entre les genoux. <short pause> Zinèbe me rejoignit.",
+     "sub": "Je m'équipai en homme-orchestre : le tambour par terre, la trompette entre les genoux. Zineb me rejoignit."
+    },
+    {
+     "who": "femmes",
+     "text": "Grâce ! <short pause> Pitié pour nos oreilles !",
+     "style": "a group of Moroccan women in a courtyard house shouting together, laughing and begging for mercy, loud. In this line: women laughing and shouting together over loud drumming",
+     "sub": "Grâce ! Pitié pour nos oreilles !"
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère m'essaya une chemise neuve. <short pause> Elle craquait d'apprêt, <short pause> et tombait jusqu'au sol.",
+     "sub": "Ma mère m'essaya une chemise neuve. Elle craquait d'apprêt, et tombait jusqu'au sol."
+    },
+    {
+     "who": "narrator",
+     "text": "Sur la terrasse, <short pause> deux filles et un garçon nous attendaient. <short pause> Le garçon tira de ma trompette des rugissements inattendus. <short pause> Des femmes se perchèrent sur les murs pour nous admirer.",
+     "sub": "Sur la terrasse, deux filles et un garçon nous attendaient. Le garçon tira de ma trompette des rugissements inattendus. Des femmes se perchèrent sur les murs pour nous admirer."
+    }
+   ]
+  },
+  {
+   "id": "s19_bain",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Au coucher du soleil, <short pause> ma mère m'emmena à la cuisine. <short pause> L'auge de bois débordait d'eau bouillante. <short pause> Elle y versa un seau d'eau fraîche, <short pause> et me plongea dedans.",
+     "sub": "Au coucher du soleil, ma mère m'emmena à la cuisine. L'auge de bois débordait d'eau bouillante. Elle y versa un seau d'eau fraîche, et me plongea dedans."
+    },
+    {
+     "who": "mohammed",
+     "text": "Aïe ! <short pause> Arrête de frotter si fort !",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: small boy screaming and struggling while being scrubbed hard",
+     "sub": "Aïe ! Arrête de frotter si fort !"
+    },
+    {
+     "who": "narrator",
+     "text": "Elle me frotta avec une rondelle de liège. <short pause> Et je sombrai dans le noir. <short pause> Un noir peuplé de petites filles taquines, <short pause> et de barbiers bavards.",
+     "sub": "Elle me frotta avec une rondelle de liège. Et je sombrai dans le noir. Un noir peuplé de petites filles taquines, et de barbiers bavards."
+    }
+   ]
+  },
+  {
+   "id": "s20_reveil",
+   "lines": [
+    {
+     "who": "zoubida",
+     "text": "Réveille-toi ! <short pause> Il est trois heures du matin ! <short pause> Je t'ai préparé ton beau gilet, <short pause> ta chemise neuve, <short pause> et ta sacoche brodée !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: mother waking a child in the middle of the night, insistent, excited, whispering loudly",
+     "sub": "Réveille-toi ! Il est trois heures du matin ! Je t'ai préparé ton beau gilet, ta chemise neuve, et ta sacoche brodée !"
+    },
+    {
+     "who": "narrator",
+     "text": "Je pleurnichai. <short pause> Ma mère fut impitoyable : <short pause> elle se mouilla la main, <short pause> et me la passa sur la figure.",
+     "sub": "Je pleurnichai. Ma mère fut impitoyable : elle se mouilla la main, et me la passa sur la figure."
+    },
+    {
+     "who": "father",
+     "text": "Prépare-toi pour fêter l'Achoura au M'sid. <short pause> Du courage ! <short pause> Du courage !",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: father smiling, warm, encouraging, at night",
+     "sub": "Prépare-toi pour fêter l'Achoura au Msid. Du courage ! Du courage !"
+    },
+    {
+     "who": "narrator",
+     "text": "La chemise neuve me grattait horriblement, <short pause> et craquait comme du papier froissé. <short pause> Puis le gilet rouge, <short pause> la sacoche, <short pause> et la djellaba blanche, <short pause> parfumée à la fleur d'oranger.",
+     "sub": "La chemise neuve me grattait horriblement, et craquait comme du papier froissé. Puis le gilet rouge, la sacoche, et la djellaba blanche, parfumée à la fleur d'oranger."
+    },
+    {
+     "who": "narrator",
+     "text": "Me voilà devenu un autre homme !",
+     "sub": "Me voilà devenu un autre homme !"
+    }
+   ],
+   "card": "LA NUIT DE L'ACHOURA"
+  },
+  {
+   "id": "s21_babouches",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Je perdais mes babouches tous les trois pas. <short pause> Mais j'étais heureux.",
+     "sub": "Je perdais mes babouches tous les trois pas. Mais j'étais heureux."
+    },
+    {
+     "who": "narrator",
+     "text": "Dans le noir, <short pause> l'appel d'un mendiant, <short pause> et le bruit de sa canne. <short pause> Sûrement un aveugle.",
+     "sub": "Dans le noir, l'appel d'un mendiant, et le bruit de sa canne. Sûrement un aveugle."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père me glissa dans la main une pièce de cinq francs, <short pause> et me mit dans les bras le cierge. <short pause> Mes cadeaux de nouvel an, <short pause> pour le maître.",
+     "sub": "Mon père me glissa dans la main une pièce de cinq francs, et me mit dans les bras le cierge. Mes cadeaux de nouvel an, pour le maître."
+    }
+   ]
+  },
+  {
+   "id": "s22_feerie",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Je faillis lâcher mon cierge. <short pause> Des grappes de lumière transformaient la façade de l'école <short pause> en un décor de féerie.",
+     "sub": "Je faillis lâcher mon cierge. Des grappes de lumière transformaient la façade de l'école en un décor de féerie."
+    },
+    {
+     "who": "narrator",
+     "text": "Je n'étais plus le prince unique au gilet amarante, <short pause> mais un membre d'une congrégation de jeunes seigneurs, <short pause> chantant sous la direction d'un roi de légende.",
+     "sub": "Je n'étais plus le prince unique au gilet amarante, mais un membre d'une congrégation de jeunes seigneurs, chantant sous la direction d'un roi de légende."
+    },
+    {
+     "who": "narrator",
+     "text": "Je remis solennellement mon cierge, <short pause> et ma pièce de cinq francs.",
+     "sub": "Je remis solennellement mon cierge, et ma pièce de cinq francs."
+    },
+    {
+     "who": "narrator",
+     "text": "La chaleur devenait étouffante. <short pause> Un élève saigna du nez sur ses beaux habits.",
+     "sub": "La chaleur devenait étouffante. Un élève saigna du nez sur ses beaux habits."
+    },
+    {
+     "who": "narrator",
+     "text": "Je levai les yeux. <short pause> Les petites flammes dansaient, <short pause> grésillaient. <short pause> Je me taisais pour les entendre psalmodier, <short pause> comme nous, <short pause> la parole de Dieu.",
+     "sub": "Je levai les yeux. Les petites flammes dansaient, grésillaient. Je me taisais pour les entendre psalmodier, comme nous, la parole de Dieu."
+    }
+   ],
+   "music": "feerie"
+  },
+  {
+   "id": "s23_aube",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "À l'approche du jour, <short pause> la lumière des veilleuses s'anémiait. <short pause> Deux moineaux voletèrent autour des lustres.",
+     "sub": "À l'approche du jour, la lumière des veilleuses s'anémiait. Deux moineaux voletèrent autour des lustres."
+    },
+    {
+     "who": "fqih",
+     "text": "Seigneur, <short pause> fais régner sur cette terre <short pause> l'ordre, <short pause> la justice, <short pause> et la compassion.",
+     "style": "Moroccan Koranic schoolmaster from Fès, about 50, grave, nasal, speaks French with a Fassi accent. In this line: schoolmaster praying aloud, eyes to the ceiling, hands open, fervent, slow",
+     "sub": "Seigneur, fais régner sur cette terre l'ordre, la justice, et la compassion."
+    },
+    {
+     "who": "eleves",
+     "text": "Amine ! <short pause> Amine !",
+     "style": "a crowd of Moroccan schoolboys answering together in a Koranic school, loud, in unison. In this line: crowd of boys answering a prayer together, fervent",
+     "sub": "Amine ! Amine !"
+    },
+    {
+     "who": "narrator",
+     "text": "C'était la première fois que je voyais le fquih sans sa baguette de cognassier. <short pause> Il me parut beau.",
+     "sub": "C'était la première fois que je voyais le fqih sans sa baguette de cognassier. Il me parut beau."
+    },
+    {
+     "who": "fqih",
+     "text": "Je vous donne trois jours de repos.",
+     "style": "Moroccan Koranic schoolmaster from Fès, about 50, grave, nasal, speaks French with a Fassi accent. In this line: schoolmaster, kind for once, a small smile",
+     "sub": "Je vous donne trois jours de repos."
+    },
+    {
+     "who": "narrator",
+     "text": "Et comme la rentrée tombait un jeudi : <short pause> quatre jours !",
+     "sub": "Et comme la rentrée tombait un jeudi : quatre jours !"
+    }
+   ]
+  },
+  {
+   "id": "s24_idriss",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "À la maison, <short pause> ma mère avait mis sa belle mansouria à rayures de satin jaune.",
+     "sub": "À la maison, ma mère avait mis sa belle mansouria à rayures de satin jaune."
+    },
+    {
+     "who": "narrator",
+     "text": "Puis mon père m'emmena à Moulay Idriss, <short pause> le patron de la ville. <short pause> Sur la place des notaires, <short pause> il acheta un plat de céramique bleue.",
+     "sub": "Puis mon père m'emmena à Moulay Idriss, le patron de la ville. Sur la place des notaires, il acheta un plat de céramique bleue."
+    }
+   ],
+   "card": "LE JOUR DE L'ACHOURA"
+  },
+  {
+   "id": "s25_aicha",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "À la fin du déjeuner, <short pause> Lalla Aïcha vint nous surprendre.",
+     "sub": "À la fin du déjeuner, Lalla Aïcha vint nous surprendre."
+    },
+    {
+     "who": "zoubida",
+     "text": "Lalla Aïcha, <short pause> installe-toi sur le grand divan, <short pause> à la place d'honneur !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: hostess insisting warmly, delighted",
+     "sub": "Lalla Aïcha, installe-toi sur le grand divan, à la place d'honneur !"
+    },
+    {
+     "who": "aicha",
+     "text": "Dans la maison voisine, <short pause> toutes les femmes s'appellent Khadija ! <short pause> Il serait plus simple de dire : <short pause> Khadija la sourde, <short pause> Khadija la louchonne !",
+     "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy. In this line: gossiping guest telling a joke, delighted with herself, laughing at the end",
+     "sub": "Dans la maison voisine, toutes les femmes s'appellent Khadija ! Il serait plus simple de dire : Khadija la sourde, Khadija la louchonne !"
+    },
+    {
+     "who": "zoubida",
+     "text": "Et ton homme ? <short pause> Ses affaires ?",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: friend asking over tea, curious",
+     "sub": "Et ton homme ? Ses affaires ?"
+    },
+    {
+     "who": "aicha",
+     "text": "Il emploie trois ouvriers. <short pause> Les babouches se vendent bien. <short pause> Il m'a promis un caftan de drap abricot.",
+     "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy. In this line: proud, content, then trailing off",
+     "sub": "Il emploie trois ouvriers. Les babouches se vendent bien. Il m'a promis un caftan de drap abricot."
+    },
+    {
+     "who": "narrator",
+     "text": "Puis, <short pause> subitement, <short pause> Lalla Aïcha se tut.",
+     "sub": "Puis, subitement, Lalla Aïcha se tut."
+    },
+    {
+     "who": "aicha",
+     "text": "Nous sommes de bien faibles créatures, <short pause> nous les femmes. <short pause> Gardons-nous de faire confiance aux hommes. <short pause> Ils sont... <short pause> Ils sont...",
+     "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy. In this line: woman whispering a secret worry to a friend, sad, unable to find the word",
+     "sub": "Nous sommes de bien faibles créatures, nous les femmes. Gardons-nous de faire confiance aux hommes. Ils sont... Ils sont..."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère m'envoya jouer sur la terrasse. <short pause> Je compris : <short pause> elles avaient des secrets.",
+     "sub": "Ma mère m'envoya jouer sur la terrasse. Je compris : elles avaient des secrets."
+    },
+    {
+     "who": "narrator",
+     "text": "Seul sur la terrasse, <short pause> j'inventais les rythmes les plus barbares. <short pause> Et en bas, <short pause> les deux femmes papotaient, <short pause> papotaient, <short pause> papotaient.",
+     "sub": "Seul sur la terrasse, j'inventais les rythmes les plus barbares. Et en bas, les deux femmes papotaient, papotaient, papotaient."
+    },
+    {
+     "who": "narrator",
+     "text": "Le soir, <short pause> le soleil en robe d'or baignait la ville de rose fané. <short pause> La première étoile clignota. <short pause> Lalla Aïcha partit.",
+     "sub": "Le soir, le soleil en robe d'or baignait la ville de rose fané. La première étoile clignota. Lalla Aïcha partit."
+    }
+   ],
+   "tag": "À RETENIR : le mari de Lalla Aïcha, c'est Moulay Larbi"
+  },
+  {
+   "id": "s26_fin",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "La lampe fut allumée. <short pause> Nous étions sans entrain. <short pause> Mon tambour et ma trompette gisaient sur un matelas.",
+     "sub": "La lampe fut allumée. Nous étions sans entrain. Mon tambour et ma trompette gisaient sur un matelas."
+    },
+    {
+     "who": "narrator",
+     "text": "De mes habits neufs, <short pause> je ne gardai que la chemise. <short pause> Grâce à la chaleur de mon corps, <short pause> son tissu s'était humanisé.",
+     "sub": "De mes habits neufs, je ne gardai que la chemise. Grâce à la chaleur de mon corps, son tissu s'était humanisé."
+    },
+    {
+     "who": "narrator",
+     "text": "Pour échapper au bruit des tambours, <short pause> j'ouvris ma Boîte à merveilles. <short pause> Mes yeux, <short pause> hélas, <short pause> n'avaient plus la force de regarder.",
+     "sub": "Pour échapper au bruit des tambours, j'ouvris ma Boîte à merveilles. Mes yeux, hélas, n'avaient plus la force de regarder."
+    }
+   ],
+   "tail": 2.5
+  },
+  {
+   "id": "s27_fiche",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Fiche de révision. <short pause> Chapitre sept : <short pause> l'Achoura, <short pause> en quatre temps.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: a clear friendly teacher summing up for students, crisp",
+     "sub": "Fiche de révision. Chapitre sept : l'Achoura, en quatre temps."
+    },
+    {
+     "who": "narrator",
+     "text": "Les tambourins, <short pause> le barbier, <short pause> la nuit au M'sid, <short pause> et la visite de Lalla Aïcha.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher summing up, crisp, rhythmic",
+     "sub": "Les tambourins, le barbier, la nuit au Msid, et la visite de Lalla Aïcha."
+    },
+    {
+     "who": "narrator",
+     "text": "Le détail à retenir : <short pause> chez le barbier, <short pause> on parle de Moulay Larbi, <short pause> sans enfants, <short pause> et d'une nouvelle épouse. <short pause> Or Moulay Larbi, <short pause> c'est le mari de Lalla Aïcha. <short pause> Et le barbier a une fille à marier...",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher, conspiratorial, slowing down",
+     "sub": "Le détail à retenir : chez le barbier, on parle de Moulay Larbi, sans enfants, et d'une nouvelle épouse. Or Moulay Larbi, c'est le mari de Lalla Aïcha. Et le barbier a une fille à marier..."
+    },
+    {
+     "who": "narrator",
+     "text": "Thèmes : <short pause> la fête, <short pause> le regard de l'enfant, <short pause> la condition de la femme. <short pause> Au chapitre huit : <short pause> le secret de Lalla Aïcha.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher, crisp, ending on a teaser",
+     "sub": "Thèmes : la fête, le regard de l'enfant, la condition de la femme. Au chapitre huit : le secret de Lalla Aïcha."
+    }
+   ],
+   "lead": 0.8,
+   "music": "fiche"
+  },
+  {
+   "id": "s28_endcard",
+   "lines": [],
+   "lead": 0,
+   "tail": 0,
+   "hold": 8
+  }
+ ]
+}

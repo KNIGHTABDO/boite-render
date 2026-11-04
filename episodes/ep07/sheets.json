@@ -1,0 +1,21 @@
+{
+ "_common": "Same style as the attached reference: hand-painted 2D animated feature film character, Fès Morocco 1920s. ONE character, full body, strict front view, relaxed A-pose with arms held 20 degrees away from the body so the sleeves never touch the torso, hands open and fully visible, both feet visible flat on the ground in babouches, face looking straight at the camera, plain pale blue-grey background, no shadow, no text, portrait 2:3.",
+ "sheets": {
+  "hammoussa": "A tiny 6-year-old Moroccan schoolboy nicknamed 'pois chiche', the smallest pupil of the Koranic school: round cheeks, big dark worried eyes, shaved head with a small tuft, a too-big beige wool djellaba with sleeves rolled to the forearm and the hem touching his ankles, scuffed yellow babouches. Much smaller and rounder than an ordinary 6-year-old.",
+  "barber": "Si Abderrahman, a Fès barber-cupper about 45: lively sly eyes, quick smile, short trimmed black beard with grey threads, white skullcap, a green-and-cream striped shirt with sleeves rolled above the elbow under a short open sleeveless dark waistcoat, a white apron tied at the waist, wide sarouel trousers, yellow babouches. Slim, energetic, talkative look.",
+  "hammad": "Oncle Hammad, a dry thin old man about 65, gaunt cheeks, long white goat beard, a monumental white turban wound many times, a heavy cream wool djellaba with short wide sleeves ending at the forearm, EMPTY open hands, NO stick, both arms clearly away from the robe, grey babouches. Hypochondriac, sorrowful expression.",
+  "lamrani": "Sidi Ahmed Lamrani, a young Fès scholar about 28: very pale waxy skin, a crow-black full beard neatly trimmed, calm gentle eyes, a fine immaculate white djellaba with sleeves ending at the forearm, a white turban, white socks and yellow babouches. Elegant, serene, a poet.",
+  "mohammed_fete": "The same 6-year-old boy as the attached reference (shaved head with a small tuft, same face, same proportions) dressed for the Achoura festival: a white fine-wool djellaba open at the front showing a red embroidered gilet with gold braid over a stiff starched white shirt, an embroidered leather satchel strap across the chest, new oversized yellow babouches. Proud, chest out.",
+  "fqih_fete": "The same Koranic schoolmaster as the attached reference (same face, same beard, same build) in his festival clothes: a black-and-white vertically striped djellaba, a grey wool burnous over the shoulders with the hood down, a white turban, NO stick, hands open and empty.",
+  "zoubida_fete": "The same young mother as the attached reference (same face, same hair, same build) in her festival dress: a mansouria with yellow satin stripes over a light caftan, a festive silk headscarf, a gold belt, embroidered velvet babouches. Happy and proud.",
+  "teen_trompette": "A lanky Moroccan boy about 14, mischievous grin, short black hair, a striped brown-and-cream djellaba with sleeves ending at the forearm, EMPTY open hands, nothing held, both arms clearly away from the body, yellow babouches.",
+  "girl1": "A Moroccan girl about 7, two black braids, bright eyes, a small orange caftan with a sash and a light headscarf pushed back, EMPTY open hands, nothing held, red babouches.",
+  "girl2": "A Moroccan girl about 8, round face, black hair under a green headscarf, a small teal-and-pink striped caftan, EMPTY open hands, nothing held, yellow babouches."
+ },
+ "refs": {
+  "mohammed_fete": "art/src/mohammed.png",
+  "fqih_fete": "art/src/fqih.png",
+  "zoubida_fete": "art/src/zoubida.png",
+  "_style": "art/src/grand2.png"
+ }
+}

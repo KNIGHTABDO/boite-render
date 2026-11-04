@@ -1,0 +1,54 @@
+zineb generation 0437fba1-fdac-44ee-b877-cb72eec7a5c3
+rahma generation d733813a-b842-42c2-9d47-b3b1c913e89a
+chouafa generation 15df9625-a59c-4ee8-b62a-ef8e6b309871
+father generation e8264d3d-4173-4cbd-9bfc-f357eec29297
+zoubida generation c12139d2-7b58-4ce8-a132-16bf463f5856
+zineb processing {'name': 'remesh', 'current': 3, 'total': 5}
+rahma processing {'name': 'mesh', 'current': 2, 'total': 5}
+chouafa processing {'name': 'mesh', 'current': 2, 'total': 5}
+father processing {'name': 'mesh', 'current': 2, 'total': 5}
+zoubida queued {'name': 'preprocess', 'current': 1, 'total': 5}
+zineb completed {'name': 'pack', 'current': 5, 'total': 5}
+rahma completed {'name': 'pack', 'current': 5, 'total': 5}
+zoubida processing {'name': 'remesh', 'current': 3, 'total': 5}
+father processing {'name': 'texture', 'current': 4, 'total': 5}
+chouafa processing {'name': 'texture', 'current': 4, 'total': 5}
+zineb saved ['art/models/zineb__base_basic_pbr.glb', 'art/models/zineb__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/0437fba1-fdac-44ee-b877-cb72eec7a5c3
+chouafa completed {'name': 'pack', 'current': 5, 'total': 5}
+father completed {'name': 'pack', 'current': 5, 'total': 5}
+fqih generation 61430937-3c96-45b7-895d-68da31022e1e
+rahma saved ['art/models/rahma__base_basic_pbr.glb', 'art/models/rahma__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/d733813a-b842-42c2-9d47-b3b1c913e89a
+zoubida completed {'name': 'pack', 'current': 5, 'total': 5}
+abdallah generation ab347b2e-ec97-42e2-a54d-c047dc497b1c
+chouafa saved ['art/models/chouafa__base_basic_pbr.glb', 'art/models/chouafa__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/15df9625-a59c-4ee8-b62a-ef8e6b309871
+father saved ['art/models/father__base_basic_pbr.glb', 'art/models/father__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/e8264d3d-4173-4cbd-9bfc-f357eec29297
+fqih queued {'name': 'texture', 'current': 4, 'total': 5}
+woman1 generation 3c6f505b-673b-4e19-96b5-3258f1230746
+woman2 generation 594ca21a-3a4c-4bf6-af34-d1b2b8764def
+zoubida saved ['art/models/zoubida__base_basic_pbr.glb', 'art/models/zoubida__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/c12139d2-7b58-4ce8-a132-16bf463f5856
+['art/models/zoubida__base_basic_pbr.glb', 'art/models/zoubida__base_basic_shaded.glb']
+['art/models/father__base_basic_pbr.glb', 'art/models/father__base_basic_shaded.glb']
+['art/models/rahma__base_basic_pbr.glb', 'art/models/rahma__base_basic_shaded.glb']
+['art/models/zineb__base_basic_pbr.glb', 'art/models/zineb__base_basic_shaded.glb']
+['art/models/chouafa__base_basic_pbr.glb', 'art/models/chouafa__base_basic_shaded.glb']
+man1 generation d71d3496-efd9-4753-b317-8c80608806b3
+fqih completed {'name': 'pack', 'current': 5, 'total': 5}
+abdallah processing {'name': 'remesh', 'current': 3, 'total': 5}
+fqih saved ['art/models/fqih__base_basic_pbr.glb', 'art/models/fqih__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/61430937-3c96-45b7-895d-68da31022e1e
+['art/models/fqih__base_basic_pbr.glb', 'art/models/fqih__base_basic_shaded.glb']
+woman1 processing {'name': 'texture', 'current': 4, 'total': 5}
+woman2 processing {'name': 'mesh', 'current': 2, 'total': 5}
+abdallah completed {'name': 'pack', 'current': 5, 'total': 5}
+man1 processing {'name': 'remesh', 'current': 3, 'total': 5}
+woman1 completed {'name': 'pack', 'current': 5, 'total': 5}
+abdallah saved ['art/models/abdallah__base_basic_pbr.glb', 'art/models/abdallah__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/ab347b2e-ec97-42e2-a54d-c047dc497b1c
+['art/models/abdallah__base_basic_pbr.glb', 'art/models/abdallah__base_basic_shaded.glb']
+woman1 saved ['art/models/woman1__base_basic_pbr.glb', 'art/models/woman1__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/3c6f505b-673b-4e19-96b5-3258f1230746
+['art/models/woman1__base_basic_pbr.glb', 'art/models/woman1__base_basic_shaded.glb']
+woman2 completed {'name': 'pack', 'current': 5, 'total': 5}
+man1 processing {'name': 'pack', 'current': 5, 'total': 5}
+man1 completed {'name': 'pack', 'current': 5, 'total': 5}
+woman2 saved ['art/models/woman2__base_basic_pbr.glb', 'art/models/woman2__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/594ca21a-3a4c-4bf6-af34-d1b2b8764def
+['art/models/woman2__base_basic_pbr.glb', 'art/models/woman2__base_basic_shaded.glb']
+man1 saved ['art/models/man1__base_basic_pbr.glb', 'art/models/man1__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/d71d3496-efd9-4753-b317-8c80608806b3
+['art/models/man1__base_basic_pbr.glb', 'art/models/man1__base_basic_shaded.glb']

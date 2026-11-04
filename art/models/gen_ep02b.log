@@ -1,0 +1,45 @@
+moqadma generation 5c1a9168-1cb6-4f6e-a7ff-ae36f029127e
+driss generation d5d9d33c-e73f-4a9d-86d3-825787dd8dac
+driss queued {'name': 'preprocess', 'current': 1, 'total': 5}
+moqadma processing {'name': 'mesh', 'current': 2, 'total': 5}
+driss processing {'name': 'remesh', 'current': 3, 'total': 5}
+moqadma processing {'name': 'pack', 'current': 5, 'total': 5}
+moqadma completed {'name': 'pack', 'current': 5, 'total': 5}
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+    with cf.ThreadPoolExecutor(2) as ex: print(list(ex.map(lambda n: h3d.make(n, f'art/src/{n}.png'), ['driss','moqadma'])))
+                                               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "<string>", line 3, in <lambda>
+    with cf.ThreadPoolExecutor(2) as ex: print(list(ex.map(lambda n: h3d.make(n, f'art/src/{n}.png'), ['driss','moqadma'])))
+                                                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\abdo\boite-a-merveilles\tools\h3d.py", line 57, in make
+    s = sc(rpc('tools/call', {'name': 'rodin_wait', 'arguments': {'generation_id': gid, 'timeout_seconds': 45}}))
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\abdo\boite-a-merveilles\tools\h3d.py", line 21, in rpc
+    if e.code == 401 and retry: refresh(); return rpc(method, params, retry=False)
+                                                  ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\abdo\boite-a-merveilles\tools\h3d.py", line 15, in rpc
+    t = json.loads(TOK.read_text()); _id[0] += 1
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\abdo\AppData\Local\Programs\Python\Python313\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+moqadma saved ['art/models/moqadma__base_basic_pbr.glb', 'art/models/moqadma__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/5c1a9168-1cb6-4f6e-a7ff-ae36f029127e

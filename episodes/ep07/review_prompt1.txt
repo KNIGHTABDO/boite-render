@@ -1,0 +1,588 @@
+Tu es expert de Fès (années 1920-30), de la darija fassie et du roman « La Boîte à Merveilles » d'Ahmed Sefrioui. Ci-dessous : (A) le TEXTE INTÉGRAL du chapitre VII, puis (B) TOUTES les répliques d'un épisode animé pour élèves du bac (français, accent fassi, petits mots de darija). L'épisode est une ADAPTATION RÉSUMÉE (~45 % du chapitre) : couper, condenser ou reformuler est voulu ; seuls les faits doivent rester exacts. Personnages : narrateur (Mohammed adulte), Mohammed 6 ans, Zoubida (mère), le père, Zineb, Lalla Kanza, Hammoussa (Azzouz Berrada), le fqih, le vendeur ambulant, la voisine, Si Abderrahman le coiffeur, l'oncle Hammad, Sidi Ahmed Lamrani, les femmes, les élèves, Lalla Aïcha.
+
+RÈGLES STRICTES :
+1. Le texte de Sefrioui FAIT FOI. Un mot, un nom, un fait ou une expression qui figure dans le texte (A) est CORRECT, même s'il te semble étrange : ne le touche pas.
+2. Signale seulement : (a) contresens ou fait qui CONTREDIT le texte (A) ; (b) un ajout inventé qui n'est pas dans le roman et qui fausse l'histoire ; (c) faute de français ; (d) phrase confuse pour un élève ; (e) darija mal transcrite ou impossible à prononcer par une voix française ; (f) réplique attribuée au mauvais personnage.
+3. N'utilise QUE les identifiants exacts de la partie (B) (forme sNN_nom#i). N'invente aucun identifiant.
+4. Pour chaque problème, cite entre guillemets le passage du roman qui le prouve.
+Réponds UNIQUEMENT en JSON : [{"line":"id#i","problem":"...","quote":"passage du roman","fix":"who | texte corrigé complet"}]. Si tout est bon, réponds [].
+
+(A) TEXTE DU CHAPITRE VII
+Chapitre VII
+ 
+  Les FEMMES de la maison s’achetèrent toutes des tambourins, des bendirs et des tambours de 
+basque. Chacun de ces instruments avait sa forme, son langage particulier. Il y en avait de longs en céra-
+mique bleue, la base garnie de parchemin, de ventrus en poterie quasi rustique, de simples cadres en bois 
+circulaire tendus d’une peau de chèvre soigneusement épilée.
+Ma mère fit l’acquisition d’un de ces tambours ou bendirs. Elle l’essaya. Des coups graves et des coups 
+secs combinés avec art parlèrent un dialecte rude, mélange de soleil et de vent de haute montagne.
+Encore deux jours avant la Achoura, la grande journée où, de chaque terrasse l’après-midi, s’élèveront 
+rythmes et chansons.
+Maintenant, chacune de nos voisines faisait ses gammes, jouait pour elle-même un air de danse, ac -
+compagné de fioritures, de mots murmurés à mi-voix. Zineb tapait comme une sourde sur un minuscule 
+tambourin de pacotille. La veille, mon père m’avait offert une trompette très fruste en fer-blanc bariolée 
+de toutes les couleurs. J’en tirai de temps à autre un gémissement nasillard qui se terminait par un cri 
+rauque de fauve en colère. Je comptais d’ailleurs sur d’autres jouets pour le jour même de l’Achoura.
+Je désirais un tambour en terre cuite, en forme de sablier et un hochet décoré de fleurs. Je me conten-
+tais pour le moment de ma trompette. Elle éclatait au milieu de tous les bruits de la maison comme un 
+cri d’alarme, parfois comme un sanglot d’agonisant.
+Ma mère me pria de monter sur la terrasse braire tout à mon aise.
+Dans toute la ville, les femmes essayaient leurs tambourins. Un bourdonnement sourd couvrait l’es -
+pace.
+Je gonflai mes joues et soufflai de toutes mes forces dans ma longue trompette; le son s’étrangla et j’eus 
+l’impression d’entendre un bébé qui perce Ses premières dents. Le chat de Zineb somnolait au soleil. Il 
+fit un saut d’épouvante, faillit perdre 1’équilibre, tomber du haut du mur, sa demeure favorite. Il m’aban-
+donna la terrasse et s’engouffra dans une gouttière.
+Une tête inquiète surgit du faîte d’un mur mitoyen et disparut. Ma mère me rappelait déjà. Je descen-
+dis pour la rejoindre.
+- Un de tes camarades, envoyé par le maître d’école t’attend dans le patio, me dit-elle. Prends tes ba -
+bouches et va le rejoindre ; le fqih a besoin de toi.
+J’abandonnai ma trompette avec regret et dégringolai l’escalier pour retrouver mon condisciple. C’était 
+Hammoussa, pois chiche, l’élève le plus petit de taille de l’école. Il s’appelait de son vrai nom Azzouz 
+Berrada. Il me recommanda de me dépêcher.
+L ’équipement des lustres pour la nuit de l’Achoura réclamait le concours de toutes les mains. Il fallait 
+48
+venir travailler comme les autres au lieu de jouer de la trompette. Nous arrivâmes au MI/d. J embrassai 
+la main du Maître et m’installai au milieu d’un groupe chargé de découper des mèches minuscules dans 
+un carré de vieille cotonnade blanche, usée à la limite de l’usure .D’autres  élèves s’emparaient des mèches 
+roulées avec soin les agrafaient par le milieu à une lamelle de fer-blanc. Le bout libre de la  lamelle de 
+métal formait un crochet et devait reposer sur le bord d’un verre rempli moitié eau, moitié huile d’olive.
+Les grands, suspendus à une échelle branlante, accrochaient aux auvents des fenêtres et au plafond de 
+la salle d’école des lustres en fer forgé. De conception très simple ces lustres étaient formés d’un ou de 
+plusieurs cerceaux reliés entre eux par  des tiges rigides. A ces cerceaux venaient se coller des cercles étroits 
+où seraient logées les petites veilleuses : des verres ordinaires munis d’une mèche qui nageait dans l’huile.
+Pour obtenir un bel effet, les élèves mélangeaient à l’eau des veilleuses des poudres de couleurs diverses.
+Quand j’arrivai, les lustres étaient loin d’être entièrement garnis. Les verres s’entassaient dans un seau, 
+les poudres de couleur en petits paquets reposaient dans les babouches du fqih et les lamelles de fer-blanc 
+traînaient partout sur les nattes. Nous travaillâmes activement. Hammoussa se coupa le pouce avec une 
+lamelle et partit se faire soigner chez lui en pleurnichant doucement.   .
+La plupart des élèves travaillaient avec ardeur ; cinq ou six seulement, parmi les plus turbulents, allaient 
+d’un groupe à l’autre, s’agitaient en tous sens, provoquaient çà  et là quelques  disputes.       .
+Notre tâche fut terminée avant le coucher du soleil. Avant de quitter l’école, nous chantâmes des can-
+tiques en l’honneur du Prophète, récitâmes en chœur quelques versets du Coran. Le Maître prononça 
+avec ferveur des invocations pour attirer la bénédiction sur nous, sur nos parents et sur l’ensemble de la 
+communauté musulmane. Il n’a point oublié, dans ses prières, le Sultan prince des Croyants, qu’Allah 
+prolonge son existence et l’aide à  supporter le lourd poids du royaume.
+Nous restâmes silencieux à  attendre que le Maître nous fît signe de partir. Mon tour vint assez rapide-
+ment. Je baisai la main du Maître, enfilai mes babouches et sortis.
+A la maison, je trouvai ma mère très ennuyée. Il n’y avait plus de pétrole dans la lampe. Ma mère avait 
+oublié d’en faire acheter. Je lui proposai de faire sa commission. Elle refusa. Driss El Aouad rentra. Ma 
+mère descendit au premier. Je l’entendis chuchoter sur le palier de Rahma. Le pas de Driss El Aouad 
+retentit de nouveau dans l’escalier. Il avait accepté de rendre service à ma mère.
+De la rue me parvint la voix grêle d’un vendeur de bougies. « Des bougies et des allumettes », criait-il. 
+Nous ne nous servions plus de bougies. C’était bon pour les gens pauvres, sans argent, ceux qui ne peu-
+vent se payer une belle lampe munie d’une glace pour refléter la lumière, bon aussi pour les personnes 
+arriérées qui craignent les explosions, la fumée et la mauvaise odeur, autant d’inconvénients qui n’existent 
+que dans leur imagination.
+La nuit tomba brusquement. Nous attendions impatiemment le retour de notre voisin pour éclairer 
+la chambre. Quelqu’un toussa à la porte d’entrée de la maison. Driss El Aouad demanda s’il n’y avait 
+personne sur son passage. Ma mère se précipita chez Rahma, ramena sa bouteille à moitié pleine de pé -
+trole. A la lumière d’un bout de chandelle, elle dévissa le bec, remplit la lampe, nettoya la mèche de son 
+charbon et alluma.
+- Soirée de bénédiction, lui dis-je.
+- Que ta soirée soit bénie, me répondit ma mère.
+- Lalla Zoubida, appela Lalla Kanza du rez-de-chaussée, bénie soit ta soirée, pourrais-tu me donner un 
+brin de menthe?
+- Sidi Mohammed va te le porter.
+49
+Ma mère me donna quelques branches de menthe très parfumée. J’allai fièrement les offrir à la chouafa. 
+Je la trouvai dans le patio. Une odeur d’encens, de benjoin et de bien d’autres aromates alourdissait l’at-
+mosphère. J’étais persuadé qu’une assemblée de démons, attirés par toutes ces odeurs, se tenait dans la 
+pénombre.
+Lalla Kanza, pour me remercier, me mit dans le creux de la main une poignée de grains de sésame. Je 
+pensai que c’était là une part d’un repas mystérieux offert aux génies par la sorcière. J’y goûtai du bout 
+de la langue. Le goût de sésame n’avait rien de suspect. Je mangeai. Les grains se collaient autour de mes 
+lèvres et sur le bout de mon nez. Ma langue balayait ce qu’elle pouvait atteindre. J’époussetai l’excédent 
+avec les doigts.
+Il faisait noir dans l’escalier mais l’obscurité ne m’effrayait guère. Le vide qui s’ouvrait devant moi 
+n’était vide qu’en apparence. Des présences muettes s’écartaient pour me laisser passer. Lorsque j’aurai 
+l’âge requis, toutes ces présences se découvriront il mes yeux de voyant.
+J’entendis ma mère prononcer solennellement :
+- Dieu est le plus grand.
+Quelqu’un demanda:
+- Est-ce le muezzin annonçant la prière de l’Achaa que j’entends?
+- Oui, répondit ma mère.
+Dans le noir, je retenais mon souffle, j’écoutais avec attention.
+Je n’entendais point de muezzin. Les femmes; dit-on, ont l’oreille plus fine que les hommes.
+Mon père ne tarda pas à arriver. Le dîner se déroula comme à l’ordinaire.
+Avant de nous coucher, mon père me fit part de son intention de m’emmener le lendemain, dans la 
+matinée, me promener dans les souks et choisir mes jouets. Nous irions aussi à Bab Moulay Idriss faire 
+l’acquisition d’un cierge. La nuit de l’Achoura, je l’offrirais au maître d’école.
+J’étais heureux. Une seule chose m’ennuyait. Je savais qu’il m’était impossible d’échapper à la séance du 
+coiffeur. Mon père ne manquerait pas de me conduire à Chemaïne dans l’étroite boutique de Si Abder-
+rahman, le barbier. Je n’aimais ni Si Abderrahman, ni sa boutique.
+Je me couchai, mais le sommeil avait fui mes paupières. Je rêvai longtemps à des cierges monumen -
+taux, décorés de dentelles de papier finement ajourées par une main patiente, de rasoirs étincelants, de 
+tambours en forme de sablier, de lustres en fer forgé chargés de godets de cristal.
+Mon père ne connaissait rien à l’art délicat de vendre et d’acheter. Il ignorait les subtilités du marchan-
+dage et la volupté d’obtenir un objet, un sou moins cher que ne l’a payé le voisin. Il m’emmena, après le 
+repas du matin, faire le tour des marchands de jouets. Dans chaque rue résonnaient les tambourins, les 
+grelots des hochets de fer-blanc, le chant des flûtiaux. Les marchands de tambourins se démenaient dans 
+leurs échoppes devenues étroites tant il s’y entassait de marchandises. Des tambourins, des bendirs, des 
+tambours de basque, des trompettes et des pipeaux pendaient par grappes, s’amoncelaient en tas multico-
+lores, envahissaient les étagères. Un peuple de femmes, d’hommes mûrs, de fillettes et de garçons faisaient 
+cercle autour de chaque magasin. Les uns essayaient un instrument, les autres les accompagnaient de 
+battements de mains, jacassaient, réclamaient, discutaient avec le marchand qui ne savait plus où donner 
+de la tête.
+Une foule de campagnards, descendus de leurs lointains villages, s’approvisionnaient en sucre, épices, 
+cotonnades et instruments de musique. Ils encombraient la rue de leurs paquets.
+50
+Je m’accrochais à la main de mon père, occupé à écarter les passants pour nous frayer un chemin. J’eus 
+mon tambour en forme de sablier, un petit chariot bizarre en bois et une nouvelle trompette.
+Mon père me laissait choisir, payait sans discuter. Je lui tenais de longs discours, lui posais mille ques-
+tions auxquelles il répondait rarement. Il souriait à me voir si excité. Nous terminâmes nos emplettes par 
+l’achat d’un cierge, d’une livre de poids. La rue Bab Moulay Idriss débouche dans le quartier des fabri -
+cants de ceintures brodées et des marchands de fruits secs.
+Près d’un pied de vigne séculaire, s’ouvrait la boutique de Si Abderrahman le coiffeur. Le maalem Bnou 
+Achir occupait la boutique qui lui faisait vis-à-vis. Chacun avait sa clientèle. Les deux barbiers ignoraient 
+la concurrence.
+Mon père venait se faire raser les cheveux depuis son installation à Fès, dans la boutique de Si Abder-
+rahman.
+Les barbiers participent à de nombreuses cérémonies familiales. A ma naissance, mon père, monta -
+gnard transplanté dans la grande ville, désirait néanmoins fêter dignement mon arrivée au monde. Si Ab-
+derrahman lui fut d’un excellent conseil. Il vint, selon l’usage, accompagné de ses deux apprentis, placer 
+les invités et faire le service pendant le repas.
+Lors de ma première coupe de cheveux, mon père eut recours à ses soins et fit encore grand cas de ses 
+avis et recommandations.
+Je n’aimais pas Si Abderrahman. Je savais qu’il serait chargé de me circoncire. Je redoutais ce jour. Je 
+sentais des frissons me parcourir l’épiderme quand je le voyais manier le rasoir ou les ciseaux.
+Nous le trouvâmes occupé à pratiquer une saignée. Le client présentait sa nuque rasée, Si Abderrahman 
+se penchait sur le cou du patient. Je détournai les yeux de ce spectacle.
+Si Abderrahman planta deux ventouses en fer-blanc derrière la tête de l’inconnu et nous souhaita en 
+termes courtois une heureuse journée.
+- Je vois, dit-il, que ce jeune homme a été gâté: un tambour, une trompette, un magnifique chariot et 
+un cierge. Il est vrai que le cierge est destiné au fqih. Il faut toujours être très bien avec son maître, sinon, 
+gare à la baguette de cognassier.
+T out le monde se mit à rire. Je rougissais d’indignation. La baguette de cognassier n’a rien de risible. 
+Ces messieurs n’en avaient jamais reçu sur la plante des pieds, au point de ne pouvoir se tenir debout. Ils 
+pouvaient rire. La baguette de cognassier inspire à ceux qui la connaissent un sentiment de crainte et de 
+respect.
+Un homme sec, avec une barbe de bouc et un turban monumental, souleva le rideau d’entrée. Il gei -
+gnait tant qu’il pouvait. Pour tout salut, il se contenta de hocher la tête d’un mouvement affirmatif. Il 
+s’écroula entre les accoudoirs d’une chaise rigide et continua à geindre.      
+- T u me parais encore bien fatigué, oncle Hammad ! Puis-je t’être utile?
+- Si Abderrahman, je vais mourir.
+- Ne prononce pas de telles paroles indignes d’un musulman.
+Allah seul connaît les secrets de la vie et de la mort. De quoi souffres-tu ?
+- Je ne souffre pas. Seulement, la nuit, ma respiration devient courte, j’étouffe et mon cœur se gonfle 
+d’angoisse.
+- Il te faut un fortifiant, oncle Hammad. Je connais une recette très efficace. Pourras-tu t’en souvenir?
+51
+- Ma mémoire est intacte; c’est le cœur, te dis-je, qui faiblit.
+Donne-moi vite cette recette.
+- Elle est simple. Demande aux gens de ta maison de faire frire dans du beurre un oignon blanc fine -
+ment haché. Mélange à cet oignon frit deux cuillérées de miel, de l’anis et des grains de sésame, ajoute du 
+gingembre et de la cannelle, parfume l’ensemble avec trois clous de girofle. Si tu absorbes une bouchée 
+chaque matin de ce remède, tes malaises disparaîtront.
+- Si Abderrahman, Dieu te récompensera, le jour du jugement; je savais que ta sagesse me serait d’un 
+grand secours. Je m’en vais acheter les ingrédients, à l’heure et à l’instant.
+L ’oncle Hammad soupira, s’agita, finit par s’extraire de son siège et partit, poussant de sourds gémis-
+sements.
+Si Abderrahman vérifia l’adhérence des ventouses qu’il avait posées sur la nuque de son mystérieux 
+client.
+- Aujourd’hui, mon aide est absent et l’apprenti en prison, pour je ne sais quel méfait; je suis seul à 
+travailler, expliqua Si Abderrahman.
+Il continua, s’adressant à mon père :
+- J’espère, Maalem Abdeslem, que tu n’as rien de bien important à faire, j’en ai pour un moment à 
+pratiquer cette saignée. J’en ai fait une hier à l’un de tes amis, Moulay Larbi Alaoui, le babouchier. Cet 
+homme me plaît. T oujours digne, sobre de paroles et de gestes. Ce qui m’étonne, c’est qu’il n’ait point 
+d’enfants. Peut-être a-t-il une femme trop âgée ? Les gens de ta maison doivent connaître la femme de 
+Moulay Larbi. On raconte que c’est une Chérifa au cœur généreux. Grâce à son aide, Moulay Larbi a pu 
+payer ses dettes et remonter son atelier. Je sais que ses affaires sont maintenant très prospères.     
+Mon père écoutait, indifférent. Si Abderrahman repassait un rasoir, se penchait sur la nuque du patient 
+aux ventouses, rangeait de menus objets dans un tiroir.
+Installé sur la banquette entre deux accoudoirs en bois tourné, les pieds dans le vide, je regardais la 
+natte usée qui tapissait le mur, les panoplies de rasoirs et de miroirs à main, j’admirais la majestueuse 
+cathèdre de marie peinte de couleurs fanées.
+Déjà Si Abderrahman reprenait son monologue.
+- Ne crois-tu pas qu’il devrait songer à prendre une nouvelle épouse? Le moment n’est peut-être pas en-
+core venu, mais je suis sûr que les affaires de Moulay Larbi iront en s’améliorant. Il fabrique d’excellentes 
+babouches de femmes, d’une richesse de matière, de décor et de couleur vraiment étonnantes. Ces articles 
+jouissent toujours d’une grande faveur auprès de la clientèle féminine. Il n’y a que les femmes pour faire 
+la fortune des uns ou la ruine des autres. Il paraît que dans certains pays, les femmes vont même se faire 
+arranger les cheveux chez le coiffeur. Que ne suis-je né dans l’un de ces pays fabuleux!
+Si Abderrahman exhala un long soupir de regret et reprit :
+- Je n’ai point le droit de me plaindre, je suis le coiffeur attitré de plusieurs familles, de notre haute 
+société. Elles sont généreuses. Dieu saura les récompenser. Louange à Dieu.
+Un nouveau visiteur fit son entrée.
+- Le salut sur vous! dit-il.        
+- Sur vous le salut, la miséricorde et la bénédiction d’Allah! répondit Si Abderrahman.    
+52
+Mon père remua les lèvres, le client aux ventouses toussa à trois reprises, cracha quelque part et se figea 
+dans sa pose rigide:
+Il nous tournait le dos. J’apercevais les franges de sa barbe qui dépassaient sur le côté. Ses oreilles d’un 
+rouge cerise ressemblaient à des fleurs étranges. Il devait être assez âgé et travaillait, à voir la couleur de 
+sa nuque, aux champs ou dans un des multiples jardins qui entourent Fès. Il cessa de m’intéresser. Je re-
+gardais le nouveau venu. Jeune, la peau d’une blancheur de cire, les sourcils bien fournis et la barbe plus 
+noire que l’aile du corbeau, son visage rayonnait de douceur.
+Il prit place sur une sorte d’estrade assez élevée qui faisait face à la porte de la boutique. Si Abder -
+rahman, tout en vaquant à de mystérieuses besognes, ne cessa de lui prodiguer les sourires et les mots 
+aimables. Lorsque le jeune homme se fut installé, le coiffeur poussa un ou deux hennissements pour 
+manifester sa joie et entama la conversation.
+- Comment va ton vénéré père, Sidi Ahmed ? (Dieu le conserve en parfaite santé et multiplie ses biens 
+!) Souffre-t-il toujours de son genou ? Cela va mieux ! J’en suis fort heureux ! J’en suis très heureux, très 
+heureux ! Mon onguent a dû agir. Il a même agi au delà de mes espérances. Et toi, mon fils ? Laisse-moi 
+te féliciter, te souhaiter bonheur et joie. Oui, je sais déjà. Je sais peu de chose en vérité. T on père m’entre-
+tient parfois à ton sujet, il m’a annoncé l’heureux événement. T u épouses la fille de Si Omar le notaire.
+Pendant tout ce monologue, le nommé Si Ahmed ouvrit la bouche plusieurs fois, tenta de placer un 
+mot mais Si Abderrahman devinait ses réponses et lui épargnait la fatigue de les formuler.
+Le barbier poursuivait :
+- Si Omar est un homme de Dieu. Dans une époque où s’étale la corruption, l’injustice, l’avidité, c’est 
+un bienfait d’Allah de rencontrer un homme comme Si Omar, ou comme ton vénéré père Haj Ali.
+Il se tourna vers mon père pour le renseigner :
+- Sidi Ahmed est le fils de El Haj Ali Lamrani, le marchand de thé du quartier Sagha. T u dois le 
+connaître.
+- Si ! Si ! T u dois le connaître, il a fait trois fois le pèlerinage aux Lieux Saints. Par trois fois, il toucha 
+la Pierre Noire. Je prie Dieu de m’accorder la faveur d’être au Paradis le voisin d’un homme aussi pieux 
+! Sidi Ahmed va épouser la fille de Si Omar le notaire. Si Omar possède, outre la science, la sagesse et la 
+courtoisie, des biens matériels; Dieu augmentera sa fortune.
+Il s’adressa à Sidi Ahmed.
+- Que deviennent tes études? Je t’ai connu bébé, te voilà maintenant un savant!
+- Je ne suis qu’un mendiant de la science, dit enfin Sidi Ahmed.
+Il plaça cette phrase par surprise. Si Abderrahman suçait l’embouchure d’une de ses ventouses. Il 
+ajouta, profitant toujours du silence forcé du barbier :
+- Si Abderrahman, tu en sais certainement plus long que moi sur mon manage. Mes parents s’occupent 
+de cette affaire. Je n’ai pas mon mot à dire.
+- Depuis quand, répartit le coiffeur, les jeunes gens ont-ils leur mot à dire quand il s’agit de ces graves 
+problèmes? Ils ont parfois de l’instruction, mais une instruction glanée dans les livres et sur les lèvres de 
+leurs maîtres. Il leur manque l’expérience des gens murs, des points de comparaison, la connaissance des 
+hommes. Se marier ne consiste pas à passer de charmantes soirées avec une jeune et jolie femme, se marier 
+veut dire créer de nouveaux liens de parenté avec une autre famille, avoir de beaux enfants capables de 
+vous venir en aide dans notre vieillesse. J’ai une fille en âge d’être mariée. Mon futur gendre sera un peu 
+53
+mon fils, moi qui ai toujours désiré un fils.
+Si Abderrahman retira les ventouses, alla les vider derrière un rideau. Sur la nuque du client parais -
+saient deux boursouflures sanguinolentes. Le barbier s’empressa de les garnir de coton et vint vers moi.
+- Je vais commencer par cet enfant qui doit s’ennuyer. Il préférerait sans doute être dans la rue.
+T out  en m’enveloppant dans une large serviette rayée rouge et jaune, il continuait en ces termes :
+- Je le comprends! La rue! La rue, avec la foule et ses odeurs, la foule et ses appels, la foule et ses mur -
+mures, ses chants, ses lamentations, ses disputes et ses cris d’enfants, la rue avec ses places qu’ombragent 
+la vigne et le platane, la rue qui rêve, qui chante et qui boude ...
+Maintenant, il me savonnait la tête et la frottait du plat de ses deux mains. Son regard était vague. Il 
+reprit son hymne à la rue.
+- La rue où trottine le petit âne gris, où vagabondent les chats efflanqués, où tourbillonnent des vols 
+de moineaux, la rue que traverse dignement un couple de pigeon au plumage irisé, cette  rue avec ses 
+cortèges de fête et ses cortèges d’enterrements réserve à  ses amoureux ses sourires les plus tendres, les 
+enveloppe d’une tiédeur de sein maternel, se pare pour eux seuls de couleurs délicates et de lumières rares.
+- T u es un poète, Si Abderrahman! s’écria Sidi Ahmed. Par Allah! Je n’ai jamais rien lu d’aussi beau sur 
+la rue.
+- Comment puis-je être poète alors que je sais à peine lire et écrire? Non, j’aime simplement notre 
+bonne ville de Fès. La rue pour moi est un perpétuel spectacle.
+- T u sais joliment en parier, dit mon père.
+- Si Abdeslem, on parie toujours bien des choses qu’on aime.
+Une vulgaire gargoulette de terre cuite peut provoquer l’enthousiasme d’un amateur de gargoulettes et 
+le transformer en ce que Sidi Ahmed appelle un poète.
+Si Abderrahman choisit un rasoir avec un manche d’ébène, le passa, le repassa sur une pierre gluante 
+d’huile, l’essuya avec soin, réessaya sur son ongle avant d’entreprendre de me raser la tête.
+Il commença au sommet du crâne, m’obligea à baisser le nez jusqu’aux genoux, racla à petits coups le 
+duvet de ma nuque. II revint ensuite aux côtés, fit le tour de la mèche qui pendait  sur mon oreille droite. 
+Le rasoir me brûlait lin peu. Je ne disais rien. Je n’écoutais même plus la conversation. Une torpeur m’en-
+vahit. Je finis par m’endormir. Ma tête s’en alla de travers et la lame me mordit légèrement. Je me réveillai 
+en sursaut. Le coiffeur discutait toujours. Des gouttes de sueur couvraient mon front, dégoulinaient le 
+long de mon nez.
+Il s’arrêta enfin, épousseta mon visage et mon cou à l’aide d’une serviette et me démaillota. Je me sen-
+tis léger, comme saigné à blanc. J’eus mal au cœur. Je cherchai des yeux mon père. II s’aperçut de mon 
+malaise, se mit debout, se porta à mon secours. 
+- Viens, me dit-il, l’air frais te fera du bien. Si Abderrahman, j’ai besoin d’être rasé moi aussi, mais je 
+reviendrai le soir; cet enfant paraît fatigué. Messieurs, je vous laisse dans la paix d’Allah !
+Nous voici de nouveau dans la rue ; jamais elle ne me parut aussi belle, aussi enchantée que ce jour-là. 
+Je me sentis beaucoup mieux. Arrivés à la maison, nous nous installâmes pour le repas. Le bourdonne -
+ment des tambourins nous parvenait de toutes les terrasses.
+Au premier étage, Zineb tapait sans rythme sur son jouet de quatre sous, une tarifa en terre cuite qui 
+ne mesurait pas plus d’un empan. Je pris à peine le temps de manger, j’avais hâte de la faire mourir de 
+54
+jalousie. Je trouvai deux bâtonnets, je me passai le tambour en forme de sablier en bandoulière et je com-
+mençai une nouba de ma composition à crever le tympan de tous les habitants du quartier.
+Je réfléchis. Ma musique devait être plus riche. Je m’équipai en homme-orchestre. Je m’assis, mis mon 
+tambour par terre sur ses bords, je réussis à coincer ma trompette entre les genoux. Mes mains manièrent 
+le bâtonnet avec vigueur. Je soufflai de toutes mes forces dans la trompette. Bruits de tambour et mugis-
+sements se mêlèrent. La musique devenait assourdissante. Zineb vint me rejoindre pour prendre part à 
+la fête. Nous improvisâmes le plus beau concert qui eût jamais fait résonner les murs de notre maison.
+Les femmes, y compris ma mère, crièrent grâce. Elles n’appréciaient pas notre musique. Elles nous 
+conseillèrent de monter sur le belvédère de la terrasse charmer les oreilles des voisins.
+Auparavant ma mère me demanda d’enlever ma djellaba et mon vieux gilet. Elle désirait m’essayer une 
+chemise neuve. Elle me la passa par-dessus la vieille. Elle craquait d’apprêt.
+Ma mère paraissait satisfaite du travail de la couturière. La chemise me couvrait entièrement et tombait 
+jusqu’au sol. Mes bras se perdaient dans les immenses manches. Le col, de deux doigts de hauteur, était 
+fait de plusieurs épaisseurs de tissu et fermait sur le côté par un cordonnet de soie blanche.
+Je ne pensais qu’à mon tambour, cette séance d’essayage m’ennuyait. Je pus me libérer, reprendre mon 
+vieux gilet et ma djellaba. Je courus vers la terrasse. Zineb m’attendait en compagnie de deux filles et 
+d’un garçon venus des maisons mitoyennes, chacun avec son instrument de musique. Le garçon tenait un 
+tambourin comme les filles. Il l’abandonna pour s’emparer de ma trompette. Il était plus âgé que moi et 
+se connaissait en musique. Il sut tirer de cette trompette, simple en apparence, les rugissements les plus 
+inattendus. Nous nous abandonnâmes à la joie du rythme, nous nous soulâmes de bruit.
+Des femmes richement habillées se perchèrent sur les murs pour nous admirer. Elles riaient de notre 
+excitation, nous encourageaient par des mots gentils qui se perdaient dans le tintamarre.
+  Nous jouâmes jusqu’au coucher du soleil. Ma mère vint me chercher. A l’entendre, je m’étais assez 
+amusé ce soir. Il fallait venir dîner et me coucher. Elle comptait me réveiller à la première heure du jour 
+pour aller au Msid commencer l’année dans la joie, le travail et la récitation des versets sacrés. Elle m’ame-
+na à la cuisine. Là, l’auge de bois qui servait les jours de lessive débordait d’eau bouillante. Pour rendre 
+cette eau moins brûlante, elle y versa un seau d’eau fraîche. Elle me déshabilla, me plongea dans ce savant 
+mélange. J’eus la respiration coupée. Je me mis à hurler, à me débattre afin d’échapper aux mains de ma 
+mère qui me frottait vigoureusement à l’aide d’une rondelle de liège, emprisonnée dans un tissu particu-
+lièrement rêche. Une fois lavé, je mangeai quelques bouchées de pain trempées dans la sauce d’un plat de 
+viande au citron. Je m’allongeai sur mon matelas. Ma mère étendit sur moi une chaude couverture. Je ne 
+tardai pas à sombrer dans le noir, un noir peuplé de petites filles taquines et bêtes et de barbiers bavards.
+La voix de ma mère me tira des profondeurs du sommeil. Je nageai, un bon moment, dans une lumière 
+rouge parcourue d’étincelles et d’astres errants, puis, j’ouvris les yeux. Vite, je les refermai, espérant re -
+trouver le noir si reposant et si frais. La voix insistait :
+- Réveille-toi, il est trois heures du matin. Je t’ai préparé ton beau gilet, ta chemise neuve et ta sacoche. 
+T u n’as pas encore vu ta belle sacoche brodée. Ouvre les yeux! Réveille-toi donc !
+Je pleurnichai, je me frottai énergiquement les paupières de mes poings fermés. Je tentai plusieurs fois 
+de me recoucher, mais ma mère fut impitoyable. Elle se mouilla la main et me la passa sur la figure. Mes 
+oreilles cessèrent de bourdonner. J’entrouvris mes cils avec précaution. Mon père, habillé d’une djellaba 
+de laine fine, me souriait.
+- Prépare-toi pour fêter l’Achoura au Msid avec tes camarades. Du courage! Du courage!
+Ce fut dans un état de somnambule que je me lavai les yeux, me rinçai la  bouche, me rafraîchis les 
+55
+membres. Je retrouvai ma lucidité ‘·lorsque’ ma mère me passa, à même la peau, ma chemise neuve, 
+craquante d’apprêt. Elle me grattait horriblement. A chaque mouvement, je remplissais la pièce d’un 
+bruit de papier froissé. Je mis mon gilet rouge aux dessins compliqués et bien en relief. Ma sacoche en 
+bandoulière, je complétai cet ensemble très élégant par la djellaba blanche qui dormait au fond du coffre 
+de ma mère. Elle sentait la fleur d’oranger et la rose séchée.
+Me voilà devenu un autre homme! J’étais complètement réveillé. J’avais hâte de partir à l’école. Les 
+vêtements, les chaussures, tout était neuf. Plein de dignité et d’assurance, je précédai mon père dans 
+l’escalier.
+La lumière brillait à toutes les fenêtres de la maison. Hommes et femmes commençaient l’année dans 
+l’activité. Ceux qui restaient au lit un matin comme celui-ci se sentiraient, durant douze mois, indolents, 
+paresseux.     
+L ’appel d’un mendiant nous arrivait de la rue. J’entendais le bruit de sa canne. C’était sûrement un 
+aveugle.  
+ Je perdais mes babouches tous les trois pas. Mes parents voyaient grand. Ni les vêtements, ni les chaus-
+sures n’étaient à  ma taille. Mais j’étais heureux.
+Une fois dans la rue, mon père me glissa dans la main une pièce de cinq francs et me mit entre les bras 
+le cierge dont nous avions fait l’acquisition. C’étaient là mes cadeaux de nouvel an pour le maître d’école.
+Les passants que nous rencontrions me souriaient avec bienveillance. Les boutiques étaient ouvertes, 
+les rues éclairées. Je faisais de terribles efforts pour retenir mes babouches. De loin, j’aperçus les fenêtres 
+à  auvents de notre école.
+Je faillis lâcher mon cierge d’enthousiasme. Des grappes de lumière pendaient et transformaient cette 
+façade habituellement triste et poussiéreuse en un décor de féerie. Les lampes à huile, diversement colo-
+rées, scintillaient et par leur seule présence créaient un climat raffiné de fête et de joie.
+Je hâtai le pas. Les voix des élèves montaient claires dans la fraîcheur du matin. Elles rivalisaient de 
+gaîté avec les dizaines de petites flammes qui dansaient dans leur bain d’huile et d’eau teintée des cou -
+leurs de l’arc-en-ciel. Cette impression de fête fabuleuse s’accentua lorsque je poussai la porte du Msid. 
+Je n’étais plus le prince unique au gilet de drap amarante, je devenais un membre d’une congrégation 
+de jeunes seigneurs, tous richement vêtus, chantant sous la direction d’un roi de légende, des cantiques 
+d’allégresse et des actions de grâce.
+Mon père m’abandonna au milieu de mes condisciples. Je remis solennellement mon cierge d’une livre 
+et ma pièce de cinq francs. Les enfants se serrèrent pour me laisser une place.
+Je scandai les versets coraniques avec conviction. D’autres élèves arrivèrent. Le paquet de cierges gros-
+sissait à côté du fqih. La chaleur devenait étouffante. J’avais la tête couverte avec le capuchon de ma 
+djellaba. Je le rejetai. Ma chemise collait à mon corps. Des picotements insupportables me parcouraient 
+le dos. Mon front, mes mains se couvrirent de perles de sueur. L ’un des élèves saigna du nez et tacha 
+ses beaux habits de croûtes vermeilles. Je levai les yeux au plafond. Les petites flammes dansaient, gré -
+sillaient, lançaient parfois une étincelle bleue. Je me taisais pour les entendre psalmodier comme nous la 
+parole de Dieu. Leurs voix se confondaient avec celles des élèves. J’étais convaincu qu’aucune d’elles ne 
+célébrait l’Achoura silencieuse dans sa cage de verre, indifférente aux ondes de bonheur qui déferlaient 
+sur nos visages.
+Ce matin, les objets les plus ordinaires, les êtres les plus déshérités mêlaient leurs voix aux nôtres, 
+éprouvaient la même ferveur, s’abandonnaient à la même extase, clamaient avec la même gravité que 
+nous, la grandeur et la miséricorde de Dieu, créateur de toutes choses vivantes.
+56
+Après la récitation du Coran, nous chantâmes des cantiques. Les parents de certains élèves psalmo -
+diaient avec nous. Ils étaient venus accompagner leurs enfants. Ils n’avaient peut-être pas de besogne qui 
+les attendait : ils célébraient l’Achoura au Msid comme au temps de leur enfance.
+La lumière des veilleuses devenait jaune, s’anémiait  à l’approche du jour. Dans la rue, la circulation 
+était devenue intense. Deux moineaux voletèrent autour des lustres accrochés aux auvents des fenêtres.
+Le maître, les yeux au plafond, les deux mains ouvertes dans un geste d’offrande prononça de longues 
+invocations. Il demanda à Allah de protéger et de faire prospérer les affaires de la communauté des Mu-
+sulmans, d’étendre ses grâces sur les vivants et les morts, de développer les liens de solidarité entre les 
+humains, de faire régner sur cette terre l’ordre, la justice et la compassion.
+Amine! Amine!
+C’était la première fois que je voyais le fqih sans baguette de cognassier. II me parut beau, enveloppé 
+dans sa djellaba à raies blanches et noires, les épaules couvertes d’un burnous de drap gris. II nous donna 
+trois jours de repos. Le jour de la rentrée étant un jeudi, le congé durerait quatre jours. J’embrassai la 
+main du fqih avant de rentrer chez nous. II me chargea de présenter à mes parents à ses vœux pour la 
+nouvelle année et prononça quelques invocations en leur faveur.            
+La rue était maintenant très animée. Presque tous les passants s’étaient habillés de neuf. Les uns reve -
+naient du marché chargés de paniers d’alfa qu’ils tenaient écartés pour ne point salir leurs beaux effets, 
+d’autres flânaient désœuvrés. Ma mère avait sorti une belle mansouria en voile fin, ornée de rayures de 
+satin jaune. Elle s’était coiffée d’un foulard noir à longues franges multicolores.
+La bouilloire chantait. Mes parents attendaient mon retour pour déjeuner.
+Ma mère avait cuisiné une pile de galettes en pâte feuilletée, de forme carrée. Elle les enduisit de beurre 
+frais et de miel. C’était un délice. Je pris deux grands verres de thé à la menthe.
+Pendant le repas, mes parents établirent un programme pour la journée. Le matin, mon père se propo-
+sait de m’emmener à Moulay Idriss, le patron de la ville. Après la prière en commun, nous reviendrions 
+déjeuner. L ’après-midi, j’accompagnerais ma mère chez notre amie Lalla Aicha. J’aurais le droit d’empor-
+ter avec moi l’une de mes trompettes; le tambour en poterie fragile risquait de se casser en route.
+Ma bonne étoile en décida autrement. Après avoir baguenaudé avec mon père dans les rues encom -
+brées de passants, après avoir fait l’acquisition d’un plat de céramique bleue sur la place des notaires où 
+les potiers exposaient ce jour leur production, nous pénétrâmes dans le sanctuaire de Moulay Idriss. Là, 
+nous accomplîmes les rites de la prière de Louli et nous partîmes déjeuner.
+Lalla Aicha vint nous surprendre à la fin du repas. Ma mère manifesta une grande joie à  la revoir. Les 
+deux femmes se prodiguèrent mutuellement des baisers pointus, des formules de politesse et des mots 
+aimables. Mon père les laissa à leurs effusions, disparut.
+J’avais une envie folle de jouer du tambour, de lancer quelques beuglements avec ma trompette mais je 
+savais que ma mère ne tolérerait pas de tels débordements. Je m’abstins. J’attendais le soir pour me livrer 
+corps et âme à la musique. Je restais dans un coin à écouter les propos de notre visiteuse. Elle laissa en -
+tendre dès son arrivée, qu’elle avait beaucoup à raconter. Ma mère disposait de tout son temps et frétillait 
+de curiosité. Elle n’oublia pas, malgré tout, de remplir ses devoirs d’hôtesse. Elle souffla sur la braise, 
+ajouta une bolée d’eau dans la bouilloire, rinça les verres. Elle ouvrit une boîte de fer blanc et en sortit 
+une demi douzaine de gâteaux de semoule.
+- Lalla Aicha, installe- toi sur le grand divan; le thé sera bientôt prêt. Non! Non ! J’ai dit sur le grand 
+divan, à la, place d’honneur! Je t’en supplie, installe-toi confortablement, insista ma mère.
+Lalla Aicha s’affala au milieu des coussins, soupira de satisfaction et commença son récit. Ce n’était pas 
+57
+à vrai dire un récit, mais une série d’événements accolés les uns aux autres. Parfois, les faits devenaient 
+si compliqués que Lalla Aicha elle-même ne savait plus où elle en était. A ces moments,  son visage se 
+troublait, une sorte d’angoisse lui crispait les traits, ses yeux trahissaient  une profonde inquiétude, mais 
+bientôt un large sourire venait dissiper l’orage et Lalla Aïcha reprenait son monologue.
+Ma mère subissait les mêmes tourments, communiait dans les mêmes joies, éprouvait les mêmes émo-
+tions que son amie. Elle ouvrait parfois la bouche comme pour lui venir en aide mais ne trouvant pas le 
+mot qu’il fallait, ne disait rien.      
+ Certains passages de ce long tissu d’anecdotes insignifiantes me transportèrent de plaisir. Lalla Aicha 
+raconta que dans la maison voisine de la sienne toutes les femmes, par un caprice du hasard, s’appelaient 
+Khadija.                     
+Pour les différencier, on spécifiait la profession du mari : Khadija, la femme de l’épicier, Khadija, la 
+femme du tailleur, Khadija, la femme du marchand de pétrole.
+Lalla Aïcha ajouta :
+- Il serait plus simple de les appeler Khadija la sourde, Khadija la louchonne, Khadija la noire, tout le 
+monde comprendrait de qui il s’agit.
+Nous rîmes de bon cœur à cette plaisanterie. Ma mère s’absenta  quelques minutes. Elle revint avec 
+un bouquet de sauge et d’absinthe. Elle entreprit de faire son thé des grands jours. T out en versant l’eau 
+bouillante dans la théière, elle interrogea Lalla Aicha.
+- Comment va ton homme ? Parle-moi de ses affaires. A-t-il de nouveau un associé? T ravaille-t-il tout 
+seul?
+- Il n’a pas d’associé, mais il ne travaille pas seul. Il emploie trois ouvriers. Les babouches se vendent 
+bien et je n’ai pas le droit de me plaindre. Il m’a promis de m’acheter, au début de l’hiver, un caftan de 
+drap abricot, objet que je désirais depuis si longtemps.
+- Louange à Dieu! Les difficultés finissent toujours par s’aplanir et les misères par tomber dans l’oubli.
+- Oui! soupira Lalla Aicha.
+Ma mère attendit de nouvelles explications mais, subitement, son amie se taisait. La chose l’inquiéta.
+- A quoi penses-tu, Lalla Aicha? T u sembles triste. J’espère que tout va selon tes désirs dans ton ménage.
+Lalla Aicha soupira sans rien dire. Ma mère se versa un fond de  verre de thé, le goûta. Elle parut satis-
+faite. Elle servit son invitée et me servit.
+Lalla Aicha parla enfin. Elle se pencha sur ma mère et lui chuchota à voix basse :
+- Nous sommes de bien faibles créatures, nous les femmes. Dieu  seul est notre soutien et notre man -
+dataire. Gardons-nous bien de faire confiance aux hommes. Ils sont... Ils sont ...
+Lalla Aicha ne trouva pas l’épithète juste, elle se contenta d’agiter ses mains à la hauteur de ses épaules 
+et de lever les yeux au ciel.
+Ma mère me permit de monter sur la terrasse  jouer du tambour. Je compris que les  deux femmes 
+avaient des secrets à se communiquer et craignaient mes oreilles indiscrètes. J’étais ravi de l’aubaine. Je 
+montai sur la terrasse. Seul  dans ce vaste univers, je me livrai aux joies du rythme. J’inventais les com -
+binaisons les plus barbares. Je tapais sur les deux faces de parchemin de mon sablier en poterie, d’une 
+58
+baguette rageuse. Les murs multipliaient les sons.
+Pendant ce temps, Lalla Aicha et ma mère, penchées l’une sur l’autre, papotaient, papotaient, papo -
+taient !...
+Le soir, des bouquets de femmes richement vêtues ornaient toutes les terrasses. Les tambourins réson-
+naient, les chants fusaient de partout. Le soleil en robe d’or s’attardait à l’horizon, baignait toute la ville 
+de rose fané et de mauve délicat. La première étoile clignota. Ce fut le signal. Lalla Aicha embrassa ma 
+mère et partit.
+La lampe à pétrole fut allumée. Nous étions sans entrain. Mon tambour et ma trompette gisaient sur 
+un matelas. J’en étais dégoûté. Je retrouvai avec plaisir mes vieux vêtements. De mes habits neufs, je ne 
+gardai que la chemise ; grâce à la chaleur de mon corps, son tissu s’était humanisé.
+Pour échapper au bruit des tambours qui bourdonnait encore sous mon crâne, j’ouvris ma Boîte à 
+Merveilles. Mes yeux, hélas, n’avaient plus la force de regarder.
+59
+
+(B) RÉPLIQUES DE L'ÉPISODE
+s01_cold#1 [narrator] Ce jour-là, sous le rasoir de Si Abderrahman, j'ai connu la peur.
+s01_cold#2 [narrator] Et quelques heures plus tard, la plus belle nuit de mon enfance.
+s03_tambourins#1 [narrator] Deux jours avant l'Achoura, les femmes de la maison s'achetèrent toutes des tambourins. Ma mère essaya son bendir.
+s03_tambourins#2 [narrator] Des coups graves et des coups secs parlèrent un dialecte rude, mélange de soleil et de vent de haute montagne.
+s03_tambourins#3 [narrator] Zineb tapait comme une sourde sur un minuscule tambourin de pacotille. Moi, j'avais une trompette en fer-blanc. Elle éclatait dans la maison comme un cri d'alarme, parfois, comme un sanglot d'agonisant.
+s03_tambourins#4 [zoubida] Va donc braire sur la terrasse !
+s04_chat#1 [narrator] Je gonflai mes joues, et soufflai de toutes mes forces. On aurait dit un bébé qui perce ses premières dents.
+s04_chat#2 [narrator] Le chat de Zineb fit un saut d'épouvante, et s'engouffra dans une gouttière. Une tête inquiète surgit du mur voisin, et disparut.
+s05_hammoussa#1 [zoubida] Un de tes camarades t'attend dans le patio. Prends tes babouches : le fqih a besoin de toi !
+s05_hammoussa#2 [narrator] C'était Hammoussa, « pois chiche », le plus petit élève de l'école.
+s05_hammoussa#3 [hammoussa] Dépêche-toi ! Il faut préparer les lustres de l'Achoura !
+s06_lustres#1 [narrator] Au Msid, on découpait de minuscules mèches dans une vieille cotonnade blanche.
+s06_lustres#2 [narrator] Chaque mèche était agrafée à une lamelle de fer-blanc, posée sur le bord d'un verre : moitié eau, moitié huile d'olive. Et dans l'eau, des poudres de couleur.
+s06_lustres#3 [narrator] Les poudres, en petits paquets, reposaient dans les babouches du fqih.
+s06_lustres#4 [narrator] Les grands, suspendus à une échelle branlante, accrochaient au plafond les lustres en fer forgé. Hammoussa se coupa le pouce avec une lamelle, et partit en pleurnichant doucement.
+s06_lustres#5 [narrator] Le soir, nous chantâmes des cantiques, et le maître pria, même pour le Sultan, prince des Croyants.
+s07_petrole#1 [narrator] À la maison, ma mère était très ennuyée : plus de pétrole dans la lampe ! Driss El Aouad, notre voisin, accepta d'aller en acheter.
+s07_petrole#2 [vendeur] Des bougies et des allumettes !
+s07_petrole#3 [narrator] Les bougies ? C'était bon pour les pauvres.
+s07_petrole#4 [narrator] La nuit tomba brusquement. Nous attendions dans le noir. Enfin, quelqu'un toussa à la porte. Ma mère courut chercher la bouteille de pétrole, et à la lumière d'un bout de chandelle, elle remplit la lampe, et alluma.
+s07_petrole#5 [mohammed] Soirée de bénédiction.
+s07_petrole#6 [zoubida] Que ta soirée soit bénie.
+s08_menthe#1 [kanza] Lalla Zoubida, bénie soit ta soirée ! Pourrais-tu me donner un brin de menthe ?
+s08_menthe#2 [zoubida] Sidi Mohammed va te le porter !
+s08_menthe#3 [narrator] Dans le patio, une odeur d'encens et de benjoin alourdissait l'air. J'étais persuadé qu'une assemblée de démons se tenait dans la pénombre.
+s08_menthe#4 [narrator] Lalla Kanza me donna une poignée de sésame. Un repas offert aux génies ? J'y goûtai du bout de la langue... et je mangeai tout.
+s08_menthe#5 [narrator] Les grains se collaient à mes lèvres, et au bout de mon nez.
+s09_escalier#1 [narrator] Il faisait noir dans l'escalier. Mais le vide devant moi n'était vide qu'en apparence. Des présences muettes s'écartaient pour me laisser passer.
+s09_escalier#2 [zoubida] Dieu est le plus grand.
+s09_escalier#3 [voisine] Est-ce le muezzin de l'Achaa que j'entends ?
+s09_escalier#4 [zoubida] Oui.
+s09_escalier#5 [narrator] Je retenais mon souffle. Je n'entendais aucun muezzin. Les femmes, dit-on, ont l'oreille plus fine que les hommes.
+s10_plans#1 [father] Demain matin, nous irons au souk choisir tes jouets. Et à Bab Moulay Idriss, nous achèterons un cierge pour ton maître.
+s10_plans#2 [narrator] J'étais heureux. Une seule chose m'ennuyait : je n'échapperais pas au coiffeur, Si Abderrahman. Je savais qu'un jour, c'est lui qui me circoncirait. Je redoutais ce jour.
+s10_plans#3 [narrator] Je rêvai longtemps de cierges monumentaux, de rasoirs étincelants, et de lustres chargés de godets de cristal.
+s11_souk#1 [narrator] Mon père ne connaissait rien à l'art de marchander. Dans chaque rue résonnaient les tambourins, les grelots des hochets, et le chant des flûtiaux.
+s11_souk#2 [narrator] Je m'accrochais à sa main. J'eus mon tambour en forme de sablier, un petit chariot en bois, et une nouvelle trompette. Il payait sans discuter.
+s11_souk#3 [narrator] Pour finir, un cierge d'une livre. Et tout près, sous un pied de vigne séculaire, la boutique de Si Abderrahman.
+s12_barbier#1 [narrator] Il pratiquait une saignée. Il planta deux ventouses de fer-blanc sur la nuque d'un inconnu. Je détournai les yeux.
+s12_barbier#2 [barber] Je vois que ce jeune homme a été gâté ! Un tambour, une trompette, un chariot, et un cierge pour le fqih. Il faut toujours être bien avec son maître... sinon, gare à la baguette de cognassier !
+s12_barbier#3 [narrator] Tout le monde se mit à rire. Moi, je rougissais d'indignation. Ces messieurs n'avaient jamais reçu la baguette sur la plante des pieds. Ils pouvaient rire.
+s13_hammad#1 [narrator] Un homme sec, avec une barbe de bouc et un turban monumental, s'écroula sur une chaise.
+s13_hammad#2 [hammad] Si Abderrahman... je vais mourir.
+s13_hammad#3 [barber] Ne dis pas ça, oncle Hammad ! Allah seul connaît les secrets de la vie et de la mort. Il te faut un fortifiant.
+s13_hammad#4 [barber] Fais frire un oignon blanc dans du beurre. Ajoute deux cuillerées de miel, de l'anis, du sésame, du gingembre, de la cannelle, et trois clous de girofle. Une bouchée chaque matin !
+s13_hammad#5 [hammad] Dieu te récompensera, le jour du jugement !
+s14_larbi#1 [barber] Hier, j'ai fait une saignée à Moulay Larbi, le babouchier. Un homme digne. Ce qui m'étonne, c'est qu'il n'ait point d'enfants.
+s14_larbi#2 [barber] On dit que sa femme est une Chérifa au cœur généreux. Grâce à elle, il a payé ses dettes. Ne crois-tu pas... qu'il devrait prendre une nouvelle épouse ?
+s14_larbi#3 [narrator] Mon père écoutait, indifférent.
+s15_lamrani#1 [narrator] Un nouveau client entra : jeune, la peau d'une blancheur de cire, la barbe plus noire que l'aile du corbeau.
+s15_lamrani#2 [barber] Sidi Ahmed ! Comment va ton vénéré père ? Son genou ? Mon onguent a agi ! Et toi, je sais déjà : tu épouses la fille de Si Omar le notaire !
+s15_lamrani#3 [barber] Que deviennent tes études ? Te voilà un savant !
+s15_lamrani#4 [lamrani] Je ne suis qu'un mendiant de la science.
+s15_lamrani#5 [barber] Se marier, c'est créer des liens avec une autre famille. Moi, j'ai une fille en âge d'être mariée. Mon futur gendre sera un peu mon fils.
+s16_rasoir#1 [barber] Je vais commencer par cet enfant. Il préférerait sans doute être dans la rue.
+s16_rasoir#2 [barber] La rue ! La rue avec la foule et ses odeurs, ses chants, et ses cris d'enfants... La rue où trottine le petit âne gris, où tourbillonnent des vols de moineaux...
+s16_rasoir#3 [lamrani] Tu es un poète, Si Abderrahman !
+s16_rasoir#4 [narrator] Il choisit un rasoir à manche d'ébène, et le passa sur une pierre gluante d'huile.
+s16_rasoir#5 [narrator] Le rasoir me brûlait un peu. Je ne disais rien. Une torpeur m'envahit. Je m'endormis.
+s16_rasoir#6 [narrator] Ma tête s'en alla de travers... et la lame me mordit.
+s17_rue#1 [narrator] Je me sentis léger, comme saigné à blanc.
+s17_rue#2 [father] Viens. L'air frais te fera du bien.
+s17_rue#3 [narrator] Nous voici de nouveau dans la rue. Jamais elle ne me parut aussi belle, aussi enchantée, que ce jour-là.
+s18_concert#1 [narrator] À la maison, Zineb tapait sans rythme sur sa tarija de quatre sous. J'avais hâte de la faire mourir de jalousie.
+s18_concert#2 [narrator] Je m'équipai en homme-orchestre : le tambour par terre, la trompette entre les genoux. Zineb me rejoignit.
+s18_concert#3 [femmes] Grâce ! Pitié pour nos oreilles !
+s18_concert#4 [narrator] Ma mère m'essaya une chemise neuve. Elle craquait d'apprêt, et tombait jusqu'au sol.
+s18_concert#5 [narrator] Sur la terrasse, deux filles et un garçon nous attendaient. Le garçon tira de ma trompette des rugissements inattendus. Des femmes se perchèrent sur les murs pour nous admirer.
+s19_bain#1 [narrator] Au coucher du soleil, ma mère m'emmena à la cuisine. L'auge de bois débordait d'eau bouillante. Elle me plongea dedans.
+s19_bain#2 [mohammed] Aïe ! Ça brûle !
+s19_bain#3 [narrator] Elle me frotta avec une rondelle de liège. Et je sombrai dans le noir. Un noir peuplé de petites filles taquines, et de barbiers bavards.
+s20_reveil#1 [zoubida] Réveille-toi ! Il est trois heures du matin ! Je t'ai préparé ton beau gilet, ta chemise neuve, et ta sacoche brodée !
+s20_reveil#2 [narrator] Je pleurnichai. Ma mère fut impitoyable : elle se mouilla la main, et me la passa sur la figure.
+s20_reveil#3 [father] Prépare-toi pour fêter l'Achoura au Msid. Du courage ! Du courage !
+s20_reveil#4 [narrator] La chemise neuve me grattait horriblement, et craquait comme du papier froissé. Puis le gilet rouge, la sacoche, et la djellaba blanche, parfumée à la fleur d'oranger.
+s20_reveil#5 [narrator] Me voilà devenu un autre homme !
+s21_babouches#1 [narrator] Je perdais mes babouches tous les trois pas. Mais j'étais heureux.
+s21_babouches#2 [narrator] Dans le noir, l'appel d'un mendiant, et le bruit de sa canne. Sûrement un aveugle.
+s21_babouches#3 [narrator] Mon père me glissa dans la main une pièce de cinq francs, et me mit dans les bras le cierge. Mes cadeaux de nouvel an, pour le maître.
+s22_feerie#1 [narrator] Je faillis lâcher mon cierge. Des grappes de lumière transformaient la façade de l'école en un décor de féerie.
+s22_feerie#2 [narrator] Je n'étais plus le prince unique au gilet amarante, mais un membre d'une congrégation de jeunes seigneurs, chantant sous la direction d'un roi de légende.
+s22_feerie#3 [narrator] Je remis solennellement mon cierge, et ma pièce de cinq francs.
+s22_feerie#4 [narrator] La chaleur devenait étouffante. Un élève saigna du nez sur ses beaux habits.
+s22_feerie#5 [narrator] Je levai les yeux. Les petites flammes dansaient, grésillaient. Je me taisais pour les entendre psalmodier, comme nous, la parole de Dieu.
+s23_aube#1 [narrator] À l'approche du jour, la lumière des veilleuses s'anémiait. Deux moineaux voletèrent autour des lustres.
+s23_aube#2 [fqih] Seigneur, fais régner sur cette terre l'ordre, la justice, et la compassion.
+s23_aube#3 [eleves] Amine ! Amine !
+s23_aube#4 [narrator] C'était la première fois que je voyais le fqih sans sa baguette de cognassier. Il me parut beau.
+s23_aube#5 [fqih] Je vous donne trois jours de repos.
+s23_aube#6 [narrator] Et comme la rentrée tombait un jeudi : quatre jours !
+s24_idriss#1 [narrator] À la maison, ma mère avait mis sa belle mansouria à rayures de satin jaune.
+s24_idriss#2 [narrator] Puis mon père m'emmena à Moulay Idriss, le patron de la ville. Sur la place des notaires, il acheta un plat de céramique bleue.
+s25_aicha#1 [narrator] À la fin du déjeuner, Lalla Aïcha vint nous surprendre.
+s25_aicha#2 [zoubida] Lalla Aïcha, installe-toi sur le grand divan, à la place d'honneur !
+s25_aicha#3 [aicha] Dans la maison voisine, toutes les femmes s'appellent Khadija ! Il serait plus simple de dire : Khadija la sourde, Khadija la louchonne !
+s25_aicha#4 [zoubida] Et ton homme ? Ses affaires ?
+s25_aicha#5 [aicha] Il emploie trois ouvriers. Les babouches se vendent bien. Il m'a promis un caftan de drap abricot.
+s25_aicha#6 [narrator] Puis, subitement, Lalla Aïcha se tut.
+s25_aicha#7 [aicha] Nous sommes de bien faibles créatures, nous les femmes. Gardons-nous de faire confiance aux hommes. Ils sont... Ils sont...
+s25_aicha#8 [narrator] Ma mère m'envoya jouer sur la terrasse. Je compris : elles avaient des secrets.
+s25_aicha#9 [narrator] Seul sur la terrasse, j'inventais les rythmes les plus barbares. Et en bas, les deux femmes papotaient, papotaient, papotaient.
+s25_aicha#10 [narrator] Le soir, le soleil en robe d'or baignait la ville de rose fané. La première étoile clignota. Lalla Aïcha partit.
+s26_fin#1 [narrator] La lampe fut allumée. Nous étions sans entrain. Mon tambour et ma trompette gisaient sur un matelas.
+s26_fin#2 [narrator] De mes habits neufs, je ne gardai que la chemise. Grâce à la chaleur de mon corps, son tissu s'était humanisé.
+s26_fin#3 [narrator] Pour échapper au bruit des tambours, j'ouvris ma Boîte à merveilles. Mes yeux, hélas, n'avaient plus la force de regarder.
+s27_fiche#1 [narrator] Fiche de révision. Chapitre sept : l'Achoura, en quatre temps.
+s27_fiche#2 [narrator] Les tambourins, le barbier, la nuit au Msid, et la visite de Lalla Aïcha.
+s27_fiche#3 [narrator] Le détail à retenir : chez le barbier, on parle de Moulay Larbi, sans enfants, et d'une nouvelle épouse. Or Moulay Larbi, c'est le mari de Lalla Aïcha. Et le barbier a une fille à marier...
+s27_fiche#4 [narrator] Thèmes : la fête, le regard de l'enfant, la condition de la femme. Au chapitre huit : le secret de Lalla Aïcha.

@@ -70,6 +70,10 @@ jobs:
               node tools/e1-calibrate.mjs 2>&1 | tee out/e1/calibration.log
               /tmp/e1-python/bin/python tools/e1-sheets.py calibration
               ;;
+            s[0-9][0-9]_*)
+              node tools/scene-stills.mjs "${EP:-ep07}" "$TASK" out/e1 2>&1 | grep -v objectNormal | tail -40
+              /tmp/e1-python/bin/python tools/scene-sheet.py "out/e1/$TASK"
+              ;;
             *) echo "Unknown E1 task: $TASK" >&2; exit 2 ;;
           esac
       - name: Capture provenance

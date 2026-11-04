@@ -1,0 +1,15 @@
+{
+ "errors": [],
+ "warnings": [
+  "b010   speaker zoubida not in shot (voice off?)",
+  "b019   speaker vendeur not in shot (voice off?)",
+  "b024   speaker kanza not in shot (voice off?)",
+  "b030   speaker zoubida not in shot (voice off?)",
+  "b031   speaker voisine not in shot (voice off?)",
+  "b032   speaker zoubida not in shot (voice off?)",
+  "b067   speaker femmes not in shot (voice off?)",
+  "b088   speaker eleves not in shot (voice off?)"
+ ],
+ "total": 702.0,
+ "paint": 0.14074074074074075
+}

@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#888">
+<canvas id="cv" width="1920" height="1080"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Pose bench: one actor, one calculated pose (?p=kneel|lie&a=zoubida), floor contacts printed in window.M.
+import * as THREE from 'three';
+import * as K from '/engine/core.js';
+import { stage, cast } from '/engine/stage3d.js';
+import * as PR from '/engine/props3d.js';
+import * as PO from '/engine/poses.js';
+import * as IK from '/engine/ik.js';
+const cv = document.getElementById('cv'), c = cv.getContext('2d'); K.setCtx(c);
+const q = new URLSearchParams(location.search), S = stage(); window.S = S; window.PO = PO; window.IK = IK; window.THREE = THREE;
+S.calibrate({ h: 1.0, horizon: 330, fov: 38, x: .3, z: 2.8, yaw: 5 }); S.light({ dir: [-2, 3.2, 2], shadow: .35, area: 2.5 });
+const a = await cast(q.get('a') || 'zoubida', { seat: true }); window.A = a;
+const L = q.get('p') === 'lie', ST = q.get('p') === 'stool', RA = q.get('p') === 'rail';
+const mat = RA ? S.prop(PR.stool({ h: .9, w: .9 }), 0, 0, .32) : ST ? S.prop(PR.stool({ h: +(q.get('sh') || .26), w: .32 }), 0, 0, -.02) : S.prop(PR.mattress(), 0, 0, L ? -.35 : 0); if (L) mat.rotation.y = Math.PI / 2;
+const pil = L ? S.prop(PR.cushion({ w: .45, d: .3, h: .08, col: 0xe8dcc0 }), 0, mat.userData.top, -1.05) : null;
+if (RA) mat.scale.z = .12;
+S.add(a, 0, 0, 0);
+window.M = {};
+const low = () => { let m = 9; a.group.traverse(o => { if (o.isSkinnedMesh) { const p = o.geometry.attributes.position, v = new THREE.Vector3(); for (let i = 0; i < p.count; i += 7) { o.getVertexPosition(i, v); o.localToWorld(v); m = Math.min(m, v.y); } } }); return +m.toFixed(3); };
+window.draw = () => {
+  const p = q.get('p') || 'kneel';
+  if (p === 'kneel') M.err = PO.kneel(a, { seat: mat.userData.top }).map(e => +e.toFixed(3));
+  if (p === 'lie') { const r = PO.lie(a, { top: mat.userData.top, pillow: .08 }); pil.position.set(r.pillowAt.x, r.pillowAt.y, r.pillowAt.z); M.low = +r.low.toFixed(3); M.headLow = +r.headLow.toFixed(3); M.pillowTop = +(mat.userData.top + .08).toFixed(3); M.neck = +a.B.neck.rotation.x.toFixed(2); }
+  if (p === 'stool') { const r = PO.stool(a, { seat: mat.userData.top ?? +(q.get('sh') || .26) }); M.err = r.err.map(e => +e.toFixed(3)); M.seatLow = +r.seatLow.toFixed(3); M.footLow = +r.footLow.toFixed(3); }
+  if (p === 'rail') { const r = PO.rail(a, { top: .9, gap: +(q.get('gap') || .2) }); M.err = r.err.map(e => +e.toFixed(3)); M.palms = r.palms.map(v => v.toArray().map(x => +x.toFixed(3))); }
+  M.lowest = low(); M.top = mat.userData.top;
+  ['head', 'root', 'shinL', 'footL', 'handL'].forEach(b => M[b] = IK.wpos(a.B[b]).toArray().map(v => +v.toFixed(2)));
+  c.fillStyle = '#b9ab92'; c.fillRect(0, 0, 1920, 1080); c.fillStyle = '#9a8a70'; c.fillRect(0, 330, 1920, 750);
+  S.draw({ ink: 2.2 });
+};
+window.view = (pos, at, fov = 30) => { S.lookAt(pos, at, fov); draw(); };
+draw(); window.ready = true;
+</script>

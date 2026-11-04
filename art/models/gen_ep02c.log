@@ -1,0 +1,12 @@
+aicha_haik generation 0f65aaef-28ed-4abb-b43d-278cdb0409de
+aicha_haik processing {'name': 'texture', 'current': 4, 'total': 5}
+aicha_haik completed {'name': 'pack', 'current': 5, 'total': 5}
+aicha_haik saved ['art/models/aicha_haik__base_basic_pbr.glb', 'art/models/aicha_haik__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/0f65aaef-28ed-4abb-b43d-278cdb0409de
+mohammed_gris generation dd8ede1a-f544-4e49-bb1d-1959f95caca9
+mohammed_gris processing {'name': 'remesh', 'current': 3, 'total': 5}
+mohammed_gris completed {'name': 'pack', 'current': 5, 'total': 5}
+mohammed_gris saved ['art/models/mohammed_gris__base_basic_pbr.glb', 'art/models/mohammed_gris__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/dd8ede1a-f544-4e49-bb1d-1959f95caca9
+guerrab generation bd01aaa8-b13d-4c8c-988b-daf1456cfe51
+guerrab processing {'name': 'texture', 'current': 4, 'total': 5}
+guerrab completed {'name': 'pack', 'current': 5, 'total': 5}
+guerrab saved ['art/models/guerrab__base_basic_pbr.glb', 'art/models/guerrab__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/bd01aaa8-b13d-4c8c-988b-daf1456cfe51

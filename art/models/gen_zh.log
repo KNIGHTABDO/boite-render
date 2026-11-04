@@ -1,0 +1,4 @@
+zoubida_haik generation 708fd206-5f74-44aa-a94f-446ef674ead9
+zoubida_haik processing {'name': 'remesh', 'current': 3, 'total': 5}
+zoubida_haik completed {'name': 'pack', 'current': 5, 'total': 5}
+zoubida_haik saved ['art/models/zoubida_haik__base_basic_pbr.glb', 'art/models/zoubida_haik__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/708fd206-5f74-44aa-a94f-446ef674ead9

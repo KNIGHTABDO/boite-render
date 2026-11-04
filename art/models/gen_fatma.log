@@ -1,0 +1,4 @@
+fatma generation 7a293a91-64fe-4221-b8e9-ca5d2d46548b
+fatma processing {'name': 'remesh', 'current': 3, 'total': 5}
+fatma completed {'name': 'pack', 'current': 5, 'total': 5}
+fatma saved ['art/models/fatma__base_basic_pbr.glb', 'art/models/fatma__base_basic_shaded.glb'] | page https://hyper3d.ai/workspace/rodin/7a293a91-64fe-4221-b8e9-ca5d2d46548b

@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#888">
+<canvas id="cv" width="1920" height="1080"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Props lineup: every ep05 prop at true size next to a standing actor, with a 10 cm checker floor for scale.
+import * as THREE from 'three';
+import * as K from '/engine/core.js';
+import { stage, cast } from '/engine/stage3d.js';
+import * as PR from '/engine/props3d.js';
+const cv = document.getElementById('cv'), c = cv.getContext('2d'); K.setCtx(c);
+const S = stage(); window.S = S; window.THREE = THREE;
+S.calibrate({ h: .6, horizon: 330, fov: 30, x: 0, z: 2.2, yaw: 0 }); S.light({ dir: [-2, 3.2, 2], shadow: .35, area: 2.5 });
+const zou = await cast('zoubida'); S.add(zou, -1.0, 0, -.2);
+const row = [['stool', PR.stool()], ['bowl+fish', PR.bowl({ fish: 5 })], ['jar', PR.jar()], ['bread', PR.bread()], ['comb', PR.comb()],
+  ['bellows', PR.bellows()], ['bucket', PR.bucket()], ['mauve', PR.mauve()], ['bee', PR.bee()], ['cabochon', PR.cabochon()], ['glass', PR.teaGlass()]];
+window.P = {}; window.M = {};
+let x = -.75;
+row.forEach(([n, o]) => { const b = new THREE.Box3().setFromObject(o), s = b.getSize(new THREE.Vector3()); M[n] = s.toArray().map(v => +(v * 100).toFixed(1));   // cm
+  x += s.x / 2; S.prop(o, x, 0, 0); P[n] = o; x += s.x / 2 + .07; });
+P.bee.position.y = .25; P.cabochon.position.y = .02;
+const fl = new THREE.Mesh(new THREE.PlaneGeometry(3, 2, 30, 20), new THREE.MeshBasicMaterial({ color: 0x9a8a70, wireframe: true, transparent: true, opacity: .25 }));
+fl.rotation.x = -Math.PI / 2; fl.position.y = .001; S.scene.add(fl);
+window.draw = () => { c.fillStyle = '#b9ab92'; c.fillRect(0, 0, 1920, 1080); S.draw({ ink: 2.2 }); };
+window.view = (pos, at, fov = 30) => { S.lookAt(pos, at, fov); draw(); };
+view([0, .6, 1.6], [0, .15, 0], 40); window.ready = true;
+</script>

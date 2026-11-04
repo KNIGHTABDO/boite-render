@@ -208,7 +208,7 @@ export function letterbox(k = 1) { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c
 const SUBCOL = { narrator: '#fbf3e0', mohammed: '#ffe6a8', zoubida: '#ffc9b8', father: '#d6e6ff', rahma: '#ffb3c4', chouafa: '#c9f0dc',
   aicha: '#f5c6f0', fatma: '#d8f0b0', moqadma: '#bfe4ff', driss: '#ffd9a0', allal: '#e0d0b8', moineau1: '#fff2a0', moineau2: '#fff2a0', femmes: '#ffd6c8', kanza: '#c9f0dc', aveugle: '#e8dcc0' };
 export function subtitle(text, who, a) {
-  if (a <= 0 || !text) return;
+  if (a <= 0 || !text || globalThis.NOSUB) return;
   text = text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
   c.save(); c.setTransform(1, 0, 0, 1, 0, 0); const s = c.canvas.width / W; c.scale(s, s);
   c.globalAlpha = clamp(a); c.font = 'italic 44px "IM Fell English", Georgia, serif'; c.textAlign = 'center'; c.textBaseline = 'alphabetic';

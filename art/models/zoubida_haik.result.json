@@ -1,0 +1,17 @@
+{
+ "display_url": "https://hyper3d.ai/workspace/rodin/708fd206-5f74-44aa-a94f-446ef674ead9",
+ "files": [
+  {
+   "name": "base_basic_pbr.glb",
+   "role": "model",
+   "mime_type": "model/gltf-binary",
+   "url": "https://file.hyper3d.com/708fd206-5f74-44aa-a94f-446ef674ead9/pack/glb/base_basic_pbr.glb?response-cache-control=private&response-content-type=model%2Fgltf-binary&response-content-disposition=attachment%3B%20filename%3D%22base_basic_pbr.glb%22&X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTYzE0MDRlNzUyNWMzNGE5N2JlZTQ5ZGRkZWQ2NWY5ZTA%2F20260927%2Ffile.hyper3d.com%2Ftos%2Frequest&X-Tos-Date=20260927T165923Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=64aabeeaa38ab7df5f050def28c7e7627b27e2069c4abfe8db75ae10ba096e8e"
+  },
+  {
+   "name": "base_basic_shaded.glb",
+   "role": "model",
+   "mime_type": "model/gltf-binary",
+   "url": "https://file.hyper3d.com/708fd206-5f74-44aa-a94f-446ef674ead9/pack/glb/base_basic_shaded.glb?response-cache-control=private&response-content-type=model%2Fgltf-binary&response-content-disposition=attachment%3B%20filename%3D%22base_basic_shaded.glb%22&X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTYzE0MDRlNzUyNWMzNGE5N2JlZTQ5ZGRkZWQ2NWY5ZTA%2F20260927%2Ffile.hyper3d.com%2Ftos%2Frequest&X-Tos-Date=20260927T165923Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=537b681d7a0f5149bae3c142f265014a8c1e54ca8116a367cd65542b68c1ca59"
+  }
+ ]
+}
