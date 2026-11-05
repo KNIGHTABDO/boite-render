@@ -1,5 +1,5 @@
 name: preview
-# Low-res QA preview of a whole episode: N parallel jobs (1 Chrome each, SwiftShader), then one merge job adds the mix.
+# Low-res QA preview of a whole episode: 40 parallel jobs (the full GHA concurrency) (1 Chrome each, SwiftShader), then one merge job adds the mix.
 on:
   workflow_dispatch:
     inputs:
@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        part: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
     env:
       EP: ${{ inputs.ep }}
       FPS: ${{ inputs.fps }}
@@ -34,7 +34,7 @@ jobs:
       - name: render
         run: |
           mkdir -p out
-          N=$(python3 -c "import math;print(math.ceil(${{ inputs.dur }}*${{ inputs.fps }}))"); P=20; i=${{ matrix.part }}
+          N=$(python3 -c "import math;print(math.ceil(${{ inputs.dur }}*${{ inputs.fps }}))"); P=40; i=${{ matrix.part }}
           a=$((N*i/P)); b=$((N*(i+1)/P)); W=$(( (${{ inputs.h }}*16/9 + 1) / 2 * 2 ))
           T=$(date +%s)
           node tools/render_film.mjs --worker $a $b out/p$(printf %02d $i).mp4 $W 2>&1 | grep -v "^PAGE log" | tail -40
