@@ -1,0 +1,145 @@
+<!doctype html><meta charset="utf-8"><title>La Boîte à Bac · brand kit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Amiri:wght@400;700&family=Lilita+One&display=swap">
+<body style="margin:0;background:#000"><canvas id="cv"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Brand kit for "La Boîte à Bac": logo, wordmark, banner, thumbnail. Clean frames come straight from the film engine.
+const EP = new URLSearchParams(location.search).get('ep') || 'ep01';
+const F = await import(`/episodes/${EP}/film.js`);
+import * as K from '/engine/core.js';
+
+await document.fonts.load('64px "IM Fell English"'); await document.fonts.load('italic 64px "IM Fell English"'); await document.fonts.load('64px Amiri'); await document.fonts.load('bold 64px Amiri'); await document.fonts.load('64px "Lilita One"');
+const cv = document.getElementById('cv'); window.cv = cv;
+const GOLD = '#f2c46a', INDIGO = '#101a3c', CREAM = '#fbf1dc';
+
+// a clean film frame (no subtitles), cropped inside the letterbox bars
+const film = new OffscreenCanvas(1920, 1080), fg = film.getContext('2d');
+K.setCtx(fg); const { rosette } = await import('/episodes/ep01/lib/s02_rosette.js');   // module binds the engine canvas at import
+async function frame(t) { await F.drawFrame(fg, t, { subs: false }); return film; }
+function cover(g, src, sx, sy, sw, sh, W, H) { g.drawImage(src, sx, sy, sw, sh, 0, 0, W, H); }
+
+function mark(g, x, y, R, t = 3) {         // the rosette medallion on an indigo disc with a gold ring
+  K.setCtx(g); K.setTime(t); g.save(); g.fillStyle = K.radial(x, y, R * .2, R * 1.05, '#1d2c64', INDIGO); g.beginPath(); g.arc(x, y, R, 0, 7); g.fill();
+  g.lineWidth = R * .045; g.strokeStyle = GOLD; g.beginPath(); g.arc(x, y, R * .955, 0, 7); g.stroke();
+  g.lineWidth = R * .012; g.beginPath(); g.arc(x, y, R * .9, 0, 7); g.stroke(); g.restore();
+  // the rosette paints on the engine canvas (fg): draw it there, then copy onto g
+  K.setCtx(fg); K.setTime(t); fg.setTransform(1, 0, 0, 1, 0, 0); fg.clearRect(0, 0, 1920, 1080);
+  rosette(960, 540, R * .62, t, 1, { rot: .3 });
+  const S = Math.min(540, R * 1.05); g.drawImage(film, 960 - S, 540 - S, 2 * S, 2 * S, x - S, y - S, 2 * S, 2 * S);
+}
+function text(g, s, x, y, font, fill, o = {}) {
+  g.save(); g.font = font; g.textAlign = o.align || 'center'; g.textBaseline = 'alphabetic';
+  if (o.shadow) { g.shadowColor = 'rgba(0,0,0,.65)'; g.shadowBlur = o.shadow; g.shadowOffsetY = o.shadow * .25; }
+  if (o.stroke) { g.lineJoin = 'round'; g.lineWidth = o.stroke; g.strokeStyle = o.strokeCol || '#1a0f08'; g.strokeText(s, x, y); }
+  g.fillStyle = fill; g.fillText(s, x, y); g.restore();
+}
+
+async function thumbEp(g, ep, src, flip, big, sub, dx = 0) {
+  cv.width = 1280; cv.height = 720; K.setCtx(g);
+  const img = new Image(); img.src = `/art/${ep}/${src}.png`; await img.decode();
+  const s = (720 + Math.abs(dx) * .45) / img.naturalHeight, w = img.naturalWidth * s, h = img.naturalHeight * s;
+  g.save(); if (flip) { g.translate(1280, 0); g.scale(-1, 1); } g.drawImage(img, 1280 - w + dx, (720 - h) * .5, w, h); g.restore();
+  const lg = g.createLinearGradient(0, 0, 760, 0); lg.addColorStop(0, 'rgba(30,10,8,.72)'); lg.addColorStop(.6, 'rgba(30,10,8,.4)'); lg.addColorStop(1, 'rgba(30,10,8,0)'); g.fillStyle = lg; g.fillRect(0, 0, 1280, 720);
+  const bg = g.createLinearGradient(0, 380, 0, 720); bg.addColorStop(0, 'rgba(30,10,8,0)'); bg.addColorStop(1, 'rgba(30,10,8,.55)'); g.fillStyle = bg; g.fillRect(0, 0, 1280, 720);
+  g.save(); g.translate(44, 52); g.rotate(-.04); g.fillStyle = '#c8322b'; g.beginPath(); g.roundRect(0, 0, 330, 62, 10); g.fill();
+  text(g, 'BAC RÉGIONAL', 165, 45, '40px "Lilita One"', '#fff'); g.restore();
+  text(g, 'LA BOÎTE', 50, 250, '120px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+  text(g, 'À MERVEILLES', 50, 365, '104px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+  text(g, big, 52, 480, '92px "Lilita One"', GOLD, { align: 'left', stroke: 14, shadow: 18 });
+  text(g, sub, 56, 548, 'italic 54px "IM Fell English"', CREAM, { align: 'left', stroke: 8, shadow: 12 });
+  mark(g, 1185, 625, 72);
+}
+async function thumb4v(g, src, flip, big, sub) { return thumbEp(g, 'ep04', src, flip, big, sub); }
+const ASSETS = {
+  // 800×800 avatar (YouTube crops a circle): the mark alone reads at every size
+  async logo(g) { cv.width = cv.height = 800; g.clearRect(0, 0, 800, 800); mark(g, 400, 400, 398); },
+  // wordmark for video end screens / overlays (transparent PNG)
+  async wordmark(g) {
+    cv.width = 1600; cv.height = 500; g.clearRect(0, 0, 1600, 500);
+    mark(g, 250, 250, 210);
+    text(g, 'La Boîte à Bac', 1000, 250, '150px "IM Fell English"', GOLD, { shadow: 12 });
+    text(g, 'صندوق الباك', 1000, 350, 'bold 72px Amiri', CREAM);
+    text(g, 'LES ŒUVRES DU BAC RÉGIONAL, EN IMAGES', 1000, 425, '32px "IM Fell English"', '#d8c9a8');
+  },
+  // 2560×1440 channel banner (safe area 1546×423 in the centre)
+  async banner(g) {
+    cv.width = 2560; cv.height = 1440;
+    const f = await frame(8); cover(g, f, 0, 70, 1920, 940, 2560, 1440 * 1.0);
+    g.fillStyle = 'rgba(8,12,34,.45)'; g.fillRect(0, 0, 2560, 1440);
+    K.setCtx(g); g.fillStyle = K.radial(1280, 720, 200, 1100, 'rgba(8,12,34,.1)', 'rgba(8,12,34,.75)'); g.fillRect(0, 0, 2560, 1440);
+    mark(g, 700, 720, 175);
+    text(g, 'La Boîte à Bac', 1370, 725, '150px "IM Fell English"', GOLD, { shadow: 24 });
+    text(g, 'Les œuvres du bac régional, racontées en images', 1370, 800, 'italic 50px "IM Fell English"', CREAM, { shadow: 16 });
+    text(g, 'صندوق الباك', 1230, 880, 'bold 48px Amiri', '#e8d9b8', { shadow: 12 });
+    text(g, '·   1ère année bac', 1330, 878, '44px "IM Fell English"', '#e8d9b8', { shadow: 12, align: 'left' });
+  },
+  // 1280×720 thumbnail for Episode 1
+  async thumb(g) {
+    cv.width = 1280; cv.height = 720; K.setCtx(g);
+    const f = await frame(379.5);                    // Mohammed among his glowing treasures
+    g.drawImage(f, 300, 150, 1180, 664, 0, 0, 1280, 720);
+    // lift his face out of the shadow (soft warm light around the head)
+    g.save(); g.globalCompositeOperation = 'screen'; g.fillStyle = K.radial(760, 250, 10, 300, 'rgba(255,190,120,.35)', 'rgba(255,190,120,0)'); g.fillRect(0, 0, 1280, 720); g.restore();
+    // darken the left third for the title, warm the right
+    g.fillStyle = K.grad ? 'rgba(0,0,0,0)' : ''; const lg = g.createLinearGradient(0, 0, 900, 0); lg.addColorStop(0, 'rgba(10,8,30,.9)'); lg.addColorStop(.5, 'rgba(10,8,30,.5)'); lg.addColorStop(.75, 'rgba(10,8,30,0)'); g.fillStyle = lg; g.fillRect(0, 0, 1280, 720);
+    // badge
+    g.save(); g.translate(44, 52); g.rotate(-.04); g.fillStyle = '#c8322b'; g.beginPath(); g.roundRect(0, 0, 330, 62, 10); g.fill();
+    text(g, 'BAC RÉGIONAL', 165, 45, '40px "Lilita One"', '#fff'); g.restore();
+    text(g, 'LA BOÎTE', 50, 250, '120px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'À MERVEILLES', 50, 365, '104px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'CHAPITRE 1', 52, 480, '92px "Lilita One"', GOLD, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'résumé animé', 56, 548, 'italic 54px "IM Fell English"', CREAM, { align: 'left', stroke: 8, shadow: 12 });
+    mark(g, 1185, 625, 72);
+  },
+  // 1280×720 thumbnail for Episode 2: the tomcat's swipe
+  async thumb2(g) {
+    cv.width = 1280; cv.height = 720; K.setCtx(g);
+    const f = await frame(366.95);
+    g.drawImage(f, 420, 140, 1300, 731, 0, 0, 1280, 720);
+    const lg = g.createLinearGradient(0, 0, 820, 0); lg.addColorStop(0, 'rgba(10,8,30,.92)'); lg.addColorStop(.55, 'rgba(10,8,30,.55)'); lg.addColorStop(1, 'rgba(10,8,30,0)'); g.fillStyle = lg; g.fillRect(0, 0, 1280, 720);
+    g.save(); g.translate(44, 52); g.rotate(-.04); g.fillStyle = '#c8322b'; g.beginPath(); g.roundRect(0, 0, 330, 62, 10); g.fill();
+    text(g, 'BAC RÉGIONAL', 165, 45, '40px "Lilita One"', '#fff'); g.restore();
+    text(g, 'LA BOÎTE', 50, 250, '120px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'À MERVEILLES', 50, 365, '104px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'CHAPITRE 2', 52, 480, '92px "Lilita One"', GOLD, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'Sidi Ali Boughaleb', 56, 548, 'italic 54px "IM Fell English"', CREAM, { align: 'left', stroke: 8, shadow: 12 });
+    mark(g, 1185, 625, 72);
+  },
+  // 1280×720 thumbnail for Episode 3: Mohammed's face lit by the neighbour's kerosene lamp (painted plate c04, mirrored:
+  // the glowing lamp sits behind the title, the boy's face stays clear on the right)
+  async thumb3(g) {
+    cv.width = 1280; cv.height = 720; K.setCtx(g);
+    const img = new Image(); img.src = '/art/ep03/c04.png'; await img.decode();
+    const s = 720 / 941, w = 1672 * s;
+    g.save(); g.translate(1280, 0); g.scale(-1, 1); g.drawImage(img, 1280 - w - 2, 0, w + 4, 720); g.restore();
+    const lg = g.createLinearGradient(0, 0, 700, 0); lg.addColorStop(0, 'rgba(10,8,30,.62)'); lg.addColorStop(.6, 'rgba(10,8,30,.35)'); lg.addColorStop(1, 'rgba(10,8,30,0)'); g.fillStyle = lg; g.fillRect(0, 0, 1280, 720);
+    g.save(); g.globalCompositeOperation = 'screen'; g.fillStyle = K.radial(150, 120, 10, 300, 'rgba(255,214,140,.55)', 'rgba(255,214,140,0)'); g.fillRect(0, 0, 1280, 720); g.restore();   // the lamp glow behind the title
+    const bg = g.createLinearGradient(0, 380, 0, 720); bg.addColorStop(0, 'rgba(10,8,30,0)'); bg.addColorStop(1, 'rgba(10,8,30,.55)'); g.fillStyle = bg; g.fillRect(0, 0, 1280, 720);
+    g.save(); g.translate(44, 52); g.rotate(-.04); g.fillStyle = '#c8322b'; g.beginPath(); g.roundRect(0, 0, 330, 62, 10); g.fill();
+    text(g, 'BAC RÉGIONAL', 165, 45, '40px "Lilita One"', '#fff'); g.restore();
+    text(g, 'LA BOÎTE', 50, 250, '120px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'À MERVEILLES', 50, 365, '104px "Lilita One"', CREAM, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'CHAPITRE 3', 52, 480, '92px "Lilita One"', GOLD, { align: 'left', stroke: 14, shadow: 18 });
+    text(g, 'La lampe à pétrole', 56, 548, 'italic 54px "IM Fell English"', CREAM, { align: 'left', stroke: 8, shadow: 12 });
+    mark(g, 1185, 625, 72);
+  },
+  // 1280×720 thumbnail for Episode 4: Lalla Aïcha laughing over tea with Zoubida (painted plate f01; she stays clear on the right)
+  async thumb4(g) { await thumb4v(g, 'f01', false, 'CHAPITRE 4', 'Chez Lalla Aïcha'); },
+  // A/B variants: the pacha's men (drama) and the night lantern (summary hook)
+  async thumb4b(g) { await thumb4v(g, 'l04', false, 'LE PACHA', 'Chapitre 4 · Lalla Aïcha en larmes'); },
+  async thumb4c(g) { await thumb4v(g, 'n01', true, 'RÉSUMÉ', 'Chapitre 4 en animation'); },
+  // 1280×720 thumbnails for Episode 5 (A/B/C variants)
+  async thumb5(g) { await thumbEp(g, 'ep05', 'p11a_vol', false, 'CHAPITRE 5', 'Le deuil et la chaîne d’or'); },
+  async thumb5b(g) { await thumbEp(g, 'ep05', 'p07b_veuve', true, 'QUI EST MORT ?', 'Chapitre 5 · Sidi Mohammed ben Tahar'); },
+  async thumb5c(g) { await thumbEp(g, 'ep05', 'r2_boite', true, 'RÉSUMÉ', 'Chapitre 5 en animation'); },
+  async thumb6(g) { await thumbEp(g, 'ep06', 'p08_prince', true, 'CHAPITRE 6', 'Le gilet cerise'); },
+  async thumb6b(g) { await thumbEp(g, 'ep06', 'p07_tresor', false, 'PRINCE D’UN JOUR', 'Chapitre 6 · Achoura approche'); },
+  async thumb6c(g) { await thumbEp(g, 'ep06', 'p02b_chaux', true, 'RÉSUMÉ', 'Chapitre 6 en animation'); },
+  // Episode 7 (La nuit de l'Achoura): the candle dream, the barber's razor, the souk crowd
+  async thumb7(g) { await thumbEp(g, 'ep07', 'p03_reve_cierges', true, 'CHAPITRE 7', 'La nuit de l’Achoura'); },
+  async thumb7b(g) { await thumbEp(g, 'ep07', 'i_lame_nuque', false, 'LA TÊTE RASÉE', 'Chapitre 7 · le barbier bavard'); },
+  async thumb7c(g) { await thumbEp(g, 'ep07', 'p04_souk_foule', true, 'RÉSUMÉ', 'Chapitre 7 en animation'); },
+};
+window.render = async name => { const g = cv.getContext('2d'); await ASSETS[name](g); return cv.toDataURL('image/png'); };
+window.ready = true;
+</script>

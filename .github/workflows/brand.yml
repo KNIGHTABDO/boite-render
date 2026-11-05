@@ -1,0 +1,33 @@
+name: brand
+on:
+  workflow_dispatch:
+    inputs:
+      items:
+        description: 'comma list of brand.html renders (e.g. thumb7,thumb7b,thumb7c)'
+        default: 'thumb7,thumb7b,thumb7c'
+        type: string
+      ep:
+        description: 'episode whose film.js the page loads'
+        default: 'ep07'
+        type: string
+permissions:
+  contents: read
+jobs:
+  brand:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CHROME: /usr/bin/google-chrome
+      CHROME_EXTRA: --no-sandbox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund --silent
+      - run: EP=${{ inputs.ep }} node brand/render.mjs "${{ inputs.items }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: brand
+          path: brand/*.png
