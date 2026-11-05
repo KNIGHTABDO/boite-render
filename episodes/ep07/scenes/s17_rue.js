@@ -27,7 +27,7 @@ const sh = shot({
     const down = P.stool.clone().addScaledVector(dirW(mo, 0, 0, 1), .32);
     S3.add(ms, down.x, down.z, mo.group.rotation.y); ms.name = 'mohammed';
     // the father: down from the platform at its front corner, walks to the boy's side
-    const f0 = S3.floorAt(640, 1070), f1 = P.stool.clone().add(f0.clone().sub(P.stool).setY(0).normalize().multiplyScalar(.5));
+    const f0 = S3.floorAt(640, 1070), f1 = down.clone().add(f0.clone().sub(down).setY(0).normalize().multiplyScalar(.62));   // v2 QA: stand off the STANDING boy (his head pressed into the father's arm at .5 from the stool)
     S3.add(fw, f0.x, f0.z, 0);
     const bp = S3.floorAt(1300, 900); S3.add(ba, bp.x, bp.z, Math.atan2(P.cam.x - bp.x, P.cam.z - bp.z) - .4);
     return {

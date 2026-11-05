@@ -77,7 +77,10 @@ const bt = shot({
       PO.reach(mo, 'L', front(mo, 'chest', .2 * k, -.22 * k, -.05 * k), { grip: .05 });
       // she scrubs his back hard with the cork ring
       const back = at(mo, 'chest').addScaledVector(dirW(mo, 0, 0, -1), .09).add(V(0, .03 * Math.sin(t * 11), 0)).addScaledVector(dirW(mo, 1, 0, 0), .05 * Math.sin(t * 5.5));
-      PO.reach(zk, 'R', back, { grip: .02 }); PO.reach(zk, 'L', at(mo, 'upperArmL').add(V(0, .03, 0)), { grip: .03 });
+      PO.reach(zk, 'R', back, { grip: .02 });
+      // v2 QA: hold his NEAR arm (the far one put her forearm across his face)
+      const zc = at(zk, 'chest'), arm = at(mo, 'upperArmL').distanceTo(zc) < at(mo, 'upperArmR').distanceTo(zc) ? 'upperArmL' : 'upperArmR';
+      PO.reach(zk, 'L', at(mo, arm).add(V(0, .03, 0)), { grip: .03 });
       orient(cork, PO.handPts(zk, 'R').palm, dirW(zk, 0, 0, 1), V(0, 1, 0));
       PO.look(zk, at(mo, 'head'), .6); PO.look(mo, at(zk, 'head'), .5 * sq);
     }

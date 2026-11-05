@@ -75,6 +75,7 @@ const ch = shot({
     const { mo, ms, zi, zo, R, dr, dc, n, tr, sk, tb, shirt, cam } = st;
     const fit = t >= L[3][0] - .1;
     mo.group.visible = !fit; ms.group.visible = fit; zo.group.visible = fit; shirt.visible = fit;
+    zi.group.visible = !fit; tb.visible = !fit;   // v2 QA: Zineb stood where the kneeling mother is (heads merged); off for the fitting
     sk.forEach(s => { s.visible = !fit; });
     idle(zi, t, 4);
     if (!fit) {

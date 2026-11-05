@@ -2,6 +2,7 @@
 // turban stumbles in from the alley and collapses on the stool in the foreground (b043); CU "je vais mourir" (b044);
 // the barber, by the shelf, lays a hand on his shoulder (b045) and rattles off the remedy, counting on his fingers
 // (b046, seven fast inserts); b047 Hammad heaves himself up, both palms raised, and shuffles back out.
+import * as THREE from 'three';
 import * as K from '../../../engine/core.js';
 import * as PO from '../../../engine/poses.js';
 import { shot, role, breathe } from './_3d.js';
@@ -22,16 +23,21 @@ const rv = shot({
     const bp = S3.floorAt(640, 960); S3.add(ba, bp.x, bp.z, Math.atan2(P.stool.x - bp.x, P.stool.z - bp.z));
     const near = P.stool.clone().add(P.stool.clone().sub(P.door).setY(0).normalize().multiplyScalar(-.25));
     S3.add(hw, P.door.x, P.door.z, 0); hw.name = 'hammad';
+    // v2 QA: the painted foreground stool stands between the camera and his walk (door -> stool): a depth-only holdout
+    // so it hides his legs instead of him being drawn on top of it ("standing on the seat"); off while he sits on it
+    const a = S3.floorAt(870, 1030), b = S3.floorAt(1110, 1030), sw = Math.hypot(a.x - b.x, a.z - b.z);
+    const hold = S3.holdout(new THREE.BoxGeometry(sw, P.sh, .36), P.stool.x, P.sh / 2, P.stool.z);
+    hold.rotation.y = Math.atan2(P.cam.x - P.stool.x, P.cam.z - P.stool.z); hold.updateMatrixWorld(true);
     return {
-      actors: [ha, hw, ba], ha, hw, ba, R, P, near,
+      actors: [ha, hw, ba], ha, hw, ba, R, P, near, hold,
       faces: [[ha, 'hammad', 7, { lid: .35 }], [hw, 'hammad', 7, { lid: .3 }], [ba, 'barber', 5]],
     };
   },
   frame(lt, u, t, S, st) {
-    const { ha, hw, ba, R, P, near } = st;
+    const { ha, hw, ba, R, P, near, hold } = st;
     // the standing copy walks in / out; the seated copy holds the stool between SIT and UP
     const seated = t >= SIT && t < UP;
-    ha.group.visible = seated; hw.group.visible = !seated;
+    ha.group.visible = seated; hw.group.visible = !seated; hold.visible = !seated;
     if (!seated) {
       idle(hw, t, 7);
       if (t < SIT) {
