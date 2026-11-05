@@ -1,51 +1,53 @@
 {
  "cues": [
   {
-   "beat": "b001",
-   "scene": "s01_cold",
-   "t": 2.2,
+   "beat": "b000a",
+   "scene": "s01_hook",
+   "t": 1.5,
    "kind": "foley",
-   "id": "razor_strop",
+   "id": "tambourine_shake",
    "params": {
-    "count": 4
+    "dist": 0.8
    },
-   "raw": "razor_strop x4 (ticking clock)",
+   "raw": "tambourine city hum bed (far, many)",
    "have": true
   },
   {
-   "beat": "b001",
-   "scene": "s01_cold",
-   "t": 2.2,
-   "kind": "music",
-   "id": "drone",
+   "beat": "b000a",
+   "scene": "s01_hook",
+   "t": 1.5,
+   "kind": "foley",
+   "id": "pigeons_wings",
    "params": {},
-   "raw": "barber voice muffled + low drone rising",
-   "have": null
+   "raw": "pigeons",
+   "have": true
   },
   {
-   "beat": "b002",
-   "scene": "s01_cold",
-   "t": 7.44,
-   "kind": "ctrl",
-   "id": "silence_or_room",
+   "beat": "b000b",
+   "scene": "s01_hook",
+   "t": 9.47,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
    "params": {},
-   "raw": "silence at the touch",
-   "have": null
+   "raw": "night wind",
+   "have": true
   },
   {
-   "beat": "b002",
-   "scene": "s01_cold",
-   "t": 7.44,
-   "kind": "vocal",
-   "id": "child_breath_in",
-   "params": {},
-   "raw": "breath in",
+   "beat": "b000b",
+   "scene": "s01_hook",
+   "t": 9.47,
+   "kind": "foley",
+   "id": "tambourine_shake",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "tambourines fade far",
    "have": true
   },
   {
    "beat": "b004",
    "scene": "s03_tambourins",
-   "t": 23.89,
+   "t": 36.01,
    "kind": "foley",
    "id": "bendir_hit",
    "params": {
@@ -57,7 +59,7 @@
   {
    "beat": "b004",
    "scene": "s03_tambourins",
-   "t": 19.17,
+   "t": 31.11,
    "kind": "foley",
    "id": "tambourine_hit",
    "params": {},
@@ -65,9 +67,29 @@
    "have": true
   },
   {
+   "beat": "b004a",
+   "scene": "s03_tambourins",
+   "t": 39.26,
+   "kind": "foley",
+   "id": "bendir_hit",
+   "params": {},
+   "raw": "bendir_hit soft",
+   "have": true
+  },
+  {
+   "beat": "b004a",
+   "scene": "s03_tambourins",
+   "t": 39.26,
+   "kind": "foley",
+   "id": "tambourine_shake",
+   "params": {},
+   "raw": "tambourine_shake",
+   "have": true
+  },
+  {
    "beat": "b005",
    "scene": "s03_tambourins",
-   "t": 26.55,
+   "t": 51.26,
    "kind": "foley",
    "id": "bendir_hit",
    "params": {},
@@ -75,9 +97,31 @@
    "have": true
   },
   {
+   "beat": "b005a",
+   "scene": "s03_tambourins",
+   "t": 60.87,
+   "kind": "foley",
+   "id": "tambourine_hit",
+   "params": {},
+   "raw": "women tuning tambourines, many",
+   "have": true
+  },
+  {
+   "beat": "b005a",
+   "scene": "s03_tambourins",
+   "t": 60.87,
+   "kind": "music",
+   "id": "women_songs_far",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "murmured song far",
+   "have": null
+  },
+  {
    "beat": "b006",
    "scene": "s03_tambourins",
-   "t": 35.33,
+   "t": 70.13,
    "kind": "foley",
    "id": "tambourine_hit",
    "params": {},
@@ -87,7 +131,7 @@
   {
    "beat": "b006",
    "scene": "s03_tambourins",
-   "t": 46.29,
+   "t": 81.52,
    "kind": "foley",
    "id": "toy_trumpet",
    "params": {
@@ -99,7 +143,7 @@
   {
    "beat": "b006",
    "scene": "s03_tambourins",
-   "t": 48.11,
+   "t": 83.42,
    "kind": "foley",
    "id": "toy_trumpet",
    "params": {
@@ -109,9 +153,32 @@
    "have": true
   },
   {
+   "beat": "b006a",
+   "scene": "s03_tambourins",
+   "t": 85.68,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b006a",
+   "scene": "s03_tambourins",
+   "t": 89.88,
+   "kind": "foley",
+   "id": "darbouka_hit",
+   "params": {
+    "word": "tambour",
+    "dist": 0.8
+   },
+   "raw": "darbouka_hit far @tambour",
+   "have": true
+  },
+  {
    "beat": "b008",
    "scene": "s04_chat",
-   "t": 54.08,
+   "t": 102.46,
    "kind": "foley",
    "id": "tambourine_shake",
    "params": {},
@@ -121,7 +188,7 @@
   {
    "beat": "b008",
    "scene": "s04_chat",
-   "t": 54.08,
+   "t": 102.46,
    "kind": "foley",
    "id": "toy_trumpet",
    "params": {},
@@ -131,7 +198,7 @@
   {
    "beat": "b009",
    "scene": "s04_chat",
-   "t": 61.78,
+   "t": 110.97,
    "kind": "foley",
    "id": "cat_yowl",
    "params": {},
@@ -141,7 +208,7 @@
   {
    "beat": "b009",
    "scene": "s04_chat",
-   "t": 61.78,
+   "t": 110.97,
    "kind": "foley",
    "id": "cat_jump_land",
    "params": {},
@@ -151,7 +218,7 @@
   {
    "beat": "b009",
    "scene": "s04_chat",
-   "t": 61.78,
+   "t": 110.97,
    "kind": "foley",
    "id": "gutter_metal_rattle",
    "params": {},
@@ -161,7 +228,7 @@
   {
    "beat": "b010",
    "scene": "s05_hammoussa",
-   "t": 72.0,
+   "t": 122.78,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {
@@ -171,9 +238,49 @@
    "have": null
   },
   {
+   "beat": "b010a",
+   "scene": "s05_hammoussa",
+   "t": 128.3,
+   "kind": "foley",
+   "id": "footsteps_stairs",
+   "params": {},
+   "raw": "footsteps_stairs fast",
+   "have": true
+  },
+  {
+   "beat": "b010a",
+   "scene": "s05_hammoussa",
+   "t": 128.3,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {},
+   "raw": "babouche flap",
+   "have": true
+  },
+  {
+   "beat": "b012a",
+   "scene": "s06_lustres",
+   "t": 150.02,
+   "kind": "vocal",
+   "id": "kids_murmur_class",
+   "params": {},
+   "raw": "pupils murmur bed",
+   "have": true
+  },
+  {
+   "beat": "b012a",
+   "scene": "s06_lustres",
+   "t": 150.02,
+   "kind": "vocal",
+   "id": "kisses_cheek",
+   "params": {},
+   "raw": "kiss",
+   "have": true
+  },
+  {
    "beat": "b013",
    "scene": "s06_lustres",
-   "t": 88.15,
+   "t": 157.62,
    "kind": "foley",
    "id": "scissors_cut",
    "params": {
@@ -185,7 +292,7 @@
   {
    "beat": "b013",
    "scene": "s06_lustres",
-   "t": 88.15,
+   "t": 157.62,
    "kind": "foley",
    "id": "cloth_tear",
    "params": {},
@@ -195,7 +302,7 @@
   {
    "beat": "b013",
    "scene": "s06_lustres",
-   "t": 88.15,
+   "t": 157.62,
    "kind": "vocal",
    "id": "kids_murmur_class",
    "params": {},
@@ -205,7 +312,7 @@
   {
    "beat": "b014",
    "scene": "s06_lustres",
-   "t": 93.78,
+   "t": 163.95,
    "kind": "foley",
    "id": "tin_click",
    "params": {},
@@ -215,7 +322,7 @@
   {
    "beat": "b014",
    "scene": "s06_lustres",
-   "t": 93.78,
+   "t": 163.95,
    "kind": "foley",
    "id": "water_pour_glass",
    "params": {},
@@ -225,7 +332,7 @@
   {
    "beat": "b014",
    "scene": "s06_lustres",
-   "t": 93.78,
+   "t": 163.95,
    "kind": "foley",
    "id": "powder_hiss",
    "params": {},
@@ -233,19 +340,19 @@
    "have": true
   },
   {
-   "beat": "b016",
+   "beat": "b015a",
    "scene": "s06_lustres",
-   "t": 109.41,
+   "t": 181.16,
    "kind": "foley",
-   "id": "ladder_wood_creak",
+   "id": "spoon_glass_clink",
    "params": {},
-   "raw": "ladder_wood_creak",
+   "raw": "glass clink",
    "have": true
   },
   {
-   "beat": "b016",
+   "beat": "b015a",
    "scene": "s06_lustres",
-   "t": 109.41,
+   "t": 181.16,
    "kind": "foley",
    "id": "metal_clinks",
    "params": {},
@@ -255,7 +362,27 @@
   {
    "beat": "b016",
    "scene": "s06_lustres",
-   "t": 109.41,
+   "t": 194.15,
+   "kind": "foley",
+   "id": "ladder_wood_creak",
+   "params": {},
+   "raw": "ladder_wood_creak",
+   "have": true
+  },
+  {
+   "beat": "b016",
+   "scene": "s06_lustres",
+   "t": 194.15,
+   "kind": "foley",
+   "id": "metal_clinks",
+   "params": {},
+   "raw": "metal clinks",
+   "have": true
+  },
+  {
+   "beat": "b016",
+   "scene": "s06_lustres",
+   "t": 194.15,
    "kind": "vocal",
    "id": "child_whimper",
    "params": {},
@@ -263,9 +390,29 @@
    "have": true
   },
   {
+   "beat": "b016a",
+   "scene": "s06_lustres",
+   "t": 205.79,
+   "kind": "vocal",
+   "id": "crowd_kids_school",
+   "params": {},
+   "raw": "kids squabble",
+   "have": true
+  },
+  {
+   "beat": "b016a",
+   "scene": "s06_lustres",
+   "t": 205.79,
+   "kind": "vocal",
+   "id": "kids_murmur_class",
+   "params": {},
+   "raw": "pupils murmur bed",
+   "have": true
+  },
+  {
    "beat": "b017",
    "scene": "s06_lustres",
-   "t": 120.14,
+   "t": 212.51,
    "kind": "music",
    "id": "chant_pupils_sung",
    "params": {},
@@ -275,7 +422,7 @@
   {
    "beat": "b017",
    "scene": "s06_lustres",
-   "t": 120.14,
+   "t": 212.51,
    "kind": "vocal",
    "id": "prayer_murmur_man",
    "params": {},
@@ -283,9 +430,19 @@
    "have": true
   },
   {
+   "beat": "b017a",
+   "scene": "s06_lustres",
+   "t": 220.64,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {},
+   "raw": "babouche flap",
+   "have": true
+  },
+  {
    "beat": "b019",
    "scene": "s07_petrole",
-   "t": 138.63,
+   "t": 240.31,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {
@@ -297,7 +454,7 @@
   {
    "beat": "b021",
    "scene": "s07_petrole",
-   "t": 145.14,
+   "t": 258.88,
    "kind": "vocal",
    "id": "man_cough",
    "params": {
@@ -309,7 +466,7 @@
   {
    "beat": "b021",
    "scene": "s07_petrole",
-   "t": 145.14,
+   "t": 258.88,
    "kind": "foley",
    "id": "footsteps_stairs",
    "params": {},
@@ -319,7 +476,7 @@
   {
    "beat": "b021",
    "scene": "s07_petrole",
-   "t": 145.14,
+   "t": 258.88,
    "kind": "foley",
    "id": "water_pour_glass",
    "params": {},
@@ -329,7 +486,7 @@
   {
    "beat": "b021",
    "scene": "s07_petrole",
-   "t": 145.14,
+   "t": 258.88,
    "kind": "foley",
    "id": "match_strike",
    "params": {},
@@ -339,7 +496,7 @@
   {
    "beat": "b021",
    "scene": "s07_petrole",
-   "t": 145.14,
+   "t": 258.88,
    "kind": "foley",
    "id": "oil_lamp_hiss",
    "params": {},
@@ -349,7 +506,7 @@
   {
    "beat": "b024",
    "scene": "s08_menthe",
-   "t": 166.2,
+   "t": 282.81,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {
@@ -361,7 +518,7 @@
   {
    "beat": "b026",
    "scene": "s08_menthe",
-   "t": 175.61,
+   "t": 293.22,
    "kind": "foley",
    "id": "incense_crackle",
    "params": {},
@@ -371,7 +528,7 @@
   {
    "beat": "b026",
    "scene": "s08_menthe",
-   "t": 175.61,
+   "t": 293.22,
    "kind": "music",
    "id": "drone",
    "params": {},
@@ -381,7 +538,7 @@
   {
    "beat": "b027",
    "scene": "s08_menthe",
-   "t": 185.13,
+   "t": 303.61,
    "kind": "foley",
    "id": "seed_crunch",
    "params": {},
@@ -391,7 +548,7 @@
   {
    "beat": "b029",
    "scene": "s09_escalier",
-   "t": 200.82,
+   "t": 327.44,
    "kind": "vocal",
    "id": "whispers_group",
    "params": {},
@@ -401,7 +558,7 @@
   {
    "beat": "b029",
    "scene": "s09_escalier",
-   "t": 200.82,
+   "t": 327.44,
    "kind": "foley",
    "id": "footsteps_stairs",
    "params": {},
@@ -409,9 +566,29 @@
    "have": true
   },
   {
+   "beat": "b029a",
+   "scene": "s09_escalier",
+   "t": 338.02,
+   "kind": "vocal",
+   "id": "whispers_group",
+   "params": {},
+   "raw": "whispers panned",
+   "have": true
+  },
+  {
+   "beat": "b029a",
+   "scene": "s09_escalier",
+   "t": 338.02,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "low drone",
+   "have": null
+  },
+  {
    "beat": "b030",
    "scene": "s09_escalier",
-   "t": 210.54,
+   "t": 345.26,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {
@@ -423,7 +600,7 @@
   {
    "beat": "b033",
    "scene": "s09_escalier",
-   "t": 215.88,
+   "t": 352.1,
    "kind": "ctrl",
    "id": "silence_or_room",
    "params": {},
@@ -431,9 +608,39 @@
    "have": null
   },
   {
+   "beat": "b033a",
+   "scene": "s10_plans",
+   "t": 364.52,
+   "kind": "foley",
+   "id": "door_wood_old",
+   "params": {},
+   "raw": "door",
+   "have": true
+  },
+  {
+   "beat": "b033a",
+   "scene": "s10_plans",
+   "t": 364.52,
+   "kind": "foley",
+   "id": "spoon_glass_clink",
+   "params": {},
+   "raw": "spoon clicks",
+   "have": true
+  },
+  {
+   "beat": "b033a",
+   "scene": "s10_plans",
+   "t": 364.52,
+   "kind": "foley",
+   "id": "oil_lamp_hiss",
+   "params": {},
+   "raw": "oil_lamp_hiss",
+   "have": true
+  },
+  {
    "beat": "b035",
    "scene": "s10_plans",
-   "t": 239.21,
+   "t": 383.52,
    "kind": "foley",
    "id": "razor_strop",
    "params": {
@@ -446,7 +653,7 @@
   {
    "beat": "b036",
    "scene": "s10_plans",
-   "t": 249.74,
+   "t": 399.34,
    "kind": "foley",
    "id": "razor_strop",
    "params": {
@@ -458,7 +665,7 @@
   {
    "beat": "b036",
    "scene": "s10_plans",
-   "t": 249.74,
+   "t": 399.34,
    "kind": "music",
    "id": "drone",
    "params": {},
@@ -468,7 +675,7 @@
   {
    "beat": "b037",
    "scene": "s11_souk",
-   "t": 260.24,
+   "t": 412.66,
    "kind": "foley",
    "id": "crowd_souk_walla",
    "params": {},
@@ -478,7 +685,7 @@
   {
    "beat": "b037",
    "scene": "s11_souk",
-   "t": 260.24,
+   "t": 412.66,
    "kind": "foley",
    "id": "tambourine_shake",
    "params": {},
@@ -488,7 +695,7 @@
   {
    "beat": "b037",
    "scene": "s11_souk",
-   "t": 260.24,
+   "t": 412.66,
    "kind": "foley",
    "id": "rattle_grelots",
    "params": {},
@@ -498,7 +705,7 @@
   {
    "beat": "b037",
    "scene": "s11_souk",
-   "t": 260.24,
+   "t": 412.66,
    "kind": "foley",
    "id": "flute_ney_short",
    "params": {},
@@ -506,9 +713,63 @@
    "have": true
   },
   {
+   "beat": "b037a",
+   "scene": "s11_souk",
+   "t": 423.38,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "crowd_souk_walla",
+   "have": true
+  },
+  {
+   "beat": "b037a",
+   "scene": "s11_souk",
+   "t": 423.38,
+   "kind": "foley",
+   "id": "tambourine_shake",
+   "params": {},
+   "raw": "tambourine_shake",
+   "have": true
+  },
+  {
+   "beat": "b037a",
+   "scene": "s11_souk",
+   "t": 423.38,
+   "kind": "foley",
+   "id": "toy_trumpet",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "toy_trumpet far",
+   "have": true
+  },
+  {
+   "beat": "b037b",
+   "scene": "s11_souk",
+   "t": 440.73,
+   "kind": "foley",
+   "id": "donkey_bray",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "donkey bray far",
+   "have": true
+  },
+  {
+   "beat": "b037b",
+   "scene": "s11_souk",
+   "t": 440.73,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "crowd_souk_walla",
+   "have": true
+  },
+  {
    "beat": "b038",
    "scene": "s11_souk",
-   "t": 272.64,
+   "t": 449.76,
    "kind": "foley",
    "id": "darbouka_hit",
    "params": {
@@ -521,7 +782,7 @@
   {
    "beat": "b038",
    "scene": "s11_souk",
-   "t": 277.54,
+   "t": 454.85,
    "kind": "foley",
    "id": "toy_trumpet",
    "params": {
@@ -533,7 +794,7 @@
   {
    "beat": "b038",
    "scene": "s11_souk",
-   "t": 270.09,
+   "t": 447.1,
    "kind": "foley",
    "id": "crowd_souk_walla",
    "params": {},
@@ -541,9 +802,39 @@
    "have": true
   },
   {
+   "beat": "b038a",
+   "scene": "s11_souk",
+   "t": 458.16,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "crowd_souk_walla bed",
+   "have": true
+  },
+  {
+   "beat": "b039a",
+   "scene": "s11_souk",
+   "t": 477.93,
+   "kind": "vocal",
+   "id": "whispers_group",
+   "params": {},
+   "raw": "warm room murmur",
+   "have": true
+  },
+  {
+   "beat": "b039a",
+   "scene": "s11_souk",
+   "t": 477.93,
+   "kind": "foley",
+   "id": "water_pour_glass",
+   "params": {},
+   "raw": "tea pour",
+   "have": true
+  },
+  {
    "beat": "b040",
    "scene": "s12_barbier",
-   "t": 290.6,
+   "t": 499.16,
    "kind": "foley",
    "id": "cup_suction",
    "params": {},
@@ -553,7 +844,7 @@
   {
    "beat": "b041",
    "scene": "s12_barbier",
-   "t": 298.03,
+   "t": 507.36,
    "kind": "ctrl",
    "id": "none_by_design",
    "params": {},
@@ -563,7 +854,7 @@
   {
    "beat": "b042",
    "scene": "s12_barbier",
-   "t": 310.56,
+   "t": 520.39,
    "kind": "vocal",
    "id": "men_laughing_small_group",
    "params": {},
@@ -571,9 +862,19 @@
    "have": true
   },
   {
+   "beat": "b042a",
+   "scene": "s12_barbier",
+   "t": 531.28,
+   "kind": "foley",
+   "id": "cane_tap_stone",
+   "params": {},
+   "raw": "rod swish soft",
+   "have": true
+  },
+  {
    "beat": "b043",
    "scene": "s13_hammad",
-   "t": 322.56,
+   "t": 543.08,
    "kind": "foley",
    "id": "curtain_rustle",
    "params": {},
@@ -583,7 +884,7 @@
   {
    "beat": "b043",
    "scene": "s13_hammad",
-   "t": 322.56,
+   "t": 543.08,
    "kind": "vocal",
    "id": "man_groan",
    "params": {},
@@ -593,7 +894,7 @@
   {
    "beat": "b043",
    "scene": "s13_hammad",
-   "t": 322.56,
+   "t": 543.08,
    "kind": "foley",
    "id": "chair_wood_creak",
    "params": {},
@@ -603,7 +904,7 @@
   {
    "beat": "b046",
    "scene": "s13_hammad",
-   "t": 340.14,
+   "t": 571.5,
    "kind": "foley",
    "id": "pan_sizzle",
    "params": {},
@@ -613,7 +914,7 @@
   {
    "beat": "b046",
    "scene": "s13_hammad",
-   "t": 340.14,
+   "t": 571.5,
    "kind": "foley",
    "id": "spoon_glass_clink",
    "params": {},
@@ -623,7 +924,7 @@
   {
    "beat": "b047",
    "scene": "s13_hammad",
-   "t": 350.83,
+   "t": 582.69,
    "kind": "vocal",
    "id": "man_groan",
    "params": {},
@@ -633,7 +934,7 @@
   {
    "beat": "b047",
    "scene": "s13_hammad",
-   "t": 350.83,
+   "t": 582.69,
    "kind": "foley",
    "id": "curtain_rustle",
    "params": {},
@@ -641,9 +942,49 @@
    "have": true
   },
   {
+   "beat": "b047a",
+   "scene": "s13_hammad",
+   "t": 587.89,
+   "kind": "vocal",
+   "id": "man_groan",
+   "params": {},
+   "raw": "groans fading",
+   "have": true
+  },
+  {
+   "beat": "b047a",
+   "scene": "s13_hammad",
+   "t": 587.89,
+   "kind": "foley",
+   "id": "curtain_rustle",
+   "params": {},
+   "raw": "curtain rustle",
+   "have": true
+  },
+  {
+   "beat": "b047b",
+   "scene": "s14_larbi",
+   "t": 597.9,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "barber voice continues",
+   "have": null
+  },
+  {
+   "beat": "b047b",
+   "scene": "s14_larbi",
+   "t": 597.9,
+   "kind": "foley",
+   "id": "metal_clinks",
+   "params": {},
+   "raw": "jail door clank soft",
+   "have": true
+  },
+  {
    "beat": "b048",
    "scene": "s14_larbi",
-   "t": 357.54,
+   "t": 605.63,
    "kind": "foley",
    "id": "razor_strop",
    "params": {},
@@ -653,7 +994,7 @@
   {
    "beat": "b048",
    "scene": "s14_larbi",
-   "t": 357.54,
+   "t": 605.63,
    "kind": "foley",
    "id": "leather_tap",
    "params": {},
@@ -663,7 +1004,7 @@
   {
    "beat": "b049",
    "scene": "s14_larbi",
-   "t": 367.18,
+   "t": 615.76,
    "kind": "ctrl",
    "id": "silence_or_room",
    "params": {},
@@ -673,7 +1014,7 @@
   {
    "beat": "b052",
    "scene": "s15_lamrani",
-   "t": 390.38,
+   "t": 669.59,
    "kind": "vocal",
    "id": "man_laugh_neigh",
    "params": {},
@@ -681,9 +1022,29 @@
    "have": true
   },
   {
+   "beat": "b052b",
+   "scene": "s15_lamrani",
+   "t": 689.13,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "barber voice continues",
+   "have": null
+  },
+  {
+   "beat": "b052b",
+   "scene": "s15_lamrani",
+   "t": 689.13,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "souk murmur soft",
+   "have": true
+  },
+  {
    "beat": "b055",
    "scene": "s15_lamrani",
-   "t": 405.76,
+   "t": 717.6,
    "kind": "ctrl",
    "id": "silence_or_room",
    "params": {},
@@ -691,9 +1052,19 @@
    "have": null
   },
   {
+   "beat": "b056a",
+   "scene": "s16_rasoir",
+   "t": 737.11,
+   "kind": "foley",
+   "id": "water_scrub",
+   "params": {},
+   "raw": "lather squish",
+   "have": true
+  },
+  {
    "beat": "b057",
    "scene": "s16_rasoir",
-   "t": 423.46,
+   "t": 745.78,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {},
@@ -703,7 +1074,7 @@
   {
    "beat": "b057",
    "scene": "s16_rasoir",
-   "t": 423.46,
+   "t": 745.78,
    "kind": "foley",
    "id": "sparrows_dawn",
    "params": {},
@@ -713,7 +1084,7 @@
   {
    "beat": "b059",
    "scene": "s16_rasoir",
-   "t": 437.67,
+   "t": 777.14,
    "kind": "foley",
    "id": "razor_strop",
    "params": {
@@ -723,9 +1094,21 @@
    "have": true
   },
   {
+   "beat": "b059a",
+   "scene": "s16_rasoir",
+   "t": 783.31,
+   "kind": "foley",
+   "id": "razor_strop",
+   "params": {
+    "count": 6
+   },
+   "raw": "razor scrape small x6",
+   "have": true
+  },
+  {
    "beat": "b060",
    "scene": "s16_rasoir",
-   "t": 443.14,
+   "t": 793.02,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {},
@@ -735,7 +1118,7 @@
   {
    "beat": "b060",
    "scene": "s16_rasoir",
-   "t": 443.14,
+   "t": 793.02,
    "kind": "music",
    "id": "drone",
    "params": {},
@@ -745,7 +1128,7 @@
   {
    "beat": "b061",
    "scene": "s16_rasoir",
-   "t": 450.22,
+   "t": 800.86,
    "kind": "ctrl",
    "id": "silence_or_room",
    "params": {},
@@ -755,7 +1138,7 @@
   {
    "beat": "b061",
    "scene": "s16_rasoir",
-   "t": 450.22,
+   "t": 800.86,
    "kind": "vocal",
    "id": "child_breath_in",
    "params": {},
@@ -763,9 +1146,19 @@
    "have": true
   },
   {
+   "beat": "b061a",
+   "scene": "s16_rasoir",
+   "t": 805.75,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "barber voice muffled",
+   "have": null
+  },
+  {
    "beat": "b064",
    "scene": "s17_rue",
-   "t": 462.44,
+   "t": 835.5,
    "kind": "foley",
    "id": "crowd_souk_walla",
    "params": {},
@@ -775,7 +1168,7 @@
   {
    "beat": "b064",
    "scene": "s17_rue",
-   "t": 462.44,
+   "t": 835.5,
    "kind": "foley",
    "id": "sparrows_dawn",
    "params": {},
@@ -783,9 +1176,29 @@
    "have": true
   },
   {
+   "beat": "b064a",
+   "scene": "s17_rue",
+   "t": 843.46,
+   "kind": "foley",
+   "id": "tambourine_shake",
+   "params": {},
+   "raw": "tambourine city hum bed",
+   "have": true
+  },
+  {
+   "beat": "b064a",
+   "scene": "s17_rue",
+   "t": 843.46,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "street ambience",
+   "have": true
+  },
+  {
    "beat": "b065",
    "scene": "s18_concert",
-   "t": 471.65,
+   "t": 853.41,
    "kind": "foley",
    "id": "darbouka_hit",
    "params": {},
@@ -793,9 +1206,19 @@
    "have": true
   },
   {
+   "beat": "b065a",
+   "scene": "s18_concert",
+   "t": 862.01,
+   "kind": "foley",
+   "id": "darbouka_hit",
+   "params": {},
+   "raw": "darbouka_hit fast",
+   "have": true
+  },
+  {
    "beat": "b066",
    "scene": "s18_concert",
-   "t": 479.45,
+   "t": 872.44,
    "kind": "foley",
    "id": "darbouka_hit",
    "params": {},
@@ -805,7 +1228,7 @@
   {
    "beat": "b066",
    "scene": "s18_concert",
-   "t": 479.45,
+   "t": 872.44,
    "kind": "foley",
    "id": "toy_trumpet",
    "params": {},
@@ -815,7 +1238,17 @@
   {
    "beat": "b067",
    "scene": "s18_concert",
-   "t": 487.65,
+   "t": 881.44,
+   "kind": "vocal",
+   "id": "women_laughing_group",
+   "params": {},
+   "raw": "women_laughing_group",
+   "have": true
+  },
+  {
+   "beat": "b067a",
+   "scene": "s18_concert",
+   "t": 885.09,
    "kind": "vocal",
    "id": "women_laughing_group",
    "params": {},
@@ -825,7 +1258,7 @@
   {
    "beat": "b068",
    "scene": "s18_concert",
-   "t": 490.8,
+   "t": 890.42,
    "kind": "foley",
    "id": "cloth_rustle_stiff",
    "params": {},
@@ -833,9 +1266,21 @@
    "have": true
   },
   {
+   "beat": "b068a",
+   "scene": "s18_concert",
+   "t": 902.33,
+   "kind": "foley",
+   "id": "darbouka_hit",
+   "params": {
+    "word": "tambour"
+   },
+   "raw": "darbouka_hit soft @tambour",
+   "have": true
+  },
+  {
    "beat": "b069",
    "scene": "s18_concert",
-   "t": 497.12,
+   "t": 903.63,
    "kind": "foley",
    "id": "tambourine_hit",
    "params": {},
@@ -845,7 +1290,7 @@
   {
    "beat": "b069",
    "scene": "s18_concert",
-   "t": 497.12,
+   "t": 903.63,
    "kind": "foley",
    "id": "toy_trumpet",
    "params": {},
@@ -855,7 +1300,7 @@
   {
    "beat": "b069",
    "scene": "s18_concert",
-   "t": 497.12,
+   "t": 903.63,
    "kind": "vocal",
    "id": "women_laughing_group",
    "params": {},
@@ -865,7 +1310,7 @@
   {
    "beat": "b069",
    "scene": "s18_concert",
-   "t": 497.12,
+   "t": 903.63,
    "kind": "vocal",
    "id": "crowd_kids_school",
    "params": {},
@@ -873,9 +1318,49 @@
    "have": true
   },
   {
+   "beat": "b069a",
+   "scene": "s18_concert",
+   "t": 916.43,
+   "kind": "foley",
+   "id": "darbouka_hit",
+   "params": {},
+   "raw": "darbouka_hit",
+   "have": true
+  },
+  {
+   "beat": "b069a",
+   "scene": "s18_concert",
+   "t": 916.43,
+   "kind": "foley",
+   "id": "tambourine_hit",
+   "params": {},
+   "raw": "tambourine_hit",
+   "have": true
+  },
+  {
+   "beat": "b069b",
+   "scene": "s19_bain",
+   "t": 925.3,
+   "kind": "foley",
+   "id": "darbouka_hit",
+   "params": {},
+   "raw": "drums fade",
+   "have": true
+  },
+  {
+   "beat": "b069b",
+   "scene": "s19_bain",
+   "t": 925.3,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {},
+   "raw": "evening swallows",
+   "have": true
+  },
+  {
    "beat": "b070",
    "scene": "s19_bain",
-   "t": 510.97,
+   "t": 934.63,
    "kind": "foley",
    "id": "water_bucket_splash",
    "params": {},
@@ -885,7 +1370,7 @@
   {
    "beat": "b070",
    "scene": "s19_bain",
-   "t": 510.97,
+   "t": 934.63,
    "kind": "foley",
    "id": "steam_hiss",
    "params": {},
@@ -895,7 +1380,7 @@
   {
    "beat": "b071",
    "scene": "s19_bain",
-   "t": 520.55,
+   "t": 945.07,
    "kind": "foley",
    "id": "water_bucket_splash",
    "params": {},
@@ -905,7 +1390,7 @@
   {
    "beat": "b071",
    "scene": "s19_bain",
-   "t": 520.55,
+   "t": 945.07,
    "kind": "vocal",
    "id": "child_ouch",
    "params": {},
@@ -915,7 +1400,7 @@
   {
    "beat": "b072",
    "scene": "s19_bain",
-   "t": 524.74,
+   "t": 949.75,
    "kind": "foley",
    "id": "water_scrub",
    "params": {},
@@ -925,7 +1410,7 @@
   {
    "beat": "b072",
    "scene": "s19_bain",
-   "t": 524.74,
+   "t": 949.75,
    "kind": "music",
    "id": "drone",
    "params": {},
@@ -933,9 +1418,19 @@
    "have": null
   },
   {
+   "beat": "b072a",
+   "scene": "s20_reveil",
+   "t": 965.98,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "voice through sleep: lowpass",
+   "have": null
+  },
+  {
    "beat": "b073",
    "scene": "s20_reveil",
-   "t": 538.03,
+   "t": 979.45,
    "kind": "voicefx",
    "id": "voice_space",
    "params": {},
@@ -945,7 +1440,7 @@
   {
    "beat": "b074",
    "scene": "s20_reveil",
-   "t": 545.48,
+   "t": 987.4,
    "kind": "foley",
    "id": "water_drip",
    "params": {},
@@ -953,9 +1448,29 @@
    "have": true
   },
   {
+   "beat": "b075a",
+   "scene": "s20_reveil",
+   "t": 1002.35,
+   "kind": "foley",
+   "id": "water_pour_glass",
+   "params": {},
+   "raw": "water pour",
+   "have": true
+  },
+  {
+   "beat": "b075a",
+   "scene": "s20_reveil",
+   "t": 1002.35,
+   "kind": "foley",
+   "id": "water_bucket_splash",
+   "params": {},
+   "raw": "splash small",
+   "have": true
+  },
+  {
    "beat": "b076",
    "scene": "s20_reveil",
-   "t": 559.12,
+   "t": 1007.77,
    "kind": "foley",
    "id": "cloth_rustle_stiff",
    "params": {},
@@ -965,7 +1480,7 @@
   {
    "beat": "b076",
    "scene": "s20_reveil",
-   "t": 559.12,
+   "t": 1007.77,
    "kind": "foley",
    "id": "cloth_rustle_stiff",
    "params": {},
@@ -975,7 +1490,7 @@
   {
    "beat": "b076",
    "scene": "s20_reveil",
-   "t": 559.12,
+   "t": 1007.77,
    "kind": "foley",
    "id": "leather_strap",
    "params": {},
@@ -985,7 +1500,7 @@
   {
    "beat": "b076",
    "scene": "s20_reveil",
-   "t": 559.12,
+   "t": 1007.77,
    "kind": "foley",
    "id": "chest_lid_wood",
    "params": {},
@@ -993,9 +1508,21 @@
    "have": true
   },
   {
+   "beat": "b077b",
+   "scene": "s21_babouches",
+   "t": 1032.79,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "night street, far voices",
+   "have": null
+  },
+  {
    "beat": "b078",
    "scene": "s21_babouches",
-   "t": 575.41,
+   "t": 1042.84,
    "kind": "foley",
    "id": "footsteps_stone",
    "params": {},
@@ -1005,7 +1532,7 @@
   {
    "beat": "b078",
    "scene": "s21_babouches",
-   "t": 575.41,
+   "t": 1042.84,
    "kind": "foley",
    "id": "footsteps_stone",
    "params": {},
@@ -1015,7 +1542,7 @@
   {
    "beat": "b079",
    "scene": "s21_babouches",
-   "t": 579.2,
+   "t": 1047.27,
    "kind": "foley",
    "id": "cane_tap_stone",
    "params": {
@@ -1027,7 +1554,7 @@
   {
    "beat": "b079",
    "scene": "s21_babouches",
-   "t": 579.2,
+   "t": 1047.27,
    "kind": "vocal",
    "id": "beggar_call_far",
    "params": {
@@ -1037,9 +1564,31 @@
    "have": true
   },
   {
+   "beat": "b080a",
+   "scene": "s21_babouches",
+   "t": 1063.89,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {},
+   "raw": "footsteps_stone",
+   "have": true
+  },
+  {
+   "beat": "b080a",
+   "scene": "s21_babouches",
+   "t": 1063.89,
+   "kind": "music",
+   "id": "chant_pupils_sung",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "pupils' chant far",
+   "have": null
+  },
+  {
    "beat": "b081",
    "scene": "s22_feerie",
-   "t": 596.27,
+   "t": 1077.21,
    "kind": "music",
    "id": "chant_pupils_sung",
    "params": {
@@ -1049,9 +1598,41 @@
    "have": null
   },
   {
+   "beat": "b081a",
+   "scene": "s22_feerie",
+   "t": 1086.25,
+   "kind": "music",
+   "id": "chant_far",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "chant far + clear",
+   "have": null
+  },
+  {
+   "beat": "b081a",
+   "scene": "s22_feerie",
+   "t": 1086.25,
+   "kind": "foley",
+   "id": "candle_flame",
+   "params": {},
+   "raw": "candle_flame crackle",
+   "have": true
+  },
+  {
    "beat": "b082",
    "scene": "s22_feerie",
-   "t": 604.51,
+   "t": 1098.9,
+   "kind": "music",
+   "id": "chant_pupils_sung",
+   "params": {},
+   "raw": "chant (sung)",
+   "have": null
+  },
+  {
+   "beat": "b083a",
+   "scene": "s22_feerie",
+   "t": 1113.31,
    "kind": "music",
    "id": "chant_pupils_sung",
    "params": {},
@@ -1061,7 +1642,7 @@
   {
    "beat": "b085",
    "scene": "s22_feerie",
-   "t": 623.13,
+   "t": 1133.68,
    "kind": "foley",
    "id": "candle_flame",
    "params": {},
@@ -1071,7 +1652,7 @@
   {
    "beat": "b085",
    "scene": "s22_feerie",
-   "t": 623.13,
+   "t": 1133.68,
    "kind": "music",
    "id": "chant_duck",
    "params": {},
@@ -1079,9 +1660,39 @@
    "have": null
   },
   {
+   "beat": "b085a",
+   "scene": "s22_feerie",
+   "t": 1144.88,
+   "kind": "music",
+   "id": "chant_far",
+   "params": {},
+   "raw": "chant swells",
+   "have": null
+  },
+  {
+   "beat": "b085a",
+   "scene": "s22_feerie",
+   "t": 1144.88,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {},
+   "raw": "sparrows",
+   "have": true
+  },
+  {
+   "beat": "b085b",
+   "scene": "s23_aube",
+   "t": 1161.69,
+   "kind": "music",
+   "id": "chant_pupils_sung",
+   "params": {},
+   "raw": "cantique chant (sung)",
+   "have": null
+  },
+  {
    "beat": "b086",
    "scene": "s23_aube",
-   "t": 635.44,
+   "t": 1172.95,
    "kind": "foley",
    "id": "sparrows_dawn",
    "params": {},
@@ -1091,7 +1702,7 @@
   {
    "beat": "b086",
    "scene": "s23_aube",
-   "t": 635.44,
+   "t": 1172.95,
    "kind": "foley",
    "id": "street_morning_far",
    "params": {},
@@ -1101,7 +1712,7 @@
   {
    "beat": "b088",
    "scene": "s23_aube",
-   "t": 650.04,
+   "t": 1188.8,
    "kind": "vocal",
    "id": "crowd_kids_school",
    "params": {},
@@ -1111,7 +1722,7 @@
   {
    "beat": "b091",
    "scene": "s23_aube",
-   "t": 663.07,
+   "t": 1210.27,
    "kind": "vocal",
    "id": "kids_cheer",
    "params": {},
@@ -1119,9 +1730,51 @@
    "have": true
   },
   {
+   "beat": "b091a",
+   "scene": "s23_aube",
+   "t": 1214.72,
+   "kind": "foley",
+   "id": "kisses_cheek",
+   "params": {
+    "word": "embrass"
+   },
+   "raw": "kisses_cheek @embrass",
+   "have": true
+  },
+  {
+   "beat": "b091b",
+   "scene": "s24_idriss",
+   "t": 1223.65,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "crowd walla festive",
+   "have": true
+  },
+  {
+   "beat": "b091b",
+   "scene": "s24_idriss",
+   "t": 1223.65,
+   "kind": "foley",
+   "id": "rattle_grelots",
+   "params": {},
+   "raw": "water seller bell",
+   "have": true
+  },
+  {
    "beat": "b092",
    "scene": "s24_idriss",
-   "t": 668.78,
+   "t": 1230.23,
+   "kind": "foley",
+   "id": "kettle_whistle",
+   "params": {},
+   "raw": "kettle sing",
+   "have": true
+  },
+  {
+   "beat": "b092a",
+   "scene": "s24_idriss",
+   "t": 1236.41,
    "kind": "foley",
    "id": "kettle_whistle",
    "params": {},
@@ -1131,7 +1784,7 @@
   {
    "beat": "b093",
    "scene": "s24_idriss",
-   "t": 674.24,
+   "t": 1247.64,
    "kind": "foley",
    "id": "crowd_souk_walla",
    "params": {},
@@ -1139,9 +1792,31 @@
    "have": true
   },
   {
+   "beat": "b093a",
+   "scene": "s24_idriss",
+   "t": 1257.09,
+   "kind": "vocal",
+   "id": "prayer_murmur_man",
+   "params": {},
+   "raw": "sanctuary murmur",
+   "have": true
+  },
+  {
+   "beat": "b093a",
+   "scene": "s24_idriss",
+   "t": 1257.09,
+   "kind": "vocal",
+   "id": "prayer_murmur_man",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "prayer far",
+   "have": true
+  },
+  {
    "beat": "b094",
    "scene": "s25_aicha",
-   "t": 684.86,
+   "t": 1266.32,
    "kind": "vocal",
    "id": "kisses_cheek",
    "params": {},
@@ -1151,7 +1826,7 @@
   {
    "beat": "b094",
    "scene": "s25_aicha",
-   "t": 684.86,
+   "t": 1266.32,
    "kind": "vocal",
    "id": "women_laughing_group",
    "params": {},
@@ -1159,9 +1834,49 @@
    "have": true
   },
   {
+   "beat": "b094a",
+   "scene": "s25_aicha",
+   "t": 1271.58,
+   "kind": "vocal",
+   "id": "kisses_cheek",
+   "params": {},
+   "raw": "kisses",
+   "have": true
+  },
+  {
+   "beat": "b095b",
+   "scene": "s25_aicha",
+   "t": 1305.18,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {},
+   "raw": "alley murmur",
+   "have": true
+  },
+  {
+   "beat": "b095b",
+   "scene": "s25_aicha",
+   "t": 1305.18,
+   "kind": "vocal",
+   "id": "women_laughing_group",
+   "params": {},
+   "raw": "women laughing soft",
+   "have": true
+  },
+  {
    "beat": "b096",
    "scene": "s25_aicha",
-   "t": 695.43,
+   "t": 1315.91,
+   "kind": "vocal",
+   "id": "women_laughing_group",
+   "params": {},
+   "raw": "women_laughing_group",
+   "have": true
+  },
+  {
+   "beat": "b096a",
+   "scene": "s25_aicha",
+   "t": 1328.9,
    "kind": "vocal",
    "id": "women_laughing_group",
    "params": {},
@@ -1171,7 +1886,7 @@
   {
    "beat": "b097",
    "scene": "s25_aicha",
-   "t": 707.92,
+   "t": 1337.95,
    "kind": "foley",
    "id": "water_pour_glass",
    "params": {},
@@ -1179,9 +1894,19 @@
    "have": true
   },
   {
+   "beat": "b098b",
+   "scene": "s25_aicha",
+   "t": 1353.96,
+   "kind": "ctrl",
+   "id": "silence_or_room",
+   "params": {},
+   "raw": "room tone",
+   "have": null
+  },
+  {
    "beat": "b099",
    "scene": "s25_aicha",
-   "t": 717.74,
+   "t": 1355.51,
    "kind": "ctrl",
    "id": "silence_or_room",
    "params": {},
@@ -1191,7 +1916,7 @@
   {
    "beat": "b100",
    "scene": "s25_aicha",
-   "t": 720.92,
+   "t": 1363.37,
    "kind": "ctrl",
    "id": "silence_or_room",
    "params": {},
@@ -1201,7 +1926,7 @@
   {
    "beat": "b102",
    "scene": "s25_aicha",
-   "t": 736.94,
+   "t": 1389.15,
    "kind": "foley",
    "id": "darbouka_hit",
    "params": {},
@@ -1211,7 +1936,7 @@
   {
    "beat": "b103",
    "scene": "s25_aicha",
-   "t": 745.97,
+   "t": 1399.03,
    "kind": "foley",
    "id": "tambourine_shake",
    "params": {
@@ -1223,7 +1948,7 @@
   {
    "beat": "b103",
    "scene": "s25_aicha",
-   "t": 745.97,
+   "t": 1399.03,
    "kind": "music",
    "id": "women_songs_far",
    "params": {},
@@ -1233,7 +1958,7 @@
   {
    "beat": "b104",
    "scene": "s26_fin",
-   "t": 756.93,
+   "t": 1411.65,
    "kind": "foley",
    "id": "oil_lamp_hiss",
    "params": {},
@@ -1243,7 +1968,7 @@
   {
    "beat": "b106",
    "scene": "s26_fin",
-   "t": 773.34,
+   "t": 1435.15,
    "kind": "foley",
    "id": "darbouka_hit",
    "params": {
@@ -1255,7 +1980,7 @@
   {
    "beat": "b106",
    "scene": "s26_fin",
-   "t": 773.34,
+   "t": 1435.15,
    "kind": "foley",
    "id": "tambourine_shake",
    "params": {
@@ -1267,7 +1992,7 @@
   {
    "beat": "b106",
    "scene": "s26_fin",
-   "t": 773.34,
+   "t": 1435.15,
    "kind": "foley",
    "id": "oil_lamp_hiss",
    "params": {},

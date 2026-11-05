@@ -134,6 +134,233 @@
   ],
   "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Sunset over the terraces of Fes: on every rooftop, bouquets of richly dressed women in colourful caftans with tambourines; the sun in a robe of gold bathes the white city in faded rose and mauve; the first star blinks in the sky."
  },
+ "h01_ville_tambourins": {
+  "beat": "b000a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Establishing shot, calm and wide: the white terraces of the Fes medina in the soft gold of a late winter afternoon, seen from a high rooftop; on many terraces small figures of women in colourful caftans and white haiks sit or stand trying tambourines and bendirs; the green roof of a mosque, minarets, laundry on lines, pigeons; a gentle haze of sound you can almost hear."
+ },
+ "h02_nuit_promesse": {
+  "beat": "b000b",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Night over the Fes medina under a thin crescent moon and many stars: the dark terraces, and far away in a narrow alley a warm glow of clusters of tiny coloured lights, red, green, yellow, blue, promising a feast; one small child's silhouette on a rooftop watches it, back to us, very small in the frame. Wonder, quiet."
+ },
+ "i_formes_tambourins": {
+  "beat": "b005a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). Still life of Moroccan festival drums laid side by side on a straw mat: a long blue-glazed ceramic goblet drum, a pot-bellied unglazed terracotta drum, and simple round wooden frames with stretched goatskin; soft afternoon window light."
+ },
+ "p12_voisines": {
+  "beat": "b006a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png",
+   "art/src/zoubida.png",
+   "art/src/woman1.png",
+   "art/src/woman2.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Crowd painting, the neighbours of a Fes courtyard house rehearsing: on the galleries around a tiled patio, several women each play a tambourine for herself, eyes half closed, murmuring words of a dance song; a thin band of sky above; intimate and musical."
+ },
+ "i_hochet_fleurs": {
+  "beat": "b008a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). Dreamy still life glowing softly as in a child's daydream: a small painted terracotta drum shaped like an hourglass and a child's wooden rattle decorated with painted flowers, floating on a warm golden haze."
+ },
+ "i_baise_main": {
+  "beat": "b014a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). A small boy's hands holding an old schoolmaster's weathered hand and bringing it to his lips in respect (only hands and the edge of a white sleeve), a straw mat and a wooden writing tablet below; warm afternoon light."
+ },
+ "i_cerceau_lustre": {
+  "beat": "b016a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). A simple wrought-iron hoop chandelier lying on a straw mat, iron rods joining its rings, ordinary drinking glasses set into its holders, each with a wick on a tin strip; a child's hand sets one more glass in place."
+ },
+ "p13_presences": {
+  "beat": "b030a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png",
+   "art/src/mohammed.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Dream painting in a pitch-dark stone staircase of an old Fes house: Mohammed, a 6-year-old boy with a shaved head and a small tuft (exactly like the attached Mohammed reference) climbs calmly, small, lit by a faint glow from above; around him on the walls, gentle translucent shadow-presences, half-seen veiled figures and soft shapes, step aside respectfully to let him pass. Mysterious, not frightening."
+ },
+ "i_diner": {
+  "beat": "b033a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). A low round wooden table at night under an oil lamp: a clay tagine with its lid off, round loaves of bread, three small glasses of mint tea, an adult's hand tearing bread; warm, ordinary family dinner."
+ },
+ "p14_souk_essais": {
+  "beat": "b037a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Crowd painting, close: around one toy stall in the Fes souk, women in haiks, bearded men and excited children press together, each trying an instrument: tambourines shaken, tin trumpets blown, flutes, hourglass drums tapped; bunches of tambourines hang above like grapes."
+ },
+ "p15_campagnards": {
+  "beat": "b037b",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Crowd painting: countryfolk come down from distant villages, in rough wool djellabas and straw hats, with big cloth bundles, baskets and a laden donkey, crowding a narrow medina street on the eve of a feast; townspeople squeeze past."
+ },
+ "p16_bapteme": {
+  "beat": "b039a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png",
+   "art/src/barber.png",
+   "art/src/father.png",
+   "art/src/zoubida.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Warm sepia flashback memory: a naming celebration in a modest Fes house years ago; a young smiling barber (the attached barber, younger) carries a tray of tea glasses to seated guests; in the background the young father and the mother hold a newborn baby wrapped in white."
+ },
+ "i_baguette_cognassier": {
+  "beat": "b041a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). A long thin quince-wood rod, the schoolmaster's cane, lying across a straw mat beside a pair of worn yellow babouches and a wooden writing tablet; respect and fear; dim warm light."
+ },
+ "i_panoplie_miroirs": {
+  "beat": "b049a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). The wall of a tiny old barber's shop in Fes: racks of folded razors with horn and ebony handles, round hand mirrors hanging on nails, tin cupping glasses on a shelf, and the corner of a majestic chair painted in faded red, green and gold."
+ },
+ "i_savon_tete": {
+  "beat": "b055a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). An adult barber's soapy hands lathering a small child's shaved head; the child is wrapped to the chin in a wide red-and-yellow striped towel (only the top of the head and the towel visible, no face); a copper bowl of foam."
+ },
+ "p17_crepuscule": {
+  "beat": "b069a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png",
+   "art/src/zoubida.png",
+   "art/src/zineb.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Fes terraces at dusk, the sky violet and orange: children still beating drums and tambourines on a rooftop; at the low doorway of the terrace stairs a young mother in a simple caftan and headscarf (Zoubida) calls her boy down; the first lamps lit below."
+ },
+ "p18_lumiere_rouge": {
+  "beat": "b073a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Dream painting of the inside of closed eyelids: a warm deep red light filling the whole frame, crossed by drifting sparks, tiny wandering stars and soft golden comets; abstract, soothing, half-asleep."
+ },
+ "i_aiguiere": {
+  "beat": "b075a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). Before dawn by an oil lamp: water poured from a small copper ewer over a sleepy child's cupped hands above a copper basin; drops splashing; dark blue and amber light."
+ },
+ "i_flammes_verres": {
+  "beat": "b082a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). Macro of tiny oil flames dancing in coloured glasses hung on an iron chandelier: ruby red, emerald green, amber yellow, sapphire blue water under a layer of golden oil, each little flame bright; magical glow."
+ },
+ "p19_louange": {
+  "beat": "b085a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Dream painting of universal praise in a lit Koranic school at dawn: the ordinary objects, the straw mats, writing tablets, oil lamps, the poor sandals at the door, a sparrow, a stray cat and a ragged beggar at the threshold all seem to sing along with the chanting children, everything glowing softly with golden light."
+ },
+ "p20_peres": {
+  "beat": "b086a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Crowd painting inside a small Koranic school lit with coloured chandeliers, just before dawn: bearded fathers in white djellabas and turbans sit among richly dressed little boys and chant canticles with them, eyes closed, remembering their own childhood; warm, devout."
+ },
+ "p21_rue_fete": {
+  "beat": "b091a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Crowd painting: a busy medina street in Fes on the morning of Achoura, bright daylight; almost every passer-by in brand-new clothes, white djellabas, coloured caftans, children with new toys and drums; a water seller with his bell."
+ },
+ "i_bouilloire": {
+  "beat": "b092a",
+  "kind": "I",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. MACRO INSERT: an extreme close-up still life filling the frame, shallow depth of field, the object sharp in the centre, simple dark warm background; hands, when present, are a small child's or an adult's as stated, only hands and wrists visible (no faces). A dented copper kettle singing on a small clay brazier with glowing charcoal, steam rising; beside it a pile of square flaky galettes glistening with butter and honey on a painted plate."
+ },
+ "p22_sanctuaire": {
+  "beat": "b093a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png",
+   "art/src/father.png",
+   "art/src/mohammed_fete.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Inside the Moulay Idriss sanctuary in Fes on Achoura day: carpets, brass lanterns, carved plaster and zellige, worshippers in new clothes; a father in a fine white djellaba and turban prays beside Mohammed, a 6-year-old boy with a shaved head, new white djellaba, red gilet and red chechia (exactly like the attached reference), both seen from behind and the side, small in the space, peaceful."
+ },
+ "p23_voisines_metiers": {
+  "beat": "b095a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Gently humorous painted gallery of neighbourhood women in a Fes alley, each beside a hint of her husband's trade: the grocer's wife among sacks of spices, the tailor's wife with a spool and thread, the petrol seller's wife with a tin can; doorways, plump and chatty figures in caftans."
+ },
+ "p24_haj_ali": {
+  "beat": "b052b",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Warm sepia memory painting: El Haj Ali Lamrani, a dignified old tea merchant of Fes with a white beard, white turban and fine djellaba, sits in his shop among wooden tea chests, cone-shaped sugar loaves wrapped in blue paper and brass scales; a framed calm of a man who made the pilgrimage three times."
+ },
+ "p25_apprenti": {
+  "beat": "b047a",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no modern objects. Gently comic painting: on the left, a barber's assistant's little empty wooden stool with a towel left on it; on the right, a sulking teenage barber's apprentice in a rough djellaba sits behind the thick wooden bars of an old Fes jail cell, arms crossed, pouting. Light humour, no cruelty."
+ },
  "i_rasoir_pierre": {
   "beat": "b001",
   "kind": "I",

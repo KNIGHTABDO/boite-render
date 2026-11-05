@@ -24,13 +24,12 @@ def P(reason, props, visual, **kw):             # painting beat
 KIDS = ["kid1", "kid2", "kid3"]
 
 A = {
- # ============================================================ COLD OPEN
- "s01_cold": [
-  T("CU", "barbier", ["mohammed"], ["serviette", "rasoir"], "Pre-roll 2.2 s on black: only the razor on the oily stone, shhk... shhk. Then ECU insert of the ebony razor stroking the stone; cut to a CU of Mohammed (front, yaw < 30°) wrapped to the chin in a red-and-yellow striped towel, eyes huge; behind him the barber's mouth talks, out of focus.",
-    cam="pov_mirror", pov="mohammed", peak=True, cut="J", ins=[("rasoir_pierre", 1.6)],
-    sfx=["razor_strop x4 (ticking clock)", "barber voice muffled + low drone rising"], badge="CHAPITRE VII · La Boîte à merveilles @0:03"),
-  T("CU", "barbier", ["mohammed"], ["rasoir"], "The blade touches the nape (insert); SMASH: a 0.8 s flash of the Msid façade ablaze with coloured lights, then black and total silence on 'la plus belle nuit'.",
-    cam="pov_mirror", pov="mohammed", cut="smash", ins=[("lame_nuque", 0.7), ("flash_facade_feerie", 0.8)], sfx=["silence at the touch", "breath in"]),
+ # ============================================================ v2 OPENING: calm hook, then the ep06 rosette title (s02_titre)
+ "s01_hook": [
+  P("crowd", ["tambourin", "terrasse"], "Establishing painting, slow drift right: the white terraces of Fès in late-afternoon gold, women on the rooftops trying tambourines; the city hums.",
+    still="h01_ville_tambourins", sfx=["tambourine city hum bed (far, many)", "pigeons"], hold=(1.5, "establishing")),
+  P("dream", ["lustre"], "Night falls over the medina (painting): far away, a glow of coloured lights in an alley; a small boy's silhouette on a roof watches it. Fade to the title.",
+    still="h02_nuit_promesse", sfx=["night wind", "tambourines fade far"]),
  ],
  # ============================================================ ACT I: J-2
  "s03_tambourins": [
@@ -243,36 +242,126 @@ A = {
   dict(mode="title", text="Thèmes + citations", visual="Thèmes: fête/traditions, regard de l'enfant, condition de la femme. Citations: « décor de féerie », « un autre homme », « Mes yeux, hélas… ». Teaser ch. VIII"),
  ],
 }
+# v2 (2026-11-05): the 72 new narration/dialogue lines, keyed (scene, index in the v2 scene). They keep the v1 beat ids stable:
+# a new beat is numbered after the beat before it (b005 -> b005a) and marked new=True, so scene code that indexes lines('sXX')
+# by v1 line keeps working (beatscene.js lines() = v1 lines only). Default staging of a new beat = its still (paintings),
+# else the previous beat's shot, re-covered at its size on its cast[0] (E2 coverage cut) + its inserts.
+N = {
+ ("s03_tambourins", 1): T("CU", "chambre", ["zoubida"], ["tambourin", "bendir"], "Zoubida turns the bendir in her hands; insert of the drum shapes: long blue ceramic, pot-bellied pottery, bare wooden frames with skin.", cam="master", ins=[("formes_tambourins", 3.0)], sfx=["bendir_hit soft", "tambourine_shake"]),
+ ("s03_tambourins", 3): P("crowd", ["tambourin", "tambour"], "The neighbours on the galleries around the patio, each playing for herself, murmuring a dance song.", still="p12_voisines", sfx=["women tuning tambourines, many", "murmured song far"]),
+ ("s03_tambourins", 5): T("CU", "terrasse_rampe", ["mohammed"], ["trompette", "tambour", "hochet"], "Mohammed lowers his trumpet and dreams (insert: a clay hourglass drum and a flowered rattle glowing).", cam="reverse", ins=[("hochet_fleurs", 1.6)], sfx=["dream shimmer", "darbouka_hit far @tambour"]),
+ ("s05_hammoussa", 1): T("M", "escalier", ["mohammed"], ["trompette", "babouche"], "He drops the trumpet with regret and tumbles down the stairs.", cam="low", action="walk", sfx=["footsteps_stairs fast", "babouche flap"]),
+ ("s05_hammoussa", 3): T("CU", "patio", ["hammoussa"], [], "Hammoussa, tiny in his too-big djellaba (the name card stays).", cam="master"),
+ ("s06_lustres", 0): T("W", "msid_lustres", ["mohammed", "kid1", "kid2"], ["lustre"], "The Msid in full bustle: every hand at work; Mohammed kisses the master's hand (insert) and sits down to work.", cam="master", ins=[("baise_main", 1.2)], sfx=["pupils murmur bed", "kiss"]),
+ ("s06_lustres", 4): T("M", "msid_lustres", ["mohammed", "kid1"], ["lustre", "verre", "meche", "huile"], "Insert: a wrought-iron hoop chandelier on the mat, glasses set in its rings, each with its wick.", cam="master", ins=[("cerceau_lustre", 2.2)], sfx=["glass clink", "metal clinks"]),
+ ("s06_lustres", 6): T("M", "msid_lustres", ["kid1", "kid2", "kid3"], [], "Five or six rowdy boys go from group to group; a little scuffle.", cam="low", sfx=["kids squabble", "pupils murmur bed"]),
+ ("s06_lustres", 8): T("M", "msid_lustres", ["mohammed", "fqih"], ["babouche"], "His turn: he kisses the master's hand, slips on his babouches and leaves.", cam="reverse", ins=[("baise_main", 1.0)], sfx=["babouche flap"]),
+ ("s07_petrole", 3): T("M", "chambre_nuit", ["mohammed"], ["fenetre", "petrole"], "At the grille, Mohammed listens to the vendor's patter (still nobody in the alley).", cam="pov_fenetre", pov="mohammed", speaker_off=True, figurative=["explosion"]),
+ ("s08_menthe", 5): T("CU", "patio_nuit", ["mohammed"], ["sesame"], "He brushes the rest off with his fingertips, very serious.", cam="ots"),
+ ("s09_escalier", 1): P("dream", ["escalier"], "Dream painting: gentle shadow-presences on the walls step aside as he climbs.", still="p13_presences", sfx=["whispers panned", "low drone"]),
+ ("s10_plans", 0): T("M", "chambre_nuit", ["father", "mohammed"], ["lampe"], "The father comes home; an ordinary dinner under the lamp (insert: tagine, bread, glasses).", cam="master", ins=[("diner", 1.6)], sfx=["door", "spoon clicks", "oil_lamp_hiss"]),
+ ("s10_plans", 3): T("CU", "chambre_nuit", ["mohammed"], ["couverture"], "In bed, eyes wide open in the dark: sleep has fled.", cam="high"),
+ ("s11_souk", 1): P("crowd", ["tambourin", "trompette"], "Close crowd painting: around one stall everyone tries an instrument; tambourines hang like grapes.", still="p14_souk_essais", sfx=["crowd_souk_walla", "tambourine_shake", "toy_trumpet far"]),
+ ("s11_souk", 2): P("crowd", ["paquet"], "Countryfolk with bundles and a laden donkey clog the street.", still="p15_campagnards", sfx=["donkey bray far", "crowd_souk_walla"]),
+ ("s11_souk", 4): T("CU", "souk_jouets", ["mohammed", "father"], ["tambour"], "Mohammed chatters up at his father, who smiles and hardly answers.", cam="ots", action="walk", sfx=["crowd_souk_walla bed"]),
+ ("s11_souk", 6): P("flashback", ["the"], "Sepia flashback: the young barber serving tea to guests at Mohammed's naming feast; the parents with the newborn.", still="p16_bapteme", sfx=["warm room murmur", "tea pour"]),
+ ("s11_souk", 7): T("CU", "barbier_ext", ["mohammed"], ["cierge", "rasoir", "ciseaux"], "Mohammed, the big candle in his arms, shivers at the barber's door.", cam="master"),
+ ("s12_barbier", 3): T("CU", "barbier", ["mohammed"], ["baguette"], "Mohammed, still red; insert: the fqih's quince rod on the mat (callback).", cam="ots", ins=[("baguette_cognassier", 2.2)], sfx=["rod swish soft"]),
+ ("s13_hammad", 3): T("CU", "barbier", ["hammad"], [], "Hammad, suddenly greedy for the recipe, hand on his heart.", cam="ots"),
+ ("s13_hammad", 6): T("M", "barbier", ["hammad", "barber"], ["rideau"], "He leaves, groaning softly, through the curtain.", cam="reverse", sfx=["groans fading", "curtain rustle"]),
+ ("s14_larbi", 0): P("dream", ["prison"], "Comic painting over the barber's complaint: his aide's empty stool, and the sulking apprentice behind the bars of an old Fès jail.", still="p25_apprenti", sfx=["barber voice continues", "jail door clank soft"]),
+ ("s14_larbi", 3): T("M", "barbier", ["barber", "father"], [], "The barber, dreamy and scandalised at once: women at the hairdresser's! The father hardly listens.", cam="master"),
+ ("s14_larbi", 5): T("M", "barbier", ["mohammed"], ["banquette", "rasoir", "miroir", "chaise"], "Mohammed on the bench, feet dangling; his eyes travel over the wall (insert: racks of razors, hand mirrors, the painted chair).", cam="reverse", pov="mohammed", ins=[("panoplie_miroirs", 2.0)]),
+ ("s15_lamrani", 1): T("M", "barbier", ["lamrani", "barber"], [], "Sidi Ahmed greets them, hand on his chest.", cam="reverse"),
+ ("s15_lamrani", 2): T("M", "barbier", ["barber", "lamrani"], [], "The barber answers with a flood of blessings.", cam="reverse"),
+ ("s15_lamrani", 4): T("M", "barbier", ["lamrani", "barber"], [], "Sidi Ahmed opens his mouth, closes it; the barber answers for him.", cam="high"),
+ ("s15_lamrani", 5): P("flashback", ["the"], "Barber's-tale painting (warm sepia): El Haj Ali Lamrani, the old tea merchant and three-time pilgrim, in his shop among chests of tea and sugar loaves.", still="p24_haj_ali", sfx=["barber voice continues", "souk murmur soft"]),
+ ("s15_lamrani", 8): T("M", "barbier", ["lamrani", "barber"], [], "Sidi Ahmed, shy, eyes down.", cam="reverse"),
+ ("s15_lamrani", 9): T("M", "barbier", ["barber", "lamrani"], ["ventouse", "livre"], "The barber, triumphant, wagging a finger.", cam="master"),
+ ("s16_rasoir", 1): T("CU", "barbier", ["mohammed"], ["serviette", "savon"], "Wrapped in the striped towel; the barber soaps his head, his gaze elsewhere (insert).", cam="pov_mirror", ins=[("savon_tete", 1.4)], sfx=["lather squish"]),
+ ("s16_rasoir", 4): T("CU", "barbier", ["barber"], [], "The barber, modest and pleased: he can barely read.", cam="ots"),
+ ("s16_rasoir", 5): T("M", "barbier", ["father"], [], "The father, amused, from the bench.", cam="reverse"),
+ ("s16_rasoir", 6): T("CU", "barbier", ["barber"], [], "The barber, hand on heart: we speak well of what we love.", cam="ots"),
+ ("s16_rasoir", 8): T("M", "barbier", ["barber", "mohammed"], ["serviette"], "His nose pushed down to his knees; small scraping strokes at the nape (off-screen sound).", cam="master", sfx=["razor scrape small x6"]),
+ ("s16_rasoir", 11): T("M", "barbier", ["mohammed", "barber"], ["serviette"], "Awake with a start; the barber is still talking; sweat runs down his nose.", cam="reverse", sfx=["barber voice muffled"]),
+ ("s17_rue", 1): T("CU", "barbier", ["mohammed"], [], "Nauseous, he looks for his father.", cam="pov_mirror"),
+ ("s17_rue", 3): T("M", "barbier", ["father", "barber"], [], "The father takes his leave with a blessing for everyone.", cam="reverse"),
+ ("s17_rue", 5): T("W", "barbier_ext", ["father", "mohammed"], ["vigne", "tambourin"], "Outside, he breathes again; the tambourines hum from every terrace.", cam="reverse", sfx=["tambourine city hum bed", "street ambience"], action="walk"),
+ ("s18_concert", 1): T("CU", "chambre", ["mohammed"], ["tambour", "baton"], "Two sticks, drum on a strap: his own nouba, loud enough to burst the whole quarter's eardrums.", cam="low", action="drum", sfx=["darbouka_hit fast"]),
+ ("s18_concert", 4): T("M", "patio", ["zoubida", "rahma"], [], "The women, laughing, wave them up to the terrace.", cam="low", sfx=["women_laughing_group"]),
+ ("s18_concert", 6): T("M", "chambre", ["mohammed"], ["chemise", "tambour"], "Lost in the huge sleeves, he only looks at his drum.", cam="master", sfx=["darbouka_hit soft @tambour"]),
+ ("s18_concert", 8): T("M", "chambre", ["mohammed", "zineb"], ["tambour", "tarifa"], "Drunk on noise: both drumming, eyes closed.", cam="master", action="drum", sfx=["darbouka_hit", "tambourine_hit"]),
+ ("s19_bain", 0): P("crowd", ["tambour"], "Dusk over the terraces: the children still drumming; Zoubida calls him down from the stair door.", still="p17_crepuscule", sfx=["drums fade", "evening swallows"]),
+ ("s20_reveil", 0): P("dream", [], "Red light full of sparks and wandering stars (his closed eyelids).", still="p18_lumiere_rouge", sfx=["voice through sleep: lowpass"], light="red_dream"),
+ ("s20_reveil", 4): T("CU", "chambre_nuit", ["mohammed"], ["aiguiere"], "Sleepwalking, he washes his eyes and rinses his mouth (insert: the copper ewer).", cam="ots", ins=[("aiguiere", 1.4)], sfx=["water pour", "splash small"]),
+ ("s20_reveil", 7): T("M", "chambre_nuit", ["mohammed", "father"], ["djellaba"], "All new, full of dignity, he walks ahead of his father to the stairs.", cam="low", action="walk", costume="fete"),
+ ("s21_babouches", 0): T("W", "rue_nuit", ["father", "mohammed"], ["fenetre"], "Every window lit in the black street.", cam="master", action="walk", costume="fete", sfx=["night street, far voices"]),
+ ("s21_babouches", 4): T("W", "rue_nuit", ["father", "mohammed"], ["cierge", "fenetre"], "Passers-by smile; shops open; far off, the school's windows glow.", cam="reverse", action="walk", costume="fete", sfx=["footsteps_stone", "pupils' chant far"]),
+ ("s22_feerie", 1): T("M", "msid_facade", ["mohammed", "father"], ["lustre", "huile"], "The pupils' voices rise clear in the cool morning; insert: the tiny flames dancing in their coloured glasses.", cam="master", ins=[("flammes_verres", 1.8)], sfx=["chant far + clear", "candle_flame crackle"], costume="fete"),
+ ("s22_feerie", 4): T("M", "msid_feerie", ["mohammed", "kid1", "kid2"], [], "The children squeeze up to make room; he chants with conviction.", cam="ots", costume="fete", sfx=["chant (sung)"]),
+ ("s22_feerie", 5): T("CU", "msid_feerie", ["mohammed"], ["chemise"], "His shirt sticks to his back; unbearable prickles; he squirms.", cam="ots", costume="fete"),
+ ("s22_feerie", 8): P("dream", ["natte", "lampe"], "Dream painting: the mats, lamps, sandals, a sparrow, a cat and a beggar all sing with the children.", still="p19_louange", sfx=["chant swells", "sparrows"]),
+ ("s23_aube", 0): P("crowd", [], "The fathers chant canticles among the children, as in their own childhood.", still="p20_peres", sfx=["cantique chant (sung)"]),
+ ("s23_aube", 5): T("CU", "msid_feerie", ["fqih"], ["djellaba", "burnous"], "The fqih's striped djellaba and grey burnous, hands empty.", cam="ots", costume="fete"),
+ ("s23_aube", 8): T("M", "msid_feerie", ["mohammed", "fqih"], [], "Mohammed kisses the fqih's hand (insert); the fqih blesses his parents.", cam="reverse", ins=[("baise_main", 1.2)], costume="fete", sfx=["kisses_cheek @embrass"]),
+ ("s24_idriss", 0): P("crowd", [], "Bright morning street: almost everyone in new clothes.", still="p21_rue_fete", sfx=["crowd walla festive", "water seller bell"]),
+ ("s24_idriss", 2): T("M", "chambre", ["zoubida", "mohammed"], ["bouilloire", "galette"], "The kettle sings on the brazier; the pile of galettes (insert).", cam="master", ins=[("bouilloire", 1.6)], sfx=["kettle sing"], costume="fete"),
+ ("s24_idriss", 4): P("crowd", [], "Inside the sanctuary: father and son pray among the crowd.", still="p22_sanctuaire", sfx=["sanctuary murmur", "prayer far"]),
+ ("s25_aicha", 1): T("M", "salon", ["aicha", "zoubida"], ["divan"], "Pointed kisses; behind them the father slips away.", cam="master", sfx=["kisses"]),
+ ("s25_aicha", 2): T("M", "salon", ["zoubida", "aicha"], ["divan"], "Zoubida wriggles with curiosity beside her guest.", cam="reverse"),
+ ("s25_aicha", 4): T("M", "salon", ["aicha", "zoubida"], ["divan"], "Aïcha talks and talks, losing her own thread.", cam="master"),
+ ("s25_aicha", 5): P("crowd", ["petrole"], "Painted gallery of the neighbourhood wives, each beside her husband's trade.", still="p23_voisines_metiers", sfx=["alley murmur", "women laughing soft"]),
+ ("s25_aicha", 7): T("M", "salon", ["aicha", "zoubida", "mohammed"], ["theiere"], "They laugh heartily; Zoubida reaches for the teapot.", cam="reverse", sfx=["women_laughing_group"]),
+ ("s25_aicha", 10): T("M", "salon", ["zoubida", "aicha"], [], "Zoubida, kind: difficulties always smooth out.", cam="reverse"),
+ ("s25_aicha", 11): T("CU", "salon", ["aicha"], [], "Aïcha, distant: 'Oui...'", cam="ots", sfx=["room tone"]),
+ ("s25_aicha", 13): T("M", "salon", ["zoubida", "aicha"], [], "Zoubida leans in, worried.", cam="reverse"),
+ ("s25_aicha", 15): T("M", "salon", ["aicha", "zoubida"], [], "Aïcha's hands flutter at her shoulders; her eyes go up to the sky.", cam="master"),
+ ("s26_fin", 1): T("CU", "chambre_nuit", ["mohammed"], ["vetement"], "Disgusted with finery, he pulls his old clothes back on, relieved.", cam="ots"),
+}
+
 
 TITLE = {
- "s02_roadmap": dict(mode="title", text="1 Tambourins et lustres · 2 Le souk et le barbier · 3 La nuit de l'Achoura", dur=4.0,
-                     visual="3 panels, 1.5 s each on a bendir hit, + 'Fiche de révision à la fin'"),
+ "s02_titre": dict(mode="title", text="La Boîte à Merveilles · Chapitre VII · La nuit de l'Achoura", dur=9.0,
+                   visual="ep06 rosette title: zellige rosette blooms in indigo, Arabic + French titles, CHAPITRE VII · LA NUIT DE L'ACHOURA"),
  "s28_endcard": dict(mode="title", text="fin", dur=12, visual="end card: TikTok @la.boite.a.bac + WhatsApp community + next episode"),
 }
 
 
 def main():
     sc = json.load(open(os.path.join(D, "script.json")))["scenes"]
-    B, n = [], 0
+    v1 = {}   # scene -> [(text, id)] of the v1 beats, in order
+    for b in json.load(open(os.path.join(D, "beats_v1.json")))["beats"]:
+        if b["scene"] not in ("s02_roadmap", "s28_endcard"): v1.setdefault(b["scene"], []).append((b["text"], b["id"]))
+    B, prev, hook, used = [], "b000", iter("abcdefgh"), set()
     for s in sc:
         sid = s["id"]
         if sid in TITLE:
-            n += 1; B.append({"id": f"b{n:03d}", "scene": sid, **TITLE[sid]}); continue
-        ann = A[sid]
-        assert len(ann) == len(s["lines"]), f"{sid}: {len(ann)} annotations for {len(s['lines'])} lines"
-        for l, a in zip(s["lines"], ann):
-            n += 1
-            b = {"id": f"b{n:03d}", "scene": sid, "text": l["sub"], "speaker": l["who"], **a}
-            for k in ("card", "tag", "music"):
-                if k in s and l is s["lines"][0 if k != "tag" else -1]:
-                    b.setdefault(k, s[k])
+            bid = f"b000{next(hook)}" if sid < "s03" else f"b{int(prev[1:4]) + 1:03d}"
+            B.append({"id": bid, "scene": sid, **TITLE[sid]}); prev = bid; continue
+        old, ann, k, suf = v1.get(sid, []), A[sid], 0, iter("abcdefghij")
+        for i, l in enumerate(s["lines"]):
+            if (sid, i) in N:
+                a, new = N[(sid, i)], True; bid = next(prev[:4] + x for x in "abcdefghij" if prev[:4] + x not in used)
+            elif sid == "s01_hook":
+                a, bid, new = ann[i], f"b000{next(hook)}", False
+            else:
+                assert k < len(old) and k < len(ann), f"{sid}: line {i} is neither new nor v1"
+                assert ann[k].get("mode") == "title" or old[k][0] == l["sub"], f"{sid}:{i} v1 text changed: {old[k][0][:40]!r} -> {l['sub'][:40]!r}"
+                a, bid, new = ann[k], old[k][1], False; k += 1; suf = iter("abcdefghij")
+            b = {"id": bid, "scene": sid, "text": l["sub"], "speaker": l["who"], **a}
+            if new and sid != "s01_hook": b["new"] = True
+            for key in ("card", "tag", "music"):
+                if key in s and l is s["lines"][0 if key != "tag" else -1]:
+                    b.setdefault(key, s[key])
             if b.get("peak") is False: del b["peak"]
             if "ins" in b: b["ins"] = [list(x) for x in b["ins"]]
             if "hold" in b: b["hold"] = list(b["hold"])
-            B.append(b)
-    json.dump({"episode": "ep07", "chapter": 7, "beats": B}, open(os.path.join(D, "beats.json"), "w"), ensure_ascii=False, indent=1)
+            B.append(b); prev = bid; used.add(bid)
+        if sid != "s01_hook": assert k == len(old) == len(ann), f"{sid}: {k} v1 lines matched of {len(old)} ({len(ann)} annotations)"
+    json.dump({"episode": "ep07", "chapter": 7, "lint": {"HOOK_MAX": 14, "TITLE_MAX": 10}, "beats": B}, open(os.path.join(D, "beats.json"), "w"), ensure_ascii=False, indent=1)
     ins = sum(len(b.get("ins", [])) for b in B)
-    print(len(B), "beats,", ins, "inserts,", len({(b.get('room'), b.get('cam')) for b in B if b.get('mode') == '3d'}), "plate angles")
+    print(len(B), "beats,", sum(1 for b in B if b.get("new")), "new,", ins, "inserts,",
+          len({(b.get('room'), b.get('cam')) for b in B if b.get('mode') == '3d'}), "plate angles")
 
 
 if __name__ == "__main__":

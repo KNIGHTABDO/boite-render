@@ -1,959 +1,1449 @@
 [
  {
-  "id": "s01_cold",
+  "id": "s01_hook",
   "start": 0,
-  "end": 14.569,
+  "end": 19.506,
   "lines": [
    {
     "who": "narrator",
-    "text": "Ce jour-là, sous le rasoir de Si Abderrahman, j'ai connu la peur.",
-    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/434d94ed6caf.wav",
-    "start": 2.2,
-    "dur": 4.944
+    "text": "Dans toute la ville, les femmes essayaient leurs tambourins. Un bourdonnement sourd couvrait l'espace.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/90fb5411a32b.wav",
+    "start": 1.5,
+    "dur": 7.172
    },
    {
     "who": "narrator",
-    "text": "Et quelques heures plus tard, la plus belle nuit de mon enfance.",
-    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7082f2027e80.wav",
-    "start": 7.444,
-    "dur": 5.624
+    "text": "L'Achoura approchait, le nouvel an. Et avec elle, la plus belle nuit de mon enfance.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/09b5fa6c8894.wav",
+    "start": 9.472,
+    "dur": 7.734
    }
   ]
  },
  {
-  "id": "s02_roadmap",
-  "start": 14.569,
-  "end": 18.569,
+  "id": "s02_titre",
+  "start": 19.506,
+  "end": 28.506,
   "lines": []
  },
  {
   "id": "s03_tambourins",
-  "start": 18.569,
-  "end": 53.078,
+  "start": 28.506,
+  "end": 100.263,
   "lines": [
    {
     "who": "narrator",
     "text": "Deux jours avant l'Achoura, les femmes de la maison s'achetèrent toutes des tambourins. Ma mère essaya son bendir.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7f650ed964e3.wav",
-    "start": 19.169,
-    "dur": 7.085
+    "start": 31.106,
+    "dur": 7.357
+   },
+   {
+    "who": "narrator",
+    "text": "Chacun de ces instruments avait sa forme, son langage. Des longs, en céramique bleue. Des ventrus, en poterie. De simples cadres de bois, tendus d'une peau de chèvre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c168b80f0b1b.wav",
+    "start": 39.263,
+    "dur": 11.2
    },
    {
     "who": "narrator",
     "text": "Des coups graves et des coups secs parlèrent un dialecte rude, mélange de soleil et de vent de haute montagne.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ee1d513793b0.wav",
-    "start": 26.553,
-    "dur": 8.48
+    "start": 51.263,
+    "dur": 8.807
+   },
+   {
+    "who": "narrator",
+    "text": "Chacune de nos voisines faisait ses gammes, jouait pour elle-même un air de danse, avec des mots murmurés à mi-voix.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b46ae9ce789b.wav",
+    "start": 60.87,
+    "dur": 8.464
    },
    {
     "who": "narrator",
     "text": "Zineb tapait comme une sourde sur un minuscule tambourin de pacotille. Moi, j'avais une trompette en fer-blanc. Elle éclatait dans la maison comme un cri d'alarme, parfois, comme un sanglot d'agonisant.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/e70c4a2527ce.wav",
-    "start": 35.334,
-    "dur": 14.185
+    "start": 70.134,
+    "dur": 14.748
+   },
+   {
+    "who": "narrator",
+    "text": "Pour le jour de l'Achoura, je rêvais d'autres jouets : un tambour en terre cuite, en forme de sablier, et un hochet décoré de fleurs.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/17dca8aa8e9a.wav",
+    "start": 85.682,
+    "dur": 9.622
    },
    {
     "who": "zoubida",
     "text": "Va donc braire sur la terrasse !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/27096f539d3f.wav",
-    "start": 49.819,
+    "start": 96.103,
     "dur": 1.96
    }
   ]
  },
  {
   "id": "s04_chat",
-  "start": 53.078,
-  "end": 70.995,
+  "start": 100.263,
+  "end": 121.385,
   "lines": [
    {
     "who": "narrator",
     "text": "Je gonflai mes joues, et soufflai de toutes mes forces. On aurait dit un bébé qui perce ses premières dents.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/15059a08f937.wav",
-    "start": 54.078,
-    "dur": 7.401
+    "start": 102.463,
+    "dur": 7.702
    },
    {
     "who": "narrator",
     "text": "Le chat de Zineb fit un saut d'épouvante, et s'engouffra dans une gouttière. Une tête inquiète surgit du mur voisin, et disparut.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/1354fbfaa27a.wav",
-    "start": 61.779,
-    "dur": 7.916
+    "start": 110.966,
+    "dur": 8.219
    }
   ]
  },
  {
   "id": "s05_hammoussa",
-  "start": 70.995,
-  "end": 87.152,
+  "start": 121.385,
+  "end": 148.618,
   "lines": [
    {
     "who": "zoubida",
     "text": "Un de tes camarades t'attend dans le patio. Prends tes babouches : le fqih a besoin de toi !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b9065a832051.wav",
-    "start": 71.995,
+    "start": 122.785,
     "dur": 4.713
+   },
+   {
+    "who": "narrator",
+    "text": "J'abandonnai ma trompette avec regret, et dégringolai l'escalier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/21d6b65f1725.wav",
+    "start": 128.298,
+    "dur": 4.455
    },
    {
     "who": "narrator",
     "text": "C'était Hammoussa, « pois chiche », le plus petit élève de l'école.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/092f4dda3320.wav",
-    "start": 77.009,
-    "dur": 5.485
+    "start": 133.553,
+    "dur": 5.694
+   },
+   {
+    "who": "narrator",
+    "text": "De son vrai nom, Azzouz Berrada.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b0f5223c8280.wav",
+    "start": 140.047,
+    "dur": 2.513
    },
    {
     "who": "hammoussa",
     "text": "Dépêche-toi ! Il faut préparer les lustres de l'Achoura !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/4d8933b70ea3.wav",
-    "start": 82.794,
+    "start": 143.359,
     "dur": 3.059
    }
   ]
  },
  {
   "id": "s06_lustres",
-  "start": 87.152,
-  "end": 128.501,
+  "start": 148.618,
+  "end": 228.925,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "Pour la nuit de l'Achoura, il fallait toutes les mains. J'embrassai la main du maître, et me mis au travail.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/edc7b8abd26b.wav",
+    "start": 150.018,
+    "dur": 6.807
+   },
    {
     "who": "narrator",
     "text": "Au Msid, on découpait de minuscules mèches dans une vieille cotonnade blanche.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/dc0ec0fa98cd.wav",
-    "start": 88.152,
-    "dur": 5.327
+    "start": 157.625,
+    "dur": 5.525
    },
    {
     "who": "narrator",
     "text": "Chaque mèche était agrafée à une lamelle de fer-blanc, posée sur le bord d'un verre : moitié eau, moitié huile d'olive. Et dans l'eau, des poudres de couleur.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/3b7ec535caca.wav",
-    "start": 93.779,
-    "dur": 11.076
+    "start": 163.95,
+    "dur": 11.503
    },
    {
     "who": "narrator",
     "text": "Les poudres, en petits paquets, reposaient dans les babouches du fqih.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6b0568414eb6.wav",
-    "start": 105.155,
-    "dur": 3.955
+    "start": 176.253,
+    "dur": 4.109
+   },
+   {
+    "who": "narrator",
+    "text": "Les lustres étaient de simples cerceaux de fer forgé, reliés par des tiges. On y logeait les petites veilleuses : des verres ordinaires, avec une mèche qui nageait dans l'huile.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/06e291a9adbe.wav",
+    "start": 181.162,
+    "dur": 12.186
    },
    {
     "who": "narrator",
     "text": "Les grands, suspendus à une échelle branlante, accrochaient au plafond les lustres en fer forgé. Hammoussa se coupa le pouce avec une lamelle, et partit en pleurnichant doucement.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f04db8d514e6.wav",
-    "start": 109.411,
-    "dur": 10.43
+    "start": 194.148,
+    "dur": 10.845
+   },
+   {
+    "who": "narrator",
+    "text": "Cinq ou six turbulents allaient d'un groupe à l'autre, et provoquaient, çà et là, quelques disputes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/cc5bf37099c8.wav",
+    "start": 205.793,
+    "dur": 5.914
    },
    {
     "who": "narrator",
     "text": "Le soir, nous chantâmes des cantiques, et le maître pria, même pour le Sultan, prince des Croyants.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b3f6c8677f3e.wav",
-    "start": 120.14,
-    "dur": 7.061
+    "start": 212.507,
+    "dur": 7.335
+   },
+   {
+    "who": "narrator",
+    "text": "Mon tour vint. Je baisai la main du maître, enfilai mes babouches, et sortis.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d9d3265b113e.wav",
+    "start": 220.641,
+    "dur": 6.084
    }
   ]
  },
  {
   "id": "s07_petrole",
-  "start": 128.501,
-  "end": 165.199,
+  "start": 228.925,
+  "end": 281.411,
   "lines": [
    {
     "who": "narrator",
     "text": "À la maison, ma mère était très ennuyée : plus de pétrole dans la lampe ! Driss El Aouad, notre voisin, accepta d'aller en acheter.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/1d957fdb994b.wav",
-    "start": 129.501,
-    "dur": 8.834
+    "start": 230.325,
+    "dur": 9.188
    },
    {
     "who": "vendeur",
     "text": "Des bougies et des allumettes !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/42ad7db4f6a2.wav",
-    "start": 138.635,
+    "start": 240.313,
     "dur": 3.499
    },
    {
     "who": "narrator",
     "text": "Les bougies ? C'était bon pour les pauvres.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/2337dc1a8dd4.wav",
-    "start": 142.434,
-    "dur": 2.41
+    "start": 244.612,
+    "dur": 2.491
+   },
+   {
+    "who": "narrator",
+    "text": "Et pour les gens arriérés, qui craignent les explosions, la fumée, et la mauvaise odeur. Autant d'inconvénients qui n'existent que dans leur imagination.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/0628cc5e7f8b.wav",
+    "start": 247.903,
+    "dur": 10.18
    },
    {
     "who": "narrator",
     "text": "La nuit tomba brusquement. Nous attendions dans le noir. Enfin, quelqu'un toussa à la porte. Ma mère courut chercher la bouteille de pétrole, et à la lumière d'un bout de chandelle, elle remplit la lampe, et alluma.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/005cb8b57b20.wav",
-    "start": 145.144,
-    "dur": 14.335
+    "start": 258.883,
+    "dur": 14.908
    },
    {
     "who": "mohammed",
     "text": "Soirée de bénédiction.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/8e30c061f6d2.wav",
-    "start": 159.779,
+    "start": 274.591,
     "dur": 2.019
    },
    {
     "who": "zoubida",
     "text": "Que ta soirée soit bénie.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/dca5cddae021.wav",
-    "start": 162.099,
+    "start": 277.411,
     "dur": 1.8
    }
   ]
  },
  {
   "id": "s08_menthe",
-  "start": 165.199,
-  "end": 199.821,
+  "start": 281.411,
+  "end": 326.042,
   "lines": [
    {
     "who": "kanza",
     "text": "Lalla Zoubida, bénie soit ta soirée ! Pourrais-tu me donner un brin de menthe ?",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d286ab4c0ac9.wav",
-    "start": 166.199,
+    "start": 282.811,
     "dur": 7.194
    },
    {
     "who": "zoubida",
     "text": "Sidi Mohammed va te le porter !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/3f5749779db9.wav",
-    "start": 173.693,
+    "start": 290.805,
     "dur": 1.613
    },
    {
     "who": "narrator",
     "text": "Dans le patio, une odeur d'encens et de benjoin alourdissait l'air. J'étais persuadé qu'une assemblée de démons se tenait dans la pénombre.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/88043e5282cc.wav",
-    "start": 175.606,
-    "dur": 9.227
+    "start": 293.218,
+    "dur": 9.59
    },
    {
     "who": "narrator",
     "text": "Lalla Kanza me donna une poignée de sésame. Un repas offert aux génies ? J'y goûtai du bout de la langue... et je mangeai tout.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/db06392b8361.wav",
-    "start": 185.133,
-    "dur": 9.562
+    "start": 303.608,
+    "dur": 9.942
    },
    {
     "who": "narrator",
     "text": "Les grains se collaient à mes lèvres, et au bout de mon nez.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ff02e5cd11e8.wav",
-    "start": 194.995,
-    "dur": 3.526
+    "start": 314.35,
+    "dur": 3.66
+   },
+   {
+    "who": "narrator",
+    "text": "Ma langue balayait ce qu'elle pouvait atteindre. Le reste, je l'époussetai du bout des doigts.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/73059f4ac5f5.wav",
+    "start": 318.81,
+    "dur": 5.032
    }
   ]
  },
  {
   "id": "s09_escalier",
-  "start": 199.821,
-  "end": 225.686,
+  "start": 326.042,
+  "end": 363.125,
   "lines": [
    {
     "who": "narrator",
     "text": "Il faisait noir dans l'escalier. Mais le vide devant moi n'était vide qu'en apparence. Des présences muettes s'écartaient pour me laisser passer.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b0a22ea91879.wav",
-    "start": 200.821,
-    "dur": 9.418
+    "start": 327.442,
+    "dur": 9.779
+   },
+   {
+    "who": "narrator",
+    "text": "Un jour, quand j'aurais l'âge, toutes ces présences se découvriraient à mes yeux de voyant.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/aa4f2e351945.wav",
+    "start": 338.021,
+    "dur": 6.435
    },
    {
     "who": "zoubida",
     "text": "Dieu est le plus grand.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/cc67ec3f3c8f.wav",
-    "start": 210.539,
+    "start": 345.256,
     "dur": 1.201
    },
    {
     "who": "voisine",
     "text": "Est-ce le muezzin de l'Achaa que j'entends ?",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a67157895c71.wav",
-    "start": 212.039,
+    "start": 347.257,
     "dur": 2.706
    },
    {
     "who": "zoubida",
     "text": "Oui.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/3764b508c212.wav",
-    "start": 215.045,
+    "start": 350.763,
     "dur": 0.54
    },
    {
     "who": "narrator",
     "text": "Je retenais mon souffle. Je n'entendais aucun muezzin. Les femmes, dit-on, ont l'oreille plus fine que les hommes.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c8b20adbd3ba.wav",
-    "start": 215.885,
-    "dur": 8.501
+    "start": 352.103,
+    "dur": 8.822
    }
   ]
  },
  {
   "id": "s10_plans",
-  "start": 225.686,
-  "end": 259.243,
+  "start": 363.125,
+  "end": 410.063,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "Mon père ne tarda pas à rentrer. Le dîner se déroula comme à l'ordinaire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/16e4a0bf3731.wav",
+    "start": 364.525,
+    "dur": 5.029
+   },
    {
     "who": "father",
     "text": "Demain matin, nous irons au souk choisir tes jouets. Et à Bab Moulay Idriss, nous achèterons un cierge pour ton maître.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/41f36855643a.wav",
-    "start": 226.686,
+    "start": 370.354,
     "dur": 8.423
    },
    {
     "who": "narrator",
     "text": "J'étais heureux. Une seule chose m'ennuyait : je n'échapperais pas au coiffeur, Si Abderrahman. Je savais qu'un jour, c'est lui qui me circoncirait. Je redoutais ce jour.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f9410558b9fb.wav",
-    "start": 235.409,
-    "dur": 14.03
+    "start": 379.577,
+    "dur": 14.578
+   },
+   {
+    "who": "narrator",
+    "text": "Je me couchai. Mais le sommeil avait fui mes paupières.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/fe9bf952b6d7.wav",
+    "start": 394.955,
+    "dur": 3.585
    },
    {
     "who": "narrator",
     "text": "Je rêvai longtemps de cierges monumentaux, de rasoirs étincelants, et de lustres chargés de godets de cristal.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/15f8778e8c83.wav",
-    "start": 249.739,
-    "dur": 8.204
+    "start": 399.34,
+    "dur": 8.523
    }
   ]
  },
  {
   "id": "s11_souk",
-  "start": 259.243,
-  "end": 289.597,
+  "start": 410.063,
+  "end": 497.161,
   "lines": [
    {
     "who": "narrator",
     "text": "Mon père ne connaissait rien à l'art de marchander. Dans chaque rue résonnaient les tambourins, les grelots des hochets, et le chant des flûtiaux.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c73b2a5ce08e.wav",
-    "start": 260.243,
-    "dur": 9.546
+    "start": 412.663,
+    "dur": 9.919
+   },
+   {
+    "who": "narrator",
+    "text": "Des tambourins, des trompettes, des pipeaux, pendaient par grappes. Autour de chaque échoppe, un peuple de femmes, d'hommes, et d'enfants, essayaient, jacassaient, discutaient. Le marchand ne savait plus où donner de la tête.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/9790f518d581.wav",
+    "start": 423.382,
+    "dur": 16.545
+   },
+   {
+    "who": "narrator",
+    "text": "Des campagnards, descendus de leurs villages lointains, encombraient la rue de leurs paquets.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/af07c6371e2c.wav",
+    "start": 440.727,
+    "dur": 5.577
    },
    {
     "who": "narrator",
     "text": "Je m'accrochais à sa main. J'eus mon tambour en forme de sablier, un petit chariot en bois, et une nouvelle trompette. Il payait sans discuter.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/74a6bd9af1fa.wav",
-    "start": 270.089,
-    "dur": 9.866
+    "start": 447.104,
+    "dur": 10.253
+   },
+   {
+    "who": "narrator",
+    "text": "Je lui tenais de longs discours. Je lui posais mille questions. Il répondait rarement. Il souriait, de me voir si excité.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/493cfa0d51f3.wav",
+    "start": 458.156,
+    "dur": 9.811
    },
    {
     "who": "narrator",
     "text": "Pour finir, un cierge d'une livre. Et tout près, sous un pied de vigne séculaire, la boutique de Si Abderrahman.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/e0a16e62d8aa.wav",
-    "start": 280.255,
-    "dur": 8.042
+    "start": 468.767,
+    "dur": 8.358
+   },
+   {
+    "who": "narrator",
+    "text": "Mon père s'y faisait raser depuis son arrivée à Fès. À ma naissance, Si Abderrahman était venu servir les invités. Et c'est lui qui m'avait coupé les cheveux pour la première fois.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6587911fa6c4.wav",
+    "start": 477.925,
+    "dur": 10.348
+   },
+   {
+    "who": "narrator",
+    "text": "Je ne l'aimais pas. Des frissons me parcouraient la peau quand je le voyais manier le rasoir, ou les ciseaux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a56e253e67dd.wav",
+    "start": 489.073,
+    "dur": 5.888
    }
   ]
  },
  {
   "id": "s12_barbier",
-  "start": 289.597,
-  "end": 321.564,
+  "start": 497.161,
+  "end": 541.677,
   "lines": [
    {
     "who": "narrator",
     "text": "Il pratiquait une saignée. Il planta deux ventouses de fer-blanc sur la nuque d'un inconnu. Je détournai les yeux.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a989892af89d.wav",
-    "start": 290.597,
-    "dur": 7.137
+    "start": 499.161,
+    "dur": 7.403
    },
    {
     "who": "barber",
     "text": "Je vois que ce jeune homme a été gâté ! Un tambour, une trompette, un chariot, et un cierge pour le fqih. Il faut toujours être bien avec son maître... sinon, gare à la baguette de cognassier !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/9db82d4b9296.wav",
-    "start": 298.034,
+    "start": 507.364,
     "dur": 12.231
    },
    {
     "who": "narrator",
     "text": "Tout le monde se mit à rire. Moi, je rougissais d'indignation. Ces messieurs n'avaient jamais reçu la baguette sur la plante des pieds. Ils pouvaient rire.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ce3d543f9a59.wav",
-    "start": 310.564,
-    "dur": 9.7
+    "start": 520.395,
+    "dur": 10.085
+   },
+   {
+    "who": "narrator",
+    "text": "La baguette de cognassier inspire à ceux qui la connaissent un sentiment de crainte, et de respect.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a6152a811510.wav",
+    "start": 531.28,
+    "dur": 8.197
    }
   ]
  },
  {
   "id": "s13_hammad",
-  "start": 321.564,
-  "end": 356.537,
+  "start": 541.677,
+  "end": 596.498,
   "lines": [
    {
     "who": "narrator",
     "text": "Un homme sec, avec une barbe de bouc et un turban monumental, s'écroula sur une chaise.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7d42a1392d44.wav",
-    "start": 322.564,
-    "dur": 6.417
+    "start": 543.077,
+    "dur": 6.66
    },
    {
     "who": "hammad",
     "text": "Si Abderrahman... je vais mourir.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/cfdc0c6072db.wav",
-    "start": 329.281,
+    "start": 550.537,
     "dur": 3.66
    },
    {
     "who": "barber",
     "text": "Ne dis pas ça, oncle Hammad ! Allah seul connaît les secrets de la vie et de la mort. Il te faut un fortifiant.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/0b377937500b.wav",
-    "start": 333.241,
+    "start": 554.997,
     "dur": 6.598
+   },
+   {
+    "who": "hammad",
+    "text": "Un fortifiant ? Donne-moi vite ta recette ! Ma mémoire est intacte... c'est le cœur qui faiblit.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/5a97d4325e06.wav",
+    "start": 562.395,
+    "dur": 8.301
    },
    {
     "who": "barber",
     "text": "Fais frire un oignon blanc dans du beurre. Ajoute deux cuillerées de miel, de l'anis, du sésame, du gingembre, de la cannelle, et trois clous de girofle. Une bouchée chaque matin !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b48e282f63f1.wav",
-    "start": 340.139,
+    "start": 571.496,
     "dur": 10.393
    },
    {
     "who": "hammad",
     "text": "Dieu te récompensera, le jour du jugement !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/59cab4f0e0e8.wav",
-    "start": 350.832,
+    "start": 582.689,
     "dur": 4.405
+   },
+   {
+    "who": "narrator",
+    "text": "L'oncle Hammad s'extirpa de son siège, et partit, en poussant de sourds gémissements.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/df6703d51337.wav",
+    "start": 587.894,
+    "dur": 6.404
    }
   ]
  },
  {
   "id": "s14_larbi",
-  "start": 356.537,
-  "end": 381.284,
+  "start": 596.498,
+  "end": 652.159,
   "lines": [
+   {
+    "who": "barber",
+    "text": "Aujourd'hui, mon aide est absent, et l'apprenti est en prison, pour je ne sais quel méfait. Je suis seul à travailler !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/0aae65b901db.wav",
+    "start": 597.898,
+    "dur": 6.929
+   },
    {
     "who": "barber",
     "text": "Hier, j'ai fait une saignée à Moulay Larbi, le babouchier. Un homme digne. Ce qui m'étonne, c'est qu'il n'ait point d'enfants.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/81b5fb2038a4.wav",
-    "start": 357.537,
+    "start": 605.627,
     "dur": 9.338
    },
    {
     "who": "barber",
     "text": "On dit que sa femme est une Chérifa au cœur généreux. Grâce à elle, il a payé ses dettes. Ne crois-tu pas... qu'il devrait prendre une nouvelle épouse ?",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b64521e394a7.wav",
-    "start": 367.175,
+    "start": 615.765,
     "dur": 10.139
+   },
+   {
+    "who": "barber",
+    "text": "Il paraît que dans certains pays, les femmes vont se faire coiffer chez le coiffeur ! Que ne suis-je né dans l'un de ces pays fabuleux !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f3485ac6106e.wav",
+    "start": 626.704,
+    "dur": 7.831
    },
    {
     "who": "narrator",
     "text": "Mon père écoutait, indifférent.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/917c5e8818bf.wav",
-    "start": 377.614,
-    "dur": 2.369
+    "start": 635.335,
+    "dur": 2.454
+   },
+   {
+    "who": "narrator",
+    "text": "Assis sur la banquette, les pieds dans le vide, je regardais les panoplies de rasoirs, les miroirs à main, et la majestueuse chaise peinte, aux couleurs fanées.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d572f525b526.wav",
+    "start": 638.588,
+    "dur": 11.37
    }
   ]
  },
  {
   "id": "s15_lamrani",
-  "start": 381.284,
-  "end": 418.07,
+  "start": 652.159,
+  "end": 730.818,
   "lines": [
    {
     "who": "narrator",
     "text": "Un nouveau client entra : jeune, la peau d'une blancheur de cire, la barbe plus noire que l'aile du corbeau.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/e2b7832685e4.wav",
-    "start": 382.284,
-    "dur": 7.8
+    "start": 653.559,
+    "dur": 8.111
+   },
+   {
+    "who": "lamrani",
+    "text": "Le salut sur vous !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ded439bc9152.wav",
+    "start": 662.469,
+    "dur": 1.274
+   },
+   {
+    "who": "barber",
+    "text": "Sur vous le salut, la miséricorde, et la bénédiction d'Allah !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/83d9f78a425c.wav",
+    "start": 664.544,
+    "dur": 4.244
    },
    {
     "who": "barber",
     "text": "Sidi Ahmed ! Comment va ton vénéré père ? Son genou ? Mon onguent a agi ! Et toi, je sais déjà : tu épouses la fille de Si Omar le notaire !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/28ea83678bd6.wav",
-    "start": 390.384,
+    "start": 669.587,
     "dur": 9.807
+   },
+   {
+    "who": "narrator",
+    "text": "Sidi Ahmed ouvrit la bouche plusieurs fois. Mais le barbier devinait ses réponses, et lui épargnait la fatigue de les formuler.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c9b8efe36b8a.wav",
+    "start": 680.195,
+    "dur": 8.133
+   },
+   {
+    "who": "barber",
+    "text": "Sidi Ahmed est le fils d'El Haj Ali Lamrani, le marchand de thé. Trois fois, il a fait le pèlerinage aux Lieux Saints !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/1d3d7a9f6276.wav",
+    "start": 689.127,
+    "dur": 6.364
    },
    {
     "who": "barber",
     "text": "Que deviennent tes études ? Te voilà un savant !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c81f00937d51.wav",
-    "start": 400.491,
+    "start": 696.291,
     "dur": 2.346
    },
    {
     "who": "lamrani",
     "text": "Je ne suis qu'un mendiant de la science.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d960def8168a.wav",
-    "start": 403.136,
+    "start": 699.437,
     "dur": 2.319
+   },
+   {
+    "who": "lamrani",
+    "text": "Si Abderrahman, tu en sais plus long que moi sur mon mariage. Mes parents s'en occupent. Je n'ai pas mon mot à dire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b9de721f766c.wav",
+    "start": 702.556,
+    "dur": 7.466
+   },
+   {
+    "who": "barber",
+    "text": "Depuis quand les jeunes gens ont-ils leur mot à dire ? Ils ont des livres... mais il leur manque l'expérience des gens mûrs !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7308633a2fd6.wav",
+    "start": 710.822,
+    "dur": 5.982
    },
    {
     "who": "barber",
     "text": "Se marier, c'est créer des liens avec une autre famille. Moi, j'ai une fille en âge d'être mariée. Mon futur gendre sera un peu mon fils.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/5d8b90952e9d.wav",
-    "start": 405.756,
+    "start": 717.604,
     "dur": 11.014
    }
   ]
  },
  {
   "id": "s16_rasoir",
-  "start": 418.07,
-  "end": 455.464,
+  "start": 730.818,
+  "end": 815.073,
   "lines": [
    {
     "who": "barber",
     "text": "Je vais commencer par cet enfant. Il préférerait sans doute être dans la rue.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/95008b288d2c.wav",
-    "start": 419.07,
+    "start": 732.218,
     "dur": 4.09
+   },
+   {
+    "who": "narrator",
+    "text": "Il m'enveloppa dans une large serviette, rayée rouge et jaune. Il me savonna la tête. Son regard était vague.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7c0f157b9272.wav",
+    "start": 737.108,
+    "dur": 7.87
    },
    {
     "who": "barber",
     "text": "La rue ! La rue avec la foule et ses odeurs, ses chants, et ses cris d'enfants... La rue où trottine le petit âne gris, où tourbillonnent des vols de moineaux...",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/fd80274ed0cd.wav",
-    "start": 423.46,
+    "start": 745.778,
     "dur": 10.306
    },
    {
     "who": "lamrani",
     "text": "Tu es un poète, Si Abderrahman !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/9d7f911afaf1.wav",
-    "start": 434.066,
+    "start": 756.884,
     "dur": 3.299
+   },
+   {
+    "who": "barber",
+    "text": "Comment pourrais-je être poète ? Je sais à peine lire et écrire. J'aime simplement notre bonne ville de Fès.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/883fb669b73a.wav",
+    "start": 760.983,
+    "dur": 7.719
+   },
+   {
+    "who": "father",
+    "text": "Tu sais joliment en parler.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/dbd7abc810ca.wav",
+    "start": 769.502,
+    "dur": 1.58
+   },
+   {
+    "who": "barber",
+    "text": "Si Abdeslem, on parle toujours bien des choses qu'on aime.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ffb1fdd15c43.wav",
+    "start": 771.883,
+    "dur": 4.458
    },
    {
     "who": "narrator",
     "text": "Il choisit un rasoir à manche d'ébène, et le passa sur une pierre gluante d'huile.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/465d869418cb.wav",
-    "start": 437.665,
-    "dur": 5.175
+    "start": 777.141,
+    "dur": 5.372
+   },
+   {
+    "who": "narrator",
+    "text": "Il commença au sommet du crâne. Il m'obligea à baisser le nez jusqu'aux genoux, et racla à petits coups le duvet de ma nuque.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/1374d259a044.wav",
+    "start": 783.312,
+    "dur": 8.905
    },
    {
     "who": "narrator",
     "text": "Le rasoir me brûlait un peu. Je ne disais rien. Une torpeur m'envahit. Je m'endormis.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/59a45bbc7cf5.wav",
-    "start": 443.141,
-    "dur": 6.783
+    "start": 793.018,
+    "dur": 7.043
    },
    {
     "who": "narrator",
     "text": "Ma tête s'en alla de travers... et la lame me mordit.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/8b09d44b7ca3.wav",
-    "start": 450.224,
-    "dur": 3.94
+    "start": 800.861,
+    "dur": 4.087
+   },
+   {
+    "who": "narrator",
+    "text": "Je me réveillai en sursaut. Le coiffeur discutait toujours. Des gouttes de sueur coulaient le long de mon nez.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/4ff14d6eef23.wav",
+    "start": 805.747,
+    "dur": 7.125
    }
   ]
  },
  {
   "id": "s17_rue",
-  "start": 455.464,
-  "end": 470.647,
+  "start": 815.073,
+  "end": 852.014,
   "lines": [
    {
     "who": "narrator",
     "text": "Je me sentis léger, comme saigné à blanc.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/73d92c9c7067.wav",
-    "start": 456.464,
-    "dur": 2.845
+    "start": 816.473,
+    "dur": 2.949
+   },
+   {
+    "who": "narrator",
+    "text": "J'eus mal au cœur. Je cherchai des yeux mon père.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/5318777f7747.wav",
+    "start": 820.222,
+    "dur": 3.659
    },
    {
     "who": "father",
     "text": "Viens. L'air frais te fera du bien.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/614e383d9c49.wav",
-    "start": 459.609,
+    "start": 824.68,
     "dur": 2.531
+   },
+   {
+    "who": "father",
+    "text": "Si Abderrahman, je reviendrai ce soir me faire raser. Messieurs, je vous laisse dans la paix d'Allah.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/afe8373ef547.wav",
+    "start": 828.012,
+    "dur": 6.684
    },
    {
     "who": "narrator",
     "text": "Nous voici de nouveau dans la rue. Jamais elle ne me parut aussi belle, aussi enchantée, que ce jour-là.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/11d0bac6d06e.wav",
-    "start": 462.441,
-    "dur": 6.906
+    "start": 835.495,
+    "dur": 7.166
+   },
+   {
+    "who": "narrator",
+    "text": "Je me sentis beaucoup mieux. De toutes les terrasses, nous parvenait le bourdonnement des tambourins.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/31da78cf1d57.wav",
+    "start": 843.462,
+    "dur": 6.353
    }
   ]
  },
  {
   "id": "s18_concert",
-  "start": 470.647,
-  "end": 509.973,
+  "start": 852.014,
+  "end": 923.896,
   "lines": [
    {
     "who": "narrator",
     "text": "À la maison, Zineb tapait sans rythme sur sa tarifa de quatre sous. J'avais hâte de la faire mourir de jalousie.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/8697fe80334a.wav",
-    "start": 471.647,
-    "dur": 7.504
+    "start": 853.414,
+    "dur": 7.793
+   },
+   {
+    "who": "narrator",
+    "text": "Je trouvai deux bâtonnets, passai mon tambour en bandoulière, et commençai une nouba de ma composition, à crever le tympan de tout le quartier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a000eb5ae9f1.wav",
+    "start": 862.007,
+    "dur": 9.632
    },
    {
     "who": "narrator",
     "text": "Je m'équipai en homme-orchestre : le tambour par terre, la trompette entre les genoux. Zineb me rejoignit.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/91edf4b67e4b.wav",
-    "start": 479.451,
-    "dur": 7.899
+    "start": 872.439,
+    "dur": 8.2
    },
    {
     "who": "femmes",
     "text": "Grâce ! Pitié pour nos oreilles !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f8c2c418b070.wav",
-    "start": 487.649,
+    "start": 881.439,
     "dur": 2.853
+   },
+   {
+    "who": "narrator",
+    "text": "Elles nous conseillèrent de monter sur la terrasse, charmer les oreilles des voisins.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/eed96365086b.wav",
+    "start": 885.093,
+    "dur": 4.533
    },
    {
     "who": "narrator",
     "text": "Ma mère m'essaya une chemise neuve. Elle craquait d'apprêt, et tombait jusqu'au sol.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6b8fe1c0db3c.wav",
-    "start": 490.803,
-    "dur": 6.019
+    "start": 890.425,
+    "dur": 6.251
+   },
+   {
+    "who": "narrator",
+    "text": "Mes bras se perdaient dans les immenses manches. Mais je ne pensais qu'à mon tambour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a14ad5fd490a.wav",
+    "start": 897.477,
+    "dur": 5.354
    },
    {
     "who": "narrator",
     "text": "Sur la terrasse, deux filles et un garçon nous attendaient. Le garçon tira de ma trompette des rugissements inattendus. Des femmes se perchèrent sur les murs pour nous admirer.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a25b16416234.wav",
-    "start": 497.122,
-    "dur": 11.551
+    "start": 903.631,
+    "dur": 12.003
+   },
+   {
+    "who": "narrator",
+    "text": "Nous nous abandonnâmes à la joie du rythme. Nous nous soûlâmes de bruit.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7385304bbef1.wav",
+    "start": 916.434,
+    "dur": 5.262
    }
   ]
  },
  {
   "id": "s19_bain",
-  "start": 509.973,
-  "end": 537.035,
+  "start": 923.896,
+  "end": 963.376,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "Nous jouâmes jusqu'au soir. Ma mère vint me chercher : demain, il faudrait se lever à la première heure, pour commencer l'année au Msid.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/35c72a84a3f8.wav",
+    "start": 925.296,
+    "dur": 8.538
+   },
    {
     "who": "narrator",
     "text": "Au coucher du soleil, ma mère m'emmena à la cuisine. L'auge de bois débordait d'eau bouillante. Elle y versa un seau d'eau fraîche, et me plongea dedans.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/fb5dfe68eaa3.wav",
-    "start": 510.973,
-    "dur": 9.277
+    "start": 934.635,
+    "dur": 9.633
    },
    {
     "who": "mohammed",
     "text": "Aïe ! Arrête de frotter si fort !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/453c467c7a82.wav",
-    "start": 520.55,
+    "start": 945.068,
     "dur": 3.887
    },
    {
     "who": "narrator",
     "text": "Elle me frotta avec une rondelle de liège. Et je sombrai dans le noir. Un noir peuplé de petites filles taquines, et de barbiers bavards.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d15627976911.wav",
-    "start": 524.737,
-    "dur": 10.998
+    "start": 949.755,
+    "dur": 11.421
    }
   ]
  },
  {
   "id": "s20_reveil",
-  "start": 537.035,
-  "end": 574.415,
+  "start": 963.376,
+  "end": 1031.392,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "La voix de ma mère me tira des profondeurs du sommeil. Je nageai un moment dans une lumière rouge, parcourue d'étincelles, et d'astres errants.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/65290fe90ef3.wav",
+    "start": 965.976,
+    "dur": 12.672
+   },
    {
     "who": "zoubida",
     "text": "Réveille-toi ! Il est trois heures du matin ! Je t'ai préparé ton beau gilet, ta chemise neuve, et ta sacoche brodée !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f52059d57809.wav",
-    "start": 538.035,
+    "start": 979.449,
     "dur": 7.147
    },
    {
     "who": "narrator",
     "text": "Je pleurnichai. Ma mère fut impitoyable : elle se mouilla la main, et me la passa sur la figure.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a006023c37b2.wav",
-    "start": 545.482,
-    "dur": 8.113
+    "start": 987.396,
+    "dur": 8.426
    },
    {
     "who": "father",
     "text": "Prépare-toi pour fêter l'Achoura au Msid. Du courage ! Du courage !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/5aa20e092d71.wav",
-    "start": 553.895,
+    "start": 996.622,
     "dur": 4.929
+   },
+   {
+    "who": "narrator",
+    "text": "Ce fut en somnambule que je me lavai les yeux, et me rinçai la bouche.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/87b01cc5cd55.wav",
+    "start": 1002.351,
+    "dur": 4.616
    },
    {
     "who": "narrator",
     "text": "La chemise neuve me grattait horriblement, et craquait comme du papier froissé. Puis le gilet rouge, la sacoche, et la djellaba blanche, parfumée à la fleur d'oranger.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/dcf1d0d85720.wav",
-    "start": 559.124,
-    "dur": 11.469
+    "start": 1007.767,
+    "dur": 11.917
    },
    {
     "who": "narrator",
     "text": "Me voilà devenu un autre homme !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/5badfb1b32ce.wav",
-    "start": 570.893,
-    "dur": 2.223
+    "start": 1020.484,
+    "dur": 2.308
+   },
+   {
+    "who": "narrator",
+    "text": "Tout était neuf. Plein de dignité, je précédai mon père dans l'escalier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/5bcc66a70e94.wav",
+    "start": 1023.592,
+    "dur": 5.6
    }
   ]
  },
  {
   "id": "s21_babouches",
-  "start": 574.415,
-  "end": 595.268,
+  "start": 1031.392,
+  "end": 1074.206,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "La lumière brillait à toutes les fenêtres. Celui qui resterait au lit un matin comme celui-ci serait paresseux pendant douze mois.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6549d50b6741.wav",
+    "start": 1032.792,
+    "dur": 9.252
+   },
    {
     "who": "narrator",
     "text": "Je perdais mes babouches tous les trois pas. Mais j'étais heureux.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/fcd3b54ea743.wav",
-    "start": 575.415,
-    "dur": 3.488
+    "start": 1042.844,
+    "dur": 3.629
    },
    {
     "who": "narrator",
     "text": "Dans le noir, l'appel d'un mendiant, et le bruit de sa canne. Sûrement un aveugle.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/354f788c0926.wav",
-    "start": 579.203,
-    "dur": 6.132
+    "start": 1047.274,
+    "dur": 6.36
    },
    {
     "who": "narrator",
     "text": "Mon père me glissa dans la main une pièce de cinq francs, et me mit dans les bras le cierge. Mes cadeaux de nouvel an, pour le maître.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/73442e34e5d2.wav",
-    "start": 585.635,
-    "dur": 8.333
+    "start": 1054.434,
+    "dur": 8.657
+   },
+   {
+    "who": "narrator",
+    "text": "Les passants nous souriaient. Les boutiques étaient ouvertes, les rues éclairées. Et de loin, j'aperçus les fenêtres de notre école.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d12826572801.wav",
+    "start": 1063.891,
+    "dur": 8.114
    }
   ]
  },
  {
   "id": "s22_feerie",
-  "start": 595.268,
-  "end": 634.439,
+  "start": 1074.206,
+  "end": 1159.492,
   "lines": [
    {
     "who": "narrator",
     "text": "Je faillis lâcher mon cierge. Des grappes de lumière transformaient la façade de l'école en un décor de féerie.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6f007a558cca.wav",
-    "start": 596.268,
-    "dur": 7.942
+    "start": 1077.206,
+    "dur": 8.248
+   },
+   {
+    "who": "narrator",
+    "text": "Les voix des élèves montaient, claires, dans la fraîcheur du matin. Elles rivalisaient de gaieté avec les petites flammes, dans leur bain d'huile, et d'eau teintée des couleurs de l'arc-en-ciel.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/52db9cacf0d2.wav",
+    "start": 1086.253,
+    "dur": 11.844
    },
    {
     "who": "narrator",
     "text": "Je n'étais plus le prince unique au gilet amarante, mais un membre d'une congrégation de jeunes seigneurs, chantant sous la direction d'un roi de légende.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/18eace2f53d9.wav",
-    "start": 604.51,
-    "dur": 8.495
+    "start": 1098.897,
+    "dur": 8.831
    },
    {
     "who": "narrator",
     "text": "Je remis solennellement mon cierge, et ma pièce de cinq francs.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/dfb9edd6ad40.wav",
-    "start": 613.305,
-    "dur": 3.841
+    "start": 1108.528,
+    "dur": 3.985
+   },
+   {
+    "who": "narrator",
+    "text": "Les enfants se serrèrent pour me laisser une place. Je scandai les versets avec conviction.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/79695a25d9d0.wav",
+    "start": 1113.313,
+    "dur": 6.141
+   },
+   {
+    "who": "narrator",
+    "text": "Ma chemise collait à mon corps. Des picotements insupportables me parcouraient le dos.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c8cf96ac3a15.wav",
+    "start": 1120.254,
+    "dur": 6.238
    },
    {
     "who": "narrator",
     "text": "La chaleur devenait étouffante. Un élève saigna du nez sur ses beaux habits.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/53bdc30ff5f2.wav",
-    "start": 617.446,
-    "dur": 5.386
+    "start": 1127.291,
+    "dur": 5.588
    },
    {
     "who": "narrator",
     "text": "Je levai les yeux. Les petites flammes dansaient, grésillaient. Je me taisais pour les entendre psalmodier, comme nous, la parole de Dieu.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6f87725fdb18.wav",
-    "start": 623.131,
-    "dur": 10.008
+    "start": 1133.679,
+    "dur": 10.4
+   },
+   {
+    "who": "narrator",
+    "text": "Ce matin-là, les objets les plus ordinaires, les êtres les plus déshérités, mêlaient leurs voix aux nôtres, et clamaient avec nous la grandeur, et la miséricorde de Dieu.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/0adae1251f6d.wav",
+    "start": 1144.88,
+    "dur": 12.412
    }
   ]
  },
  {
   "id": "s23_aube",
-  "start": 634.439,
-  "end": 667.78,
+  "start": 1159.492,
+  "end": 1221.053,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "Après le Coran, nous chantâmes des cantiques. Des pères psalmodiaient avec nous. Ils célébraient l'Achoura au Msid, comme au temps de leur enfance.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d6118d1bcf18.wav",
+    "start": 1161.692,
+    "dur": 10.459
+   },
    {
     "who": "narrator",
     "text": "À l'approche du jour, la lumière des veilleuses s'anémiait. Deux moineaux voletèrent autour des lustres.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/34e3d71e0a78.wav",
-    "start": 635.439,
-    "dur": 6.184
+    "start": 1172.951,
+    "dur": 6.426
    },
    {
     "who": "fqih",
     "text": "Seigneur, fais régner sur cette terre l'ordre, la justice, et la compassion.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/dc1b538d0d9f.wav",
-    "start": 641.922,
+    "start": 1180.178,
     "dur": 7.818
    },
    {
     "who": "eleves",
     "text": "Amine ! Amine !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ae7aa83a33e5.wav",
-    "start": 650.04,
+    "start": 1188.796,
     "dur": 3.673
    },
    {
     "who": "narrator",
     "text": "C'était la première fois que je voyais le fqih sans sa baguette de cognassier. Il me parut beau.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/76ee876b873a.wav",
-    "start": 654.014,
-    "dur": 6.534
+    "start": 1193.269,
+    "dur": 6.794
+   },
+   {
+    "who": "narrator",
+    "text": "Enveloppé dans sa djellaba à raies blanches et noires, les épaules couvertes d'un burnous gris.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/391f742c0888.wav",
+    "start": 1200.863,
+    "dur": 5.88
    },
    {
     "who": "fqih",
     "text": "Je vous donne trois jours de repos.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/85a62e4dedd9.wav",
-    "start": 660.848,
+    "start": 1207.543,
     "dur": 1.925
    },
    {
     "who": "narrator",
     "text": "Et comme la rentrée tombait un jeudi : quatre jours !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/8ad0379dbd73.wav",
-    "start": 663.072,
-    "dur": 3.407
+    "start": 1210.267,
+    "dur": 3.534
+   },
+   {
+    "who": "narrator",
+    "text": "J'embrassai la main du fqih. Il me chargea de ses vœux pour mes parents.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/e04ba675a4a5.wav",
+    "start": 1214.602,
+    "dur": 4.252
    }
   ]
  },
  {
   "id": "s24_idriss",
-  "start": 667.78,
-  "end": 683.856,
+  "start": 1221.053,
+  "end": 1264.918,
   "lines": [
+   {
+    "who": "narrator",
+    "text": "La rue était maintenant très animée. Presque tous les passants s'étaient habillés de neuf.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/124d2845ff44.wav",
+    "start": 1223.653,
+    "dur": 5.781
+   },
    {
     "who": "narrator",
     "text": "À la maison, ma mère avait mis sa belle mansouria à rayures de satin jaune.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b3e922fc3101.wav",
-    "start": 668.78,
-    "dur": 5.16
+    "start": 1230.235,
+    "dur": 5.372
+   },
+   {
+    "who": "narrator",
+    "text": "La bouilloire chantait. Ma mère avait préparé une pile de galettes feuilletées, au beurre frais et au miel. C'était un délice.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/fda57e563640.wav",
+    "start": 1236.407,
+    "dur": 10.438
    },
    {
     "who": "narrator",
     "text": "Puis mon père m'emmena à Moulay Idriss, le patron de la ville. Sur la place des notaires, il acheta un plat de céramique bleue.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f8cd8d42222a.wav",
-    "start": 674.239,
-    "dur": 8.316
+    "start": 1247.645,
+    "dur": 8.649
+   },
+   {
+    "who": "narrator",
+    "text": "Dans le sanctuaire, nous fîmes la prière, puis nous rentrâmes déjeuner.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/635e5f0dddb9.wav",
+    "start": 1257.093,
+    "dur": 5.625
    }
   ]
  },
  {
   "id": "s25_aicha",
-  "start": 683.856,
-  "end": 755.935,
+  "start": 1264.918,
+  "end": 1410.246,
   "lines": [
    {
     "who": "narrator",
     "text": "À la fin du déjeuner, Lalla Aïcha vint nous surprendre.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/f4ba863ebb7d.wav",
-    "start": 684.856,
-    "dur": 4.291
+    "start": 1266.318,
+    "dur": 4.457
+   },
+   {
+    "who": "narrator",
+    "text": "Les deux femmes se prodiguèrent des baisers pointus, et des mots aimables. Mon père, discrètement, disparut.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/c9359b802078.wav",
+    "start": 1271.575,
+    "dur": 9.511
+   },
+   {
+    "who": "narrator",
+    "text": "Lalla Aïcha avait beaucoup à raconter. Et ma mère frétillait de curiosité.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/01cccdefba2e.wav",
+    "start": 1281.886,
+    "dur": 5.225
    },
    {
     "who": "zoubida",
     "text": "Lalla Aïcha, installe-toi sur le grand divan, à la place d'honneur !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d48589460516.wav",
-    "start": 689.447,
+    "start": 1287.911,
     "dur": 5.687
+   },
+   {
+    "who": "narrator",
+    "text": "Ce n'était pas vraiment un récit, mais une série d'événements, accolés les uns aux autres. Parfois, Lalla Aïcha elle-même ne savait plus où elle en était.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/1f99ad00c63c.wav",
+    "start": 1294.398,
+    "dur": 9.985
+   },
+   {
+    "who": "narrator",
+    "text": "À côté de chez elle, pour distinguer les voisines, on citait le métier du mari : la femme de l'épicier, la femme du tailleur, la femme du marchand de pétrole...",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/fa76eccb3f02.wav",
+    "start": 1305.183,
+    "dur": 9.924
    },
    {
     "who": "aicha",
     "text": "Dans la maison voisine, toutes les femmes s'appellent Khadija ! Il serait plus simple de dire : Khadija la sourde, Khadija la louchonne !",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/b390459438ca.wav",
-    "start": 695.434,
+    "start": 1315.907,
     "dur": 12.191
+   },
+   {
+    "who": "narrator",
+    "text": "Nous rîmes de bon cœur. Puis ma mère prépara son thé des grands jours, avec un bouquet de sauge, et d'absinthe.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/039c54917f52.wav",
+    "start": 1328.898,
+    "dur": 8.25
    },
    {
     "who": "zoubida",
     "text": "Et ton homme ? Ses affaires ?",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/6d448213d808.wav",
-    "start": 707.925,
+    "start": 1337.948,
     "dur": 1.883
    },
    {
     "who": "aicha",
     "text": "Il emploie trois ouvriers. Les babouches se vendent bien. Il m'a promis un caftan de drap abricot.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ca2b63b636b2.wav",
-    "start": 710.108,
+    "start": 1340.631,
     "dur": 7.336
+   },
+   {
+    "who": "zoubida",
+    "text": "Louange à Dieu ! Les difficultés finissent toujours par s'aplanir.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a07aa7934038.wav",
+    "start": 1348.767,
+    "dur": 4.395
+   },
+   {
+    "who": "aicha",
+    "text": "Oui...",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/2bf16e475712.wav",
+    "start": 1353.961,
+    "dur": 0.744
    },
    {
     "who": "narrator",
     "text": "Puis, subitement, Lalla Aïcha se tut.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/7fdc85909311.wav",
-    "start": 717.744,
-    "dur": 2.88
+    "start": 1355.506,
+    "dur": 2.99
+   },
+   {
+    "who": "zoubida",
+    "text": "À quoi penses-tu, Lalla Aïcha ? Tu sembles triste.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/1121c31fe716.wav",
+    "start": 1359.296,
+    "dur": 3.273
    },
    {
     "who": "aicha",
     "text": "Nous sommes de bien faibles créatures, nous les femmes. Gardons-nous de faire confiance aux hommes. Ils sont... Ils sont...",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/918d911f7a4f.wav",
-    "start": 720.924,
+    "start": 1363.369,
     "dur": 9.699
+   },
+   {
+    "who": "narrator",
+    "text": "Elle ne trouva pas le mot juste. Elle agita les mains à la hauteur de ses épaules, et leva les yeux au ciel.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/a3d342eeef59.wav",
+    "start": 1373.868,
+    "dur": 7.757
    },
    {
     "who": "narrator",
     "text": "Ma mère m'envoya jouer sur la terrasse. Je compris : elles avaient des secrets.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/0e14fe44d96f.wav",
-    "start": 730.922,
-    "dur": 5.714
+    "start": 1382.425,
+    "dur": 5.93
    },
    {
     "who": "narrator",
     "text": "Seul sur la terrasse, j'inventais les rythmes les plus barbares. Et en bas, les deux femmes papotaient, papotaient, papotaient.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/4ce7108272bf.wav",
-    "start": 736.937,
-    "dur": 8.729
+    "start": 1389.155,
+    "dur": 9.079
    },
    {
     "who": "narrator",
     "text": "Le soir, le soleil en robe d'or baignait la ville de rose fané. La première étoile clignota. Lalla Aïcha partit.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/e2d4a91bb289.wav",
-    "start": 745.966,
-    "dur": 8.67
+    "start": 1399.034,
+    "dur": 9.012
    }
   ]
  },
  {
   "id": "s26_fin",
-  "start": 755.935,
-  "end": 784.989,
+  "start": 1410.246,
+  "end": 1447.653,
   "lines": [
    {
     "who": "narrator",
     "text": "La lampe fut allumée. Nous étions sans entrain. Mon tambour et ma trompette gisaient sur un matelas.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/8cdd97bc49b9.wav",
-    "start": 756.935,
-    "dur": 7.388
+    "start": 1411.646,
+    "dur": 7.676
+   },
+   {
+    "who": "narrator",
+    "text": "J'en étais dégoûté. Je retrouvai avec plaisir mes vieux vêtements.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/d830daecaf53.wav",
+    "start": 1420.122,
+    "dur": 4.686
    },
    {
     "who": "narrator",
     "text": "De mes habits neufs, je ne gardai que la chemise. Grâce à la chaleur de mon corps, son tissu s'était humanisé.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/720f60e98a59.wav",
-    "start": 764.623,
-    "dur": 8.413
+    "start": 1425.608,
+    "dur": 8.738
    },
    {
     "who": "narrator",
     "text": "Pour échapper au bruit des tambours, j'ouvris ma Boîte à merveilles. Mes yeux, hélas, n'avaient plus la force de regarder.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/4f64511bbd0c.wav",
-    "start": 773.336,
-    "dur": 8.853
+    "start": 1435.146,
+    "dur": 9.208
    }
   ]
  },
  {
   "id": "s27_fiche",
-  "start": 784.989,
-  "end": 823.887,
+  "start": 1447.653,
+  "end": 1490.35,
   "lines": [
    {
     "who": "narrator",
     "text": "Fiche de révision. Chapitre sept : l'Achoura, en quatre temps.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ee2a3d39c696.wav",
-    "start": 785.789,
-    "dur": 5.384
+    "start": 1448.453,
+    "dur": 5.593
    },
    {
     "who": "narrator",
     "text": "Les tambourins, le barbier, la nuit au Msid, et la visite de Lalla Aïcha.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/bffefb0769eb.wav",
-    "start": 791.473,
-    "dur": 5.968
+    "start": 1454.846,
+    "dur": 6.192
    },
    {
     "who": "narrator",
     "text": "Le détail à retenir : chez le barbier, on parle de Moulay Larbi, sans enfants, et d'une nouvelle épouse. Or Moulay Larbi, c'est le mari de Lalla Aïcha. Et le barbier a une fille à marier...",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/ff0e98a377e0.wav",
-    "start": 797.741,
-    "dur": 15.2
+    "start": 1461.839,
+    "dur": 15.805
    },
    {
     "who": "narrator",
     "text": "Thèmes : la fête, le regard de l'enfant, la condition de la femme. Au chapitre huit : le secret de Lalla Aïcha.",
     "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep07/78d25f836c39.wav",
-    "start": 813.241,
-    "dur": 9.346
+    "start": 1478.444,
+    "dur": 9.706
    }
   ]
  },
  {
   "id": "s28_endcard",
-  "start": 823.887,
-  "end": 831.887,
+  "start": 1490.35,
+  "end": 1498.35,
   "lines": []
  }
 ]

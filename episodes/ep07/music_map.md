@@ -1,4 +1,6 @@
-# Ep07 music map (R10), 2026-11-04
+# Ep07 music map (R10), 2026-11-04 — **v2 update 2026-11-05**
+
+**v2 (redo, 24.97 min):** the cold open s01_cold is gone. The episode now opens on a calm hook (s01_hook: city of tambourines, the promise of the night) under room tone, pigeons and far tambourines, then the **ep06 rosette logo intro s02_titre with its box-theme music (T0_titre, rendered from tools/audio/score_ep06.py s02)**. M1's opening drone at t=0 is dropped; the subjective razor drone (section B) stays at s16. Every other cue keeps its v1 *line* anchor: `mix_ep07.V2()` maps the v1 times below to the same narrated line in the v2 timeline (e.g. M2 596 → 1074.9 s, C1 120.1 → 204.8 s, M3 785 → 1447.7 s). The times in the tables below are v1 times.
 
 Rule: score music only in 3 places. Everything else is diegetic sound, Foley, or silence.
 Times come from timing.json (runtime 13.86 min). The cue sheet (all sound) is cuesheet.md, built by `python3 tools/cuesheet.py episodes/ep07`.

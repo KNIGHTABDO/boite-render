@@ -21,8 +21,10 @@ export const TIMING = await (await fetch(new URL('../timing.json', import.meta.u
 const INS = { flash_facade_feerie: 'flash_facade' };
 export const insId = n => 'i_' + (INS[n] || n);
 
-/** scene-local line spans [[t0, t1], ...] */
-export function lines(id) { const s = TIMING.find(x => x.id === id); return s.lines.map(l => [l.start - s.start, l.start - s.start + l.dur]); }
+/** scene-local line spans [[t0, t1], ...] of ALL the scene's lines (v2 order) */
+export function allLines(id) { const s = TIMING.find(x => x.id === id); return s.lines.map(l => [l.start - s.start, l.start - s.start + l.dur]); }
+/** the v1 lines only (beats without new: true): scene code written for v1 keeps indexing L[j] by its v1 line number */
+export function lines(id) { const bs = beatsOf(id); return allLines(id).filter((_, j) => !bs[j]?.new); }
 export const sceneDur = id => { const s = TIMING.find(x => x.id === id); return s.end - s.start; };
 export const beatsOf = id => { const n = TIMING.find(x => x.id === id).lines.length; return BEATS.filter(b => b.scene === id && !(b.mode === 'title' && !n)); };
 
@@ -31,26 +33,29 @@ export const black = () => { c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.fillS
 
 const SZ = { W: 'W', M: 'M', CU: 'CU' };
 export function beatScene(id, { shots = {}, plan = {}, pre, fadeIn, fadeOut, plate, extra = [] }) {
-  const bs = beatsOf(id), L = lines(id), segs = [], covers = {};
-  const segFor = (key, at, o = {}) => key === 'black' ? ac(at, black, o) : shots[key] ? ac(at, shots[key].fn, o) : st(key, at, o.move, {}, o.fx);
+  const bs = beatsOf(id), L = allLines(id), segs = [], covers = {};
+  let cur = null;   // key of the segment on screen (a new beat on the same shot/still adds no cut: stills would restart their move)
+  const segFor = (key, at, o = {}) => key === 'black' ? ac(at, black, o) : shots[key] ? ac(at, shots[key].fn, o) : { ...st(key, at, o.move, {}, o.fx), ...(o.dissolve ? { dissolve: true } : {}) };
   const cut = (key, t, size, on) => { if (shots[key]) (covers[key] ||= []).push({ t, size: SZ[size] || 'M', on }); };
   const who = b => { const p = plan[b.id] || {}; return p.on || (b.cast?.includes(b.speaker) && !b.speaker_off ? b.speaker : b.cast?.[0]); };
-  const keyOf = (b, j) => plan[b.id]?.shot ?? Object.keys(shots)[0];
+  // v2: a new beat with no plan stays on its still (paintings) or the previous beat's shot (the next one's at a scene start)
+  const keyOf = (b, j) => plan[b.id]?.shot ?? b.still ?? (b.new ? (j > 0 ? keyOf(bs[j - 1], j - 1) : keyOf(bs.find(x => !x.new) || {}, 1)) : Object.keys(shots)[0]);
   if (pre !== undefined || (L[0] && L[0][0] > .3)) {
-    const k = pre ?? keyOf(bs[0], 0); segs.push(segFor(k, [0, 0]));
+    const k = pre ?? keyOf(bs[0], 0); segs.push(segFor(k, [0, 0])); cur = k;
     cut(k, 0, plan[bs[0]?.id]?.preSize || bs[0]?.size, who(bs[0]));
   }
   bs.forEach((b, j) => {
     const p = plan[b.id] || {}, key = keyOf(b, j), [t0, t1] = L[j] || [0, 0], D = Math.max(.1, t1 - t0);
     let a = p.insAt ?? .12;
-    if (!(b.ins?.length && !p.noIns && a < .02)) segs.push(segFor(key, [j, p.at ?? 0], p));   // an insert right on the line start replaces the opening shot
+    const same = key === cur && ((b.new && !plan[b.id]) || (!shots[key] && key !== 'black' && !p.move && !p.at));   // no re-push of the still already on screen
+    if (!(b.ins?.length && !p.noIns && a < .02) && !same) { segs.push(segFor(key, [j, p.at ?? 0], p)); cur = key; }   // an insert right on the line start replaces the opening shot
     cut(key, t0, p.size || b.size, who(b));
     for (const x of p.cover || []) cut(x.shot || key, t0 + x.f * D, x.size, x.on);
     if (b.ins?.length && !p.noIns) {
-      for (const [n, d] of b.ins) { segs.push(st(insId(n), [j, a], p.insMove || 'push')); a += d / D; }
-      if (a < .97) segs.push(segFor(p.after || key, [j, a], p));
+      for (const [n, d] of b.ins) { segs.push(st(insId(n), [j, a], p.insMove || 'push')); a += d / D; cur = null; }
+      if (a < .97) { segs.push(segFor(p.after || key, [j, a], p)); cur = p.after || key; }
     }
-    for (const [f, k, o] of p.segs || []) segs.push(segFor(k, [j, f], o));   // extra cuts inside the beat: [fraction, key|'black'|still, opts]
+    for (const [f, k, o] of p.segs || []) { segs.push(segFor(k, [j, f], o)); cur = k; }   // extra cuts inside the beat: [fraction, key|'black'|still, opts]
   });
   segs.push(...extra);
   return make({

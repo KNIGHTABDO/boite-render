@@ -1,0 +1,2465 @@
+{
+ "episode": "ep07",
+ "chapter": 7,
+ "beats": [
+  {
+   "id": "b001",
+   "scene": "s01_cold",
+   "text": "Ce jour-là, sous le rasoir de Si Abderrahman, j'ai connu la peur.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "serviette",
+    "rasoir"
+   ],
+   "visual": "Pre-roll 2.2 s on black: only the razor on the oily stone, shhk... shhk. Then ECU insert of the ebony razor stroking the stone; cut to a CU of Mohammed (front, yaw < 30°) wrapped to the chin in a red-and-yellow striped towel, eyes huge; behind him the barber's mouth talks, out of focus.",
+   "cam": "pov_mirror",
+   "pov": "mohammed",
+   "peak": true,
+   "cut": "J",
+   "ins": [
+    [
+     "rasoir_pierre",
+     1.6
+    ]
+   ],
+   "sfx": [
+    "razor_strop x4 (ticking clock)",
+    "barber voice muffled + low drone rising"
+   ],
+   "badge": "CHAPITRE VII · La Boîte à merveilles @0:03",
+   "music": "drone"
+  },
+  {
+   "id": "b002",
+   "scene": "s01_cold",
+   "text": "Et quelques heures plus tard, la plus belle nuit de mon enfance.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "rasoir"
+   ],
+   "visual": "The blade touches the nape (insert); SMASH: a 0.8 s flash of the Msid façade ablaze with coloured lights, then black and total silence on 'la plus belle nuit'.",
+   "cam": "pov_mirror",
+   "pov": "mohammed",
+   "cut": "smash",
+   "ins": [
+    [
+     "lame_nuque",
+     0.7
+    ],
+    [
+     "flash_facade_feerie",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "silence at the touch",
+    "breath in"
+   ]
+  },
+  {
+   "id": "b003",
+   "scene": "s02_roadmap",
+   "mode": "title",
+   "text": "1 Tambourins et lustres · 2 Le souk et le barbier · 3 La nuit de l'Achoura",
+   "dur": 4.0,
+   "visual": "3 panels, 1.5 s each on a bendir hit, + 'Fiche de révision à la fin'"
+  },
+  {
+   "id": "b004",
+   "scene": "s03_tambourins",
+   "text": "Deux jours avant l'Achoura, les femmes de la maison s'achetèrent toutes des tambourins. Ma mère essaya son bendir.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "zineb"
+   ],
+   "props": [
+    "bendir",
+    "tambourin"
+   ],
+   "visual": "Card DEUX JOURS AVANT L'ACHOURA burns in on the first bendir hit. Zoubida weighs a goatskin bendir, taps it; on the balcony behind, Zineb waits with a cheap little tambourine.",
+   "cam": "master",
+   "cut": "hard",
+   "ins": [
+    [
+     "grappes_tambourins",
+     1.2
+    ]
+   ],
+   "sfx": [
+    "bendir_hit @tambourins",
+    "women tuning tambourines, off-screen"
+   ],
+   "action": "strike",
+   "card": "DEUX JOURS AVANT L'ACHOURA"
+  },
+  {
+   "id": "b005",
+   "scene": "s03_tambourins",
+   "text": "Des coups graves et des coups secs parlèrent un dialecte rude, mélange de soleil et de vent de haute montagne.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bendir"
+   ],
+   "visual": "Zoubida plays: deep strokes and dry strokes, her face lit up, eyes half closed (low angle, window light).",
+   "cam": "low",
+   "sfx": [
+    "bendir_hit pattern synced to 'graves' / 'secs'"
+   ],
+   "action": "strike"
+  },
+  {
+   "id": "b006",
+   "scene": "s03_tambourins",
+   "text": "Zineb tapait comme une sourde sur un minuscule tambourin de pacotille. Moi, j'avais une trompette en fer-blanc. Elle éclatait dans la maison comme un cri d'alarme, parfois, comme un sanglot d'agonisant.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "terrasse_rampe",
+   "cast": [
+    "zineb",
+    "mohammed"
+   ],
+   "props": [
+    "tambourin",
+    "trompette"
+   ],
+   "visual": "Zineb bangs her tambourine like a deaf girl; reverse: Mohammed lifts his painted tin trumpet and blows; the sound cracks like an alarm.",
+   "cam": "reverse",
+   "sfx": [
+    "tambourine_hit (off-beat)",
+    "toy_trumpet @alarme",
+    "toy_trumpet strangled @sanglot"
+   ],
+   "action": "blow"
+  },
+  {
+   "id": "b007",
+   "scene": "s03_tambourins",
+   "text": "Va donc braire sur la terrasse !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "trompette"
+   ],
+   "visual": "Zoubida, hands over her ears, points him to the stairs up to the terrace.",
+   "cam": "master",
+   "action": "point"
+  },
+  {
+   "id": "b008",
+   "scene": "s04_chat",
+   "text": "Je gonflai mes joues, et soufflai de toutes mes forces. On aurait dit un bébé qui perce ses premières dents.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "terrasse",
+   "cast": [
+    "mohammed",
+    "cat2"
+   ],
+   "props": [
+    "trompette",
+    "mur"
+   ],
+   "visual": "On the terrace, the whole city hums with tambourines; Mohammed puffs his cheeks and blows; the note chokes. On the wall the tabby cat (cat2) dozes in the sun.",
+   "cam": "master",
+   "pov": "none",
+   "sfx": [
+    "tambourine city hum bed",
+    "toy_trumpet strangled"
+   ],
+   "action": "blow"
+  },
+  {
+   "id": "b009",
+   "scene": "s04_chat",
+   "text": "Le chat de Zineb fit un saut d'épouvante, et s'engouffra dans une gouttière. Une tête inquiète surgit du mur voisin, et disparut.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "terrasse",
+   "cast": [
+    "cat2",
+    "mohammed"
+   ],
+   "props": [
+    "chat",
+    "mur",
+    "gouttiere"
+   ],
+   "visual": "The cat jumps in terror, nearly falls off the wall, dives into the gutter (3D cat, whole jump in frame). Hold 0.6 s; a worried head pops over the party wall (painted head layer) and drops away.",
+   "cam": "reverse",
+   "sfx": [
+    "cat_yowl",
+    "cat_jump_land",
+    "gutter rattle"
+   ],
+   "action": "jump",
+   "hold": [
+    0.8,
+    "comic timing"
+   ]
+  },
+  {
+   "id": "b010",
+   "scene": "s05_hammoussa",
+   "text": "Un de tes camarades t'attend dans le patio. Prends tes babouches : le fqih a besoin de toi !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "babouche"
+   ],
+   "visual": "Mohammed leans over the stair rail, listening down (high angle from below).",
+   "cam": "low",
+   "speaker_off": true,
+   "sfx": [
+    "mother's voice from below: reverb 'patio', dist .5"
+   ]
+  },
+  {
+   "id": "b011",
+   "scene": "s05_hammoussa",
+   "text": "C'était Hammoussa, « pois chiche », le plus petit élève de l'école.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "hammoussa",
+    "mohammed"
+   ],
+   "props": [
+    "babouche"
+   ],
+   "visual": "In the patio waits the tiniest pupil, Hammoussa (≈1.0 m, too-big djellaba); Mohammed comes down, slipping on his babouches.",
+   "cam": "master",
+   "label": "Hammoussa (« pois chiche ») = Azzouz Berrada",
+   "action": "walk"
+  },
+  {
+   "id": "b012",
+   "scene": "s05_hammoussa",
+   "text": "Dépêche-toi ! Il faut préparer les lustres de l'Achoura !",
+   "speaker": "hammoussa",
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "hammoussa"
+   ],
+   "props": [],
+   "visual": "Hammoussa, out of breath, urgent, waves him out.",
+   "cam": "ots",
+   "action": "wave",
+   "cut": "hard",
+   "figurative": [
+    "lustre"
+   ]
+  },
+  {
+   "id": "b013",
+   "scene": "s06_lustres",
+   "text": "Au Msid, on découpait de minuscules mèches dans une vieille cotonnade blanche.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_lustres",
+   "cast": [
+    "mohammed",
+    "kid1",
+    "kid2"
+   ],
+   "props": [
+    "cotonnade",
+    "ciseaux",
+    "meche"
+   ],
+   "visual": "Msid, afternoon light: Mohammed sits in a group cutting tiny wicks from an old white cloth (seated on the mat: pose solved and checked, or framed above the waist).",
+   "cam": "master",
+   "ins": [
+    [
+     "meches_ciseaux",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "scissors_cut x3",
+    "cloth_tear",
+    "pupils murmur bed"
+   ]
+  },
+  {
+   "id": "b014",
+   "scene": "s06_lustres",
+   "text": "Chaque mèche était agrafée à une lamelle de fer-blanc, posée sur le bord d'un verre : moitié eau, moitié huile d'olive. Et dans l'eau, des poudres de couleur.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "meche",
+    "lamelle",
+    "verre",
+    "huile",
+    "poudre"
+   ],
+   "visual": "Procedure montage, 1 s each: a rolled wick clipped onto a tin strip / the strip hooked on the rim of a glass, half water, half oil / coloured powder sprinkled, the water turning ruby.",
+   "sfx": [
+    "tin_click",
+    "water_pour_glass",
+    "powder hiss"
+   ]
+  },
+  {
+   "id": "b015",
+   "scene": "s06_lustres",
+   "text": "Les poudres, en petits paquets, reposaient dans les babouches du fqih.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "babouche",
+    "poudre"
+   ],
+   "visual": "Gag insert, held: the paper packets of coloured powder sitting inside the fqih's big yellow babouches.",
+   "hold": [
+    1.6,
+    "gag"
+   ]
+  },
+  {
+   "id": "b016",
+   "scene": "s06_lustres",
+   "text": "Les grands, suspendus à une échelle branlante, accrochaient au plafond les lustres en fer forgé. Hammoussa se coupa le pouce avec une lamelle, et partit en pleurnichant doucement.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid_lustres",
+   "cast": [
+    "grand1",
+    "grand2",
+    "hammoussa"
+   ],
+   "props": [
+    "echelle",
+    "lustre"
+   ],
+   "visual": "Low angle: the big boys on a wobbly ladder hang wrought-iron chandeliers from the ceiling; insert: Hammoussa cuts his thumb on a tin strip, sucks it, leaves whimpering softly.",
+   "cam": "low",
+   "ins": [
+    [
+     "pouce_lamelle",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "ladder_wood_creak",
+    "metal clinks",
+    "small whimper"
+   ],
+   "action": "climb"
+  },
+  {
+   "id": "b017",
+   "scene": "s06_lustres",
+   "text": "Le soir, nous chantâmes des cantiques, et le maître pria, même pour le Sultan, prince des Croyants.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_lustres",
+   "cast": [
+    "fqih",
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3"
+   ],
+   "props": [
+    "lustre"
+   ],
+   "visual": "Sunset through the door; the pupils chant canticles, the fqih prays with open hands, chandeliers now hanging above them, still unlit.",
+   "cam": "reverse",
+   "sfx": [
+    "cantique chant (sung, not TTS)",
+    "fqih prayer murmur"
+   ],
+   "light": "sunset"
+  },
+  {
+   "id": "b018",
+   "scene": "s07_petrole",
+   "text": "À la maison, ma mère était très ennuyée : plus de pétrole dans la lampe ! Driss El Aouad, notre voisin, accepta d'aller en acheter.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "lampe"
+   ],
+   "visual": "The room at dusk: Zoubida shakes the dry petrol lamp, worried; she hurries out to the landing.",
+   "cam": "master",
+   "action": "shake",
+   "light": "dusk",
+   "figurative": [
+    "petrole"
+   ]
+  },
+  {
+   "id": "b019",
+   "scene": "s07_petrole",
+   "text": "Des bougies et des allumettes !",
+   "speaker": "vendeur",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "fenetre"
+   ],
+   "visual": "Mohammed at the window grille, listening to the alley below (his POV: dark alley, nobody visible).",
+   "cam": "pov_fenetre",
+   "pov": "mohammed",
+   "speaker_off": true,
+   "sfx": [
+    "vendeur cry: street reverb, dist .8"
+   ],
+   "figurative": [
+    "bougie"
+   ]
+  },
+  {
+   "id": "b020",
+   "scene": "s07_petrole",
+   "text": "Les bougies ? C'était bon pour les pauvres.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "lampe"
+   ],
+   "visual": "Mohammed's proud little face looking at the fine lamp with its mirror (still dark).",
+   "cam": "ots",
+   "figurative": [
+    "bougie"
+   ]
+  },
+  {
+   "id": "b021",
+   "scene": "s07_petrole",
+   "text": "La nuit tomba brusquement. Nous attendions dans le noir. Enfin, quelqu'un toussa à la porte. Ma mère courut chercher la bouteille de pétrole, et à la lumière d'un bout de chandelle, elle remplit la lampe, et alluma.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "lampe",
+    "bougie",
+    "bouteille",
+    "petrole",
+    "porte"
+   ],
+   "visual": "The night falls hard (cut to almost black). A cough at the door. Zoubida comes back with Rahma's bottle; by a candle-stub's light she fills the lamp, cleans the wick, lights it: the room blooms warm.",
+   "cam": "master",
+   "ins": [
+    [
+     "bout_chandelle",
+     1.0
+    ],
+    [
+     "meche_lampe",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "cough at the front door, dist .7",
+    "footsteps_stairs",
+    "liquid pour",
+    "match_strike",
+    "oil_lamp_hiss"
+   ],
+   "light": "lamp_on",
+   "fade": true
+  },
+  {
+   "id": "b022",
+   "scene": "s07_petrole",
+   "text": "Soirée de bénédiction.",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "lampe"
+   ],
+   "visual": "Mohammed, lamp-lit, solemn.",
+   "cam": "ots_zoubida"
+  },
+  {
+   "id": "b023",
+   "scene": "s07_petrole",
+   "text": "Que ta soirée soit bénie.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "lampe"
+   ],
+   "visual": "Zoubida answers, tender (reverse).",
+   "cam": "ots_mohammed"
+  },
+  {
+   "id": "b024",
+   "scene": "s08_menthe",
+   "text": "Lalla Zoubida, bénie soit ta soirée ! Pourrais-tu me donner un brin de menthe ?",
+   "speaker": "kanza",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "menthe"
+   ],
+   "visual": "Lalla Kanza's voice rises from the ground floor (Zoubida turns to the door).",
+   "cam": "master",
+   "speaker_off": true,
+   "sfx": [
+    "kanza from below: reverb patio, dist .6"
+   ]
+  },
+  {
+   "id": "b025",
+   "scene": "s08_menthe",
+   "text": "Sidi Mohammed va te le porter !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "menthe"
+   ],
+   "visual": "Zoubida hands Mohammed a fresh bunch of mint; he takes it proudly.",
+   "cam": "reverse",
+   "ins": [
+    [
+     "menthe_mains",
+     0.9
+    ]
+   ]
+  },
+  {
+   "id": "b026",
+   "scene": "s08_menthe",
+   "text": "Dans le patio, une odeur d'encens et de benjoin alourdissait l'air. J'étais persuadé qu'une assemblée de démons se tenait dans la pénombre.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "encens"
+   ],
+   "visual": "Mohammed's POV dolly at his eye height into the patio, thick incense smoke, lamplight; then a dream painting: an assembly of demons in the half-dark.",
+   "cam": "pov",
+   "pov": "mohammed",
+   "sfx": [
+    "incense_crackle",
+    "low drone"
+   ],
+   "action": "walk"
+  },
+  {
+   "id": "b027",
+   "scene": "s08_menthe",
+   "text": "Lalla Kanza me donna une poignée de sésame. Un repas offert aux génies ? J'y goûtai du bout de la langue... et je mangeai tout.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_nuit",
+   "cast": [
+    "kanza",
+    "mohammed"
+   ],
+   "props": [
+    "sesame"
+   ],
+   "visual": "Lalla Kanza (old, smiling, her eyes half closed) tips sesame seeds into his palm; he tastes with the tip of his tongue, then eats.",
+   "cam": "ots",
+   "ins": [
+    [
+     "sesame_paume",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "seed crunch"
+   ]
+  },
+  {
+   "id": "b028",
+   "scene": "s08_menthe",
+   "text": "Les grains se collaient à mes lèvres, et au bout de mon nez.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "sesame"
+   ],
+   "visual": "CU: seeds stuck around his lips and on the tip of his nose; his tongue sweeps what it can reach (painted CU insert for the tongue gag).",
+   "cam": "ots",
+   "ins": [
+    [
+     "graines_nez",
+     1.2
+    ]
+   ]
+  },
+  {
+   "id": "b029",
+   "scene": "s09_escalier",
+   "text": "Il faisait noir dans l'escalier. Mais le vide devant moi n'était vide qu'en apparence. Des présences muettes s'écartaient pour me laisser passer.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The very dark staircase, rim-lit from above: Mohammed climbs calmly; shadows on the walls seem to step aside.",
+   "cam": "low",
+   "sfx": [
+    "whispers panned L→R as he passes",
+    "footsteps_stairs barefoot"
+   ],
+   "action": "climb",
+   "light": "dark"
+  },
+  {
+   "id": "b030",
+   "scene": "s09_escalier",
+   "text": "Dieu est le plus grand.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "He stops on a step, listening up toward the lit doorway.",
+   "cam": "high",
+   "speaker_off": true,
+   "sfx": [
+    "mother through the wall: small_room, dist .5"
+   ]
+  },
+  {
+   "id": "b031",
+   "scene": "s09_escalier",
+   "text": "Est-ce le muezzin de l'Achaa que j'entends ?",
+   "speaker": "voisine",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Same.",
+   "cam": "high",
+   "speaker_off": true
+  },
+  {
+   "id": "b032",
+   "scene": "s09_escalier",
+   "text": "Oui.",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Same.",
+   "cam": "high",
+   "speaker_off": true
+  },
+  {
+   "id": "b033",
+   "scene": "s09_escalier",
+   "text": "Je retenais mon souffle. Je n'entendais aucun muezzin. Les femmes, dit-on, ont l'oreille plus fine que les hommes.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "CU in the dark: he holds his breath and listens; nothing. Total subjective silence where a muezzin would be.",
+   "cam": "ots",
+   "pov": "mohammed",
+   "sfx": [
+    "SILENCE (all beds out)"
+   ],
+   "peak": true
+  },
+  {
+   "id": "b034",
+   "scene": "s10_plans",
+   "text": "Demain matin, nous irons au souk choisir tes jouets. Et à Bab Moulay Idriss, nous achèterons un cierge pour ton maître.",
+   "speaker": "father",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "lampe",
+    "matelas"
+   ],
+   "visual": "Night, lamp, mattresses on the floor: the father, seated by the lamp, tells the plan; Mohammed glows.",
+   "cam": "master",
+   "figurative": [
+    "cierge"
+   ]
+  },
+  {
+   "id": "b035",
+   "scene": "s10_plans",
+   "text": "J'étais heureux. Une seule chose m'ennuyait : je n'échapperais pas au coiffeur, Si Abderrahman. Je savais qu'un jour, c'est lui qui me circoncirait. Je redoutais ce jour.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "couverture"
+   ],
+   "visual": "Mohammed in bed: his smile fades at 'coiffeur'.",
+   "cam": "high",
+   "peak": true,
+   "sfx": [
+    "razor_strop x2 under 'je redoutais'"
+   ]
+  },
+  {
+   "id": "b036",
+   "scene": "s10_plans",
+   "text": "Je rêvai longtemps de cierges monumentaux, de rasoirs étincelants, et de lustres chargés de godets de cristal.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "bougie",
+    "cierge",
+    "rasoir",
+    "lustre",
+    "tambour"
+   ],
+   "visual": "Dream painting: monumental candles with paper lace, gleaming razors and hourglass drums swirling around chandeliers of crystal cups.",
+   "sfx": [
+    "razor_strop x3 (motif)",
+    "drone"
+   ]
+  },
+  {
+   "id": "b037",
+   "scene": "s11_souk",
+   "text": "Mon père ne connaissait rien à l'art de marchander. Dans chaque rue résonnaient les tambourins, les grelots des hochets, et le chant des flûtiaux.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "tambourin",
+    "trompette",
+    "hochet"
+   ],
+   "visual": "Card LA VEILLE. Crowd painting with parallax layers: the toy souk, stalls overflowing with bunches of tambourines and trumpets, a ring of women, men and children trying instruments.",
+   "sfx": [
+    "crowd_souk_walla",
+    "tambourine_shake",
+    "rattles",
+    "flute_ney_short"
+   ],
+   "card": "LA VEILLE"
+  },
+  {
+   "id": "b038",
+   "scene": "s11_souk",
+   "text": "Je m'accrochais à sa main. J'eus mon tambour en forme de sablier, un petit chariot en bois, et une nouvelle trompette. Il payait sans discuter.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_jouets",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "tambour",
+    "chariot",
+    "trompette"
+   ],
+   "visual": "Mohammed clings to his father's hand (spacing ≥ 0.6 m, hands reach via IK); the father pays without bargaining; Mohammed holds up his hourglass drum, a wooden cart and a new trumpet.",
+   "cam": "master",
+   "ins": [
+    [
+     "tambour_sablier",
+     0.9
+    ]
+   ],
+   "action": "walk",
+   "sfx": [
+    "darbouka_hit soft x2 @tambour",
+    "toy_trumpet short @trompette",
+    "crowd_souk_walla bed"
+   ]
+  },
+  {
+   "id": "b039",
+   "scene": "s11_souk",
+   "text": "Pour finir, un cierge d'une livre. Et tout près, sous un pied de vigne séculaire, la boutique de Si Abderrahman.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "barbier_ext",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "cierge",
+    "vigne"
+   ],
+   "visual": "A one-pound candle in Mohammed's arms; they turn into a narrow street; a centuries-old vine over a tiny shop; facing it, Bnou Achir's shop.",
+   "cam": "master",
+   "label": "Chez Si Abderrahman, le barbier (Chemaïne)",
+   "ins": [
+    [
+     "cierge_livre",
+     0.9
+    ]
+   ],
+   "action": "walk",
+   "figurative": [
+    "livre"
+   ]
+  },
+  {
+   "id": "b040",
+   "scene": "s12_barbier",
+   "text": "Il pratiquait une saignée. Il planta deux ventouses de fer-blanc sur la nuque d'un inconnu. Je détournai les yeux.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "barber",
+    "client",
+    "mohammed",
+    "father"
+   ],
+   "props": [
+    "ventouse"
+   ],
+   "visual": "Inside the narrow shop: the barber bends over a client's shaved nape (client back to camera, cherry-red ears); insert: two tin cups planted on the nape; Mohammed looks away.",
+   "cam": "master",
+   "back": [
+    "client"
+   ],
+   "ins": [
+    [
+     "ventouses_nuque",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "cup suction"
+   ]
+  },
+  {
+   "id": "b041",
+   "scene": "s12_barbier",
+   "text": "Je vois que ce jeune homme a été gâté ! Un tambour, une trompette, un chariot, et un cierge pour le fqih. Il faut toujours être bien avec son maître... sinon, gare à la baguette de cognassier !",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "barber",
+    "mohammed",
+    "father"
+   ],
+   "props": [
+    "tambour",
+    "trompette",
+    "chariot",
+    "cierge"
+   ],
+   "visual": "The barber turns to Mohammed's toys, smiling, wagging a finger at 'cognassier'.",
+   "cam": "reverse",
+   "sfx": [
+    "none: toys only named, room tone"
+   ],
+   "label": "Si Abderrahman, le barbier"
+  },
+  {
+   "id": "b042",
+   "scene": "s12_barbier",
+   "text": "Tout le monde se mit à rire. Moi, je rougissais d'indignation. Ces messieurs n'avaient jamais reçu la baguette sur la plante des pieds. Ils pouvaient rire.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Men laugh (off); CU Mohammed blushing with indignation (low angle, the laughs echo).",
+   "cam": "low",
+   "pov": "mohammed",
+   "peak": true,
+   "sfx": [
+    "men_laughing_small_group"
+   ],
+   "cut": "L"
+  },
+  {
+   "id": "b043",
+   "scene": "s13_hammad",
+   "text": "Un homme sec, avec une barbe de bouc et un turban monumental, s'écroula sur une chaise.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "hammad",
+    "barber"
+   ],
+   "props": [
+    "rideau",
+    "chaise"
+   ],
+   "visual": "The curtain lifts: a dry man, goat beard, monumental turban, groaning; he collapses into a rigid chair (seat pose solved and checked).",
+   "cam": "reverse",
+   "label": "L'oncle Hammad",
+   "sfx": [
+    "curtain rustle",
+    "groans",
+    "chair creak"
+   ],
+   "action": "sit"
+  },
+  {
+   "id": "b044",
+   "scene": "s13_hammad",
+   "text": "Si Abderrahman... je vais mourir.",
+   "speaker": "hammad",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "hammad"
+   ],
+   "props": [],
+   "visual": "CU Hammad, eyes to heaven: 'je vais mourir'.",
+   "cam": "ots",
+   "peak": true
+  },
+  {
+   "id": "b045",
+   "scene": "s13_hammad",
+   "text": "Ne dis pas ça, oncle Hammad ! Allah seul connaît les secrets de la vie et de la mort. Il te faut un fortifiant.",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "barber",
+    "hammad"
+   ],
+   "props": [],
+   "visual": "The barber, mock-solemn, raising a finger.",
+   "cam": "master"
+  },
+  {
+   "id": "b046",
+   "scene": "s13_hammad",
+   "text": "Fais frire un oignon blanc dans du beurre. Ajoute deux cuillerées de miel, de l'anis, du sésame, du gingembre, de la cannelle, et trois clous de girofle. Une bouchée chaque matin !",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "barber"
+   ],
+   "props": [
+    "oignon",
+    "miel",
+    "sesame"
+   ],
+   "visual": "The remedy at top speed: rhythmic 0.5 s inserts on each word: onion in butter, honey, anise, sesame, ginger, cinnamon, three cloves.",
+   "cam": "ots",
+   "ins": [
+    [
+     "oignon_beurre",
+     0.5
+    ],
+    [
+     "miel",
+     0.5
+    ],
+    [
+     "anis",
+     0.5
+    ],
+    [
+     "sesame",
+     0.5
+    ],
+    [
+     "gingembre",
+     0.5
+    ],
+    [
+     "cannelle",
+     0.5
+    ],
+    [
+     "clous_girofle",
+     0.7
+    ]
+   ],
+   "sfx": [
+    "sizzle",
+    "spoon clicks"
+   ]
+  },
+  {
+   "id": "b047",
+   "scene": "s13_hammad",
+   "text": "Dieu te récompensera, le jour du jugement !",
+   "speaker": "hammad",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "hammad"
+   ],
+   "props": [
+    "rideau"
+   ],
+   "visual": "Hammad extracts himself from the chair, blessing him, and leaves groaning.",
+   "cam": "reverse",
+   "action": "stand",
+   "sfx": [
+    "groans fading",
+    "curtain"
+   ]
+  },
+  {
+   "id": "b048",
+   "scene": "s14_larbi",
+   "text": "Hier, j'ai fait une saignée à Moulay Larbi, le babouchier. Un homme digne. Ce qui m'étonne, c'est qu'il n'ait point d'enfants.",
+   "speaker": "barber",
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "babouche"
+   ],
+   "visual": "Barber's-tale flashback (warm sepia): Moulay Larbi, a dignified babouchier, in his shop among stacks of yellow babouches with three workers; the barber cupping his nape; no child anywhere. Exam plant: Aïcha's husband (a CU of his face, reused in s25).",
+   "sfx": [
+    "razor_strop under the voice",
+    "workshop: leather tapping"
+   ],
+   "label": "Moulay Larbi, le babouchier"
+  },
+  {
+   "id": "b049",
+   "scene": "s14_larbi",
+   "text": "On dit que sa femme est une Chérifa au cœur généreux. Grâce à elle, il a payé ses dettes. Ne crois-tu pas... qu'il devrait prendre une nouvelle épouse ?",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "barber"
+   ],
+   "props": [],
+   "visual": "Slow push-in on the barber at 'une nouvelle épouse'. Tag À RETENIR burns in.",
+   "cam": "ots",
+   "peak": true,
+   "sfx": [
+    "room tone drops"
+   ]
+  },
+  {
+   "id": "b050",
+   "scene": "s14_larbi",
+   "text": "Mon père écoutait, indifférent.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The father listens, indifferent; Mohammed on the bench, legs dangling, looks at the razors on the wall.",
+   "cam": "reverse",
+   "pov": "none",
+   "tag": "À RETENIR : Moulay Larbi, le babouchier, n'a pas d'enfants"
+  },
+  {
+   "id": "b051",
+   "scene": "s15_lamrani",
+   "text": "Un nouveau client entra : jeune, la peau d'une blancheur de cire, la barbe plus noire que l'aile du corbeau.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "lamrani"
+   ],
+   "props": [
+    "estrade"
+   ],
+   "visual": "A new client enters: young, waxy-white skin, crow-black beard; he sits on the high platform facing the door.",
+   "cam": "reverse",
+   "label": "Sidi Ahmed Lamrani",
+   "action": "sit"
+  },
+  {
+   "id": "b052",
+   "scene": "s15_lamrani",
+   "text": "Sidi Ahmed ! Comment va ton vénéré père ? Son genou ? Mon onguent a agi ! Et toi, je sais déjà : tu épouses la fille de Si Omar le notaire !",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "barber",
+    "lamrani"
+   ],
+   "props": [
+    "ventouse"
+   ],
+   "visual": "The barber overflows with questions and answers them himself; Sidi Ahmed opens his mouth twice, closes it.",
+   "cam": "master",
+   "sfx": [
+    "barber 'neighing' laugh"
+   ]
+  },
+  {
+   "id": "b053",
+   "scene": "s15_lamrani",
+   "text": "Que deviennent tes études ? Te voilà un savant !",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "barber"
+   ],
+   "props": [
+    "ventouse"
+   ],
+   "visual": "The barber sucks the mouth of a cup (from above, over the client).",
+   "cam": "high",
+   "ins": [
+    [
+     "ventouse_bouche",
+     0.7
+    ]
+   ]
+  },
+  {
+   "id": "b054",
+   "scene": "s15_lamrani",
+   "text": "Je ne suis qu'un mendiant de la science.",
+   "speaker": "lamrani",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "lamrani"
+   ],
+   "props": [],
+   "visual": "Sidi Ahmed slips his line in while the barber's mouth is busy (the gag).",
+   "cam": "ots",
+   "peak": true
+  },
+  {
+   "id": "b055",
+   "scene": "s15_lamrani",
+   "text": "Se marier, c'est créer des liens avec une autre famille. Moi, j'ai une fille en âge d'être mariée. Mon futur gendre sera un peu mon fils.",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "barber"
+   ],
+   "props": [],
+   "visual": "The barber, suddenly dreamy, slow push-in: 'j'ai une fille en âge d'être mariée'. Hold on his eyes (the plant for ch. VIII).",
+   "cam": "ots",
+   "peak": true,
+   "hold": [
+    0.8,
+    "plant"
+   ],
+   "sfx": [
+    "room tone only"
+   ]
+  },
+  {
+   "id": "b056",
+   "scene": "s16_rasoir",
+   "text": "Je vais commencer par cet enfant. Il préférerait sans doute être dans la rue.",
+   "speaker": "barber",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "barber",
+    "mohammed"
+   ],
+   "props": [
+    "serviette"
+   ],
+   "visual": "The barber removes the cups, comes to Mohammed and wraps him in the red-and-yellow striped towel.",
+   "cam": "master",
+   "action": "wrap"
+  },
+  {
+   "id": "b057",
+   "scene": "s16_rasoir",
+   "text": "La rue ! La rue avec la foule et ses odeurs, ses chants, et ses cris d'enfants... La rue où trottine le petit âne gris, où tourbillonnent des vols de moineaux...",
+   "speaker": "barber",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "ane",
+    "chat",
+    "moineau"
+   ],
+   "visual": "The hymn to the street as a painted montage over the barber's voice: a little grey donkey trotting, skinny cats, whirling sparrows, a festive procession under vine and plane trees.",
+   "sfx": [
+    "street ambience under the voice",
+    "sparrows"
+   ]
+  },
+  {
+   "id": "b058",
+   "scene": "s16_rasoir",
+   "text": "Tu es un poète, Si Abderrahman !",
+   "speaker": "lamrani",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "lamrani"
+   ],
+   "props": [],
+   "visual": "Sidi Ahmed, sincerely amazed.",
+   "cam": "ots"
+  },
+  {
+   "id": "b059",
+   "scene": "s16_rasoir",
+   "text": "Il choisit un rasoir à manche d'ébène, et le passa sur une pierre gluante d'huile.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "barber"
+   ],
+   "props": [
+    "rasoir",
+    "pierre"
+   ],
+   "visual": "ECU razor on the oily stone, the cold-open shot, now in context: the ebony razor, wiped, tried on a thumbnail.",
+   "cam": "ots",
+   "ins": [
+    [
+     "rasoir_pierre",
+     1.4
+    ],
+    [
+     "rasoir_ongle",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "razor_strop x4"
+   ],
+   "cut": "match"
+  },
+  {
+   "id": "b060",
+   "scene": "s16_rasoir",
+   "text": "Le rasoir me brûlait un peu. Je ne disais rien. Une torpeur m'envahit. Je m'endormis.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "serviette",
+    "rasoir"
+   ],
+   "visual": "Mohammed's head bowed to his knees; his eyelids drop; the barber's voice slows into a drone.",
+   "cam": "pov_mirror",
+   "pov": "mohammed",
+   "sfx": [
+    "barber voice slowed + lowpass",
+    "drone"
+   ],
+   "action": "sleep"
+  },
+  {
+   "id": "b061",
+   "scene": "s16_rasoir",
+   "text": "Ma tête s'en alla de travers... et la lame me mordit.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "rasoir",
+    "lame"
+   ],
+   "visual": "His head tips sideways; the blade bites (insert); he jolts awake: total silence, a sharp breath, a drop of sweat runs down his nose.",
+   "cam": "pov_mirror",
+   "peak": true,
+   "ins": [
+    [
+     "lame_nuque",
+     0.6
+    ],
+    [
+     "sueur_nez",
+     0.9
+    ]
+   ],
+   "sfx": [
+    "SILENCE",
+    "breath in"
+   ],
+   "cut": "smash"
+  },
+  {
+   "id": "b062",
+   "scene": "s17_rue",
+   "text": "Je me sentis léger, comme saigné à blanc.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "barbier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "serviette"
+   ],
+   "visual": "Unwrapped, pale, light-headed; he looks for his father.",
+   "cam": "pov_mirror"
+  },
+  {
+   "id": "b063",
+   "scene": "s17_rue",
+   "text": "Viens. L'air frais te fera du bien.",
+   "speaker": "father",
+   "mode": "3d",
+   "size": "M",
+   "room": "barbier",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The father stands up and comes to help him.",
+   "cam": "reverse",
+   "action": "walk"
+  },
+  {
+   "id": "b064",
+   "scene": "s17_rue",
+   "text": "Nous voici de nouveau dans la rue. Jamais elle ne me parut aussi belle, aussi enchantée, que ce jour-là.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "barbier_ext",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "vigne"
+   ],
+   "visual": "They step out: the street overexposed, sound flooding back (vine, light, passers-by); payoff of the hymn.",
+   "cam": "reverse",
+   "sfx": [
+    "street ambience swells in",
+    "sparrows"
+   ],
+   "light": "overexposed",
+   "action": "walk",
+   "cut": "L"
+  },
+  {
+   "id": "b065",
+   "scene": "s18_concert",
+   "text": "À la maison, Zineb tapait sans rythme sur sa tarifa de quatre sous. J'avais hâte de la faire mourir de jalousie.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zineb"
+   ],
+   "props": [
+    "tarifa"
+   ],
+   "visual": "On the first floor, Zineb beats her little clay tarifa drum without rhythm.",
+   "cam": "high",
+   "sfx": [
+    "darbouka_hit (off-beat)"
+   ],
+   "action": "strike"
+  },
+  {
+   "id": "b066",
+   "scene": "s18_concert",
+   "text": "Je m'équipai en homme-orchestre : le tambour par terre, la trompette entre les genoux. Zineb me rejoignit.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "tambour",
+    "trompette"
+   ],
+   "visual": "The one-man band: drum on the floor on its rim, trumpet wedged between the knees, sticks flying; Zineb joins him.",
+   "cam": "master",
+   "sfx": [
+    "darbouka_hit",
+    "toy_trumpet roars"
+   ],
+   "action": "drum"
+  },
+  {
+   "id": "b067",
+   "scene": "s18_concert",
+   "text": "Grâce ! Pitié pour nos oreilles !",
+   "speaker": "femmes",
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida",
+    "rahma"
+   ],
+   "props": [],
+   "visual": "The women in the patio beg for mercy, laughing, hands over their ears.",
+   "cam": "low",
+   "sfx": [
+    "women_laughing_group"
+   ]
+  },
+  {
+   "id": "b068",
+   "scene": "s18_concert",
+   "text": "Ma mère m'essaya une chemise neuve. Elle craquait d'apprêt, et tombait jusqu'au sol.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "chemise"
+   ],
+   "visual": "Fitting: the new shirt stiff with starch, falls to the floor; his arms lost in huge sleeves (painted CU insert of the sleeves).",
+   "cam": "master",
+   "ins": [
+    [
+     "manches_chemise",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "paper-crackle cloth"
+   ]
+  },
+  {
+   "id": "b069",
+   "scene": "s18_concert",
+   "text": "Sur la terrasse, deux filles et un garçon nous attendaient. Le garçon tira de ma trompette des rugissements inattendus. Des femmes se perchèrent sur les murs pour nous admirer.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "tambourin",
+    "trompette"
+   ],
+   "visual": "Terrace concert at sunset: Zineb, two girls and an older boy roaring on the trumpet; richly dressed women perched on the walls, laughing.",
+   "sfx": [
+    "tambourine_hit",
+    "toy_trumpet",
+    "women_laughing_group",
+    "kids"
+   ]
+  },
+  {
+   "id": "b070",
+   "scene": "s19_bain",
+   "text": "Au coucher du soleil, ma mère m'emmena à la cuisine. L'auge de bois débordait d'eau bouillante. Elle y versa un seau d'eau fraîche, et me plongea dedans.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "cuisine_auge",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "auge",
+    "seau"
+   ],
+   "visual": "Kitchen, steam: the wooden trough overflowing with boiling water; she pours a bucket of cold water in, undresses him (framed above the waist) and plunges him in.",
+   "cam": "master",
+   "sfx": [
+    "water_bucket_splash",
+    "steam hiss"
+   ],
+   "action": "pour"
+  },
+  {
+   "id": "b071",
+   "scene": "s19_bain",
+   "text": "Aïe ! Arrête de frotter si fort !",
+   "speaker": "mohammed",
+   "mode": "3d",
+   "size": "CU",
+   "room": "cuisine_auge",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "auge"
+   ],
+   "visual": "He screams and struggles.",
+   "cam": "ots",
+   "peak": true,
+   "sfx": [
+    "splash",
+    "scream"
+   ]
+  },
+  {
+   "id": "b072",
+   "scene": "s19_bain",
+   "text": "Elle me frotta avec une rondelle de liège. Et je sombrai dans le noir. Un noir peuplé de petites filles taquines, et de barbiers bavards.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "liege"
+   ],
+   "visual": "Cork scrub (insert), then black; the black fills with teasing little girls and chattering barbers (1.5 s dream painting).",
+   "sfx": [
+    "water_scrub",
+    "drone tail"
+   ]
+  },
+  {
+   "id": "b073",
+   "scene": "s20_reveil",
+   "text": "Réveille-toi ! Il est trois heures du matin ! Je t'ai préparé ton beau gilet, ta chemise neuve, et ta sacoche brodée !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "couverture",
+    "chemise",
+    "gilet"
+   ],
+   "visual": "Card LA NUIT DE L'ACHOURA over a red light full of sparks (his closed eyelids); his eyes open on his mother waking him; insert: the shirt, the red gilet and the satchel laid out on the chest.",
+   "cam": "high",
+   "pov": "mohammed",
+   "light": "red_dream",
+   "ins": [
+    [
+     "habits_poses",
+     0.9
+    ]
+   ],
+   "sfx": [
+    "voice through sleep: lowpass then clear"
+   ],
+   "card": "LA NUIT DE L'ACHOURA"
+  },
+  {
+   "id": "b074",
+   "scene": "s20_reveil",
+   "text": "Je pleurnichai. Ma mère fut impitoyable : elle se mouilla la main, et me la passa sur la figure.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "She wets her hand and passes it over his face (insert); he blinks.",
+   "cam": "ots",
+   "ins": [
+    [
+     "main_mouillee",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "water drip"
+   ]
+  },
+  {
+   "id": "b075",
+   "scene": "s20_reveil",
+   "text": "Prépare-toi pour fêter l'Achoura au Msid. Du courage ! Du courage !",
+   "speaker": "father",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "The father in fine wool djellaba, smiling.",
+   "cam": "reverse"
+  },
+  {
+   "id": "b076",
+   "scene": "s20_reveil",
+   "text": "La chemise neuve me grattait horriblement, et craquait comme du papier froissé. Puis le gilet rouge, la sacoche, et la djellaba blanche, parfumée à la fleur d'oranger.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "chemise",
+    "gilet",
+    "djellaba"
+   ],
+   "visual": "Dressing montage, one insert + one sound each: the stiff shirt crackling like paper / the red embroidered gilet / the embroidered satchel strap / the white djellaba from the chest, orange blossom.",
+   "sfx": [
+    "paper-crackle cloth",
+    "fabric",
+    "leather strap",
+    "chest lid"
+   ]
+  },
+  {
+   "id": "b077",
+   "scene": "s20_reveil",
+   "text": "Me voilà devenu un autre homme !",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "djellaba",
+    "gilet"
+   ],
+   "visual": "Mohammed in festival costume (mohammed_fete), chest out: 'un autre homme'.",
+   "cam": "low",
+   "costume": "fete"
+  },
+  {
+   "id": "b078",
+   "scene": "s21_babouches",
+   "text": "Je perdais mes babouches tous les trois pas. Mais j'étais heureux.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "babouche"
+   ],
+   "visual": "Black street at 3 a.m., shops lit: Mohammed loses his oversized babouches every three steps (3D gag, feet checked).",
+   "cam": "master",
+   "sfx": [
+    "footsteps_stone slippers",
+    "babouche flap"
+   ],
+   "action": "walk",
+   "costume": "fete"
+  },
+  {
+   "id": "b079",
+   "scene": "s21_babouches",
+   "text": "Dans le noir, l'appel d'un mendiant, et le bruit de sa canne. Sûrement un aveugle.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "They pass a dark doorway: a beggar's call and the tapping of a cane, never shown.",
+   "cam": "reverse",
+   "sfx": [
+    "cane_tap_stone dist .8",
+    "beggar call far"
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b080",
+   "scene": "s21_babouches",
+   "text": "Mon père me glissa dans la main une pièce de cinq francs, et me mit dans les bras le cierge. Mes cadeaux de nouvel an, pour le maître.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "cierge",
+    "piece"
+   ],
+   "visual": "The father slips a five-franc coin into his hand and the candle into his arms.",
+   "cam": "ots",
+   "ins": [
+    [
+     "piece_cinq_francs",
+     0.9
+    ]
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b081",
+   "scene": "s22_feerie",
+   "text": "Je faillis lâcher mon cierge. Des grappes de lumière transformaient la façade de l'école en un décor de féerie.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid_facade",
+   "cast": [
+    "mohammed",
+    "father"
+   ],
+   "props": [
+    "cierge",
+    "lustre"
+   ],
+   "visual": "Turn of the corner: the Msid façade ablaze with clusters of coloured oil lights (hero plate, slow push). FIRST MUSIC CUE.",
+   "cam": "master",
+   "pov": "mohammed",
+   "sfx": [
+    "pupils' chant far + clear"
+   ],
+   "music": "feerie",
+   "hold": [
+    2.0,
+    "reveal"
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b082",
+   "scene": "s22_feerie",
+   "text": "Je n'étais plus le prince unique au gilet amarante, mais un membre d'une congrégation de jeunes seigneurs, chantant sous la direction d'un roi de légende.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid_feerie",
+   "cast": [
+    "fqih",
+    "kid1",
+    "kid2",
+    "kid3",
+    "grand1",
+    "grand2",
+    "mohammed"
+   ],
+   "props": [
+    "lustre"
+   ],
+   "visual": "Inside: a congregation of richly dressed young lords chanting under a legendary king (the fqih in festive clothes); light flickers with the chant.",
+   "cam": "low",
+   "figurative": [
+    "gilet"
+   ],
+   "sfx": [
+    "chant (sung)"
+   ],
+   "light": "chant_driven",
+   "costume": "fete"
+  },
+  {
+   "id": "b083",
+   "scene": "s22_feerie",
+   "text": "Je remis solennellement mon cierge, et ma pièce de cinq francs.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_feerie",
+   "cast": [
+    "mohammed",
+    "fqih"
+   ],
+   "props": [
+    "cierge",
+    "piece"
+   ],
+   "visual": "Mohammed solemnly hands over his candle and coin; the pile of candles beside the fqih grows.",
+   "cam": "reverse",
+   "ins": [
+    [
+     "pile_cierges",
+     0.8
+    ]
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b084",
+   "scene": "s22_feerie",
+   "text": "La chaleur devenait étouffante. Un élève saigna du nez sur ses beaux habits.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_feerie",
+   "cast": [
+    "mohammed",
+    "kid1"
+   ],
+   "props": [],
+   "visual": "Heat: he throws back his hood; sweat beads; beside him a pupil's nose bleeds on his fine clothes (painted insert).",
+   "cam": "ots",
+   "ins": [
+    [
+     "saignement_nez",
+     0.7
+    ]
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b085",
+   "scene": "s22_feerie",
+   "text": "Je levai les yeux. Les petites flammes dansaient, grésillaient. Je me taisais pour les entendre psalmodier, comme nous, la parole de Dieu.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "msid_feerie",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "lustre"
+   ],
+   "visual": "He looks up: tiny flames dance and crackle in their rainbow glasses (POV tilt up); he stops chanting to hear them 'psalmodier'.",
+   "cam": "pov",
+   "pov": "mohammed",
+   "peak": true,
+   "sfx": [
+    "candle_flame crackle up",
+    "chant ducks"
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b086",
+   "scene": "s23_aube",
+   "text": "À l'approche du jour, la lumière des veilleuses s'anémiait. Deux moineaux voletèrent autour des lustres.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid_facade",
+   "cast": [],
+   "props": [
+    "lustre"
+   ],
+   "visual": "Dawn: the lights turn yellow and weaken; two sparrows flutter around the chandeliers on the window awnings.",
+   "cam": "reverse",
+   "sfx": [
+    "sparrows_dawn",
+    "street wakes"
+   ],
+   "light": "dawn"
+  },
+  {
+   "id": "b087",
+   "scene": "s23_aube",
+   "text": "Seigneur, fais régner sur cette terre l'ordre, la justice, et la compassion.",
+   "speaker": "fqih",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_feerie",
+   "cast": [
+    "fqih"
+   ],
+   "props": [],
+   "visual": "The fqih, eyes to the ceiling, hands open in offering: the long invocation.",
+   "cam": "low",
+   "costume": "fete"
+  },
+  {
+   "id": "b088",
+   "scene": "s23_aube",
+   "text": "Amine ! Amine !",
+   "speaker": "eleves",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid_feerie",
+   "cast": [
+    "kid1",
+    "kid2",
+    "kid3",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "All the pupils: Amine! Amine!",
+   "cam": "master",
+   "sfx": [
+    "crowd_kids_school 'Amine'"
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b089",
+   "scene": "s23_aube",
+   "text": "C'était la première fois que je voyais le fqih sans sa baguette de cognassier. Il me parut beau.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "msid_feerie",
+   "cast": [
+    "fqih"
+   ],
+   "props": [],
+   "visual": "The first time without his quince rod: his empty hands; black-and-white striped djellaba, grey burnous. Framed like the end of a war.",
+   "cam": "ots",
+   "peak": true,
+   "costume": "fete"
+  },
+  {
+   "id": "b090",
+   "scene": "s23_aube",
+   "text": "Je vous donne trois jours de repos.",
+   "speaker": "fqih",
+   "mode": "3d",
+   "size": "M",
+   "room": "msid_feerie",
+   "cast": [
+    "fqih",
+    "kid1",
+    "kid2",
+    "kid3",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The fqih gives three days off.",
+   "cam": "master",
+   "costume": "fete"
+  },
+  {
+   "id": "b091",
+   "scene": "s23_aube",
+   "text": "Et comme la rentrée tombait un jeudi : quatre jours !",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "W",
+   "room": "msid_feerie",
+   "cast": [
+    "kid1",
+    "kid2",
+    "kid3",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Four days! The pupils cheer.",
+   "cam": "low",
+   "sfx": [
+    "kids_cheer"
+   ],
+   "costume": "fete"
+  },
+  {
+   "id": "b092",
+   "scene": "s24_idriss",
+   "text": "À la maison, ma mère avait mis sa belle mansouria à rayures de satin jaune.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "galette",
+    "theiere"
+   ],
+   "visual": "Card LE JOUR DE L'ACHOURA. Zoubida in her fine mansouria with yellow satin stripes; square flaky galettes with butter and honey (insert); the kettle sings.",
+   "cam": "master",
+   "ins": [
+    [
+     "galettes_miel",
+     0.9
+    ]
+   ],
+   "sfx": [
+    "kettle sing"
+   ],
+   "costume": "fete",
+   "card": "LE JOUR DE L'ACHOURA"
+  },
+  {
+   "id": "b093",
+   "scene": "s24_idriss",
+   "text": "Puis mon père m'emmena à Moulay Idriss, le patron de la ville. Sur la place des notaires, il acheta un plat de céramique bleue.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "plat"
+   ],
+   "visual": "Moulay Idriss and the place des notaires: crowds in new clothes; potters' blue ceramics; the father buys a blue dish.",
+   "sfx": [
+    "crowd walla festive"
+   ]
+  },
+  {
+   "id": "b094",
+   "scene": "s25_aicha",
+   "text": "À la fin du déjeuner, Lalla Aïcha vint nous surprendre.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "salon",
+   "cast": [
+    "aicha",
+    "zoubida"
+   ],
+   "props": [
+    "divan"
+   ],
+   "visual": "Lalla Aïcha bursts in: pointed kisses, effusions.",
+   "cam": "master",
+   "label": "Lalla Aïcha",
+   "sfx": [
+    "kisses",
+    "laughs"
+   ]
+  },
+  {
+   "id": "b095",
+   "scene": "s25_aicha",
+   "text": "Lalla Aïcha, installe-toi sur le grand divan, à la place d'honneur !",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "salon",
+   "cast": [
+    "zoubida",
+    "aicha"
+   ],
+   "props": [
+    "divan"
+   ],
+   "visual": "Zoubida insists: the big divan, the place of honour (Aïcha flops among cushions: seat pose solved or framed above the waist).",
+   "cam": "reverse",
+   "action": "sit"
+  },
+  {
+   "id": "b096",
+   "scene": "s25_aicha",
+   "text": "Dans la maison voisine, toutes les femmes s'appellent Khadija ! Il serait plus simple de dire : Khadija la sourde, Khadija la louchonne !",
+   "speaker": "aicha",
+   "mode": "3d",
+   "size": "M",
+   "room": "salon",
+   "cast": [
+    "aicha",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "theiere"
+   ],
+   "visual": "The Khadijas joke; Mohammed in his corner laughs; everyone laughs.",
+   "cam": "master",
+   "sfx": [
+    "women_laughing_group"
+   ]
+  },
+  {
+   "id": "b097",
+   "scene": "s25_aicha",
+   "text": "Et ton homme ? Ses affaires ?",
+   "speaker": "zoubida",
+   "mode": "3d",
+   "size": "M",
+   "room": "salon",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "theiere",
+    "verre"
+   ],
+   "visual": "Zoubida pours the 'thé des grands jours' (sage and wormwood bunch beside), asking.",
+   "cam": "ots",
+   "ins": [
+    [
+     "the_sauge",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "tea pour"
+   ]
+  },
+  {
+   "id": "b098",
+   "scene": "s25_aicha",
+   "text": "Il emploie trois ouvriers. Les babouches se vendent bien. Il m'a promis un caftan de drap abricot.",
+   "speaker": "aicha",
+   "mode": "3d",
+   "size": "M",
+   "room": "salon",
+   "cast": [
+    "aicha"
+   ],
+   "props": [
+    "verre"
+   ],
+   "visual": "Aïcha proud of her husband's three workers and the apricot caftan; her smile fades.",
+   "cam": "ots",
+   "figurative": [
+    "babouche",
+    "drap"
+   ]
+  },
+  {
+   "id": "b099",
+   "scene": "s25_aicha",
+   "text": "Puis, subitement, Lalla Aïcha se tut.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "salon",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "Silence; Aïcha looks away.",
+   "cam": "ots",
+   "sfx": [
+    "room tone"
+   ]
+  },
+  {
+   "id": "b100",
+   "scene": "s25_aicha",
+   "text": "Nous sommes de bien faibles créatures, nous les femmes. Gardons-nous de faire confiance aux hommes. Ils sont... Ils sont...",
+   "speaker": "aicha",
+   "mode": "3d",
+   "size": "CU",
+   "room": "salon",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "She leans to Zoubida and whispers; 'Ils sont... Ils sont...', hands at shoulder height, eyes to the sky. HARD SILENCE 1.2 s. Tag À RETENIR.",
+   "cam": "ots",
+   "peak": true,
+   "hold": [
+    1.2,
+    "shock line silence"
+   ],
+   "sfx": [
+    "SILENCE"
+   ]
+  },
+  {
+   "id": "b101",
+   "scene": "s25_aicha",
+   "text": "Ma mère m'envoya jouer sur la terrasse. Je compris : elles avaient des secrets.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "salon",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "tambour"
+   ],
+   "visual": "Zoubida sends Mohammed up with his drum; he understands.",
+   "cam": "reverse",
+   "action": "point"
+  },
+  {
+   "id": "b102",
+   "scene": "s25_aicha",
+   "text": "Seul sur la terrasse, j'inventais les rythmes les plus barbares. Et en bas, les deux femmes papotaient, papotaient, papotaient.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "terrasse",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "tambour"
+   ],
+   "visual": "Cross-cut: alone on the terrace he invents barbaric rhythms on his hourglass drum // below, the two women bent toward each other, whispering (the drum covers their words).",
+   "cam": "master",
+   "sfx": [
+    "darbouka_hit pattern (loud on terrace, muffled below)"
+   ],
+   "action": "drum",
+   "cut": "match"
+  },
+  {
+   "id": "b103",
+   "scene": "s25_aicha",
+   "text": "Le soir, le soleil en robe d'or baignait la ville de rose fané. La première étoile clignota. Lalla Aïcha partit.",
+   "speaker": "narrator",
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [
+    "terrasse"
+   ],
+   "visual": "Sunset terraces: bouquets of richly dressed women, tambourines, the gold-robed sun bathing the city in faded rose and mauve; the first star blinks.",
+   "figurative": [
+    "or"
+   ],
+   "sfx": [
+    "city tambourines far",
+    "songs"
+   ],
+   "tag": "À RETENIR : le mari de Lalla Aïcha, c'est Moulay Larbi"
+  },
+  {
+   "id": "b104",
+   "scene": "s26_fin",
+   "text": "La lampe fut allumée. Nous étions sans entrain. Mon tambour et ma trompette gisaient sur un matelas.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "lampe",
+    "matelas",
+    "tambour",
+    "trompette"
+   ],
+   "visual": "Lamp lit; nobody has any spirit left; the drum and trumpet lie on a mattress.",
+   "cam": "master",
+   "sfx": [
+    "oil_lamp_hiss only"
+   ]
+  },
+  {
+   "id": "b105",
+   "scene": "s26_fin",
+   "text": "De mes habits neufs, je ne gardai que la chemise. Grâce à la chaleur de mon corps, son tissu s'était humanisé.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "chemise"
+   ],
+   "visual": "Back in old clothes, only the new shirt kept, softened by his body heat.",
+   "cam": "ots"
+  },
+  {
+   "id": "b106",
+   "scene": "s26_fin",
+   "text": "Pour échapper au bruit des tambours, j'ouvris ma Boîte à merveilles. Mes yeux, hélas, n'avaient plus la force de regarder.",
+   "speaker": "narrator",
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "boite",
+    "tambour"
+   ],
+   "visual": "He opens his Boîte à merveilles (insert); his eyes close; the lamp wick turns down to BLACK.",
+   "sfx": [
+    "darbouka_hit pattern far, dist .8",
+    "tambourine_shake far",
+    "oil_lamp_hiss fades with the wick"
+   ],
+   "cam": "high",
+   "ins": [
+    [
+     "boite_ouverte",
+     1.4
+    ]
+   ],
+   "light": "lamp_out",
+   "peak": true
+  },
+  {
+   "id": "b107",
+   "scene": "s27_fiche",
+   "text": "Fiche de révision — Chapitre VII",
+   "speaker": "narrator",
+   "mode": "title",
+   "visual": "Revision sheet (screenshot-ready): 4-step chronology with the day cards",
+   "music": "fiche"
+  },
+  {
+   "id": "b108",
+   "scene": "s27_fiche",
+   "text": "Chronologie",
+   "speaker": "narrator",
+   "mode": "title",
+   "visual": "J-2 tambourins & lustres → La veille: souk & barbier → La nuit: fête au Msid → Le jour: Moulay Idriss & Lalla Aïcha"
+  },
+  {
+   "id": "b109",
+   "scene": "s27_fiche",
+   "text": "Le détail à retenir",
+   "speaker": "narrator",
+   "mode": "title",
+   "visual": "Moulay Larbi (sans enfants) = mari de Lalla Aïcha; le barbier: « une nouvelle épouse ? » + « j'ai une fille en âge d'être mariée »; Aïcha: « Ils sont… Ils sont… »"
+  },
+  {
+   "id": "b110",
+   "scene": "s27_fiche",
+   "text": "Thèmes + citations",
+   "speaker": "narrator",
+   "mode": "title",
+   "visual": "Thèmes: fête/traditions, regard de l'enfant, condition de la femme. Citations: « décor de féerie », « un autre homme », « Mes yeux, hélas… ». Teaser ch. VIII"
+  },
+  {
+   "id": "b111",
+   "scene": "s28_endcard",
+   "mode": "title",
+   "text": "fin",
+   "dur": 12,
+   "visual": "end card: TikTok @la.boite.a.bac + WhatsApp community + next episode"
+  }
+ ]
+}
