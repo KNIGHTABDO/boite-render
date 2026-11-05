@@ -17,8 +17,8 @@ const sh = shot({
     const P = shopIn(S3);
     const fa = await role('father', { seat: true }), mo = await role('mohammed', { seat: true }), ba = await role('barber');
     const la = await role('lamrani', { seat: true }), lw = await role('lamrani', { copy: '_w' });
-    // the platform's front top edge runs at y ~822; he sits 0.14 m in from it, feet on the floor in front of the face
-    const edge = S3.floorAt(590, 822, P.ph).setY(0), inward = edge.clone().sub(P.cam).setY(0).normalize();
+    // the platform's front top edge runs at y ~822; x 720 keeps a hand's width from Mohammed (590 cut into his shoulder); he sits 0.14 m in from it, feet on the floor in front of the face
+    const edge = S3.floorAt(720, 822, P.ph).setY(0), inward = edge.clone().sub(P.cam).setY(0).normalize();
     const lp = edge.clone().addScaledVector(inward, .14), face = lp.clone().lerp(P.cam, .5).add(V(.4, 0, 0));
     const R = {
       fa: sitTop(S3, fa, 's12-fa', P.seat(230, 700), P.ph, P.stool.clone().lerp(P.cam, .3)),
