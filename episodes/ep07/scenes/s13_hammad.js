@@ -60,9 +60,9 @@ const rv = shot({
     idle(ba, t, 5);
     const sh = sm(L[2][0] + .3, L[2][0] + 1, t) * (1 - sm(L[3][0] - .2, L[3][0] + .3, t));
     const k = ba.group.scale.y / 1.6;
-    // v2 QA: the NEAR shoulder (the far one sent the arm across his face, a hand on his beard)
+    // v2 QA: the NEAR upper arm, halfway to the elbow (the shoulder joint sits up under the turban: the hand landed on his beard)
     const nearSh = at(ha, 'upperArmL').distanceTo(at(ba, 'chest')) < at(ha, 'upperArmR').distanceTo(at(ba, 'chest')) ? 'upperArmL' : 'upperArmR';
-    if (sh > 0 && seated) PO.reach(ba, 'R', front(ba, 'chest', .3 * k, .1 * k, -.2 * k).lerp(at(ha, nearSh).add(V(0, .06, 0)), sh), { grip: .04 });
+    if (sh > 0 && seated) PO.reach(ba, 'R', front(ba, 'chest', .3 * k, .1 * k, -.2 * k).lerp(at(ha, nearSh).lerp(at(ha, nearSh.replace('upper', 'fore')), .5), sh), { grip: .04 });
     if (t >= L[3][0] && t < L[3][1]) {
       const n = Math.floor((t - L[3][0]) / 1.2) % 5, tick = Math.max(0, Math.sin((t - L[3][0]) * Math.PI / .6));
       PO.reach(ba, 'L', front(ba, 'chest', .28 * k, -.06 * k, -.08 * k), { grip: .05 });
