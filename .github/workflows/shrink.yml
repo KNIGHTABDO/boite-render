@@ -1,0 +1,23 @@
+name: shrink
+on:
+  workflow_dispatch:
+    inputs:
+      run:   { description: 'run id holding the artifact' }
+      name:  { default: 'ep07_final' }
+      vbr:   { default: '4000k', description: 'video bitrate (2-pass)' }
+permissions: { actions: read, contents: read }
+jobs:
+  shrink:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null
+      - env: { GH_TOKEN: '${{ github.token }}' }
+        run: gh run download ${{ inputs.run }} -R ${{ github.repository }} -n ${{ inputs.name }} -D in && ls -la in
+      - run: |
+          f=$(ls in/*.mp4 | head -1)
+          ffmpeg -v error -y -i "$f" -c:v libx264 -preset slow -b:v ${{ inputs.vbr }} -pass 1 -an -f null /dev/null
+          ffmpeg -v error -y -i "$f" -c:v libx264 -preset slow -b:v ${{ inputs.vbr }} -pass 2 -c:a copy -movflags +faststart out.mp4
+          ls -la out.mp4
+      - uses: actions/upload-artifact@v4
+        with: { name: '${{ inputs.name }}_small', path: out.mp4, compression-level: 0 }
