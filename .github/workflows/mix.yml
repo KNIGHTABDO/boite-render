@@ -1,0 +1,44 @@
+name: mix
+# Audio mix on a runner (the laptop has 7.7 GB RAM): inputs come as the release asset mix-in-<ep>/in.tar,
+# outputs (flac master, m4a for preview/final, listen mp3, reports, stems) as the artifact mix-<ep>.
+on:
+  workflow_dispatch:
+    inputs:
+      ep: { default: 'ep07' }
+      args: { default: '', description: 'extra args for the mix script (e.g. --no-autofix)' }
+jobs:
+  mix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: inputs
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          mkdir proj && cd proj
+          gh release download mix-in-${{ inputs.ep }} -R ${{ github.repository }} -p in.tar
+          tar xf in.tar && rm in.tar
+          sudo mkdir -p /home/knight/Desktop/projects
+          sudo ln -s "$PWD" /home/knight/Desktop/projects/boite-a-merveilles
+      - name: deps
+        run: |
+          (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null) &
+          pip install -q numpy scipy soundfile
+          wait
+      - name: mix
+        working-directory: proj
+        run: |
+          set -o pipefail
+          /usr/bin/time -v python3 tools/audio/mix_${{ inputs.ep }}.py ${{ inputs.args }} 2>&1 | tee ../mix.log | grep -v "^NUDGE" | tail -150
+      - name: pack
+        if: always()
+        working-directory: proj
+        run: |
+          mkdir -p ../o
+          E=${{ inputs.ep }}
+          [ -f audio/${E}_mix.wav ] && ffmpeg -v error -i audio/${E}_mix.wav -c:a flac ../o/${E}_mix.flac && ffmpeg -v error -i audio/${E}_mix.wav -c:a aac -b:a 192k ../o/${E}_mix.m4a
+          cp -r episodes/$E/mix_report.* audio/${E}_mix_listen.mp3 audio/credits_${E}.txt ../o/ 2>/dev/null || true
+          mkdir -p ../o/stems && for f in audio/stems/${E}_*.wav; do [ -f "$f" ] && ffmpeg -v error -i "$f" -c:a flac ../o/stems/$(basename "$f" .wav).flac; done
+          cp ../mix.log ../o/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'mix-${{ inputs.ep }}', path: o, retention-days: 14 }
