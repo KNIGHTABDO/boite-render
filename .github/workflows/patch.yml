@@ -1,0 +1,81 @@
+# Re-render ONE missing/failed part of a final.yml run fast: split its frame range [a,b) over k workers, then
+# merge with the other parts of the source run (artifacts part-*) into <ep>_final. Subparts are named p<i>_NN so they sort in place.
+name: patch
+on:
+  workflow_dispatch:
+    inputs:
+      ep:   { default: 'ep07' }
+      fps:  { default: '24' }
+      h:    { default: '1080' }
+      i:    { description: 'part number being replaced (2 digits)', default: '27' }
+      a:    { description: 'first frame' }
+      b:    { description: 'end frame (exclusive)' }
+      k:    { default: '20', description: 'workers' }
+      src:  { description: 'source final.yml run id holding the other part-* artifacts' }
+permissions: { actions: read, contents: read }
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs: { subs: '${{ steps.p.outputs.subs }}' }
+    steps:
+      - id: p
+        run: |
+          python3 -c "
+          import json; a,b,k=${{ inputs.a }},${{ inputs.b }},${{ inputs.k }}
+          c=[a+(b-a)*j//k for j in range(k+1)]
+          print('subs='+json.dumps([{'n':'%02d'%j,'a':c[j],'b':c[j+1]} for j in range(k)]))" >> $GITHUB_OUTPUT
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: { s: '${{ fromJson(needs.plan.outputs.subs) }}' }
+    env:
+      EP: ${{ inputs.ep }}
+      FPS: ${{ inputs.fps }}
+      CHROME: /usr/bin/google-chrome
+      CHROME_EXTRA: --no-sandbox --enable-unsafe-swiftshader
+      X264_PRESET: medium
+      RENDER_H: ${{ inputs.h }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - name: deps
+        timeout-minutes: 15
+        run: |
+          ff() { curl -fsSL --retry 3 --max-time 180 https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz | sudo tar -xJ -C /usr/local/bin --strip-components=2 --wildcards '*/bin/ffmpeg' '*/bin/ffprobe'; }
+          (ff || (sudo timeout 300 apt-get update -qq && sudo timeout 300 apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null)) &
+          npm ci --no-audit --no-fund --silent
+          wait
+      - name: render
+        run: |
+          mkdir -p out; f=out/p${{ inputs.i }}_${{ matrix.s.n }}.mp4
+          W=$(( (${{ inputs.h }}*16/9 + 1) / 2 * 2 ))
+          for try in 1 2 3; do   # Chrome sometimes fails to launch on a runner: retry
+            node tools/render_film.mjs --worker ${{ matrix.s.a }} ${{ matrix.s.b }} $f $W 2>&1 | grep -v "^PAGE log" | tail -20
+            test -s $f && break; echo "retry $try"; sleep 5
+          done
+          test -s $f
+      - uses: actions/upload-artifact@v4
+        with: { name: 'sub-${{ matrix.s.n }}', path: 'out/*.mp4', retention-days: 3 }
+  merge:
+    needs: render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: parts, pattern: part-*, merge-multiple: true, run-id: '${{ inputs.src }}', github-token: '${{ github.token }}' }
+      - uses: actions/download-artifact@v4
+        with: { path: parts, pattern: sub-*, merge-multiple: true }
+      - name: merge
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg >/dev/null
+          rm -f parts/p${{ inputs.i }}.mp4
+          ls parts | tr '\n' ' '; echo; ls parts | wc -l
+          for f in $(ls parts/*.mp4 | sort); do echo "file '$PWD/$f'" >> list.txt; done
+          ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -i audio/${{ inputs.ep }}_mix.m4a -map 0:v -map 1:a -c:v copy -c:a copy -shortest -movflags +faststart ${{ inputs.ep }}_final.mp4
+          ffprobe -v error -show_entries stream=codec_type,nb_frames:format=duration -of csv=p=0 ${{ inputs.ep }}_final.mp4; ls -la ${{ inputs.ep }}_final.mp4
+      - uses: actions/upload-artifact@v4
+        with: { name: '${{ inputs.ep }}_final', path: '${{ inputs.ep }}_final.mp4', retention-days: 14 }
