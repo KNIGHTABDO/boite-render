@@ -27,7 +27,10 @@ const sh = shot({
     const down = P.stool.clone().addScaledVector(dirW(mo, 0, 0, 1), .32);
     S3.add(ms, down.x, down.z, mo.group.rotation.y); ms.name = 'mohammed';
     // the father: down from the platform at its front corner, walks to the boy's side
-    const f0 = S3.floorAt(640, 1070), f1 = down.clone().add(f0.clone().sub(down).setY(0).normalize().multiplyScalar(.62));   // v2 QA: stand off the STANDING boy (his head pressed into the father's arm at .5 from the stool)
+    // v2 QA: he stops BESIDE the standing boy (side-on to the camera), not between him and the lens (head in his arm / hand on his face)
+    const f0 = S3.floorAt(640, 1070), vc = P.cam.clone().sub(down).setY(0).normalize();
+    let side = V(vc.z, 0, -vc.x); if (side.dot(f0.clone().sub(down)) < 0) side.negate();
+    const f1 = down.clone().addScaledVector(side, .46).addScaledVector(vc, .08);
     S3.add(fw, f0.x, f0.z, 0);
     const bp = S3.floorAt(1300, 900); S3.add(ba, bp.x, bp.z, Math.atan2(P.cam.x - bp.x, P.cam.z - bp.z) - .4);
     return {
@@ -41,7 +44,7 @@ const sh = shot({
     mo.group.visible = !off; ms.group.visible = off;
     idle(fw, t, 2); idle(ba, t, 5);
     const w = walk(fw, f0, f1, L[1][0] - .4, L[1][0] + 1.6, t, { cps: 1.6 });
-    if (w >= 1) { fw.group.rotation.y = Math.atan2(at(mo, 'root').x - f1.x, at(mo, 'root').z - f1.z); fw.group.updateMatrixWorld(true); }
+    if (w >= 1) { fw.group.rotation.y = Math.atan2(at(ms, 'root').x - f1.x, at(ms, 'root').z - f1.z); fw.group.updateMatrixWorld(true); }
     const kid = off ? ms : mo;
     if (!off) {
       PO.apply(mo, R); breathe(mo, t, 1, 1);
@@ -51,7 +54,8 @@ const sh = shot({
     } else { idle(ms, t, 1); PO.look(ms, at(fw, 'head'), .6); }
     // the father's hand on the boy's shoulder once he is there
     const hand = sm(L[1][0] + 1.5, L[1][0] + 2.1, t), k = fw.group.scale.y / 1.6;
-    if (hand > 0) PO.reach(fw, 'R', front(fw, 'chest', .2 * k, .1 * k, -.25 * k).lerp(at(kid, 'upperArmL').add(V(0, .04, 0)), hand), { grip: .04 });
+    const near = at(kid, 'upperArmL').distanceTo(at(fw, 'chest')) < at(kid, 'upperArmR').distanceTo(at(fw, 'chest')) ? 'upperArmL' : 'upperArmR';
+    if (hand > 0) PO.reach(fw, 'R', front(fw, 'chest', .2 * k, .1 * k, -.25 * k).lerp(at(kid, near).add(V(0, .05, 0)), hand), { grip: .04 });
     PO.look(fw, w > 0 ? at(kid, 'head') : V(cam.x, 1.4, cam.z), .6);
     PO.look(ba, at(kid, 'head'), .5);
   },
