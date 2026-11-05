@@ -34,7 +34,7 @@ function spaced(s, x, y, sp) {   // letter-spaced text centred on x (canvas lett
 }
 
 function card(text, k, t, a) {
-  const u = ease(clamp((t - a) / .6)), y = 250 - 14 * (1 - u);
+  const u = ease(clamp((t - a) / .6)), y = 165 - 14 * (1 - u);   // high: at 250 it sat on Zoubida's face (s03, s24)
   c.save(); c.globalAlpha = k; c.textAlign = 'left'; c.textBaseline = 'alphabetic';
   c.font = `bold 68px ${SERIF}`;
   const g = c.createRadialGradient(W / 2, y - 20, 40, W / 2, y - 20, 760); g.addColorStop(0, 'rgba(10,6,3,.55)'); g.addColorStop(1, 'rgba(10,6,3,0)');

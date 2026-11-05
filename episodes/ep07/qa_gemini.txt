@@ -1,0 +1,313 @@
+1. Rig / 3D glitches
+
+00:04–00:08, 06:59–07:03, 07:20–07:35: The red-and-yellow barber cape on Mohammed is a rigid cone mesh that pops on and off in a single frame (07:00, 07:36), completely replacing his arms and torso.
+
+00:26–00:34: A dark blue crescent-shaped polygon pops onto the surface of Zoubida’s bendir while her right hand taps the air beside the rim.
+
+00:35–00:49: Duplicate/stuck prop on Mohammed: when he raises both hands to his mouth to play the trumpet (00:40), the white trumpet/pouch mesh stays glued to his right wrist at hip level while a second cone sticks out from his hands.
+
+00:50–00:52: Zoubida has an extra limb/sleeve artifact: her left arm is raised to her headscarf while a second left sleeve hangs vertically from her shoulder to her hip.
+
+01:04–01:06: A tiny disembodied head pops straight out of the solid stone parapet wall above the red toy cart and sinks back into the masonry.
+
+01:17–01:26: Wrong scale on Hammoussa: he is the exact same height as Mohammed instead of the tiniest pupil at the Msid.
+
+01:23–01:26: When Hammoussa raises his right hand to his mouth, a long flesh-coloured spike stretches from his hand and chin down to his waist.
+
+01:27–01:33: The three boys sitting on the Msid floor have pretzel-folded leg rigs; at 01:32–01:33, when Mohammed bows his head, his facial features vanish completely (blank/see-through face).
+
+01:49–01:54: A large black triangular web/wing stretches between the raised right arm and torso of the boy standing on the ladder.
+
+05:11–05:20: Instead of blushing red, a dark grey soot-like band appears across Mohammed’s eyes and nose bridge.
+
+05:22–05:25 & 05:51–05:56: Oncle Hammad’s feet float/stand on top of the low wooden stool seat instead of sitting on a chair; at 05:51–05:56, he turns his back and remains perched standing on top of the stool.
+
+05:33–05:39: Severe mesh explosion on Oncle Hammad: his nose and white goat beard stretch sideways into a huge diagonal flesh-and-white triangle that Si Abderrahman grabs with his hand.
+
+06:25–06:40: Sidi Ahmed Lamrani walks in and sits in mid-air directly in front of Mohammed on the bench, clipping through him, with both hands held up in stiff claw poses; at 06:30–06:34, Lamrani’s white sleeve pops in and out on the left edge of the frame.
+
+07:36–07:39: A black curved toon-line artifact cuts horizontally across the front of Mohammed’s white djellaba skirt.
+
+07:51–07:59: Zoubida and Rahma are missing their lower legs and feet in the patio; below the hems of their dresses are transparent black shadow stumps floating above the floor.
+
+08:08–08:10: Rahma sprouts large flesh-coloured webbed wings/spikes from both sides of her head and shoulders when she covers her ears.
+
+08:11–08:16: Zineb stands clipped directly into Zoubida’s back; the new shirt is a flat, rigid white cutout board floating in front of Mohammed’s chin and chest while his original djellaba sleeves remain on his arms and the round bendir stays wedged between his feet.
+
+08:31–08:36: A black rectangular block covers Zoubida’s eyes and upper face like a blindfold while she pours a rigid turquoise cylinder of water out of a black box.
+
+08:37–08:47: Mohammed sits inside the wooden bathtub wearing his full white djellaba, with a flat tan rectangular plank sticking straight up in front of his chest while Zoubida grips his chin.
+
+09:39–09:45: Mohammed’s right hand clips through his father’s djellaba sleeve on the street.
+
+10:13–10:34 & 10:42–11:00: Severe rig/texture corruption on the Fqih: his black-and-white vertical stripes wrap onto his hands like giant mittens (10:18–10:34), and when he raises his arms to pray (10:42–11:00), two extra hands/wings sprout from the sides of his head while his lower sleeves hang down (four-arm effect).
+
+11:27–11:35: During the embrace (11:27–11:29), a yellow blob bulges between Lalla Aïcha’s and Zoubida’s necks and Zoubida’s left hand is a flat paddle; when Zoubida turns around (11:31–11:35), a white tail-like spike sticks out from the bottom rear hem of her yellow mansouria.
+
+12:06–12:10: Black triangular webs appear under Lalla Aïcha’s raised wrists beside her headscarf.
+
+12:41–12:58: In the top-left corner, the seated Father floats in mid-air above the divan mattress.
+
+2. Identity
+
+Mohammed (mohammed):
+
+Character sheet requires a shaved head with a tuft, and Si Abderrahman shaves his head at 07:20–07:35, but Mohammed has a full brown cap of hair before, during, and after the haircut (07:36 onward).
+
+Off-model in paintings: in 04:10–04:18 he is drawn as a 2-year-old toddler in his mother’s arms; in 04:19–04:29 and 11:14–11:23 he has a full head of dark hair and wears a red fez (which 3D Mohammed never wears).
+
+Outfit continuity errors: at 09:55–10:04 (outside the Msid door), his red embroidered gilet and satchel vanish for one shot (he wears a plain beige djellaba from behind) before reappearing at 10:05. During Lalla Aïcha’s visit on Achoura day (11:24–12:25), he is back in his plain everyday white djellaba instead of his festive outfit. At 12:45–12:58 (« De mes habits neufs, je ne gardai que la chemise »), he is still wearing his hooded djellaba instead of just the starched shirt.
+
+Hammoussa (hammoussa): At 01:17–01:26 and 01:49–01:59, he wears a normal-fitting djellaba with short sleeves exposing his hands and forearms, plus a white skullcap and yellow babouches, instead of a too-big beige djellaba, sleeves over his hands.
+
+Msid pupils (01:27–01:33, 02:00–02:08, 10:05–11:07): The classmates in the Msid are identical clones of the same boy mesh in the same shot, differentiated only by hat colour.
+
+Lalla Kanza (kanza): At 03:05–03:19, her eyes are wide open and staring instead of smiling, eyes half-closed.
+
+Father (father): From 09:14 onward (s20+), he continues wearing the exact same striped djellaba model and tint as in earlier scenes instead of switching to a lighter-tinted fine wool djellaba.
+
+Boîte à merveilles prop (12:53–12:57): Changes from a large brown wooden hinged chest in 3D (12:53–12:56) to a small rusted blue-and-gold tin box in the macro painting (12:56–12:57).
+
+3. Story vs picture
+
+01:02–01:09: Narration says « Le chat de Zineb fit un saut d'épouvante, et s'engouffra dans une gouttière. » The tabby (cat2) seen on the wall at 00:53–01:01 is completely missing at 01:02; no 3D cat jump is shown.
+
+01:27–01:33: Narration says « Au Msid, on découpait de minuscules mèches... » In 3D, the three boys sit empty-handed on the bare floor with no cloth, scissors, tin strips, or glasses in the room; all the work is shown only as still macro paintings (01:30–01:48).
+
+01:55–01:59: Narration says « Hammoussa se coupa le pouce avec une lamelle, et partit en pleurnichant doucement. » The cut is a still painting (01:55), and in 3D (01:56–01:59) Hammoussa stands motionless looking up at the ladder without holding his thumb or leaving.
+
+02:09–02:24: Narration says « plus de pétrole dans la lampe ! Driss El Aouad, notre voisin, accepta d'aller en acheter. » The room is brightly lit while the lamp is out, Zoubida already holds a green bottle at 02:16, and Driss El Aouad is never shown on screen.
+
+02:31–02:39: Narration says « à la lumière d'un bout de chandelle, elle remplit la lampe, et alluma. » The candle stub appears only in a still painting (02:31–02:33); in 3D (02:33–02:39), there is no candle, Zoubida stands with her back turned without pouring or touching the lamp, and the lamp lights up by itself at 02:36.
+
+03:05–03:19: Narration says « Lalla Kanza me donna une poignée de sésame... et je mangeai tout. » Giving and tasting the sesame are shown only as still paintings (03:09–03:10, 03:15–03:16); in 3D, Kanza stands frozen and Mohammed never takes or eats anything.
+
+04:30–04:49: Narration says « J'eus mon tambour en forme de sablier, un petit chariot en bois, et une nouvelle trompette... Pour finir, un cierge d'une livre. » In the 3D souk shots, both Father and Mohammed walk empty-handed without any of the three toys or the candle.
+
+04:50–04:57: Narration says « Il planta deux ventouses de fer-blanc sur la nuque d'un inconnu. Je détournai les yeux. » In 3D, the client’s neck has no suction cups (shown only in the still painting at 04:53–04:55), and Mohammed stares straight ahead instead of looking away.
+
+05:00–05:05: Si Abderrahman lists the drum, trumpet, cart, and candle, none of which are visible in the shop.
+
+05:11–05:13: Narration says « Tout le monde se mit à rire. » Only the father and the back-turned client are present, and the father sits stone-faced.
+
+05:22–05:28: Narration says Oncle Hammad « s'écroula sur une chaise », but he stands upright on/in front of a low stool.
+
+07:20–07:35: Narration says « Ma tête s'en alla de travers, et la lame me mordit. » In 3D, Mohammed’s head stays straight, the barber holds a tiny grey block instead of an ebony razor, and the nick is shown only as a still painting (07:32–07:33).
+
+08:00–08:07: Narration says « le tambour par terre, la trompette entre les genoux. » Mohammed has a large round bendir (not his hourglass tarija) propped vertically between his feet and holds a rainbow-striped trumpet at his mouth with both hands.
+
+08:17–08:29: Narration describes the terrace concert (« Sur la terrasse, deux filles et un garçon nous attendaient. Le garçon tira de ma trompette des rugissements inattendus... »). This entire action scene is shown as a still painting instead of 3D actors (teen, girl1, girl2), and shows three girls instead of two with Mohammed missing.
+
+08:37–08:47: Zoubida bathes Mohammed in the kitchen tub, but he is sitting in the water wearing his full white djellaba, and the small cork disc (« rondelle de liège ») is rendered as a huge rectangular board against his chest.
+
+09:08–09:13: Narration says « elle se mouilla la main, et me la passa sur la figure. » Zoubida extends a dry hand into mid-air and never touches Mohammed’s face.
+
+09:19–09:30: Putting on the new shirt, gilet, satchel, and orange-blossom water is shown entirely through four consecutive still paintings instead of 3D animation.
+
+09:55–10:04: Narration says « Je faillis lâcher mon cierge », but Mohammed’s hands are empty.
+
+10:13–10:17: Narration says « Je remis solennellement mon cierge, et ma pièce de cinq francs. » In 3D (10:13–10:15), Mohammed stands empty-handed before the Fqih; the handover is a still painting (10:16–10:17).
+
+10:18–10:22: Narration says « Un élève saigna du nez sur ses beaux habits. » No boy has a nosebleed in 3D, and the macro painting (10:20–10:21) shows blood dripping from a blossoming tree branch onto a sleeve.
+
+10:35–10:41: Narration says « À l'approche du jour, la lumière des veilleuses s'anémiait. Deux moineaux voletèrent autour des lustres. » Instead of showing the dimming lamps and two sparrows around the chandeliers inside the Msid, the video shows an empty exterior street with no birds.
+
+11:14–11:23: Father buying a blue ceramic plate at Moulay Idriss is shown as a still painting instead of moving 3D actors.
+
+12:41–12:44: Narration says « Mon tambour et ma trompette gisaient sur un matelas. » Only a round bendir lies on the mat; the trumpet is missing and it is the wrong drum.
+
+4. Camera and editing
+
+Shots held over 15 s:
+
+03:20–03:45 (25 s): Static shot of Mohammed on the dark stairs (walks for 5 s, then stands motionless with his back/side to the camera for 20 s).
+
+03:52–04:09 (17 s): Static shot of Mohammed kneeling on the floor with his father’s headless torso in the top-left background.
+
+One room for over 90 s without a cutaway:
+
+04:50–07:42 (172 s / 2 min 52 s): The camera stays inside the barber shop for nearly 3 minutes straight without cutting to another 3D location.
+
+Emotional peaks with no close-up:
+
+11:58–12:10: When Lalla Aïcha stops mid-sentence to confess her despair (« Nous sommes de bien faibles créatures... Ils sont... Ils sont... »), the camera stays in a wide shot with Aïcha small in the background.
+
+10:54–11:00: When Mohammed sees the Fqih without his quince rod for the first time (« Il me parut beau »), Mohammed is seen only from the back of his head in a group shot.
+
+12:53–13:02: When Mohammed opens his Boîte à merveilles and his eyes close from exhaustion, the camera remains in a medium-wide shot.
+
+Speaker seen from behind:
+
+02:26–02:41: Zoubida has her back completely turned to the camera while the lamp is lit and when she begins speaking at 02:41.
+
+03:25–03:45: Mohammed is angled away from the camera on the stairs while Zoubida (03:32) and Kanza (03:35) speak entirely off-screen.
+
+11:30–11:32 & 11:35–11:50: Zoubida speaks to Lalla Aïcha (« Lalla Aïcha, installe-toi... », « Et ton homme ? Ses affaires ? ») with her back turned to the camera.
+
+Heads cut off by the top of the frame:
+
+00:04–00:08, 06:58–07:03, 07:14–07:17, 07:23–07:35, 07:36–07:39: Si Abderrahman (and Lamrani at 07:36) decapitated by the top frame edge.
+
+01:56–01:59: Boy on the Msid ladder cut off at the waist by the top frame edge.
+
+02:54: Zoubida’s head cut off while handing mint to Mohammed.
+
+03:52–04:09 & 12:41–12:58: Seated Father’s head cut off by the top frame edge.
+
+04:30–04:38, 04:40–04:42, 09:31–09:33, 09:39–09:45: Standing Father’s head cut off by the top frame edge.
+
+10:13–10:15 & 10:18–10:34: Fqih’s head cut off by the top frame edge.
+
+11:24 & 12:14–12:16: Zoubida’s and Lalla Aïcha’s heads cut off by the top frame edge.
+
+On-screen titles and lower-thirds:
+
+00:19: Title banner DEUX JOURS AVANT L'ACHOURA overlaps Zoubida’s forehead and eyes.
+
+11:09–11:12: Title banner LE JOUR DE L'ACHOURA overlaps Zoubida’s face and headscarf.
+
+05:23–05:26: Lower-third card has a typo: Poncle Hammad instead of L'oncle Hammad.
+
+Subtitles: French subtitles are in sync and never cover a face.
+
+5. Paintings
+
+Total painting time is 146.5 seconds out of 832 seconds (17.6% of total video runtime; 18.7% of the 13:04 narrative runtime):
+
+00:00–00:03 (3.5 s) — Razor on sharpening stone: Justified (macro).
+
+00:08–00:10 (2.0 s) — Msid doorway with lanterns: Should be 3D (architectural exterior with no crowd; a 3D version already exists at 09:55).
+
+00:15–00:18 (3.5 s) — Three chapter cards: Title graphic.
+
+00:20–00:21 (1.5 s) — Hanging tambourines: Justified (macro).
+
+01:30–01:32 (2.0 s) — Scissors cutting cotton strip: Justified (macro).
+
+01:34–01:37 (3.5 s) — Hands stapling wick to tin strip: Justified (macro).
+
+01:38–01:40 (2.5 s) — Glass with water and olive oil: Justified (macro).
+
+01:41–01:44 (3.5 s) — Sprinkling red powder into glass: Justified (macro).
+
+01:45–01:48 (3.5 s) — Babouches filled with coloured powders: Justified (macro).
+
+01:55–01:56 (1.5 s) — Cut thumb beside tin strip: Justified (macro).
+
+02:31–02:33 (1.5 s) — Lit candle stub in clay dish: Justified (macro).
+
+02:54–02:55 (1.5 s) — Child’s hands holding mint: Justified (macro).
+
+03:09–03:10 (1.5 s) — Palm holding sesame seeds and chickpeas: Justified (macro).
+
+03:15–03:16 (1.5 s) — Child’s lips and tongue with sesame seeds: Justified (macro).
+
+04:10–04:18 (8.5 s) — Dream of giant candles, razors, and chandeliers: Justified (dream, though Mohammed is off-model as a toddler).
+
+04:19–04:29 (10.5 s) — Souk crowd with musicians: Justified (crowd > 6, though Mohammed wears a fez).
+
+04:38–04:40 (1.5 s) — Hand holding hourglass drum: Justified (macro).
+
+04:53–04:55 (1.5 s) — Two cupping glasses on bleeding nape: Justified (macro).
+
+05:43–05:44 (1.0 s) — Spoon drizzling honey: Justified (macro).
+
+05:44–05:45 (1.0 s) — Sesame/anise seeds on paper: Justified (macro).
+
+05:45–05:46 (1.0 s) — Cinnamon sticks tied with twine: Justified (macro).
+
+05:57–06:06 (9.5 s) — Moulay Larbi and three apprentices in workshop: Should be 3D or cut (only 4 people, under the >6 crowd threshold, and not a true flashback of the bloodletting).
+
+07:04–07:13 (9.5 s) — Street crowd with donkey and musicians: Justified (crowd > 6 / daydream).
+
+07:18–07:19 (1.0 s) — Razor on oiled stone (reused from 00:01): Justified (macro).
+
+07:19–07:20 (1.0 s) — Thumb testing razor blade on a hair: Justified (macro).
+
+07:32–07:33 (1.0 s) — Razor nicking nape of neck: Justified (macro).
+
+07:33–07:34 (1.0 s) — Drop hanging from child’s nose: Justified (macro).
+
+08:14–08:15 (1.5 s) — Hands adjusting embroidered shirt cuff: Justified (macro).
+
+08:17–08:29 (12.5 s) — Children playing trumpet and tambourines on terrace: Should be 3D (core scene with 4 kids in the foreground; teen, girl1, and girl2 are designated 3D characters).
+
+08:48–08:56 (8.5 s) — Dream of teasing girls and chattering barbers: Justified (dream).
+
+09:02–09:04 (2.0 s) — Festive clothes laid out on bed: Justified (macro).
+
+09:19–09:24 (5.0 s) — Hands holding starched white shirt: Justified (macro, though held too long).
+
+09:24–09:26 (1.5 s) — Buttoning red embroidered gilet: Justified (macro).
+
+09:26–09:27 (1.0 s) — Hand on embroidered satchel strap: Justified (macro).
+
+09:27–09:30 (3.5 s) — Sprinkling orange-blossom water onto djellaba: Justified (macro).
+
+09:48–09:49 (1.5 s) — 5-franc coin in child’s palm: Justified (macro).
+
+10:16–10:17 (1.5 s) — Hand placing coin beside decorated candles: Justified (macro).
+
+10:20–10:21 (1.5 s) — Blood dripping from a flowering twig onto a white sleeve: Unjustified / Hallucinated asset (shows a bleeding tree branch instead of a boy’s nosebleed).
+
+11:10–11:11 (1.5 s) — Tray of msemmen, honey, and tea: Justified (macro).
+
+11:14–11:23 (9.5 s) — Buying blue ceramic plate at Moulay Idriss crowd: Justified (crowd > 6, though Mohammed wears a fez).
+
+11:48–11:49 (1.5 s) — Putting mint into silver teapot: Justified (macro).
+
+12:26–12:35 (9.5 s) — Women playing tambourines on rooftops at sunset: Justified (crowd > 6).
+
+12:56–12:57 (1.5 s) — Open Boîte à merveilles: Justified (macro, though box material mismatches 3D).
+
+6. Audio
+
+03:35: Wrong gender on Lalla Kanza: when Zoubida asks if that is the muezzin, Kanza’s reply (« Oui. ») is delivered by a deep male voice instead of Kanza’s female voice (Vindemiatrix).
+
+02:40–02:41: Child Mohammed’s line (« Soirée de bénédiction. ») sounds synthetic/robotic with a dry acoustic mismatch.
+
+00:26–00:49, 07:51–08:07, 12:17–12:25: Missing instrument SFX: when characters beat tambourines/bendirs and when Mohammed plays his "homme-orchestre" (08:00–08:07) loud enough to make the women beg for mercy, there are no drum or trumpet SFX at all.
+
+01:02–01:06: Synthetic cat meow SFX plays over an empty wall with no cat on screen.
+
+03:31–03:35: Instead of a distant Arabic adhan from a minaret, a close-mic male voice speaks « Dieu est le plus grand » in French right in the foreground.
+
+08:40–08:44: No water splash or scrubbing SFX during the bath scene.
+
+00:10–00:19 (9 s) & 13:01–13:06 (5 s): Dead audio gaps over the black screen/title cards and before the revision sheet.
+
+7. Hook and pacing
+
+Cold open (00:00–00:14): 14 seconds (exceeds the 10 s limit). The razor macro (00:00–00:03) hooks well, but 00:04–00:08 is a static shot with a decapitated barber, and 00:10–00:14 is 4 seconds of black screen that stalls the start.
+
+Title / Chapter card (00:14–00:18.5): 4.5 seconds (exceeds the 4 s limit) and plays in dead silence.
+
+3 most boring stretches:
+
+04:50–07:42 (2 min 52 s — The Barber Shop): Nearly 3 minutes in a single small room with static cameras, frozen listeners, and broken sitting/standing poses.
+
+03:20–04:09 (49 s — Stairs and Bedroom): 25 seconds staring at Mohammed’s back on a dark staircase, followed immediately by 24 seconds of him kneeling motionless in front of his headless father.
+
+11:24–12:25 (1 min 01 s — Lalla Aïcha’s Visit): Over a minute of wide static shots where Zoubida’s back is turned and Lalla Aïcha delivers her emotional confession from the far divan without a single close-up.
+
+8. Top fixes
+
+Fix Lalla Kanza’s male voice at 03:35 and add instrument SFX at 08:00–08:07: Replace the male « Oui » with Kanza’s female voice (Vindemiatrix) and lay in trumpet/tambourine SFX when Mohammed and Zineb play.
+
+Reposition the two overlapping title banners (00:19, 11:09) and fix the typo at 05:23: Move DEUX JOURS AVANT L'ACHOURA and LE JOUR DE L'ACHOURA off Zoubida’s face, and correct Poncle Hammad to L'oncle Hammad.
+
+Replace the bleeding-tree-branch painting at 10:20–10:21: Swap the hallucinated blossoming twig dripping blood for a macro of a boy’s nosebleed dripping onto a white djellaba sleeve.
+
+Trim the cold open (00:00–00:14) to <10 s and title card (00:14–00:18.5) to <4 s: Cut the 4-second black gap at 00:10–00:14 and run music under the chapter cards.
+
+Tilt up / widen the camera in the 12 decapitated shots: Reframe 00:04, 01:56, 02:54, 03:52, 04:35, 06:58, 07:23, 09:31, 09:39, 10:18, 12:14, 12:41 so the Barber, Father, Fqih, and Zoubida don’t have their heads sliced off by the top of the frame.
+
+Clean up the 4 worst rig/mesh explosions: Fix Oncle Hammad’s stretched nose-beard triangle (05:33–05:39), the Fqih’s four-armed/striped-mitten rig (10:18–11:00), Hammoussa’s chin-to-waist spike (01:23–01:26), and Rahma’s head-wings (08:08–08:10).
+
+Fix actor placement and clipping in the barber shop and bedroom: Seat Oncle Hammad on a chair instead of standing on top of the stool (05:22–05:56), seat Lamrani on the bench instead of floating in front of Mohammed (06:25–06:40), and ground the floating Father on the divan (12:41–12:58).
+
+Fix the bath, shirt-fitting, and patio leg glitches (07:51–08:47): Restore Zoubida’s and Rahma’s missing lower legs/feet (07:51–07:59), remove the black blindfold block from Zoubida’s face (08:31–08:36), and put bare-shouldered Mohammed in the bathtub without his white djellaba or the giant tan board (08:37–08:47).
+
+Add a close-up on Lalla Aïcha at 11:58–12:10 and cut the 25-second stair shot (03:20–03:45): Punch in on Aïcha’s face when she confides her heartbreak, and trim the static staircase shot by at least 12 seconds.
+
+Convert the terrace concert (08:17–08:29) to 3D, animate cat2 jumping (01:02), and swap Mohammed’s shaved head mesh (07:36+): Replace the 12.5-second still painting at 08:17 with the 3D teen, girl1, girl2, and mohammed rigs, animate the 3D tabby jumping off the wall at 01:02, and switch Mohammed to his shaved-head-with-tuft model after the haircut.

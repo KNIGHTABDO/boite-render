@@ -179,7 +179,8 @@ export function stage() {
       const skinAt = (v, o) => {
         let best = null, bs = 1e9;
         for (const off of [[0, -2.2], [0, -1.6], [0, -1.2], [1.6, -.6], [-1.4, -.8]]) {
-          const d = px(v.clone().addScaledVector(o, off[0] * m).addScaledVector(upH, off[1] * m));   // head axes: a bowed/rolled head still samples its own cheek if (d[3] < 128) continue;
+          const d = px(v.clone().addScaledVector(o, off[0] * m).addScaledVector(upH, off[1] * m));   // head axes: a bowed/rolled head still samples its own cheek
+          if (d[3] < 128) continue;   // off the head (profile): an empty pixel scored as black and painted near-black lids (s19 8:33)
           const sum = d[0] + d[1] + d[2] + 1, rs = ref[0] + ref[1] + ref[2];
           const sc = Math.hypot(d[0] / sum - ref[0] / rs, d[1] / sum - ref[1] / rs) * 3 + (d[0] < d[1] || d[1] < d[2] * .9 ? 1 : 0) + (d[2] < d[0] * .3 ? 1 : 0)   // hue first, red>green>blue, not a saturated yellow/orange cloth
             + ((Math.max(d[0], d[1], d[2]) - Math.min(d[0], d[1], d[2])) / (Math.max(d[0], d[1], d[2]) + 1) < .2 ? 1.2 : 0) + (sum > rs * 1.3 ? 1.2 : 0);   // nor the cream eye-white (closed lids came out white: s16, s26)
