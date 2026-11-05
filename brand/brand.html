@@ -137,8 +137,8 @@ const ASSETS = {
   async thumb6c(g) { await thumbEp(g, 'ep06', 'p02b_chaux', true, 'RÉSUMÉ', 'Chapitre 6 en animation'); },
   // Episode 7 (La nuit de l'Achoura): the candle dream, the barber's razor, the souk crowd
   async thumb7(g) { await thumbEp(g, 'ep07', 'p03_reve_cierges', true, 'CHAPITRE 7', 'La nuit de l’Achoura'); },
-  async thumb7b(g) { await thumbEp(g, 'ep07', 'i_lame_nuque', false, 'LA TÊTE RASÉE', 'Chapitre 7 · le barbier bavard'); },
-  async thumb7c(g) { await thumbEp(g, 'ep07', 'p04_souk_foule', true, 'RÉSUMÉ', 'Chapitre 7 en animation'); },
+  async thumb7b(g) { await thumbEp(g, 'ep07', 'i_lame_nuque', false, 'LA TÊTE RASÉE', 'Chapitre VII · le barbier bavard'); },
+  async thumb7c(g) { await thumbEp(g, 'ep07', 'p04_souk_foule', true, 'RÉSUMÉ', 'Chapitre VII en animation'); },
 };
 window.render = async name => { const g = cv.getContext('2d'); await ASSETS[name](g); return cv.toDataURL('image/png'); };
 window.ready = true;
