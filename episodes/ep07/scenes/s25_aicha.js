@@ -172,11 +172,14 @@ export default beatScene('s25_aicha', {
   plan: {
     b094: { shot: 'sa', size: 'W', cover: [{ f: .55, size: 'M', on: 'aicha_w' }] },
     b095: { shot: 'sa', size: 'M', on: 'zoubida_w', cover: [{ f: .66, size: 'M', on: 'aicha' }] },
-    b096: { shot: 'sa', size: 'M', on: 'aicha', cover: [{ f: .55, size: 'W' }] },
+    b095a: { shot: 'sa', size: 'M', on: 'aicha', cover: [{ f: .5, size: 'CU', on: 'aicha' }] },   // v2 QA: the long talk was one locked frame: more coverage
+    b096: { shot: 'sa', size: 'M', on: 'aicha', cover: [{ f: .3, size: 'CU', on: 'aicha' }, { f: .55, size: 'W' }, { f: .8, size: 'M', on: 'mohammed' }] },
+    b096a: { shot: 'sa', size: 'M', on: 'mohammed', cover: [{ f: .5, size: 'M', on: 'zoubida' }] },
     b097: { shot: 'sa', size: 'M', on: 'zoubida', insAt: .5 },
     b098: { shot: 'sa', size: 'M', on: 'aicha' },
     b099: { shot: 'sa', size: 'CU', on: 'aicha' },
-    b100: { shot: 'sa', size: 'CU', on: 'aicha' },
+    b100: { shot: 'sa', size: 'CU', on: 'aicha', cover: [{ f: .55, size: 'M', on: 'zoubida' }] },
+    b100a: { shot: 'sa', size: 'M', on: 'aicha', cover: [{ f: .5, size: 'CU', on: 'zoubida' }] },
     b101: { shot: 'sa', size: 'M', on: 'zoubida', cover: [{ f: .5, size: 'M', on: 'mohammed' }] },
     b102: { shot: 'te', size: 'M', on: 'mohammed', segs: [[.42, 'sa'], [.72, 'te']], cover: [{ f: .42, size: 'M', on: 'aicha', shot: 'sa' }, { f: .72, size: 'M', on: 'mohammed', shot: 'te' }] },
     b103: { shot: 'p11_terrasses' },

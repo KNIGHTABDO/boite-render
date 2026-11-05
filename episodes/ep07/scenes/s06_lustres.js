@@ -125,6 +125,7 @@ export default beatScene('s06_lustres', {
     b013: { shot: 'lu', size: 'M', on: 'mohammed', insAt: .45 },
     b014: { shot: 'p01a_meche', segs: [[.34, 'p01b_verre'], [.67, 'p01c_poudre']] },
     b015: { shot: 'p02_babouches' },
+    b015a: { shot: 'lu', size: 'M', on: 'mohammed' },   // v2 QA: the chandelier line on the chandeliers (it inherited the babouches painting)
     b016: { shot: 'rv', size: 'W', insAt: .55, cover: [{ f: .75, size: 'M', on: 'hammoussa' }] },
     b017: { shot: 'rv', size: 'W', cover: [{ f: .5, size: 'M', on: 'fqih' }] },
   },

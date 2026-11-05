@@ -12,7 +12,7 @@
   "rahma":    {"model": "rahma", "age": 35, "height": 1.60, "palette": ["#7a5a8a"]},
   "aicha":    {"model": "aicha", "age": 35, "height": 1.62, "costumes": {"haik": "aicha_haik"}, "palette": ["#d98a3a"], "ref": "art/models/aicha__base_basic_pbr.glb",
                "notes": "Lalla Aïcha (ep02-03 continuity), wife of Moulay Larbi; plump, lively, theatrical hands"},
-  "hammoussa":{"model": "hammoussa", "age": 6, "height": 1.00, "palette": ["#b8a27a"], "notes": "NEW Rodin. Azzouz Berrada 'pois chiche': the tiniest pupil, too-big beige djellaba, sleeves over his hands"},
+  "hammoussa":{"model": "hammoussa", "age": 6, "height": 0.92, "palette": ["#b8a27a"], "notes": "NEW Rodin. Azzouz Berrada 'pois chiche': the tiniest pupil, too-big beige djellaba, sleeves over his hands"},
   "barber":   {"model": "barber", "age": 45, "height": 1.72, "palette": ["#e8e3d6", "#3a6a4a"], "notes": "NEW Rodin. Si Abderrahman: lively, sly eyes, short beard, white apron over a green-striped shirt, skullcap. Talks with his hands"},
   "hammad":   {"model": "hammad", "age": 65, "height": 1.75, "palette": ["#c8b89a"], "notes": "NEW Rodin. Oncle Hammad: dry, goat beard, monumental turban, groaning"},
   "lamrani":  {"model": "lamrani", "age": 28, "height": 1.76, "palette": ["#f0ede4", "#111111"], "notes": "NEW Rodin. Sidi Ahmed Lamrani: young, waxy-white skin, crow-black beard, fine white djellaba, poet's calm"},

@@ -68,7 +68,7 @@ export default beatScene('s15_lamrani', {
   plan: {
     b051: { shot: 'sh', size: 'W', cover: [{ f: .6, size: 'M', on: 'lamrani' }] },
     b052: { shot: 'sh', size: 'M', on: 'barber', cover: [{ f: .5, size: 'M', on: 'lamrani' }] },
-    b053: { shot: 'sh', size: 'CU', on: 'barber', insAt: .45 },
+    b053: { shot: 'sh', size: 'CU', on: 'barber', noIns: true },   // v2 QA: the cup-sucking insert read as random over 'Que deviennent tes études'
     b054: { shot: 'sh', size: 'CU', on: 'lamrani' },
     b055: { shot: 'sh', size: 'CU', on: 'barber' },
   },
