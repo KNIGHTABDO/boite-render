@@ -257,32 +257,16 @@ export async function loadSkinned(url, spec, { outline = .004, ramp = [120, 190,
   let patch = null;
   if (spec.capeHands) {
     const isArm = list.map(b => /(Arm|Hand)/.test(b.name) && !/Shoulder/.test(b.name));
-    const isHand = list.map(b => /Hand/.test(b.name));
-    const si = geo.attributes.skinIndex, sw = geo.attributes.skinWeight, n = si.count, arm = new Uint8Array(n);
-    // stills20: splitting by arm WEIGHT tore the haik (cloth draped over the forearm left with the arm as flaps). Split by
-    // texture COLOUR instead: only skin-coloured vertices (hands, wrists) follow the arm; all cloth stays on the body.
-    const img = src.material.map?.image, uv = geo.attributes.uv;
-    let px = null, iw = 0, ih = 0;
-    if (img && uv) { iw = img.width; ih = img.height; const cv = new OffscreenCanvas(iw, ih), g = cv.getContext('2d'); g.drawImage(img, 0, 0); px = g.getImageData(0, 0, iw, ih).data; }
-    const skin = i => {
-      if (!px) return true;
-      let u = uv.getX(i) % 1, v = uv.getY(i) % 1; if (u < 0) u += 1; if (v < 0) v += 1;
-      const o = (Math.min(ih - 1, Math.floor((src.material.map.flipY === false ? v : 1 - v) * ih)) * iw + Math.min(iw - 1, Math.floor(u * iw))) * 4;
-      const r = px[o], gg = px[o + 1], b = px[o + 2];
-      return r > gg && gg > b && r - b > 45 && r > 90 && gg - b > 12 && r - gg > 15;   // warm skin, not off-white cloth, not green
-    };
-    for (let i = 0; i < n; i++) {
-      let a = 0, hd = 0, tot = 0; for (let j = 0; j < 4; j++) { const w = sw.getComponent(i, j), bi = si.getComponent(i, j); tot += w; if (isArm[bi]) a += w; if (isHand[bi]) hd += w; }
-      arm[i] = hd > .5 * tot && skin(i) ? 1 : 0;   // stills22: arm-weighted warm cloth by the hips read as skin (holes): hands only
-      let s = 0; for (let j = 0; j < 4; j++) { const keep = !!isArm[si.getComponent(i, j)] === !!arm[i]; if (!keep) sw.setComponent(i, j, 0); else s += sw.getComponent(i, j); }
-      if (s > 0) for (let j = 0; j < 4; j++) sw.setComponent(i, j, sw.getComponent(i, j) / s);
-    }
-    sw.needsUpdate = true;
+    // stills20–24: re-weighting the cloth (by weight, then by texture colour) tore the haik or pinned the sleeves while the
+    // arms moved (black gaps). Keep every weight (the cloth drapes with the arm, like a real cloak) and cut only the FUSED
+    // triangles: where the arm weight jumps from ~1 to ~0 inside one triangle (the hand welded to the hip in the scan).
+    // Those cut triangles come back as a hip-bound cloth patch, so the hip has no hole when the hand leaves it.
+    const si = geo.attributes.skinIndex, sw = geo.attributes.skinWeight, n = si.count, aw = new Float32Array(n);
+    for (let i = 0; i < n; i++) { let a = 0, tot = 0; for (let j = 0; j < 4; j++) { const w = sw.getComponent(i, j); tot += w; if (isArm[si.getComponent(i, j)]) a += w; } aw[i] = tot ? a / tot : 0; }
     const ix = geo.index ? geo.index.array : Array.from({ length: n }, (_, i) => i), kept = [], hk = [];
     for (let t = 0; t < ix.length; t += 3) {
-      const a = arm[ix[t]], b = arm[ix[t + 1]], c = arm[ix[t + 2]];
-      if (a === b && b === c) kept.push(ix[t], ix[t + 1], ix[t + 2]);
-      if (a && b && c) hk.push(ix[t], ix[t + 1], ix[t + 2]);
+      const a = aw[ix[t]], b = aw[ix[t + 1]], c = aw[ix[t + 2]];
+      (Math.max(a, b, c) - Math.min(a, b, c) > .8 ? hk : kept).push(ix[t], ix[t + 1], ix[t + 2]);
     }
     geo.setIndex(kept);
     const hips = list.indexOf(B.root), pos = geo.attributes.position, nrm = geo.attributes.normal, pp = new Float32Array(n * 3);
