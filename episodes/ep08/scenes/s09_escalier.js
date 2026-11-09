@@ -38,7 +38,7 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     b.head.rotation.x += .1 * think - .12 * chin + .12 * drop;
     b.head.rotation.z += .06 * think;
     // Turn left through the upper body as well as the head, toward the upper railing/landing.
-    b.spine.rotation.y -= .35 * dream; b.chest.rotation.y -= .3 * dream;
+    b.spine.rotation.y -= .16 * dream; b.chest.rotation.y -= .14 * dream;
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
     // Autostage re-pins the palms to the bent knees after the torso changes; fingers stay curled on top.
@@ -81,7 +81,7 @@ export default beatScene(ID, {
   plan: {
     // Lower, wider seated coverage keeps both soles and their tread contact above the bottom matte.
     b044: { shot: 'esc', size: 'W', on: 'mohammed', cover: [{ f: .45, size: 'M', on: 'mohammed', z: 1.85, dy: 70 }] },
-    b045: { shot: 'esc', size: 'M', on: 'mohammed', z: 2, dy: 80 },
+    b045: { shot: 'esc', size: 'M', on: 'mohammed', z: 2, dy: 55 },
     b048: { move: 'forge' },
     b049: { move: 'princess' },
     b050: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.95, dy: 80 },

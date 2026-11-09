@@ -1,3 +1,4 @@
+import { checkedStage, haikCloth } from './s13_attente.js';
 // s14 "La bagarre". b090 souk_mur: the father has just set the boy down; he straightens, turns and strides off up the
 // passage into the crowd, the boy's eyes following him. b091 painting p22 (the sea of heads), b092 painting p23 (the
 // stampede). b093 low full-body on Zoubida, trampled: a jolt, she hops, her right knee jerks up, the trunk folds toward the foot,
@@ -8,9 +9,9 @@
 // a fallen white turban cloth on the paving, a red smear on the dellal's cheek). b097 W high: they shove on up the lane
 // and the whole souk follows them, backs to us, receding. The father's turban is baked into the rig mesh: on the lost-
 // turban phrase, cut low to the fallen cloth with his head outside the frame.
+import * as IK from '../../../engine/ik.js';
 import * as PO from '../../../engine/poses.js';
-import * as PR from '../../../engine/props3d.js';
-import { staged, THREE } from '../lib/autostage.js';
+import { THREE } from '../lib/autostage.js';
 import { walk } from '../lib/acts.js';
 import { rest, walkPose } from '../../../engine/rig3d.js';
 import { toon } from '../../../engine/props3d.js';
@@ -33,7 +34,8 @@ function soukCast(sh, copy, fighters = false) {
     const roles = [['fatma', 'zoubida', 'haik'], ...(fighters ? [['father', 'father'], ['marchand', 'marchand']] : [])];
     for (const [name, model, costume] of roles) {
       const old = sh.st.A[name], a = await role(model, { costume, copy: copy + ':' + name });
-      a.name = name; a.home = old.home;
+      a.name = name; a.home = old.home; a.actMark=old.actMark;
+      if(costume==='haik')haikCloth(a);
       a.group.position.copy(old.group.position); a.group.rotation.copy(old.group.rotation);
       old.group.removeFromParent(); sh.S3.scene.add(a.group); a.group.updateMatrixWorld(true);
       const i = sh.st.actors.indexOf(old);
@@ -48,19 +50,21 @@ function soukCast(sh, copy, fighters = false) {
   return sh;
 }
 
-const mu = soukCast(staged('souk_mur', {
-  father: { at: [680, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [1000, 700], t0: B(0)[0] + .2, t1: B(1)[0] + .3 } },
+const mu = soukCast(checkedStage('souk_mur', {
+  father: { at: [800, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [1000, 700], t0: B(0)[0] + .2, t1: B(1)[0] + .3 } },
   mohammed: { at: [700, 900], face: [680, 850], seed: 3, talk: 0, lookMax: 1.1, look: t => t < B(1)[0] ? 'father' : null },
   zoubida: { at: [520, 860], face: [800, 1000], costume: 'haik', seed: 7, talk: 0, lookMax: .7, lids: t => .35 * win(3, 0, 1, t),
     look: t => t > B(3)[0] && t < B(4)[0] ? [560, 980, 0] : t < B(1)[0] ? 'father' : null },
-  fatma: { at: [980, 900], face: [900, 980], costume: 'haik', seed: 11, talk: 0, lookMax: 1.2,
+  fatma: { at: [980, 900], face: [900, 980], costume: 'haik', seed: 11, talk: 0, lookMax: .55,
     look: (t, st) => t > B(4)[0] ? front(st.A.fatma, 'chest', -.9, .6, .3) : t < B(1)[0] ? 'father' : null },
   man1: { at: [1220, 610], face: [300, 980], seed: 21, talk: 0 },
   kid2: { at: [1300, 640], face: [300, 980], seed: 27, talk: 0 },
   woman1: { at: [1220, 610], face: [300, 980], seed: 25, talk: 0 },
   kid3: { at: [1300, 640], face: [300, 980], seed: 29, talk: 0 },
 }, {
+  traffic:['man1','kid2','woman1','kid3'],
   act(lt, t, S, st, S3) {
+    st.actcheck={exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','handR','foreArmL','foreArmR']:[],fatma:t>=B(4)[0]?['handL','handR','foreArmL','foreArmR']:[]},contacts:[{actors:['father','mohammed'],parts:['foreArmR:torso','foreArmR:head']}]};
     const { father: fa, mohammed: mo, zoubida: zo, fatma: ft } = st.A, kz = k(zo), kt = k(ft), kf = k(fa);
     // b090 he rises from setting the boy down (bent at first), then strides away and is swallowed by the passage
     const up = sm(0, B(0)[0] + .2, t);
@@ -68,19 +72,20 @@ const mu = soukCast(staged('souk_mur', {
     if (up < 1) PO.reach(fa, 'R', at(mo, 'neck').lerp(front(fa, 'root', .2 * kf, .2 * kf, .2 * kf), up), { grip: .025 });
     fa.group.visible = t < B(1)[0];
     if (t < B(1)[0]) {
-      const turn = sm(B(0)[0], B(0)[0] + 1.2, t), initial = yawTo(mo.group.position, S3.floorAt(680, 850));
+      const turn = sm(B(0)[0], B(0)[0] + 1.2, t), initial = yawTo(mo.group.position, S3.floorAt(800, 850));
       const follow = yawTo(mo.group.position, fa.group.position);
+      mo.B.spine.rotation.x += .06*(1-turn);mo.B.chest.rotation.y += .12*turn;
       mo.group.rotation.y = initial + Math.atan2(Math.sin(follow - initial), Math.cos(follow - initial)) * turn;
       mo.group.updateMatrixWorld(true);
     }
     // Hold the haiks closed on their outer surface, clear of the waist drape.
     for (const a of [zo, ft]) for (const s of ['L', 'R']) {
-      PO.reach(a, s, front(a, 'chest', .24 * k(a), (s === 'L' ? -.07 : .07) * k(a), -.18 * k(a)), { grip: .025 });
+      PO.reach(a, s, front(a, 'chest', .13 * k(a), (s === 'L' ? -.065 : .065) * k(a), -.18 * k(a)), { grip: .025 });
     }
     // runners deep in the passage during the trampling (b093–b094)
     const r0 = B(3)[0] - .3;
     for (const [n, p0, p1, dt] of [
-      ['man1', [1220, 610], [900, 640], 0], ['kid2', [1300, 640], [1150, 700], .4],
+      ['man1', [1150, 700], [700, 900], 0], ['kid2', [1300, 640], [1150, 700], .4],
       ['woman1', [1220, 610], [900, 640], 3.1], ['kid3', [1300, 640], [1150, 700], 3.5],
     ]) {
       const a = st.A[n], t0 = r0 + dt, t1 = t0 + 2.9;
@@ -90,17 +95,20 @@ const mu = soukCast(staged('souk_mur', {
     // b093 trampled: jolt, hop on the left foot, right knee up, folding toward it
     const hu = win(3, 0, .95, t), hop = Math.max(0, Math.sin((t - B(3)[0]) * 9)) * hu;
     if (hu > 0) {
-      zo.B.thighR.rotation.x -= 1.9 * hu; zo.B.shinR.rotation.x += .9 * hu;
-      zo.B.spine.rotation.x += 1.35 * hu; zo.B.chest.rotation.x += .4 * hu; zo.B.neck.rotation.x -= .22 * hu;
+      zo.B.thighR.rotation.x -= 1.5 * hu; zo.B.shinR.rotation.x += 1.65 * hu;
+      zo.B.spine.rotation.x += .82 * hu; zo.B.chest.rotation.x += .12 * hu; zo.B.neck.rotation.x -= .22 * hu;
       zo.group.position.y += .08 * hop * kz; zo.group.updateMatrixWorld(true); zo.B.spine.updateWorldMatrix(false, true);
-      const foot = front(zo, 'footR', .08 * kz, 0, .05 * kz);
+      // Lift the foot into the measured two-arm workspace before either hand reaches for it.
+      const ankle=at(zo,'footR'), lifted=front(zo,'chest',.12*kz,.02*kz,-.28*kz);
+      IK.leg(zo,'R',ankle.lerp(lifted,hu),front(zo,'root',.6*kz,.10*kz,.35*kz));
+      const foot = front(zo, 'footR', 0, 0, .035 * kz);
       for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'chest', .24 * kz, (s === 'L' ? -.06 : .06) * kz, -.18 * kz)
         .lerp(foot.clone().add(V((s === 'L' ? -.035 : .035) * kz, .02 * kz, 0)), hu), { grip: .025 });
     }
     // b094 the haik tugged from behind: chest twists after it, both fists at the breastbone
     const tug = win(4, 0, 1, t), jerk = Math.max(0, Math.sin((t - B(4)[0]) * 5.5)) ** 3;
     if (tug > 0) {
-      ft.B.spine.rotation.y += (.5 + .15 * jerk) * tug; ft.B.chest.rotation.y += .25 * tug;
+      ft.B.spine.rotation.y += (.35 + .12 * jerk) * tug; ft.B.chest.rotation.y += .18 * tug;
       ft.B.spine.rotation.x -= .08 * jerk * tug; ft.group.position.add(V(.03 * jerk * kt, 0, -.04 * jerk * kt));
       ft.group.updateMatrixWorld(true); ft.B.spine.updateWorldMatrix(false, true);
       const breast = at(ft, 'chest', [0, .025, .14]);
@@ -116,11 +124,11 @@ const mu = soukCast(staged('souk_mur', {
 // the fight: the pair grips collars and shoves along a path (the walk gives the legs; the bodies face each other)
 const PATH = [[1120, 640], [770, 760], [900, 640]];   // across lens-left → held close → receding, still readable
 const FOLLOW = [
-  ['man1', [700, 900]], ['woman1', [1150, 860]], ['woman2', [1300, 940]],
-  ['kid2', [770, 1000]], ['kid3', [1050, 1000]],
+  ['man1', [700, 900]], ['woman1', [1050, 860]], ['woman2', [1150, 940]],
+  ['kid2', [770, 1000]], ['kid3', [1000, 1030]],
 ];
 const dropAt = f(5, .9), turbanAt = B(6)[0] + 5.05, bloodAt = B(6)[0] + 7.5;
-const fi = soukCast(staged('souk_bijoux', {
+const fi = soukCast(checkedStage('souk_bijoux', {
   father: { at: PATH[0], seed: 5, talk: 0, look: 'marchand', lookMax: .8 },
   marchand: { at: PATH[0], seed: 13, talk: 0, look: 'father', lookMax: .8, mutter: t => .35 + .2 * Math.sin(t * 7) },
   zoubida: { at: [520, 860], face: [770, 760], costume: 'haik', seed: 7, talk: 0, lookMax: .8, look: 'father' },
@@ -130,9 +138,11 @@ const fi = soukCast(staged('souk_bijoux', {
   man1: { at: FOLLOW[0][1], seed: 21, talk: 0 }, woman1: { at: FOLLOW[1][1], seed: 25, talk: 0 },
   woman2: { at: FOLLOW[2][1], seed: 23, talk: 0 }, kid2: { at: FOLLOW[3][1], seed: 27, talk: 0 }, kid3: { at: FOLLOW[4][1], seed: 29, talk: 0 },
 }, {
+  traffic:['man1','woman1','woman2','kid2','kid3'],
   // A paving insert on the turban phrase: the baked headwear is entirely above the crop.
   view: (lt, u, t) => t >= turbanAt && t < bloodAt ? [690, 815, 3.8] : null,
   act(lt, t, S, st, S3) {
+    st.actcheck={insert:t>=turbanAt&&t<bloodAt,contacts:[{actors:['father','marchand'],parts:['foreArmL:torso','foreArmR:torso','foreArmL:head','foreArmR:head','foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR']}]};
     const { father: fa, marchand: ma, zoubida: zo, fatma: ft } = st.A, F = p => S3.floorAt(...p);
     // the pair's centre point along the path
     const a0 = B(5)[0] - .4, a1 = B(5)[1], c0 = B(7)[0] - .2, c1 = B(7)[1] + .6;
@@ -151,7 +161,7 @@ const fi = soukCast(staged('souk_bijoux', {
     for (const [a, o] of [[fa, ma], [ma, fa]]) {
       a.group.rotation.y = yawTo(a.group.position, o.group.position);
       const heave = Math.sin(t * 3.6 + (a === fa ? 0 : 1.4));
-      a.B.spine.rotation.x += .12 + .05 * heave + .12 * knock;
+      a.B.spine.rotation.x += .24 + .07 * heave + .12 * knock;
       a.B.chest.rotation.x -= .055 * heave; a.B.chest.position.z += .012 * heave;
       a.B.neck.rotation.x -= .08; a.group.updateMatrixWorld(true);
     }
@@ -160,10 +170,12 @@ const fi = soukCast(staged('souk_bijoux', {
       PO.grip(a, s, front(o, 'neck', .14 * k(o), (s === 'L' ? .085 : -.085) * k(o), -.11 * k(o)), at(o, 'chest'));
       PO.fingers(a, s, .95, { thumb: .85 });
     }
-    for (const a of [zo, ft]) for (const s of ['L', 'R']) PO.reach(a, s, front(a, 'chest', .24 * k(a), (s === 'L' ? -.07 : .07) * k(a), -.18 * k(a)), { grip: .025 });
+    for (const a of [zo, ft]) for (const s of ['L', 'R']) PO.reach(a, s, front(a, 'chest', .13 * k(a), (s === 'L' ? -.065 : .065) * k(a), -.18 * k(a)), { grip: .025 });
     // Knock the loose cloth down late in b095; it stays on the paving through the procession.
     if (!st.tb) {
-      st.tb = S3.prop(PR.blanket({ w: .3, l: .55, h: .07, col: 0xf4efe4 }), 0, 0, 0);
+      const cloth=new THREE.Group();
+      for(let j=0;j<5;j++){const fold=new THREE.Mesh(new THREE.TorusGeometry(.075+j*.012,.018,6,18,Math.PI*1.7),toon(0xf4efe4));fold.rotation.set(Math.PI/2+.13*Math.sin(j),.1*j,.7*j);fold.position.set(.035*Math.sin(j*2),.025+.009*j,.025*Math.cos(j));cloth.add(fold);}
+      st.tb = S3.prop(cloth, 0, 0, 0);
       // Head-local marks follow the gaze applied after act(), including the dellal's turned cheek.
       st.bl = new THREE.Mesh(new THREE.SphereGeometry(.045, 12, 8), toon(0x9a1a14));
       const face = ma.S.face;

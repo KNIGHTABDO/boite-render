@@ -1,3 +1,4 @@
+import { checkedStage } from './s13_attente.js';
 // s04 "Le mausolée". b010 the cramped Msid in the heat (ep03/msid_estrade): boys fan themselves with their slates, the fqih
 // wipes his brow. b011 the procession: the fqih then the boys come in through the sanctuary door (mausolee_rev), slates held
 // to their chests. b012 memory (warm grade, mausolee): young women circle the railed tomb seven times, counting on their
@@ -8,7 +9,6 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import * as IK from '../../../engine/ik.js';
 import { walkPose } from '../../../engine/rig3d.js';
-import { staged } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V, dirW, yawTo } from '../lib/beatscene.js';
 import { plate, drawPlate } from '../../../engine/plates.js';
 import { c } from '../../../engine/core.js';
@@ -42,7 +42,7 @@ function sized(sh, factors) {
     const before = sh.st.actors.map(a => a.group.scale.clone());
     sh.st.actors.forEach((a, i) => { a.group.scale.copy(scales[i]); a.group.updateMatrixWorld(true); });
     try { return draw(...args); }
-    finally { sh.st.actors.forEach((a, i) => { a.group.scale.copy(before[i]); a.group.updateMatrixWorld(true); }); }
+    finally { sh.st.actors.forEach((a, i) => { a.group.scale.copy(before[i]); delete a.armLen; a.group.updateMatrixWorld(true); }); }
   };
   return sh;
 }
@@ -62,8 +62,8 @@ function hangArms(a, t, sides = ['L', 'R']) {
 
 /** Bottom-origin board, clear of the chest; wrists stay OUTSIDE its lower corners. */
 function chestLouha(a, lh) {
-  const kk = k(a); lh.scale.setScalar(Math.min(1, kk * 1.1));
-  lh.position.copy(front(a, 'chest', .30 * kk, 0, -.32 * kk));
+  const kk = k(a); lh.scale.setScalar(Math.min(.72, kk * .8));
+  lh.position.copy(front(a, 'chest', .20 * kk, 0, -.38 * kk));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.06, a.group.rotation.y, 0); lh.updateMatrixWorld(true);
   for (const [s, sign] of [['L', 1], ['R', -1]]) {
     const edge = lh.localToWorld(V(sign * .18, .055, .035));
@@ -75,8 +75,8 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .27 * kk, .22 * kk, -.28 * kk);
-  lh.scale.setScalar(Math.min(1, kk * 1.1));
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .20 * kk, .35 * kk, -.34 * kk);
+  lh.scale.setScalar(Math.min(.72, kk * .8));
   lh.position.copy(g); lh.rotation.order = 'YXZ'; lh.rotation.set(-.2 + .08 * wave, a.group.rotation.y - .25 + amp * .4 * wave, -.08); lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
   IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(-.08, .11, .025)));
@@ -84,17 +84,24 @@ function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
 }
 
 // ---------------------------------------------------------------- b010 the Msid in the heat
-const ms = staged('ep03/msid_estrade', {
+const ms = checkedStage('ep03/msid_estrade', {
   fqih: { at: [1000, 795], face: 'cam', pose: 'cross', o: { seat: .34 }, seed: 9, lids: .35, talk: 0 },
-  kid1: { at: [500, 925], face: [1000, 1060], pose: 'cross', seed: 2, look: 'fqih', lids: .3 },
-  kid2: { at: [1460, 925], face: [1000, 1060], pose: 'cross', seed: 4, look: 'fqih', lids: .25 },
-  mohammed: { at: [960, 950], face: [1100, 1060], pose: 'cross', seed: 3, look: 'fqih', lids: .45 },
+  kid1: { at: [500, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 2, look: 'fqih', lids: .3 },
+  kid2: { at: [1460, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 4, look: 'fqih', lids: .25 },
+  mohammed: { at: [960, 950], face: [1100, 1060], pose: 'cross', hands:false, seed: 3, look: 'fqih', lids: .45 },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo } = st.A, kf = k(fq);
+    PO.setHipY(fq,at(fq,'root').y-.004);
+    for(const a of [kid1,kid2,mo])PO.setHipY(a,at(a,'root').y+.006);
     // heavy heat: everybody slumps a little; the fqih's head lolls
-    for (const a of [fq, kid1, kid2, mo]) { a.B.spine.rotation.x += .1; a.B.chest.rotation.x += .06; upd(a, 'spine'); repin(a); }
-    st.hem ||= skirt(S3, mo, 0);   // a continuous low cloth drape over the folded legs
+    for (const a of [fq, kid1, kid2, mo]) { a.B.spine.rotation.x += .1; a.B.chest.rotation.x += .06; upd(a, 'spine'); if(a===fq)repin(a); else PO.reach(a,'L',front(a,'root',.18*k(a),-.12*k(a),.16*k(a)),{grip:.035}); }
+    for(const a of [kid1,kid2,mo])for(const side of ['L','R']){
+      const low=PO.lowestOf(a,['foot'+side,'shin'+side]);
+      if(low<0){const ankle=at(a,'foot'+side).add(V(0,-low+.002,0));IK.leg(a,side,ankle,at(a,'shin'+side));}
+    }
+    for(const a of [kid1,kid2,mo])for(const n of ['RightRobe2','LeftRobe2','SkirtFront2','SkirtBack2'])if(a.B[n]){const bone=a.B[n];bone.scale.y*=.70;bone.position.copy(bone.parent.worldToLocal(at(a,n).add(V(0,.026,0))));bone.updateWorldMatrix(false,true);}
+    st.hems ||= [kid1,kid2,mo].map(a=>skirt(S3,a,0));   // a continuous low cloth drape over the folded legs
     st.lh ||= [kid1, kid2, mo].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     fanLouha(kid1, st.lh[0], t, 0, 7); fanLouha(kid2, st.lh[1], t, 1.9, 6); fanLouha(mo, st.lh[2], t, .7, 4.2, .4);   // Mohammed fans slower, wearily
     // Start wiping during the pre-roll too; sweep across the brow, then briefly lower the open hand.
@@ -112,7 +119,7 @@ const ms = staged('ep03/msid_estrade', {
 // ---------------------------------------------------------------- b011 the procession through the sanctuary door
 const DOOR = [960, 750];   // interior tiles beyond the raised threshold
 const T11 = (j, d = 4.4) => ({ t0: B(1)[0] - .7 + 1.0 * j, t1: B(1)[0] - .7 + 1.0 * j + d });
-const pr = sized(staged('mausolee_rev', {
+const pr = sized(checkedStage('mausolee_rev', {
   fqih: { at: DOOR, face: 'cam', seed: 9, talk: 0, walk: { to: [630, 830], ...T11(0, 3.6) }, look: 'kid1', lookMax: .7 },
   kid1: { at: [1030, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [860, 875], ...T11(1, 3.4) } },
   mohammed: { at: DOOR, face: 'cam', seed: 3, talk: 0, walk: { to: [1100, 900], ...T11(2, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
@@ -141,11 +148,11 @@ const pr = sized(staged('mausolee_rev', {
 // A CLOSED lap around the left-hand tomb: right flank, near plinth, left flank, far side.
 // The return half is hidden by the tomb; it still advances along the same continuous floor path.
 const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
-const GIRLS = [['woman1', 0], ['woman2', 2.3], ['fatma', 4.6]];   // spacing along the path (m)
+const GIRLS = [['woman1', 0], ['woman2', 1.6], ['fatma', 3.2]];   // spacing along the path (m)
 const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [260, 1025], [80, 1000], [80, 850], [420, 790], [650, 805]];
 let PLATE; plate(platePath('mausolee')).then(i => { PLATE = i; });
 const leaves = () => { if (!PLATE) return; for (const [x0, x1] of [[0, 128], [1812, 1920]]) { c.save(); c.beginPath(); c.rect(x0, 0, x1 - x0, 1080); c.clip(); drawPlate(PLATE); c.restore(); } };
-const fl = staged('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: LAP[0], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
+const fl = checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: LAP[0], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
   fx: WARM, over: leaves,
   act(lt, t, S, st, S3) {
     if (!st.lap) {   // the path as a dense polyline on the floor, with its arc length
@@ -157,15 +164,19 @@ const fl = staged('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at:
       pts.push(P[0]); const len = [0]; for (let i = 1; i < pts.length; i++) len.push(len[i - 1] + pts[i].distanceTo(pts[i - 1]));
       st.lap = { pts, len, L: len.at(-1), visibleL: len[5 * 12] };   // left return disappears behind the door leaf
     }
-    const { pts, len, L: period, visibleL } = st.lap, v = .72, start = 2.5;   // open with two women on the near half
+    const { pts, len, L: period, visibleL } = st.lap, v = .50, start = 2.5;   // open with two women on the near half
     st.G.apply = () => {};   // the ritual follows the path, with no sideways conversation gaze
     for (const [n, off] of GIRLS) {
-      const a = st.A[n], d = (start + v * (t - B(2)[0]) + period * 10 - off) % period;
+      const a = st.A[n], d = (start + v * (t - B(2)[0]) + period * 10 - off/4.8*period) % period;
       a.group.visible = d < visibleL;
+      // Stay behind the tomb only on the far side; at least one of the three phases is always near.
+      // A second woman stays on the near half while the leader passes behind the tomb.
       let i = 1; while (i < len.length - 1 && len[i] < d) i++;
       const u = (d - len[i - 1]) / (len[i] - len[i - 1] || 1), p = pts[i - 1].clone().lerp(pts[i], u), dir = pts[i].clone().sub(pts[i - 1]);
       a.group.position.set(p.x, 0, p.z); a.group.rotation.y = Math.atan2(dir.x, dir.z);
       walkPose(a.B, d / 1.05, 1, { stride: .32, arms: .2 }); a.group.updateMatrixWorld(true);
+      // The near-left end goes behind the opaque door leaf before a cropped head can emerge.
+      if(S3.project(at(a,'head'))[0]<160)a.group.visible=false;
       // counting the turns on the fingers of the right hand held before her chest; head a little bowed, lips moving
       const ka = k(a), cnt = 1 + (Math.floor((start + v * (t - B(2)[0]) - off) / period + 10) % 5);
       a.B.neck.rotation.set(.14, 0, 0); a.B.head.rotation.set(0, 0, 0); upd(a, 'neck');
@@ -179,7 +190,7 @@ const fl = staged('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at:
 });
 
 // ---------------------------------------------------------------- b013 the coolness: eyes closed, one deep breath
-const br = sized(staged('mausolee', {
+const br = sized(checkedStage('mausolee', {
   mohammed: { at: [1080, 900], face: 'cam', seed: 3, talk: 0, lids: 1, lookMax: 0 },
 }, {
   act(lt, t, S, st, S3) {
@@ -196,7 +207,7 @@ const br = sized(staged('mausolee', {
 }), STANDING);
 
 // ---------------------------------------------------------------- b014 silence, then ablutions at the fountain
-const ab = sized(staged('mausolee_rev', {
+const ab = sized(checkedStage('mausolee_rev', {
   fqih: { at: [760, 850], face: 'cam', yaw: -.2, seed: 9, talk: 0, lookMax: .18,
     look: (t, st) => t < B(4)[0] + .38 * (B(4)[1] - B(4)[0]) ? front(st.A.fqih, 'head', 1) : 'kid2' },
   kid2: { at: [200, 785], face: [220, 770], seed: 4, talk: 0, look: t => t < B(4)[0] + 2.2 ? 'fqih' : [220, 770, .38] },
@@ -209,7 +220,7 @@ const ab = sized(staged('mausolee_rev', {
     fq.group.rotation.y = -.2 - .4 * (1 - sh); fq.group.updateMatrixWorld(true);
     hangArms(fq, t);
     if (sh > 0) {
-      const lips = at(fq, 'head', [0, .05, .12]);
+      const lips = at(fq, 'head', [-.085, .055, .17]);
       const palm = lips.clone().add(V(0, -.09 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .025 * kf);
       PO.reach(fq, 'R', at(fq, 'handR').lerp(palm, sh), { grip: 0, pole: [-.32, .05, -.12] });
       PO.fingers(fq, 'R', .95 * sh, { thumb: .6 * sh, each: [1, 0, 1, 1, 1] });
@@ -217,7 +228,7 @@ const ab = sized(staged('mausolee_rev', {
       if (index) IK.aim(fq.B.handR, IK.wpos(index), lips);
     }
     // Fixed targets on the painted basin, not chest-relative reaches out into the empty room.
-    st.water ||= [[220, 770], [275, 770]].map(p => S3.floorAt(...p).setY(.38));
+    st.water ||= [[180, 785], [345, 785]].map(p => S3.floorAt(...p).setY(.43));
     const wash = (a, d, ph, water) => {
       const ka = k(a), u = sm(B(4)[0] + d, B(4)[0] + d + .8, t);
       // Stand within an arm's reach of the rim, measured in world metres, at the entrance shot's scale.
@@ -238,7 +249,7 @@ const ab = sized(staged('mausolee_rev', {
 
 // ---------------------------------------------------------------- b015 prayer rows behind the master
 const ROW = [['kid1', 820, 2], ['kid2', 1060, 4], ['mohammed', 1300, 3], ['kid3', 1540, 6]];
-const pray = sized(staged('mausolee', {
+const pray = sized(checkedStage('mausolee', {
   fqih: { at: [1180, 790], face: Math.PI, seed: 9, talk: 0 },
   ...Object.fromEntries(ROW.map(([n, x, seed]) => [n, { at: [x, 905], face: Math.PI, seed, talk: 0 }])),
 }, {

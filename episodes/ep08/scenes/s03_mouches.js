@@ -45,7 +45,7 @@ const ch = staged('chambre_jour', {
     if (IN(4, t)) {
       const shift = .025 * Math.sin((t - B(4)[0]) * 1.3);
       zo.group.position.add(front(zo, 'root', 0, shift, 0).sub(at(zo, 'root')));
-      zo.B.root.rotation.z += .035 * Math.sin((t - B(4)[0]) * 1.3); zo.group.updateMatrixWorld(true);
+      zo.B.root.rotation.z += .015 * Math.sin((t - B(4)[0]) * 1.3); zo.group.updateMatrixWorld(true);
       PO.reach(zo, 'R', front(zo, 'head', .13 * k, .035 * k, .13 * k), { grip: .015, pole: [-.4, .1, .15] });
       PO.palmTo(zo, 'R', 1, V(0, -1, 0)); PO.fingers(zo, 'R', .05, { spread: .2 });
       PO.reach(zo, 'L', front(zo, 'root', .16 * k, -.3 * k, .02 * k), { grip: .015, pole: [.4, -.1, -.15] });
@@ -60,10 +60,12 @@ const ch = staged('chambre_jour', {
         * (1 - sm(B(3)[0] + .68 * D, B(3)[0] + .68 * D + .5, t));
       const blow = sm(B(3)[0] + .68 * D, B(3)[0] + .68 * D + .5, t);
       const lintel = S3.floorAt(280, 960).setY(heightAt(S3, 280, 960, 110));
+      const sh = at(zo, 'upperArmR'), len = sh.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
+      lintel.y = Math.min(lintel.y, sh.y + len * .92);
       const yaw = yawTo(zo.group.position, S3.floorAt(330, 880));
       zo.group.rotation.y = yaw;
       // A small rise onto her toes makes the real lintel reachable without stretching the arm.
-      zo.B.root.position.y += .05 * up * 1.6;
+      // Keep the soles planted; the lintel target is limited to measured overhead reach.
       zo.B.spine.rotation.x -= .05 * up; zo.group.updateMatrixWorld(true);
       const hand = lintel.clone().lerp(front(zo, 'head', .13 * k, 0, -.06 * k), blow);
       PO.reach(zo, 'R', front(zo, 'root', .15 * k, .25 * k, .04 * k).lerp(hand, Math.max(up, blow)), { grip: .01, pole: [-.4, .2, .1] });
@@ -74,6 +76,7 @@ const ch = staged('chambre_jour', {
     }
     const cloth = st.cloth ||= S3.prop(dishCloth(), 0, -5, 0), flies = st.flies ||= S3.prop(swarm(), 0, -5, 0);
     const holdingCloth = t >= B(5)[0]; // includes the final line's tail and the pause up to the scene cut
+    cloth.userData.holder='zoubida';flies.userData.ambient=true;
     cloth.visible = holdingCloth; flies.visible = holdingCloth;
     if (holdingCloth) {
       const elapsed = t - B(5)[0], a = sm(B(5)[0] - .2, B(5)[0] + .15, t);
@@ -83,14 +86,14 @@ const ch = staged('chambre_jour', {
       const done = elapsed >= 3 * 1.15, phase = done ? 1 : (elapsed % 1.15) / 1.15;
       const drive = done ? 0 : sm(.35, .72, phase) * (1 - sm(.72, 1, phase));
       const fw = V(Math.sin(zo.group.rotation.y), 0, Math.cos(zo.group.rotation.y));
-      zo.group.position.addScaledVector(fw, .07 * k * drive); zo.group.position.y -= .02 * k * drive;
+      zo.group.position.addScaledVector(fw, .07 * k * drive); 
       zo.B.spine.rotation.y += done ? .08 : -.18 + .36 * sm(.3, .75, phase);
       zo.B.chest.rotation.y += .1 * drive; zo.B.spine.rotation.x += .1 * drive;
       for (const side of ['L', 'R']) { zo.B['thigh' + side].rotation.x -= .08 * drive; zo.B['shin' + side].rotation.x += .14 * drive; }
       zo.group.updateMatrixWorld(true);
       // Broad continuous arc: chest-ready -> above/outside the shoulder -> forward toward the window -> recovery.
       const path = ph => {
-        const ready = V(.3, .34, .06), high = V(.01, .34, .32), strike = V(.45, .3, .12), held = V(.36, .34, .04);
+        const ready = V(.26, .44, -.06), high = V(.04, .48, .22), strike = V(.38, .44, .02), held = V(.30, .44, -.06);
         return ph < .35 ? ready.lerp(high, sm(0, .35, ph))
           : ph < .72 ? high.lerp(strike, sm(.35, .72, ph)) : strike.lerp(held, sm(.72, 1, ph));
       };
@@ -115,6 +118,8 @@ const ch = staged('chambre_jour', {
         f.position.copy(g).setY(1.7 * k).lerp(d, u).add(V(sp * hsh(i + j * 3.1), sp * .5 * hsh(i * 2.3 + j), sp * hsh(i * 5.7 + j * 1.3))); });
       flies.position.set(0, 0, 0); flies.updateMatrixWorld(true);
     }
+    const sole = PO.lowestOf(zo, ['footL', 'footR']);
+    if (Number.isFinite(sole)) { zo.group.position.y -= sole; zo.group.updateMatrixWorld(true); }
   },
 });
 

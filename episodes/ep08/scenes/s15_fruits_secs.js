@@ -1,3 +1,4 @@
+import { checkedStage } from './s13_attente.js';
 // s15 "Le souk des fruits secs". b098 souk_mur, by the bench: the three burst out crying: Zoubida's hand pressed to her
 // veil over the mouth, shoulders shaking; Fatma's head bowed, a hand on her chest; the boy wails, chin up, mouth wide,
 // eyes screwed shut, arms hanging. b099 W: they come hurrying down the passage from the far gate toward the dried-fruit
@@ -6,7 +7,6 @@
 // very small, his hand gripping his mother's haik at her hip, his head turning, searching. b102 CU on Zoubida: she
 // gives up: a slow defeated nod, eyes down, the shoulders dropping.
 import * as PO from '../../../engine/poses.js';
-import { staged } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V, dirW, yawTo } from '../lib/beatscene.js';
 
 const ID = 's15_fruits_secs', L = lines(ID), B = i => L[i] || [0, 0];
@@ -35,7 +35,7 @@ const reachRatio = (a, s, target, grip) => {
 
 const STOP = { zoubida: [800, 820], mohammed: [665, 838], fatma: [1000, 790] };
 
-const mu = staged('souk_mur', {
+const mu = checkedStage('souk_mur', {
   // Local marks only: at least 15 cm of garment clearance on either side of the boy.
   zoubida: { at: [420, 790], face: 'cam', costume: 'haik', seed: 7, talk: 0, lids: .75, lookMax: 0 },
   mohammed: { at: [700, 830], face: 'cam', seed: 3, talk: 0, lids: 1, lookMax: 0, mutter: t => 3.6 + .4 * Math.sin(t * 2.2) },
@@ -44,6 +44,7 @@ const mu = staged('souk_mur', {
   light: { shadow: .4, area: 6 },
   act(lt, t, S, st) {
     st.G = gaze;
+    st.actcheck={exposed:{zoubida:['handR','foreArmR']}};
     const { zoubida: zo, mohammed: mo, fatma: ft } = st.A;
     scale(zo, 1.6); scale(mo, 1.1); scale(ft, 1.58);
     const kz = k(zo), kt = k(ft);
@@ -72,11 +73,11 @@ const mu = staged('souk_mur', {
   },
 });
 
-const fr = staged('souk_mur', {
+const fr = checkedStage('souk_mur', {
   zoubida: { at: [860, 660], costume: 'haik', seed: 7, talk: 0, walk: { to: STOP.zoubida, t0: B(1)[0] - .2, t1: B(1)[0] + 3.4 },
     lookMax: t => t >= B(4)[0] ? .075 : .55,
     look: (t, st) => t >= B(4)[0] ? at(st.A.mohammed, 'head') : [880 + 210 * Math.sin((t - B(1)[0]) * 1.7), 790, 1.4],
-    lids: t => .4 + .3 * sm(B(4)[0] - .3, B(4)[0] + .7, t) },
+    lids: t => .25 + .15 * sm(B(4)[0] - .3, B(4)[0] + .7, t) },
   mohammed: { at: [700, 670], seed: 3, talk: 0, walk: { to: STOP.mohammed, t0: B(1)[0] - .2, t1: B(1)[0] + 3.4 }, lookMax: .65,
     look: (t, st) => {
       const a = st.A.mohammed, h = at(a, 'head');
@@ -94,6 +95,7 @@ const fr = staged('souk_mur', {
   kid3: { at: [700, 730], seed: 29, talk: 0, walk: { to: [430, 1030], t0: B(2)[0], t1: B(2)[1] + .7 }, mutter: t => win(2, 0, 1, t) * (1.1 + .3 * Math.sin(t * 5 + 1)) },
 }, {
   light: { shadow: .4, area: 6 },
+  traffic:['kid2','kid3','man1','woman1'],
   act(lt, t, S, st) {
     st.G = gaze;
     const { zoubida: zo, mohammed: mo, fatma: ft, man1: m1, woman1: w1, kid2: k2, kid3: k3 } = st.A;
@@ -133,16 +135,20 @@ const fr = staged('souk_mur', {
     const cling = t >= B(3)[0] ? sm(B(3)[0], B(3)[0] + .65, t) : 0;
     if (cling > 0) {
       const zr = at(zo, 'root'), mr = at(mo, 'root'), d = mr.clone().sub(zr).setY(0).normalize();
+      // The boy steps beside the hip before reaching; keep his shoulder within his measured arm span.
+      const handTarget=zr.clone().addScaledVector(d,.30*kz);handTarget.y=at(mo,'upperArmL').y-.16;
+      const shoulder=at(mo,'upperArmL'),len=arm(mo,'L').len,offset=handTarget.clone().sub(shoulder),dist=offset.length();
+      if(dist>len*.90){offset.y=0;mo.group.position.addScaledVector(offset.normalize(),(dist-len*.90)*cling);sync(mo);}
       mo.B.spine.rotation.x += .035 * cling; sync(mo);
-      const rest = hanging(mo, 'L'), hip = zr.clone().addScaledVector(d, .23 * kz);
-      hip.y = rest.y + .05;   // own waist, just 5 cm above a hanging hand
+      const rest = hanging(mo, 'L'), hip = handTarget;   // own waist, just 5 cm above a hanging hand
       st.gripReach = reachRatio(mo, 'L', hip, .01);
       PO.reach(mo, 'L', rest.lerp(hip, cling), { grip: .01, pole: [.35, -.10, .16] });
       PO.fingers(mo, 'L', .72 * cling);
     }
     // b102: one slow dip and a lasting slump. Keep neck pitch below .1, including the capped gaze after act().
     const defeat = sm(B(4)[0], f(4, .75), t), dip = Math.sin(Math.PI * sm(B(4)[0], B(4)[1], t));
-    zo.B.neck.rotation.x = .02 * defeat;
+    zo.B.neck.rotation.x = .14 * defeat + .08*dip;
+    zo.B.head.rotation.x += .10*defeat;
     zo.B.chest.rotation.x += .10 * defeat + .09 * dip; zo.B.spine.rotation.x += .055 * defeat;
     if (zo.B.LeftShoulder) zo.B.LeftShoulder.rotation.z -= .065 * defeat;
     if (zo.B.RightShoulder) zo.B.RightShoulder.rotation.z += .065 * defeat;
@@ -157,7 +163,7 @@ export default beatScene(ID, {
     b099: { shot: 'fr', size: 'W', on: 'zoubida', insAt: .62 },
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
     // pt follows their final floor marks (coverage otherwise anchors to their distant build positions).
-    b101: { shot: 'fr', size: 'CU', on: 'mohammed', pt: STOP.mohammed, z: 2.3, dx: 55, dy: -10 },   // boy head-to-hip, grip + mother's full head
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.6, dx: 0, dy: -10 },   // full hood, headroom, shoulders
+    b101: { shot: 'fr', size: 'CU', on: 'mohammed', pt: STOP.mohammed, z: 1.7, dx: 55, dy: -70 },   // boy head-to-hip, grip + mother's full head
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.0, dx: 0, dy: -35 },   // full hood, headroom, shoulders
   },
 });
