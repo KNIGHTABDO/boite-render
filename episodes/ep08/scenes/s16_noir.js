@@ -10,15 +10,20 @@ import * as K from '../../../engine/core.js';
 
 const ID = 's16_noir', L = lines(ID), B = i => L[i] || [0, 0];
 
+// mattresses on chambre_jour (1920 px): left one's front edge y≈855 (x 400–720), right one's floor centre ≈ (1320, 705), ~.2 m high
 const ch = staged('chambre_jour', {
-  zoubida: { at: [720, 960], face: 'cam', pose: 'kneel', seed: 7, look: [720, 1060, 0] },
-  mohammed: { at: [1260, 975], face: 0.9, pose: 'lie', o: { turn: 0 }, look: t => [1260, 975, 3] },
+  zoubida: { at: [560, 845], face: 'cam', pose: 'step', o: { seat: .2, floor: 0 }, seed: 7, look: [600, 1000, 0], lookMax: .9 },
+  mohammed: { at: [1320, 705], face: Math.PI / 2, pose: 'lie', o: { top: .2, turn: .45 }, seed: 3, look: t => [1320, 705, 3] },
 }, {
   addressee: {},
   act(lt, t, S, st) {
-    const zo = st.A.zoubida, k = zo.group.scale.y / 1.6;
-    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'head', .1 * k, (s === 'L' ? -.06 : .06) * k, -.03 * k), { grip: .03 });
-    zo.B.neck.rotation.x += .3; zo.B.chest.rotation.x += .2; zo.B.chest.updateWorldMatrix(false, true);
+    const { zoubida: zo, mohammed: mo } = st.A, k = zo.group.scale.y / 1.6;
+    // palms on her cheeks, fingers up to the temples: head bowed but the face stays readable between the hands
+    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'head', .07 * k, (s === 'L' ? -.085 : .085) * k, -.06 * k), { grip: .02, pole: s === 'L' ? [.2, -.3, -.1] : [-.2, -.3, -.1] });
+    const sob = .5 + .5 * Math.sin(t * 1.7);   // slow breathing, a catch every few seconds
+    zo.B.neck.rotation.x += .16; zo.B.chest.rotation.x += .14 + .03 * sob; zo.B.chest.updateWorldMatrix(false, true);
+    const cry = sm(B(2)[0], B(2)[0] + .4, t) * (1 - sm(B(2)[0] + .55 * (B(2)[1] - B(2)[0]), B(2)[0] + .55 * (B(2)[1] - B(2)[0]) + .8, t));   // b105: he cries first
+    if (cry > 0) { mo.B.chest.rotation.x += .06 * Math.sin(t * 9) * cry; mo.B.neck.rotation.y += .25 * cry; mo.B.chest.updateWorldMatrix(false, true); }
   },
 });
 

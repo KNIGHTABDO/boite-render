@@ -35,7 +35,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       const ST = stairs && fitStairs(S3, stairs), Y = {};
       for (const n of names) {   // tread: j stands on tread j / sits on it (pose 'step', feet one tread lower)
         const m = marks[n];
-        if (m.tread != null) { P[n] = ST.tread(m.tread, m.off || 0); Y[n] = ST.y(m.pose === 'step' ? m.tread - 1 : m.tread); if (m.pose === 'step') m.o = { seat: ST.y(m.tread), floor: Y[n], ...(m.o || {}) }; }
+        if (m.tread != null) { P[n] = ST.tread(m.tread, m.off || 0).addScaledVector(ST.up, m.back || 0); Y[n] = ST.y(m.pose === 'step' ? m.tread - 1 : m.tread); if (m.pose === 'step') m.o = { seat: ST.y(m.tread), floor: Y[n], ...(m.o || {}) }; }
         else { P[n] = S3.floorAt(...m.at); Y[n] = 0; }
       }
       const down = ST ? Math.atan2(-ST.up.x, -ST.up.z) : 0;

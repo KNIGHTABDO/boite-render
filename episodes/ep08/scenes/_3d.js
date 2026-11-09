@@ -111,7 +111,7 @@ export function memoPose(key, a, deps, solve) {
  *  (scene time, not segment time), or cover = S => [...] to key it on the line timings (S.L(i)), resolved on first draw.
  *  Each entry is a hard cut to a framing on that actor's head (as placed by build), held still until the next entry.
  *  W = the plate's own framing; M = waist-up; CU = head and shoulders. view() still wins when it returns a camera. */
-const SIZES = { W: [1, .5], M: [1.7, .32], CU: [2.6, .4] };   // zoom, head height on screen (fraction of H)
+const SIZES = { W: [1, .5], M: [1.7, .36], CU: [2.6, .46] };   // zoom, head (bone = neck base) height on screen (fraction of H); Argon ep08 r2: headscarves cut at .32/.4
 function coverCam(sh, t) {
   let e = null; for (const x of sh.cover) if (t >= x.t) e = x;
   if (!e || e.size === 'W' || !SIZES[e.size]) return null;

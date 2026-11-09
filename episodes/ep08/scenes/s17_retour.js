@@ -73,7 +73,7 @@ const nu = staged('chambre_nuit', {
 });
 
 /** the sun and moon bracelets: a gold and a silver ring lying crossed on the palm */
-function bracelets(S3) {
+export function bracelets(S3) {
   const g = new THREE.Group();
   for (const [col, x, ry] of [[0xe0b040, -.012, .3], [0xd8dde4, .012, -.4]]) {
     const r = new THREE.Mesh(new THREE.TorusGeometry(.045, .009, 10, 32), toon(col)); r.rotation.set(Math.PI / 2, ry, 0); r.position.set(x, 0, 0); g.add(r);

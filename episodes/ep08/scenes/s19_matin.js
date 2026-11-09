@@ -4,11 +4,11 @@
 // b141 patio cutaway: the father crosses toward the street door.
 import * as PO from '../../../engine/poses.js';
 import { staged } from '../lib/autostage.js';
-import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, at, front, V, dirW } from '../lib/beatscene.js';
 
 const ID = 's19_matin', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
-const BED = { at: [1000, 1005], face: Math.PI / 2, pose: 'lie', o: { turn: .3 }, seed: 3 };
+const BED = { at: [1320, 705], face: Math.PI / 2, pose: 'lie', o: { top: .2, turn: .45 }, seed: 3 };   // on the right mattress (~.2 m), as s16
 const arms = (a, t, kind, u) => {   // Zoubida's gestures: 'chop' (both forearms down in beats), 'palms' (up to the ceiling)
   const k = a.group.scale.y / 1.6;
   for (const s of ['L', 'R']) {
@@ -21,14 +21,17 @@ const arms = (a, t, kind, u) => {   // Zoubida's gestures: 'chop' (both forearms
 
 const ch1 = staged('chambre_jour', {
   mohammed: { ...BED, look: t => t < B(0)[0] + 1 ? null : 'father' },
-  father: { at: [760, 935], face: 'mohammed', pose: 'kneel', seed: 5, look: 'mohammed' },
-  zoubida: { at: [1380, 935], face: 'father', seed: 7 },
+  father: { at: [1250, 830], face: 'mohammed', pose: 'kneel', seed: 5, look: 'mohammed', lookMax: .9 },
+  zoubida: { at: [1560, 900], face: 'father', seed: 7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st) {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A, kf = fa.group.scale.y / 1.6;
-    if (IN(0, t)) { const sh = .025 * Math.sin(t * 16) * sm(B(0)[0], B(0)[0] + .3, t); PO.reach(fa, 'R', at(mo, 'chest').add(V(0, .08 + sh, sh)), { grip: .02 }); }
-    if (IN(1, t) || IN(2, t)) PO.reach(fa, 'R', at(mo, 'head').add(V(0, .1, 0)), { grip: 0 });
+    const km = mo.group.scale.y / 1.6, up = dirW(mo, 0, 1, 0);   // lying: the body's up axis points along the mattress to his head
+    // b133–b134: hand on his far-side shoulder (upper arm, on top of the body, never the neck), shaking
+    if (IN(0, t)) { const sh = .03 * Math.sin(t * 16) * sm(B(0)[0], B(0)[0] + .3, t); PO.reach(fa, 'R', at(mo, 'upperArmR').addScaledVector(up, -.04 * km).add(V(sh, .1 * km, sh)), { grip: .02 }); }
+    // b135–b136: palm flat on his forehead (in front of the head bone, along the body axis, on the face side)
+    if (IN(1, t) || IN(2, t)) PO.reach(fa, 'R', at(mo, 'head').addScaledVector(up, .1 * km).add(V(0, .11 * km, 0)), { grip: 0 });
     if (IN(3, t)) arms(zo, t, 'chop', sm(B(3)[0], B(3)[0] + .4, t));
     if (IN(4, t)) PO.reach(fa, 'L', front(fa, 'chest', .25 * kf, -.15 * kf, .15 * kf), { grip: 0 });
     if (IN(5, t)) arms(zo, t, 'palms', sm(B(5)[0], B(5)[0] + .5, t));
