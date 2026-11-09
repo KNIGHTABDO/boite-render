@@ -95,7 +95,7 @@ const ca = staged('souk_mur', {
     PO.reach(fa, 'R', at(mo, 'root').add(V(0, -.07 * km, 0)), { grip: .3 });
     PO.reach(fa, 'L', at(mo, 'chest').lerp(at(mo, 'neck'), .3).addScaledVector(V(Math.sin(fy), 0, Math.cos(fy)), -.08 * km), { grip: .2 });
     // the boy: leaning in, cheek on the shoulder (head turned to the lens side), arms round the father's neck
-    mo.B.spine.rotation.x += .06 * lift; mo.B.head.rotation.y += .7 * lift; mo.B.head.rotation.z += .25 * lift; mo.B.spine.updateWorldMatrix(false, true);
+    mo.B.spine.rotation.x += .06 * lift; mo.B.head.rotation.y -= .8 * lift; mo.B.head.rotation.z -= .2 * lift; mo.B.spine.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) PO.reach(mo, s, at(fa, 'neck').add(V(0, -.04, 0)).addScaledVector(V(Math.cos(fy), 0, -Math.sin(fy)), (s === 'L' ? .09 : -.09) * kf), { grip: .3 });
     for (const a of [fa, mo]) a.B.chest.updateWorldMatrix(false, true);
   },
