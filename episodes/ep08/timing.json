@@ -1,0 +1,1274 @@
+[
+ {
+  "id": "s01_hook",
+  "start": 0,
+  "end": 17.073,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Ce lundi-là, mon père promit à ma mère des bracelets d'or et d'argent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/0ce28a07a773.wav",
+    "start": 1.5,
+    "dur": 6.626
+   },
+   {
+    "who": "narrator",
+    "text": "Le soir même, elle pleurait dans le noir. Et moi, j'attendais.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/58b90dbd8cc2.wav",
+    "start": 8.926,
+    "dur": 5.847
+   }
+  ]
+ },
+ {
+  "id": "s02_titre",
+  "start": 17.073,
+  "end": 26.073,
+  "lines": []
+ },
+ {
+  "id": "s03_mouches",
+  "start": 26.073,
+  "end": 84.618,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Après les fêtes de l'Achoura, la vie retomba dans sa grisaille. La chaleur commença à sévir.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e9f547a39e58.wav",
+    "start": 28.673,
+    "dur": 8.25
+   },
+   {
+    "who": "narrator",
+    "text": "Des colonies de mouches envahirent la maison. Et dans les vieilles boiseries, les punaises se réveillèrent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/9099213a68bc.wav",
+    "start": 37.723,
+    "dur": 7.751
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère leur déclara une guerre totale. Chaux vive. Soufre. Pétrole.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b8b7ce4982dc.wav",
+    "start": 46.274,
+    "dur": 7.407
+   },
+   {
+    "who": "narrator",
+    "text": "Puis des armes plus sournoises : des talismans, des poudres de faiseur de miracles, des invocations.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e33c2f347ddb.wav",
+    "start": 54.481,
+    "dur": 8.657
+   },
+   {
+    "who": "narrator",
+    "text": "Seules quelques familles survécurent, là-haut, le long des poutres du plafond. Descendre à portée des doigts de l'homme, c'était se suicider.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6549df275561.wav",
+    "start": 63.937,
+    "dur": 9.671
+   },
+   {
+    "who": "narrator",
+    "text": "Chaque matin, ma mère chassait les mouches à grands coups de torchon. Elles sortaient par la fenêtre, en bourdonnant de colère.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ca673100ab25.wav",
+    "start": 74.408,
+    "dur": 8.01
+   }
+  ]
+ },
+ {
+  "id": "s04_mausolee",
+  "start": 84.618,
+  "end": 138.804,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Les journées devinrent longues. La salle du Msid, trop chaude et trop étroite, fut abandonnée.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/d6903612a7b9.wav",
+    "start": 87.018,
+    "dur": 6.203
+   },
+   {
+    "who": "narrator",
+    "text": "Un matin, nous emportâmes nos planchettes et nos encriers dans un petit sanctuaire, deux pas plus loin.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/34f164579636.wav",
+    "start": 94.02,
+    "dur": 7.138
+   },
+   {
+    "who": "narrator",
+    "text": "Ce mausolée abritait la tombe d'un saint. Personne ne savait son nom. Mais le jeudi, les jeunes filles qui voulaient se marier dans l'année venaient faire sept fois le tour du tombeau.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/252649161c08.wav",
+    "start": 101.958,
+    "dur": 10.913
+   },
+   {
+    "who": "narrator",
+    "text": "La grande salle était d'une fraîcheur de paradis.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/1b58325e69b4.wav",
+    "start": 113.671,
+    "dur": 4.183
+   },
+   {
+    "who": "narrator",
+    "text": "À l'appel du muezzin, le fqih nous imposa silence. Nous fîmes nos ablutions à la petite fontaine qui chantonnait dans un coin.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/366a8acb675e.wav",
+    "start": 118.654,
+    "dur": 8.896
+   },
+   {
+    "who": "narrator",
+    "text": "Petits et grands, alignés derrière notre maître, nous fîmes la prière. Deux fois par jour, tout l'été.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2e328fed962a.wav",
+    "start": 128.351,
+    "dur": 8.254
+   }
+  ]
+ },
+ {
+  "id": "s05_memoire",
+  "start": 138.804,
+  "end": 184.034,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "La lumière douce, le visage plus bienveillant du fqih... Je me mis à aimer l'école.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/efa24bbfda98.wav",
+    "start": 140.204,
+    "dur": 6.377
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mémoire fit des miracles. De dix lignes sur ma planchette, je passai à quinze.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2f998c1dc8cf.wav",
+    "start": 147.382,
+    "dur": 6.606
+   },
+   {
+    "who": "narrator",
+    "text": "Un vendredi, mon père, gonflé d'orgueil, raconta à ma mère ce que le fqih lui avait dit.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b218c812c986.wav",
+    "start": 154.788,
+    "dur": 5.821
+   },
+   {
+    "who": "father",
+    "text": "Si ton fils continue ainsi, il deviendra un savant. Un savant dont nous serons fiers.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6f7cd3f1c5a7.wav",
+    "start": 161.409,
+    "dur": 6.086
+   },
+   {
+    "who": "narrator",
+    "text": "Un savant ? Pour moi, un savant, c'était un homme obèse, une barbe autour d'une très large figure, et un turban monumental.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/a110dd8e91c8.wav",
+    "start": 168.295,
+    "dur": 9.559
+   },
+   {
+    "who": "narrator",
+    "text": "Je n'avais aucune envie de ressembler à cet homme-là.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e9d8f7866211.wav",
+    "start": 178.654,
+    "dur": 3.18
+   }
+  ]
+ },
+ {
+  "id": "s06_reves",
+  "start": 184.034,
+  "end": 234.69,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "J'apprenais ma leçon parce que mes parents m'en aimaient davantage. Et pour éviter la baguette de cognassier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e4254b8f496f.wav",
+    "start": 185.434,
+    "dur": 6.197
+   },
+   {
+    "who": "narrator",
+    "text": "Je m'étais fait un programme. Le matin, j'apprenais mes versets avec ferveur. L'après-midi, je m'accordais deux bonnes heures de rêve, en faisant semblant de réciter.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/55de0d7ec21a.wav",
+    "start": 192.431,
+    "dur": 12.376
+   },
+   {
+    "who": "narrator",
+    "text": "Mon esprit s'échappait de l'école. Parfois, je devenais l'homme que je voulais être plus tard.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/11742776bbc0.wav",
+    "start": 205.607,
+    "dur": 6.601
+   },
+   {
+    "who": "narrator",
+    "text": "Simple et robuste, vêtu de laine grège, les yeux pleins de flamme, et le cœur débordant de tendresse.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/de08b2916c33.wav",
+    "start": 213.008,
+    "dur": 9.042
+   },
+   {
+    "who": "narrator",
+    "text": "La nuit, sous ma couverture, je continuais le même songe... jusqu'à ce que d'immenses îlots noirs viennent tout briser.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ac8a09b6f5fc.wav",
+    "start": 222.851,
+    "dur": 9.639
+   }
+  ]
+ },
+ {
+  "id": "s07_lundi",
+  "start": 234.69,
+  "end": 309.368,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Un lundi, mon père, contre toutes ses habitudes, vint déjeuner à la maison.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/9c81a9a172bb.wav",
+    "start": 237.29,
+    "dur": 6.052
+   },
+   {
+    "who": "father",
+    "text": "Les djellabas de laine se vendent mal en été. Je vais fabriquer des haïks de coton. Été comme hiver, les femmes de Fès ne sortent qu'enveloppées dedans.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/5a8aec072142.wav",
+    "start": 244.142,
+    "dur": 11.148
+   },
+   {
+    "who": "father",
+    "text": "Et aujourd'hui, je vous emmène tous les deux au souk des bijoux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/47009c2f91e9.wav",
+    "start": 256.09,
+    "dur": 4.874
+   },
+   {
+    "who": "father",
+    "text": "Zoubida, il y a longtemps que tu me demandes les bracelets soleil et lune. Il est temps que je te les offre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/0af7eb59bd81.wav",
+    "start": 261.764,
+    "dur": 7.448
+   },
+   {
+    "who": "narrator",
+    "text": "Soleil et lune : un bracelet d'or, et un bracelet d'argent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/64d99a1d4ff1.wav",
+    "start": 270.012,
+    "dur": 4.284
+   },
+   {
+    "who": "father",
+    "text": "Mon ouvrier a perdu sa mère, à la campagne. Il est parti pour l'enterrement.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2348e57c9ede.wav",
+    "start": 275.095,
+    "dur": 5.3
+   },
+   {
+    "who": "zoubida",
+    "text": "Elle est morte d'une maladie ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/c5860a484f21.wav",
+    "start": 281.195,
+    "dur": 1.46
+   },
+   {
+    "who": "father",
+    "text": "Surtout de vieillesse, je crois. Que Dieu la reçoive dans sa miséricorde.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ab7a29811f44.wav",
+    "start": 283.455,
+    "dur": 4.723
+   },
+   {
+    "who": "mohammed",
+    "text": "Mais... je ne peux pas manquer le Msid ! J'ai ma leçon à apprendre.",
+    "wav": null,
+    "start": 288.978,
+    "dur": 5.8
+   },
+   {
+    "who": "father",
+    "text": "Ne te tourmente pas. J'ai prévenu le fqih. Tu travailles bien, cette demi-journée sera ta récompense.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/d8becfe32872.wav",
+    "start": 295.578,
+    "dur": 7.686
+   },
+   {
+    "who": "father",
+    "text": "Mais peut-être que tu n'aimes pas les jolis bijoux ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/c6421c220d81.wav",
+    "start": 304.063,
+    "dur": 3.104
+   }
+  ]
+ },
+ {
+  "id": "s08_fleurs",
+  "start": 309.368,
+  "end": 338.746,
+  "lines": [
+   {
+    "who": "mohammed",
+    "text": "Oh si ! Les bijoux, c'est beau... c'est beau comme...",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/13ce77a0e0bd.wav",
+    "start": 310.768,
+    "dur": 5.998
+   },
+   {
+    "who": "father",
+    "text": "Beau comme quoi ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/cede0d4a061e.wav",
+    "start": 317.565,
+    "dur": 1.271
+   },
+   {
+    "who": "narrator",
+    "text": "Je baissai les yeux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6ccaef558fb3.wav",
+    "start": 319.637,
+    "dur": 1.306
+   },
+   {
+    "who": "mohammed",
+    "text": "Les bijoux, c'est beau comme les fleurs.",
+    "wav": null,
+    "start": 321.743,
+    "dur": 3.329
+   },
+   {
+    "who": "narrator",
+    "text": "Mon père et ma mère éclatèrent de rire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/337426e1b746.wav",
+    "start": 325.871,
+    "dur": 2.497
+   },
+   {
+    "who": "narrator",
+    "text": "Je trouvai leur réaction déplacée. Un doute se glissa en moi sur la qualité de leur intelligence.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/7c12b629f75d.wav",
+    "start": 329.168,
+    "dur": 7.378
+   }
+  ]
+ },
+ {
+  "id": "s09_escalier",
+  "start": 338.746,
+  "end": 445.787,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Après le déjeuner, j'allai m'asseoir dans l'escalier. Accroupi sur une marche, les mains sur les genoux, je réfléchis profondément.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/fc2691ce4fac.wav",
+    "start": 340.746,
+    "dur": 10.899
+   },
+   {
+    "who": "narrator",
+    "text": "Ma comparaison exprimait une idée essentielle. Elle méritait le silence. Pas le rire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/daf6b7726744.wav",
+    "start": 352.445,
+    "dur": 5.835
+   },
+   {
+    "who": "narrator",
+    "text": "Je connaissais quelques fleurs. Les soucis et les coquelicots, sur les tombes au printemps. Les marguerites dodues, qui offrent au soleil leur cœur d'or. Les liserons, sur les collines de Bab Guissa.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/701d3eba7084.wav",
+    "start": 359.08,
+    "dur": 13.914
+   },
+   {
+    "who": "narrator",
+    "text": "Et sur notre terrasse, dans des morceaux de poterie : du géranium, des œillets, et des roses d'Ispahan.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6bd2c7f37bab.wav",
+    "start": 373.794,
+    "dur": 8.163
+   },
+   {
+    "who": "narrator",
+    "text": "Les bijoux de fête, eux, avaient été forgés par des génies, dans des palais souterrains. Ils gardaient encore la couleur des flammes où leur or avait coulé.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8eb3be6f2b84.wav",
+    "start": 382.757,
+    "dur": 12.563
+   },
+   {
+    "who": "narrator",
+    "text": "Ils naissaient de l'amour, pour des princesses de légende. Et sous les pas de ces princesses, naissaient d'autres bijoux, plus fragiles : les fleurs.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8f4861be93f7.wav",
+    "start": 396.121,
+    "dur": 12.506
+   },
+   {
+    "who": "narrator",
+    "text": "Mais à six ans, je n'avais pas les mots pour dire tout cela.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/660171c7d23d.wav",
+    "start": 409.427,
+    "dur": 4.195
+   },
+   {
+    "who": "narrator",
+    "text": "Je pardonnais aux grandes personnes de me gronder, même de me frapper. Mais je leur en voulais à mort de ne pas essayer de me comprendre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/f56a60fb818f.wav",
+    "start": 414.422,
+    "dur": 8.374
+   },
+   {
+    "who": "narrator",
+    "text": "Pour ma mère, j'étais parfait si je me lavais les pieds. Pour mon père, si je copiais ses gestes à la prière. Pour les voisins, si je ne faisais pas de bruit.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e5b1eb68f2f7.wav",
+    "start": 423.595,
+    "dur": 10.635
+   },
+   {
+    "who": "narrator",
+    "text": "Alors, accroupi sur ma marche, je me répétais : les bijoux, c'est beau comme les fleurs.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/1d9574e7c75e.wav",
+    "start": 435.031,
+    "dur": 8.556
+   }
+  ]
+ },
+ {
+  "id": "s10_roi",
+  "start": 445.787,
+  "end": 502.869,
+  "lines": [
+   {
+    "who": "zoubida",
+    "text": "Que fais-tu dans l'escalier ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/22e5301f3d7f.wav",
+    "start": 447.187,
+    "dur": 1.293
+   },
+   {
+    "who": "mohammed",
+    "text": "Je joue.",
+    "wav": null,
+    "start": 449.28,
+    "dur": 0.571
+   },
+   {
+    "who": "zoubida",
+    "text": "À quoi tu joues ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/1d0fda617ef9.wav",
+    "start": 450.651,
+    "dur": 1.087
+   },
+   {
+    "who": "mohammed",
+    "text": "Au roi.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6621088bafc2.wav",
+    "start": 452.538,
+    "dur": 0.771
+   },
+   {
+    "who": "zoubida",
+    "text": "Je me demande ce que peut faire un roi dans l'escalier, accroupi sur une marche !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/f60b9fbf69a2.wav",
+    "start": 454.109,
+    "dur": 4.884
+   },
+   {
+    "who": "narrator",
+    "text": "Les voisines se mirent à rire.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8d54f6e38961.wav",
+    "start": 459.793,
+    "dur": 1.718
+   },
+   {
+    "who": "rahma",
+    "text": "Lalla Zoubida, ton fils ira loin. Il se prend déjà pour un roi !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/4d1aa2e3c461.wav",
+    "start": 462.311,
+    "dur": 4.427
+   },
+   {
+    "who": "narrator",
+    "text": "Que pouvait comprendre la femme d'un fabricant de charrues aux princes et aux rois ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/aa246fc7cd6e.wav",
+    "start": 467.538,
+    "dur": 4.83
+   },
+   {
+    "who": "narrator",
+    "text": "Ce soir, ma mère aurait aux poignets les bracelets soleil et lune. Et Rahma serait verte de jalousie. Déjà, dans ma tête, je l'entendais se plaindre pendant des jours :",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e01d79325628.wav",
+    "start": 473.168,
+    "dur": 11.39
+   },
+   {
+    "who": "rahma",
+    "text": "Je n'ai pas de chance. Mon mari peut à peine m'offrir une corde pour tirer l'eau du puits !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/34334fc3b63d.wav",
+    "start": 485.358,
+    "dur": 5.926
+   },
+   {
+    "who": "zoubida",
+    "text": "Ma sœur, à quoi sert d'accuser le destin ? Dieu donne à chacun selon son cœur.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/a56eee7885b6.wav",
+    "start": 492.084,
+    "dur": 5.332
+   },
+   {
+    "who": "femmes",
+    "text": "Il n'y a de Dieu que Dieu !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/f4a92a32bbf1.wav",
+    "start": 498.216,
+    "dur": 2.453
+   }
+  ]
+ },
+ {
+  "id": "s11_depart",
+  "start": 502.869,
+  "end": 541.507,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Et justement, le muezzin appela à la prière.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/9e95a2168fed.wav",
+    "start": 504.269,
+    "dur": 3.643
+   },
+   {
+    "who": "mohammed",
+    "text": "C'est la prière de l'Aâsser, maman ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2f1d9f8fae8a.wav",
+    "start": 508.712,
+    "dur": 1.996
+   },
+   {
+    "who": "zoubida",
+    "text": "Oui. Ton père ne va pas tarder. Change ta djellaba, celle-ci est pleine de taches.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/0c28a85bc5ce.wav",
+    "start": 511.508,
+    "dur": 4.169
+   },
+   {
+    "who": "narrator",
+    "text": "Dans sa chambre, le petit balai de Fatma Bziouya s'arrêta net. Elle passa la tête par notre porte.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/bf6dfaa6e691.wav",
+    "start": 516.476,
+    "dur": 8.76
+   },
+   {
+    "who": "fatma",
+    "text": "Je dois me préparer, moi aussi ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/3a83bb2b68d3.wav",
+    "start": 526.036,
+    "dur": 1.418
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère fit oui de la tête. Un couvercle de coffre claqua.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/1e20d92cedba.wav",
+    "start": 528.254,
+    "dur": 4.628
+   },
+   {
+    "who": "father",
+    "text": "Il n'y a personne ? Je peux passer ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/1e672644f1e0.wav",
+    "start": 533.682,
+    "dur": 2.639
+   },
+   {
+    "who": "kanza",
+    "text": "Passe, maalem Abdeslem.",
+    "wav": null,
+    "start": 537.121,
+    "dur": 2.186
+   }
+  ]
+ },
+ {
+  "id": "s12_souk",
+  "start": 541.507,
+  "end": 626.136,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Le souk des bijoutiers ressemblait à une fourmilière. On se bousculait dans tous les sens.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/66b53f0dd7e5.wav",
+    "start": 544.107,
+    "dur": 4.987
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère et Fatma Bziouya nous suivaient à petits pas, enveloppées dans leurs haïks blancs.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6318424c7026.wav",
+    "start": 549.894,
+    "dur": 5.449
+   },
+   {
+    "who": "narrator",
+    "text": "Les bijoux des boutiques semblaient coupés dans du fer-blanc. Ces bijoux-là ne ressemblaient pas aux fleurs. Des mains humaines les avaient faits sans amour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/4ac541d3bbf7.wav",
+    "start": 556.143,
+    "dur": 11.241
+   },
+   {
+    "who": "narrator",
+    "text": "Dans les coins, des hommes et des femmes retenaient leurs larmes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/259cefbd17a1.wav",
+    "start": 568.183,
+    "dur": 4.837
+   },
+   {
+    "who": "narrator",
+    "text": "Plus tard, j'ai compris. J'ai connu moi aussi cette humiliation : venir vendre ce qu'on a de plus précieux, pour la moitié de son prix.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/39b6d47aae30.wav",
+    "start": 573.821,
+    "dur": 10.589
+   },
+   {
+    "who": "narrator",
+    "text": "Un grand diable de dellal, aux yeux extatiques, criait un chiffre à perdre haleine.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/bcbebb4ceac2.wav",
+    "start": 585.21,
+    "dur": 6.801
+   },
+   {
+    "who": "narrator",
+    "text": "Mon père prit de ses mains une paire de bracelets : l'un en or, l'autre en argent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/89eb0ccb1b0e.wav",
+    "start": 592.811,
+    "dur": 8.044
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère les essaya quatre ou cinq fois. Fatma Bziouya les essaya à son tour. Un quart d'heure de discussion, pour chaque détail.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/9ac21a867baf.wav",
+    "start": 601.656,
+    "dur": 9.149
+   },
+   {
+    "who": "narrator",
+    "text": "Mon père fit un signe. Le chiffre changea. Et le dellal plongea dans la foule. Sa main seule voyagea un moment, au-dessus des têtes, avec les bracelets.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/4757ca5e0efe.wav",
+    "start": 611.604,
+    "dur": 12.332
+   }
+  ]
+ },
+ {
+  "id": "s13_attente",
+  "start": 626.136,
+  "end": 677.234,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Nous attendîmes longtemps. Mes jambes ne me portaient plus. Je bâillais à me décrocher les mâchoires.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/3aad716607b2.wav",
+    "start": 627.536,
+    "dur": 8.638
+   },
+   {
+    "who": "narrator",
+    "text": "Le dellal revint. Le chiffre avait augmenté. Mon père fit signe. Et le dellal disparut de nouveau.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/a4e83a6f8780.wav",
+    "start": 636.974,
+    "dur": 6.245
+   },
+   {
+    "who": "narrator",
+    "text": "Le souk battait son plein. Les courtiers criaient des chiffres, couraient, entraînaient les clients par la main.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8515b523220a.wav",
+    "start": 644.019,
+    "dur": 5.975
+   },
+   {
+    "who": "narrator",
+    "text": "Parfois, une vague d'hommes en délire nous écrasait contre le mur, puis repartait plus loin.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/198ac1422bb5.wav",
+    "start": 650.794,
+    "dur": 6.63
+   },
+   {
+    "who": "narrator",
+    "text": "Mon père me souleva dans ses bras et me serra contre sa poitrine. Son front ruisselait de sueur.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/d522bce7ef6d.wav",
+    "start": 658.224,
+    "dur": 6.743
+   },
+   {
+    "who": "zoubida",
+    "text": "Que tous les saints le punissent, ce mécréant ! Il nous prend pour des campagnards ? Nous ne nous laisserons pas rouler !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/cba395d91240.wav",
+    "start": 665.768,
+    "dur": 5.979
+   },
+   {
+    "who": "narrator",
+    "text": "Mais le mécréant restait invisible.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6ca8f48f88fe.wav",
+    "start": 672.547,
+    "dur": 2.487
+   }
+  ]
+ },
+ {
+  "id": "s14_bagarre",
+  "start": 677.234,
+  "end": 724.849,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Brusquement, mon père me posa à terre, et disparut dans la foule.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/f99d392786da.wav",
+    "start": 678.634,
+    "dur": 4.371
+   },
+   {
+    "who": "narrator",
+    "text": "Des cris éclatèrent à l'autre bout du souk, comme un orage. La foule ondula, comme une mer.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b70ebbcabaa3.wav",
+    "start": 683.806,
+    "dur": 7.191
+   },
+   {
+    "who": "narrator",
+    "text": "Tout le monde se mit à courir.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/3ad901008914.wav",
+    "start": 691.797,
+    "dur": 1.58
+   },
+   {
+    "who": "zoubida",
+    "text": "Allah ! Allah ! Mes pieds !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/cf19ef112ad1.wav",
+    "start": 694.178,
+    "dur": 2.667
+   },
+   {
+    "who": "fatma",
+    "text": "Allah ! Mon haïk !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/f81b2b53741c.wav",
+    "start": 697.644,
+    "dur": 2.334
+   },
+   {
+    "who": "narrator",
+    "text": "Enfin, ils passèrent : mon père et le dellal, se tenant mutuellement par le collet.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ce2736c9d90c.wav",
+    "start": 700.778,
+    "dur": 8.677
+   },
+   {
+    "who": "narrator",
+    "text": "Les yeux rouges. De l'écume au coin des lèvres. Mon père avait perdu son turban. Le dellal avait du sang sur la joue.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/4b048d8c44b9.wav",
+    "start": 710.255,
+    "dur": 8.797
+   },
+   {
+    "who": "narrator",
+    "text": "Et tout le souk leur faisait cortège.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/af8644919695.wav",
+    "start": 719.853,
+    "dur": 2.796
+   }
+  ]
+ },
+ {
+  "id": "s15_fruits_secs",
+  "start": 724.849,
+  "end": 767.861,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Ma mère, la voisine et moi, nous nous mîmes à pleurer bruyamment.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/d64b2761cfae.wav",
+    "start": 726.249,
+    "dur": 6.804
+   },
+   {
+    "who": "narrator",
+    "text": "Nous courûmes au hasard, jusqu'au souk des fruits secs. Aucune trace d'eux.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/34d1a4c8ba64.wav",
+    "start": 733.853,
+    "dur": 4.865
+   },
+   {
+    "who": "narrator",
+    "text": "Je m'attendais à des rues désertes, des babouches perdues dans la panique. Rien. On vendait, on achetait, on plaisantait. Des garnements chantaient même des refrains à la mode.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/f3de5a872b59.wav",
+    "start": 739.518,
+    "dur": 13.116
+   },
+   {
+    "who": "narrator",
+    "text": "Notre tristesse devenait étouffante. Nous nous sentions tout seuls.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/d5b25aed8f48.wav",
+    "start": 753.433,
+    "dur": 5.733
+   },
+   {
+    "who": "zoubida",
+    "text": "Il ne sert à rien de courir partout. Rentrons, pour attendre et pour pleurer.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/5f2f75b80f6f.wav",
+    "start": 759.966,
+    "dur": 5.695
+   }
+  ]
+ },
+ {
+  "id": "s16_noir",
+  "start": 767.861,
+  "end": 833.716,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "À la maison, ma mère enleva son haïk, s'assit sur un matelas, la tête dans ses deux mains, et pleura en silence.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/69ec422a3197.wav",
+    "start": 770.261,
+    "dur": 11.587
+   },
+   {
+    "who": "narrator",
+    "text": "Pour la première fois, sa douleur me bouleversait. Ce n'étaient pas ses grands cris habituels. Ses larmes coulaient sur son menton, et elle restait là, sans bouger.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/d9d2340208d0.wav",
+    "start": 782.649,
+    "dur": 12.662
+   },
+   {
+    "who": "narrator",
+    "text": "Je pleurai un moment, moi aussi. Puis je m'étendis sur le lit, les yeux au plafond, et j'attendis.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/93f7b2f1b8b2.wav",
+    "start": 796.111,
+    "dur": 8.832
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère pleurait. Et moi, j'attendais. J'étais habitué à cet exercice.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/aaf49439c289.wav",
+    "start": 805.743,
+    "dur": 6.973
+   },
+   {
+    "who": "narrator",
+    "text": "Le soir tomba. Toutes les fenêtres de la maison s'allumèrent. Notre pièce restait obscure.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/537c0c81d8e3.wav",
+    "start": 813.516,
+    "dur": 6.991
+   },
+   {
+    "who": "narrator",
+    "text": "Dans le noir, des figures monstrueuses se formaient devant mes yeux, se transformaient, devenaient d'immenses étincelles vertes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8310fa7d587d.wav",
+    "start": 821.307,
+    "dur": 10.208
+   }
+  ]
+ },
+ {
+  "id": "s17_retour",
+  "start": 833.716,
+  "end": 917.225,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Enfin, la voix de mon père troua les ténèbres. Ses pas résonnèrent dans l'escalier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/3d6939e3a227.wav",
+    "start": 835.116,
+    "dur": 5.798
+   },
+   {
+    "who": "narrator",
+    "text": "La porte s'ouvrit. Sa silhouette se détacha, toute noire, sur le gris du mur.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/a007e9ac2189.wav",
+    "start": 841.713,
+    "dur": 7.481
+   },
+   {
+    "who": "father",
+    "text": "Pourquoi n'avez-vous pas allumé la lampe ? Où sont les allumettes ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2fe118cb93fa.wav",
+    "start": 849.994,
+    "dur": 3.526
+   },
+   {
+    "who": "zoubida",
+    "text": "Sur l'étagère, contre la boîte à thé.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/24d00f6832ae.wav",
+    "start": 854.321,
+    "dur": 3.063
+   },
+   {
+    "who": "father",
+    "text": "Si Mohammed dort déjà ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/516cbcfe8b66.wav",
+    "start": 858.183,
+    "dur": 2.519
+   },
+   {
+    "who": "mohammed",
+    "text": "Non, papa. Je ne dors pas.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b812a2ea5071.wav",
+    "start": 861.503,
+    "dur": 2.159
+   },
+   {
+    "who": "father",
+    "text": "Que faisais-tu dans le noir ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/24dbb1196027.wav",
+    "start": 864.462,
+    "dur": 1.462
+   },
+   {
+    "who": "mohammed",
+    "text": "J'attendais ton retour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/51a00ecb5849.wav",
+    "start": 866.725,
+    "dur": 1.521
+   },
+   {
+    "who": "narrator",
+    "text": "La lampe s'alluma. Le visage de ma mère ruisselait encore de larmes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8711900fc2eb.wav",
+    "start": 869.046,
+    "dur": 6.056
+   },
+   {
+    "who": "father",
+    "text": "Pourquoi tant de larmes ? Tout est rentré dans l'ordre. J'ai corrigé ce mécréant. Et voici les bracelets.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/44e214f39ce5.wav",
+    "start": 875.902,
+    "dur": 8.338
+   },
+   {
+    "who": "zoubida",
+    "text": "Je ne veux pas les voir, ces bijoux de mauvais augure. Avec eux, le malheur est entré dans cette maison.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8bf878f014a1.wav",
+    "start": 885.04,
+    "dur": 7.863
+   },
+   {
+    "who": "father",
+    "text": "Ce sont les bracelets que tu désirais. Prends-les, et ne dis pas de paroles inconséquentes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8d5b6563a07b.wav",
+    "start": 893.703,
+    "dur": 5.93
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère prit les bijoux sans les regarder, ouvrit son coffre, et les jeta dedans.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/31d5c1e003b5.wav",
+    "start": 900.433,
+    "dur": 6.144
+   },
+   {
+    "who": "zoubida",
+    "text": "Tu verras. Je ne suis qu'une faible femme, mais mon cœur ne ment pas. Ces bracelets ne m'apportent aucune joie.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/02fbc960eca2.wav",
+    "start": 907.377,
+    "dur": 7.648
+   }
+  ]
+ },
+ {
+  "id": "s18_cauchemar",
+  "start": 917.225,
+  "end": 1008.489,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Cette nuit-là, je fis des cauchemars. Des monstres. Des yeux enflammés de haine qui nous traquaient, ma mère, mon père et moi.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/06a823468e82.wav",
+    "start": 919.825,
+    "dur": 13.096
+   },
+   {
+    "who": "narrator",
+    "text": "Des foules aux visages hideux nous poursuivaient pour nous voler nos richesses. Ils voulaient surtout ma Boîte à merveilles.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/1ed14b05d617.wav",
+    "start": 933.721,
+    "dur": 8.35
+   },
+   {
+    "who": "narrator",
+    "text": "Alors mon père parut, sur un cheval noir. Ma boîte sous le bras. Il fendit la foule au galop.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2a64bb478c6c.wav",
+    "start": 942.871,
+    "dur": 8.425
+   },
+   {
+    "who": "narrator",
+    "text": "La longue crinière du cheval se déployait comme un étendard.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/13ebb2741eac.wav",
+    "start": 952.096,
+    "dur": 6.176
+   },
+   {
+    "who": "narrator",
+    "text": "Puis, une campagne déserte. Du sable, des cailloux, la lumière de l'été. Sur une colline, mon père nous attendait.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/11dfe2770b25.wav",
+    "start": 959.072,
+    "dur": 12.852
+   },
+   {
+    "who": "father",
+    "text": "Je l'ai sauvée. Elle est à toi. Ouvre-la.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/63c41401ab89.wav",
+    "start": 972.724,
+    "dur": 3.816
+   },
+   {
+    "who": "narrator",
+    "text": "Je l'ouvris avec précaution. Sur un lit de fleurs fraîchement coupées, des œillets et des roses, reposaient des bijoux d'or et de pierres précieuses.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/60ba57862b15.wav",
+    "start": 977.34,
+    "dur": 11.421
+   },
+   {
+    "who": "mohammed",
+    "text": "Regardez mon trésor !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/e31c516e719b.wav",
+    "start": 989.561,
+    "dur": 2.678
+   },
+   {
+    "who": "zoubida",
+    "text": "Les beaux bijoux portent toujours malheur à ceux qui les possèdent.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6c2097676dac.wav",
+    "start": 993.039,
+    "dur": 6.331
+   },
+   {
+    "who": "narrator",
+    "text": "Un grand froid m'enveloppa. Je refermai la boîte, et je me mis à sangloter.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b0308cdd95c5.wav",
+    "start": 1000.17,
+    "dur": 6.118
+   }
+  ]
+ },
+ {
+  "id": "s19_matin",
+  "start": 1008.489,
+  "end": 1079.156,
+  "lines": [
+   {
+    "who": "father",
+    "text": "Sidi Mohammed, pourquoi tu pleures ? Réveille-toi ! Réveille-toi !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ca237f791bdd.wav",
+    "start": 1009.889,
+    "dur": 7.238
+   },
+   {
+    "who": "narrator",
+    "text": "Il faisait jour. Les seaux cliquetaient dans le patio. Mon père me tâtait le front.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/6eeb43e84f45.wav",
+    "start": 1017.927,
+    "dur": 6.564
+   },
+   {
+    "who": "father",
+    "text": "Non. Il n'a pas de fièvre. Un simple cauchemar.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ccf69e381b59.wav",
+    "start": 1025.291,
+    "dur": 4.519
+   },
+   {
+    "who": "zoubida",
+    "text": "Je te dis qu'il est malade ! Avec l'agitation du souk, où tu as cru bon de l'entraîner !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/c3d36a7a4989.wav",
+    "start": 1030.61,
+    "dur": 5.144
+   },
+   {
+    "who": "father",
+    "text": "Cet enfant n'a rien. Un peu de fatigue. Qu'il n'aille pas à l'école.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/bfb1a7cbc6db.wav",
+    "start": 1036.554,
+    "dur": 4.935
+   },
+   {
+    "who": "zoubida",
+    "text": "Mon Dieu, punis-moi, mais ne me frappe pas dans mon enfant ! Homme, je ne veux pas garder ces bracelets !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/c11648fd080f.wav",
+    "start": 1042.289,
+    "dur": 6.808
+   },
+   {
+    "who": "father",
+    "text": "Je m'en vais. Si je reste, je vais perdre patience.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/832332e2999b.wav",
+    "start": 1049.897,
+    "dur": 3.687
+   },
+   {
+    "who": "zoubida",
+    "text": "Va. Tu es un homme. C'est naturel que tu aies un cœur de pierre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/2af2b6e5ea02.wav",
+    "start": 1054.384,
+    "dur": 4.563
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère ne devait pas dire cela. Un jour, je serai un homme. Et je n'aurai pas un cœur de pierre.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/16cd9dec57d2.wav",
+    "start": 1059.748,
+    "dur": 7.702
+   },
+   {
+    "who": "narrator",
+    "text": "Mon père gardait son sang-froid. Ma mère, elle, voulait le voir crier, s'agiter, tout exagérer, comme elle.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ef22b9792aeb.wav",
+    "start": 1068.249,
+    "dur": 8.707
+   }
+  ]
+ },
+ {
+  "id": "s20_aicha",
+  "start": 1079.156,
+  "end": 1155.231,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Je dus quand même garder le lit. Après le déjeuner, Lalla Aïcha vint nous rendre visite.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ec80211928af.wav",
+    "start": 1080.556,
+    "dur": 5.994
+   },
+   {
+    "who": "narrator",
+    "text": "Ma mère lui raconta tout : le souk, les bracelets, le drame. Elle pleura, soupira, invoqua les saints, et prophétisa des catastrophes.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/db70c9a7f10b.wav",
+    "start": 1087.35,
+    "dur": 11.873
+   },
+   {
+    "who": "narrator",
+    "text": "Lalla Aïcha, par politesse, approuvait, soupirait, se donnait de petites tapes sur la joue.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/79387bb03d4c.wav",
+    "start": 1100.023,
+    "dur": 7.534
+   },
+   {
+    "who": "zoubida",
+    "text": "Mais toi ? Tu ne me dis rien. Comment va ton mari ?",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8d6b30308d1f.wav",
+    "start": 1108.357,
+    "dur": 3.114
+   },
+   {
+    "who": "narrator",
+    "text": "Lalla Aïcha enfouit son visage dans ses mains, et éclata en sanglots.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8da72b07ca71.wav",
+    "start": 1112.271,
+    "dur": 5.503
+   },
+   {
+    "who": "aicha",
+    "text": "Zoubida, je n'ai plus personne au monde. Tu es ma seule famille.",
+    "wav": null,
+    "start": 1118.573,
+    "dur": 5.514
+   },
+   {
+    "who": "aicha",
+    "text": "Le fils du péché, pour qui j'ai tout donné, m'a abandonnée. Il a pris une seconde femme : la fille d'Abderrahman, le coiffeur.",
+    "wav": null,
+    "start": 1124.888,
+    "dur": 11.429
+   },
+   {
+    "who": "zoubida",
+    "text": "Allah ! Allah ! Ô ma sœur, ma pauvre sœur ! Quelle douleur !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/5b807862aa97.wav",
+    "start": 1137.116,
+    "dur": 9.124
+   },
+   {
+    "who": "narrator",
+    "text": "Et les deux femmes, dans les bras l'une de l'autre, se remirent à sangloter.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b84fb706ef33.wav",
+    "start": 1147.04,
+    "dur": 5.991
+   }
+  ]
+ },
+ {
+  "id": "s21_fievre",
+  "start": 1155.231,
+  "end": 1194.711,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "La chaleur, le lit, ces scènes dont je sentais tout le tragique sans le comprendre... me rendirent vraiment malade.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/39f93961ce56.wav",
+    "start": 1156.631,
+    "dur": 9.659
+   },
+   {
+    "who": "narrator",
+    "text": "Ma tête cognait. La fièvre me secoua tout entier.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/c9d16f10704e.wav",
+    "start": 1167.09,
+    "dur": 5.3
+   },
+   {
+    "who": "zoubida",
+    "text": "Mon fils va mourir ! Ô mes sœurs, mon fils ! Sauvez mon fils !",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/b8a4a9321e53.wav",
+    "start": 1173.19,
+    "dur": 7.167
+   },
+   {
+    "who": "narrator",
+    "text": "Les voisines envahirent la chambre. Mes paupières se fermèrent. Dans mon crâne, je n'entendais plus que les battements d'un gigantesque tambour.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/dd0683188e1a.wav",
+    "start": 1181.157,
+    "dur": 11.354
+   }
+  ]
+ },
+ {
+  "id": "s22_fiche",
+  "start": 1194.711,
+  "end": 1246.324,
+  "lines": [
+   {
+    "who": "narrator",
+    "text": "Fiche de révision. Chapitre huit : les bracelets soleil et lune, en quatre temps.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/dd29073c657c.wav",
+    "start": 1195.511,
+    "dur": 7.345
+   },
+   {
+    "who": "narrator",
+    "text": "L'été au mausolée. L'escalier et les fleurs. La bagarre du souk. Et le cauchemar.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/9c25d7d2e562.wav",
+    "start": 1203.656,
+    "dur": 7.466
+   },
+   {
+    "who": "narrator",
+    "text": "Le détail à retenir : les bracelets que la mère désirait deviennent pour elle des bijoux de mauvais augure. Le bonheur se transforme en malheur.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/8bc4b4677d1a.wav",
+    "start": 1211.923,
+    "dur": 9.972
+   },
+   {
+    "who": "narrator",
+    "text": "Et Sidi Larbi, annoncé chez le barbier au chapitre sept, prend bien une seconde femme.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/a13e02c52e07.wav",
+    "start": 1222.695,
+    "dur": 5.884
+   },
+   {
+    "who": "narrator",
+    "text": "Thèmes : l'imaginaire de l'enfant, la solitude, le regard des adultes, la condition de la femme. Au chapitre neuf : l'enfant malade, et une maison qui ne dort plus.",
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/aee27fe35cee.wav",
+    "start": 1229.379,
+    "dur": 14.745
+   }
+  ]
+ },
+ {
+  "id": "s23_endcard",
+  "start": 1246.324,
+  "end": 1254.324,
+  "lines": []
+ }
+]

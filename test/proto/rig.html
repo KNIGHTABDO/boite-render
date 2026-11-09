@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#888">
+<canvas id="cv" width="1920" height="1080"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Real-rig bench: drawAt(i) -> pose i (0 stand, 1 reach, 2 look, 3 stool, 4 crossLegged, 5 kneel). ?a=<spec>&oldrig=1 compares the old rig.
+import * as THREE from 'three';
+import * as K from '/engine/core.js';
+import { stage, cast } from '/engine/stage3d.js';
+import { rest } from '/engine/rig3d.js';
+import * as PR from '/engine/props3d.js';
+import * as PO from '/engine/poses.js';
+import * as IK from '/engine/ik.js';
+const cv = document.getElementById('cv'), c = cv.getContext('2d'); K.setCtx(c); window.cv = cv;
+const q = new URLSearchParams(location.search), S = stage(); window.S = S; window.PO = PO; window.IK = IK;
+S.calibrate({ h: 1.0, horizon: 330, fov: 38, x: .3, z: +(q.get('z') || 4.2), yaw: +(q.get('yaw') || 20) }); S.light({ dir: [-2, 3.2, 2], shadow: .35, area: 2.5 });
+const a = await cast(q.get('a') || 'mohammed_rodin'); window.A = a;
+S.add(a, 0, 0, 0); const H = a.group.scale.y;
+if (q.get('cam') === 'hand') S.calibrate({ h: +(q.get('hy') ?? .5) * H, horizon: 540, fov: +(q.get('fov') ?? 20), x: +(q.get('hx') ?? .1) * H, z: 1.5 * H, yaw: +(q.get('yaw') || 20) });   // hand close-up: judge finger poses   // actor height (m): reach/point targets scale with it (adult rigs reached only face height)
+const stl = S.prop(PR.stool({ h: .26, w: .32 }), 0, 0, -.02); stl.visible = false;
+const mat = S.prop(PR.mattress(), 0, 0, 0); mat.visible = false;
+window.M = {};
+window.drawAt = async i => {
+  rest(a.B); stl.visible = mat.visible = false; a.group.position.set(0, 0, 0); a.group.rotation.y = +(q.get('turn') || 0) * Math.PI / 180; a.group.updateMatrixWorld(true);
+  if (i == 1) PO.reach(a, 'R', new THREE.Vector3(-.2 * H, .72 * H, .38 * H));
+  if (i == 2) PO.look(a, new THREE.Vector3(1.2, 1.2, 1.5), 1);
+  if (i == 3) { stl.visible = true; M.stool = PO.stool(a, { seat: .26 }).err; }
+  if (i == 4) { mat.visible = true; PO.crossLegged(a, { seat: mat.userData.top }); }
+  if (i == 5) { mat.visible = true; M.kneel = PO.kneel(a, { seat: mat.userData.top }); }
+  if (i == 6) PO.relaxHands(a, 1);
+  if (i == 7) { M.f = PO.fingers(a, 'R', 1); PO.fingers(a, 'L', 1, { each: [1, 0, 1, 1, 1] }); PO.reach(a, 'L', new THREE.Vector3(.28 * H, .8 * H, .45 * H)); }
+  if (q.has('dbg')) { a.group.updateMatrixWorld(true); const f = v => v.toArray().map(x => x.toFixed(3)).join(','); for (const n of ['RightForeArm','RightHand','RightHandIndex1','RightHandIndex2','RightHandIndex3','RightHandThumb1','RightHandThumb2','RightHandThumb3']) if (a.B[n]) console.error(i, n, f(IK.wpos(a.B[n]))); }
+  c.fillStyle = '#b9ab92'; c.fillRect(0, 0, 1920, 1080); c.fillStyle = '#9a8a70'; c.fillRect(0, 330, 1920, 750);
+  S.draw({ ink: 2.2 });
+};
+await drawAt(0); window.ready = true;
+</script>

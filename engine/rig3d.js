@@ -212,3 +212,53 @@ export async function loadAnimal(url, { height = .25, outline = 0, ramp = [120, 
   const play = (name, { loop = true } = {}) => { const a = mixer.clipAction(clips[name]); a.setLoop(loop ? THREE.LoopRepeat : THREE.LoopOnce); a.clampWhenFinished = !loop; if (cur && cur !== a) cur.stop(); a.play(); cur = a; return a; };
   return { root, mixer, clips, play, at: t => mixer.setTime(t) };
 }
+
+// ============================================================================================================
+// ep08+: REAL rig. art/rigged/<name>.glb is made by tools/rig/autorig.py (Blender bone-heat on a closed proxy,
+// 3D arm clamp, head volume locked to the Head bone, finger + thumb chains, robe/skirt cloth bones).
+// The skeleton is rebased to world-aligned bones (identity rest rotation, like loadRigged's), so every pose helper
+// that sets bone.rotation.x/y/z keeps its meaning. B keeps the old names (root, spine, chest, neck, head, thighL...,
+// lap/lapD = SkirtFront1/2) and also exposes every new bone by its Mixamo name without the prefix (B.LeftHandIndex1).
+/** spec key -> art/rigged/<file>; add each model after tools/rig/autorig.py has rigged it */
+// real rigs (tools/rig/batch.sh). PENDING ARGON QA except mohammed_rodin — see out/rigqa/argon.md
+export const RIGGED = { mohammed: 'mohammed.glb', mohammed_rodin: 'mohammed.glb', zoubida: 'zoubida.glb', father: 'father.glb', aicha: 'aicha.glb', fqih: 'fqih.glb', kid1: 'kid1.glb', kid2: 'kid2.glb', kid3: 'kid3.glb', marchand: 'marchand.glb', zoubida_haik: 'zoubida_haik.glb', fatma: 'fatma.glb', man1: 'man1.glb', woman1: 'woman1.glb', woman2: 'woman2.glb', rahma: 'rahma.glb' };
+export const RIG_MAP = { root: 'Hips', spine: 'Spine', chest: 'Spine2', neck: 'Neck', head: 'Head', lap: 'SkirtFront1', lapD: 'SkirtFront2',
+  thighL: 'LeftUpLeg', shinL: 'LeftLeg', footL: 'LeftFoot', thighR: 'RightUpLeg', shinR: 'RightLeg', footR: 'RightFoot',
+  upperArmL: 'LeftArm', foreArmL: 'LeftForeArm', handL: 'LeftHand', upperArmR: 'RightArm', foreArmR: 'RightForeArm', handR: 'RightHand' };
+export async function loadSkinned(url, spec, { outline = .004, ramp = [120, 190, 255], tint } = {}) {
+  const gltf = await new GLTFLoader().loadAsync(url);
+  let src; gltf.scene.traverse(o => { if (o.isSkinnedMesh && (!src || o.geometry.attributes.position.count > src.geometry.attributes.position.count)) src = o; });
+  if (!src) throw new Error('no skinned mesh in ' + url);
+  gltf.scene.updateMatrixWorld(true);
+  const geo = src.geometry; if (!geo.attributes.normal) geo.computeVertexNormals();
+  // bake the mesh node transform into the geometry so mesh space = model space
+  const meshM = src.matrixWorld.clone(); geo.applyMatrix4(meshM);
+  const old = src.skeleton, B = {}, list = [];
+  const P = old.bones.map((b, i) => new THREE.Vector3().setFromMatrixPosition(meshM.clone().multiply(old.boneInverses[i].clone().invert())));
+  old.bones.forEach((ob, i) => {
+    const b = new THREE.Bone(); b.name = ob.name.replace(/^mixamorig:?/, ''); b.userData.abs = P[i].clone(); list.push(b); B[b.name] = b;
+  });
+  old.bones.forEach((ob, i) => {
+    const pi = old.bones.indexOf(ob.parent), b = list[i];
+    if (pi >= 0) { list[pi].add(b); b.position.copy(P[i].clone().sub(P[pi])); } else b.position.copy(P[i]);
+  });
+  for (const [k, v] of Object.entries(RIG_MAP)) if (B[v]) B[k] = B[v];
+  const roots = list.filter(b => !b.parent);
+  // material (same toon look + ink hull as loadRigged)
+  const grad = new THREE.DataTexture(new Uint8Array(ramp), ramp.length, 1, THREE.RedFormat); grad.minFilter = grad.magFilter = THREE.NearestFilter; grad.needsUpdate = true;
+  let map = src.material.map; if (map) map.colorSpace = THREE.SRGBColorSpace; if (map && spec.fixSkin) map = fixSkin(map, spec.fixSkin);
+  const mat = new THREE.MeshToonMaterial({ map, gradientMap: grad, color: tint || 0xffffff, side: THREE.DoubleSide });
+  const inkMat = new THREE.MeshBasicMaterial({ color: 0x1f1612, side: THREE.BackSide });
+  inkMat.onBeforeCompile = sh => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n transformed += normalize(objectNormal) * ${outline.toFixed(4)};`)
+    .replace('#include <project_vertex>', '#include <project_vertex>\n gl_Position = projectionMatrix * (mvPosition + vec4(0., 0., -.015, 0.));'); };
+  const mesh = new THREE.SkinnedMesh(geo, mat), hull = new THREE.SkinnedMesh(geo, inkMat); hull.visible = outline > 0;
+  for (const r of roots) mesh.add(r);
+  mesh.updateMatrixWorld(true);
+  const skel = new THREE.Skeleton(list); mesh.bind(skel, new THREE.Matrix4()); hull.bind(skel, new THREE.Matrix4());
+  mesh.frustumCulled = hull.frustumCulled = false;
+  const inner = new THREE.Group(); inner.add(mesh, hull);
+  const h = spec.top - spec.bottom; inner.scale.setScalar(1 / h); inner.position.y = -spec.bottom / h;
+  const group = new THREE.Group(); group.add(inner);
+  for (const b of list) b.userData.rest = b.quaternion.clone();
+  return { group, B, rig: 'real', mesh };
+}

@@ -1,0 +1,1201 @@
+{
+ "episode": 8,
+ "title": "Les bracelets soleil et lune",
+ "chapter": 8,
+ "gap": 0.8,
+ "voices": {
+  "narrator": {
+   "voice": "Gacrux",
+   "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone"
+  },
+  "mohammed": {
+   "voice": "Leda",
+   "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent"
+  },
+  "zoubida": {
+   "voice": "Kore",
+   "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic"
+  },
+  "father": {
+   "voice": "Charon",
+   "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words"
+  },
+  "fqih": {
+   "voice": "Schedar",
+   "style": "Moroccan Koranic schoolmaster from Fès, about 50, grave, nasal, speaks French with a Fassi accent"
+  },
+  "kanza": {
+   "voice": "Vindemiatrix",
+   "style": "old Moroccan woman, a fortune-teller from Fès, about 60, raspy, slow, honeyed and mysterious, speaks French with a Fassi accent"
+  },
+  "femmes": {
+   "voice": "Aoede",
+   "style": "a group of Moroccan women in a courtyard house shouting together, laughing and begging for mercy, loud"
+  },
+  "aicha": {
+   "voice": "Pulcherrima",
+   "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy"
+  },
+  "fatma": {
+   "voice": "Despina",
+   "style": "poor but generous Moroccan neighbour from Fès, about 35, warm, laughing, speaks French with a Fassi accent"
+  },
+  "rahma": {
+   "voice": "Autonoe",
+   "style": "Moroccan woman from Fès, about 35, loud, a gifted comic storyteller, speaks French with a Fassi accent"
+  }
+ },
+ "scenes": [
+  {
+   "id": "s01_hook",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Ce lundi-là, <short pause> mon père promit à ma mère <short pause> des bracelets d'or et d'argent.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: soft, intimate, remembering a day that started happily, slow",
+     "sub": "Ce lundi-là, mon père promit à ma mère des bracelets d'or et d'argent."
+    },
+    {
+     "who": "narrator",
+     "text": "Le soir même, <short pause> elle pleurait dans le noir. <short pause> Et moi, <short pause> j'attendais.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: darker, slower, a small catch in the voice on 'elle pleurait', long pause before 'j'attendais'",
+     "sub": "Le soir même, elle pleurait dans le noir. Et moi, j'attendais."
+    }
+   ],
+   "lead": 1.5,
+   "tail": 1.5
+  },
+  {
+   "id": "s02_titre",
+   "lines": [],
+   "lead": 0,
+   "tail": 0,
+   "hold": 9
+  },
+  {
+   "id": "s03_mouches",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Après les fêtes de l'Achoura, <short pause> la vie retomba dans sa grisaille. <short pause> La chaleur commença à sévir.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: tired, heavy, the party is over, slow sigh in the voice",
+     "sub": "Après les fêtes de l'Achoura, la vie retomba dans sa grisaille. La chaleur commença à sévir."
+    },
+    {
+     "who": "narrator",
+     "text": "Des colonies de mouches envahirent la maison. <short pause> Et dans les vieilles boiseries, <short pause> les punaises se réveillèrent.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: amused disgust, a little buzz of mischief",
+     "sub": "Des colonies de mouches envahirent la maison. Et dans les vieilles boiseries, les punaises se réveillèrent."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère leur déclara une guerre totale. <short pause> Chaux vive. <short pause> Soufre. <short pause> Pétrole.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: mock-epic, like a war chronicle, each weapon hit separately with a beat between them",
+     "sub": "Ma mère leur déclara une guerre totale. Chaux vive. Soufre. Pétrole."
+    },
+    {
+     "who": "narrator",
+     "text": "Puis des armes plus sournoises : <short pause> des talismans, <short pause> des poudres de faiseur de miracles, <short pause> des invocations.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: lower, conspiratorial, comic, one beat per item",
+     "sub": "Puis des armes plus sournoises : des talismans, des poudres de faiseur de miracles, des invocations."
+    },
+    {
+     "who": "narrator",
+     "text": "Seules quelques familles survécurent, <short pause> là-haut, <short pause> le long des poutres du plafond. <short pause> Descendre à portée des doigts de l'homme, <short pause> c'était se suicider.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: deadpan tragic, mock-solemn eulogy for the bedbugs",
+     "sub": "Seules quelques familles survécurent, là-haut, le long des poutres du plafond. Descendre à portée des doigts de l'homme, c'était se suicider."
+    },
+    {
+     "who": "narrator",
+     "text": "Chaque matin, <short pause> ma mère chassait les mouches à grands coups de torchon. <short pause> Elles sortaient par la fenêtre, <short pause> en bourdonnant de colère.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: lively, rhythmic like the torchon swings, smiling",
+     "sub": "Chaque matin, ma mère chassait les mouches à grands coups de torchon. Elles sortaient par la fenêtre, en bourdonnant de colère."
+    }
+   ],
+   "card": "L'ÉTÉ",
+   "enum": [
+    "chaux vive",
+    "soufre",
+    "pétrole",
+    "talismans",
+    "poudres",
+    "invocations"
+   ],
+   "lead": 2.6,
+   "tail": 1.4
+  },
+  {
+   "id": "s04_mausolee",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Les journées devinrent longues. <short pause> La salle du M'sid, <short pause> trop chaude et trop étroite, <short pause> fut abandonnée.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: calm, a breath of relief",
+     "sub": "Les journées devinrent longues. La salle du Msid, trop chaude et trop étroite, fut abandonnée."
+    },
+    {
+     "who": "narrator",
+     "text": "Un matin, <short pause> nous emportâmes nos planchettes et nos encriers <short pause> dans un petit sanctuaire, <short pause> deux pas plus loin.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: light, a small adventure, children carrying their things",
+     "sub": "Un matin, nous emportâmes nos planchettes et nos encriers dans un petit sanctuaire, deux pas plus loin."
+    },
+    {
+     "who": "narrator",
+     "text": "Ce mausolée abritait la tombe d'un saint. <short pause> Personne ne savait son nom. <short pause> Mais le jeudi, <short pause> les jeunes filles qui voulaient se marier dans l'année <short pause> venaient faire sept fois le tour du tombeau.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: hushed, a little mysterious, tender amusement on the girls",
+     "sub": "Ce mausolée abritait la tombe d'un saint. Personne ne savait son nom. Mais le jeudi, les jeunes filles qui voulaient se marier dans l'année venaient faire sept fois le tour du tombeau."
+    },
+    {
+     "who": "narrator",
+     "text": "La grande salle était d'une fraîcheur de paradis.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: wonder, slow, savouring the word paradis",
+     "sub": "La grande salle était d'une fraîcheur de paradis."
+    },
+    {
+     "who": "narrator",
+     "text": "À l'appel du muezzin, <short pause> le fquih nous imposa silence. <short pause> Nous fîmes nos ablutions <short pause> à la petite fontaine qui chantonnait dans un coin.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: quiet, reverent, gentle, the water sound in the voice",
+     "sub": "À l'appel du muezzin, le fqih nous imposa silence. Nous fîmes nos ablutions à la petite fontaine qui chantonnait dans un coin."
+    },
+    {
+     "who": "narrator",
+     "text": "Petits et grands, <short pause> alignés derrière notre maître, <short pause> nous fîmes la prière. <short pause> Deux fois par jour, <short pause> tout l'été.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: grave, serene, slow, very calm",
+     "sub": "Petits et grands, alignés derrière notre maître, nous fîmes la prière. Deux fois par jour, tout l'été."
+    }
+   ],
+   "tag": "À RETENIR : en été, le Msid s'installe dans un mausolée",
+   "music": "mausolee",
+   "lead": 2.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s05_memoire",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "La lumière douce, <short pause> le visage plus bienveillant du fquih... <short pause> Je me mis à aimer l'école.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: warm surprise, as if confessing something unexpected",
+     "sub": "La lumière douce, le visage plus bienveillant du fqih... Je me mis à aimer l'école."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mémoire fit des miracles. <short pause> De dix lignes sur ma planchette, <short pause> je passai à quinze.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: proud, growing, a little boast on 'quinze'",
+     "sub": "Ma mémoire fit des miracles. De dix lignes sur ma planchette, je passai à quinze."
+    },
+    {
+     "who": "narrator",
+     "text": "Un vendredi, <short pause> mon père, <short pause> gonflé d'orgueil, <short pause> raconta à ma mère ce que le fquih lui avait dit.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: playful, imitating a proud father",
+     "sub": "Un vendredi, mon père, gonflé d'orgueil, raconta à ma mère ce que le fqih lui avait dit."
+    },
+    {
+     "who": "father",
+     "text": "Si ton fils continue ainsi, <short pause> il deviendra un savant. <short pause> Un savant dont nous serons fiers.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: proud and tender, trying to stay modest, a smile in the low voice",
+     "sub": "Si ton fils continue ainsi, il deviendra un savant. Un savant dont nous serons fiers."
+    },
+    {
+     "who": "narrator",
+     "text": "Un savant ? <short pause> Pour moi, <short pause> un savant, <short pause> c'était un homme obèse, <short pause> une barbe autour d'une très large figure, <short pause> et un turban monumental.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: comic horror, building the absurd image piece by piece",
+     "sub": "Un savant ? Pour moi, un savant, c'était un homme obèse, une barbe autour d'une très large figure, et un turban monumental."
+    },
+    {
+     "who": "narrator",
+     "text": "Je n'avais aucune envie de ressembler à cet homme-là.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: deadpan, firm, comic",
+     "sub": "Je n'avais aucune envie de ressembler à cet homme-là."
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s06_reves",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "J'apprenais ma leçon <short pause> parce que mes parents m'en aimaient davantage. <short pause> Et pour éviter la baguette de cognassier.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: honest, a little sheepish, wince on 'baguette'",
+     "sub": "J'apprenais ma leçon parce que mes parents m'en aimaient davantage. Et pour éviter la baguette de cognassier."
+    },
+    {
+     "who": "narrator",
+     "text": "Je m'étais fait un programme. <short pause> Le matin, <short pause> j'apprenais mes versets avec ferveur. <short pause> L'après-midi, <short pause> je m'accordais deux bonnes heures de rêve, <short pause> en faisant semblant de réciter.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: conspiratorial, a child's secret plan, sly smile on 'faisant semblant'",
+     "sub": "Je m'étais fait un programme. Le matin, j'apprenais mes versets avec ferveur. L'après-midi, je m'accordais deux bonnes heures de rêve, en faisant semblant de réciter."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon esprit s'échappait de l'école. <short pause> Parfois, <short pause> je devenais l'homme que je voulais être plus tard.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: dreamy, opening up, the voice lifts",
+     "sub": "Mon esprit s'échappait de l'école. Parfois, je devenais l'homme que je voulais être plus tard."
+    },
+    {
+     "who": "narrator",
+     "text": "Simple et robuste, <short pause> vêtu de laine grège, <short pause> les yeux pleins de flamme, <short pause> et le cœur débordant de tendresse.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: tender, heartfelt, slow, each quality given its own breath",
+     "sub": "Simple et robuste, vêtu de laine grège, les yeux pleins de flamme, et le cœur débordant de tendresse."
+    },
+    {
+     "who": "narrator",
+     "text": "La nuit, <short pause> sous ma couverture, <short pause> je continuais le même songe... <short pause> jusqu'à ce que d'immenses îlots noirs <short pause> viennent tout briser.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: hushed bedtime voice that darkens and slows on 'îlots noirs'",
+     "sub": "La nuit, sous ma couverture, je continuais le même songe... jusqu'à ce que d'immenses îlots noirs viennent tout briser."
+    }
+   ],
+   "enum": [
+    "le matin : les versets",
+    "l'après-midi : deux heures de rêve"
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s07_lundi",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Un lundi, <short pause> mon père, <short pause> contre toutes ses habitudes, <short pause> vint déjeuner à la maison.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: intrigued, something unusual is happening",
+     "sub": "Un lundi, mon père, contre toutes ses habitudes, vint déjeuner à la maison."
+    },
+    {
+     "who": "father",
+     "text": "Les djellabas de laine se vendent mal en été. <short pause> Je vais fabriquer des haïks de coton. <short pause> Été comme hiver, <short pause> les femmes de Fès ne sortent qu'enveloppées dedans.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: calm, practical, a man explaining his business plan, quietly pleased with the idea",
+     "sub": "Les djellabas de laine se vendent mal en été. Je vais fabriquer des haïks de coton. Été comme hiver, les femmes de Fès ne sortent qu'enveloppées dedans."
+    },
+    {
+     "who": "father",
+     "text": "Et aujourd'hui, <short pause> je vous emmène tous les deux <short pause> au souk des bijoux.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: a gentle surprise, warm, eyes twinkling",
+     "sub": "Et aujourd'hui, je vous emmène tous les deux au souk des bijoux."
+    },
+    {
+     "who": "father",
+     "text": "Zoubida, <short pause> il y a longtemps que tu me demandes les bracelets soleil et lune. <short pause> Il est temps que je te les offre.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: tender, generous, looking at his wife, soft",
+     "sub": "Zoubida, il y a longtemps que tu me demandes les bracelets soleil et lune. Il est temps que je te les offre."
+    },
+    {
+     "who": "narrator",
+     "text": "Soleil et lune : <short pause> un bracelet d'or, <short pause> et un bracelet d'argent.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: explaining clearly, gently, like a footnote",
+     "sub": "Soleil et lune : un bracelet d'or, et un bracelet d'argent."
+    },
+    {
+     "who": "father",
+     "text": "Mon ouvrier a perdu sa mère, <short pause> à la campagne. <short pause> Il est parti pour l'enterrement.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: grave, lower, respectful",
+     "sub": "Mon ouvrier a perdu sa mère, à la campagne. Il est parti pour l'enterrement."
+    },
+    {
+     "who": "zoubida",
+     "text": "Elle est morte d'une maladie ?",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: quick, curious, a little anxious",
+     "sub": "Elle est morte d'une maladie ?"
+    },
+    {
+     "who": "father",
+     "text": "Surtout de vieillesse, je crois. <short pause> Que Dieu la reçoive dans sa miséricorde.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: calm, gentle, a short blessing",
+     "sub": "Surtout de vieillesse, je crois. Que Dieu la reçoive dans sa miséricorde."
+    },
+    {
+     "who": "mohammed",
+     "text": "Mais... <short pause> je ne peux pas manquer le M'sid ! <short pause> J'ai ma leçon à apprendre.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: worried, very serious, a good little pupil",
+     "sub": "Mais... je ne peux pas manquer le Msid ! J'ai ma leçon à apprendre."
+    },
+    {
+     "who": "father",
+     "text": "Ne te tourmente pas. <short pause> J'ai prévenu le fquih. <short pause> Tu travailles bien, <short pause> cette demi-journée sera ta récompense.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: reassuring, warm, proud",
+     "sub": "Ne te tourmente pas. J'ai prévenu le fqih. Tu travailles bien, cette demi-journée sera ta récompense."
+    },
+    {
+     "who": "father",
+     "text": "Mais peut-être que tu n'aimes pas <short pause> les jolis bijoux ?",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: teasing gently, playful",
+     "sub": "Mais peut-être que tu n'aimes pas les jolis bijoux ?"
+    }
+   ],
+   "card": "UN LUNDI",
+   "tag": "À RETENIR : le haïk, grande étoffe blanche des femmes de Fès",
+   "lead": 2.6,
+   "tail": 1.4
+  },
+  {
+   "id": "s08_fleurs",
+   "lines": [
+    {
+     "who": "mohammed",
+     "text": "Oh si ! <short pause> Les bijoux, <short pause> c'est beau... <short pause> c'est beau comme...",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: excited then shy, slowing down, losing courage, trailing off",
+     "sub": "Oh si ! Les bijoux, c'est beau... c'est beau comme..."
+    },
+    {
+     "who": "father",
+     "text": "Beau comme quoi ?",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: soft, encouraging, curious",
+     "sub": "Beau comme quoi ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Je baissai les yeux.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: very soft, slow, intimate",
+     "sub": "Je baissai les yeux."
+    },
+    {
+     "who": "mohammed",
+     "text": "Les bijoux, <short pause> c'est beau comme les fleurs.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: whispered confidence, shy, sincere, almost sacred",
+     "sub": "Les bijoux, c'est beau comme les fleurs."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père et ma mère éclatèrent de rire.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: flat, a little hurt, pause after it",
+     "sub": "Mon père et ma mère éclatèrent de rire."
+    },
+    {
+     "who": "narrator",
+     "text": "Je trouvai leur réaction déplacée. <short pause> Un doute se glissa en moi <short pause> sur la qualité de leur intelligence.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: offended dignity, dry comic irony",
+     "sub": "Je trouvai leur réaction déplacée. Un doute se glissa en moi sur la qualité de leur intelligence."
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s09_escalier",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Après le déjeuner, <short pause> j'allai m'asseoir dans l'escalier. <short pause> Accroupi sur une marche, <short pause> les mains sur les genoux, <short pause> je réfléchis profondément.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: slow, thoughtful, a small philosopher",
+     "sub": "Après le déjeuner, j'allai m'asseoir dans l'escalier. Accroupi sur une marche, les mains sur les genoux, je réfléchis profondément."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma comparaison exprimait une idée essentielle. <short pause> Elle méritait le silence. <short pause> Pas le rire.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: firm, quietly wounded, the last two words short and hard",
+     "sub": "Ma comparaison exprimait une idée essentielle. Elle méritait le silence. Pas le rire."
+    },
+    {
+     "who": "narrator",
+     "text": "Je connaissais quelques fleurs. <short pause> Les soucis et les coquelicots, <short pause> sur les tombes au printemps. <short pause> Les marguerites dodues, <short pause> qui offrent au soleil leur cœur d'or. <short pause> Les liserons, <short pause> sur les collines de Bab Guissa.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: loving, lyrical, each flower savoured, smiling",
+     "sub": "Je connaissais quelques fleurs. Les soucis et les coquelicots, sur les tombes au printemps. Les marguerites dodues, qui offrent au soleil leur cœur d'or. Les liserons, sur les collines de Bab Guissa."
+    },
+    {
+     "who": "narrator",
+     "text": "Et sur notre terrasse, <short pause> dans des morceaux de poterie : <short pause> du géranium, <short pause> des œillets, <short pause> et des roses d'Ispahan.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: tender, almost a whisper on 'roses d'Ispahan'",
+     "sub": "Et sur notre terrasse, dans des morceaux de poterie : du géranium, des œillets, et des roses d'Ispahan."
+    },
+    {
+     "who": "narrator",
+     "text": "Les bijoux de fête, <short pause> eux, <short pause> avaient été forgés par des génies, <short pause> dans des palais souterrains. <short pause> Ils gardaient encore la couleur des flammes <short pause> où leur or avait coulé.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: storyteller's magic voice, wonder, slow, mysterious",
+     "sub": "Les bijoux de fête, eux, avaient été forgés par des génies, dans des palais souterrains. Ils gardaient encore la couleur des flammes où leur or avait coulé."
+    },
+    {
+     "who": "narrator",
+     "text": "Ils naissaient de l'amour, <short pause> pour des princesses de légende. <short pause> Et sous les pas de ces princesses, <short pause> naissaient d'autres bijoux, <short pause> plus fragiles : <short pause> les fleurs.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: awe, building softly to the revelation, a breath before 'les fleurs'",
+     "sub": "Ils naissaient de l'amour, pour des princesses de légende. Et sous les pas de ces princesses, naissaient d'autres bijoux, plus fragiles : les fleurs."
+    },
+    {
+     "who": "narrator",
+     "text": "Mais à six ans, <short pause> je n'avais pas les mots pour dire tout cela.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: gentle, nostalgic, a little sad",
+     "sub": "Mais à six ans, je n'avais pas les mots pour dire tout cela."
+    },
+    {
+     "who": "narrator",
+     "text": "Je pardonnais aux grandes personnes de me gronder, <short pause> même de me frapper. <short pause> Mais je leur en voulais à mort <short pause> de ne pas essayer de me comprendre.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: rising emotion, the old pain still alive, strong on 'à mort', then quiet",
+     "sub": "Je pardonnais aux grandes personnes de me gronder, même de me frapper. Mais je leur en voulais à mort de ne pas essayer de me comprendre."
+    },
+    {
+     "who": "narrator",
+     "text": "Pour ma mère, <short pause> j'étais parfait <short pause> si je me lavais les pieds. <short pause> Pour mon père, <short pause> si je copiais ses gestes à la prière. <short pause> Pour les voisins, <short pause> si je ne faisais pas de bruit.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: ironic, rhythmic list, slight bitterness, one beat per person",
+     "sub": "Pour ma mère, j'étais parfait si je me lavais les pieds. Pour mon père, si je copiais ses gestes à la prière. Pour les voisins, si je ne faisais pas de bruit."
+    },
+    {
+     "who": "narrator",
+     "text": "Alors, <short pause> accroupi sur ma marche, <short pause> je me répétais : <short pause> les bijoux, <short pause> c'est beau comme les fleurs.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: quiet stubbornness, tender, slow, the phrase like a secret prayer",
+     "sub": "Alors, accroupi sur ma marche, je me répétais : les bijoux, c'est beau comme les fleurs."
+    }
+   ],
+   "music": "escalier",
+   "enum": [
+    "les soucis et les coquelicots",
+    "les marguerites",
+    "les liserons",
+    "le géranium",
+    "les œillets",
+    "les roses d'Ispahan"
+   ],
+   "lead": 2.0,
+   "tail": 1.4
+  },
+  {
+   "id": "s10_roi",
+   "lines": [
+    {
+     "who": "zoubida",
+     "text": "Que fais-tu dans l'escalier ?",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: calling from upstairs to the whole house, loud, suspicious",
+     "sub": "Que fais-tu dans l'escalier ?"
+    },
+    {
+     "who": "mohammed",
+     "text": "Je joue.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: too innocent, a bit hypocritical",
+     "sub": "Je joue."
+    },
+    {
+     "who": "zoubida",
+     "text": "À quoi tu joues ?",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: louder, insisting",
+     "sub": "À quoi tu joues ?"
+    },
+    {
+     "who": "mohammed",
+     "text": "Au roi.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: small, proud, dead serious",
+     "sub": "Au roi."
+    },
+    {
+     "who": "zoubida",
+     "text": "Je me demande ce que peut faire un roi <short pause> dans l'escalier, <short pause> accroupi sur une marche !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: theatrical, taking the whole house as witness, mocking but affectionate",
+     "sub": "Je me demande ce que peut faire un roi dans l'escalier, accroupi sur une marche !"
+    },
+    {
+     "who": "narrator",
+     "text": "Les voisines se mirent à rire.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: rueful, flat",
+     "sub": "Les voisines se mirent à rire."
+    },
+    {
+     "who": "rahma",
+     "text": "Lalla Zoubida, <short pause> ton fils ira loin. <short pause> Il se prend déjà pour un roi !",
+     "style": "Moroccan woman from Fès, about 35, loud, a gifted comic storyteller, speaks French with a Fassi accent. In this line: cheeky, a little insolent, loud laugh in the voice",
+     "sub": "Lalla Zoubida, ton fils ira loin. Il se prend déjà pour un roi !"
+    },
+    {
+     "who": "narrator",
+     "text": "Que pouvait comprendre la femme d'un fabricant de charrues <short pause> aux princes et aux rois ?",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: offended, haughty child, comic",
+     "sub": "Que pouvait comprendre la femme d'un fabricant de charrues aux princes et aux rois ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Ce soir, <short pause> ma mère aurait aux poignets les bracelets soleil et lune. <short pause> Et Rahma serait verte de jalousie. <short pause> Déjà, <short pause> dans ma tête, <short pause> je l'entendais se plaindre pendant des jours :",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: gleeful, a sly little triumph, smiling, then dreamy on 'dans ma tête'",
+     "sub": "Ce soir, ma mère aurait aux poignets les bracelets soleil et lune. Et Rahma serait verte de jalousie. Déjà, dans ma tête, je l'entendais se plaindre pendant des jours :"
+    },
+    {
+     "who": "rahma",
+     "text": "Je n'ai pas de chance. <short pause> Mon mari peut à peine m'offrir une corde pour tirer l'eau du puits !",
+     "style": "Moroccan woman from Fès, about 35, loud, a gifted comic storyteller, speaks French with a Fassi accent. In this line: imagined, exaggerated self-pity, whining, comic",
+     "sub": "Je n'ai pas de chance. Mon mari peut à peine m'offrir une corde pour tirer l'eau du puits !"
+    },
+    {
+     "who": "zoubida",
+     "text": "Ma sœur, <short pause> à quoi sert d'accuser le destin ? <short pause> Dieu donne à chacun selon son cœur.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: overly courteous, sweet with a hidden sting, imagined",
+     "sub": "Ma sœur, à quoi sert d'accuser le destin ? Dieu donne à chacun selon son cœur."
+    },
+    {
+     "who": "femmes",
+     "text": "Il n'y a de Dieu que Dieu !",
+     "style": "a group of Moroccan women in a courtyard house shouting together, laughing and begging for mercy, loud. In this line: women together, pious, in unison",
+     "sub": "Il n'y a de Dieu que Dieu !"
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s11_depart",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Et justement, <short pause> le muezzin appela à la prière.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: light, a smiling transition",
+     "sub": "Et justement, le muezzin appela à la prière."
+    },
+    {
+     "who": "mohammed",
+     "text": "C'est la prière de l'Aâsser, maman ?",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: eager, impatient",
+     "sub": "C'est la prière de l'Aâsser, maman ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Oui. <short pause> Ton père ne va pas tarder. <short pause> Change ta djellaba, <short pause> celle-ci est pleine de taches.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: busy, practical, quick",
+     "sub": "Oui. Ton père ne va pas tarder. Change ta djellaba, celle-ci est pleine de taches."
+    },
+    {
+     "who": "narrator",
+     "text": "Dans sa chambre, <short pause> le petit balai de Fatma Bziouya s'arrêta net. <short pause> Elle passa la tête par notre porte.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: playful suspense, tiptoeing rhythm",
+     "sub": "Dans sa chambre, le petit balai de Fatma Bziouya s'arrêta net. Elle passa la tête par notre porte."
+    },
+    {
+     "who": "fatma",
+     "text": "Je dois me préparer, moi aussi ?",
+     "style": "poor but generous Moroccan neighbour from Fès, about 35, warm, laughing, speaks French with a Fassi accent. In this line: whispered, furtive, hopeful",
+     "sub": "Je dois me préparer, moi aussi ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère fit oui de la tête. <short pause> Un couvercle de coffre claqua.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: quick, comic, snap on 'claqua'",
+     "sub": "Ma mère fit oui de la tête. Un couvercle de coffre claqua."
+    },
+    {
+     "who": "father",
+     "text": "Il n'y a personne ? <short pause> Je peux passer ?",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: calling up the stairwell from the ground floor, polite, resonant",
+     "sub": "Il n'y a personne ? Je peux passer ?"
+    },
+    {
+     "who": "kanza",
+     "text": "Passe, <short pause> maalem Abdesslam.",
+     "style": "old Moroccan woman, a fortune-teller from Fès, about 60, raspy, slow, honeyed and mysterious, speaks French with a Fassi accent. In this line: from deep inside her smoky room, slow, raspy",
+     "sub": "Passe, maalem Abdeslem."
+    }
+   ],
+   "tag": "À RETENIR : l'Aâsser, la prière de l'après-midi",
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s12_souk",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Le souk des bijoutiers ressemblait à une fourmilière. <short pause> On se bousculait dans tous les sens.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: busy, rising energy, a little overwhelmed",
+     "sub": "Le souk des bijoutiers ressemblait à une fourmilière. On se bousculait dans tous les sens."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère et Fatma Bziouya nous suivaient à petits pas, <short pause> enveloppées dans leurs haïks blancs.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: lighter, observing, small steps in the rhythm",
+     "sub": "Ma mère et Fatma Bziouya nous suivaient à petits pas, enveloppées dans leurs haïks blancs."
+    },
+    {
+     "who": "narrator",
+     "text": "Les bijoux des boutiques semblaient coupés dans du fer-blanc. <short pause> Ces bijoux-là ne ressemblaient pas aux fleurs. <short pause> Des mains humaines les avaient faits <short pause> sans amour.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: disappointed, disillusioned, slower and sadder at 'sans amour'",
+     "sub": "Les bijoux des boutiques semblaient coupés dans du fer-blanc. Ces bijoux-là ne ressemblaient pas aux fleurs. Des mains humaines les avaient faits sans amour."
+    },
+    {
+     "who": "narrator",
+     "text": "Dans les coins, <short pause> des hommes et des femmes retenaient leurs larmes.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: quiet, compassionate, slow",
+     "sub": "Dans les coins, des hommes et des femmes retenaient leurs larmes."
+    },
+    {
+     "who": "narrator",
+     "text": "Plus tard, <short pause> j'ai compris. <short pause> J'ai connu moi aussi cette humiliation : <short pause> venir vendre ce qu'on a de plus précieux, <short pause> pour la moitié de son prix.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: the adult narrator, grave and personal, real old sorrow",
+     "sub": "Plus tard, j'ai compris. J'ai connu moi aussi cette humiliation : venir vendre ce qu'on a de plus précieux, pour la moitié de son prix."
+    },
+    {
+     "who": "narrator",
+     "text": "Un grand diable de dellal, <short pause> aux yeux extatiques, <short pause> criait un chiffre à perdre haleine.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: vivid, a little breathless, comic portrait",
+     "sub": "Un grand diable de dellal, aux yeux extatiques, criait un chiffre à perdre haleine."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père prit de ses mains <short pause> une paire de bracelets : <short pause> l'un en or, <short pause> l'autre en argent.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: focused, precious, slow on the two metals",
+     "sub": "Mon père prit de ses mains une paire de bracelets : l'un en or, l'autre en argent."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère les essaya quatre ou cinq fois. <short pause> Fatma Bziouya les essaya à son tour. <short pause> Un quart d'heure de discussion, <short pause> pour chaque détail.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: amused, counting, gently teasing the women",
+     "sub": "Ma mère les essaya quatre ou cinq fois. Fatma Bziouya les essaya à son tour. Un quart d'heure de discussion, pour chaque détail."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père fit un signe. <short pause> Le chiffre changea. <short pause> Et le dellal plongea dans la foule. <short pause> Sa main seule voyagea un moment, <short pause> au-dessus des têtes, <short pause> avec les bracelets.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: suspense, following the hand with the voice, the bracelets floating away",
+     "sub": "Mon père fit un signe. Le chiffre changea. Et le dellal plongea dans la foule. Sa main seule voyagea un moment, au-dessus des têtes, avec les bracelets."
+    }
+   ],
+   "card": "LE SOUK DES BIJOUX",
+   "music": "souk",
+   "tag": "À RETENIR : le dellal, courtier des enchères",
+   "lead": 2.6,
+   "tail": 1.4
+  },
+  {
+   "id": "s13_attente",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Nous attendîmes longtemps. <short pause> Mes jambes ne me portaient plus. <short pause> Je bâillais à me décrocher les mâchoires.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: exhausted, dragging, a yawn in the voice",
+     "sub": "Nous attendîmes longtemps. Mes jambes ne me portaient plus. Je bâillais à me décrocher les mâchoires."
+    },
+    {
+     "who": "narrator",
+     "text": "Le dellal revint. <short pause> Le chiffre avait augmenté. <short pause> Mon père fit signe. <short pause> Et le dellal disparut de nouveau.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: impatient, clipped, rhythmic like a game repeating",
+     "sub": "Le dellal revint. Le chiffre avait augmenté. Mon père fit signe. Et le dellal disparut de nouveau."
+    },
+    {
+     "who": "narrator",
+     "text": "Le souk battait son plein. <short pause> Les courtiers criaient des chiffres, <short pause> couraient, <short pause> entraînaient les clients par la main.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: rising chaos, faster, louder",
+     "sub": "Le souk battait son plein. Les courtiers criaient des chiffres, couraient, entraînaient les clients par la main."
+    },
+    {
+     "who": "narrator",
+     "text": "Parfois, <short pause> une vague d'hommes en délire nous écrasait contre le mur, <short pause> puis repartait plus loin.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: breathless, pressed, a gasp",
+     "sub": "Parfois, une vague d'hommes en délire nous écrasait contre le mur, puis repartait plus loin."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père me souleva dans ses bras <short pause> et me serra contre sa poitrine. <short pause> Son front ruisselait de sueur.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: warm, safe, tender in the middle of the noise",
+     "sub": "Mon père me souleva dans ses bras et me serra contre sa poitrine. Son front ruisselait de sueur."
+    },
+    {
+     "who": "zoubida",
+     "text": "Que tous les saints le punissent, ce mécréant ! <short pause> Il nous prend pour des campagnards ? <short pause> Nous ne nous laisserons pas rouler !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: furious, cursing, fast, dramatic, hands in the air",
+     "sub": "Que tous les saints le punissent, ce mécréant ! Il nous prend pour des campagnards ? Nous ne nous laisserons pas rouler !"
+    },
+    {
+     "who": "narrator",
+     "text": "Mais le mécréant restait invisible.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: dry, comic deadpan",
+     "sub": "Mais le mécréant restait invisible."
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s14_bagarre",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Brusquement, <short pause> mon père me posa à terre, <short pause> et disparut dans la foule.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: sudden, alarmed, the voice drops",
+     "sub": "Brusquement, mon père me posa à terre, et disparut dans la foule."
+    },
+    {
+     "who": "narrator",
+     "text": "Des cris éclatèrent à l'autre bout du souk, <short pause> comme un orage. <short pause> La foule ondula, <short pause> comme une mer.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: tense, building like a storm",
+     "sub": "Des cris éclatèrent à l'autre bout du souk, comme un orage. La foule ondula, comme une mer."
+    },
+    {
+     "who": "narrator",
+     "text": "Tout le monde se mit à courir.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: urgent, fast",
+     "sub": "Tout le monde se mit à courir."
+    },
+    {
+     "who": "zoubida",
+     "text": "Allah ! <short pause> Allah ! <short pause> Mes pieds !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: panicked, crushed in a crowd, crying out, holding her haïk",
+     "sub": "Allah ! Allah ! Mes pieds !"
+    },
+    {
+     "who": "fatma",
+     "text": "Allah ! <short pause> Mon haïk !",
+     "style": "poor but generous Moroccan neighbour from Fès, about 35, warm, laughing, speaks French with a Fassi accent. In this line: panicked, breathless, crushed in a crowd",
+     "sub": "Allah ! Mon haïk !"
+    },
+    {
+     "who": "narrator",
+     "text": "Enfin, <short pause> ils passèrent : <short pause> mon père et le dellal, <short pause> se tenant mutuellement par le collet.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: shocked, slow-motion, every word heavy",
+     "sub": "Enfin, ils passèrent : mon père et le dellal, se tenant mutuellement par le collet."
+    },
+    {
+     "who": "narrator",
+     "text": "Les yeux rouges. <short pause> De l'écume au coin des lèvres. <short pause> Mon père avait perdu son turban. <short pause> Le dellal avait du sang sur la joue.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: horrified child's eyes, short broken sentences, a beat between each detail",
+     "sub": "Les yeux rouges. De l'écume au coin des lèvres. Mon père avait perdu son turban. Le dellal avait du sang sur la joue."
+    },
+    {
+     "who": "narrator",
+     "text": "Et tout le souk leur faisait cortège.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: dazed, quiet",
+     "sub": "Et tout le souk leur faisait cortège."
+    }
+   ],
+   "music": "bagarre",
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s15_fruits_secs",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Ma mère, <short pause> la voisine <short pause> et moi, <short pause> nous nous mîmes à pleurer bruyamment.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: a lump in the throat, close to tears",
+     "sub": "Ma mère, la voisine et moi, nous nous mîmes à pleurer bruyamment."
+    },
+    {
+     "who": "narrator",
+     "text": "Nous courûmes au hasard, <short pause> jusqu'au souk des fruits secs. <short pause> Aucune trace d'eux.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: breathless, lost, searching",
+     "sub": "Nous courûmes au hasard, jusqu'au souk des fruits secs. Aucune trace d'eux."
+    },
+    {
+     "who": "narrator",
+     "text": "Je m'attendais à des rues désertes, <short pause> des babouches perdues dans la panique. <short pause> Rien. <short pause> On vendait, <short pause> on achetait, <short pause> on plaisantait. <short pause> Des garnements chantaient même des refrains à la mode.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: bitter disbelief, the indifference of the world, slower and colder",
+     "sub": "Je m'attendais à des rues désertes, des babouches perdues dans la panique. Rien. On vendait, on achetait, on plaisantait. Des garnements chantaient même des refrains à la mode."
+    },
+    {
+     "who": "narrator",
+     "text": "Notre tristesse devenait étouffante. <short pause> Nous nous sentions tout seuls.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: lonely, heavy, slow",
+     "sub": "Notre tristesse devenait étouffante. Nous nous sentions tout seuls."
+    },
+    {
+     "who": "zoubida",
+     "text": "Il ne sert à rien de courir partout. <short pause> Rentrons, <short pause> pour attendre <short pause> et pour pleurer.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: broken, exhausted, resigned, very quiet",
+     "sub": "Il ne sert à rien de courir partout. Rentrons, pour attendre et pour pleurer."
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s16_noir",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "À la maison, <short pause> ma mère enleva son haïk, <short pause> s'assit sur un matelas, <short pause> la tête dans ses deux mains, <short pause> et pleura <short pause> en silence.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: very soft, slow, deeply moved, almost a whisper at 'en silence'",
+     "sub": "À la maison, ma mère enleva son haïk, s'assit sur un matelas, la tête dans ses deux mains, et pleura en silence."
+    },
+    {
+     "who": "narrator",
+     "text": "Pour la première fois, <short pause> sa douleur me bouleversait. <short pause> Ce n'étaient pas ses grands cris habituels. <short pause> Ses larmes coulaient sur son menton, <short pause> et elle restait là, <short pause> sans bouger.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: tender, the child understanding something new, moved, slow",
+     "sub": "Pour la première fois, sa douleur me bouleversait. Ce n'étaient pas ses grands cris habituels. Ses larmes coulaient sur son menton, et elle restait là, sans bouger."
+    },
+    {
+     "who": "narrator",
+     "text": "Je pleurai un moment, moi aussi. <short pause> Puis je m'étendis sur le lit, <short pause> les yeux au plafond, <short pause> et j'attendis.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: quiet, a small sniff in the voice, resigned",
+     "sub": "Je pleurai un moment, moi aussi. Puis je m'étendis sur le lit, les yeux au plafond, et j'attendis."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère pleurait. <short pause> Et moi, <short pause> j'attendais. <short pause> J'étais habitué à cet exercice.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: gentle bitter irony, sad smile",
+     "sub": "Ma mère pleurait. Et moi, j'attendais. J'étais habitué à cet exercice."
+    },
+    {
+     "who": "narrator",
+     "text": "Le soir tomba. <short pause> Toutes les fenêtres de la maison s'allumèrent. <short pause> Notre pièce restait obscure.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: dim, hushed, slower",
+     "sub": "Le soir tomba. Toutes les fenêtres de la maison s'allumèrent. Notre pièce restait obscure."
+    },
+    {
+     "who": "narrator",
+     "text": "Dans le noir, <short pause> des figures monstrueuses se formaient devant mes yeux, <short pause> se transformaient, <short pause> devenaient d'immenses étincelles vertes.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: eerie, hypnotic, a child half-dreaming, slow",
+     "sub": "Dans le noir, des figures monstrueuses se formaient devant mes yeux, se transformaient, devenaient d'immenses étincelles vertes."
+    }
+   ],
+   "music": "noir",
+   "lead": 2.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s17_retour",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Enfin, <short pause> la voix de mon père troua les ténèbres. <short pause> Ses pas résonnèrent dans l'escalier.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: relief breaking through, rising hope",
+     "sub": "Enfin, la voix de mon père troua les ténèbres. Ses pas résonnèrent dans l'escalier."
+    },
+    {
+     "who": "narrator",
+     "text": "La porte s'ouvrit. <short pause> Sa silhouette se détacha, <short pause> toute noire, <short pause> sur le gris du mur.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: suspense, slow, a held breath",
+     "sub": "La porte s'ouvrit. Sa silhouette se détacha, toute noire, sur le gris du mur."
+    },
+    {
+     "who": "father",
+     "text": "Pourquoi n'avez-vous pas allumé la lampe ? <short pause> Où sont les allumettes ?",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: tired, gruff on the surface, calm",
+     "sub": "Pourquoi n'avez-vous pas allumé la lampe ? Où sont les allumettes ?"
+    },
+    {
+     "who": "zoubida",
+     "text": "Sur l'étagère, <short pause> contre la boîte à thé.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: tiny voice like a little girl, broken, sniffling",
+     "sub": "Sur l'étagère, contre la boîte à thé."
+    },
+    {
+     "who": "father",
+     "text": "Si Mohammed dort déjà ?",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: softer, looking for his son in the dark",
+     "sub": "Si Mohammed dort déjà ?"
+    },
+    {
+     "who": "mohammed",
+     "text": "Non, papa. <short pause> Je ne dors pas.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: small, quick, relieved",
+     "sub": "Non, papa. Je ne dors pas."
+    },
+    {
+     "who": "father",
+     "text": "Que faisais-tu dans le noir ?",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: gentle, a bit surprised",
+     "sub": "Que faisais-tu dans le noir ?"
+    },
+    {
+     "who": "mohammed",
+     "text": "J'attendais ton retour.",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: simple, heartfelt, tiny tremble",
+     "sub": "J'attendais ton retour."
+    },
+    {
+     "who": "narrator",
+     "text": "La lampe s'alluma. <short pause> Le visage de ma mère ruisselait encore de larmes.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: soft, the light revealing the pain",
+     "sub": "La lampe s'alluma. Le visage de ma mère ruisselait encore de larmes."
+    },
+    {
+     "who": "father",
+     "text": "Pourquoi tant de larmes ? <short pause> Tout est rentré dans l'ordre. <short pause> J'ai corrigé ce mécréant. <short pause> Et voici les bracelets.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: trying to sound light, proud, reassuring, a little awkward",
+     "sub": "Pourquoi tant de larmes ? Tout est rentré dans l'ordre. J'ai corrigé ce mécréant. Et voici les bracelets."
+    },
+    {
+     "who": "zoubida",
+     "text": "Je ne veux pas les voir, <short pause> ces bijoux de mauvais augure. <short pause> Avec eux, <short pause> le malheur est entré dans cette maison.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: cold, trembling, ominous, slow",
+     "sub": "Je ne veux pas les voir, ces bijoux de mauvais augure. Avec eux, le malheur est entré dans cette maison."
+    },
+    {
+     "who": "father",
+     "text": "Ce sont les bracelets que tu désirais. <short pause> Prends-les, <short pause> et ne dis pas de paroles inconséquentes.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: firm, patient, a little hurt",
+     "sub": "Ce sont les bracelets que tu désirais. Prends-les, et ne dis pas de paroles inconséquentes."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère prit les bijoux sans les regarder, <short pause> ouvrit son coffre, <short pause> et les jeta dedans.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: tense, curt, a thud at the end",
+     "sub": "Ma mère prit les bijoux sans les regarder, ouvrit son coffre, et les jeta dedans."
+    },
+    {
+     "who": "zoubida",
+     "text": "Tu verras. <short pause> Je ne suis qu'une faible femme, <short pause> mais mon cœur ne ment pas. <short pause> Ces bracelets ne m'apportent aucune joie.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: bitter prophecy, low, wounded pride",
+     "sub": "Tu verras. Je ne suis qu'une faible femme, mais mon cœur ne ment pas. Ces bracelets ne m'apportent aucune joie."
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s18_cauchemar",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Cette nuit-là, <short pause> je fis des cauchemars. <short pause> Des monstres. <short pause> Des yeux enflammés de haine <short pause> qui nous traquaient, <short pause> ma mère, <short pause> mon père <short pause> et moi.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: haunted, low, building fear, one beat per family member",
+     "sub": "Cette nuit-là, je fis des cauchemars. Des monstres. Des yeux enflammés de haine qui nous traquaient, ma mère, mon père et moi."
+    },
+    {
+     "who": "narrator",
+     "text": "Des foules aux visages hideux nous poursuivaient <short pause> pour nous voler nos richesses. <short pause> Ils voulaient surtout <short pause> ma Boîte à merveilles.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: fearful, rising, protective on 'ma Boîte à merveilles'",
+     "sub": "Des foules aux visages hideux nous poursuivaient pour nous voler nos richesses. Ils voulaient surtout ma Boîte à merveilles."
+    },
+    {
+     "who": "narrator",
+     "text": "Alors mon père parut, <short pause> sur un cheval noir. <short pause> Ma boîte sous le bras. <short pause> Il fendit la foule au galop.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: heroic, galloping rhythm, awe",
+     "sub": "Alors mon père parut, sur un cheval noir. Ma boîte sous le bras. Il fendit la foule au galop."
+    },
+    {
+     "who": "narrator",
+     "text": "La longue crinière du cheval <short pause> se déployait comme un étendard.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: epic, slow, majestic",
+     "sub": "La longue crinière du cheval se déployait comme un étendard."
+    },
+    {
+     "who": "narrator",
+     "text": "Puis, <short pause> une campagne déserte. <short pause> Du sable, <short pause> des cailloux, <short pause> la lumière de l'été. <short pause> Sur une colline, <short pause> mon père nous attendait.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: sudden calm, dreamy, wide open space, slow",
+     "sub": "Puis, une campagne déserte. Du sable, des cailloux, la lumière de l'été. Sur une colline, mon père nous attendait."
+    },
+    {
+     "who": "father",
+     "text": "Je l'ai sauvée. <short pause> Elle est à toi. <short pause> Ouvre-la.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: warm, solemn, dreamlike, gentle",
+     "sub": "Je l'ai sauvée. Elle est à toi. Ouvre-la."
+    },
+    {
+     "who": "narrator",
+     "text": "Je l'ouvris avec précaution. <short pause> Sur un lit de fleurs fraîchement coupées, <short pause> des œillets et des roses, <short pause> reposaient des bijoux d'or et de pierres précieuses.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: breathless wonder, dazzled, slow",
+     "sub": "Je l'ouvris avec précaution. Sur un lit de fleurs fraîchement coupées, des œillets et des roses, reposaient des bijoux d'or et de pierres précieuses."
+    },
+    {
+     "who": "mohammed",
+     "text": "Regardez <short pause> mon trésor !",
+     "style": "shy 6-year-old Moroccan boy from Fès, soft voice, speaks French with a light Moroccan accent. In this line: pure joy, proud, bright",
+     "sub": "Regardez mon trésor !"
+    },
+    {
+     "who": "zoubida",
+     "text": "Les beaux bijoux <short pause> portent toujours malheur <short pause> à ceux qui les possèdent.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: cold, distant, dreamlike prophecy, slow, echoing",
+     "sub": "Les beaux bijoux portent toujours malheur à ceux qui les possèdent."
+    },
+    {
+     "who": "narrator",
+     "text": "Un grand froid m'enveloppa. <short pause> Je refermai la boîte, <short pause> et je me mis à sangloter.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: chilled, breaking, close to tears",
+     "sub": "Un grand froid m'enveloppa. Je refermai la boîte, et je me mis à sangloter."
+    }
+   ],
+   "music": "cauchemar",
+   "lead": 2.6,
+   "tail": 1.4
+  },
+  {
+   "id": "s19_matin",
+   "lines": [
+    {
+     "who": "father",
+     "text": "Sidi Mohammed, <short pause> pourquoi tu pleures ? <short pause> Réveille-toi ! <short pause> Réveille-toi !",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: worried, gently shaking him awake, close",
+     "sub": "Sidi Mohammed, pourquoi tu pleures ? Réveille-toi ! Réveille-toi !"
+    },
+    {
+     "who": "narrator",
+     "text": "Il faisait jour. <short pause> Les seaux cliquetaient dans le patio. <short pause> Mon père me tâtait le front.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: soft morning, relief, daylight",
+     "sub": "Il faisait jour. Les seaux cliquetaient dans le patio. Mon père me tâtait le front."
+    },
+    {
+     "who": "father",
+     "text": "Non. <short pause> Il n'a pas de fièvre. <short pause> Un simple cauchemar.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: calm, reassuring, matter-of-fact",
+     "sub": "Non. Il n'a pas de fièvre. Un simple cauchemar."
+    },
+    {
+     "who": "zoubida",
+     "text": "Je te dis qu'il est malade ! <short pause> Avec l'agitation du souk, <short pause> où tu as cru bon de l'entraîner !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: sharp, accusing, anxious, sitting up in bed",
+     "sub": "Je te dis qu'il est malade ! Avec l'agitation du souk, où tu as cru bon de l'entraîner !"
+    },
+    {
+     "who": "father",
+     "text": "Cet enfant n'a rien. <short pause> Un peu de fatigue. <short pause> Qu'il n'aille pas à l'école.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: patient but firm, ending the discussion",
+     "sub": "Cet enfant n'a rien. Un peu de fatigue. Qu'il n'aille pas à l'école."
+    },
+    {
+     "who": "zoubida",
+     "text": "Mon Dieu, <short pause> punis-moi, <short pause> mais ne me frappe pas dans mon enfant ! <short pause> Homme, <short pause> je ne veux pas garder ces bracelets !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: desperate prayer, then turning on her husband, trembling",
+     "sub": "Mon Dieu, punis-moi, mais ne me frappe pas dans mon enfant ! Homme, je ne veux pas garder ces bracelets !"
+    },
+    {
+     "who": "father",
+     "text": "Je m'en vais. <short pause> Si je reste, <short pause> je vais perdre patience.",
+     "style": "Moroccan man from Fès, about 45, calm, gentle, low voice, speaks French with a Fassi accent, few words. In this line: controlled anger, low, tired, putting on his babouches",
+     "sub": "Je m'en vais. Si je reste, je vais perdre patience."
+    },
+    {
+     "who": "zoubida",
+     "text": "Va. <short pause> Tu es un homme. <short pause> C'est naturel que tu aies un cœur de pierre.",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: bitter, cutting, wounded",
+     "sub": "Va. Tu es un homme. C'est naturel que tu aies un cœur de pierre."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère ne devait pas dire cela. <short pause> Un jour, <short pause> je serai un homme. <short pause> Et je n'aurai pas un cœur de pierre.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: quiet, determined, a child's vow, heartfelt",
+     "sub": "Ma mère ne devait pas dire cela. Un jour, je serai un homme. Et je n'aurai pas un cœur de pierre."
+    },
+    {
+     "who": "narrator",
+     "text": "Mon père gardait son sang-froid. <short pause> Ma mère, <short pause> elle, <short pause> voulait le voir crier, <short pause> s'agiter, <short pause> tout exagérer, <short pause> comme elle.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: thoughtful, fair to both, a little smile",
+     "sub": "Mon père gardait son sang-froid. Ma mère, elle, voulait le voir crier, s'agiter, tout exagérer, comme elle."
+    }
+   ],
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s20_aicha",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Je dus quand même garder le lit. <short pause> Après le déjeuner, <short pause> Lalla Aïcha vint nous rendre visite.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: calm, a little bored, then interested",
+     "sub": "Je dus quand même garder le lit. Après le déjeuner, Lalla Aïcha vint nous rendre visite."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma mère lui raconta tout : <short pause> le souk, <short pause> les bracelets, <short pause> le drame. <short pause> Elle pleura, <short pause> soupira, <short pause> invoqua les saints, <short pause> et prophétisa des catastrophes.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: affectionate irony, rhythmic list, theatrical mother",
+     "sub": "Ma mère lui raconta tout : le souk, les bracelets, le drame. Elle pleura, soupira, invoqua les saints, et prophétisa des catastrophes."
+    },
+    {
+     "who": "narrator",
+     "text": "Lalla Aïcha, <short pause> par politesse, <short pause> approuvait, <short pause> soupirait, <short pause> se donnait de petites tapes sur la joue.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: comic, gentle, polite rhythm",
+     "sub": "Lalla Aïcha, par politesse, approuvait, soupirait, se donnait de petites tapes sur la joue."
+    },
+    {
+     "who": "zoubida",
+     "text": "Mais toi ? <short pause> Tu ne me dis rien. <short pause> Comment va ton mari ?",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: warm, suddenly attentive, kind",
+     "sub": "Mais toi ? Tu ne me dis rien. Comment va ton mari ?"
+    },
+    {
+     "who": "narrator",
+     "text": "Lalla Aïcha enfouit son visage dans ses mains, <short pause> et éclata en sanglots.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: sudden, shocked, the comedy stops",
+     "sub": "Lalla Aïcha enfouit son visage dans ses mains, et éclata en sanglots."
+    },
+    {
+     "who": "aicha",
+     "text": "Zoubida, <short pause> je n'ai plus personne au monde. <short pause> Tu es ma seule famille.",
+     "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy. In this line: sobbing, nose wet, broken voice, slow",
+     "sub": "Zoubida, je n'ai plus personne au monde. Tu es ma seule famille."
+    },
+    {
+     "who": "aicha",
+     "text": "Le fils du péché, <short pause> pour qui j'ai tout donné, <short pause> m'a abandonnée. <short pause> Il a pris une seconde femme : <short pause> la fille d'Abderrahmane, <short pause> le coiffeur.",
+     "style": "plump Moroccan noblewoman from Fès, about 50, affected, sugary, a bit pompous, loves to gossip, speaks French with a Fassi accent, breathy. In this line: bitter, choking with tears and rage, spitting 'le fils du péché'",
+     "sub": "Le fils du péché, pour qui j'ai tout donné, m'a abandonnée. Il a pris une seconde femme : la fille d'Abderrahman, le coiffeur."
+    },
+    {
+     "who": "zoubida",
+     "text": "Allah ! <short pause> Allah ! <short pause> Ô ma sœur, <short pause> ma pauvre sœur ! <short pause> Quelle douleur !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: crying out, sobbing with her friend, heartfelt",
+     "sub": "Allah ! Allah ! Ô ma sœur, ma pauvre sœur ! Quelle douleur !"
+    },
+    {
+     "who": "narrator",
+     "text": "Et les deux femmes, <short pause> dans les bras l'une de l'autre, <short pause> se remirent à sangloter.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: soft, sad, slow",
+     "sub": "Et les deux femmes, dans les bras l'une de l'autre, se remirent à sangloter."
+    }
+   ],
+   "tag": "À RETENIR : Sidi Larbi, le mari de Lalla Aïcha, prend une seconde femme",
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s21_fievre",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "La chaleur, <short pause> le lit, <short pause> ces scènes dont je sentais tout le tragique <short pause> sans le comprendre... <short pause> me rendirent vraiment malade.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: slowing, feverish, heavy, the voice going far away",
+     "sub": "La chaleur, le lit, ces scènes dont je sentais tout le tragique sans le comprendre... me rendirent vraiment malade."
+    },
+    {
+     "who": "narrator",
+     "text": "Ma tête cognait. <short pause> La fièvre me secoua tout entier.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: weak, trembling",
+     "sub": "Ma tête cognait. La fièvre me secoua tout entier."
+    },
+    {
+     "who": "zoubida",
+     "text": "Mon fils va mourir ! <short pause> Ô mes sœurs, <short pause> mon fils ! <short pause> Sauvez mon fils !",
+     "style": "Moroccan mother from Fès, about 22, speaks French with a Fassi accent, fast, expressive, dramatic. In this line: terrified scream for help, raw panic, crying",
+     "sub": "Mon fils va mourir ! Ô mes sœurs, mon fils ! Sauvez mon fils !"
+    },
+    {
+     "who": "narrator",
+     "text": "Les voisines envahirent la chambre. <short pause> Mes paupières se fermèrent. <short pause> Dans mon crâne, <short pause> je n'entendais plus que les battements <short pause> d'un gigantesque tambour.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: fading, slower and slower, almost a whisper, the drum in the rhythm",
+     "sub": "Les voisines envahirent la chambre. Mes paupières se fermèrent. Dans mon crâne, je n'entendais plus que les battements d'un gigantesque tambour."
+    }
+   ],
+   "music": "fievre",
+   "lead": 1.4,
+   "tail": 1.4
+  },
+  {
+   "id": "s22_fiche",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "Fiche de révision. <short pause> Chapitre huit : <short pause> les bracelets soleil et lune, <short pause> en quatre temps.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: a clear friendly teacher summing up for students, crisp",
+     "sub": "Fiche de révision. Chapitre huit : les bracelets soleil et lune, en quatre temps."
+    },
+    {
+     "who": "narrator",
+     "text": "L'été au mausolée. <short pause> L'escalier et les fleurs. <short pause> La bagarre du souk. <short pause> Et le cauchemar.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher summing up, crisp, rhythmic",
+     "sub": "L'été au mausolée. L'escalier et les fleurs. La bagarre du souk. Et le cauchemar."
+    },
+    {
+     "who": "narrator",
+     "text": "Le détail à retenir : <short pause> les bracelets que la mère désirait <short pause> deviennent pour elle <short pause> des bijoux de mauvais augure. <short pause> Le bonheur se transforme en malheur.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher, clear, stressing the key idea",
+     "sub": "Le détail à retenir : les bracelets que la mère désirait deviennent pour elle des bijoux de mauvais augure. Le bonheur se transforme en malheur."
+    },
+    {
+     "who": "narrator",
+     "text": "Et Sidi Larbi, <short pause> annoncé chez le barbier au chapitre sept, <short pause> prend bien une seconde femme.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher, a knowing smile, linking chapters",
+     "sub": "Et Sidi Larbi, annoncé chez le barbier au chapitre sept, prend bien une seconde femme."
+    },
+    {
+     "who": "narrator",
+     "text": "Thèmes : <short pause> l'imaginaire de l'enfant, <short pause> la solitude, <short pause> le regard des adultes, <short pause> la condition de la femme. <short pause> Au chapitre neuf : <short pause> l'enfant malade, <short pause> et une maison qui ne dort plus.",
+     "style": "Moroccan man in his 50s from Fès, speaks French with a light Fassi accent, warm nostalgic storyteller, lively pace, close to the microphone. In this line: teacher, crisp, ending on a soft teaser",
+     "sub": "Thèmes : l'imaginaire de l'enfant, la solitude, le regard des adultes, la condition de la femme. Au chapitre neuf : l'enfant malade, et une maison qui ne dort plus."
+    }
+   ],
+   "lead": 0.8,
+   "music": "fiche",
+   "tail": 1.4
+  },
+  {
+   "id": "s23_endcard",
+   "lines": [],
+   "lead": 0,
+   "tail": 0,
+   "hold": 8
+  }
+ ]
+}

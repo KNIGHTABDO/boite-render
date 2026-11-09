@@ -1,0 +1,508 @@
+Tu es expert de Fès (années 1920-30), de la darija fassie et du roman « La Boîte à Merveilles » d'Ahmed Sefrioui. Ci-dessous : (A) le TEXTE INTÉGRAL du chapitre VIII, puis (B) TOUTES les répliques d'un épisode animé pour élèves du bac (français, accent fassi, petits mots de darija). L'épisode est une ADAPTATION fidèle mais condensée : couper, condenser ou reformuler est voulu ; seuls les faits doivent rester exacts. Personnages : narrateur (Mohammed adulte), Mohammed 6 ans, Zoubida (mère), le père (maalem Abdeslem), Fatma Bziouya, Rahma (femme du fabricant de charrues), Lalla Kanza, les femmes/voisines, Lalla Aïcha.
+
+RÈGLES STRICTES :
+1. Le texte de Sefrioui FAIT FOI. Un mot, un nom, un fait ou une expression qui figure dans le texte (A) est CORRECT, même s'il te semble étrange : ne le touche pas.
+2. Signale seulement : (a) contresens ou fait qui CONTREDIT le texte (A) ; (b) un ajout inventé qui n'est pas dans le roman et qui fausse l'histoire ; (c) faute de français ; (d) phrase confuse pour un élève ; (e) darija mal transcrite ou impossible à prononcer par une voix française ; (f) réplique attribuée au mauvais personnage.
+3. N'utilise QUE les identifiants exacts de la partie (B) (forme sNN_nom#i). N'invente aucun identifiant.
+4. Pour chaque problème, cite entre guillemets le passage du roman qui le prouve.
+5. Vérifie aussi que chaque réplique sonne naturelle À L'ORAL, avec l'émotion juste (propose une meilleure formulation orale si besoin).
+Réponds UNIQUEMENT en JSON : [{"line":"id#i","problem":"...","quote":"passage du roman","fix":"who | texte corrigé complet"}]. Si tout est bon, réponds [].
+
+(A) TEXTE INTÉGRAL DU CHAPITRE VIII
+Chapitre VIII
+ 
+   Après les jours de liesse de l’Achoura, la vie reprit son cours normal, c’est-à-dire retomba dans sa gri-
+saille, retrouva sa monotonie. La chaleur commença à sévir. Des colonies de mouches envahirent la mai-
+son, la remplirent de leurs bourdonnements, l’ornèrent de leurs chiures. Les punaises qui sommeillaient 
+dans les vieilles boiseries firent leur apparition. C’étaient de pauvres punaises épuisées par le jeûne et le 
+froid de l’hiver. Elles étaient d’un brun poussiéreux et toutes plates, comme vidées de leur sang.
+  Quand nous nous installâmes dans cette pièce, leur tribu jouissait d’une grande prospérité. Ma mère 
+leur déclara une guerre totale. Elle utilisa tous les moyens pour en venir à bout. Elle employa des mé -
+thodes brutales: chaux vive, soufre, pétrole, usa de pratiques plus sournoises, talismans, poudres diverses 
+achetées chez un faiseur de miracles, invocations. Seules quelques familles avaient résisté au massacre. 
+Leurs membres dégénérés traînaient une existence lamentable le long des chevrons et des solives de notre 
+plafond. Ils ne se reproduisaient plus et quand par inadvertance l’un d’eux s’aventurait loin des hauteurs, 
+il se savait condamné. Venir à portée des doigts de l’homme était une manière de suicide, une façon 
+comme une autre d’en finir, de fuir au plus vite ce monde et ses misères.
+Cependant les mouches prospéraient de jour en jour. T ous les matins, ma mère les chassait à  grands 
+coups de torchon. Elles sortaient par la fenêtre avec des bourdonnements de colère. Le rideau déplié, 
+nous étions à l’abri de ces déplaisantes bestioles. Quelques-unes plus rusées continuaient à faire des 
+rondes dans la pénombre de la pièce.
+Dès la première journée de chaleur, ma mère enleva la natte de jonc, la roula et la cacha derrière le lit. 
+Les matelas reposaient directement sur le sol lavé à grande eau.
+Les journées devinrent longues. La salle du Msid, jugée trop chaude et trop étroite, fut abandonnée. 
+Nous déménageâmes un matin nos planchettes et nos encriers et l’école fut installée dans un petit sanc-
+tuaire deux pas plus loin. Ce mausolée abritait la tombe d’un saint. Les gens du quartier ignoraient son 
+nom mais les jeunes filles qui désiraient se marier dans l’année venaient le jeudi faire sept fois le tour du 
+tombeau. D’autres personnes étaient  enterrées dans cette grande salle d’une fraîcheur de paradis.
+Une niche dans un coin indiquait la direction de l’Orient, Dès le premier jour, à  l’appel du muezzin, le 
+fqih nous imposa silence. Il nous envoya faire nos ablutions à la petite fontaine circulaire qui chantonnait 
+dans un coin. Petits et grands, alignés derrière notre maître, nous nous acquittâmes avec gravité du devoir 
+de tout bon musulman : la prière rituelle. Deux fois par jour, pendant tout l’été, les mêmes cérémonies 
+eurent lieu.
+Le changement de décor, la lumière si douce qui tombait des ouvertures latérales, une certaine bien -
+veillance sur le visage du fqih eurent un effet très heureux sur ma santé, physique et morale. Je me mis 
+à aimer l’école. Ma mémoire fit des miracles. De dix lignes sur ma planchette, je passai à  quinze. Je 
+n’éprouvais aucune difficulté à les apprendre.
+Un vendredi, mon père, gonflé d’orgueil, raconta à ma mère la conversation qu’il avait eue la veille avec 
+mon maître rencontré dans la rue. Le fqih lui avait assuré que, si je continuais à  travailler avec autant de 
+cœur et d’enthousiasme, je deviendrais un jour un savant dont il pourrait être très fier.
+Certes, ce n’était pas le but que je poursuivais. Le mot savant évoquait pour moi l’image d’un homme 
+obèse à figure très large frangée de barbe, aux vêtements amples et blancs, au turban monumental. Je 
+n’avais aucune envie de ressembler à un tel homme.
+J’apprenais chaque jour ma leçon parce qu’il me semblait que mes parents m’en aimaient davantage 
+et surtout j’évitais ainsi la rencontre avec la lancinante baguette de cognassier. Je m’étais tracé un vague 
+programme: jusqu’au déjeuner, j’apprenais avec ferveur les versets, tracés sur ma planchette, l’après-midi, 
+je m’accordais deux bonnes heures de rêve, tout en faisant semblant de scander les paroles sacrées.
+A cette récréation, je devais tout mon entrain. Mon esprit s’échappait des étroites limites de l’école et 
+s’en allait explorer un autre univers, là il ne subissait aucune contrainte. Dans cet univers, je n’étais pas 
+toujours un petit prince, auquel obéissaient les êtres et les choses, il m’arrivait parfois de devenir homme, 
+l’homme que je souhaitais être plus tard. Je me voyais simple et robuste, portant des vêtements en laine 
+grège, les yeux pleins de flamme et le cœur débordant de tendresse.
+La nuit, sous ma couverture, je poursuivais le même songe. Je construisais et reconstruisais ma vie avec 
+ses multiples aventures, ses rencontres, ses actions d’éclat, ses inévitables obstacles, jusqu’au moment où 
+d’immenses îlots noirs venaient séparer les éléments patiemment ajustés et rendre au chaos ce monde à 
+peine naissant. T out se brouillait. Dans le noir de la nuit, surgissaient de temps à autre, comme emportés 
+par le remous, les fragments épars de mon univers. Le matin je reprenais mes occupations. 
+Nous étions un lundi, lorsque mon père, renonçant à ses habitudes, vint déjeuner à la maison. Il nous 
+expliqua que les djellabas de laine se vendaient moins bien qu’en hiver et qu’il avait l’intention de se lan-
+cer dans la fabrication des haïks de coton.
+Ces étoffes jouissent toujours du même succès.
+Été comme hiver, les femmes de Fès ne peuvent sortir qu’enveloppées dans ces pièces blanches.
+- Aujourd’hui, ajouta-t-il, j’ai l’intention de vous emmener tous les deux au souk des bijoux.
+Et s’adressant à ma mère, il continua:
+- Il y a longtemps que tu me demandes ces bracelets soleil et lune (or et argent). Il est temps que je te les 
+offre. D’autre part, mon ouvrier a perdu sa mère qui habitait la campagne. Il est parti pour l’enterrement 
+; demain, il sera de retour et nous reprendrons le travail.
+Ma mère interrogea.
+- Est-elle morte d’une maladie?
+- Je crois, dit mon père, qu’elle est morte surtout de  vieillesse, mais peu importe, que Dieu la reçoive 
+dans sa miséricorde !
+- Mais, objectai-je, je ne peux pas manquer le Msid  pour vous accompagner au souk des bijoux, j’ai 
+ma leçon à apprendre.
+- Ne te tourmente pas, répondit mon père. En passant, j’ai vu le fqih, je l’ai prévenu de ton absence. 
+T u travailles bien, cette demi-journée de repos sera une juste récompense. Mais peut-être n’aimes-tu pas 
+voir de jolis bijoux et l’animation des enchères ?
+- Oh si ! Les bijoux c’est beau, c’est beau comme…
+Je n’osai pas poursuivre ma comparaison. Mon père m’encouragea :
+- Beau comme quoi ?
+Je baissai les yeux et, d’une voix de confidence, je dis timidement :
+- Les bijoux, c’est beau comme les fleurs.
+Mon père et ma mère éclatèrent de rire. Je trouvai leur réaction déplacée. Un doute se glissa en moi sur 
+la qualité de leur intelligence.
+Le déjeuner fini, j’allai m’asseoir dans l’escalier en attendant l’heure des enchères aux bijoux. Accroupi 
+sur une marche, les mains sur les genoux, je réfléchis très profondément à  la conversation du déjeuner. 
+Comparer des bijoux à  des fleurs, était-ce signe de stupidité? Le rire de mes parents traduisait cette in -
+dulgence que les grandes personnes manifestent devant les enfants qui leur tiennent des propos niais ou 
+puérils. Je sentais que ma comparaison exprimait une idée essentielle. Elle devait être accueillie par le 
+silence. Le rire en une telle circonstance devenait une incongruité.
+Je connaissais quelques fleurs : les soucis et les coquelicots qui s’épanouissent au printemps sur les 
+tombes, les marguerites dodues qui offrent au soleil leurs cœurs d’or, les liserons qui se redressent sous 
+nos pas lorsque, par une belle journée, mon père m’emmenait sur les collines de Bab Guissa.
+Sur la terrasse de notre maison, poussaient dans des fragments de poteries, du géranium rosat, des 
+œillets et des roses d’Ispahan.
+Mes connaissances en bijoux étaient moins étendues. J’en avais pourtant vu de somptueux à l’occasion 
+des fêtes sur les femmes et sur les petites filles. Je les classais en deux catégories : les bijoux de tous les jours 
+en argent gris bleu qui me fascinaient et les bijoux de fête rutilants de pierreries. Ceux-ci, forgés par les 
+mains des génies dans des palais souterrains, gardaient encore dans leur miroitement et leur couleur de 
+soleil, le souvenir des flammes où leur matière avait coulé. Pour moi, tous ces bijoux de fête provenaient 
+de trésors cachés, avaient appartenu en des temps immémoriaux à des princesses de rêve dont le souvenir 
+s’était oublié.  Il fallait être niais, il fallait être puéril pour croire que ces délicates architectures d’or et de 
+pierres précieuses fussent l’œuvre de quelque artisan besogneux, pressé de les exécuter pour les échanger 
+contre une vile monnaie. Ces ornements magiques naissaient gratuitement par le pouvoir de l’amour. 
+Ils venaient se poser sur les cheveux et sur la chair délicate des princesses de légende. Sous les pas de ces 
+mêmes princesses naissaient aussi gratuitement mais en une matière plus fragile, d’autres bijoux. S’épa -
+nouissent alors des champs de coquelicots, éclatent les boutons d’or et les soucis, répandent leur parfum 
+les violettes et les iris.
+A six ans, je ne pouvais formuler de telles considérations sur les bijoux et sur les fleurs, aucune disci -
+pline ne m’avait appris encore à classer méthodiquement mes idées. Mon vocabulaire était trop pauvre 
+pour mettre au jour ce qui grouillait confusément en moi. C’était, je crois, cette impossibilité de faire 
+part aux autres de mes découvertes, qui avait fait naître en moi une douloureuse mélancolie. Je pardon -
+nais aux grandes personnes de me gronder, au besoin de me frapper pour une futilité, mais je leur en 
+voulais à mort de ne pas essayer de me comprendre.
+Pour ma mère, j’étais un garçon parfait si je me lavais les pieds avant d’entrer dans la pièce; pour mon 
+père, j’étais un objet de fierté si le vendredi je copiais ses gestes pour faire la prière rituelle; pour les voisins 
+j’étais un enfant modèle si je ne traçais pas de graffiti sur les murs de l’escalier, si je ne faisais pas de bruit 
+en jouant sur la terrasse.
+Je serais devenu un monstre de stupidité si j’avais essayé de les initier aux mystères de mon univers 
+particulier. J’avais compris instinctivement les ruses qu’il fallait employer pour vivre en paix avec tous 
+ces hommes et toutes ces femmes qui se prennent au sérieux et sont gonflés à éclater de leur supériorité.
+Accroupi sur la marche, les mains sur les genoux, je me répétais inlassablement: « Les bijoux, c’est beau 
+comme les fleurs».
+Sur le palier, ma mère et Fatma Bziouya chuchotaient depuis un quart d’heure. De temps à autre, la 
+voix de ma mère éclatait sur un ton de colère pour chasser le chat de Zineb qui rôdait autour d’elle.
+- Va-t’en, lui disait-elle, galeux, sale comme un rat d’égout, va-t’en promener tes puces ailleurs.
+Les chuchotements reprenaient. Un rire étouffé, quelques soupirs pleins d’onction, et chacune des 
+femmes se dirigea vers ses appartements. Mon père passa près de moi :
+- Continue à jouer, me dit-il; après la prière de l’Aâsser, je reviendrai vous chercher ta mère et toi.
+- Que fais-tu dans l’escalier? cria ma mère à la cantonade.
+D’une voix hypocrite, je répondis:
+- Je joue.
+- A quoi joues-tu? répéta la voix.      
+-Au roi.
+- Je me demande, dit ma mère, prenant à témoin toute la maison, ce que peut faire un roi dans l’esca-
+lier, accroupi sur une marche!
+Les voisines se mirent à rire.
+La femme du fabricant de charrues trouva spirituel d’ajouter:
+- Lalla Zoubida, ton fils ira loin, il se prend déjà pour un roi !
+Sa phrase, nuancée d’une pointe d’insolence, resta sans écho.
+Je retombai dans mes réflexions. Et s’il me plaisait à moi d’être roi ! Que peut comprendre la femme 
+d’un fabricant de charrues aux princes et aux rois ? Qu’elle se contente d’éplucher ses légumes, de piler 
+ses épices, de se lamenter sur le prix de l’huile et du charbon qui a subi une hausse d’un sou! Elle n’avait 
+point l’âme d’une princesse, elle n’avait jamais rêvé du bruit des jets d’eau dans les vasques de marbre! 
+Elle n’avait jamais fait le moindre rapprochement entre la beauté des bijoux et celle des fleurs. Elle portait 
+toujours au petit doigt une méchante bague de cuivre ornée d’un cabochon de verre. Les jours de fête, 
+elle accrochait sur sa poitrine, à une boutonnière de sa tunique, une main d’argent aux gravures frustes. 
+Ce soir, ma mère aura aux poignets des bracelets soleil et lune Rahma sera verte de jalousie. Pendant 
+plusieurs jours, je l’entendrai dire sans gaîté:
+- Je n’ai pas de chance, j’ai épousé un malheureux fabricant de charrues ; il est à peine capable de 
+m’offrir une corde pour sortir l’eau du puits. Ah ! Allah a bien mal départagé les humains. A celle-ci les 
+souffrances et la misère, à d’autres la prospérité, la bonne nourriture, les bijoux d’or et d’argent. Mon 
+Dieu ! Quand finira ma peine?
+Ma mère lui répondra avec une courtoisie appuyée:
+- Ma sœur, à quoi sert de se plaindre et d’accuser le destin ? Dieu est juste, il donne à chacun selon son 
+cœur.
+- Il n’y a de Dieu que Dieu! diront toutes les voisines.
+Certes, il n’y a de Dieu que Dieu! J’entendis le muezzin le proclamer.
+- Est-ce la prière de l’Aâsser, maman?
+- Oui, ton père ne va pas tarder à rentrer. Tiens, tu vas changer ta djellaba pour sortir, celle que tu 
+portes est pleine de taches.
+Le petit balai de doum crissait dans la chambre de Fatma Bziouya, il s’arrêta brusquement. Notre voi-
+sine franchit à pas furtifs le palier, introduisit sa tête dans notre pièce et demanda à mi-voix.
+- Dois-je aussi me préparer?
+Ma mère dut faire un signe affirmatif. Fatma se précipita dans sa chambre. Le couvercle d’un coffre 
+claqua.
+Au rez-de-chaussée, la voix de mon père émit la phrase habituelle:
+- N’y a-t-il personne? Puis-je passer ?
+Lalla Kanza, du fond de son temple noir de la fumée des aromates, lui répondit:
+- Passe, maalem Abdeslem.
+Son pas résonna dans l’escalier. Je quittai ma marche et j’allai me changer.
+Le souk des bijoutiers ressemblait à l’entrée d’une fourmilière. On s’y bousculait, on s’affairait dans 
+toutes les directions. Personne ne semblait se diriger vers un but précis. Ma mère et Fatma Bziouya nous 
+suivaient, mon père et moi, à petits pas, étroitement enveloppées dans leurs haïks blancs. Elles discutaient 
+à mi-voix à qui mieux mieux. Les boutiques très surélevées offraient à nos yeux le clinquant des bijoux 
+d’argent tout neufs qui semblaient coupés dans du vulgaire fer-blanc, des diadèmes et des ceintures d’or 
+d’un travail si prétentieux qu’ils en perdaient toute noblesse, ces bijoux ne ressemblaient point aux fleurs. 
+Aucun mystère ne les baignait. Des mains humaines les avaient fabriqués sans amour pour contenter la 
+vanité des riches. Ils avaient raison, tous ces boutiquiers, de les vendre au poids, comme des épices. J’en 
+avais mal au cœur. De nombreux chalands s’agitaient d’une boutique à l’autre. Leurs yeux luisaient d’avi-
+dité et de convoitise. D’autres personnages, hommes et femmes, groupés ça et là, refoulaient leurs larmes.
+Plus tard, j’ai saisi tout le sens de leur mélancolie. J’ai senti moi-même cette humiliation de venir offrir 
+à la rapacité indifférente des hommes ce qu’on tenait pour son bien le plus précieux. Des bijoux auxquels 
+s’attachaient des souvenirs, des ornements de fête qui prenaient part à toutes nos joies deviennent sur un 
+marché comme celui-ci de pauvres choses qu’on pèse, qu’on renifle, qu’on tourne et qu’on retourne entre 
+les doigts pour finalement en offrir la moitié de leur prix réel.
+Dès notre arrivée, des courtiers ou dellals vinrent nous proposer divers articles. Mon père les regardait 
+à peine. Il les refusait d’un signe de tête. Derrière nous, appuyées au mur, les femmes chuchotaient. Le 
+temps me sembla très long avant que mon père finît par prendre, des mains d’un grand diable aux yeux 
+extatiques qui énonçait à perdre haleine un chiffre quelconque, une paire de bracelets tout en cabochons 
+pyramidaux, l’un or et l’autre argent. Il les passa à ma mère qui les examina attentivement, les essaya 
+quatre ou cinq fois, pria Fatma Bziouya de se les passer au poignet pour en admirer l’effet. Elle en discuta 
+pendant un quart d’heure chaque détail. Puis ma mère les rendit à mon père sans explication. Le courtier 
+continuait à répéter mécaniquement le chiffre qui devait représenter le prix de cette marchandise. Mon 
+père lui tendit les bijoux, fit un signe affirmatif. Le chiffre se modifia et le grand diable de dellal plongea 
+dans la foule. Sa main seule voyagea un moment avec les bracelets au-dessus des têtes et finit par dispa -
+raître.
+Nous attendîmes longtemps. La fatigue paralysait mes jambes, ma tête tournait, je bâillais à me décro-
+cher les mâchoires.
+Mon père commençait à manifester des signes d’impatience. Le courtier fit irruption. Le chiffre avait 
+augmenté. Sur un nouveau signe affirmatif de mon père, le chiffre se modifia. Le courtier se fondit dans 
+le brouhaha et les remous de la foule.
+Le souk battait son plein. Les courtiers s’égosillaient, clamaient à tue-tête des chiffres qu’on avait peine 
+à saisir, couraient d’une direction à l’autre, s’emparaient de la main d’un client et l’entraînaient fougueu-
+sement derrière eux. Ici et là, des discussions s’élevaient. A peine une dispute s’était-elle apaisée qu’une 
+autre éclatait plus loin.
+Parfois une vague d’hommes en délire et de femmes hystériques nous submergeait, nous aplatissait 
+contre le mur et s’en allait déferler sur un rivage inconnu.
+Je n’en pouvais plus de fatigue. Mon père qui s’en était aperçu me souleva dans ses bras et me tint 
+tout serré contre sa poitrine. Son front ruisselait de sueur. Ma mère courroucée commença à maudire le 
+dellal, à invoquer tous les saints qu’elle connaissait afin qu’ils lui infligent le dur châtiment qu’il mérite. 
+C’était une honte de se conduire ainsi avec les honnêtes gens! Que devait-il combiner pendant cette lon-
+gue absence? Nous prenait-il pour des campagnards ignorants? Nous saurons démasquer la vérité. Nous 
+paierons le prix équitable et nous ne nous laisserons pas « rouler » par ce mécréant. Mais le mécréant était 
+toujours invisible.
+Brusquement, mon père me déposa à terre et disparut dans la foule. Son absence dura. Des cris s’éle -
+vèrent à l’autre bout du souk. Ils dominaient le tumulte, éclataient comme un orage. De grandes ondu-
+lations parcoururent cette mer humaine. Des explosions de colère fusaient ça et là, reprenaient quelques 
+pas plus loin, se transformaient en tintamarre.
+Voici que tous les gens du souk se mirent à courir ; Fatma Bziouya et ma mère répétaient « Allah ! Allah 
+! », se plaignaient à haute voix de leurs douleurs de pieds que la foule écrasait, essayaient de retenir leurs 
+haïks emportés par le courant.
+Enfin, passèrent mon père et le courtier se tenant mutuellement par le collet. Le souk leur faisait cor -
+tège. Les deux hommes avaient les yeux rouges et de l’écume au coin des lèvres. Mon père avait perdu son 
+turban et le dellal avait une tache de sang sur la Joue.
+Ils s’en allèrent suivis par les badauds.
+Ma mère, la voisine et moi, nous nous mîmes à pleurer bruyamment. Nous nous précipitâmes au 
+hasard, à leur poursuite. Nous débouchâmes au souk des fruits secs. Aucune trace des deux antagonistes 
+ni de leur cortège. Je m’attendais à voir des rues désertes, des étalages abandonnés, des turbans et des ba-
+bouches perdus dans la panique générale. Je fus déçu. Aucune trace de la bagarre n’avait marqué ces lieux. 
+On vendait et on achetait, on plaisantait et de mauvais garnements poussaient l’indifférence jusqu’à 
+chanter des refrains à la mode.
+Notre tristesse devenait étouffante dans cette atmosphère. Nous sentions tout notre isolement. Ma 
+mère décida de rentrer.
+- Il ne sert à rien, ajouta-t-elle, de courir dans toutes les directions. Rentrons pour attendre et pour 
+pleurer.
+A la maison, une fois dans notre chambre, ma mère se débarrassa de son haïk, s’assit sur un matelas 
+et, la tête dans ses deux mains, pleura silencieusement. Pour la première fois, sa douleur me bouleversait. 
+Cela ne ressemblait point aux grands éclats et aux lamentations auxquels elle se livrait parfois pour se 
+soulager le cœur. Ses larmes coulaient sur son menton, s’aplatissaient sur sa poitrine, mais elle restait là, 
+sans bouger, émouvante dans sa solitude.
+ Je pleurai, moi aussi, un moment, troublant le silence de puissants reniflements, puis je m’étendis 
+sur le lit et, les yeux au plafond, j’attendis. Je ne savais pas au juste ce que j’attendais. Le drame du souk 
+des bijoux comportait nécessairement un dénouement. Quand ma mère parla d’attendre, elle y pensait 
+sans aucun doute. A nous deux, nous nous mîmes à exécuter notre programme: ma mère pleurait et moi 
+j’attendais. J’étais rompu depuis longtemps à cet exercice.
+Le soir tomba. Les lumières brillèrent à toutes les fenêtres de la maison. Notre pièce restait obscure. 
+Dans la pénombre, des figures monstrueuses se formaient devant mes yeux, s’effilochaient, se transfor -
+maient, cédaient la place à d’immenses étincelles vertes, revenaient me frôler les paupières de leurs voiles 
+brunâtres.
+Enfin, la voix de mon père troua les ténèbres. Je me mis sur mon séant. Ma mère, abîmée dans sa 
+douleur, continuait à pousser d’imperceptibles soupirs. Les marches résonnaient de plus en plus distinc-
+tement sous les pas de mon père. La porte de la chambre s’ouvrit, sa silhouette se détacha en noir épais, 
+sur le gris du mur.
+- Pourquoi, dit-il, n’avez-vous point allumé la lampe? Où sont les allumettes?
+Ma mère, d’une voix de petite fille, répondit:
+- Elles sont sur l’étagère, contre la boîte à thé en fer-blanc.
+Mon père questionna:
+- Si Mohammed dort-il déjà?
+- Non, papa, je ne dors pas.
+Il craqua une allumette, souleva le verre de la lampe.
+- Que faisais-tu donc dans le noir? reprit-il
+- j’attendais ton retour.
+La lampe allumée, ma mère releva la tête. Son visage ruisselait encore de larmes.
+Mon père s’en aperçut.
+- Pourquoi tant de larmes? Nous n’avons Dieu merci, aucun sujet de tristesse. J’ai dû vous abandonner 
+seules pour corriger ce mécréant qui essayait de nous jouer quelque tour de sa façon. T out est maintenant 
+rentré dans l’ordre et voici les bracelets.
+Il déposa les deux bracelets sur le matelas à côté de ma mère.
+- Je ne veux pas les voir, ces bijoux de mauvais augure, dit ma mère. Je crois que je ne les porterai jamais. 
+Je sens qu’avec eux, le malheur est entré dans cette maison, tu feras bien d’aller les revendre dès demain.
+- Ce sont bien là les bracelets que tu désirais, prends- les et ne prononce pas de paroles inconséquentes.
+Ma mère se leva, prit les bijoux sans les regarder, ouvrit son coffre et les jeta dedans avec humeur.
+- T u verras bien: ce que je te dis est la vérité. Je ne suis peut-être pas intelligente, je ne suis qu’une faible 
+femme, mais mon cœur ne ment pas quand il me renseigne sur quelqu’un ou sur quelque chose. Ces 
+bracelets ne m’apportent aucune joie. Maintenant, je vais m’occuper du dîner.
+Nous touchâmes à peine à ce dîner plutôt improvisé. Nous nous mîmes au lit. Je me souviendrai tou-
+jours de cette nuit hantée de cauchemars. Je revois encore les scènes de violence et de sang, je revois les 
+monstres, je revois les yeux enflammés de haine qui nous traquaient, ma mère, mon père et moi. Des 
+masses d’hommes aux visages hideux nous poursuivaient à travers la ville pour nous dépouiller de nos 
+richesses. Ils en voulaient particulièrement à ma Boîte à Merveilles. Mon père parut sur un cheval noir. 
+Il avait ma boîte sous le bras. Il fendit la foule au galop. Des mains essayèrent de le retenir. Il piqua des 
+deux. La longue crinière de son cheval se déployait comme un étendard. Ma mère et moi, nous nous 
+trouvâmes brusquement dans une campagne déserte. Ma mère pleurait silencieusement. La lumière de 
+l’été inondait des espaces de sable et de cailloux. La silhouette de mon père se détacha sur une colline. Il 
+nous attendait. Il n’avait plus de cheval. Il serrait toujours sous son bras ma Boîte à Merveilles.
+- Je l’ai sauvée, nous dit-il, et, s’adressant à moi, il ajouta: Elle est à toi, ouvre-la donc.
+Je la posai sur la terre nue et l’ouvris avec précaution. Mes yeux furent éblouis: sur un fond de fleurs 
+fraîchement coupées (des œillets et des roses) reposaient comme dans un écrin, des bijoux d’or rehaussés 
+de gemmes. Je n’en avais jamais vu d’aussi beaux, je relevai la tête pour dire à mes parents: « Regardez 
+mon trésor. »
+Ils jetèrent un coup d’œil dans la Boîte. Ma mère déclara:
+- Les beaux bijoux portent toujours malheur à ceux qui les possèdent.
+Un grand froid m’enveloppa ; je refermai la boîte, me mis à sangloter.
+- Sidi Mohammed, pourquoi pleures-tu ? Réveille-toi donc! Réveille-toi!
+II faisait déjà jour. Les seaux cliquetaient dans le patio. Mon père se penchait sur moi, me tâtait le 
+front, j’ouvris les yeux.
+- Non! affirma mon père, il n’a pas de fièvre. Il a dû simplement avoir un cauchemar.
+Assise dans son lit, ma mère répétait:
+- Je te dis qu’il est malade. Avec toutes ces émotions d’hier soir et l’agitation du souk des bijoux où tu 
+as cru nécessaire de l’entraîner, cela ne m’étonne pas qu’il soit tombé malade.
+- Cet enfant n’a rien, proclama mon père. Un peu de fatigue sans doute. Qu’il n’aille pas à l’école.
+- Mon Dieu! Punis-moi, je suis la principale fautive, mais ne me frappe pas dans mon enfant. Homme, 
+je te dis que je ne veux en aucune façon garder ces bracelets. Avec ces bijoux, le malheur entre dans cette 
+maison.
+Mon père se dirigea vers la porte. T out en enfilant ses babouches, il déclara:
+- Je m’en vais, je sens que si je reste je manquerai de patience.
+- Va, répondit ma mère, tu es un homme, il est naturel que tu aies un cœur de pierre.
+Ma mère ne devait pas dire des choses pareilles. Il n’est pas du tout naturel qu’un homme ait un cœur 
+de pierre. Un jour, je serai un homme, je n’aurai pas un cœur de pierre. Seulement, devant les événe -
+ments, mon père réagit comme doit réagir un homme. Il garde sa lucidité, son sang-froid. Ma mère vou-
+drait le voir réagir comme elle : s’agiter, crier, exagérer l’importance du moindre incident.
+Mon père avait d’ailleurs raison: je ne me sentais nullement malade. Pourtant, je dus obéir à ma mère, 
+garder le lit toute la journée. Après déjeuner, nous reçûmes la visite de Lalla Aïcha. Il y avait longtemps 
+que nous n’avions pas eu de ses nouvelles ni de celles de son mari Sidi Larbi le babouchier. Ma mère se 
+hâta de préparer le thé. Elle entreprit ensuite de faire le récit de ses malheurs à sa vieille amie. Elle raconta 
+dans les détails notre équipée au souk des bijoux, l’affreux drame qui se déroula à propos des bracelets, 
+s’interrompit pour pleurer un moment, reprit son histoire entrecoupée de soupirs, d’invocations. Elle 
+prophétisa avec lyrisme, annonça des catastrophes qui ne manqueraient pas de frapper notre foyer si mon 
+père ne se décidait pas à vendre les bracelets de mauvais augure, cause occulte de notre ruine.
+Lalla Aicha, par politesse, approuvait, soupirait, dodelinait de la tête, se donnait de légères tapes sur la 
+joue.
+Ma mère, enfin, regarda son amie.
+- Mais toi ? T u ne me dis rien sur ta maison. Comment vas-tu ? Comment va ton mari ?
+Lalla Aicha, pour toute réponse, enfouit son visage dans ses mains et éclata en sanglots. Un torrent de 
+larmes coula au travers de ses doigts. Son corps fut secoué de violents spasmes. La douleur l’étranglait 
+par moments. Ma mère lui entoura les épaules de ses deux bras et se mit à sangloter avec elle. Lalla Aicha 
+s’arrêta. Les joues encore luisantes de pleurs, le nez humide, elle dit à ma mère:
+- Zoubida, je n’ai plus personne au monde, tu es mon amie, tu es ma seule famille. Le fils du péché 
+pour qui je me suis dépouillée, m’a abandonnée pour prendre une seconde femme, la fille d’Abderrah -
+man le coiffeur.
+- Allah! Allah! cria ma mère, ô ma sœur, ma pauvre sœur, mon Dieu, quelle douleur !
+Les deux femmes, de nouveau dans les bras l’une de l’autre, se mirent à sangloter.
+La chaleur, le lit, ces scènes affreuses dont je sentais, sans le comprendre, tout le tragique, me rendirent 
+vraiment malade. J’eus de violents maux de tête, la fièvre me secoua tout entier. Je me mis à rendre sur 
+ma couverture. Ma mère se précipita, affolée, criant :
+- Mon fils va mourir, ô mes amies, ô mes sœurs, mon fils! Sauvez mon fils!
+Les voisines envahirent la chambre, mes paupières se fermèrent. Dans mon crâne, je n’entendais plus 
+que les battements d’un gigantesque tambour.
+
+(B) RÉPLIQUES DE L'ÉPISODE
+s01_hook#0 [narrator] Ce lundi-là, mon père promit à ma mère des bracelets d'or et d'argent.
+s01_hook#1 [narrator] Le soir même, elle pleurait dans le noir. Et moi, j'attendais.
+s03_mouches#0 [narrator] Après les fêtes de l'Achoura, la vie retomba dans sa grisaille. La chaleur commença à sévir.
+s03_mouches#1 [narrator] Des colonies de mouches envahirent la maison. Et dans les vieilles boiseries, les punaises se réveillèrent.
+s03_mouches#2 [narrator] Ma mère leur déclara une guerre totale. Chaux vive. Soufre. Pétrole.
+s03_mouches#3 [narrator] Puis des armes plus sournoises : des talismans, des poudres de faiseur de miracles, des invocations.
+s03_mouches#4 [narrator] Seules quelques familles survécurent, là-haut, le long des poutres du plafond. Descendre à portée des doigts de l'homme, c'était se suicider.
+s03_mouches#5 [narrator] Chaque matin, ma mère chassait les mouches à grands coups de torchon. Elles sortaient par la fenêtre, en bourdonnant de colère.
+s04_mausolee#0 [narrator] Les journées devinrent longues. La salle du Msid, trop chaude et trop étroite, fut abandonnée.
+s04_mausolee#1 [narrator] Un matin, nous emportâmes nos planchettes et nos encriers dans un petit sanctuaire, deux pas plus loin.
+s04_mausolee#2 [narrator] Ce mausolée abritait la tombe d'un saint. Personne ne savait son nom. Mais le jeudi, les jeunes filles qui voulaient se marier dans l'année venaient faire sept fois le tour du tombeau.
+s04_mausolee#3 [narrator] La grande salle était d'une fraîcheur de paradis.
+s04_mausolee#4 [narrator] À l'appel du muezzin, le fqih nous imposa silence. Nous fîmes nos ablutions à la petite fontaine qui chantonnait dans un coin.
+s04_mausolee#5 [narrator] Petits et grands, alignés derrière notre maître, nous fîmes la prière. Deux fois par jour, tout l'été.
+s05_memoire#0 [narrator] La lumière douce, le visage plus bienveillant du fqih... Je me mis à aimer l'école.
+s05_memoire#1 [narrator] Ma mémoire fit des miracles. De dix lignes sur ma planchette, je passai à quinze.
+s05_memoire#2 [narrator] Un vendredi, mon père, gonflé d'orgueil, raconta à ma mère ce que le fqih lui avait dit.
+s05_memoire#3 [father] Si ton fils continue ainsi, il deviendra un savant. Un savant dont nous serons fiers.
+s05_memoire#4 [narrator] Un savant ? Pour moi, un savant, c'était un homme obèse, une barbe autour d'une très large figure, et un turban monumental.
+s05_memoire#5 [narrator] Je n'avais aucune envie de ressembler à cet homme-là.
+s06_reves#0 [narrator] J'apprenais ma leçon parce que mes parents m'en aimaient davantage. Et pour éviter la baguette de cognassier.
+s06_reves#1 [narrator] Je m'étais fait un programme. Le matin, j'apprenais mes versets avec ferveur. L'après-midi, je m'accordais deux bonnes heures de rêve, en faisant semblant de réciter.
+s06_reves#2 [narrator] Mon esprit s'échappait de l'école. Parfois, je devenais l'homme que je voulais être plus tard.
+s06_reves#3 [narrator] Simple et robuste, vêtu de laine grège, les yeux pleins de flamme, et le cœur débordant de tendresse.
+s06_reves#4 [narrator] La nuit, sous ma couverture, je continuais le même songe... jusqu'à ce que d'immenses îlots noirs viennent tout briser.
+s07_lundi#0 [narrator] Un lundi, mon père, contre toutes ses habitudes, vint déjeuner à la maison.
+s07_lundi#1 [father] Les djellabas de laine se vendent mal en été. Je vais fabriquer des haïks de coton. Été comme hiver, les femmes de Fès ne sortent qu'enveloppées dedans.
+s07_lundi#2 [father] Et aujourd'hui, je vous emmène tous les deux au souk des bijoux.
+s07_lundi#3 [father] Zoubida, il y a longtemps que tu me demandes les bracelets soleil et lune. Il est temps que je te les offre.
+s07_lundi#4 [narrator] Soleil et lune : un bracelet d'or, et un bracelet d'argent.
+s07_lundi#5 [father] Mon ouvrier a perdu sa mère, à la campagne. Il est parti pour l'enterrement.
+s07_lundi#6 [zoubida] Elle est morte d'une maladie ?
+s07_lundi#7 [father] Surtout de vieillesse, je crois. Que Dieu la reçoive dans sa miséricorde.
+s07_lundi#8 [mohammed] Mais... je ne peux pas manquer le Msid ! J'ai ma leçon à apprendre.
+s07_lundi#9 [father] Ne te tourmente pas. J'ai prévenu le fqih. Tu travailles bien, cette demi-journée sera ta récompense.
+s07_lundi#10 [father] Mais peut-être que tu n'aimes pas les jolis bijoux ?
+s08_fleurs#0 [mohammed] Oh si ! Les bijoux, c'est beau... c'est beau comme...
+s08_fleurs#1 [father] Beau comme quoi ?
+s08_fleurs#2 [narrator] Je baissai les yeux.
+s08_fleurs#3 [mohammed] Les bijoux, c'est beau comme les fleurs.
+s08_fleurs#4 [narrator] Mon père et ma mère éclatèrent de rire.
+s08_fleurs#5 [narrator] Je trouvai leur réaction déplacée. Un doute se glissa en moi sur la qualité de leur intelligence.
+s09_escalier#0 [narrator] Après le déjeuner, j'allai m'asseoir dans l'escalier. Accroupi sur une marche, les mains sur les genoux, je réfléchis profondément.
+s09_escalier#1 [narrator] Ma comparaison exprimait une idée essentielle. Elle méritait le silence. Pas le rire.
+s09_escalier#2 [narrator] Je connaissais quelques fleurs. Les soucis et les coquelicots, sur les tombes au printemps. Les marguerites dodues, qui offrent au soleil leur cœur d'or. Les liserons, sur les collines de Bab Guissa.
+s09_escalier#3 [narrator] Et sur notre terrasse, dans des morceaux de poterie : du géranium, des œillets, et des roses d'Ispahan.
+s09_escalier#4 [narrator] Les bijoux de fête, eux, avaient été forgés par des génies, dans des palais souterrains. Ils gardaient encore la couleur des flammes où leur or avait coulé.
+s09_escalier#5 [narrator] Ils naissaient de l'amour, pour des princesses de légende. Et sous les pas de ces princesses, naissaient d'autres bijoux, plus fragiles : les fleurs.
+s09_escalier#6 [narrator] Mais à six ans, je n'avais pas les mots pour dire tout cela.
+s09_escalier#7 [narrator] Je pardonnais aux grandes personnes de me gronder, même de me frapper. Mais je leur en voulais à mort de ne pas essayer de me comprendre.
+s09_escalier#8 [narrator] Pour ma mère, j'étais parfait si je me lavais les pieds. Pour mon père, si je copiais ses gestes à la prière. Pour les voisins, si je ne faisais pas de bruit.
+s09_escalier#9 [narrator] Alors, accroupi sur ma marche, je me répétais : les bijoux, c'est beau comme les fleurs.
+s10_roi#0 [zoubida] Que fais-tu dans l'escalier ?
+s10_roi#1 [mohammed] Je joue.
+s10_roi#2 [zoubida] À quoi tu joues ?
+s10_roi#3 [mohammed] Au roi.
+s10_roi#4 [zoubida] Je me demande ce que peut faire un roi dans l'escalier, accroupi sur une marche !
+s10_roi#5 [narrator] Les voisines se mirent à rire.
+s10_roi#6 [rahma] Lalla Zoubida, ton fils ira loin. Il se prend déjà pour un roi !
+s10_roi#7 [narrator] Que pouvait comprendre la femme d'un fabricant de charrues aux princes et aux rois ?
+s10_roi#8 [narrator] Ce soir, ma mère aurait aux poignets les bracelets soleil et lune. Et Rahma serait verte de jalousie.
+s10_roi#9 [rahma] Je n'ai pas de chance. Mon mari peut à peine m'offrir une corde pour tirer l'eau du puits !
+s10_roi#10 [zoubida] Ma sœur, à quoi sert d'accuser le destin ? Dieu donne à chacun selon son cœur.
+s10_roi#11 [femmes] Il n'y a de Dieu que Dieu !
+s11_depart#0 [narrator] Et justement, le muezzin appela à la prière.
+s11_depart#1 [mohammed] C'est la prière de l'Aâsser, maman ?
+s11_depart#2 [zoubida] Oui. Ton père ne va pas tarder. Change ta djellaba, celle-ci est pleine de taches.
+s11_depart#3 [narrator] Dans sa chambre, le petit balai de Fatma Bziouya s'arrêta net. Elle passa la tête par notre porte.
+s11_depart#4 [fatma] Je dois me préparer, moi aussi ?
+s11_depart#5 [narrator] Ma mère fit oui de la tête. Un couvercle de coffre claqua.
+s11_depart#6 [father] Il n'y a personne ? Je peux passer ?
+s11_depart#7 [kanza] Passe, maalem Abdeslem.
+s12_souk#0 [narrator] Le souk des bijoutiers ressemblait à une fourmilière. On se bousculait dans tous les sens.
+s12_souk#1 [narrator] Ma mère et Fatma Bziouya nous suivaient à petits pas, enveloppées dans leurs haïks blancs.
+s12_souk#2 [narrator] Les bijoux des boutiques semblaient coupés dans du fer-blanc. Ces bijoux-là ne ressemblaient pas aux fleurs. Des mains humaines les avaient faits sans amour.
+s12_souk#3 [narrator] Dans les coins, des hommes et des femmes retenaient leurs larmes.
+s12_souk#4 [narrator] Plus tard, j'ai compris. J'ai connu moi aussi cette humiliation : venir vendre ce qu'on a de plus précieux, pour la moitié de son prix.
+s12_souk#5 [narrator] Un grand diable de dellal, aux yeux extatiques, criait un chiffre à perdre haleine.
+s12_souk#6 [narrator] Mon père prit de ses mains une paire de bracelets : l'un en or, l'autre en argent.
+s12_souk#7 [narrator] Ma mère les essaya quatre ou cinq fois. Fatma Bziouya les essaya à son tour. Un quart d'heure de discussion, pour chaque détail.
+s12_souk#8 [narrator] Mon père fit un signe. Le chiffre changea. Et le dellal plongea dans la foule. Sa main seule voyagea un moment, au-dessus des têtes, avec les bracelets.
+s13_attente#0 [narrator] Nous attendîmes longtemps. Mes jambes ne me portaient plus. Je bâillais à me décrocher les mâchoires.
+s13_attente#1 [narrator] Le dellal revint. Le chiffre avait augmenté. Mon père fit signe. Et le dellal disparut de nouveau.
+s13_attente#2 [narrator] Le souk battait son plein. Les courtiers criaient des chiffres, couraient, entraînaient les clients par la main.
+s13_attente#3 [narrator] Parfois, une vague d'hommes en délire nous écrasait contre le mur, puis repartait plus loin.
+s13_attente#4 [narrator] Mon père me souleva dans ses bras et me serra contre sa poitrine. Son front ruisselait de sueur.
+s13_attente#5 [zoubida] Que tous les saints le punissent, ce mécréant ! Il nous prend pour des campagnards ? Nous ne nous laisserons pas rouler !
+s13_attente#6 [narrator] Mais le mécréant restait invisible.
+s14_bagarre#0 [narrator] Brusquement, mon père me posa à terre, et disparut dans la foule.
+s14_bagarre#1 [narrator] Des cris éclatèrent à l'autre bout du souk, comme un orage. La foule ondula, comme une mer.
+s14_bagarre#2 [narrator] Tout le monde se mit à courir.
+s14_bagarre#3 [zoubida] Allah ! Allah ! Mes pieds !
+s14_bagarre#4 [fatma] Allah ! Mon haïk !
+s14_bagarre#5 [narrator] Enfin, ils passèrent : mon père et le dellal, se tenant mutuellement par le collet.
+s14_bagarre#6 [narrator] Les yeux rouges. De l'écume au coin des lèvres. Mon père avait perdu son turban. Le dellal avait du sang sur la joue.
+s14_bagarre#7 [narrator] Et tout le souk leur faisait cortège.
+s15_fruits_secs#0 [narrator] Ma mère, la voisine et moi, nous nous mîmes à pleurer bruyamment.
+s15_fruits_secs#1 [narrator] Nous courûmes au hasard, jusqu'au souk des fruits secs. Aucune trace d'eux.
+s15_fruits_secs#2 [narrator] Je m'attendais à des rues désertes, des babouches perdues dans la panique. Rien. On vendait, on achetait, on plaisantait. Des garnements chantaient même des refrains à la mode.
+s15_fruits_secs#3 [narrator] Notre tristesse devenait étouffante. Nous nous sentions tout seuls.
+s15_fruits_secs#4 [zoubida] Il ne sert à rien de courir partout. Rentrons, pour attendre et pour pleurer.
+s16_noir#0 [narrator] À la maison, ma mère enleva son haïk, s'assit sur un matelas, la tête dans ses deux mains, et pleura en silence.
+s16_noir#1 [narrator] Pour la première fois, sa douleur me bouleversait. Ce n'étaient pas ses grands cris habituels. Ses larmes coulaient sur son menton, et elle restait là, sans bouger.
+s16_noir#2 [narrator] Je pleurai un moment, moi aussi. Puis je m'étendis sur le lit, les yeux au plafond, et j'attendis.
+s16_noir#3 [narrator] Ma mère pleurait. Et moi, j'attendais. J'étais habitué à cet exercice.
+s16_noir#4 [narrator] Le soir tomba. Toutes les fenêtres de la maison s'allumèrent. Notre pièce restait obscure.
+s16_noir#5 [narrator] Dans le noir, des figures monstrueuses se formaient devant mes yeux, se transformaient, devenaient d'immenses étincelles vertes.
+s17_retour#0 [narrator] Enfin, la voix de mon père troua les ténèbres. Ses pas résonnèrent dans l'escalier.
+s17_retour#1 [narrator] La porte s'ouvrit. Sa silhouette se détacha, toute noire, sur le gris du mur.
+s17_retour#2 [father] Pourquoi n'avez-vous pas allumé la lampe ? Où sont les allumettes ?
+s17_retour#3 [zoubida] Sur l'étagère, contre la boîte à thé.
+s17_retour#4 [father] Si Mohammed dort déjà ?
+s17_retour#5 [mohammed] Non, papa. Je ne dors pas.
+s17_retour#6 [father] Que faisais-tu dans le noir ?
+s17_retour#7 [mohammed] J'attendais ton retour.
+s17_retour#8 [narrator] La lampe s'alluma. Le visage de ma mère ruisselait encore de larmes.
+s17_retour#9 [father] Pourquoi tant de larmes ? Tout est rentré dans l'ordre. J'ai corrigé ce mécréant. Et voici les bracelets.
+s17_retour#10 [zoubida] Je ne veux pas les voir, ces bijoux de mauvais augure. Avec eux, le malheur est entré dans cette maison.
+s17_retour#11 [father] Ce sont les bracelets que tu désirais. Prends-les, et ne dis pas de paroles inconséquentes.
+s17_retour#12 [narrator] Ma mère prit les bijoux sans les regarder, ouvrit son coffre, et les jeta dedans.
+s17_retour#13 [zoubida] Tu verras. Je ne suis qu'une faible femme, mais mon cœur ne ment pas. Ces bracelets ne m'apportent aucune joie.
+s18_cauchemar#0 [narrator] Cette nuit-là, je fis des cauchemars. Des monstres. Des yeux enflammés de haine qui nous traquaient, ma mère, mon père et moi.
+s18_cauchemar#1 [narrator] Des foules aux visages hideux nous poursuivaient pour nous voler nos richesses. Ils voulaient surtout ma Boîte à merveilles.
+s18_cauchemar#2 [narrator] Alors mon père parut, sur un cheval noir. Ma boîte sous le bras. Il fendit la foule au galop.
+s18_cauchemar#3 [narrator] La longue crinière du cheval se déployait comme un étendard.
+s18_cauchemar#4 [narrator] Puis, une campagne déserte. Du sable, des cailloux, la lumière de l'été. Sur une colline, mon père nous attendait.
+s18_cauchemar#5 [father] Je l'ai sauvée. Elle est à toi. Ouvre-la.
+s18_cauchemar#6 [narrator] Je l'ouvris avec précaution. Sur un lit de fleurs fraîchement coupées, des œillets et des roses, reposaient des bijoux d'or et de pierres précieuses.
+s18_cauchemar#7 [mohammed] Regardez mon trésor !
+s18_cauchemar#8 [zoubida] Les beaux bijoux portent toujours malheur à ceux qui les possèdent.
+s18_cauchemar#9 [narrator] Un grand froid m'enveloppa. Je refermai la boîte, et je me mis à sangloter.
+s19_matin#0 [father] Sidi Mohammed, pourquoi tu pleures ? Réveille-toi ! Réveille-toi !
+s19_matin#1 [narrator] Il faisait jour. Les seaux cliquetaient dans le patio. Mon père me tâtait le front.
+s19_matin#2 [father] Non. Il n'a pas de fièvre. Un simple cauchemar.
+s19_matin#3 [zoubida] Je te dis qu'il est malade ! Avec l'agitation du souk, où tu as cru bon de l'entraîner !
+s19_matin#4 [father] Cet enfant n'a rien. Un peu de fatigue. Qu'il n'aille pas à l'école.
+s19_matin#5 [zoubida] Mon Dieu, punis-moi, mais ne me frappe pas dans mon enfant ! Homme, je ne veux pas garder ces bracelets !
+s19_matin#6 [father] Je m'en vais. Si je reste, je vais perdre patience.
+s19_matin#7 [zoubida] Va. Tu es un homme. C'est naturel que tu aies un cœur de pierre.
+s19_matin#8 [narrator] Ma mère ne devait pas dire cela. Un jour, je serai un homme. Et je n'aurai pas un cœur de pierre.
+s19_matin#9 [narrator] Mon père gardait son sang-froid. Ma mère, elle, voulait le voir crier, s'agiter, tout exagérer, comme elle.
+s20_aicha#0 [narrator] Je dus quand même garder le lit. Après le déjeuner, Lalla Aïcha vint nous rendre visite.
+s20_aicha#1 [narrator] Ma mère lui raconta tout : le souk, les bracelets, le drame. Elle pleura, soupira, invoqua les saints, et prophétisa des catastrophes.
+s20_aicha#2 [narrator] Lalla Aïcha, par politesse, approuvait, soupirait, se donnait de petites tapes sur la joue.
+s20_aicha#3 [zoubida] Mais toi ? Tu ne me dis rien. Comment va ton mari ?
+s20_aicha#4 [narrator] Lalla Aïcha enfouit son visage dans ses mains, et éclata en sanglots.
+s20_aicha#5 [aicha] Zoubida, je n'ai plus personne au monde. Tu es ma seule famille.
+s20_aicha#6 [aicha] Le fils du péché, pour qui j'ai tout donné, m'a abandonnée. Il a pris une seconde femme : la fille d'Abderrahman, le coiffeur.
+s20_aicha#7 [zoubida] Allah ! Allah ! Ô ma sœur, ma pauvre sœur ! Quelle douleur !
+s20_aicha#8 [narrator] Et les deux femmes, dans les bras l'une de l'autre, se remirent à sangloter.
+s21_fievre#0 [narrator] La chaleur, le lit, ces scènes dont je sentais tout le tragique sans le comprendre... me rendirent vraiment malade.
+s21_fievre#1 [narrator] Ma tête cognait. La fièvre me secoua tout entier.
+s21_fievre#2 [zoubida] Mon fils va mourir ! Ô mes sœurs, mon fils ! Sauvez mon fils !
+s21_fievre#3 [narrator] Les voisines envahirent la chambre. Mes paupières se fermèrent. Dans mon crâne, je n'entendais plus que les battements d'un gigantesque tambour.
+s22_fiche#0 [narrator] Fiche de révision. Chapitre huit : les bracelets soleil et lune, en quatre temps.
+s22_fiche#1 [narrator] L'été au mausolée. L'escalier et les fleurs. La bagarre du souk. Et le cauchemar.
+s22_fiche#2 [narrator] Le détail à retenir : les bracelets que la mère désirait deviennent pour elle des bijoux de mauvais augure. Le bonheur se transforme en malheur.
+s22_fiche#3 [narrator] Et Sidi Larbi, annoncé chez le barbier au chapitre sept, prend bien une seconde femme.
+s22_fiche#4 [narrator] Thèmes : l'imaginaire de l'enfant, la solitude, le regard des adultes, la condition de la femme. Au chapitre neuf : l'enfant malade, et une maison qui ne dort plus.

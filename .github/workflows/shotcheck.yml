@@ -1,3 +1,4 @@
+# Copy to .github/workflows/shotcheck.yml when ready to enable. No cloud render.
 name: Shot geometry gate
 on:
   workflow_dispatch:
@@ -37,28 +38,28 @@ jobs:
   shotcheck:
     needs: discover
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     strategy:
       fail-fast: false
-      max-parallel: 40
       matrix:
         scene: ${{ fromJSON(needs.discover.outputs.scenes) }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm ci --no-audit --no-fund --silent
+      - run: npm ci
       - uses: browser-actions/setup-chrome@v1
         id: chrome
       - name: Check geometry
         env:
           CHROME: ${{ steps.chrome.outputs.chrome-path }}
-          CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
           EPISODE: ${{ inputs.episode }}
           SCENE: ${{ matrix.scene }}
           FPS: ${{ inputs.fps }}
-        run: mkdir -p qa && node tools/shotcheck.mjs "$EPISODE" --scenes "$SCENE" --fps "$FPS" --out "qa/$SCENE.json"
+        run: node tools/shotcheck.mjs "$EPISODE" --scenes "$SCENE" --fps "$FPS" --out "qa/$SCENE.json"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

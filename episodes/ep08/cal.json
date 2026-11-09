@@ -1,0 +1,331 @@
+{
+ "_note": "ep08 calibrations: reused plates copied from ep05/ep07 cal.json; ep08 own plates (mausolee, souk_*) added after generation",
+ "_aliases": {
+  "chambre": "chambre_jour",
+  "patio": "patio_matin"
+ },
+ "chambre_jour": {
+  "h": 1.1,
+  "horizon": 425,
+  "fov": 50,
+  "check": "3D tabla r.25 on the painted tabla at ~4.1 m; copied ep05 exactly; left door floor/lintel also checked in plate bench",
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  },
+  "scale_check": {
+   "foot": [
+    280,
+    960
+   ],
+   "top": 85,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9182,
+   "projected_top": 61.12
+  }
+ },
+ "chambre_nuit": {
+  "h": 1.2786,
+  "horizon": 450,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "front divan face; floor slabs match bedroom perspective with higher viewpoint; door is outside frame",
+  "scale_check": {
+   "foot": [
+    1150,
+    840
+   ],
+   "top": 735,
+   "height": 0.35,
+   "kind": "platform",
+   "actor": 1.62,
+   "measured_actor_ratio": 4.7352,
+   "projected_top": 735.0
+  },
+  "light": {
+   "dir": [
+    -2,
+    2,
+    1
+   ],
+   "key": "#ffce8d",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "patio_matin": {
+  "h": 0.7589,
+  "horizon": 700,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "back ground-floor door; courtyard paving and gallery rails converge near y700; upward view, seed unavailable",
+  "scale_check": {
+   "foot": [
+    1100,
+    820
+   ],
+   "top": 540,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.9025,
+   "projected_top": 540.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "patio_nuit": {
+  "h": 3.2062,
+  "horizon": 165,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "back glowing door; gallery returns/tile lines imply high viewpoint, seed unavailable; foreground rail occludes courtyard",
+  "scale_check": {
+   "foot": [
+    960,
+    805
+   ],
+   "top": 470,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8923,
+   "projected_top": 470.0
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#ffce8d",
+   "keyI": 1.1,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "escalier": {
+  "h": 0.9,
+  "horizon": 570,
+  "fov": 50,
+  "seed": {
+   "h": 1.1,
+   "fov": 50
+  },
+  "check": "lower arched door; ceiling and landing returns suggest y570; reference is below camera landing, adjusted support needed; door belongs to a lower flight: scale uses 0.20 m step rise, door check is not a valid same-floor measurement; reference support -2.6751 m fits the lower doorway; this does not imply a flat walkable staircase",
+  "scale_check": {
+   "foot": [
+    440,
+    1015
+   ],
+   "top": 790,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "support": -2.6751,
+   "measured_actor_ratio": 0.9004,
+   "projected_top": 790.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "escalier_nuit": {
+  "h": 0.9,
+  "horizon": 570,
+  "fov": 50,
+  "seed": {
+   "h": 0.9,
+   "fov": 50,
+   "hor": 46,
+   "dist": 3.0,
+   "sizes": "steps 0.20 m high and 0.28 m deep, stair 0.90 m wide",
+   "horizon": 496.8
+  },
+  "check": "lower arched door, not a floor at the camera landing; landing/ceiling edges suggest y570, weak evidence in darkness; stairs need explicit step support; door belongs to a lower flight: scale uses 0.20 m step rise, door check is not a valid same-floor measurement; reference support -2.964 m fits the lower doorway; this does not imply a flat walkable staircase",
+  "scale_check": {
+   "foot": [
+    370,
+    1040
+   ],
+   "top": 820,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "support": -2.964,
+   "measured_actor_ratio": 0.9004,
+   "projected_top": 820.0
+  },
+  "light": {
+   "dir": [
+    1,
+    4,
+    -2
+   ],
+   "key": "#a1b5e8",
+   "keyI": 0.45,
+   "sky": "#56678c",
+   "ground": "#322936",
+   "fillI": 0.5,
+   "shadow": 0.25
+  }
+ },
+ "terrasse": {
+  "h": 1.7392,
+  "horizon": 445,
+  "fov": 45,
+  "seed": {
+   "h": 1.1,
+   "fov": 45
+  },
+  "check": "left roof door; terrace slab joints and receding roof edges suggest y445; distant hills excluded",
+  "scale_check": {
+   "foot": [
+    650,
+    865
+   ],
+   "top": 430,
+   "height": 1.8,
+   "kind": "door",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8981,
+   "projected_top": 430.0
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "souk_jouets": {
+  "h": 0.6332,
+  "horizon": 565,
+  "fov": 45,
+  "seed": {
+   "h": 1.1,
+   "fov": 45,
+   "hor": 42,
+   "dist": 9.0,
+   "sizes": "shop fronts 1.80 m wide and 2.0 m high, counters 0.80 m high, alley 2.8 m wide",
+   "horizon": 453.6
+  },
+  "check": "far shop front upright; stall base/eave edges converge near alley gate at y565; seed 454 not followed",
+  "scale_check": {
+   "foot": [
+    965,
+    665
+   ],
+   "top": 350,
+   "height": 2.0,
+   "kind": "shop",
+   "actor": 1.62,
+   "measured_actor_ratio": 0.8106,
+   "projected_top": 350.01
+  },
+  "light": {
+   "dir": [
+    2,
+    3,
+    1
+   ],
+   "key": "#ffe4b4",
+   "keyI": 2.1,
+   "sky": "#cbd9ee",
+   "ground": "#8f7759",
+   "fillI": 1.15,
+   "shadow": 0.28
+  }
+ },
+ "chambre_penombre": {
+  "h": 1.0,
+  "horizon": 447,
+  "fov": 50,
+  "tabla": [
+   680,
+   750
+  ],
+  "light": {
+   "dir": [
+    -3,
+    1.2,
+    1
+   ],
+   "note": "warm low streaks from the door ajar at left + window slit at right; scene is dim: keyI ~1.2, fill ~.6"
+  },
+  "check": "matches the prompt numbers: 3D tabla r.25 h.28 lands on the painted one at 4.06 m"
+ },
+ "patio_vide": {
+  "h": 0.66,
+  "horizon": 493,
+  "fov": 45,
+  "stools": [
+   [
+    905,
+    727
+   ],
+   [
+    1224,
+    727
+   ]
+  ],
+  "stool": {
+   "h": 0.26,
+   "w": 0.32
+  },
+  "check": "copy of patio_poisson (same camera; ChatGPT edit without the stools/basin) - verify alignment"
+ }
+}

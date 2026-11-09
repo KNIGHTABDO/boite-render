@@ -42,7 +42,7 @@ export function crossLegged(a, { seat = 0, lean = .1, hands = true, cross = 'L' 
 
 /** lap sheet of a robe (rig loaded with seat:true): stretched from the hip over the knees, then falling to the floor */
 export function drapeLap(a, floor = 0) {
-  const B = a.B; if (!B.lap) return; a.group.updateMatrixWorld(true);
+  const B = a.B; if (!B.lap) return; if (B.SkirtBack1) return drapeRobe(a, floor); a.group.updateMatrixWorld(true);
   const k = a.group.scale.y / 1.6, kn = IK.wpos(B.shinL).add(IK.wpos(B.shinR)).multiplyScalar(.5);
   const fwd = new THREE.Vector3(0, 0, 1).applyAxisAngle(UP, a.group.rotation.y);
   const over = kn.clone().addScaledVector(UP, .05 * k).addScaledVector(fwd, .02 * k);
@@ -54,6 +54,46 @@ export function drapeLap(a, floor = 0) {
   // the sheet is cut for a standing robe: shorten it so its hem just reaches the floor instead of going through it
   const lo = lapLowest(a), drop = over.y - floor;
   if (lo < floor && over.y - lo > 1e-3) { B.lapD.scale.y = Math.max(.2, (drop - .005 * k) / (over.y - lo)); B.lapD.updateWorldMatrix(false, true); }
+}
+
+/** real rig (art/rigged): the whole skirt is carried by 8 cloth bones. Front sheet over the knees then down to the floor,
+ * back sheet down behind the seat and onto the floor, flanks out over each knee. Each end bone is shortened so its hem
+ * stops on the floor instead of going through it. */
+function hemStop(a, bone, name, floor, k) {
+  bone.scale.y = 1; bone.updateWorldMatrix(false, true);
+  const lo = lowestOf(a, [name]), top = IK.wpos(bone).y;
+  if (lo < floor + .004 * k && top - lo > 1e-3) { bone.scale.y = Math.max(.15, (top - floor - .006 * k) / (top - lo)); bone.updateWorldMatrix(false, true); }
+}
+export function drapeRobe(a, floor = 0) {
+  const B = a.B; a.group.updateMatrixWorld(true);
+  const k = a.group.scale.y / 1.6, D = new THREE.Vector3(0, -1, 0);
+  const hq = new THREE.Quaternion(); B.Hips.getWorldQuaternion(hq);
+  const fwd = new THREE.Vector3(0, 0, 1).applyQuaternion(hq).setY(0).normalize(), side = new THREE.Vector3(1, 0, 0).applyQuaternion(hq).setY(0).normalize();
+  const kL = IK.wpos(B.LeftLeg), kR = IK.wpos(B.RightLeg), hip = IK.wpos(B.Hips), kn = kL.clone().add(kR).multiplyScalar(.5);
+  const end = b => IK.wpos(b, [0, -1, 0]);
+  // front: hip -> over the knees -> down to the floor in front of the shins
+  const over = kn.clone().addScaledVector(UP, .05 * k).addScaledVector(fwd, .02 * k);
+  IK.aim(B.SkirtFront1, B.SkirtFront2, over);
+  B.SkirtFront2.position.copy(B.SkirtFront2.parent.worldToLocal(over.clone())); B.SkirtFront2.updateWorldMatrix(true, true);
+  const fdrop = Math.max(.0, over.y - floor);
+  IK.aim(B.SkirtFront2, end(B.SkirtFront2), over.clone().addScaledVector(fwd, Math.min(.06 * k, fdrop * .3)).setY(Math.min(over.y - .05 * k, floor)));
+  hemStop(a, B.SkirtFront2, 'SkirtFront2', floor, k);
+  // back: down behind the seat; if the seat is low (kneel, floor) the second half lies back on the floor
+  const seatY = Math.max(floor, Math.min(kL.y, kR.y, hip.y - .12 * k) - .02 * k);
+  const L1 = IK.wpos(B.SkirtBack2).distanceTo(IK.wpos(B.SkirtBack1));
+  const dy = Math.min(L1 * .97, hip.y - seatY - .01 * k), back = fwd.clone().negate();
+  const b1 = hip.clone().addScaledVector(D, dy).addScaledVector(back, Math.sqrt(Math.max(0, L1 * L1 - dy * dy)) * .9 + .03 * k);
+  IK.aim(B.SkirtBack1, B.SkirtBack2, b1);
+  const p2 = IK.wpos(B.SkirtBack2), low = p2.y - floor < .08 * k;
+  IK.aim(B.SkirtBack2, end(B.SkirtBack2), low ? p2.clone().addScaledVector(back, .3 * k).setY(floor + .01 * k) : p2.clone().addScaledVector(back, .04 * k).setY(floor));
+  hemStop(a, B.SkirtBack2, 'SkirtBack2', floor, k);
+  // flanks: from the hip out over each knee, half way down to the floor beside it
+  for (const [s, kp] of [['Left', kL], ['Right', kR]]) {
+    const sg = s === 'Left' ? 1 : -1, b = B[s + 'Robe2'];
+    const out = kp.clone().addScaledVector(side, sg * .05 * k).addScaledVector(UP, .02 * k);
+    const t = out.clone().lerp(out.clone().setY(floor), out.y - floor > .15 * k ? .55 : .35);
+    IK.aim(b, end(b), t); hemStop(a, b, s + 'Robe2', floor, k);
+  }
 }
 
 /** lowest world y of the fabric carried by the lap sheet */
@@ -102,6 +142,41 @@ export function grip(a, side, handle, inside, { pole = side === 'L' ? [.38, .05,
   return handPts(a, side).palm.distanceTo(handle);
 }
 
+/**
+ * real-rig fingers: curl each finger toward the palm (0 = flat, 1 = fist). Works in world space, so it needs no
+ * knowledge of the bone axes: each segment turns about cross(segment, palm-normal). `thumb` curls the thumb toward
+ * the middle knuckle; `each` = [thumb, index, middle, ring, pinky] multipliers (e.g. a pointing hand [1,0,1,1,1]).
+ * Returns false on the old rigs (no finger bones).
+ */
+const FING = ['Thumb', 'Index', 'Middle', 'Ring', 'Pinky'], _q = new THREE.Quaternion(), _pq = new THREE.Quaternion(), _bq = new THREE.Quaternion();
+function turnWorld(b, axis, ang) {
+  b.updateWorldMatrix(true, false); b.getWorldQuaternion(_bq); b.parent.getWorldQuaternion(_pq);
+  _q.setFromAxisAngle(axis, ang).multiply(_bq); b.quaternion.copy(_pq.invert().multiply(_q)); b.updateWorldMatrix(false, true);
+}
+export function fingers(a, side, curl = .8, { thumb = curl * .7, each = [1, 1, 1, 1, 1], spread = 0 } = {}) {
+  const B = a.B, S = (side === 'L' ? 'Left' : 'Right') + 'Hand'; if (!B[S + 'Index1']) return false;
+  a.group.updateMatrixWorld(true);
+  const P = n => IK.wpos(B[S + n]), hp = IK.wpos(B[S]);
+  const along = P('Index1').sub(hp).normalize(), t = P('Thumb1').sub(hp); t.addScaledVector(along, -t.dot(along));
+  const n = side === 'L' ? new THREE.Vector3().crossVectors(along, t) : new THREE.Vector3().crossVectors(t, along);
+  n.normalize();                                                         // palm normal from handedness (fingers x thumb)
+  const mid = B[S + 'Middle1'] ? P('Middle1') : P('Index1');
+  FING.forEach((f, i) => {
+    const amt = (f === 'Thumb' ? thumb : curl) * each[i]; if (!B[S + f + '1']) return;
+    if (spread && f !== 'Thumb' && f !== 'Middle') turnWorld(B[S + f + '1'], n, spread * (i - 2) * .12 * (side === 'L' ? 1 : -1));
+    for (let j = 1; j <= 3; j++) {
+      const b = B[S + f + j], c = B[S + f + (j + 1)] || b.children.find(x => x.isBone); if (!b) continue;
+      const d = c ? IK.wpos(c).sub(IK.wpos(b)) : IK.wpos(b).sub(IK.wpos(b.parent));
+      const to = f === 'Thumb' ? mid.clone().addScaledVector(n, .015 * a.group.scale.y).sub(IK.wpos(b)) : n;
+      const ax = new THREE.Vector3().crossVectors(d, to); if (ax.lengthSq() < 1e-12) continue;
+      turnWorld(b, ax.normalize(), amt * (f === 'Thumb' ? [.35, .45, .4][j - 1] : [.95, 1.2, .8][j - 1]));
+    }
+  });
+  return true;
+}
+/** natural relaxed hands (slight curl, a little different on each side so the hands never mirror) */
+export function relaxHands(a, seed = 0) { fingers(a, 'L', .22 + .06 * Math.sin(seed * 7.1), { spread: .3 }); fingers(a, 'R', .28 + .06 * Math.cos(seed * 5.3), { spread: .2 }); }
+
 /** turn the head (and part of the neck) so the face looks at a world point; amt < 1 keeps some of the old pose */
 export function look(a, target, amt = .85) {
   const B = a.B; a.group.updateMatrixWorld(true);
@@ -143,14 +218,17 @@ export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip
   const Lt = IK.wpos(B.thighL).distanceTo(IK.wpos(B.shinL)) / k, Ls = IK.wpos(B.shinL).distanceTo(IK.wpos(B.footL)) / k;
   const kz = Math.sqrt(Math.max(.01, Lt * Lt - (hip - pad) ** 2));
   setHipY(a, seat + hip * k);
-  const W = (x, y, z) => hipToWorld(a, x * k, y * k, z * k);
-  const err = [1, -1].map(s => {
+  let err;
+  const legs = () => { const W = (x, y, z) => hipToWorld(a, x * k, y * k, z * k); err = [1, -1].map(s => {
     const side = s > 0 ? 'L' : 'R';
     const e = IK.leg(a, side, W(s * spread, -hip + pad - .01, kz - Math.sqrt(Ls * Ls - .0001)), W(s * spread, -hip + pad - .05, kz + .3));
     const f = B['foot' + side]; f.rotation.x = 0; f.updateWorldMatrix(false, true);
     IK.aim(f, IK.wpos(f, [0, 0, 1]), W(s * spread, -hip + pad - .03, -1));    // instep flat on the floor, toes pointing back
     return e;
-  });
+  }); };
+  // settle: the knees and insteps rest ON the mattress (measured skinned vertices), not at a guessed hip height
+  for (let i = 0; i < 2; i++) { legs(); const lo = lowestOf(a, ['shinL', 'shinR', 'footL', 'footR']); if (Math.abs(lo - seat) < .004) break; setHipY(a, IK.wpos(B.root).y + seat + .003 - lo); }
+  legs();
   drapeLap(a, seat);
   if (hands) err.push(lapHands(a, { fwd: kz * .8, lift: .1 }));
   return err;
@@ -243,14 +321,17 @@ export function settle(a, y) { setHipY(a, IK.wpos(a.B.root).y + y - lowestOf(a, 
 /** lowest world y of the vertices carried mainly (weight > .5) by the named bones; index lists cached per actor */
 export function lowestOf(a, names) {
   if (!a._vb) {
-    a._vb = {}; const byBone = new Map(Object.entries(a.B).map(([n, b]) => [b, n]));
+    a._vb = new Map(); const bones = new Set(Object.values(a.B));
     a.group.traverse(o => { if (!o.isSkinnedMesh) return; const si = o.geometry.attributes.skinIndex, sw = o.geometry.attributes.skinWeight;
       for (let i = 0; i < si.count; i += 2) for (let j = 0; j < 4; j++) if (sw.getComponent(i, j) > .5) {
-        const n = byBone.get(o.skeleton.bones[si.getComponent(i, j)]); if (n) { const L = a._vb[n] ||= new Map(); if (!L.has(o)) L.set(o, []); L.get(o).push(i); } break; } });
-    for (const L of Object.values(a._vb)) { let n = 0; for (const ids of L.values()) n += ids.length; const st = Math.ceil(n / 600);
+        const n = o.skeleton.bones[si.getComponent(i, j)]; if (bones.has(n)) { const L = a._vb.get(n) || a._vb.set(n, new Map()).get(n); if (!L.has(o)) L.set(o, []); L.get(o).push(i); } break; } });
+    for (const L of a._vb.values()) { let n = 0; for (const ids of L.values()) n += ids.length; const st = Math.ceil(n / 600);
       if (st > 1) for (const [o, ids] of L) L.set(o, ids.filter((_, j) => j % st === 0)); }
   }                                                     // ~600 samples per bone: ~2.5 ms a bone, ~1 cm accuracy
   const v = new THREE.Vector3(); let lo = Infinity; a.group.updateMatrixWorld(true);
-  for (const n of names) for (const [o, ids] of a._vb[n] || []) for (const i of ids) { o.getVertexPosition(i, v); o.localToWorld(v); if (v.y < lo) lo = v.y; }
+  for (const n of names) for (const [o, ids] of a._vb.get(a.B[n]) || []) for (const i of ids) { o.getVertexPosition(i, v); o.localToWorld(v); if (v.y < lo) lo = v.y; }
+  // real rigs (autorig): the robe takes the pelvis weights, so Hips may own no vertex > .5 -> Infinity sent the actor to -inf
+  // (ep08 bench: empty stool tile). Fall back to the thighs (their underside is the seat when sitting).
+  if (lo === Infinity && names.includes('root')) return lowestOf(a, ['thighL', 'thighR', ...names.filter(n => n !== 'root')]);
   return lo;
 }

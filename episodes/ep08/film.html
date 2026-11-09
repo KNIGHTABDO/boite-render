@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><title>Ep05 Le Deuil</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Amiri:wght@400;700&display=swap">
+<body style="margin:0;background:#000"><canvas id="cv" width="1920" height="1080" style="width:100vw;max-width:100%;display:block"></canvas>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+const F = await import('./film.js');
+await document.fonts.load('italic 44px "IM Fell English"'); await document.fonts.load('60px Amiri'); await document.fonts.load('60px "IM Fell English"');
+const cv = document.getElementById('cv'), g = cv.getContext('2d');
+window.cv = cv; window.DURATION = F.DURATION; window.timing = F.timing;
+window.drawAt = async t => { await F.drawFrame(g, t); };
+window.reloadScene = id => F.reload(id);   // bench: hot-reload an edited scene
+window.ready = true;
+const q = new URLSearchParams(location.search);
+if (q.has('play')) { let t0 = performance.now() - (+q.get('play') || 0) * 1000; const loop = async () => { await F.drawFrame(g, (performance.now() - t0) / 1000); requestAnimationFrame(loop); }; loop(); }
+</script>

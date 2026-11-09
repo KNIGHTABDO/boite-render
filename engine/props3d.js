@@ -12,7 +12,7 @@ const ramp = (() => { const g = new THREE.DataTexture(new Uint8Array([120, 190, 
 const mats = {};
 /** toon material by colour (cached). o.opacity for glass */
 export const toon = (col, o = {}) => { const k = col + JSON.stringify(o); return mats[k] ||= new THREE.MeshToonMaterial({ color: col, gradientMap: ramp, transparent: o.opacity != null, opacity: o.opacity ?? 1, side: o.side ?? THREE.FrontSide, depthWrite: o.opacity == null || o.opacity > .7 }); };
-const inkMat = th => { const m = new THREE.MeshBasicMaterial({ color: 0x1f1612, side: THREE.BackSide }); m.onBeforeCompile = sh => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n transformed += normalize(objectNormal) * ${th.toFixed(4)};`); }; return m; };
+const inkMat = th => { const m = new THREE.MeshBasicMaterial({ color: 0x1f1612, side: THREE.BackSide }); m.onBeforeCompile = sh => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n transformed += normalize(normal) * ${th.toFixed(4)};`); }; return m; };
 const INKS = {};
 /** mesh + inverted-hull ink line (th = line thickness in metres; thin objects need thin lines) */
 function M(geo, mat, th = .004, shadow = true) {

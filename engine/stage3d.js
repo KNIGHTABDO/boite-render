@@ -6,7 +6,7 @@
 //  - the 3D layer is drawn in plate space [0,1920]x[0,1080], so K.camera() pans/zooms move plate and 3D together
 // Replaces ep04's place() cutouts and sitting() clipping (episodes/ep04/lib/kit.js).
 import * as THREE from 'three';
-import { loadRigged, rest } from './rig3d.js';
+import { loadRigged, loadSkinned, RIGGED, rest } from './rig3d.js';
 import { SPECS } from './specs.js';
 import { c, W, H, INK } from './core.js';
 
@@ -32,7 +32,8 @@ export async function cast(name, { seat = false, copy = 0, outline = .0035 } = {
   const id = `${name}#${copy}${seat ? 's' : ''}`;
   if (cache[id]) return cache[id];
   const S = SPECS[name]; if (!S) throw new Error('no spec for ' + name);
-  const a = await loadRigged(`/art/models/${S.file}`, S, { outline, tint: S.tint, seat });
+  const real = RIGGED[name] && !globalThis.location?.search.includes('oldrig');
+  const a = real ? await loadSkinned(`/art/rigged/${RIGGED[name]}`, S, { outline, tint: S.tint }) : await loadRigged(`/art/models/${S.file}`, S, { outline, tint: S.tint, seat });
   a.name = name; a.S = S; a.seat = seat; a.group.scale.setScalar(heightOf(S));
   if (globalThis.window?.QA) {
     const qa = window.__qa ||= { actors: [], props: [], stages: [], active: [] };

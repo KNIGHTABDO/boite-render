@@ -1,0 +1,3521 @@
+{
+ "episode": "ep08",
+ "chapter": 8,
+ "lint": {
+  "HOOK_MAX": 14,
+  "TITLE_MAX": 10
+ },
+ "beats": [
+  {
+   "id": "b001",
+   "scene": "s01_hook",
+   "text": "Ce lundi-là, mon père promit à ma mère des bracelets d'or et d'argent.",
+   "speaker": "narrator",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "bracelet",
+    "or"
+   ],
+   "visual": "Noon light: the father's hand opens on two bracelets, gold and silver, in front of Zoubida's delighted face (slow push-in).",
+   "cam": "ots",
+   "act": "Zoubida's eyes go from the bracelets to his face, a small laugh",
+   "sfx": [
+    "bracelet_clink"
+   ],
+   "cut": "hard"
+  },
+  {
+   "id": "b002",
+   "scene": "s01_hook",
+   "text": "Le soir même, elle pleurait dans le noir. Et moi, j'attendais.",
+   "speaker": "narrator",
+   "dur": 4.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Same evening, dark room: Zoubida weeps on her mattress, face in her hands; in the background the boy lies on the bed, eyes open, waiting. The bracelets glint on the floor.",
+   "cam": "master",
+   "peak": true,
+   "light": "night_window",
+   "sfx": [
+    "soft sobbing",
+    "far city night"
+   ],
+   "act": "Zoubida's shoulders shake (breath idle x3); Mohammed only blinks"
+  },
+  {
+   "id": "b003",
+   "scene": "s02_titre",
+   "mode": "title",
+   "text": "La Boîte à Merveilles · Chapitre VIII · Les bracelets soleil et lune",
+   "dur": 4.0,
+   "visual": "ep06 rosette title: zellige rosette blooms in indigo, Arabic + French titles, CHAPITRE VIII · LES BRACELETS SOLEIL ET LUNE"
+  },
+  {
+   "id": "b004",
+   "scene": "s03_mouches",
+   "text": "Après les fêtes de l'Achoura, la vie retomba dans sa grisaille. La chaleur commença à sévir.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "mouche"
+   ],
+   "visual": "The house in summer heat: shimmering air above the patio, flies circling in a sunbeam; the camera drifts down from the sky square into the patio.",
+   "still": "p01_ete_patio",
+   "move": "tilt down 10%, heat shimmer",
+   "sfx": [
+    "cicadas far",
+    "fly buzz"
+   ],
+   "card": "L'ÉTÉ"
+  },
+  {
+   "id": "b005",
+   "scene": "s03_mouches",
+   "text": "Des colonies de mouches envahirent la maison. Et dans les vieilles boiseries, les punaises se réveillèrent.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "punaise",
+    "poutre",
+    "mouche"
+   ],
+   "visual": "Zoubida looks up at the old cedar beams; insert macro: bedbugs waking in the cracks, flies at the doorway.",
+   "cam": "low",
+   "ins": [
+    [
+     "punaises_macro",
+     1.6
+    ]
+   ],
+   "act": "squints up, disgusted",
+   "sfx": [
+    "fly buzz swarm",
+    "wood creak"
+   ]
+  },
+  {
+   "id": "b006",
+   "scene": "s03_mouches",
+   "text": "Ma mère leur déclara une guerre totale. Chaux vive. Soufre. Pétrole.",
+   "speaker": "narrator",
+   "dur": 4.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "chaux",
+    "soufre",
+    "petrole"
+   ],
+   "visual": "Zoubida at war: three objects, one per word — a bucket of quicklime with a brush, a dish of burning sulphur, a petrol can she sprinkles.",
+   "cam": "master",
+   "enum": [
+    [
+     "chaux vive",
+     "Chaux"
+    ],
+    [
+     "soufre",
+     "Soufre"
+    ],
+    [
+     "pétrole",
+     "Pétrole"
+    ]
+   ],
+   "ins": [
+    [
+     "chaux",
+     1.0
+    ],
+    [
+     "soufre_fume",
+     1.0
+    ],
+    [
+     "petrole_bidon",
+     1.0
+    ]
+   ],
+   "action": "sprinkle",
+   "sfx": [
+    "brush_whitewash @Chaux",
+    "sulphur hiss @Soufre",
+    "liquid_splash @Pétrole"
+   ]
+  },
+  {
+   "id": "b007",
+   "scene": "s03_mouches",
+   "text": "Puis des armes plus sournoises : des talismans, des poudres de faiseur de miracles, des invocations.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "talisman",
+    "poudre"
+   ],
+   "visual": "Sly weapons: she pins a folded talisman over the door, blows a pinch of powder into the corner, her lips moving in an invocation.",
+   "cam": "low",
+   "enum": [
+    [
+     "talismans",
+     "talismans"
+    ],
+    [
+     "poudres",
+     "poudres"
+    ],
+    [
+     "invocations",
+     "invocations"
+    ]
+   ],
+   "ins": [
+    [
+     "talisman_porte",
+     1.0
+    ],
+    [
+     "poudre_souffle",
+     1.0
+    ]
+   ],
+   "action": "blow",
+   "sfx": [
+    "paper rustle @talismans",
+    "powder puff @poudres",
+    "whispered invocation @invocations"
+   ]
+  },
+  {
+   "id": "b008",
+   "scene": "s03_mouches",
+   "text": "Seules quelques familles survécurent, là-haut, le long des poutres du plafond. Descendre à portée des doigts de l'homme, c'était se suicider.",
+   "speaker": "narrator",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "poutre"
+   ],
+   "visual": "Zoubida on a stool peers up at the ceiling beams; a few survivors hide in the cracks (insert macro).",
+   "cam": "low",
+   "ins": [
+    [
+     "poutre_survivants",
+     1.4
+    ]
+   ],
+   "sfx": [
+    "tiny creak"
+   ]
+  },
+  {
+   "id": "b009",
+   "scene": "s03_mouches",
+   "text": "Chaque matin, ma mère chassait les mouches à grands coups de torchon. Elles sortaient par la fenêtre, en bourdonnant de colère.",
+   "speaker": "narrator",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "torchon",
+    "fenetre",
+    "mouche"
+   ],
+   "visual": "Morning: Zoubida whips the air with a dish cloth, the flies stream out of the window in an angry black ribbon.",
+   "cam": "reverse",
+   "action": "swat",
+   "sfx": [
+    "cloth_whip x3",
+    "fly buzz angry exit"
+   ]
+  },
+  {
+   "id": "b010",
+   "scene": "s04_mausolee",
+   "text": "Les journées devinrent longues. La salle du Msid, trop chaude et trop étroite, fut abandonnée.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "msid",
+   "cast": [
+    "fqih",
+    "kid1",
+    "kid2",
+    "mohammed"
+   ],
+   "props": [
+    "planche"
+   ],
+   "visual": "The cramped Msid in heat: boys fanning themselves with their slates, the fqih wiping his brow.",
+   "cam": "master",
+   "sfx": [
+    "pupils murmur tired",
+    "fly buzz"
+   ],
+   "act": "slow fan gestures, heavy idle",
+   "music": "mausolee"
+  },
+  {
+   "id": "b011",
+   "scene": "s04_mausolee",
+   "text": "Un matin, nous emportâmes nos planchettes et nos encriers dans un petit sanctuaire, deux pas plus loin.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "W",
+   "room": "mausolee",
+   "cast": [
+    "fqih",
+    "mohammed",
+    "kid1",
+    "kid3"
+   ],
+   "props": [
+    "planche",
+    "encrier"
+   ],
+   "visual": "Procession of small boys carrying slates and inkwells under their arms, crossing into a little whitewashed sanctuary.",
+   "cam": "master",
+   "action": "walk",
+   "sfx": [
+    "many small footsteps",
+    "slates knock"
+   ],
+   "label": "un mausolée : la tombe d'un saint"
+  },
+  {
+   "id": "b012",
+   "scene": "s04_mausolee",
+   "text": "Ce mausolée abritait la tombe d'un saint. Personne ne savait son nom. Mais le jeudi, les jeunes filles qui voulaient se marier dans l'année venaient faire sept fois le tour du tombeau.",
+   "speaker": "narrator",
+   "dur": 12.7,
+   "mode": "3d",
+   "size": "W",
+   "room": "mausolee",
+   "cast": [
+    "woman1",
+    "woman2",
+    "fatma"
+   ],
+   "props": [
+    "mausolee"
+   ],
+   "visual": "Memory (warm tint): young women in white haiks circle the green-draped tomb seven times, counting on their fingers.",
+   "cam": "high",
+   "light": "flashback",
+   "action": "walk",
+   "enum": [
+    [
+     "sept fois",
+     "sept"
+    ]
+   ],
+   "sfx": [
+    "women whisper count",
+    "slippers on tiles"
+   ]
+  },
+  {
+   "id": "b013",
+   "scene": "s04_mausolee",
+   "text": "La grande salle était d'une fraîcheur de paradis.",
+   "speaker": "narrator",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "W",
+   "room": "mausolee",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The big cool room: green shadows, white lime, a breeze; Mohammed closes his eyes and breathes.",
+   "cam": "low",
+   "action": "breathe",
+   "sfx": [
+    "fountain trickle",
+    "cool breeze"
+   ]
+  },
+  {
+   "id": "b014",
+   "scene": "s04_mausolee",
+   "text": "À l'appel du muezzin, le fqih nous imposa silence. Nous fîmes nos ablutions à la petite fontaine qui chantonnait dans un coin.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "mausolee",
+   "cast": [
+    "fqih",
+    "mohammed",
+    "kid2"
+   ],
+   "props": [
+    "fontaine"
+   ],
+   "visual": "Muezzin call; the fqih raises a finger; the boys wash at the small singing fountain in the corner.",
+   "cam": "reverse",
+   "action": "wash",
+   "sfx": [
+    "adhan far",
+    "fountain trickle",
+    "water splash hands"
+   ],
+   "ins": [
+    [
+     "ablutions_mains",
+     1.2
+    ]
+   ]
+  },
+  {
+   "id": "b015",
+   "scene": "s04_mausolee",
+   "text": "Petits et grands, alignés derrière notre maître, nous fîmes la prière. Deux fois par jour, tout l'été.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "W",
+   "room": "mausolee",
+   "cast": [
+    "fqih",
+    "mohammed",
+    "kid1",
+    "kid2",
+    "kid3"
+   ],
+   "props": [],
+   "visual": "Little and big lined up behind the master, bowing together in prayer.",
+   "cam": "master",
+   "back": [
+    "fqih"
+   ],
+   "action": "pray",
+   "sfx": [
+    "prayer rustle"
+   ],
+   "hold": [
+    1.2,
+    "calm"
+   ],
+   "tag": "À RETENIR : en été, le Msid s'installe dans un mausolée"
+  },
+  {
+   "id": "b016",
+   "scene": "s05_memoire",
+   "text": "La lumière douce, le visage plus bienveillant du fqih... Je me mis à aimer l'école.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "mausolee",
+   "cast": [
+    "fqih"
+   ],
+   "props": [],
+   "visual": "Soft light on the fqih: for once a kind face, a half smile.",
+   "cam": "ots",
+   "act": "slow blink, warm look at Mohammed"
+  },
+  {
+   "id": "b017",
+   "scene": "s05_memoire",
+   "text": "Ma mémoire fit des miracles. De dix lignes sur ma planchette, je passai à quinze.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "mausolee",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "planche"
+   ],
+   "visual": "Mohammed's slate: ten lines... then fifteen (insert: lines of ink multiplying).",
+   "cam": "master",
+   "ins": [
+    [
+     "planche_10_15",
+     1.6
+    ]
+   ],
+   "enum": [
+    [
+     "dix",
+     "dix"
+    ],
+    [
+     "quinze",
+     "quinze"
+    ]
+   ],
+   "sfx": [
+    "reed pen scratch",
+    "sparkle soft @quinze"
+   ]
+  },
+  {
+   "id": "b018",
+   "scene": "s05_memoire",
+   "text": "Un vendredi, mon père, gonflé d'orgueil, raconta à ma mère ce que le fqih lui avait dit.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Friday evening: the father, swollen with pride, tells Zoubida.",
+   "cam": "master",
+   "act": "father's chest lifts, hands open"
+  },
+  {
+   "id": "b019",
+   "scene": "s05_memoire",
+   "text": "Si ton fils continue ainsi, il deviendra un savant. Un savant dont nous serons fiers.",
+   "speaker": "father",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "The father quoting the fqih, proud.",
+   "cam": "ots",
+   "act": "gaze to Zoubida, nod on 'savant'"
+  },
+  {
+   "id": "b020",
+   "scene": "s05_memoire",
+   "text": "Un savant ? Pour moi, un savant, c'était un homme obèse, une barbe autour d'une très large figure, et un turban monumental.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "turban"
+   ],
+   "visual": "The child's idea of a 'savant': an obese man with a beard around a huge face and a monumental turban, inflating like a balloon.",
+   "still": "p05_savant",
+   "move": "slow push-in on the turban, scale grows 1.05→1.12 comic",
+   "sfx": [
+    "comic inflate",
+    "boy gasp"
+   ]
+  },
+  {
+   "id": "b021",
+   "scene": "s05_memoire",
+   "text": "Je n'avais aucune envie de ressembler à cet homme-là.",
+   "speaker": "narrator",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed in the corner pulls a face: certainly not.",
+   "cam": "low",
+   "act": "shakes head slowly, lips pressed"
+  },
+  {
+   "id": "b022",
+   "scene": "s06_reves",
+   "text": "J'apprenais ma leçon parce que mes parents m'en aimaient davantage. Et pour éviter la baguette de cognassier.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "mausolee",
+   "cast": [
+    "mohammed",
+    "fqih"
+   ],
+   "props": [
+    "baguette"
+   ],
+   "visual": "Mohammed reciting; behind, the fqih's quince rod resting on his knee.",
+   "cam": "master",
+   "ins": [
+    [
+     "baguette_cognassier",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "recitation murmur"
+   ]
+  },
+  {
+   "id": "b023",
+   "scene": "s06_reves",
+   "text": "Je m'étais fait un programme. Le matin, j'apprenais mes versets avec ferveur. L'après-midi, je m'accordais deux bonnes heures de rêve, en faisant semblant de réciter.",
+   "speaker": "narrator",
+   "dur": 10.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "mausolee",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "planche"
+   ],
+   "visual": "His programme: morning — fervent recitation, sunlight; afternoon — same pose, eyes drifting to the window.",
+   "cam": "reverse",
+   "enum": [
+    [
+     "le matin : les versets",
+     "matin"
+    ],
+    [
+     "l'après-midi : deux heures de rêve",
+     "L'après-midi"
+    ]
+   ],
+   "ins": [
+    [
+     "soleil_matin",
+     1.0
+    ],
+    [
+     "soleil_apresmidi",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "recitation fervent",
+    "recitation sleepy"
+   ]
+  },
+  {
+   "id": "b024",
+   "scene": "s06_reves",
+   "text": "Mon esprit s'échappait de l'école. Parfois, je devenais l'homme que je voulais être plus tard.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "His mind leaves the school through the window: the white mausoleum shrinks below, the boy flies over the green roofs of Fès.",
+   "still": "p06_envol",
+   "move": "slow rise and drift right 10%, parallax roofs",
+   "sfx": [
+    "wind soft",
+    "dream shimmer"
+   ]
+  },
+  {
+   "id": "b025",
+   "scene": "s06_reves",
+   "text": "Simple et robuste, vêtu de laine grège, les yeux pleins de flamme, et le cœur débordant de tendresse.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "The man he wants to be: simple, sturdy, in raw wool, eyes full of flame, holding a small child's hand under a big sky.",
+   "still": "p07_homme",
+   "move": "slow push-in to the eyes, 8%",
+   "sfx": [
+    "dream shimmer",
+    "warm wind"
+   ]
+  },
+  {
+   "id": "b026",
+   "scene": "s06_reves",
+   "text": "La nuit, sous ma couverture, je continuais le même songe... jusqu'à ce que d'immenses îlots noirs viennent tout briser.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "couverture"
+   ],
+   "visual": "Night, under the blanket the same dream continues... huge black islands spread like ink and swallow it.",
+   "still": "p08_ilots_noirs",
+   "move": "ink stains grow over the image, slow zoom out",
+   "sfx": [
+    "ink bloom low",
+    "heartbeat soft"
+   ]
+  },
+  {
+   "id": "b027",
+   "scene": "s07_lundi",
+   "text": "Un lundi, mon père, contre toutes ses habitudes, vint déjeuner à la maison.",
+   "speaker": "narrator",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "Card UN LUNDI. Noon: against all habit, the father comes through the door at lunchtime; Mohammed looks up surprised.",
+   "cam": "master",
+   "action": "walk",
+   "sfx": [
+    "door_open",
+    "footsteps"
+   ],
+   "card": "UN LUNDI"
+  },
+  {
+   "id": "b028",
+   "scene": "s07_lundi",
+   "text": "Les djellabas de laine se vendent mal en été. Je vais fabriquer des haïks de coton. Été comme hiver, les femmes de Fès ne sortent qu'enveloppées dedans.",
+   "speaker": "father",
+   "dur": 10.8,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "djellaba",
+    "haik"
+   ],
+   "visual": "Low round table, lunch: the father explains his plan (insert: a bolt of white cotton haik).",
+   "cam": "master",
+   "ins": [
+    [
+     "haik_rouleau",
+     1.4
+    ]
+   ],
+   "act": "father talks with open hands; Zoubida listens chin on hand",
+   "sfx": [
+    "spoons",
+    "bread tear"
+   ]
+  },
+  {
+   "id": "b029",
+   "scene": "s07_lundi",
+   "text": "Et aujourd'hui, je vous emmène tous les deux au souk des bijoux.",
+   "speaker": "father",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "The father, a twinkle: 'today I take you both to the jewellery souk'.",
+   "cam": "ots",
+   "act": "look to Zoubida then wink at Mohammed"
+  },
+  {
+   "id": "b030",
+   "scene": "s07_lundi",
+   "text": "Zoubida, il y a longtemps que tu me demandes les bracelets soleil et lune. Il est temps que je te les offre.",
+   "speaker": "father",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Zoubida's breath stops, hand to her chest, as he says 'bracelets soleil et lune'.",
+   "cam": "reverse",
+   "act": "Zoubida freezes, then a slow smile",
+   "sfx": [
+    "soft shimmer @bracelets"
+   ]
+  },
+  {
+   "id": "b031",
+   "scene": "s07_lundi",
+   "text": "Soleil et lune : un bracelet d'or, et un bracelet d'argent.",
+   "speaker": "narrator",
+   "dur": 4.6,
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "bracelet",
+    "or"
+   ],
+   "visual": "Sun and moon: a gold bracelet like a sun, a silver one like a crescent moon, turning slowly on dark velvet.",
+   "still": "p09_soleil_lune",
+   "move": "slow rotation, light sweep left to right",
+   "enum": [
+    [
+     "or",
+     "or"
+    ],
+    [
+     "argent",
+     "argent"
+    ]
+   ],
+   "sfx": [
+    "bracelet_clink @or",
+    "bracelet_clink high @argent"
+   ]
+  },
+  {
+   "id": "b032",
+   "scene": "s07_lundi",
+   "text": "Mon ouvrier a perdu sa mère, à la campagne. Il est parti pour l'enterrement.",
+   "speaker": "father",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "The father explains his worker left for his mother's funeral.",
+   "cam": "master",
+   "act": "father lowers his eyes, softer voice"
+  },
+  {
+   "id": "b033",
+   "scene": "s07_lundi",
+   "text": "Elle est morte d'une maladie ?",
+   "speaker": "zoubida",
+   "dur": 2.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, curious.",
+   "cam": "ots"
+  },
+  {
+   "id": "b034",
+   "scene": "s07_lundi",
+   "text": "Surtout de vieillesse, je crois. Que Dieu la reçoive dans sa miséricorde.",
+   "speaker": "father",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "Father: mostly old age; a short prayer gesture.",
+   "cam": "ots",
+   "act": "open palms up briefly at 'miséricorde'"
+  },
+  {
+   "id": "b035",
+   "scene": "s07_lundi",
+   "text": "Mais... je ne peux pas manquer le Msid ! J'ai ma leçon à apprendre.",
+   "speaker": "mohammed",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "planche"
+   ],
+   "visual": "Mohammed, alarmed: the Msid! his lesson!",
+   "cam": "low",
+   "act": "sits up straight, eyes wide, hands up"
+  },
+  {
+   "id": "b036",
+   "scene": "s07_lundi",
+   "text": "Ne te tourmente pas. J'ai prévenu le fqih. Tu travailles bien, cette demi-journée sera ta récompense.",
+   "speaker": "father",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The father reassures him, hand on his head.",
+   "cam": "master",
+   "act": "father's hand rests on the boy's head",
+   "action": "pat"
+  },
+  {
+   "id": "b037",
+   "scene": "s07_lundi",
+   "text": "Mais peut-être que tu n'aimes pas les jolis bijoux ?",
+   "speaker": "father",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "The father teases: maybe you don't like pretty jewels?",
+   "cam": "ots",
+   "act": "eyebrows up, half smile, head tilt",
+   "tag": "À RETENIR : le haïk, grande étoffe blanche des femmes de Fès"
+  },
+  {
+   "id": "b038",
+   "scene": "s08_fleurs",
+   "text": "Oh si ! Les bijoux, c'est beau... c'est beau comme...",
+   "speaker": "mohammed",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed searching for the word, eyes up.",
+   "cam": "low",
+   "act": "eyes up-left, mouth half open"
+  },
+  {
+   "id": "b039",
+   "scene": "s08_fleurs",
+   "text": "Beau comme quoi ?",
+   "speaker": "father",
+   "dur": 1.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "Father, amused, leaning in.",
+   "cam": "ots",
+   "act": "leans forward"
+  },
+  {
+   "id": "b040",
+   "scene": "s08_fleurs",
+   "text": "Je baissai les yeux.",
+   "speaker": "narrator",
+   "dur": 1.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "He lowers his eyes.",
+   "cam": "low",
+   "act": "look down, hands fidget"
+  },
+  {
+   "id": "b041",
+   "scene": "s08_fleurs",
+   "text": "Les bijoux, c'est beau comme les fleurs.",
+   "speaker": "mohammed",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "fleur"
+   ],
+   "visual": "'Les bijoux, c'est beau comme les fleurs' — said seriously, almost a whisper.",
+   "cam": "low",
+   "peak": true,
+   "act": "eyes up on 'fleurs'"
+  },
+  {
+   "id": "b042",
+   "scene": "s08_fleurs",
+   "text": "Mon père et ma mère éclatèrent de rire.",
+   "speaker": "narrator",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Father and mother burst out laughing; the boy stays serious between them.",
+   "cam": "master",
+   "action": "laugh",
+   "sfx": [
+    "laughter two"
+   ],
+   "act": "parents rock back, Mohammed still"
+  },
+  {
+   "id": "b043",
+   "scene": "s08_fleurs",
+   "text": "Je trouvai leur réaction déplacée. Un doute se glissa en moi sur la qualité de leur intelligence.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed looks at them sideways, offended: a doubt about their intelligence.",
+   "cam": "ots",
+   "act": "slow side-eye left then right",
+   "hold": [
+    0.8,
+    "comic beat"
+   ]
+  },
+  {
+   "id": "b044",
+   "scene": "s09_escalier",
+   "text": "Après le déjeuner, j'allai m'asseoir dans l'escalier. Accroupi sur une marche, les mains sur les genoux, je réfléchis profondément.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "After lunch: Mohammed squats on a stair step, hands on his knees, thinking hard.",
+   "cam": "low",
+   "act": "still; breathing idle; one slow blink",
+   "sfx": [
+    "house afternoon quiet"
+   ],
+   "music": "escalier"
+  },
+  {
+   "id": "b045",
+   "scene": "s09_escalier",
+   "text": "Ma comparaison exprimait une idée essentielle. Elle méritait le silence. Pas le rire.",
+   "speaker": "narrator",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "His face, serious as a judge.",
+   "cam": "ots"
+  },
+  {
+   "id": "b046",
+   "scene": "s09_escalier",
+   "text": "Je connaissais quelques fleurs. Les soucis et les coquelicots, sur les tombes au printemps. Les marguerites dodues, qui offrent au soleil leur cœur d'or. Les liserons, sur les collines de Bab Guissa.",
+   "speaker": "narrator",
+   "dur": 12.7,
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "fleur",
+    "tombe",
+    "or"
+   ],
+   "visual": "Flower montage, one flower per word: marigolds and poppies on spring graves / plump daisies opening a golden heart to the sun / bindweed on the Bab Guissa hills.",
+   "still": "p10_fleurs_champs",
+   "move": "each flower slides in with a slow push, cross-dissolve on the word",
+   "enum": [
+    [
+     "les soucis et les coquelicots",
+     "soucis"
+    ],
+    [
+     "les marguerites",
+     "marguerites"
+    ],
+    [
+     "les liserons",
+     "liserons"
+    ]
+   ],
+   "sfx": [
+    "breeze",
+    "bee far"
+   ]
+  },
+  {
+   "id": "b047",
+   "scene": "s09_escalier",
+   "text": "Et sur notre terrasse, dans des morceaux de poterie : du géranium, des œillets, et des roses d'Ispahan.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "terrasse",
+    "poterie"
+   ],
+   "visual": "On the family terrace in broken pottery: geranium, carnations, roses of Ispahan — each lit in turn.",
+   "still": "p11_fleurs_terrasse",
+   "move": "slow pan right across three pots, light blooms on each word",
+   "enum": [
+    [
+     "le géranium",
+     "géranium"
+    ],
+    [
+     "les œillets",
+     "œillets"
+    ],
+    [
+     "les roses d'Ispahan",
+     "roses"
+    ]
+   ],
+   "sfx": [
+    "breeze",
+    "pigeons far"
+   ]
+  },
+  {
+   "id": "b048",
+   "scene": "s09_escalier",
+   "text": "Les bijoux de fête, eux, avaient été forgés par des génies, dans des palais souterrains. Ils gardaient encore la couleur des flammes où leur or avait coulé.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "or"
+   ],
+   "visual": "Underground palaces: genies forge jewels in rivers of molten gold; the jewels keep the colour of the flames.",
+   "still": "p12_genies",
+   "move": "slow descent into the forge, embers drift up",
+   "sfx": [
+    "forge rumble",
+    "anvil far",
+    "dream shimmer"
+   ]
+  },
+  {
+   "id": "b049",
+   "scene": "s09_escalier",
+   "text": "Ils naissaient de l'amour, pour des princesses de légende. Et sous les pas de ces princesses, naissaient d'autres bijoux, plus fragiles : les fleurs.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "fleur"
+   ],
+   "visual": "A legendary princess walks; under each step a flower blooms — fragile jewels.",
+   "still": "p13_princesse",
+   "move": "slow track following her steps, flowers appear one by one",
+   "sfx": [
+    "dream shimmer",
+    "soft chime per step"
+   ]
+  },
+  {
+   "id": "b050",
+   "scene": "s09_escalier",
+   "text": "Mais à six ans, je n'avais pas les mots pour dire tout cela.",
+   "speaker": "narrator",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Back on the stair: the boy, small, wordless.",
+   "cam": "low",
+   "act": "lips move without sound, then close"
+  },
+  {
+   "id": "b051",
+   "scene": "s09_escalier",
+   "text": "Je pardonnais aux grandes personnes de me gronder, même de me frapper. Mais je leur en voulais à mort de ne pas essayer de me comprendre.",
+   "speaker": "narrator",
+   "dur": 10.4,
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Him alone on the step, the stairwell huge above him (high angle).",
+   "cam": "high",
+   "act": "hugs knees tighter"
+  },
+  {
+   "id": "b052",
+   "scene": "s09_escalier",
+   "text": "Pour ma mère, j'étais parfait si je me lavais les pieds. Pour mon père, si je copiais ses gestes à la prière. Pour les voisins, si je ne faisais pas de bruit.",
+   "speaker": "narrator",
+   "dur": 12.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida",
+    "father",
+    "woman1"
+   ],
+   "props": [
+    "djellaba"
+   ],
+   "visual": "Three quick images, one per clause: mother with a basin of water / father at prayer with the boy copying / a neighbour finger on lips.",
+   "cam": "master",
+   "enum": [
+    [
+     "se laver les pieds",
+     "pieds"
+    ],
+    [
+     "copier ses gestes",
+     "prière"
+    ],
+    [
+     "pas de bruit",
+     "bruit"
+    ]
+   ],
+   "ins": [
+    [
+     "bassine_pieds",
+     1.0
+    ],
+    [
+     "priere_copie",
+     1.0
+    ],
+    [
+     "doigt_levres",
+     1.0
+    ]
+   ],
+   "sfx": [
+    "water splash @pieds",
+    "prayer rustle @prière",
+    "shh @bruit"
+   ]
+  },
+  {
+   "id": "b053",
+   "scene": "s09_escalier",
+   "text": "Alors, accroupi sur ma marche, je me répétais : les bijoux, c'est beau comme les fleurs.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Squatting on his step, he repeats it to himself, stubborn.",
+   "cam": "ots",
+   "act": "small nod on each word",
+   "peak": true,
+   "figurative": [
+    "fleur"
+   ]
+  },
+  {
+   "id": "b054",
+   "scene": "s10_roi",
+   "text": "Que fais-tu dans l'escalier ?",
+   "speaker": "zoubida",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida leans over the gallery rail above, calling down.",
+   "cam": "high",
+   "act": "Zoubida looks down; he looks up"
+  },
+  {
+   "id": "b055",
+   "scene": "s10_roi",
+   "text": "Je joue.",
+   "speaker": "mohammed",
+   "dur": 1.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Je joue.'",
+   "cam": "low",
+   "act": "doesn't move"
+  },
+  {
+   "id": "b056",
+   "scene": "s10_roi",
+   "text": "À quoi tu joues ?",
+   "speaker": "zoubida",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, curious, hands on hips.",
+   "cam": "ots"
+  },
+  {
+   "id": "b057",
+   "scene": "s10_roi",
+   "text": "Au roi.",
+   "speaker": "mohammed",
+   "dur": 1.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Au roi.' — chin up, dignified.",
+   "cam": "low",
+   "act": "chin lifts"
+  },
+  {
+   "id": "b058",
+   "scene": "s10_roi",
+   "text": "Je me demande ce que peut faire un roi dans l'escalier, accroupi sur une marche !",
+   "speaker": "zoubida",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida laughs, mocking but tender.",
+   "cam": "high",
+   "act": "Zoubida hand on cheek, laughing"
+  },
+  {
+   "id": "b059",
+   "scene": "s10_roi",
+   "text": "Les voisines se mirent à rire.",
+   "speaker": "narrator",
+   "dur": 2.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "woman1",
+    "woman2",
+    "rahma"
+   ],
+   "props": [],
+   "visual": "Around the gallery the neighbours laugh.",
+   "cam": "master",
+   "action": "laugh",
+   "sfx": [
+    "women laughter"
+   ]
+  },
+  {
+   "id": "b060",
+   "scene": "s10_roi",
+   "text": "Lalla Zoubida, ton fils ira loin. Il se prend déjà pour un roi !",
+   "speaker": "rahma",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "rahma"
+   ],
+   "props": [],
+   "visual": "Rahma, a sweet-sour smile.",
+   "cam": "ots",
+   "act": "head tilt, sugary"
+  },
+  {
+   "id": "b061",
+   "scene": "s10_roi",
+   "text": "Que pouvait comprendre la femme d'un fabricant de charrues aux princes et aux rois ?",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "escalier",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed's withering look up at Rahma.",
+   "cam": "low",
+   "act": "narrow eyes"
+  },
+  {
+   "id": "b062",
+   "scene": "s10_roi",
+   "text": "Ce soir, ma mère aurait aux poignets les bracelets soleil et lune. Et Rahma serait verte de jalousie. Déjà, dans ma tête, je l'entendais se plaindre pendant des jours :",
+   "speaker": "narrator",
+   "dur": 11.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida",
+    "rahma"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Imagined (dream tint): his mother's wrists shining with the bracelets; Rahma green with jealousy behind a pillar.",
+   "cam": "master",
+   "light": "dream",
+   "act": "Zoubida lifts her wrists slowly; Rahma peeks, stiff",
+   "sfx": [
+    "bracelet_clink",
+    "comic sting soft"
+   ]
+  },
+  {
+   "id": "b063",
+   "scene": "s10_roi",
+   "text": "Je n'ai pas de chance. Mon mari peut à peine m'offrir une corde pour tirer l'eau du puits !",
+   "speaker": "rahma",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "rahma"
+   ],
+   "props": [
+    "corde",
+    "puits"
+   ],
+   "visual": "Imagined (dream tint): Rahma complaining by the well, holding up a pitiful frayed rope.",
+   "cam": "reverse",
+   "light": "dream",
+   "act": "whiny head shakes",
+   "sfx": [
+    "rope creak",
+    "well echo"
+   ]
+  },
+  {
+   "id": "b064",
+   "scene": "s10_roi",
+   "text": "Ma sœur, à quoi sert d'accuser le destin ? Dieu donne à chacun selon son cœur.",
+   "speaker": "zoubida",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Imagined (dream tint): Zoubida, pious and gracious, bracelets shining, answers her.",
+   "cam": "ots",
+   "light": "dream",
+   "act": "serene, slow nod",
+   "sfx": [
+    "soft shimmer"
+   ]
+  },
+  {
+   "id": "b065",
+   "scene": "s10_roi",
+   "text": "Il n'y a de Dieu que Dieu !",
+   "speaker": "femmes",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "woman1",
+    "woman2",
+    "fatma"
+   ],
+   "props": [],
+   "visual": "Imagined (dream tint): the chorus of neighbours, palms up to the sky.",
+   "cam": "master",
+   "light": "dream",
+   "action": "pray",
+   "sfx": [
+    "women murmur"
+   ]
+  },
+  {
+   "id": "b066",
+   "scene": "s11_depart",
+   "text": "Et justement, le muezzin appela à la prière.",
+   "speaker": "narrator",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "The muezzin calls; the patio light turns amber.",
+   "cam": "master",
+   "sfx": [
+    "adhan Asr far"
+   ],
+   "light": "afternoon"
+  },
+  {
+   "id": "b067",
+   "scene": "s11_depart",
+   "text": "C'est la prière de l'Aâsser, maman ?",
+   "speaker": "mohammed",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed, hopeful.",
+   "cam": "low"
+  },
+  {
+   "id": "b068",
+   "scene": "s11_depart",
+   "text": "Oui. Ton père ne va pas tarder. Change ta djellaba, celle-ci est pleine de taches.",
+   "speaker": "zoubida",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "djellaba"
+   ],
+   "visual": "Zoubida points at the stains on his djellaba.",
+   "cam": "master",
+   "action": "point",
+   "act": "Zoubida pinches the cloth"
+  },
+  {
+   "id": "b069",
+   "scene": "s11_depart",
+   "text": "Dans sa chambre, le petit balai de Fatma Bziouya s'arrêta net. Elle passa la tête par notre porte.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "fatma"
+   ],
+   "props": [
+    "balai",
+    "porte"
+   ],
+   "visual": "In her room, Fatma Bziouya's little broom stops dead; she pokes her head out of the door.",
+   "cam": "reverse",
+   "action": "peek",
+   "sfx": [
+    "broom sweep... stop"
+   ],
+   "label": "Fatma Bziouya, la voisine"
+  },
+  {
+   "id": "b070",
+   "scene": "s11_depart",
+   "text": "Je dois me préparer, moi aussi ?",
+   "speaker": "fatma",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "fatma"
+   ],
+   "props": [],
+   "visual": "Fatma, eager.",
+   "cam": "ots"
+  },
+  {
+   "id": "b071",
+   "scene": "s11_depart",
+   "text": "Ma mère fit oui de la tête. Un couvercle de coffre claqua.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "coffre"
+   ],
+   "visual": "Zoubida nods; a chest lid slams.",
+   "cam": "master",
+   "ins": [
+    [
+     "coffre_claque",
+     0.8
+    ]
+   ],
+   "sfx": [
+    "chest_lid_slam"
+   ]
+  },
+  {
+   "id": "b072",
+   "scene": "s11_depart",
+   "text": "Il n'y a personne ? Je peux passer ?",
+   "speaker": "father",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "At the door, the father calls before entering (custom: women may be unveiled).",
+   "cam": "reverse",
+   "act": "father waits outside, eyes down",
+   "sfx": [
+    "door_knock",
+    "father voice reverb"
+   ]
+  },
+  {
+   "id": "b073",
+   "scene": "s11_depart",
+   "text": "Passe, maalem Abdeslem.",
+   "speaker": "kanza",
+   "dur": 1.6,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "A woman's voice from upstairs answers: 'Passe'. He enters.",
+   "cam": "reverse",
+   "speaker_off": true,
+   "action": "walk",
+   "sfx": [
+    "female voice from above, reverb"
+   ],
+   "tag": "À RETENIR : l'Aâsser, la prière de l'après-midi"
+  },
+  {
+   "id": "b074",
+   "scene": "s12_souk",
+   "text": "Le souk des bijoutiers ressemblait à une fourmilière. On se bousculait dans tous les sens.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [],
+   "visual": "Card LE SOUK DES BIJOUX. The jewellers' souk like an anthill: a river of turbans and haiks under reed shade, sunbeams cutting the dust.",
+   "still": "p18_fourmiliere",
+   "move": "slow crane down into the crowd, 10%, dust motes",
+   "sfx": [
+    "souk crowd bed",
+    "jeweller hammers"
+   ],
+   "card": "LE SOUK DES BIJOUX",
+   "music": "souk"
+  },
+  {
+   "id": "b075",
+   "scene": "s12_souk",
+   "text": "Ma mère et Fatma Bziouya nous suivaient à petits pas, enveloppées dans leurs haïks blancs.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Mother and Fatma follow with small steps, wrapped in white haiks, behind father and son.",
+   "cam": "master",
+   "action": "walk",
+   "sfx": [
+    "souk crowd bed",
+    "small steps"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b076",
+   "scene": "s12_souk",
+   "text": "Les bijoux des boutiques semblaient coupés dans du fer-blanc. Ces bijoux-là ne ressemblaient pas aux fleurs. Des mains humaines les avaient faits sans amour.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Shop windows of tin-like jewels; the boy looks unimpressed (insert: flat stamped jewels).",
+   "cam": "reverse",
+   "ins": [
+    [
+     "bijoux_ferblanc",
+     1.2
+    ]
+   ],
+   "act": "frowns at the window",
+   "figurative": [
+    "fleur"
+   ]
+  },
+  {
+   "id": "b077",
+   "scene": "s12_souk",
+   "text": "Dans les coins, des hommes et des femmes retenaient leurs larmes.",
+   "speaker": "narrator",
+   "dur": 4.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "man1",
+    "woman2"
+   ],
+   "props": [
+    "bijou"
+   ],
+   "visual": "In a corner, a man and a woman hold back tears, clutching a family jewel.",
+   "cam": "reverse",
+   "act": "eyes down, thumbs rub the jewel",
+   "sfx": [
+    "muffled souk",
+    "sniff"
+   ]
+  },
+  {
+   "id": "b078",
+   "scene": "s12_souk",
+   "text": "Plus tard, j'ai compris. J'ai connu moi aussi cette humiliation : venir vendre ce qu'on a de plus précieux, pour la moitié de son prix.",
+   "speaker": "narrator",
+   "dur": 10.0,
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [],
+   "visual": "Older Mohammed (adult, raw wool) years later, selling his own treasure for half its price: the humiliation.",
+   "still": "p20_humiliation",
+   "move": "slow push-in on his hands letting go",
+   "sfx": [
+    "heartbeat soft",
+    "muffled bargaining"
+   ]
+  },
+  {
+   "id": "b079",
+   "scene": "s12_souk",
+   "text": "Un grand diable de dellal, aux yeux extatiques, criait un chiffre à perdre haleine.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "marchand"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "A big devil of a dellal, ecstatic eyes, shouting a figure at the top of his lungs.",
+   "cam": "low",
+   "action": "shout",
+   "label": "le dellal : le courtier des enchères",
+   "sfx": [
+    "dellal shout",
+    "crowd bed"
+   ],
+   "act": "arm up, head back"
+  },
+  {
+   "id": "b080",
+   "scene": "s12_souk",
+   "text": "Mon père prit de ses mains une paire de bracelets : l'un en or, l'autre en argent.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "father",
+    "marchand"
+   ],
+   "props": [
+    "bracelet",
+    "or"
+   ],
+   "visual": "The father takes the pair from his hands: one gold, one silver.",
+   "cam": "ots",
+   "ins": [
+    [
+     "bracelets_mains",
+     1.2
+    ]
+   ],
+   "sfx": [
+    "bracelet_clink"
+   ]
+  },
+  {
+   "id": "b081",
+   "scene": "s12_souk",
+   "text": "Ma mère les essaya quatre ou cinq fois. Fatma Bziouya les essaya à son tour. Un quart d'heure de discussion, pour chaque détail.",
+   "speaker": "narrator",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "zoubida",
+    "fatma"
+   ],
+   "props": [
+    "bracelet",
+    "haik"
+   ],
+   "visual": "Zoubida tries them on four, five times; Fatma tries them too; endless discussion.",
+   "cam": "master",
+   "enum": [
+    [
+     "quatre",
+     "quatre"
+    ],
+    [
+     "cinq fois",
+     "cinq"
+    ]
+   ],
+   "action": "try",
+   "sfx": [
+    "bracelet_clink x4",
+    "women murmur"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b082",
+   "scene": "s12_souk",
+   "text": "Mon père fit un signe. Le chiffre changea. Et le dellal plongea dans la foule. Sa main seule voyagea un moment, au-dessus des têtes, avec les bracelets.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "3d",
+   "size": "W",
+   "room": "souk_bijoux",
+   "cast": [
+    "father",
+    "marchand"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "The father signals; the dellal dives into the crowd; only his hand with the bracelets travels above the heads.",
+   "cam": "master",
+   "action": "dive",
+   "sfx": [
+    "dellal shout fading"
+   ],
+   "ins": [
+    [
+     "main_au_dessus",
+     1.6
+    ]
+   ],
+   "tag": "À RETENIR : le dellal, courtier des enchères"
+  },
+  {
+   "id": "b083",
+   "scene": "s13_attente",
+   "text": "Nous attendîmes longtemps. Mes jambes ne me portaient plus. Je bâillais à me décrocher les mâchoires.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed, exhausted, yawns to unhinge his jaw.",
+   "cam": "low",
+   "action": "yawn",
+   "act": "knees bend, body sags"
+  },
+  {
+   "id": "b084",
+   "scene": "s13_attente",
+   "text": "Le dellal revint. Le chiffre avait augmenté. Mon père fit signe. Et le dellal disparut de nouveau.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "father",
+    "marchand"
+   ],
+   "props": [],
+   "visual": "The dellal returns; higher figure; father signals; gone again.",
+   "cam": "master",
+   "act": "father's small nod",
+   "sfx": [
+    "dellal shout"
+   ]
+  },
+  {
+   "id": "b085",
+   "scene": "s13_attente",
+   "text": "Le souk battait son plein. Les courtiers criaient des chiffres, couraient, entraînaient les clients par la main.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "W",
+   "room": "souk_bijoux",
+   "cast": [
+    "marchand",
+    "man1",
+    "woman1"
+   ],
+   "props": [],
+   "visual": "The souk at full boil: brokers shouting figures, dragging clients by the hand.",
+   "cam": "master",
+   "action": "run",
+   "sfx": [
+    "souk peak",
+    "shouted numbers"
+   ]
+  },
+  {
+   "id": "b086",
+   "scene": "s13_attente",
+   "text": "Parfois, une vague d'hommes en délire nous écrasait contre le mur, puis repartait plus loin.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_mur",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "A wave of delirious men crushes them against the wall, then rolls on.",
+   "cam": "master",
+   "action": "crush",
+   "sfx": [
+    "crowd surge",
+    "grunt"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b087",
+   "scene": "s13_attente",
+   "text": "Mon père me souleva dans ses bras et me serra contre sa poitrine. Son front ruisselait de sueur.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The father lifts the boy in his arms, holds him to his chest; his forehead streams with sweat.",
+   "cam": "ots",
+   "action": "lift",
+   "act": "boy's cheek on father's shoulder",
+   "peak": true
+  },
+  {
+   "id": "b088",
+   "scene": "s13_attente",
+   "text": "Que tous les saints le punissent, ce mécréant ! Il nous prend pour des campagnards ? Nous ne nous laisserons pas rouler !",
+   "speaker": "zoubida",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Zoubida, through the haik, cursing the swindler.",
+   "cam": "low",
+   "act": "sharp head movements, hand slices the air",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b089",
+   "scene": "s13_attente",
+   "text": "Mais le mécréant restait invisible.",
+   "speaker": "narrator",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Everyone scans the crowd: the 'mécréant' stays invisible.",
+   "cam": "reverse",
+   "act": "all heads turn slowly",
+   "hold": [
+    0.8,
+    "beat"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b090",
+   "scene": "s14_bagarre",
+   "text": "Brusquement, mon père me posa à terre, et disparut dans la foule.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_mur",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Suddenly the father sets the boy down and vanishes into the crowd.",
+   "cam": "master",
+   "action": "run",
+   "sfx": [
+    "crowd swallow"
+   ],
+   "music": "bagarre"
+  },
+  {
+   "id": "b091",
+   "scene": "s14_bagarre",
+   "text": "Des cris éclatèrent à l'autre bout du souk, comme un orage. La foule ondula, comme une mer.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "painting",
+   "reason": "crowd",
+   "props": [],
+   "visual": "Shouts at the far end like a storm; the crowd undulates like a sea (heads as waves).",
+   "still": "p22_mer_foule",
+   "move": "slow sway of the whole image like a swell, 6%",
+   "sfx": [
+    "shouts far",
+    "crowd roar rising"
+   ]
+  },
+  {
+   "id": "b092",
+   "scene": "s14_bagarre",
+   "text": "Tout le monde se mit à courir.",
+   "speaker": "narrator",
+   "dur": 3.1,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Everyone starts running; babouches fly.",
+   "still": "p23_course",
+   "move": "fast diagonal drift with motion streaks",
+   "action": "run",
+   "sfx": [
+    "stampede",
+    "shouts"
+   ]
+  },
+  {
+   "id": "b093",
+   "scene": "s14_bagarre",
+   "text": "Allah ! Allah ! Mes pieds !",
+   "speaker": "zoubida",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida trampled: 'Mes pieds !'",
+   "cam": "low",
+   "act": "hops, clutches foot",
+   "sfx": [
+    "foot stomp"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b094",
+   "scene": "s14_bagarre",
+   "text": "Allah ! Mon haïk !",
+   "speaker": "fatma",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "fatma"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Fatma, her haik dragged: 'Mon haïk !'",
+   "cam": "ots",
+   "act": "clutches haik to chest",
+   "sfx": [
+    "cloth tug"
+   ]
+  },
+  {
+   "id": "b095",
+   "scene": "s14_bagarre",
+   "text": "Enfin, ils passèrent : mon père et le dellal, se tenant mutuellement par le collet.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_bijoux",
+   "cast": [
+    "father",
+    "marchand"
+   ],
+   "props": [],
+   "visual": "They pass: the father and the dellal holding each other by the collar.",
+   "cam": "master",
+   "action": "struggle",
+   "sfx": [
+    "grunts",
+    "cloth tear"
+   ]
+  },
+  {
+   "id": "b096",
+   "scene": "s14_bagarre",
+   "text": "Les yeux rouges. De l'écume au coin des lèvres. Mon père avait perdu son turban. Le dellal avait du sang sur la joue.",
+   "speaker": "narrator",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_bijoux",
+   "cast": [
+    "father",
+    "marchand"
+   ],
+   "props": [
+    "turban"
+   ],
+   "visual": "Red eyes, foam at the lips; father without his turban; blood on the dellal's cheek.",
+   "cam": "ots",
+   "peak": true,
+   "enum": [
+    [
+     "les yeux rouges",
+     "yeux"
+    ],
+    [
+     "l'écume",
+     "écume"
+    ],
+    [
+     "le turban perdu",
+     "turban"
+    ],
+    [
+     "le sang",
+     "sang"
+    ]
+   ],
+   "sfx": [
+    "heavy breathing"
+   ]
+  },
+  {
+   "id": "b097",
+   "scene": "s14_bagarre",
+   "text": "Et tout le souk leur faisait cortège.",
+   "speaker": "narrator",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "W",
+   "room": "souk_bijoux",
+   "cast": [
+    "man1",
+    "woman1",
+    "woman2"
+   ],
+   "props": [],
+   "visual": "The whole souk follows them like a procession (backs to camera, receding).",
+   "cam": "high",
+   "action": "walk",
+   "sfx": [
+    "crowd roar receding"
+   ]
+  },
+  {
+   "id": "b098",
+   "scene": "s15_fruits_secs",
+   "text": "Ma mère, la voisine et moi, nous nous mîmes à pleurer bruyamment.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "souk_mur",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mother, neighbour and boy burst out crying loudly.",
+   "cam": "master",
+   "action": "cry",
+   "sfx": [
+    "crying three"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b099",
+   "scene": "s15_fruits_secs",
+   "text": "Nous courûmes au hasard, jusqu'au souk des fruits secs. Aucune trace d'eux.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "W",
+   "room": "souk_mur",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "They run at random to the dried-fruit souk: pyramids of dates, figs, almonds (insert); no trace of the men.",
+   "cam": "master",
+   "action": "run",
+   "ins": [
+    [
+     "fruits_secs_pyramides",
+     1.4
+    ]
+   ],
+   "sfx": [
+    "souk calm bed",
+    "running steps"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b100",
+   "scene": "s15_fruits_secs",
+   "text": "Je m'attendais à des rues désertes, des babouches perdues dans la panique. Rien. On vendait, on achetait, on plaisantait. Des garnements chantaient même des refrains à la mode.",
+   "speaker": "narrator",
+   "dur": 11.2,
+   "mode": "3d",
+   "size": "W",
+   "room": "souk_mur",
+   "cast": [
+    "kid2",
+    "kid3",
+    "man1"
+   ],
+   "props": [
+    "babouche"
+   ],
+   "visual": "Life goes on: a man sells, urchins sing a fashionable tune, indifferent.",
+   "cam": "reverse",
+   "action": "walk",
+   "sfx": [
+    "kids singing far",
+    "market banter"
+   ]
+  },
+  {
+   "id": "b101",
+   "scene": "s15_fruits_secs",
+   "text": "Notre tristesse devenait étouffante. Nous nous sentions tout seuls.",
+   "speaker": "narrator",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The boy, very small in the crowd, holding his mother's haik.",
+   "cam": "high",
+   "act": "clings, looks around"
+  },
+  {
+   "id": "b102",
+   "scene": "s15_fruits_secs",
+   "text": "Il ne sert à rien de courir partout. Rentrons, pour attendre et pour pleurer.",
+   "speaker": "zoubida",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "souk_mur",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Zoubida decides: go home, wait and weep.",
+   "cam": "ots",
+   "act": "slow defeated nod",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b103",
+   "scene": "s16_noir",
+   "text": "À la maison, ma mère enleva son haïk, s'assit sur un matelas, la tête dans ses deux mains, et pleura en silence.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "haik",
+    "matelas"
+   ],
+   "visual": "Home: Zoubida takes off her haik, sits on a mattress, head in both hands, weeping silently.",
+   "cam": "master",
+   "action": "sit",
+   "sfx": [
+    "cloth drop",
+    "silent sob"
+   ],
+   "music": "noir"
+  },
+  {
+   "id": "b104",
+   "scene": "s16_noir",
+   "text": "Pour la première fois, sa douleur me bouleversait. Ce n'étaient pas ses grands cris habituels. Ses larmes coulaient sur son menton, et elle restait là, sans bouger.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Tears run down her chin; she doesn't move.",
+   "cam": "ots",
+   "peak": true,
+   "act": "only breathing; no head motion"
+  },
+  {
+   "id": "b105",
+   "scene": "s16_noir",
+   "text": "Je pleurai un moment, moi aussi. Puis je m'étendis sur le lit, les yeux au plafond, et j'attendis.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "lit"
+   ],
+   "visual": "He cries too, then lies down on the bed, eyes on the ceiling.",
+   "cam": "high",
+   "action": "lie",
+   "act": "eyes open, slow blinks"
+  },
+  {
+   "id": "b106",
+   "scene": "s16_noir",
+   "text": "Ma mère pleurait. Et moi, j'attendais. J'étais habitué à cet exercice.",
+   "speaker": "narrator",
+   "dur": 4.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Two-shot: she weeps; he waits.",
+   "cam": "master",
+   "act": "no gaze between them",
+   "light": "dusk"
+  },
+  {
+   "id": "b107",
+   "scene": "s16_noir",
+   "text": "Le soir tomba. Toutes les fenêtres de la maison s'allumèrent. Notre pièce restait obscure.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [],
+   "props": [
+    "fenetre"
+   ],
+   "visual": "Night: all the windows around the patio light up one by one; theirs stays dark (slow push to the dark window).",
+   "cam": "high",
+   "light": "night",
+   "sfx": [
+    "night far",
+    "door far"
+   ]
+  },
+  {
+   "id": "b108",
+   "scene": "s16_noir",
+   "text": "Dans le noir, des figures monstrueuses se formaient devant mes yeux, se transformaient, devenaient d'immenses étincelles vertes.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "In the dark, monstrous figures form, morph, become huge green sparks.",
+   "still": "p28_etincelles",
+   "move": "slow morph, green sparks drift",
+   "sfx": [
+    "low drone",
+    "spark crackle"
+   ]
+  },
+  {
+   "id": "b109",
+   "scene": "s17_retour",
+   "text": "Enfin, la voix de mon père troua les ténèbres. Ses pas résonnèrent dans l'escalier.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "M",
+   "room": "escalier",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "Finally the father's voice; his steps on the stairs.",
+   "cam": "low",
+   "action": "walk",
+   "sfx": [
+    "footsteps_stairs",
+    "father voice reverb"
+   ],
+   "light": "night"
+  },
+  {
+   "id": "b110",
+   "scene": "s17_retour",
+   "text": "La porte s'ouvrit. Sa silhouette se détacha, toute noire, sur le gris du mur.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "The door opens; his silhouette black on the grey wall.",
+   "cam": "reverse",
+   "sfx": [
+    "door_open slow"
+   ],
+   "back": []
+  },
+  {
+   "id": "b111",
+   "scene": "s17_retour",
+   "text": "Pourquoi n'avez-vous pas allumé la lampe ? Où sont les allumettes ?",
+   "speaker": "father",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "lampe",
+    "allumette"
+   ],
+   "visual": "He gropes in the dark for the matches.",
+   "cam": "master",
+   "action": "grope"
+  },
+  {
+   "id": "b112",
+   "scene": "s17_retour",
+   "text": "Sur l'étagère, contre la boîte à thé.",
+   "speaker": "zoubida",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "etagere",
+    "boite"
+   ],
+   "visual": "Zoubida, flat voice, doesn't look up.",
+   "cam": "ots",
+   "act": "head stays down"
+  },
+  {
+   "id": "b113",
+   "scene": "s17_retour",
+   "text": "Si Mohammed dort déjà ?",
+   "speaker": "father",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Father turns toward the bed.",
+   "cam": "master"
+  },
+  {
+   "id": "b114",
+   "scene": "s17_retour",
+   "text": "Non, papa. Je ne dors pas.",
+   "speaker": "mohammed",
+   "dur": 2.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Non, papa. Je ne dors pas.'",
+   "cam": "low"
+  },
+  {
+   "id": "b115",
+   "scene": "s17_retour",
+   "text": "Que faisais-tu dans le noir ?",
+   "speaker": "father",
+   "dur": 2.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "Father, puzzled, gentle.",
+   "cam": "ots"
+  },
+  {
+   "id": "b116",
+   "scene": "s17_retour",
+   "text": "J'attendais ton retour.",
+   "speaker": "mohammed",
+   "dur": 1.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'J'attendais ton retour.'",
+   "cam": "low",
+   "peak": true
+  },
+  {
+   "id": "b117",
+   "scene": "s17_retour",
+   "text": "La lampe s'alluma. Le visage de ma mère ruisselait encore de larmes.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "lampe"
+   ],
+   "visual": "The lamp catches; Zoubida's face streams with tears.",
+   "cam": "master",
+   "light": "lamp_on",
+   "sfx": [
+    "match_strike",
+    "lamp flame"
+   ]
+  },
+  {
+   "id": "b118",
+   "scene": "s17_retour",
+   "text": "Pourquoi tant de larmes ? Tout est rentré dans l'ordre. J'ai corrigé ce mécréant. Et voici les bracelets.",
+   "speaker": "father",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Father holds out the bracelets.",
+   "cam": "ots",
+   "action": "offer",
+   "sfx": [
+    "bracelet_clink"
+   ]
+  },
+  {
+   "id": "b119",
+   "scene": "s17_retour",
+   "text": "Je ne veux pas les voir, ces bijoux de mauvais augure. Avec eux, le malheur est entré dans cette maison.",
+   "speaker": "zoubida",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Zoubida refuses to look: ill-omened jewels.",
+   "cam": "ots",
+   "peak": true,
+   "act": "turns face away"
+  },
+  {
+   "id": "b120",
+   "scene": "s17_retour",
+   "text": "Ce sont les bracelets que tu désirais. Prends-les, et ne dis pas de paroles inconséquentes.",
+   "speaker": "father",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Father, firm.",
+   "cam": "ots",
+   "act": "hand stays out"
+  },
+  {
+   "id": "b121",
+   "scene": "s17_retour",
+   "text": "Ma mère prit les bijoux sans les regarder, ouvrit son coffre, et les jeta dedans.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "coffre",
+    "bracelet"
+   ],
+   "visual": "She takes them without looking, opens her chest, throws them in.",
+   "cam": "master",
+   "action": "throw",
+   "sfx": [
+    "chest open",
+    "bracelets drop in",
+    "lid slam"
+   ]
+  },
+  {
+   "id": "b122",
+   "scene": "s17_retour",
+   "text": "Tu verras. Je ne suis qu'une faible femme, mais mon cœur ne ment pas. Ces bracelets ne m'apportent aucune joie.",
+   "speaker": "zoubida",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "'Tu verras... mon cœur ne ment pas.'",
+   "cam": "low",
+   "act": "hand on heart"
+  },
+  {
+   "id": "b123",
+   "scene": "s18_cauchemar",
+   "text": "Cette nuit-là, je fis des cauchemars. Des monstres. Des yeux enflammés de haine qui nous traquaient, ma mère, mon père et moi.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Nightmare: monsters, eyes burning with hate hunting the three of them.",
+   "still": "p29_monstres",
+   "move": "slow push, eyes glow",
+   "sfx": [
+    "nightmare drone",
+    "growl"
+   ],
+   "music": "cauchemar"
+  },
+  {
+   "id": "b124",
+   "scene": "s18_cauchemar",
+   "text": "Des foules aux visages hideux nous poursuivaient pour nous voler nos richesses. Ils voulaient surtout ma Boîte à merveilles.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "boite"
+   ],
+   "visual": "Hideous crowds chasing them to steal their riches — above all the Boîte à merveilles.",
+   "still": "p30_foule_hideuse",
+   "move": "slow pan with the chase",
+   "sfx": [
+    "crowd distorted",
+    "heartbeat"
+   ]
+  },
+  {
+   "id": "b125",
+   "scene": "s18_cauchemar",
+   "text": "Alors mon père parut, sur un cheval noir. Ma boîte sous le bras. Il fendit la foule au galop.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "cheval",
+    "boite"
+   ],
+   "visual": "The father appears on a black horse, the box under his arm, splitting the crowd at a gallop.",
+   "still": "p31_cheval_noir",
+   "move": "slow push alongside the gallop",
+   "sfx": [
+    "horse gallop",
+    "crowd parting"
+   ]
+  },
+  {
+   "id": "b126",
+   "scene": "s18_cauchemar",
+   "text": "La longue crinière du cheval se déployait comme un étendard.",
+   "speaker": "narrator",
+   "dur": 4.2,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "cheval"
+   ],
+   "visual": "The horse's long mane unfurls like a banner.",
+   "still": "p32_criniere",
+   "move": "slow track along the mane",
+   "sfx": [
+    "wind flag"
+   ]
+  },
+  {
+   "id": "b127",
+   "scene": "s18_cauchemar",
+   "text": "Puis, une campagne déserte. Du sable, des cailloux, la lumière de l'été. Sur une colline, mon père nous attendait.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "A deserted countryside: sand, stones, summer light; on a hill the father waits.",
+   "still": "p33_colline",
+   "move": "slow push to the hill",
+   "sfx": [
+    "desert wind",
+    "silence"
+   ]
+  },
+  {
+   "id": "b128",
+   "scene": "s18_cauchemar",
+   "text": "Je l'ai sauvée. Elle est à toi. Ouvre-la.",
+   "speaker": "father",
+   "dur": 3.5,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "boite"
+   ],
+   "visual": "The father on the hill holds out the box.",
+   "still": "p34_offre",
+   "move": "slow push-in on the box",
+   "sfx": [
+    "wind"
+   ]
+  },
+  {
+   "id": "b129",
+   "scene": "s18_cauchemar",
+   "text": "Je l'ouvris avec précaution. Sur un lit de fleurs fraîchement coupées, des œillets et des roses, reposaient des bijoux d'or et de pierres précieuses.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "boite",
+    "fleur",
+    "or"
+   ],
+   "visual": "The box opens: on fresh-cut carnations and roses lie jewels of gold and precious stones.",
+   "still": "p35_tresor",
+   "move": "slow crane over the open box, light blooms",
+   "sfx": [
+    "box open",
+    "dream shimmer",
+    "jewels chime"
+   ]
+  },
+  {
+   "id": "b130",
+   "scene": "s18_cauchemar",
+   "text": "Regardez mon trésor !",
+   "speaker": "mohammed",
+   "dur": 1.9,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "boite"
+   ],
+   "visual": "The boy lifts his treasure to show them.",
+   "still": "p36_mon_tresor",
+   "move": "slow push",
+   "sfx": [
+    "dream shimmer"
+   ]
+  },
+  {
+   "id": "b131",
+   "scene": "s18_cauchemar",
+   "text": "Les beaux bijoux portent toujours malheur à ceux qui les possèdent.",
+   "speaker": "zoubida",
+   "dur": 4.6,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Zoubida in the dream, face cold: beautiful jewels bring misfortune.",
+   "still": "p37_mauvais_augure",
+   "move": "slow zoom on her eyes, colours drain",
+   "sfx": [
+    "cold wind",
+    "chime detuned"
+   ]
+  },
+  {
+   "id": "b132",
+   "scene": "s18_cauchemar",
+   "text": "Un grand froid m'enveloppa. Je refermai la boîte, et je me mis à sangloter.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "boite"
+   ],
+   "visual": "A great cold: he closes the box and sobs; frost creeps over the image.",
+   "still": "p38_froid",
+   "move": "frost grows, slow pull back",
+   "sfx": [
+    "ice crackle",
+    "child sob"
+   ]
+  },
+  {
+   "id": "b133",
+   "scene": "s19_matin",
+   "text": "Sidi Mohammed, pourquoi tu pleures ? Réveille-toi ! Réveille-toi !",
+   "speaker": "father",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Daylight: the father shakes him awake.",
+   "cam": "ots",
+   "action": "shake",
+   "fade": true
+  },
+  {
+   "id": "b134",
+   "scene": "s19_matin",
+   "text": "Il faisait jour. Les seaux cliquetaient dans le patio. Mon père me tâtait le front.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "seau"
+   ],
+   "visual": "Buckets clink in the patio; the father feels his forehead.",
+   "cam": "master",
+   "action": "touch",
+   "sfx": [
+    "buckets clink far"
+   ]
+  },
+  {
+   "id": "b135",
+   "scene": "s19_matin",
+   "text": "Non. Il n'a pas de fièvre. Un simple cauchemar.",
+   "speaker": "father",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "Father: no fever.",
+   "cam": "ots"
+  },
+  {
+   "id": "b136",
+   "scene": "s19_matin",
+   "text": "Je te dis qu'il est malade ! Avec l'agitation du souk, où tu as cru bon de l'entraîner !",
+   "speaker": "zoubida",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, up in arms.",
+   "cam": "ots",
+   "act": "hands chop the air"
+  },
+  {
+   "id": "b137",
+   "scene": "s19_matin",
+   "text": "Cet enfant n'a rien. Un peu de fatigue. Qu'il n'aille pas à l'école.",
+   "speaker": "father",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "Father decides: no school today.",
+   "cam": "low",
+   "act": "calm, one raised hand"
+  },
+  {
+   "id": "b138",
+   "scene": "s19_matin",
+   "text": "Mon Dieu, punis-moi, mais ne me frappe pas dans mon enfant ! Homme, je ne veux pas garder ces bracelets !",
+   "speaker": "zoubida",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Zoubida implores God, then refuses the bracelets.",
+   "cam": "low",
+   "peak": true,
+   "act": "palms up to the ceiling"
+  },
+  {
+   "id": "b139",
+   "scene": "s19_matin",
+   "text": "Je m'en vais. Si je reste, je vais perdre patience.",
+   "speaker": "father",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "Father heads for the door.",
+   "cam": "master",
+   "action": "walk"
+  },
+  {
+   "id": "b140",
+   "scene": "s19_matin",
+   "text": "Va. Tu es un homme. C'est naturel que tu aies un cœur de pierre.",
+   "speaker": "zoubida",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida's bitter line after him.",
+   "cam": "ots",
+   "act": "chin up, eyes wet"
+  },
+  {
+   "id": "b141",
+   "scene": "s19_matin",
+   "text": "Ma mère ne devait pas dire cela. Un jour, je serai un homme. Et je n'aurai pas un cœur de pierre.",
+   "speaker": "narrator",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Father crosses the patio toward the street door (cutaway from the bedroom).",
+   "cam": "low",
+   "act": "jaw sets, eyes on the door"
+  },
+  {
+   "id": "b142",
+   "scene": "s19_matin",
+   "text": "Mon père gardait son sang-froid. Ma mère, elle, voulait le voir crier, s'agiter, tout exagérer, comme elle.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Two temperaments: the father calm at the door, the mother all gesture.",
+   "cam": "master",
+   "act": "contrast: father still, Zoubida gesticulates"
+  },
+  {
+   "id": "b143",
+   "scene": "s20_aicha",
+   "text": "Je dus quand même garder le lit. Après le déjeuner, Lalla Aïcha vint nous rendre visite.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed",
+    "aicha"
+   ],
+   "props": [
+    "lit"
+   ],
+   "visual": "Mohammed in bed; Lalla Aïcha arrives after lunch.",
+   "cam": "master",
+   "action": "enter",
+   "sfx": [
+    "door_open",
+    "greetings"
+   ]
+  },
+  {
+   "id": "b144",
+   "scene": "s20_aicha",
+   "text": "Ma mère lui raconta tout : le souk, les bracelets, le drame. Elle pleura, soupira, invoqua les saints, et prophétisa des catastrophes.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "aicha"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "Zoubida tells everything: souk, bracelets, drama — sighs, invokes saints.",
+   "cam": "high",
+   "enum": [
+    [
+     "le souk",
+     "souk"
+    ],
+    [
+     "les bracelets",
+     "bracelets"
+    ],
+    [
+     "le drame",
+     "drame"
+    ]
+   ],
+   "act": "Zoubida counts on her fingers"
+  },
+  {
+   "id": "b145",
+   "scene": "s20_aicha",
+   "text": "Lalla Aïcha, par politesse, approuvait, soupirait, se donnait de petites tapes sur la joue.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "Aïcha, politely approving, little taps on her cheek.",
+   "cam": "ots",
+   "act": "taps cheek x3"
+  },
+  {
+   "id": "b146",
+   "scene": "s20_aicha",
+   "text": "Mais toi ? Tu ne me dis rien. Comment va ton mari ?",
+   "speaker": "zoubida",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Et ton mari ?'",
+   "cam": "ots"
+  },
+  {
+   "id": "b147",
+   "scene": "s20_aicha",
+   "text": "Lalla Aïcha enfouit son visage dans ses mains, et éclata en sanglots.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "Aïcha buries her face in her hands and bursts into sobs.",
+   "cam": "low",
+   "peak": true,
+   "action": "cry"
+  },
+  {
+   "id": "b148",
+   "scene": "s20_aicha",
+   "text": "Zoubida, je n'ai plus personne au monde. Tu es ma seule famille.",
+   "speaker": "aicha",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "'Tu es ma seule famille.'",
+   "cam": "ots",
+   "act": "takes Zoubida's hand"
+  },
+  {
+   "id": "b149",
+   "scene": "s20_aicha",
+   "text": "Le fils du péché, pour qui j'ai tout donné, m'a abandonnée. Il a pris une seconde femme : la fille d'Abderrahman, le coiffeur.",
+   "speaker": "aicha",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "Aïcha reveals: Sidi Larbi took a second wife, the barber's daughter.",
+   "cam": "ots",
+   "act": "bitter laugh in tears"
+  },
+  {
+   "id": "b150",
+   "scene": "s20_aicha",
+   "text": "Allah ! Allah ! Ô ma sœur, ma pauvre sœur ! Quelle douleur !",
+   "speaker": "zoubida",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida, shocked: 'Allah ! Allah !'",
+   "cam": "low",
+   "act": "hands to cheeks"
+  },
+  {
+   "id": "b151",
+   "scene": "s20_aicha",
+   "text": "Et les deux femmes, dans les bras l'une de l'autre, se remirent à sangloter.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "aicha",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The two women sob in each other's arms; in the background the boy watches from his bed.",
+   "cam": "master",
+   "action": "hug",
+   "tag": "À RETENIR : Sidi Larbi, le mari de Lalla Aïcha, prend une seconde femme"
+  },
+  {
+   "id": "b152",
+   "scene": "s21_fievre",
+   "text": "La chaleur, le lit, ces scènes dont je sentais tout le tragique sans le comprendre... me rendirent vraiment malade.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "lit"
+   ],
+   "visual": "Heat, the bed, the tragic scenes: he becomes truly ill (sweat, slow zoom).",
+   "cam": "high",
+   "act": "eyes heavy",
+   "music": "fievre"
+  },
+  {
+   "id": "b153",
+   "scene": "s21_fievre",
+   "text": "Ma tête cognait. La fièvre me secoua tout entier.",
+   "speaker": "narrator",
+   "dur": 3.9,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Fever: the room tilts, pulses, colours swim.",
+   "still": "p39_fievre",
+   "move": "slow warp pulse",
+   "sfx": [
+    "heartbeat",
+    "tinnitus"
+   ]
+  },
+  {
+   "id": "b154",
+   "scene": "s21_fievre",
+   "text": "Mon fils va mourir ! Ô mes sœurs, mon fils ! Sauvez mon fils !",
+   "speaker": "zoubida",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida panics: 'Mon fils va mourir !'",
+   "cam": "ots",
+   "peak": true,
+   "act": "clutches head"
+  },
+  {
+   "id": "b155",
+   "scene": "s21_fievre",
+   "text": "Les voisines envahirent la chambre. Mes paupières se fermèrent. Dans mon crâne, je n'entendais plus que les battements d'un gigantesque tambour.",
+   "speaker": "narrator",
+   "dur": 8.5,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Neighbours flood in, blurring; his eyelids close; a gigantic drum beats.",
+   "still": "p40_tambour",
+   "move": "image blurs and darkens with each drum beat",
+   "sfx": [
+    "giant drum heartbeat"
+   ]
+  },
+  {
+   "id": "b156",
+   "scene": "s22_fiche",
+   "text": "Fiche de révision. Chapitre huit : les bracelets soleil et lune, en quatre temps.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Fiche: Chapitre VIII card, four squares appear one per item.",
+   "room": "fiche",
+   "music": "fiche"
+  },
+  {
+   "id": "b157",
+   "scene": "s22_fiche",
+   "text": "L'été au mausolée. L'escalier et les fleurs. La bagarre du souk. Et le cauchemar.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Four icons, one per word: mausolée / escalier & fleurs / bagarre / cauchemar.",
+   "room": "fiche",
+   "enum": [
+    [
+     "l'été au mausolée",
+     "mausolée"
+    ],
+    [
+     "l'escalier et les fleurs",
+     "escalier"
+    ],
+    [
+     "la bagarre du souk",
+     "bagarre"
+    ],
+    [
+     "le cauchemar",
+     "cauchemar"
+    ]
+   ]
+  },
+  {
+   "id": "b158",
+   "scene": "s22_fiche",
+   "text": "Le détail à retenir : les bracelets que la mère désirait deviennent pour elle des bijoux de mauvais augure. Le bonheur se transforme en malheur.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Detail: bracelets → mauvais augure (arrow joy → misfortune).",
+   "room": "fiche"
+  },
+  {
+   "id": "b159",
+   "scene": "s22_fiche",
+   "text": "Et Sidi Larbi, annoncé chez le barbier au chapitre sept, prend bien une seconde femme.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Callback ch.7: Sidi Larbi's second wife.",
+   "room": "fiche"
+  },
+  {
+   "id": "b160",
+   "scene": "s22_fiche",
+   "text": "Thèmes : l'imaginaire de l'enfant, la solitude, le regard des adultes, la condition de la femme. Au chapitre neuf : l'enfant malade, et une maison qui ne dort plus.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Themes list + teaser for chapter 9.",
+   "room": "fiche",
+   "enum": [
+    [
+     "l'imaginaire",
+     "imaginaire"
+    ],
+    [
+     "la solitude",
+     "solitude"
+    ],
+    [
+     "le regard des adultes",
+     "regard"
+    ],
+    [
+     "la condition de la femme",
+     "condition"
+    ]
+   ]
+  },
+  {
+   "id": "b161",
+   "scene": "s23_endcard",
+   "mode": "title",
+   "text": "fin",
+   "dur": 4.0,
+   "visual": "end card: next episode (chapter 9) + subscribe; no TikTok/WhatsApp"
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+name: Scene stills (one runner per scene)
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: Episode directory (epNN)
+        required: true
+        default: ep08
+      scenes:
+        description: Comma-separated scene IDs (empty means all)
+        default: ''
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      scenes: ${{ steps.matrix.outputs.scenes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: episodes
+      - id: matrix
+        env:
+          EPISODE: ${{ inputs.episode }}
+          SCENES: ${{ inputs.scenes }}
+        run: |
+          node --input-type=module <<'JS' >> "$GITHUB_OUTPUT"
+          import fs from 'node:fs';
+          if (!/^ep\d{2}$/.test(process.env.EPISODE)) throw Error('Invalid episode');
+          const all = JSON.parse(fs.readFileSync(`episodes/${process.env.EPISODE}/timing.json`)).map(s => s.id);
+          const have = new Set(fs.readdirSync(`episodes/${process.env.EPISODE}/scenes`).map(f => f.replace(/\.js$/, '')));
+          const ids = process.env.SCENES ? process.env.SCENES.split(',') : all.filter(id => have.has(id));
+          if (!ids.length || ids.some(id => !all.includes(id))) throw Error('Unknown scenes');
+          console.log('scenes=' + JSON.stringify(ids));
+          JS
+  stills:
+    needs: discover
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 40
+      matrix:
+        scene: ${{ fromJSON(needs.discover.outputs.scenes) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund --silent
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+      - run: pip install -q pillow
+      - name: Stills
+        env:
+          CHROME: ${{ steps.chrome.outputs.chrome-path }}
+          CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
+        run: |
+          node tools/scene-stills.mjs "${{ inputs.episode }}" "${{ matrix.scene }}" out/st 2>&1 | grep -v '^\s*$' | tail -40
+          python3 tools/scene-sheet.py "out/st/${{ matrix.scene }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stills-${{ matrix.scene }}
+          path: |
+            out/st/*-sheet.jpg
+            out/st/${{ matrix.scene }}/*.jpg
+          if-no-files-found: warn
