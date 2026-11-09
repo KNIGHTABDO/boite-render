@@ -77,7 +77,7 @@ const mu = staged('souk_mur', {
 // lifted to the arm), his face over the father's shoulder toward the lens; the father 3/4 away, chest heaving
 const CARRY = .8;   // hip height (cheek at the shoulder, not stacked on his head) of the boy on the forearm (m), father 1.76 m
 const ca = staged('souk_mur', {
-  father: { at: [720, 860], face: [1080, 560], seed: 5, look: [1000, 520, 1.6], lookMax: .5, talk: 0 },   // 3/4 away: the boy (carried low, at the shoulder) faces the lens over it
+  father: { at: [720, 860], face: [1010, 560], seed: 5, look: [1010, 560, 1.6], lookMax: .5, talk: 0 },   // 3/4 away: the boy (carried low, at the shoulder) faces the lens over it
   mohammed: { at: [720, 860], face: 'father', pose: 'step', o: { seat: .45, floor: .08, fz: .22, lean: .32 }, hands: false, seed: 3, lids: .55, talk: 0 },
   zoubida: { at: MUR.zoubida, face: 'father', costume: 'haik', seed: 7, look: 'mohammed', lookMax: .7 },
 }, {
