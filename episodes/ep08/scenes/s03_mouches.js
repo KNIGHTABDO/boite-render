@@ -14,7 +14,8 @@ const beams = [980, 930, 2.9];
 // three-quarter to the lens, looks up by tipping the head (not the whole trunk), a hand at the brow; the talisman goes
 // UP on the lintel; b009 a real dish cloth whipped toward the right window (flies out)
 const ch = staged('chambre_jour', {
-  zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: .7, walk: { to: [520, 905], t0: B(3)[0] - 1.2, t1: B(3)[0] + .9 },
+  zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: .7, lids: t => IN(1, t) || IN(4, t) ? .5 : 0,   // Argon r5: squint up at the beams
+    walk: { to: [520, 905], t0: B(3)[0] - 1.2, t1: B(3)[0] + .9 },
     look: t => IN(1, t) || IN(4, t) ? beams : IN(3, t) && t < B(3)[0] + .5 * (B(3)[1] - B(3)[0]) ? [330, 880, 2.15] : IN(5, t) ? [1450, 760, 1.5] : null },
 }, {
   act(lt, t, S, st, S3) {
@@ -27,35 +28,61 @@ const ch = staged('chambre_jour', {
     if (upLook > 0) {   // look up: small trunk extension, the rest in neck/head; a slow searching sway of the head
       zo.B.chest.rotation.x -= .04 * upLook; zo.B.neck.rotation.x -= .06 * upLook;   // stills8: -.22 neck + look bent her backward → gentle
       zo.B.head.rotation.y += .12 * upLook * Math.sin(t * .9); zo.B.spine.updateWorldMatrix(false, true);
-      PO.reach(zo, 'L', front(zo, 'head', .13 * k, -.03 * k, .07 * k).lerp(front(zo, 'root', .12 * k, -.2 * k, 0), 1 - upLook), { grip: .0, pole: [.45, -.1, -.1] });   // palm flat at the brow, shading
+      PO.reach(zo, 'L', front(zo, 'head', .12 * k, -.03 * k, .2 * k).lerp(front(zo, 'root', .12 * k, -.2 * k, 0), 1 - upLook), { grip: .0, pole: [.45, -.1, -.1] });   // palm flat at the brow, shading
       PO.palmTo(zo, 'L', upLook, V(0, -1, 0)); PO.fingers(zo, 'L', .1, { spread: .2 });
     }
-    if (IN(3, t)) {   // talisman: right hand up to the lintel (above head, slightly forward), then the pinch of powder to the lips
-      const D = B(3)[1] - B(3)[0], up = sm(B(3)[0] + .9, B(3)[0] + 1.5, t) * (1 - sm(B(3)[0] + .5 * D, B(3)[0] + .5 * D + .5, t));
-      const blow = sm(B(3)[0] + .5 * D, B(3)[0] + .5 * D + .5, t);
-      const hand = front(zo, 'head', .3 * k, .08 * k, .28 * k).lerp(front(zo, 'head', .13 * k, 0, -.06 * k), blow);
-      if (up > 0) { zo.B.spine.rotation.x -= .05 * up; zo.B.spine.updateWorldMatrix(false, true); }
-      if (up + blow > 0) { PO.reach(zo, 'R', front(zo, 'root', .15 * k, .2 * k, 0).lerp(hand, Math.max(up, blow)), { grip: .02, pole: [-.5, -.2, -.1] }); PO.fingers(zo, 'R', .55 * Math.max(up, blow), { thumb: .6 }); }
+    if (IN(2, t)) {   // b006 "total war": Argon r5 found a mannequin → fists on her hips, elbows out, chin up, eyes sweeping the room
+      const w = sm(B(2)[0] - .1, B(2)[0] + .6, t) * (1 - sm(B(2)[1] - .1, B(2)[1] + .4, t));
+      zo.B.neck.rotation.x -= .08 * w; zo.B.head.rotation.y += .25 * w * Math.sin((t - B(2)[0]) * 1.1); zo.B.chest.rotation.x -= .05 * w; zo.B.spine.updateWorldMatrix(false, true);
+      for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'root', .04 * k, (s === 'L' ? -.17 : .17) * k, .1 * k).lerp(front(zo, 'root', .12 * k, (s === 'L' ? -.2 : .2) * k, 0), 1 - w), { grip: .05, pole: s === 'L' ? [.7, 0, -.3] : [-.7, 0, -.3] }); PO.fingers(zo, s, .6 * w, { thumb: .5 }); }
     }
-    const cloth = st.cloth ||= S3.prop(dishCloth(), 0, -5, 0);
-    cloth.visible = IN(5, t);
-    if (IN(5, t)) {   // whipping the cloth toward the window: wide fast arcs out to her right, body turning with each lash
-      const w = Math.sin(t * 7), a = sm(B(5)[0] - .1, B(5)[0] + .4, t);
-      zo.B.spine.rotation.y -= .18 * a * (.6 + .4 * w); zo.B.chest.rotation.y -= .12 * a * w; zo.B.spine.updateWorldMatrix(false, true);
-      PO.reach(zo, 'R', front(zo, 'chest', (.3 + .1 * w) * k, (.2 + .25 * w) * k, (.12 + .18 * Math.max(0, w)) * k).lerp(front(zo, 'root', .15 * k, .2 * k, 0), 1 - a), { grip: .02, pole: [-.5, -.1, -.1] });
-      PO.fingers(zo, 'R', .85, { thumb: .8 });
+    if (IN(3, t)) {   // talisman: right hand up to the lintel (above head, slightly forward), then the pinch of powder to the lips
+      const D = B(3)[1] - B(3)[0], up = sm(B(3)[0] + .6, B(3)[0] + 1.1, t) * (1 - sm(B(3)[0] + .5 * D, B(3)[0] + .5 * D + .5, t));
+      const blow = sm(B(3)[0] + .5 * D, B(3)[0] + .5 * D + .5, t);
+      const hand = front(zo, 'head', .3 * k, .1 * k, .42 * k).lerp(front(zo, 'head', .13 * k, 0, -.06 * k), blow);
+      if (up > 0) { zo.B.spine.rotation.x -= .05 * up; zo.B.spine.updateWorldMatrix(false, true); }
+      if (up + blow > 0) { PO.reach(zo, 'R', front(zo, 'root', .15 * k, .2 * k, 0).lerp(hand, Math.max(up, blow)), { grip: .02, pole: [-.5, -.2, -.1] }); PO.fingers(zo, 'R', .55 * Math.max(up, blow), { thumb: .6 }); PO.reach(zo, 'L', front(zo, 'root', .1 * k, -.24 * k, .02 * k), { grip: .1 }); }   // the other hand clear of the sash
+    }
+    const cloth = st.cloth ||= S3.prop(dishCloth(), 0, -5, 0), flies = st.flies ||= S3.prop(swarm(), 0, -5, 0);
+    cloth.visible = flies.visible = IN(5, t);
+    if (IN(5, t)) {   // Argon r5: a rigid plank, no whip, body not turned → the whole body turns to the window, wide lashes with a
+      // counterbalancing left arm, a soft cloth that trails the hand (travelling wave), and the flies streaming out
+      const a = sm(B(5)[0] - .1, B(5)[0] + .4, t), w = Math.sin(t * 6), win = S3.floorAt(1450, 760);
+      const g = zo.group.position, y1 = Math.atan2(win.x - g.x, win.z - g.z) - .5, y0 = zo.group.rotation.y;   // 3/4: the window side, face still to us
+      zo.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * a; zo.group.updateMatrixWorld(true);
+      zo.B.spine.rotation.y -= .3 * a * w; zo.B.chest.rotation.y -= .18 * a * w; zo.B.spine.rotation.z += .06 * a * w; zo.B.spine.updateWorldMatrix(false, true);
+      PO.reach(zo, 'R', front(zo, 'chest', (.3 + .08 * w) * k, (.18 + .3 * w) * k, (.15 + .22 * Math.max(0, w)) * k).lerp(front(zo, 'root', .15 * k, .2 * k, 0), 1 - a), { grip: .02, pole: [-.5, -.1, -.1] });
+      PO.reach(zo, 'L', front(zo, 'chest', (.12 - .05 * w) * k, (-.32 - .06 * w) * k, -.08 * k).lerp(front(zo, 'root', .12 * k, -.2 * k, 0), 1 - a), { grip: .1, pole: [.5, -.2, -.1] });
+      PO.fingers(zo, 'R', .9, { thumb: .85 });
       const h = PO.handPts(zo, 'R'); cloth.position.copy(h.palm);
-      cloth.quaternion.setFromUnitVectors(V(0, -1, 0), h.end.clone().sub(h.wrist).normalize().lerp(V(-.6 * Math.cos(t * 7), -.4, 0), .6).normalize());
-      cloth.scale.setScalar(k); cloth.updateMatrixWorld(true);
+      cloth.quaternion.setFromUnitVectors(V(0, -1, 0), h.end.clone().sub(h.wrist).normalize().lerp(V(-.7 * Math.cos(t * 6), -.35, .2), .65).normalize());
+      cloth.scale.setScalar(k); cloth.updateMatrixWorld(true); wave(cloth.children[0], t);
+      // flies: a loose stream from the room to the window, each on its own wobble, leaving as she lashes
+      const d = win.clone().setY(1.5 * k); flies.children.forEach((f, i) => { const u = ((t - B(5)[0]) * .35 + i * .083) % 1;
+        f.position.copy(g).setY(1.6 * k).lerp(d, u).add(V(.15 * Math.sin(t * 9 + i * 2.1), .1 * Math.sin(t * 13 + i), .12 * Math.cos(t * 7 + i))); });
+      flies.position.set(0, 0, 0); flies.updateMatrixWorld(true);
     }
   },
 });
 
-/** a faded cotton dish cloth hanging from the grip point (local −y), a little twisted */
+/** a faded cotton dish cloth hanging from the grip point (local −y): one subdivided sheet bent each frame by wave() */
 function dishCloth() {
-  const g = new THREE.Group(), m = new THREE.MeshToonMaterial({ color: 0xd9c9a4, side: THREE.DoubleSide });
-  for (let i = 0; i < 4; i++) { const p = new THREE.Mesh(new THREE.PlaneGeometry(.2 - .02 * i, .09), m); p.position.y = -.045 - .085 * i; p.rotation.y = .25 * i; p.rotation.x = .12 * (i % 2 ? 1 : -1); p.castShadow = true; g.add(p); }
-  const s = new THREE.Mesh(new THREE.PlaneGeometry(.2, .012), new THREE.MeshToonMaterial({ color: 0x7a3a2a, side: THREE.DoubleSide })); s.position.set(0, -.1, .002); g.add(s);
+  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.2, .36, 4, 12); geo.translate(0, -.18, 0);
+  geo.userData.rest = geo.attributes.position.array.slice();
+  const m = new THREE.Mesh(geo, new THREE.MeshToonMaterial({ color: 0xd9c9a4, side: THREE.DoubleSide })); m.castShadow = true; g.add(m);
+  return g;
+}
+/** travelling wave down the cloth: free end lags and flaps (amplitude grows with the distance from the grip), a twist and a curl */
+function wave(m, t) {
+  const p = m.geometry.attributes.position, r = m.geometry.userData.rest;
+  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .36;
+    p.setXYZ(i, x * (1 - .25 * d) + .05 * d * d * Math.sin(t * 6 - 3 * d), r[i * 3 + 1] * (1 - .12 * d), .16 * d * d * Math.sin(t * 6 - 4 * d + 1) + .04 * x * 10 * d * Math.sin(t * 3)); }
+  p.needsUpdate = true; m.geometry.computeVertexNormals();
+}
+/** a dozen house flies: tiny dark bodies */
+function swarm() {
+  const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: 0x1a1612 });
+  for (let i = 0; i < 12; i++) g.add(new THREE.Mesh(new THREE.SphereGeometry(.012, 6, 4), m));
   return g;
 }
 

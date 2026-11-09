@@ -111,12 +111,17 @@ export function memoPose(key, a, deps, solve) {
  *  (scene time, not segment time), or cover = S => [...] to key it on the line timings (S.L(i)), resolved on first draw.
  *  Each entry is a hard cut to a framing on that actor's head (as placed by build), held still until the next entry.
  *  W = the plate's own framing; M = waist-up; CU = head and shoulders. view() still wins when it returns a camera. */
-const SIZES = { W: [1, .5], M: [1.7, .36], CU: [2.6, .46] };   // zoom, head (bone = neck base) height on screen (fraction of H); Argon ep08 r2: headscarves cut at .32/.4
+const SIZES = { W: [1, .5], M: [1.7, .36, .58], CU: [2.6, .5, .45] };   // [fallback zoom, neck height on screen, frame height as a fraction of the neck→sole span]
+// Argon r5: a fixed zoom made a CU of a small (far) actor a full-body shot (s01 patio) and clipped the head of a near one (s08):
+// the zoom now comes from the actor's own projected neck→sole span (standing height, so kneeling/lying keep the standing scale)   // zoom, head (bone = neck base) height on screen (fraction of H); Argon ep08 r2: headscarves cut at .32/.4
 function coverCam(sh, t) {
   let e = null; for (const x of sh.cover) if (t >= x.t) e = x;
   if (!e || e.size === 'W' || !SIZES[e.size]) return null;
   const i = sh.st.actors.findIndex(a => a.name === e.on), h = sh.heads[Math.max(0, i)];
-  let [z, hy] = SIZES[e.size];
+  let [z, hy, F] = SIZES[e.size];
+  const bp = sh.bodyPx?.[Math.max(0, i)];
+  if (bp > 20) z = Math.min(4.5, Math.max(1.2, K.H / (F * bp)));
+  if (e.z) z = e.z;
   if (e.dx != null || e.dy != null) return [h[0] + (e.dx || 0), h[1] + (.5 - hy) * K.H / z + (e.dy || 0), z];   // hand-set framing wins
   // Argon s07/s08: an M on the short kid cut the parents' heads off; a CU left slivers of a head on the frame edge.
   // M: any other head inside the frame is kept fully in (tilt up, then zoom out); M/CU: no head straddles a side edge.
@@ -153,6 +158,7 @@ export function shot({ plate: name, light = {}, build, frame, view, cover, move,
     sh.st.actors ||= []; sh.st.faces ||= [];
     sh.place = sh.st.actors.map(a => [a.group.position.clone(), a.group.rotation.clone()]);   // restored each frame (shared casts)
     sh.heads = sh.st.actors.map(a => S3.project(IK.wpos(a.B.head)));   // coverage framing targets (fixed per shot: deterministic in chunked renders)
+    sh.bodyPx = sh.st.actors.map(a => { const h = IK.wpos(a.B.head), f = h.clone(); f.y -= .83 * a.group.scale.y; return S3.project(f)[1] - S3.project(h)[1]; });
     sh.cover = cover;
   };
   sh.fn = (lt, u, t, S) => {

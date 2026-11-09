@@ -18,6 +18,9 @@ const esc = staged('escalier', { mohammed: { ...SEAT, lookMax: 1.1, mutter: t =>
   act(lt, t, S, st, S3) {
     const mo = st.A.mohammed, B_ = mo.B;
     const chin = win(1, .05, .95, t), drop = win(6, .1, 1, t), fist = win(7, .55, 1, t), dream = win(9, .2, 1.1, t);
+    // Argon r5: the crouch read as a hovering pelvis under a bolt-upright torso → a child sitting on a step rounds forward
+    // over his knees all the time (lower back + chest), head counter-tilted so the face stays up to the lens
+    B_.spine.rotation.x += .2; B_.chest.rotation.x += .16; B_.neck.rotation.x -= .18;
     B_.neck.rotation.x -= .12 * chin - .16 * drop;
     B_.spine.rotation.x += .1 * drop + .06 * fist; B_.chest.rotation.x += .16 * drop + .08 * fist;   // b050 the whole back slumps; b051 hunched, tense
     if (dream > 0) { B_.head.rotation.z += .05 * Math.sin(t * 1.3) * dream; B_.neck.rotation.x -= .1 * dream; }   // b053: chin lifts
@@ -35,7 +38,7 @@ export default beatScene(ID, {
     b048: { move: 'forge' },
     b049: { move: 'princess' },
     b050: { shot: 'esc', size: 'M', on: 'mohammed' },
-    b051: { shot: 'esc', size: 'CU', on: 'mohammed' },
+    b051: { shot: 'esc', size: 'M', on: 'mohammed' },
     b052: { shot: 'esc', size: 'M', on: 'mohammed' },
     b053: { shot: 'esc', size: 'W', on: 'mohammed' },
   },

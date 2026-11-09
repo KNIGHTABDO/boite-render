@@ -89,7 +89,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       }
       st.G.apply(t);
       for (const n of names) {   // fixed gazes win over the net (a prop, a window, another role); m.lookMax widens the head cap
-        const l = marks[n].look, o = { max: marks[n].lookMax ?? .55 };
+        const l = marks[n].look, lm = marks[n].lookMax, o = { max: (typeof lm === 'function' ? lm(t) : lm) ?? .55 };   // lookMax may vary in time
         const g = typeof l === 'function' ? l(t, st, S3) : l;   // (t, st, S3) → null (keep the net) | role name | [px, py, h] | Vector3
         if (typeof g === 'string' && A[g]) PO.look(A[n], A[g].B.head.getWorldPosition(V(0, 0, 0)), .85, o);
         else if (Array.isArray(g)) PO.look(A[n], typeof l === 'function' ? S3.floorAt(g[0], g[1]).setY(g[2] ?? 1.2) : st.fixed[n], .85, o);
