@@ -135,8 +135,8 @@ export default beatScene(ID, {
     b076: { shot: 're', size: 'M', on: 'mohammed', z: 1.9, insAt: .5 },
     b077: { shot: 'la', size: 'M', on: 'man1', z: 2.2 },
     b079: { shot: 'la', size: 'M', on: 'marchand', zTo: 2.4, push: 5 },
-    b080: { shot: 'la', size: 'M', on: 'father', insAt: .72 },
-    b081: { shot: 'la', size: 'M', on: 'zoubida' },
+    b080: { shot: 'la', size: 'M', on: 'father', z: 1.5, dx: 240, dy: 40, insAt: .72 },   // the hand-off between him and the dellal in frame
+    b081: { shot: 'la', size: 'M', on: 'zoubida', z: 1.6, dx: 40, dy: 90 },   // down to the wrists
     b082: { shot: 'la', size: 'W', on: 'father', insAt: .6 },
   },
 });

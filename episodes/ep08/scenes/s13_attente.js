@@ -69,7 +69,7 @@ const mu = staged('souk_mur', {
     if (cu > 0) {
       const ph = (t - B(5)[0]) * 1.6, ch = Math.sin(ph * Math.PI * 2) ** 3;
       zo.B.head.rotation.y += .22 * cu * Math.sin(t * 4.3) ** 3; zo.B.neck.rotation.x += .1 * cu * Math.max(0, Math.sin(t * 5.1)) ** 4; zo.B.neck.updateWorldMatrix(false, true);
-      PO.reach(zo, 'R', front(zo, 'chest', .4 * kz, (.14 + .16 * ch) * kz, (-.02 + .03 * ch) * kz), { grip: .05 });   // clear of the veil: out in front and to her right
+      PO.reach(zo, 'R', front(zo, 'chest', .36 * kz, (.12 + .14 * ch) * kz, (-.14 + .03 * ch) * kz), { grip: .05 });   // clear of the veil: out in front and to her right
       PO.palmTo(zo, 'R', cu, V(0, -1, 0));
     }
     for (const a of [zo, mo, ft]) a.B.chest.updateWorldMatrix(false, true);
