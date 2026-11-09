@@ -69,7 +69,7 @@ const mu = staged('souk_mur', {
     if (cu > 0) {
       const ph = (t - B(5)[0]) * 1.6, ch = Math.sin(ph * Math.PI * 2) ** 3;
       zo.B.head.rotation.y += .22 * cu * Math.sin(t * 4.3) ** 3; zo.B.neck.rotation.x += .1 * cu * Math.max(0, Math.sin(t * 5.1)) ** 4; zo.B.neck.updateWorldMatrix(false, true);
-      PO.reach(zo, 'R', front(zo, 'chest', .42 * kz, (.18 + .26 * ch) * kz, (.02 + .05 * ch) * kz), { grip: .05 });   // clear of the veil: out in front and to her right
+      PO.reach(zo, 'R', front(zo, 'chest', .4 * kz, (.14 + .16 * ch) * kz, (-.02 + .03 * ch) * kz), { grip: .05 });   // clear of the veil: out in front and to her right
       PO.palmTo(zo, 'R', cu, V(0, -1, 0));
     }
     for (const a of [zo, mo, ft]) a.B.chest.updateWorldMatrix(false, true);
@@ -107,9 +107,9 @@ const ca = staged('souk_mur', {
 // b084/b085/b089 the lane: the dellal's return, the boiling souk, the long empty scan
 const la = staged('souk_bijoux', {
   father: { at: [740, 790], face: [1180, 720], seed: 5, lookMax: .85,
-    look: t => t > B(6)[0] ? [420 + 220 * Math.sin((t - B(6)[0]) * .7 - .8), 640, 1.6] : t > B(1)[0] ? 'marchand' : null },
+    look: t => t > B(6)[0] ? [380 + 200 * Math.sin((t - B(6)[0]) * .7 - .8), 720, 1.6] : t > B(1)[0] ? 'marchand' : null },
   zoubida: { at: [960, 830], face: [1180, 720], costume: 'haik', seed: 7, lookMax: .85,
-    look: t => t > B(6)[0] ? [1400 - 220 * Math.sin((t - B(6)[0]) * .6 - .5), 650, 1.6] : t > B(1)[0] ? 'marchand' : null },
+    look: t => t > B(6)[0] ? [1450 - 200 * Math.sin((t - B(6)[0]) * .6 - .5), 740, 1.6] : t > B(1)[0] ? 'marchand' : null },
   marchand: { at: [1080, 560], face: [740, 790], seed: 13, talk: 0, mutter: t => win(1, .25, .55, t) * (.75 + .25 * Math.sin(t * 9)) },
   man1: { at: [700, 620], face: [880, 560], seed: 21, talk: 0 },
   woman1: { at: [960, 580], face: [1250, 940], seed: 25, talk: 0 },
@@ -121,7 +121,7 @@ const la = staged('souk_bijoux', {
     const F = (px, py) => S3.floorAt(px, py);
     // b089 the scan: they turn apart, 3/4 profiles, he to the left stalls, she to the right
     const tu = sm(B(6)[0] - .4, B(6)[0] + .6, t);
-    if (tu > 0) for (const [a, q] of [[fa, [400, 700]], [zo, [1450, 700]]]) {
+    if (tu > 0) for (const [a, q] of [[fa, [250, 950]], [zo, [1600, 980]]]) {
       const y0 = yawTo(a.group.position, F(1180, 720)), y1 = yawTo(a.group.position, F(...q));
       a.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * tu; a.group.updateMatrixWorld(true);
     }
@@ -163,7 +163,7 @@ export default beatScene(ID, {
     b085: { shot: 'la', size: 'W', on: 'marchand', z: 1.1, pt: [880, 700] },   // the lane itself, mid-depth: the boil crosses frame
     b086: { shot: 'mu', size: 'W', on: 'mohammed' },   // wide: the surge crosses between us and the family, who are shoved back
     b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.4 },
-    b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.0 },
+    b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.6, dx: 60, dy: 0 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.5 },
   },
 });

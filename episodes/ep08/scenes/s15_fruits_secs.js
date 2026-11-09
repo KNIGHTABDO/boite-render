@@ -31,7 +31,6 @@ const mu = staged('souk_mur', {
     // her right hand pressed to the veil at the mouth (target well out in front of the face: default pole), his arms hang
     PO.reach(zo, 'R', front(zo, 'head', .2 * kz, .02 * kz, -.1 * kz), { grip: .2 });
     PO.reach(ft, 'L', front(ft, 'chest', .27 * kt, -.02 * kt, -.03 * kt), { grip: .15 });
-    PO.reach(zo, 'L', front(zo, 'root', .08 * kz, -.2 * kz, -.12 * kz), { grip: .02 });
     for (const a of [zo, ft, mo]) a.B.chest.updateWorldMatrix(false, true);
   },
 });
@@ -63,8 +62,7 @@ const fr = staged('souk_mur', {
       const hip = at(zo, 'root').add(V(0, .02 * kz, 0)).lerp(at(mo, 'root'), .42);
       PO.reach(mo, 'L', front(mo, 'root', .2 * km, -.12 * km, .1 * km).lerp(hip, cling), { grip: .8 });
       mo.B.spine.rotation.x += .06 * cling; mo.B.spine.updateWorldMatrix(false, true);
-      PO.reach(mo, 'R', front(mo, 'root', .05 * km, .2 * km, -.16 * km), { grip: .02 });
-    }
+      }
     // b102 the defeated nod: two slow dips, eyes down, the shoulders drop
     const no = win(4, .2, 1, t), u = Math.max(0, t - f(4, .2));   // (autostage gazes after act: the dip rides on the look at the boy)
     zo.B.neck.rotation.x += no * (.18 + .2 * Math.max(0, Math.sin(u * 2.2))); zo.B.chest.rotation.x += .12 * no; zo.B.spine.rotation.x += .05 * no; zo.B.spine.updateWorldMatrix(false, true);
