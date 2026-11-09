@@ -48,7 +48,7 @@ const mu = staged('souk_mur', {
     if (hu > 0) {
       zo.B.thighR.rotation.x -= .55 * hu; zo.B.shinR.rotation.x += 1.0 * hu;
       zo.B.spine.rotation.x += .32 * hu; zo.B.chest.rotation.x += .1 * hu; zo.B.neck.rotation.x -= .2 * hu;
-      zo.group.position.y += .045 * hop * kz; zo.group.updateMatrixWorld(true); zo.B.spine.updateWorldMatrix(false, true);
+      zo.group.position.y += .08 * hop * kz; zo.group.updateMatrixWorld(true); zo.B.spine.updateWorldMatrix(false, true);
       const foot = at(zo, 'shinR').lerp(at(zo, 'footR'), .5).add(V(0, .05 * kz, 0));
       for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'root', .3 * kz, (s === 'L' ? -.1 : .1) * kz, .1 * kz).lerp(foot, .55 * hu), { grip: .3 });
     }
@@ -117,10 +117,10 @@ const fi = staged('souk_bijoux', {
 export default beatScene(ID, {
   shots: { mu, fi },
   plan: {
-    b090: { shot: 'mu', size: 'M', on: 'father' },
-    b093: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.4 },
+    b090: { shot: 'mu', size: 'W', on: 'mohammed' },   // the boy in frame, the father striding off up the passage
+    b093: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.9 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 2.5 },
-    b095: { shot: 'fi', size: 'M', on: 'father', z: 1.4, pt: [930, 710] },
+    b095: { shot: 'fi', size: 'M', on: 'father', z: 1.8, pt: [950, 700] },
     b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 2.4, pt: [800, 760] },
     b097: { shot: 'fi', size: 'W', on: 'father' },
   },

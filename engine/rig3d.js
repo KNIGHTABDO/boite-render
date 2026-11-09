@@ -273,7 +273,7 @@ export async function loadSkinned(url, spec, { outline = .004, ramp = [120, 190,
     };
     for (let i = 0; i < n; i++) {
       let a = 0, hd = 0, tot = 0; for (let j = 0; j < 4; j++) { const w = sw.getComponent(i, j), bi = si.getComponent(i, j); tot += w; if (isArm[bi]) a += w; if (isHand[bi]) hd += w; }
-      arm[i] = a > .25 * tot && (skin(i) || (!px && hd > .5 * tot)) ? 1 : 0;   // cloth cuffs over the hand stay on the body too
+      arm[i] = hd > .5 * tot && skin(i) ? 1 : 0;   // stills22: arm-weighted warm cloth by the hips read as skin (holes): hands only
       let s = 0; for (let j = 0; j < 4; j++) { const keep = !!isArm[si.getComponent(i, j)] === !!arm[i]; if (!keep) sw.setComponent(i, j, 0); else s += sw.getComponent(i, j); }
       if (s > 0) for (let j = 0; j < 4; j++) sw.setComponent(i, j, sw.getComponent(i, j) / s);
     }
