@@ -6,7 +6,7 @@
 //   }, { addressee: { zoubida: 'mohammed' }, act(lt, t, S, st) { ...extra per-frame action... } });
 // marks: at = floor px on the plate; face = another role name | [px, py] floor px | 'cam' | yaw (radians);
 // pose = 'stand' | 'kneel' | 'cross' | 'lie' (lie: o.turn, o.top) ; o = extra pose options; seed = acting seed;
-// walk = { to: [px, py], t0, t1 } (scene-local seconds, standing only); climb = { to: tread, t0, t1 } (on a stair mark); look = role name | [px, py, h] fixed gaze.
+// walk = { to: [px, py], t0, t1 } (scene-local seconds, standing only); climb = { to: tread, t0, t1 } (on a stair mark); look = role name | [px, py, h] fixed gaze; lids = eyelid weight 0..1 | t => 0..1 (fever, sleep).
 // Rules kept from _3d.js: solves at build only; per-frame motion is additive on contact-free bones (acting.idle/speak/look).
 import * as THREE from 'three';
 import * as PO from '../../../engine/poses.js';
@@ -53,7 +53,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       }
       const fixed = {};
       for (const n of names) { const l = marks[n].look; if (Array.isArray(l)) fixed[n] = S3.floorAt(l[0], l[1]).setY(l[2] ?? 1.2); }
-      const faces = names.map((n, i) => [A[n], n, i * 3 + 1]);
+      const faces = names.map((n, i) => { const l = marks[n].lids; return [A[n], n, i * 3 + 1, l == null ? {} : (lt, t) => ({ blink: typeof l === 'function' ? l(t) : l })]; });   // m.lids: heavy eyelids 0..1 (or t => 0..1)
       return { actors: names.map(n => A[n]), A, P, snaps, fixed, faces, S3 };
     },
     frame(lt, u, t, S, st, S3) {
