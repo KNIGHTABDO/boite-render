@@ -56,9 +56,9 @@ export default beatScene(ID, {
   shots: { esc, pa },
   plan: {
     b054: { shot: 'esc', size: 'W', on: 'zoubida' },
-    b055: { shot: 'esc', size: 'CU', on: 'mohammed' },
+    b055: { shot: 'esc', size: 'M', on: 'mohammed' },
     b056: { shot: 'esc', size: 'CU', on: 'zoubida' },
-    b057: { shot: 'esc', size: 'CU', on: 'mohammed' },
+    b057: { shot: 'esc', size: 'M', on: 'mohammed' },
     b058: { shot: 'esc', size: 'M', on: 'zoubida' },
     b059: { shot: 'pa', size: 'W', on: 'rahma' },
     b060: { shot: 'pa', size: 'CU', on: 'rahma' },

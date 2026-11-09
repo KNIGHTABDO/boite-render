@@ -64,6 +64,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         else if (m.walk && t >= m.walk.t0) { rest(a.B); walk(a, m.walk.p0, m.walk.p1, m.walk.t0, m.walk.t1, t); }
         else rest(a.B);
         AC.idle(a, t, seed, { seated: !!snaps[n] });
+        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3)) AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: !snaps[n] });
         AC.speak(a, t, S.lines, n);
       }
       act?.(lt, t, S, st, S3);
@@ -80,7 +81,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         }
       }
       for (const a of Object.values(A)) a.group.updateMatrixWorld(true);
-      if (globalThis.DBG8 ?? true) for (const n of names) { const a = A[n], h = a.B.head.getWorldPosition(V(0, 0, 0)); console.error('DBG', plate, n, marks[n].pose || 'stand', 't=' + t.toFixed(2), 'walk=' + (marks[n].walk ? marks[n].walk.t0.toFixed(2) : '-'), 'pos=' + a.group.position.x.toFixed(2) + ',' + a.group.position.z.toFixed(2), 'headY=' + h.y.toFixed(2), 'scale=' + a.group.scale.y.toFixed(2)); }
+      if (globalThis.DBG8) for (const n of names) { const a = A[n], h = a.B.head.getWorldPosition(V(0, 0, 0)); console.error('DBG', plate, n, marks[n].pose || 'stand', 't=' + t.toFixed(2), 'walk=' + (marks[n].walk ? marks[n].walk.t0.toFixed(2) : '-'), 'pos=' + a.group.position.x.toFixed(2) + ',' + a.group.position.z.toFixed(2), 'headY=' + h.y.toFixed(2), 'scale=' + a.group.scale.y.toFixed(2)); }
     },
   });
 }

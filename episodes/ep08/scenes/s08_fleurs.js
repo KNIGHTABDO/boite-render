@@ -12,9 +12,9 @@ const f = (i, x) => B(i)[0] + x * (B(i)[1] - B(i)[0]);
 const ch = staged('chambre_jour', {
   ...LUNCH,
   mohammed: { ...LUNCH.mohammed, look: t =>
-    IN(0, t) ? [560, 900, 2.3]
-    : IN(2, t) ? [850, 1040, 0]
-    : IN(3, t) ? (t > f(3, .7) ? [850, 900, 1.9] : [850, 1040, .1])
+    IN(0, t) ? [560, 900, 1.25]
+    : IN(2, t) ? [850, 1040, .25]
+    : IN(3, t) ? (t > f(3, .7) ? [850, 900, 1.15] : [850, 1040, .3])
     : IN(5, t) ? (t < f(5, .5) ? 'father' : 'zoubida') : null },
   father: { ...LUNCH.father, look: t => IN(1, t) || IN(3, t) ? 'mohammed' : IN(4, t) ? 'zoubida' : null },
   zoubida: { ...LUNCH.zoubida, look: t => IN(3, t) ? 'mohammed' : IN(4, t) ? 'father' : null },

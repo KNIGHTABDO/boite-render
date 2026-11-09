@@ -747,7 +747,8 @@
    "sfx": [
     "spoons",
     "bread tear"
-   ]
+   ],
+   "tag": "À RETENIR : le haïk, grande étoffe blanche des femmes de Fès"
   },
   {
    "id": "b029",
@@ -923,8 +924,7 @@
    "props": [],
    "visual": "The father teases: maybe you don't like pretty jewels?",
    "cam": "ots",
-   "act": "eyebrows up, half smile, head tilt",
-   "tag": "À RETENIR : le haïk, grande étoffe blanche des femmes de Fès"
+   "act": "eyebrows up, half smile, head tilt"
   },
   {
    "id": "b038",

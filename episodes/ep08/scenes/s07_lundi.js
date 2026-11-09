@@ -3,9 +3,11 @@
 // between them, nearer the lens. Acting beats: b030 Zoubida's hand to her chest at "bracelets", b031 painting (sun/moon,
 // enumeration), b032 father lowers his eyes, b034 palms up at "miséricorde", b035 Mohammed sits up, b036 hand on his head.
 import * as PO from '../../../engine/poses.js';
+import * as PR from '../../../engine/props3d.js';
+import * as IK from '../../../engine/ik.js';
 import { staged } from '../lib/autostage.js';
 import { LUNCH } from '../lib/lunch.js';
-import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, at, front, V, dirW } from '../lib/beatscene.js';
 
 const ID = 's07_lundi', L = lines(ID);
 const B = i => L[i] || [0, 0];
@@ -13,11 +15,24 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 
 const pa = staged('patio_matin', {
   father: { at: [330, 960], face: [800, 960], walk: { to: [760, 965], t0: B(0)[0] + .4, t1: B(0)[0] + 3.6 } },
-  mohammed: { at: [1080, 1010], face: [760, 965], pose: 'kneel', look: 'father' },
-}, { addressee: { narrator: 'mohammed' } });
+  // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
+  mohammed: { at: [1080, 1010], face: [640, 1080], pose: 'cross', look: t => t > B(0)[0] + 1.2 ? 'father' : [1000, 1040, .2] },
+}, {
+  addressee: { narrator: 'mohammed' },
+  act(lt, t, S, st, S3) { holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha(), 0, 0, 0)); },
+});
+
+/** louha held upright on the lap (as ep05 s03): bottom edge on the thighs, leaning back, palms on its side edges */
+function holdLouha(a, lh) {
+  const hip = IK.wpos(a.B.root), fw = dirW(a, 0, 0, 1).setY(0).normalize(), k = a.group.scale.y / 1.15;
+  const p = hip.clone().addScaledVector(fw, .2 * k); p.y = hip.y + .02;
+  lh.position.copy(p); lh.rotation.set(0, 0, 0); lh.rotation.order = 'YXZ'; lh.rotation.y = a.group.rotation.y; lh.rotation.x = -.35; lh.updateMatrixWorld(true);
+  PO.reach(a, 'L', lh.localToWorld(V(.135, .2, 0)), { grip: .04 }); PO.reach(a, 'R', lh.localToWorld(V(-.135, .2, 0)), { grip: .04 });
+}
 
 const ch = staged('chambre_jour', { ...LUNCH }, {
-  addressee: { father: 'zoubida', zoubida: 'father', mohammed: 'father' },
+  // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
+  addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
   act(lt, t, S, st) {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A;
     const kz = zo.group.scale.y / 1.6, kf = fa.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;

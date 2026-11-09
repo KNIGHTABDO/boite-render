@@ -24,7 +24,8 @@ export function gazeNet(lines, actors, { addressee = {}, fixed = {}, lag = .25, 
   const plan = Object.fromEntries(names.map(n => [n, []]));
   let prev = null;
   for (const l of L) {
-    const to = addressee[l.who] ?? (prev && prev !== l.who ? prev : names.find(n => n !== l.who));
+    const ad = typeof addressee[l.who] === 'function' ? addressee[l.who](l) : addressee[l.who];
+    const to = ad ?? (prev && prev !== l.who ? prev : names.find(n => n !== l.who));
     if (to) plan[l.who].push([l.t0 - .15, to]);                      // speakers look just before they speak
     for (const n of names) if (n !== l.who) plan[n].push([l.t0 + lag + hash(n.length, l.t0) * .2, l.who]);
     prev = l.who;
@@ -86,4 +87,28 @@ export function blink(t, seed = 0) {
   let t0 = hash(seed, 1) * 3, i = 0;
   while (t0 < t + 1) { const d = t - t0; if (d >= 0 && d < .15) return Math.sin(d / .15 * Math.PI); if (hash(i, seed) < .15 && d >= .25 && d < .4) return Math.sin((d - .25) / .15 * Math.PI); t0 += 2.5 + hash(i++, seed + 5) * 3.5; }
   return 0;
+}
+
+/**
+ * Arms that live: relaxed elbows (never the straight bind-pose A), slow asymmetric drift, and while speaking a
+ * gesture hand that rises on stressed syllables and holds through the phrase (envelope-driven, like speak()).
+ * For standing actors with free hands only; reach()/grip() applied afterwards override it.
+ */
+export function arms(a, t, seed = 0, lines = [], who = '', { k = 1, talk = 1, relax = true } = {}) {
+  const B = a.B; if (!B.upperArmL) return;
+  const rot = (b, x, y, z) => { if (!b) return; b.rotateX(x * k); b.rotateY(y * k); b.rotateZ(z * k); b.updateWorldMatrix(false, true); };
+  const d = s => noise1(t * .21, seed + s) * .06;
+  if (relax) rot(B.upperArmL, .1 + d(31), 0, .07 + d(33)), rot(B.upperArmR, .1 + d(35), 0, -.07 - d(37));
+  if (relax) rot(B.foreArmL, -.32 + d(39), 0, 0), rot(B.foreArmR, -.3 + d(41), 0, 0);
+  const l = lines.find(l => l.who === who && t >= l.t0 - .3 && t < l.t1 + .4); if (!l || !talk) return;
+  const env = l.env?.length ? l.env : null, i = Math.floor((t - l.t0) * 24);
+  // phrase-level hold: smoothed loudness over ~0.6 s, eased in/out at the line edges
+  let e = 0; for (let j = -7; j <= 7; j++) e += env ? (env[i + j] ?? 0) : .5 + .5 * noise1((t + j / 24) * 1.3, who.length);
+  e /= 15; const edge = sm((t - l.t0 + .3) / .5) * (1 - sm((t - l.t1) / .4));
+  const g = Math.min(1, e * 1.6) * edge * talk, side = hash(Math.floor(l.t0 * 3), seed) < .65 ? 'R' : 'L', sg = side === 'R' ? -1 : 1;
+  const beat = noise1(t * 2.6, seed + 51) * .12 * g;
+  rot(B['upperArm' + side], .42 * g + beat, 0, sg * -.12 * g); rot(B['foreArm' + side], -.85 * g - beat, sg * .35 * g, 0);
+  rot(B['hand' + side], -.25 * g, 0, sg * .2 * g);
+  const o = side === 'R' ? 'L' : 'R';   // the other hand joins on loud phrases
+  const g2 = Math.max(0, g - .55) * 1.8; if (g2 > 0) { rot(B['upperArm' + o], .3 * g2, 0, -sg * -.1 * g2); rot(B['foreArm' + o], -.6 * g2, 0, 0); }
 }

@@ -5,7 +5,8 @@
 // turns her face away (b119), he insists, palm firm (b120), she takes them without looking and throws them in her chest
 // (b121), b122 her hand on her heart: "mon cœur ne ment pas".
 import * as PO from '../../../engine/poses.js';
-import { staged } from '../lib/autostage.js';
+import { staged, THREE } from '../lib/autostage.js';
+import { toon } from '../../../engine/props3d.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 
@@ -13,7 +14,7 @@ const ID = 's17_retour', L = lines(ID);
 const B = i => L[i] || [0, 0];
 const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .5, t) * (1 - sm(t0 + b * D, t0 + b * D + .5, t)); };
 const k = a => a.group.scale.y / 1.6;
-const DARK = { keyI: .7, fillI: .45, sky: '#5a5a78', ground: '#2a2018', key: '#a8b4d8', shadow: .2 };
+const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#a8b4d8', shadow: .2 };
 
 const es = staged('escalier_nuit', { father: { tread: 4, face: 'up', seed: 5 } }, { stairs: ESCALIER, light: DARK });
 
@@ -33,14 +34,17 @@ const pe = staged('chambre_penombre', {
 });
 
 const nu = staged('chambre_nuit', {
-  father: { at: [520, 1000], face: 'zoubida', seed: 5 },
-  zoubida: { at: [940, 1030], face: 'father', pose: 'kneel', seed: 7,
+  // Zoubida kneels right of the table, turned three-quarters to the lens (toward him, lower left) so her tears read;
+  // he stands in the left foreground, facing her
+  father: { at: [430, 1010], face: 'zoubida', seed: 5 },
+  zoubida: { at: [1010, 905], face: [560, 1060], pose: 'kneel', seed: 7,
     look: t => t > B(10)[0] && t < B(12)[0] ? [1300, 1060, .3] : t > B(12)[0] && t < B(13)[0] ? [1350, 1000, .4] : null },
   mohammed: { at: [1180, 845], face: 0, pose: 'lie', o: { top: .35, turn: .5 }, look: 'zoubida', seed: 3 },
 }, {
   light: { keyI: 1.5, key: '#ffc070', fillI: .55 },
   addressee: { father: 'zoubida', zoubida: 'father' },
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
+
     const { father: fa, zoubida: zo } = st.A, kf = k(fa), kz = k(zo);
     const offer = Math.max(win(9, .7, 1, t), win(10, 0, 1, t), win(11, 0, .6, t));   // bracelets held out on his palm
     if (offer > 0) PO.reach(fa, 'R', front(fa, 'chest', .42 * kf, .08 * kf, -.12 * kf).lerp(front(fa, 'root', .2 * kf, .2 * kf, 0), 1 - offer), { grip: .1 });
@@ -53,10 +57,25 @@ const nu = staged('chambre_nuit', {
     if (toss > 0) PO.reach(zo, 'R', front(zo, 'root', .35 * kz, .45 * kz, .15 * kz).lerp(front(zo, 'root', .2 * kz, .2 * kz, 0), 1 - toss), { grip: 0 });
     const heart = win(13, .45, 1.1, t);   // hand on her heart
     if (heart > 0) PO.reach(zo, 'R', front(zo, 'chest', .07 * kz, .03 * kz, -.02 * kz).lerp(front(zo, 'root', .2 * kz, .15 * kz, 0), 1 - heart), { grip: .02 });
+    // the bracelets: on his palm while he offers them, in her hand while she takes them, then gone into the chest
+    const br = st.br ||= bracelets(S3);
+    const inHis = offer > .5 && take < .5, inHers = take >= .5 && toss < .6;
+    br.visible = inHis || inHers;
+    if (br.visible) { const h = (inHis ? fa : zo).B.handR, kk = inHis ? kf : kz; h.updateWorldMatrix(true, false);
+      br.position.copy(h.localToWorld(V(0, .07 * kk, .025 * kk))); br.scale.setScalar(Math.max(.75, kk)); br.updateMatrixWorld(true); }
     const sob = win(8, .4, 1.2, t);
     if (sob > 0) { zo.B.chest.rotation.x += .03 * Math.sin(t * 9) * sob; zo.B.chest.updateWorldMatrix(false, true); }
   },
 });
+
+/** the sun and moon bracelets: a gold and a silver ring lying crossed on the palm */
+function bracelets(S3) {
+  const g = new THREE.Group();
+  for (const [col, x, ry] of [[0xe0b040, -.012, .3], [0xd8dde4, .012, -.4]]) {
+    const r = new THREE.Mesh(new THREE.TorusGeometry(.034, .006, 8, 28), toon(col)); r.rotation.set(Math.PI / 2, ry, 0); r.position.set(x, 0, 0); g.add(r);
+  }
+  S3.scene.add(g); return g;
+}
 
 export default beatScene(ID, {
   shots: { es, pe, nu },

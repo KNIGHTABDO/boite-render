@@ -116,8 +116,27 @@ function coverCam(sh, t) {
   let e = null; for (const x of sh.cover) if (t >= x.t) e = x;
   if (!e || e.size === 'W' || !SIZES[e.size]) return null;
   const i = sh.st.actors.findIndex(a => a.name === e.on), h = sh.heads[Math.max(0, i)];
-  const [z, hy] = SIZES[e.size];
-  return [h[0] + (e.dx || 0), h[1] + (.5 - hy) * K.H / z + (e.dy || 0), z];
+  let [z, hy] = SIZES[e.size];
+  if (e.dx != null || e.dy != null) return [h[0] + (e.dx || 0), h[1] + (.5 - hy) * K.H / z + (e.dy || 0), z];   // hand-set framing wins
+  // Argon s07/s08: an M on the short kid cut the parents' heads off; a CU left slivers of a head on the frame edge.
+  // M: any other head inside the frame is kept fully in (tilt up, then zoom out); M/CU: no head straddles a side edge.
+  let cx = h[0], cy = h[1] + (.5 - hy) * K.H / z;
+  for (let pass = 0; pass < 6; pass++) {
+    const w = K.W / z, hh = K.H / z, L = cx - w / 2, R = cx + w / 2, T = cy - hh / 2;
+    let need = 0, shift = 0;
+    sh.heads.forEach((o, j) => {
+      if (j === i) return;
+      if (e.size === 'M' && o[0] > L + .03 * w && o[0] < R - .03 * w && o[1] < T + .14 * hh) need = Math.max(need, T + .14 * hh - o[1]);
+      const dl = o[0] - L, dr = R - o[0];
+      const ok = s => Math.abs(h[0] - (cx + s)) < .34 * w;   // the subject stays near the centre
+      if (Math.abs(dl) < .1 * w) shift = ok(dl + .1 * w) ? dl + .1 * w : ok(dl - .14 * w) ? dl - .14 * w : 0;        // push it out left, else take it fully in
+      else if (Math.abs(dr) < .1 * w) shift = ok(-(dr + .1 * w)) ? -(dr + .1 * w) : ok(.14 * w - dr) ? .14 * w - dr : 0;
+    });
+    if (!need && !shift) break;
+    cx += shift;
+    if (need) { if ((h[1] - (T - need)) / hh < .62) cy -= need; else if (z > 1.2) z = Math.max(1.2, z * .85), cy = h[1] + (.5 - hy) * K.H / z; else break; }
+  }
+  return [cx, cy, z];
 }
 export function shot({ plate: name, light = {}, build, frame, view, cover, move, blur = 0, fx = {}, ink = 2.2, grade, over, under }) {
   const sh = { st: null, S3: null, img: null };

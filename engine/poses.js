@@ -178,12 +178,15 @@ export function fingers(a, side, curl = .8, { thumb = curl * .7, each = [1, 1, 1
 export function relaxHands(a, seed = 0) { fingers(a, 'L', .22 + .06 * Math.sin(seed * 7.1), { spread: .3 }); fingers(a, 'R', .28 + .06 * Math.cos(seed * 5.3), { spread: .2 }); }
 
 /** turn the head (and part of the neck) so the face looks at a world point; amt < 1 keeps some of the old pose */
-export function look(a, target, amt = .85) {
+export function look(a, target, amt = .85, { max = .55 } = {}) {
+  // neck + head turn toward target; each bone's turn is capped at `max` rad (≈32°) so a far/behind target never
+  // twists or flips the head (the eyes of the face layer cover the rest)
   const B = a.B; a.group.updateMatrixWorld(true);
-  for (const [b, w] of [[B.neck, amt * .35], [B.head, amt]]) {
+  for (const [b, w, m] of [[B.neck, amt * .35, max * .6], [B.head, amt, max]]) {
     const q0 = b.quaternion.clone();
     IK.aim(b, b.localToWorld(new THREE.Vector3(0, 0, .1)), target);
-    b.quaternion.copy(q0.slerp(b.quaternion, w)); b.updateWorldMatrix(false, true);
+    const q1 = q0.clone().slerp(b.quaternion, w), ang = q0.angleTo(q1);
+    b.quaternion.copy(ang > m ? q0.slerp(q1, m / ang) : q1); b.updateWorldMatrix(false, true);
   }
 }
 
