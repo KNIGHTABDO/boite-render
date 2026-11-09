@@ -77,7 +77,7 @@ const mu = staged('souk_mur', {
 // lifted to the arm), his face over the father's shoulder toward the lens; the father 3/4 away, chest heaving
 const CARRY = .8;   // hip height (cheek at the shoulder, not stacked on his head) of the boy on the forearm (m), father 1.76 m
 const ca = staged('souk_mur', {
-  father: { at: [720, 860], face: [520, 1010], seed: 5, look: 'zoubida', lookMax: .5, talk: 0 },   // 3/4 to the lens: his sweating face reads, the boy's cheek on his shoulder
+  father: { at: [720, 860], face: [1080, 560], seed: 5, look: [1000, 520, 1.6], lookMax: .5, talk: 0 },   // 3/4 away: the boy (carried low, at the shoulder) faces the lens over it
   mohammed: { at: [720, 860], face: 'father', pose: 'step', o: { seat: .45, floor: .08, fz: .22, lean: .32 }, hands: false, seed: 3, lids: .55, talk: 0 },
   zoubida: { at: MUR.zoubida, face: 'father', costume: 'haik', seed: 7, look: 'mohammed', lookMax: .7 },
 }, {
@@ -95,7 +95,7 @@ const ca = staged('souk_mur', {
     PO.reach(fa, 'R', at(mo, 'root').add(V(0, -.07 * km, 0)), { grip: .3 });
     PO.reach(fa, 'L', at(mo, 'chest').lerp(at(mo, 'neck'), .3).addScaledVector(V(Math.sin(fy), 0, Math.cos(fy)), -.08 * km), { grip: .2 });
     // the boy: leaning in, cheek on the shoulder (head turned to the lens side), arms round the father's neck
-    mo.B.spine.rotation.x += .06 * lift; mo.B.head.rotation.y -= .8 * lift; mo.B.head.rotation.z -= .2 * lift; mo.B.spine.updateWorldMatrix(false, true);
+    mo.B.spine.rotation.x += .06 * lift; mo.B.head.rotation.z += .2 * lift; mo.B.spine.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) PO.reach(mo, s, at(fa, 'neck').add(V(0, -.04, 0)).addScaledVector(V(Math.cos(fy), 0, -Math.sin(fy)), (s === 'L' ? .09 : -.09) * kf), { grip: .3 });
     for (const a of [fa, mo]) a.B.chest.updateWorldMatrix(false, true);
   },
@@ -152,7 +152,7 @@ export default beatScene(ID, {
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [905, 690] },   // over the father's shoulder onto the dellal's shout
     b085: { shot: 'la', size: 'W', on: 'marchand', z: 1.1, pt: [880, 700] },   // the lane itself, mid-depth: the boil crosses frame
     b086: { shot: 'mu', size: 'M', on: 'zoubida' },
-    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.0 },
+    b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.0 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.6 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.5 },
   },
