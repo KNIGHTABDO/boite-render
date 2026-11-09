@@ -36,17 +36,18 @@ const mu = staged('souk_mur', {
 });
 
 const fr = staged('souk_mur', {
-  zoubida: { at: [880, 575], costume: 'haik', seed: 7, walk: { to: [935, 790], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .85,
-    look: t => t < B(2)[0] ? [880 + 420 * Math.sin(t * .9), 640, 1.4] : t > B(4)[0] ? [935, 1000, 0] : null, lids: t => .5 * win(4, .3, 1.2, t) },
-  mohammed: { at: [845, 585], seed: 3, talk: 0, walk: { to: [815, 805], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .6,
-    look: t => t > B(3)[0] ? [815 + 650 * Math.sin((t - B(3)[0]) * .9), 860, 1.3] : t > B(2)[0] ? [500, 760, 1.2] : null },
-  fatma: { at: [925, 565], seed: 11, walk: { to: [1050, 760], t0: B(1)[0] + .1, t1: B(1)[0] + 4.5 }, lookMax: .8,
+  zoubida: { at: [880, 575], costume: 'haik', seed: 7, walk: { to: [800, 800], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .85,
+    look: t => t < B(2)[0] ? [880 + 420 * Math.sin(t * .9), 640, 1.4] : t > B(4)[0] ? [800, 1000, 0] : null, lids: t => .5 * win(4, .3, 1.2, t) },
+  mohammed: { at: [845, 585], seed: 3, talk: 0, walk: { to: [690, 815], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .6,
+    look: t => t > B(3)[0] ? [690 + 650 * Math.sin((t - B(3)[0]) * .9), 860, 1.3] : t > B(2)[0] ? [500, 760, 1.2] : null },
+  fatma: { at: [925, 565], seed: 11, walk: { to: [920, 770], t0: B(1)[0] + .1, t1: B(1)[0] + 4.5 }, lookMax: .8,
     look: t => t < B(2)[0] ? [880 - 420 * Math.sin(t * .8), 640, 1.4] : 'zoubida' },
+  // the trio stops left of centre so the seller and his client (right, by the counter) never cover them
   // life goes on (b100): a seller by the counter, turned to a client; two urchins stroll by singing
   man1: { at: [1280, 760], face: [1100, 900], seed: 21, talk: 0, look: 'woman1' },
   woman1: { at: [1180, 870], face: [1280, 760], seed: 25, talk: 0, look: 'man1' },
-  kid2: { at: [560, 600], seed: 27, talk: 0, walk: { to: [470, 930], t0: B(2)[0], t1: B(2)[1] }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5)) },
-  kid3: { at: [640, 590], seed: 29, talk: 0, walk: { to: [580, 940], t0: B(2)[0] + .5, t1: B(2)[1] + .5 }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5 + 1)) },
+  kid2: { at: [500, 600], seed: 27, talk: 0, walk: { to: [360, 930], t0: B(2)[0], t1: B(2)[1] }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5)) },
+  kid3: { at: [580, 590], seed: 29, talk: 0, walk: { to: [460, 940], t0: B(2)[0] + .5, t1: B(2)[1] + .5 }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5 + 1)) },
 }, {
   addressee: { zoubida: 'fatma' },
   act(lt, t, S, st) {
@@ -75,7 +76,7 @@ export default beatScene(ID, {
     b098: { shot: 'mu', size: 'M', on: 'zoubida' },
     b099: { shot: 'fr', size: 'W', on: 'zoubida', insAt: .62 },
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
-    b101: { shot: 'fr', size: 'CU', on: 'mohammed', z: 2.3, pt: [815, 805] },
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', z: 2.6, pt: [935, 790] },
+    b101: { shot: 'fr', size: 'CU', on: 'mohammed', z: 2.3, pt: [690, 815] },
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', z: 2.6, pt: [800, 800] },
   },
 });
