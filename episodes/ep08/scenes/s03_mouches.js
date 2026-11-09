@@ -14,16 +14,20 @@ const beams = [980, 930, 2.9];
 // three-quarter to the lens, looks up by tipping the head (not the whole trunk), a hand at the brow; the talisman goes
 // UP on the lintel; b009 a real dish cloth whipped toward the right window (flies out)
 const ch = staged('chambre_jour', {
-  zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: 1.1, walk: { to: [520, 905], t0: B(3)[0] - 1.2, t1: B(3)[0] + .9 },
+  zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: .7, walk: { to: [520, 905], t0: B(3)[0] - 1.2, t1: B(3)[0] + .9 },
     look: t => IN(1, t) || IN(4, t) ? beams : IN(3, t) && t < B(3)[0] + .5 * (B(3)[1] - B(3)[0]) ? [330, 880, 2.15] : IN(5, t) ? [1450, 760, 1.5] : null },
 }, {
   act(lt, t, S, st, S3) {
     const zo = st.A.zoubida, k = zo.group.scale.y / 1.6;
+    // stills8: after the walk to the door she kept her back to the lens → from b008 she turns back into the room, 3/4 to camera
+    const turn = sm(B(4)[0] - .6, B(4)[0] + .4, t);
+    if (turn > 0) { const c = S3.cam.position, g = zo.group.position, y1 = Math.atan2(c.x - g.x, c.z - g.z) + .55, y0 = zo.group.rotation.y;
+      zo.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn; zo.group.updateMatrixWorld(true); }
     const upLook = Math.max(IN(1, t) ? sm(B(1)[0] - .2, B(1)[0] + .4, t) : 0, IN(4, t) ? sm(B(4)[0] - .2, B(4)[0] + .4, t) : 0);
     if (upLook > 0) {   // look up: small trunk extension, the rest in neck/head; a slow searching sway of the head
-      zo.B.spine.rotation.x -= .04 * upLook; zo.B.chest.rotation.x -= .06 * upLook; zo.B.neck.rotation.x -= .22 * upLook;
+      zo.B.chest.rotation.x -= .04 * upLook; zo.B.neck.rotation.x -= .06 * upLook;   // stills8: -.22 neck + look bent her backward → gentle
       zo.B.head.rotation.y += .12 * upLook * Math.sin(t * .9); zo.B.spine.updateWorldMatrix(false, true);
-      PO.reach(zo, 'L', front(zo, 'head', .1 * k, -.05 * k, .1 * k).lerp(front(zo, 'root', .12 * k, -.2 * k, 0), 1 - upLook), { grip: .0, pole: [.45, -.1, -.1] });   // palm flat at the brow, shading
+      PO.reach(zo, 'L', front(zo, 'head', .13 * k, -.03 * k, .07 * k).lerp(front(zo, 'root', .12 * k, -.2 * k, 0), 1 - upLook), { grip: .0, pole: [.45, -.1, -.1] });   // palm flat at the brow, shading
       PO.palmTo(zo, 'L', upLook, V(0, -1, 0)); PO.fingers(zo, 'L', .1, { spread: .2 });
     }
     if (IN(3, t)) {   // talisman: right hand up to the lintel (above head, slightly forward), then the pinch of powder to the lips
