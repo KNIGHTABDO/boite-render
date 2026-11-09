@@ -85,6 +85,8 @@ export function mattress({ w = 1.9, d = .75, h = .14, col = 0x8a2a2a } = {}) {
   g.userData = { top: h, w, d };
   return g;
 }
+/** blanket block laid over a lying body: w across, l along, h thick (bottom at the mattress, top just over the body) */
+export function blanket({ w = .5, l = 1, h = .12, col = 0x8a3b2a } = {}) { const g = M(box(w, h, l, .045), toon(col), .004); g.userData = { top: h }; return g; }
 /** cushion / pillow 50 x 40 x 15 */
 export function cushion({ w = .5, d = .4, h = .15, col = 0xb8823a } = {}) { const g = M(box(w, h, d, .06), toon(col), .003); g.userData = { top: h }; return g; }
 /** sheepskin on the floor, ~100 x 70, 3 cm thick, irregular outline */

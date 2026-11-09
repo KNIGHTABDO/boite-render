@@ -10,6 +10,9 @@ import * as IK from '../../../engine/ik.js';
 import { walkPose } from '../../../engine/rig3d.js';
 import { staged } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, V, dirW } from '../lib/beatscene.js';
+import { plate, drawPlate } from '../../../engine/plates.js';
+import { c } from '../../../engine/core.js';
+import { platePath } from './_3d.js';
 
 const ID = 's04_mausolee', L = lines(ID);
 const B = i => L[i] || [0, 0];
@@ -21,13 +24,13 @@ const repin = a => { for (const [s, p] of a.pins || []) PO.reach(a, s, a.B.root.
 
 /** a slate held flat against the chest with both hands (walking, standing) */
 function chestLouha(a, lh) {
-  const kk = k(a); lh.position.copy(front(a, 'chest', .13 * kk, 0, -.3 * kk));
+  const kk = k(a); lh.scale.setScalar(Math.min(1, kk * 1.1)); lh.position.copy(front(a, 'chest', .13 * kk, 0, -.36 * kk));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.12, a.group.rotation.y, 0); lh.updateMatrixWorld(true);
   PO.reach(a, 'L', lh.localToWorld(V(.135, .22, 0)), { grip: .04 }); PO.reach(a, 'R', lh.localToWorld(V(-.135, .22, 0)), { grip: .04 });
 }
 /** fanning the face with the slate: gripped at its bottom edge at chin height, flapping about the wrist */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), g = front(a, 'head', .26 * kk, .1 * kk, -.2 * kk);
+  const kk = k(a), g = front(a, 'head', .26 * kk, .1 * kk, -.2 * kk); lh.scale.setScalar(Math.min(1, kk * 1.1));
   lh.position.copy(g); lh.rotation.order = 'YXZ'; lh.rotation.set(-.25, a.group.rotation.y - .6 + amp * Math.sin(t * rate + ph), 0); lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(0, .03, 0)), { grip: .06, pole: [-.3, -.4, -.1] });
 }
@@ -59,10 +62,10 @@ const ms = staged('ep03/msid_estrade', {
 const DOOR = [960, 712];
 const T11 = (j, d = 4.4) => ({ t0: B(1)[0] - .7 + 1.0 * j, t1: B(1)[0] - .7 + 1.0 * j + d });
 const pr = staged('mausolee_rev', {
-  fqih: { at: DOOR, face: 'cam', seed: 9, walk: { to: [660, 930], ...T11(0, 4.0) } },
-  kid1: { at: DOOR, face: 'cam', seed: 2, walk: { to: [880, 1000], ...T11(1) } },
-  mohammed: { at: DOOR, face: 'cam', seed: 3, walk: { to: [1090, 1025], ...T11(2) }, look: (t, st) => t > T11(2).t0 + 1 ? [1500, 760, 1.6] : null, lookMax: .9 },   // he looks up at the green dome lamps
-  kid3: { at: DOOR, face: 'cam', seed: 6, walk: { to: [1270, 965], ...T11(3) } },
+  fqih: { at: DOOR, face: 'cam', seed: 9, walk: { to: [720, 800], ...T11(0, 3.6) } },
+  kid1: { at: DOOR, face: 'cam', seed: 2, walk: { to: [870, 850], ...T11(1, 3.4) } },
+  mohammed: { at: DOOR, face: 'cam', seed: 3, walk: { to: [1050, 865], ...T11(2, 3.4) }, look: (t, st) => t > T11(2).t0 + 1 ? [1500, 760, 1.6] : null, lookMax: .9 },   // he looks up at the green dome lamps
+  kid3: { at: DOOR, face: 'cam', seed: 6, walk: { to: [1210, 835], ...T11(3, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, mohammed: mo, kid3 } = st.A;
@@ -74,22 +77,37 @@ const pr = staged('mausolee_rev', {
 });
 
 // ---------------------------------------------------------------- b012 memory: seven turns around the tomb
+// stills13 (by eye): the painted tomb hides nothing, so a full ellipse drew the women over the railing. They now walk the
+// visible half of the lap: in from behind the right door leaf, deep along the room to the railing's far corner, down along the
+// railing's front, out behind the left leaf; the plate's two door leaves are redrawn over the actors (nearest objects).
 const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
-const GIRLS = [['woman1', 0], ['woman2', 2.1], ['fatma', 4.2]];
-const fl = staged('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: [420, 1000], face: 'cam', seed: 11 + i * 2 }])), {
-  fx: WARM,
+const GIRLS = [['woman1', 0], ['woman2', 2.3], ['fatma', 4.6]];   // spacing along the path (m)
+const LAP = [[1990, 1000], [1450, 850], [960, 775], [700, 770], [520, 860], [300, 975], [-90, 1070]];
+let PLATE; plate(platePath('mausolee')).then(i => { PLATE = i; });
+const leaves = () => { if (!PLATE) return; for (const [x0, x1] of [[0, 128], [1812, 1920]]) { c.save(); c.beginPath(); c.rect(x0, 0, x1 - x0, 1080); c.clip(); drawPlate(PLATE); c.restore(); } };
+const fl = staged('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: [1500, 900], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
+  fx: WARM, over: leaves,
   act(lt, t, S, st, S3) {
-    if (!st.ell) { const c = S3.floorAt(420, 690); st.ell = { c, ex: S3.floorAt(820, 760).sub(c), ez: S3.floorAt(420, 1010).sub(c) }; }
-    const { c, ex, ez } = st.ell, w = 1.0;   // one lap ≈ 6.3 s
-    for (const [n, ph] of GIRLS) {
-      const a = st.A[n], th = ph + w * t, s = Math.sin(th), co = Math.cos(th);
-      const p = c.clone().addScaledVector(ex, co).addScaledVector(ez, s), d = ex.clone().multiplyScalar(-s).addScaledVector(ez, co);
-      a.group.visible = s > -.12;   // the far half of the lap is behind the painted tomb
-      a.group.position.set(p.x, 0, p.z); a.group.rotation.y = Math.atan2(d.x, d.z);
-      walkPose(a.B, t * .95 + ph, 1); a.group.updateMatrixWorld(true);
-      // counting the turns on the fingers of the right hand held before her chest; head a little bowed
-      const ka = k(a), cnt = (Math.floor((th - ph) / (2 * Math.PI) + 10) % 5) / 4;
-      a.B.neck.rotation.x += .12; upd(a, 'neck');
+    if (!st.lap) {   // the path as a dense polyline on the floor, with its arc length
+      const P = LAP.map(q => S3.floorAt(...q)), pts = [];
+      for (let i = 0; i < P.length - 1; i++) for (let j = 0; j < 12; j++) {   // Catmull-Rom between P[i] and P[i+1]
+        const p0 = P[Math.max(0, i - 1)], p1 = P[i], p2 = P[i + 1], p3 = P[Math.min(P.length - 1, i + 2)], u = j / 12, u2 = u * u, u3 = u2 * u;
+        pts.push(V(0, 0, 0).addScaledVector(p0, -.5 * u3 + u2 - .5 * u).addScaledVector(p1, 1.5 * u3 - 2.5 * u2 + 1).addScaledVector(p2, -1.5 * u3 + 2 * u2 + .5 * u).addScaledVector(p3, .5 * u3 - .5 * u2));
+      }
+      pts.push(P.at(-1)); const len = [0]; for (let i = 1; i < pts.length; i++) len.push(len[i - 1] + pts[i].distanceTo(pts[i - 1]));
+      st.lap = { pts, len, L: len.at(-1) };
+    }
+    const { pts, len, L: LL } = st.lap, v = .72, period = LL + 2.5;   // slow ritual pace; 2.5 m of the lap are behind the tomb
+    for (const [n, off] of GIRLS) {
+      const a = st.A[n], d = (v * t + period - off) % period;
+      a.group.visible = d < LL; if (!a.group.visible) continue;
+      let i = 1; while (i < len.length - 1 && len[i] < d) i++;
+      const u = (d - len[i - 1]) / (len[i] - len[i - 1] || 1), p = pts[i - 1].clone().lerp(pts[i], u), dir = pts[i].clone().sub(pts[i - 1]);
+      a.group.position.set(p.x, 0, p.z); a.group.rotation.y = Math.atan2(dir.x, dir.z);
+      walkPose(a.B, d / 1.05, 1, { stride: .32, arms: .2 }); a.group.updateMatrixWorld(true);
+      // counting the turns on the fingers of the right hand held before her chest; head a little bowed, lips moving
+      const ka = k(a), cnt = (Math.floor((v * t - off) / period + 10) % 5) / 4;
+      a.B.neck.rotation.x += .14; upd(a, 'neck');
       PO.reach(a, 'R', front(a, 'chest', .24 * ka, .06 * ka, -.06 * ka), { grip: .1, pole: [-.3, -.5, -.1] });
       PO.fingers(a, 'R', .95, { thumb: .5, each: [1, cnt > .1 ? 0 : 1, cnt > .35 ? 0 : 1, cnt > .6 ? 0 : 1, cnt > .85 ? 0 : 1] });
     }
@@ -163,11 +181,11 @@ const pray = staged('mausolee', {
 export default beatScene(ID, {
   shots: { ms, pr, fl, br, ab, pray },
   plan: {
-    b010: { shot: 'ms', size: 'W', on: 'fqih', cover: [{ f: .5, size: 'M', on: 'fqih' }] },
+    b010: { shot: 'ms', size: 'W', on: 'fqih', cover: [{ f: .5, size: 'M', on: 'fqih', z: 2.2 }] },
     b011: { shot: 'pr', size: 'W', on: 'mohammed' },   // walkers: covers frame build positions → wide only
     b012: { shot: 'fl', size: 'W', on: 'woman1' },
-    b013: { shot: 'br', size: 'W', on: 'mohammed', cover: [{ f: .35, size: 'M', on: 'mohammed' }] },
-    b014: { shot: 'ab', size: 'M', on: 'fqih', cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
+    b013: { shot: 'br', size: 'W', on: 'mohammed', cover: [{ f: .35, size: 'M', on: 'mohammed', z: 2.4 }] },
+    b014: { shot: 'ab', size: 'M', on: 'fqih', z: 2.2, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
     b015: { shot: 'pray', size: 'W', on: 'mohammed' },
   },
 });

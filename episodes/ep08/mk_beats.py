@@ -114,7 +114,7 @@ A = {
     enum=[("les soucis et les coquelicots", "soucis"), ("les marguerites", "marguerites"), ("les liserons", "liserons")], sfx=["breeze", "bee far"]),
   P("macro", ["terrasse", "poterie"], "On the family terrace in broken pottery: geranium, carnations, roses of Ispahan — each lit in turn.", still="p11_fleurs_terrasse",
     move="slow pan right across three pots, light blooms on each word",
-    enum=[("le géranium", "géranium"), ("les œillets", "œillets"), ("les roses d'Ispahan", "roses")], sfx=["breeze", "pigeons far"]),
+    enum=[("le géranium", "géranium"), ("les œillets", "œillets"), ("les roses d'Ispahan", "roses")], enumSide="left", sfx=["breeze", "pigeons far"]),   # Argon r6: the list sat over the roses; the geranium is on the left
   P("dream", ["or"], "Underground palaces: genies forge jewels in rivers of molten gold; the jewels keep the colour of the flames.", still="p12_genies",
     move="slow descent into the forge, embers drift up", sfx=["forge rumble", "anvil far", "dream shimmer"]),
   P("dream", ["fleur"], "A legendary princess walks; under each step a flower blooms — fragile jewels.", still="p13_princesse",

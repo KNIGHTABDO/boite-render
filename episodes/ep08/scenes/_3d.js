@@ -122,6 +122,7 @@ function coverCam(sh, t) {
   const bp = sh.bodyPx?.[Math.max(0, i)];
   if (bp > 20) z = Math.min(4.5, Math.max(1.2, K.H / (F * bp)));
   if (e.z) z = e.z;
+  if (e.zTo) { const u = Math.min(1, Math.max(0, (t - e.t) / e.push)); z += (e.zTo - z) * u * u * (3 - 2 * u); }   // Argon r6: a slow continuous push, not a cut
   if (e.dx != null || e.dy != null) return [h[0] + (e.dx || 0), h[1] + (.5 - hy) * K.H / z + (e.dy || 0), z];   // hand-set framing wins
   // Argon s07/s08: an M on the short kid cut the parents' heads off; a CU left slivers of a head on the frame edge.
   // M: any other head inside the frame is kept fully in (tilt up, then zoom out); M/CU: no head straddles a side edge.

@@ -17,7 +17,7 @@ export function examEvents(beats, timing, enums = {}) {
       const l = sc.lines[j], t0 = l ? l.start : sc.start;
       if (b.card) ev.push({ kind: 'card', text: b.card, a: t0, b: t0 + 3.2 });
       if (b.label) ev.push({ kind: 'label', text: b.label, a: t0 + .4, b: t0 + 4.4 });
-      if (enums[b.id]?.length && l) ev.push({ kind: 'enum', items: enums[b.id].map(([x, txt]) => [t0 + x, txt]), a: t0 + enums[b.id][0][0] - .1, b: t0 + l.dur + .8 });
+      if (enums[b.id]?.length && l) ev.push({ kind: 'enum', items: enums[b.id].map(([x, txt]) => [t0 + x, txt]), a: t0 + enums[b.id][0][0] - .1, b: t0 + l.dur + .8, side: b.enumSide });
       if (b.tag) ev.push({ kind: 'tag', text: b.tag, a: t0 + .3, b: t0 + 6.3 });
       if (b.badge) { const [txt, at] = b.badge.split('@'), [m, s] = (at || '0:00').trim().split(':').map(Number); ev.push({ kind: 'badge', text: txt.trim(), a: sc.start + m * 60 + s, b: sc.start + m * 60 + s + 8 }); }
     });
@@ -83,11 +83,11 @@ function badge(text, k) {
 
 // enum: the items of an enumeration pop in one by one ON the spoken word (enum.json from tools/enum_times.py), right side,
 // the item being said in gold, the earlier ones stay in cream so the whole list is on screen when the sentence ends
-function enumList(items, k, t) {
+function enumList(items, k, t, side) {   // side 'left': mirrored to the left edge (b047: the list hid the roses)
   const shown = items.filter(([a]) => t >= a - .05); if (!shown.length) return;
-  const x = W - 120, y0 = 380, dy = 70;
   c.save(); c.globalAlpha = k; c.textAlign = 'right'; c.textBaseline = 'alphabetic'; c.font = `bold 50px ${SERIF}`;
   const bw = Math.max(...items.map(([, s]) => c.measureText(s).width)) + 110;
+  const x = side === 'left' ? 120 + bw - 30 : W - 120, y0 = 380, dy = 70;
   c.fillStyle = 'rgba(14,9,6,.6)'; c.fillRect(x - bw + 30, y0 - 62, bw, shown.length * dy + 34);
   shown.forEach(([a, s], i) => {
     const u = ease(clamp((t - a) / .3)), cur = i === shown.length - 1 && t < (items[i + 1]?.[0] ?? a + 1.6);
@@ -104,7 +104,7 @@ export function drawExam(ev, t) {
     if (t < e.a || t > e.b) continue;
     const k = env(t, e.a, e.b);
     c.save(); c.setTransform(1, 0, 0, 1, 0, 0); const s = c.canvas.width / W; c.scale(s, s);
-    if (e.kind === 'card') card(e.text, k, t, e.a); else if (e.kind === 'label') label(e.text, k, t, e.a); else if (e.kind === 'tag') tag(e.text, k); else if (e.kind === 'enum') enumList(e.items, k, t); else badge(e.text, k);
+    if (e.kind === 'card') card(e.text, k, t, e.a); else if (e.kind === 'label') label(e.text, k, t, e.a); else if (e.kind === 'tag') tag(e.text, k); else if (e.kind === 'enum') enumList(e.items, k, t, e.side); else badge(e.text, k);
     c.restore();
   }
 }
