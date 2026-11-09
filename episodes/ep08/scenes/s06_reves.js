@@ -13,7 +13,7 @@ const drift = t => sm(E[1] - .4, E[1] + 1.4, t);   // afternoon: 0 → 1
 
 const cl = staged('mausolee', {
   fqih: { ...CLASS.fqih, lids: .3, talk: 0, look: 'mohammed', lookMax: .5 },
-  mohammed: { ...CLASS.mohammed, lids: t => .3 + .25 * drift(t), mutter: t => (t > B(0)[0] - .3 ? 1 : 0) * (1 - drift(t)), lookMax: t => .6 + .25 * drift(t),
+  mohammed: { ...CLASS.mohammed, lids: t => .3 + .25 * drift(t), mutter: t => (t > B(0)[0] - .3 ? 1 : 0) * (1 - drift(t)), lookMax: t => .28 + .4 * drift(t),
     look: (t, st) => drift(t) > .35 ? [420, 640, 2.6] : st.slate },   // eyes off the slate, up to the light over the tomb
 }, {
   act(lt, t, S, st, S3) {

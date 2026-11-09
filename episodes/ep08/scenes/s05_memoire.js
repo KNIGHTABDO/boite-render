@@ -17,7 +17,7 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 // toward the lens, 3/4 to camera (his face reads), his slate up on his lap
 export const CLASS = {
   fqih: { at: [1150, 780], face: [1000, 1080], pose: 'cross', seed: 9 },
-  mohammed: { at: [880, 960], face: 'cam', yaw: .35, pose: 'cross', seed: 3, hands: false },
+  mohammed: { at: [790, 960], face: 'cam', yaw: .35, pose: 'cross', seed: 3, hands: false },
 };
 /** the slate standing on the crossed shins, leaning back against the thighs, a hand on each side edge */
 export function lapLouha(a, lh) {
@@ -31,7 +31,7 @@ export function rock(a, t, amp = .1, rate = 3.4) { a.B.spine.rotation.x += amp *
 
 const cl = staged('mausolee', {
   fqih: { ...CLASS.fqih, lids: .22, talk: .4 },
-  mohammed: { ...CLASS.mohammed, lids: .35, mutter: t => win(1, 0, 1, t), lookMax: .6, look: (t, st) => st.slate },
+  mohammed: { ...CLASS.mohammed, lids: .35, mutter: t => win(1, 0, 1, t), lookMax: .28,   /* stills15: .6 bowed the head to a bare skull; the eyes go down, the face stays readable */ look: (t, st) => st.slate },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A;
