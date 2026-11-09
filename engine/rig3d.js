@@ -251,12 +251,41 @@ export async function loadSkinned(url, spec, { outline = .004, ramp = [120, 190,
   const inkMat = new THREE.MeshBasicMaterial({ color: 0x1f1612, side: THREE.BackSide });
   inkMat.onBeforeCompile = sh => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>\n transformed += normalize(objectNormal) * ${outline.toFixed(4)};`)
     .replace('#include <project_vertex>', '#include <project_vertex>\n gl_Position = projectionMatrix * (mvPosition + vec4(0., 0., -.015, 0.));'); };
+  // cape actors (haik): the arms live under the cloth and only the hands come out. Make every vertex all-arm or
+  // all-body and cut the triangles joining the two, so a raised hand leaves the cloth cleanly instead of stretching
+  // skin strips down to the hip; a cloth-coloured patch (on the hips, 4 mm in) fills the hole the hand leaves.
+  let patch = null;
+  if (spec.capeHands) {
+    const isArm = list.map(b => /(Arm|Hand)/.test(b.name) && !/Shoulder/.test(b.name));
+    const si = geo.attributes.skinIndex, sw = geo.attributes.skinWeight, n = si.count, arm = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      let a = 0, tot = 0; for (let j = 0; j < 4; j++) { const w = sw.getComponent(i, j); tot += w; if (isArm[si.getComponent(i, j)]) a += w; }
+      arm[i] = a > .5 * tot ? 1 : 0;
+      let s = 0; for (let j = 0; j < 4; j++) { const keep = !!isArm[si.getComponent(i, j)] === !!arm[i]; if (!keep) sw.setComponent(i, j, 0); else s += sw.getComponent(i, j); }
+      if (s > 0) for (let j = 0; j < 4; j++) sw.setComponent(i, j, sw.getComponent(i, j) / s);
+    }
+    sw.needsUpdate = true;
+    const ix = geo.index ? geo.index.array : Array.from({ length: n }, (_, i) => i), kept = [], hk = [];
+    for (let t = 0; t < ix.length; t += 3) {
+      const a = arm[ix[t]], b = arm[ix[t + 1]], c = arm[ix[t + 2]];
+      if (a === b && b === c) kept.push(ix[t], ix[t + 1], ix[t + 2]);
+      if (a && b && c) hk.push(ix[t], ix[t + 1], ix[t + 2]);
+    }
+    geo.setIndex(kept);
+    const hips = list.indexOf(B.root), pos = geo.attributes.position, nrm = geo.attributes.normal, pp = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) for (let d = 0; d < 3; d++) pp[i * 3 + d] = pos.getComponent(i, d) - nrm.getComponent(i, d) * .004;
+    const pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pp, 3)); pg.setAttribute('normal', nrm); pg.setIndex(hk);
+    const pi = new Uint16Array(n * 4), pw = new Float32Array(n * 4); for (let i = 0; i < n; i++) { pi[i * 4] = Math.max(0, hips); pw[i * 4] = 1; }
+    pg.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(pi, 4)); pg.setAttribute('skinWeight', new THREE.Float32BufferAttribute(pw, 4));
+    patch = new THREE.SkinnedMesh(pg, new THREE.MeshToonMaterial({ color: spec.capeColor ?? 0xe6dfcf, gradientMap: grad, side: THREE.DoubleSide }));
+  }
   const mesh = new THREE.SkinnedMesh(geo, mat), hull = new THREE.SkinnedMesh(geo, inkMat); hull.visible = outline > 0;
   for (const r of roots) mesh.add(r);
   mesh.updateMatrixWorld(true);
   const skel = new THREE.Skeleton(list); mesh.bind(skel, new THREE.Matrix4()); hull.bind(skel, new THREE.Matrix4());
   mesh.frustumCulled = hull.frustumCulled = false;
   const inner = new THREE.Group(); inner.add(mesh, hull);
+  if (patch) { patch.bind(skel, new THREE.Matrix4()); patch.frustumCulled = false; inner.add(patch); }
   const h = spec.top - spec.bottom; inner.scale.setScalar(1 / h); inner.position.y = -spec.bottom / h;
   const group = new THREE.Group(); group.add(inner);
   for (const b of list) b.userData.rest = b.quaternion.clone();

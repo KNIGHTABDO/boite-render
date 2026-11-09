@@ -117,9 +117,12 @@ const SIZES = { W: [1, .5], M: [1.7, .36, .58], CU: [2.6, .5, .45] };   // [fall
 function coverCam(sh, t) {
   let e = null; for (const x of sh.cover) if (t >= x.t) e = x;
   if (!e || e.size === 'W' || !SIZES[e.size]) return null;
-  const i = sh.st.actors.findIndex(a => a.name === e.on), h = sh.heads[Math.max(0, i)];
+  const i = sh.st.actors.findIndex(a => a.name === e.on);
+  let h = sh.heads[Math.max(0, i)], bp = sh.bodyPx?.[Math.max(0, i)];
   let [z, hy, F] = SIZES[e.size];
-  const bp = sh.bodyPx?.[Math.max(0, i)];
+  // pt: [px, py] frame the actor as if standing on that plate point (walkers and fighters leave their build mark)
+  if (e.pt && sh.S3) { const a = sh.st.actors[Math.max(0, i)], w = sh.S3.floorAt(...e.pt).add(sh.headOff[Math.max(0, i)]), f = w.clone(); f.y -= .83 * a.group.scale.y;
+    h = sh.S3.project(w); bp = sh.S3.project(f)[1] - h[1]; }
   if (bp > 20) z = Math.min(4.5, Math.max(1.2, K.H / (F * bp)));
   if (e.z) z = e.z;
   if (e.zTo) { const u = Math.min(1, Math.max(0, (t - e.t) / e.push)); z += (e.zTo - z) * u * u * (3 - 2 * u); }   // Argon r6: a slow continuous push, not a cut
@@ -142,7 +145,8 @@ function coverCam(sh, t) {
     });
     if (!need && !shift) break;
     cx += shift;
-    if (need < 0) cy -= need; else if (need) { if ((h[1] - (T - need)) / hh < .62) cy -= need; else if (z > 1.2) z = Math.max(1.2, z * .85), cy = h[1] + (.5 - hy) * K.H / z; else break; }
+    if (need < 0) cy -= Math.max(need, Math.min(0, -(h[1] - T - .3 * hh)));   // never push the subject's own head past .3 of the frame
+    else if (need) { if ((h[1] - (T - need)) / hh < .62) cy -= need; else if (z > 1.2) z = Math.max(1.2, z * .85), cy = h[1] + (.5 - hy) * K.H / z; else break; }
   }
   return [cx, cy, z];
 }
@@ -160,7 +164,8 @@ export function shot({ plate: name, light = {}, build, frame, view, cover, move,
     sh.place = sh.st.actors.map(a => [a.group.position.clone(), a.group.rotation.clone()]);   // restored each frame (shared casts)
     sh.heads = sh.st.actors.map(a => S3.project(IK.wpos(a.B.head)));   // coverage framing targets (fixed per shot: deterministic in chunked renders)
     sh.bodyPx = sh.st.actors.map(a => { const h = IK.wpos(a.B.head), f = h.clone(); f.y -= .83 * a.group.scale.y; return S3.project(f)[1] - S3.project(h)[1]; });
-    sh.cover = cover;
+    sh.headOff = sh.st.actors.map(a => IK.wpos(a.B.head).sub(a.group.position));   // for plan pt: framing a walker where it will be
+    sh.S3 = S3; sh.cover = cover;
   };
   sh.fn = (lt, u, t, S) => {
     const { st, S3, img } = sh;

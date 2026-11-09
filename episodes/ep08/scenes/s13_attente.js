@@ -75,7 +75,7 @@ const mu = staged('souk_mur', {
 
 // b087 the father holds the boy up against his chest: the boy SITS on his right forearm (a seated pose solved at .45 m,
 // lifted to the arm), his face over the father's shoulder toward the lens; the father 3/4 away, chest heaving
-const CARRY = 1.02;   // hip height of the boy on the forearm (m), father 1.76 m
+const CARRY = 1.12;   // hip height of the boy on the forearm (m), father 1.76 m
 const ca = staged('souk_mur', {
   father: { at: [720, 860], face: [380, 640], seed: 5, look: [500, 980, 1.2], lookMax: .5, talk: 0 },
   mohammed: { at: [720, 860], face: 'father', pose: 'step', o: { seat: .45, floor: .08, fz: .22, lean: .32 }, hands: false, seed: 3, lids: .55, talk: 0 },
@@ -85,7 +85,7 @@ const ca = staged('souk_mur', {
     const { father: fa, mohammed: mo } = st.A, kf = k(fa), km = k(mo);
     const lift = sm(B(4)[0] - .4, B(4)[0] + .9, t), fy = fa.group.rotation.y;
     // the boy: from his standing height up onto the arm, in front of the father's right chest, facing him
-    const base = at(fa, 'root').add(V(Math.sin(fy) * .17 * kf + Math.cos(fy) * -.1 * kf, 0, Math.cos(fy) * .17 * kf - Math.sin(fy) * -.1 * kf));
+    const base = at(fa, 'root').add(V(Math.sin(fy) * .17 * kf + Math.cos(fy) * -.17 * kf, 0, Math.cos(fy) * .17 * kf - Math.sin(fy) * -.17 * kf));
     if (!st.h0) { st.h0 = at(mo, 'root').y - mo.group.position.y; }
     mo.group.position.set(base.x, (CARRY * kf / 1.1 - st.h0) * lift, base.z); mo.group.rotation.y = fy + Math.PI; mo.group.updateMatrixWorld(true);
     // breathing: the father's chest heaves (he ran), sweat-heavy head bowed a little
@@ -95,7 +95,7 @@ const ca = staged('souk_mur', {
     PO.reach(fa, 'R', at(mo, 'root').add(V(0, -.07 * km, 0)), { grip: .3 });
     PO.reach(fa, 'L', at(mo, 'chest').lerp(at(mo, 'neck'), .3).addScaledVector(V(Math.sin(fy), 0, Math.cos(fy)), -.08 * km), { grip: .2 });
     // the boy: leaning in, cheek on the shoulder (head turned to the lens side), arms round the father's neck
-    mo.B.spine.rotation.x += .12 * lift; mo.B.neck.rotation.x += .1 * lift; mo.B.head.rotation.y += .55 * lift; mo.B.head.rotation.z += .2 * lift; mo.B.spine.updateWorldMatrix(false, true);
+    mo.B.spine.rotation.x += .06 * lift; mo.B.head.rotation.y += .2 * lift; mo.B.head.rotation.z += .15 * lift; mo.B.spine.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) PO.reach(mo, s, at(fa, 'neck').add(V(0, -.04, 0)).addScaledVector(V(Math.cos(fy), 0, -Math.sin(fy)), (s === 'L' ? .09 : -.09) * kf), { grip: .3 });
     for (const a of [fa, mo]) a.B.chest.updateWorldMatrix(false, true);
   },

@@ -38,8 +38,8 @@ const mu = staged('souk_mur', {
 const fr = staged('souk_mur', {
   zoubida: { at: [880, 575], costume: 'haik', seed: 7, walk: { to: [935, 790], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .85,
     look: t => t < B(2)[0] ? [880 + 420 * Math.sin(t * .9), 640, 1.4] : t > B(4)[0] ? [935, 1000, 0] : null, lids: t => .5 * win(4, .3, 1.2, t) },
-  mohammed: { at: [845, 585], seed: 3, talk: 0, walk: { to: [815, 805], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .95,
-    look: t => t > B(3)[0] ? [820 + 500 * Math.sin((t - B(3)[0]) * .9), 600, 1.6] : t > B(2)[0] ? [500, 760, 1.2] : null },
+  mohammed: { at: [845, 585], seed: 3, talk: 0, walk: { to: [815, 805], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .6,
+    look: t => t > B(3)[0] ? [815 + 650 * Math.sin((t - B(3)[0]) * .9), 860, 1.3] : t > B(2)[0] ? [500, 760, 1.2] : null },
   fatma: { at: [925, 565], seed: 11, walk: { to: [1050, 760], t0: B(1)[0] + .1, t1: B(1)[0] + 4.5 }, lookMax: .8,
     look: t => t < B(2)[0] ? [880 - 420 * Math.sin(t * .8), 640, 1.4] : 'zoubida' },
   // life goes on (b100): a seller by the counter, turned to a client; two urchins stroll by singing
@@ -51,7 +51,8 @@ const fr = staged('souk_mur', {
   addressee: { zoubida: 'fatma' },
   act(lt, t, S, st) {
     const { zoubida: zo, mohammed: mo, fatma: ft, man1: m1, kid2: k2, kid3: k3 } = st.A, km = k(mo), kz = k(zo), k1 = k(m1);
-    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2;
+    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[1] + .4;
+    for (const a of [m1, st.A.woman1]) a.group.visible = t < B(3)[0];   // the CUs (b101–b102) stay clear of the seller and client
     // the seller lifts a scoop of dates toward the client, a gentle bobbing (he talks prices)
     PO.reach(m1, 'R', front(m1, 'chest', .3 * k1, .08 * k1, (-.06 + .025 * Math.sin(t * 2.4)) * k1), { grip: .4 });
     // b101 the boy grips his mother's haik at her hip (once they have stopped); he shrinks a little against her
@@ -74,7 +75,7 @@ export default beatScene(ID, {
     b098: { shot: 'mu', size: 'M', on: 'zoubida' },
     b099: { shot: 'fr', size: 'W', on: 'zoubida', insAt: .62 },
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
-    b101: { shot: 'fr', size: 'CU', on: 'mohammed', z: 2.3 },
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', z: 2.6 },
+    b101: { shot: 'fr', size: 'CU', on: 'mohammed', z: 2.3, pt: [815, 805] },
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', z: 2.6, pt: [935, 790] },
   },
 });

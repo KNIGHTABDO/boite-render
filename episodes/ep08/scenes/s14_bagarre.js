@@ -120,8 +120,8 @@ export default beatScene(ID, {
     b090: { shot: 'mu', size: 'M', on: 'father' },
     b093: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.4 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 2.5 },
-    b095: { shot: 'fi', size: 'M', on: 'father', z: 1.5 },
-    b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 2.6 },
+    b095: { shot: 'fi', size: 'M', on: 'father', z: 1.4, pt: [930, 710] },
+    b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 2.4, pt: [800, 760] },
     b097: { shot: 'fi', size: 'W', on: 'father' },
   },
 });
