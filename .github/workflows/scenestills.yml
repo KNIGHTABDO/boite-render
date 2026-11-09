@@ -57,7 +57,7 @@ jobs:
           CHROME: ${{ steps.chrome.outputs.chrome-path }}
           CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
         run: |
-          node tools/scene-stills.mjs "${{ inputs.episode }}" "${{ matrix.scene }}" out/st 2>&1 | grep -v '^\s*$' | tail -40
+          node tools/scene-stills.mjs "${{ inputs.episode }}" "${{ matrix.scene }}" out/st 2>&1 | grep -v '^\s*$' | tail -300
           python3 tools/scene-sheet.py "out/st/${{ matrix.scene }}"
       - uses: actions/upload-artifact@v4
         if: always()
