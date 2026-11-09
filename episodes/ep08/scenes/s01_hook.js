@@ -21,7 +21,7 @@ const pa = staged('patio_matin', {
     fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true);   // supinate: the palm turns to the sky
     const br = st.br ||= bracelets(S3), h = fa.B.handR;   // the sun and moon bracelets lying on his palm
     br.visible = u > .5; h.updateWorldMatrix(true, false);
-    br.position.copy(h.localToWorld(V(0, .07 * k, .025 * k))); br.scale.setScalar(Math.max(.75, k)); br.updateMatrixWorld(true);
+    br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(Math.max(.75, k)); br.updateMatrixWorld(true);
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
     if (laugh > 0) { zo.B.chest.rotation.x += .05 * Math.sin(t * 14) * laugh; zo.B.chest.updateWorldMatrix(false, true); }
   },

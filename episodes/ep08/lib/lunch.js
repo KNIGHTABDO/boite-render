@@ -2,5 +2,5 @@
 export const LUNCH = {
   father: { at: [600, 930], face: [900, 915], pose: 'kneel', seed: 5, o: { hip: .22, lean: .2, hspread: .19 } },
   zoubida: { at: [1250, 920], face: [900, 915], pose: 'kneel', seed: 7, o: { hip: .22, lean: .18, hspread: .17 } },
-  mohammed: { at: [850, 975], face: [560, 1080], pose: 'kneel', seed: 3, o: { hip: .2, lean: .24, hspread: .15 } },
+  mohammed: { at: [840, 1065], face: [560, 1080], pose: 'kneel', seed: 3, o: { hip: .2, lean: .24, hspread: .15 } },
 };

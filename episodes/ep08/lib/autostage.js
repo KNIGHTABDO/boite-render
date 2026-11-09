@@ -6,7 +6,8 @@
 //   }, { addressee: { zoubida: 'mohammed' }, act(lt, t, S, st) { ...extra per-frame action... } });
 // marks: at = floor px on the plate; face = another role name | [px, py] floor px | 'cam' | yaw (radians);
 // pose = 'stand' | 'kneel' | 'cross' | 'lie' (lie: o.turn, o.top) ; o = extra pose options; seed = acting seed;
-// walk = { to: [px, py], t0, t1 } (scene-local seconds, standing only); climb = { to: tread, t0, t1 } (on a stair mark); look = role name | [px, py, h] fixed gaze; lids = eyelid weight 0..1 | t => 0..1 (fever, sleep).
+// walk = { to: [px, py], t0, t1 } (scene-local seconds, standing only); climb = { to: tread, t0, t1 } (on a stair mark); look = role name | [px, py, h] fixed gaze; yaw = extra turn (rad) on top of face;
+// hands = 'thighs' | 'knees' | false (seated default: palms pinned on the thighs, 'knees' on a stair step), act() reaches override; lids = eyelid weight 0..1 | t => 0..1 (fever, sleep).
 // Rules kept from _3d.js: solves at build only; per-frame motion is additive on contact-free bones (acting.idle/speak/look).
 import * as THREE from 'three';
 import * as PO from '../../../engine/poses.js';
@@ -44,16 +45,21 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       const snaps = {};
       for (const n of names) {
         const m = marks[n], a = A[n];
-        S3.add(a, P[n].x, P[n].z, aim(n, m.face)); a.home = P[n];
+        S3.add(a, P[n].x, P[n].z, aim(n, m.face) + (m.yaw || 0)); a.home = P[n];
         if (Y[n]) { a.group.position.y = Y[n]; a.group.updateMatrixWorld(true); }
         if (POSES[m.pose]) memoPose(`${n}:${m.pose}`, a, [P[n].x, P[n].z, m.o || {}], () => POSES[m.pose](a, m.o || {}));
         snaps[n] = POSES[m.pose] ? PO.snap(a) : null;
+        // seated hands REST on the body (Argon: hovering forearms poke into whoever sits in front): palm points on the thighs
+        // (kneel / cross) or the kneecaps (step), kept in the pelvis frame so a chest lean or an idle sway can't lift them off
+        const hm = m.hands ?? (m.pose === 'step' ? 'knees' : SEATED.has(m.pose) && m.pose !== 'lie' ? 'thighs' : null);
+        if (hm && snaps[n]) { const k = a.group.scale.y / 1.6; a.pins = ['L', 'R'].map(s => { const th = a.B['thigh' + s].getWorldPosition(V(0, 0, 0)), kn = a.B['shin' + s].getWorldPosition(V(0, 0, 0));
+          return [s, a.B.root.worldToLocal(th.lerp(kn, hm === 'knees' ? .92 : .6).add(V(0, (hm === 'knees' ? .07 : .075) * k, 0)))]; }); }
         if (m.walk) m.walk.p0 = P[n].clone(), m.walk.p1 = S3.floorAt(...m.walk.to);
         if (m.climb) Object.assign(m.climb, { p0: P[n].clone(), p1: ST.tread(m.climb.to, m.off || 0), j0: m.tread, rise: ST.RISE });
       }
       const fixed = {};
       for (const n of names) { const l = marks[n].look; if (Array.isArray(l)) fixed[n] = S3.floorAt(l[0], l[1]).setY(l[2] ?? 1.2); }
-      const faces = names.map((n, i) => { const l = marks[n].lids; return [A[n], n, i * 3 + 1, l == null ? {} : (lt, t) => ({ blink: typeof l === 'function' ? l(t) : l })]; });   // m.lids: heavy eyelids 0..1 (or t => 0..1)
+      const faces = names.map((n, i) => { const l = marks[n].lids; return [A[n], n, i * 3 + 1, l == null ? {} : (lt, t) => ({ lid: typeof l === 'function' ? l(t) : l })]; });   // m.lids: heavy eyelids 0..1 (or t => 0..1)
       return { actors: names.map(n => A[n]), A, P, snaps, fixed, faces, S3 };
     },
     frame(lt, u, t, S, st, S3) {
@@ -70,10 +76,17 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         else if (m.walk && t >= m.walk.t0) { rest(a.B); walk(a, m.walk.p0, m.walk.p1, m.walk.t0, m.walk.t1, t); }
         else rest(a.B);
         AC.idle(a, t, seed, { seated: !!snaps[n] });
+        pin(a);
         if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: !snaps[n] });
         AC.speak(a, t, S.lines, n);
       }
+      const K = ['spine', 'chest', 'upperArmL', 'foreArmL', 'upperArmR', 'foreArmR'], q0 = new Map();
+      for (const n of names) if (A[n].pins) q0.set(n, K.map(b => A[n].B[b].quaternion.clone()));
       act?.(lt, t, S, st, S3);
+      for (const [n, q] of q0) {   // act leaned the body but left the arms alone: the palms stay on the thighs
+        const a = A[n], ch = K.map((b, i) => !a.B[b].quaternion.equals(q[i]));
+        if ((ch[0] || ch[1]) && !ch.slice(2).some(Boolean)) { a.B.spine.updateWorldMatrix(false, true); pin(a); }
+      }
       st.G.apply(t);
       for (const n of names) {   // fixed gazes win over the net (a prop, a window, another role); m.lookMax widens the head cap
         const l = marks[n].look, o = { max: marks[n].lookMax ?? .55 };
@@ -87,5 +100,6 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
     },
   });
 }
+function pin(a) { if (a.pins) for (const [s, p] of a.pins) PO.reach(a, s, a.B.root.localToWorld(p.clone()), { grip: .035, pole: s === 'L' ? [.35, .1, -.2] : [-.35, .1, -.2] }); }
 export const isSeated = p => SEATED.has(p);
 export { THREE };

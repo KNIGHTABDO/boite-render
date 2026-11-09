@@ -10,7 +10,7 @@ const ID = 's09_escalier', L = lines(ID);
 const B = i => L[i] || [0, 0];
 const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .5, t) * (1 - sm(t0 + b * D, t0 + b * D + .5, t)); };
 
-export const SEAT = { tread: 3, back: .07, face: 'down', pose: 'step', o: { fz: .38 }, seed: 3 };   // hips well onto tread 3, feet flat mid tread 2
+export const SEAT = { tread: 3, back: .07, face: 'down', yaw: .55, pose: 'step', o: { fz: .3, lean: .3 }, seed: 3 };   // hips on tread 3, feet on tread 2, turned 3/4 so the bent knees read; hands pinned on the knees (autostage)
 const esc = staged('escalier', { mohammed: { ...SEAT } }, {
   stairs: ESCALIER,
   act(lt, t, S, st, S3) {
