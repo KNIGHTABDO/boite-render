@@ -49,7 +49,7 @@ const mu = staged('souk_mur', {
 
     // ---- b086 the surge: they pass in front between .05 and .6 of the line; the family is shoved back against the bench
     const t0 = f(3, .02), t1 = f(3, .6);
-    for (const [a, p0, p1, dt] of [[m1, [1250, 640], [180, 990], 0], [k2, [1180, 610], [260, 960], .25], [w1, [1330, 660], [330, 1000], .5]]) {
+    for (const [a, p0, p1, dt] of [[m1, [1250, 660], [120, 905], 0], [k2, [1180, 640], [200, 880], .25], [w1, [1330, 690], [260, 930], .5]]) {
       a.group.visible = t > t0 - .2 && t < t1 + 1;
       if (a.group.visible) { rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0 + dt, t1 + dt, t, { cps: 2.8, ease: false }); }
     }
@@ -151,7 +151,7 @@ export default beatScene(ID, {
     b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.6 },
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [905, 690] },   // over the father's shoulder onto the dellal's shout
     b085: { shot: 'la', size: 'W', on: 'marchand', z: 1.1, pt: [880, 700] },   // the lane itself, mid-depth: the boil crosses frame
-    b086: { shot: 'mu', size: 'M', on: 'zoubida' },
+    b086: { shot: 'mu', size: 'W', on: 'mohammed' },   // wide: the surge crosses between us and the family, who are shoved back
     b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.0 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.6 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.5 },
