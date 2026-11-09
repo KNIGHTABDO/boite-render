@@ -80,6 +80,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         }
       }
       for (const a of Object.values(A)) a.group.updateMatrixWorld(true);
+      if (globalThis.DBG8 ?? true) for (const n of names) { const a = A[n], h = a.B.head.getWorldPosition(V(0, 0, 0)); console.warn('DBG', plate, n, marks[n].pose || 'stand', 't=' + t.toFixed(2), 'walk=' + (marks[n].walk ? marks[n].walk.t0.toFixed(2) : '-'), 'pos=' + a.group.position.x.toFixed(2) + ',' + a.group.position.z.toFixed(2), 'headY=' + h.y.toFixed(2), 'scale=' + a.group.scale.y.toFixed(2)); }
     },
   });
 }
