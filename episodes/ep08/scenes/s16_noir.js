@@ -34,7 +34,7 @@ function mourn(zo, t) {
     PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
   }
 }
-function tears(lt, t, S, st, S3) {
+function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
   c.save(); c.strokeStyle = 'rgba(180,212,230,.7)'; c.lineWidth = 1.8; c.lineCap = 'round';
   for (const sign of [-1, 1]) {
