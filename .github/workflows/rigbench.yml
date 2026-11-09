@@ -1,0 +1,45 @@
+name: Rig bench (one runner per rig)
+on:
+  workflow_dispatch:
+    inputs:
+      rigs:
+        description: JSON list of rig keys (art/rigged/<key>.glb)
+        required: true
+permissions:
+  contents: read
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 40
+      matrix:
+        rig: ${{ fromJSON(inputs.rigs) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund --silent
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+      - run: pip install -q pillow numpy
+      - name: Bench
+        env:
+          CHROME: ${{ steps.chrome.outputs.chrome-path }}
+          CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
+          RIG: ${{ matrix.rig }}
+        run: |
+          [[ "$RIG" =~ ^[a-z0-9_]+$ ]] || exit 1
+          mkdir -p out/rigqa/bench && bash tools/rig/bench_all.sh "$RIG"
+          python3 tools/rig/sheet.py "$RIG" || true
+          ls out/rigqa/bench | head
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bench-${{ matrix.rig }}
+          path: |
+            out/rigqa/sheet_${{ matrix.rig }}.jpg
+            out/rigqa/bench/${{ matrix.rig }}_*.jpg
+          if-no-files-found: warn
