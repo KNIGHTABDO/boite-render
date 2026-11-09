@@ -15,7 +15,7 @@ import * as AC from '../../../engine/acting.js';
 import { rest } from '../../../engine/rig3d.js';
 import { shot, role, memoPose } from '../scenes/_3d.js';
 import { walk } from './acts.js';
-import { V, yawTo } from './beatscene.js';
+import { V, yawTo, dirW } from './beatscene.js';
 import { fitStairs } from './stairs.js';
 
 const SEATED = new Set(['kneel', 'cross', 'lie', 'step']);
@@ -77,7 +77,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         else rest(a.B);
         AC.idle(a, t, seed, { seated: !!snaps[n] });
         pin(a);
-        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: !snaps[n] });
+        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) { if (!snaps[n]) hang(a, t, seed); AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: false }); }
         AC.speak(a, t, S.lines, n);
       }
       const K = ['spine', 'chest', 'upperArmL', 'foreArmL', 'upperArmR', 'foreArmR'], q0 = new Map();
@@ -99,6 +99,17 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       if (globalThis.DBG8) for (const n of names) { const a = A[n], h = a.B.head.getWorldPosition(V(0, 0, 0)); console.error('DBG', plate, n, marks[n].pose || 'stand', 't=' + t.toFixed(2), 'walk=' + (marks[n].walk ? marks[n].walk.t0.toFixed(2) : '-'), 'pos=' + a.group.position.x.toFixed(2) + ',' + a.group.position.z.toFixed(2), 'headY=' + h.y.toFixed(2), 'scale=' + a.group.scale.y.toFixed(2)); }
     },
   });
+}
+// Argon r7: idle standing arms read as an A-pose (the rig's bind angle + a small relax). The hands now hang from the
+// shoulders at the actor's own arm length (rig-agnostic), a hand-width out from the thigh, elbows soft and back.
+function hang(a, t, seed) {
+  const k = a.group.scale.y / 1.6, B = a.B; a.group.updateMatrixWorld(true);
+  for (const s of ['L', 'R']) {
+    const w = b => B[b + s].getWorldPosition(V(0, 0, 0)), sh = w('upperArm'), len = (a.armLen ||= {})[s] ||= sh.distanceTo(w('foreArm')) + w('foreArm').distanceTo(w('hand'));
+    const sw = .012 * Math.sin(t * .9 + seed + (s === 'L' ? 0 : 1.7));
+    const tg = sh.clone().addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), .07 * k).addScaledVector(dirW(a, 0, 0, 1), (.05 + sw) * k).add(V(0, -.9 * len, 0));
+    PO.reach(a, s, tg, { grip: .0, pole: s === 'L' ? [.3, .1, -.4] : [-.3, .1, -.4] });
+  }
 }
 function pin(a) { if (a.pins) for (const [s, p] of a.pins) PO.reach(a, s, a.B.root.localToWorld(p.clone()), { grip: .035, pole: s === 'L' ? [.35, .1, -.2] : [-.35, .1, -.2] }); }
 export const isSeated = p => SEATED.has(p);

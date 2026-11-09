@@ -14,7 +14,7 @@ import { walk } from '../lib/acts.js';
 import { rest } from '../../../engine/rig3d.js';
 import { bracelets } from './s17_retour.js';
 import { SOUK } from './s12_souk.js';
-import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
 
 const ID = 's13_attente', L = lines(ID), B = i => L[i] || [0, 0];
 const k = a => a.group.scale.y / 1.6;
@@ -28,7 +28,7 @@ const mu = staged('souk_mur', {
   zoubida: { at: MUR.zoubida, face: [800, 1000], costume: 'haik', seed: 7, lookMax: .7,
     look: t => t > B(5)[0] ? [900, 900, 1.6] : t > B(3)[0] ? [1000, 700, 1.5] : 'mohammed' },
   mohammed: { at: MUR.mohammed, face: [900, 1000], seed: 3, talk: 0, lookMax: .7,
-    lids: t => Math.max(.3, win(0, .3, .75, t)), mutter: t => win(0, .3, .72, t) * 1.1 },
+    lids: t => Math.max(.3, win(0, .25, .8, t)), mutter: t => win(0, .3, .72, t) * 1.7 },
   fatma: { at: MUR.fatma, face: [900, 980], seed: 11, look: t => t > B(5)[0] ? 'zoubida' : t > B(3)[0] ? [1100, 700, 1.4] : null },
   father: { at: MUR.father, face: [1300, 760], seed: 5, lookMax: .8, look: t => t > B(4)[0] ? 'mohammed' : [1100, 650, 1.6] },
   // the surge (b086): three hurry past in front of them toward the lens-left
@@ -40,11 +40,14 @@ const mu = staged('souk_mur', {
     const { zoubida: zo, mohammed: mo, fatma: ft, father: fa, man1: m1, kid2: k2, woman1: w1 } = st.A, km = k(mo), kz = k(zo);
     // ---- b083 the yawn and the sag: knees give, trunk folds, head back for the yawn, then a lean on her
     const sag = win(0, .1, 1.2, t), yawn = win(0, .3, .72, t);
-    mo.B.spine.rotation.x += .14 * sag; mo.B.chest.rotation.x += .06 * sag; mo.B.neck.rotation.x -= .45 * yawn; mo.B.head.rotation.z += .1 * yawn;
-    for (const s of ['L', 'R']) { mo.B['thigh' + s].rotation.x -= .22 * sag; mo.B['shin' + s].rotation.x += .4 * sag; }
-    mo.group.position.y = -.035 * sag * km; mo.B.spine.updateWorldMatrix(false, true);
+    const hold = sm(f(0, .7), f(0, 1), t);
+    mo.B.spine.rotation.x += .3 * sag; mo.B.chest.rotation.x += .1 * sag; mo.B.neck.rotation.x -= .6 * yawn; mo.B.head.rotation.z += .12 * yawn;
+    for (const s of ['L', 'R']) { mo.B['thigh' + s].rotation.x -= .45 * sag; mo.B['shin' + s].rotation.x += .8 * sag; }
+    mo.group.position.y = -.08 * sag * km;
+    // then he slumps sideways onto her: a slide toward her hip, the head tipped onto her
+    { const zp = zo.group.position, mp = mo.group.position; mp.x += (zp.x - mp.x) * .3 * hold; mp.z += (zp.z - mp.z) * .3 * hold; }
+    mo.group.updateMatrixWorld(true); mo.B.spine.updateWorldMatrix(false, true);
     // b083 end: she draws him against her side (her right hand on his shoulder)
-    const hold = sm(f(0, .75), f(0, 1), t);
     if (hold > 0) PO.reach(zo, 'R', front(zo, 'root', .2 * kz, .24 * kz, .25 * kz).lerp(at(mo, 'neck').add(V(0, .03, 0)), hold), { grip: .2 });
 
     // ---- b086 the surge: they pass in front between .05 and .6 of the line; the family is shoved back against the bench
@@ -55,8 +58,8 @@ const mu = staged('souk_mur', {
     }
     const push = win(3, .2, .55, t) * (.8 + .2 * Math.sin(t * 9));
     for (const [a, w] of [[zo, 1], [mo, .7], [ft, 1.1]]) {
-      const kk = k(a); a.group.position.add(V(-.07 * w * push * kk, 0, -.12 * w * push * kk));
-      a.B.spine.rotation.x -= .16 * w * push; a.B.neck.rotation.x += .12 * w * push; a.group.updateMatrixWorld(true); a.B.spine.updateWorldMatrix(false, true);
+      const kk = k(a); a.group.position.add(V(-.1 * w * push * kk, 0, -.18 * w * push * kk));
+      a.B.spine.rotation.x -= .24 * w * push; a.B.neck.rotation.x += .16 * w * push; a.group.updateMatrixWorld(true); a.B.spine.updateWorldMatrix(false, true);
     }
     if (push > .05) PO.reach(zo, 'L', front(zo, 'chest', .2 * kz, .3 * kz, -.2 * kz).lerp(at(mo, 'chest'), .7), { grip: .25 });   // her arm goes round the boy
     fa.group.visible = t < B(3)[0] - .2 || t > B(4)[0] - .5;   // the father had stepped away to look for the dellal
@@ -66,7 +69,7 @@ const mu = staged('souk_mur', {
     if (cu > 0) {
       const ph = (t - B(5)[0]) * 1.6, ch = Math.sin(ph * Math.PI * 2) ** 3;
       zo.B.head.rotation.y += .22 * cu * Math.sin(t * 4.3) ** 3; zo.B.neck.rotation.x += .1 * cu * Math.max(0, Math.sin(t * 5.1)) ** 4; zo.B.neck.updateWorldMatrix(false, true);
-      PO.reach(zo, 'R', front(zo, 'chest', .34 * kz, (.06 + .2 * ch) * kz, (-.04 + .04 * ch) * kz), { grip: .05 });
+      PO.reach(zo, 'R', front(zo, 'chest', .42 * kz, (.18 + .26 * ch) * kz, (.02 + .05 * ch) * kz), { grip: .05 });   // clear of the veil: out in front and to her right
       PO.palmTo(zo, 'R', cu, V(0, -1, 0));
     }
     for (const a of [zo, mo, ft]) a.B.chest.updateWorldMatrix(false, true);
@@ -85,7 +88,7 @@ const ca = staged('souk_mur', {
     const { father: fa, mohammed: mo } = st.A, kf = k(fa), km = k(mo);
     const lift = sm(B(4)[0] - .4, B(4)[0] + .9, t), fy = fa.group.rotation.y;
     // the boy: from his standing height up onto the arm, in front of the father's right chest, facing him
-    const base = at(fa, 'root').add(V(Math.sin(fy) * .14 * kf + Math.cos(fy) * -.27 * kf, 0, Math.cos(fy) * .14 * kf - Math.sin(fy) * -.27 * kf));   // on his side: the father's face stays clear
+    const base = at(fa, 'root').add(V(Math.sin(fy) * .25 * kf + Math.cos(fy) * -.3 * kf, 0, Math.cos(fy) * .25 * kf - Math.sin(fy) * -.3 * kf));   // forward enough that the two torsos never interpenetrate   // on his side: the father's face stays clear
     if (!st.h0) { st.h0 = at(mo, 'root').y - mo.group.position.y; }
     mo.group.position.set(base.x, (CARRY * kf / 1.1 - st.h0) * lift, base.z); mo.group.rotation.y = fy + Math.PI; mo.group.updateMatrixWorld(true);
     // breathing: the father's chest heaves (he ran), sweat-heavy head bowed a little
@@ -95,7 +98,7 @@ const ca = staged('souk_mur', {
     PO.reach(fa, 'R', at(mo, 'root').add(V(0, -.07 * km, 0)), { grip: .3 });
     PO.reach(fa, 'L', at(mo, 'chest').lerp(at(mo, 'neck'), .3).addScaledVector(V(Math.sin(fy), 0, Math.cos(fy)), -.08 * km), { grip: .2 });
     // the boy: leaning in, cheek on the shoulder (head turned to the lens side), arms round the father's neck
-    mo.B.spine.rotation.x += .06 * lift; mo.B.head.rotation.z += .2 * lift; mo.B.spine.updateWorldMatrix(false, true);
+    mo.B.spine.rotation.x += .22 * lift; mo.B.neck.rotation.x += .15 * lift; mo.B.head.rotation.z += .3 * lift; mo.B.spine.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) PO.reach(mo, s, at(fa, 'neck').add(V(0, -.04, 0)).addScaledVector(V(Math.cos(fy), 0, -Math.sin(fy)), (s === 'L' ? .09 : -.09) * kf), { grip: .3 });
     for (const a of [fa, mo]) a.B.chest.updateWorldMatrix(false, true);
   },
@@ -103,21 +106,27 @@ const ca = staged('souk_mur', {
 
 // b084/b085/b089 the lane: the dellal's return, the boiling souk, the long empty scan
 const la = staged('souk_bijoux', {
-  father: { at: SOUK.father, face: [905, 690], seed: 5, lookMax: .85,
-    look: t => t > B(6)[0] ? [880 + 380 * Math.sin((t - B(6)[0]) * .7 - .8), 600, 1.6] : t > B(1)[0] ? 'marchand' : null },
-  zoubida: { at: [960, 820], face: [905, 690], costume: 'haik', seed: 7, lookMax: .85,
-    look: t => t > B(6)[0] ? [880 - 360 * Math.sin((t - B(6)[0]) * .6 - .5), 610, 1.6] : t > B(1)[0] ? 'marchand' : null },
-  marchand: { at: [880, 560], face: SOUK.father, seed: 13, talk: 0, mutter: t => win(1, .25, .55, t) * (.75 + .25 * Math.sin(t * 9)) },
+  father: { at: [740, 790], face: [1180, 720], seed: 5, lookMax: .85,
+    look: t => t > B(6)[0] ? [420 + 220 * Math.sin((t - B(6)[0]) * .7 - .8), 640, 1.6] : t > B(1)[0] ? 'marchand' : null },
+  zoubida: { at: [960, 830], face: [1180, 720], costume: 'haik', seed: 7, lookMax: .85,
+    look: t => t > B(6)[0] ? [1400 - 220 * Math.sin((t - B(6)[0]) * .6 - .5), 650, 1.6] : t > B(1)[0] ? 'marchand' : null },
+  marchand: { at: [1080, 560], face: [740, 790], seed: 13, talk: 0, mutter: t => win(1, .25, .55, t) * (.75 + .25 * Math.sin(t * 9)) },
   man1: { at: [700, 620], face: [880, 560], seed: 21, talk: 0 },
   woman1: { at: [960, 580], face: [1250, 940], seed: 25, talk: 0 },
   kid3: { at: [820, 590], face: [560, 900], seed: 29, talk: 0 },
 }, {
   addressee: { marchand: 'father' },
   act(lt, t, S, st, S3) {
-    const { father: fa, marchand: ma, man1: m1, woman1: w1, kid3: k3 } = st.A, km = k(ma), kf = k(fa);
+    const { father: fa, zoubida: zo, marchand: ma, man1: m1, woman1: w1, kid3: k3 } = st.A, km = k(ma), kf = k(fa);
     const F = (px, py) => S3.floorAt(px, py);
+    // b089 the scan: they turn apart, 3/4 profiles, he to the left stalls, she to the right
+    const tu = sm(B(6)[0] - .4, B(6)[0] + .6, t);
+    if (tu > 0) for (const [a, q] of [[fa, [400, 700]], [zo, [1450, 700]]]) {
+      const y0 = yawTo(a.group.position, F(1180, 720)), y1 = yawTo(a.group.position, F(...q));
+      a.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * tu; a.group.updateMatrixWorld(true);
+    }
     // b084: in from the deep lane, a stop, the shout, the father's nod, about-turn, gone (one leg per walk() call)
-    const P = [[880, 560], [905, 690], [880, 545]], ta = B(1)[0], tc = f(1, .62), tb = f(1, .25), td = f(1, .98);
+    const P = [[1080, 560], [1180, 720], [1080, 545]], ta = B(1)[0], tc = f(1, .62), tb = f(1, .25), td = f(1, .98);
     rest(ma.B);
     if (t < tb) walk(ma, F(...P[0]), F(...P[1]), ta - .4, tb, t, { cps: 2.2 });
     else if (t < tc) { walk(ma, F(...P[0]), F(...P[1]), ta, tb, tb); rest(ma.B); }
@@ -132,6 +141,7 @@ const la = staged('souk_bijoux', {
     // b085 the boil: a broker drags a client up the lane by the hand, a woman and an urchin hurry down it
     const r0 = B(2)[0] - .2, r1 = B(2)[1];
     for (const a of [m1, w1, k3]) a.group.visible = t > r0 && t < r1 + .3;
+    for (const a of [fa, zo]) a.group.visible = !(t > r0 && t < r1 + .3);   // the lane itself: the parents out of shot so the boil reads
     if (t > r0 && t < r1 + .3) {
       rest(m1.B); walk(m1, F(760, 900), F(900, 560), r0, r1, t, { cps: 2.6, ease: false });
       rest(w1.B); walk(w1, F(960, 580), F(1250, 940), r0 + .3, r1, t, { cps: 2.4, ease: false });
@@ -148,12 +158,12 @@ const la = staged('souk_bijoux', {
 export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.6 },
-    b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [905, 690] },   // over the father's shoulder onto the dellal's shout
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.1, dy: .06 },
+    b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 690] },   // over the father's shoulder onto the dellal's shout
     b085: { shot: 'la', size: 'W', on: 'marchand', z: 1.1, pt: [880, 700] },   // the lane itself, mid-depth: the boil crosses frame
     b086: { shot: 'mu', size: 'W', on: 'mohammed' },   // wide: the surge crosses between us and the family, who are shoved back
-    b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.0 },
-    b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.6 },
+    b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.4 },
+    b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.0 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.5 },
   },
 });

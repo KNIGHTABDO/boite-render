@@ -18,7 +18,7 @@ const sob = (t, ph) => Math.max(0, Math.sin(t * 6.5 + ph)) ** 2 * (.6 + .4 * Mat
 
 const mu = staged('souk_mur', {
   zoubida: { at: MUR.zoubida, face: [800, 1000], costume: 'haik', seed: 7, lids: .6, lookMax: .6, look: [700, 960, .3] },
-  mohammed: { at: MUR.mohammed, face: [900, 1000], seed: 3, talk: 0, lids: .95, lookMax: .7, look: [900, 900, 3], mutter: t => .7 + .3 * Math.sin(t * 2.2) },
+  mohammed: { at: MUR.mohammed, face: [900, 1000], seed: 3, talk: 0, lids: 1, lookMax: .7, look: [900, 900, 3], mutter: t => 1.6 + .4 * Math.sin(t * 2.2) },   // the wail: jaw wide
   fatma: { at: MUR.fatma, face: [900, 980], seed: 11, lids: .55, look: [880, 980, .2], lookMax: .6 },
 }, {
   act(lt, t, S, st) {
@@ -31,23 +31,24 @@ const mu = staged('souk_mur', {
     // her right hand pressed to the veil at the mouth (target well out in front of the face: default pole), his arms hang
     PO.reach(zo, 'R', front(zo, 'head', .2 * kz, .02 * kz, -.1 * kz), { grip: .2 });
     PO.reach(ft, 'L', front(ft, 'chest', .27 * kt, -.02 * kt, -.03 * kt), { grip: .15 });
+    PO.reach(zo, 'L', front(zo, 'root', .08 * kz, -.2 * kz, -.12 * kz), { grip: .02 });
     for (const a of [zo, ft, mo]) a.B.chest.updateWorldMatrix(false, true);
   },
 });
 
 const fr = staged('souk_mur', {
-  zoubida: { at: [880, 575], costume: 'haik', seed: 7, walk: { to: [800, 800], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .85,
-    look: t => t < B(2)[0] ? [880 + 420 * Math.sin(t * .9), 640, 1.4] : t > B(4)[0] ? [800, 1000, 0] : null, lids: t => .5 * win(4, .3, 1.2, t) },
-  mohammed: { at: [845, 585], seed: 3, talk: 0, walk: { to: [690, 815], t0: B(1)[0] - .2, t1: B(1)[0] + 4.2 }, lookMax: .6,
-    look: t => t > B(3)[0] ? [690 + 650 * Math.sin((t - B(3)[0]) * .9), 860, 1.3] : t > B(2)[0] ? [500, 760, 1.2] : null },
-  fatma: { at: [925, 565], seed: 11, walk: { to: [920, 770], t0: B(1)[0] + .1, t1: B(1)[0] + 4.5 }, lookMax: .8,
+  zoubida: { at: [860, 660], costume: 'haik', seed: 7, walk: { to: [800, 820], t0: B(1)[0] - .2, t1: B(1)[0] + 3.4 }, lookMax: .85,
+    look: t => t < B(2)[0] ? [880 + 420 * Math.sin(t * .9), 640, 1.4] : t > B(4)[0] ? 'mohammed' : null, lids: t => .8 * win(4, .25, 1.2, t) },
+  mohammed: { at: [790, 670], seed: 3, talk: 0, walk: { to: [700, 835], t0: B(1)[0] - .2, t1: B(1)[0] + 3.4 }, lookMax: .95,
+    look: t => t > B(3)[0] ? [700 + 900 * Math.sin((t - B(3)[0]) * 1.1), 900, .9] : t > B(2)[0] ? [500, 760, 1.2] : null },
+  fatma: { at: [930, 650], seed: 11, walk: { to: [930, 790], t0: B(1)[0] + .1, t1: B(1)[0] + 3.7 }, lookMax: .8,
     look: t => t < B(2)[0] ? [880 - 420 * Math.sin(t * .8), 640, 1.4] : 'zoubida' },
   // the trio stops left of centre so the seller and his client (right, by the counter) never cover them
   // life goes on (b100): a seller by the counter, turned to a client; two urchins stroll by singing
-  man1: { at: [1280, 760], face: [1100, 900], seed: 21, talk: 0, look: 'woman1' },
-  woman1: { at: [1180, 870], face: [1280, 760], seed: 25, talk: 0, look: 'man1' },
-  kid2: { at: [500, 600], seed: 27, talk: 0, walk: { to: [360, 930], t0: B(2)[0], t1: B(2)[1] }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5)) },
-  kid3: { at: [580, 590], seed: 29, talk: 0, walk: { to: [460, 940], t0: B(2)[0] + .5, t1: B(2)[1] + .5 }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5 + 1)) },
+  man1: { at: [1330, 690], face: [1250, 800], seed: 21, talk: 0, look: 'woman1' },
+  woman1: { at: [1220, 800], face: [1330, 690], seed: 25, talk: 0, look: 'man1' },
+  kid2: { at: [620, 740], seed: 27, talk: 0, walk: { to: [330, 1010], t0: B(2)[0], t1: B(2)[1] }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5)) },
+  kid3: { at: [700, 730], seed: 29, talk: 0, walk: { to: [430, 1030], t0: B(2)[0] + .5, t1: B(2)[1] + .5 }, mutter: t => win(2, 0, 1, t) * (.4 + .3 * Math.sin(t * 5 + 1)) },
 }, {
   addressee: { zoubida: 'fatma' },
   act(lt, t, S, st) {
@@ -59,13 +60,14 @@ const fr = staged('souk_mur', {
     // b101 the boy grips his mother's haik at her hip (once they have stopped); he shrinks a little against her
     const cling = sm(B(3)[0] - .8, B(3)[0], t);
     if (cling > 0) {
-      const hip = at(zo, 'root').add(V(0, .05 * kz, 0)).lerp(at(mo, 'root'), .25);
+      const hip = at(zo, 'root').add(V(0, .02 * kz, 0)).lerp(at(mo, 'root'), .42);
       PO.reach(mo, 'L', front(mo, 'root', .2 * km, -.12 * km, .1 * km).lerp(hip, cling), { grip: .8 });
       mo.B.spine.rotation.x += .06 * cling; mo.B.spine.updateWorldMatrix(false, true);
+      PO.reach(mo, 'R', front(mo, 'root', .05 * km, .2 * km, -.16 * km), { grip: .02 });
     }
     // b102 the defeated nod: two slow dips, eyes down, the shoulders drop
-    const no = win(4, .2, 1, t), u = Math.max(0, t - f(4, .2));
-    zo.B.neck.rotation.x += no * (.1 + .12 * Math.max(0, Math.sin(u * 2.2))); zo.B.chest.rotation.x += .07 * no; zo.B.spine.updateWorldMatrix(false, true);
+    const no = win(4, .2, 1, t), u = Math.max(0, t - f(4, .2));   // (autostage gazes after act: the dip rides on the look at the boy)
+    zo.B.neck.rotation.x += no * (.18 + .2 * Math.max(0, Math.sin(u * 2.2))); zo.B.chest.rotation.x += .12 * no; zo.B.spine.rotation.x += .05 * no; zo.B.spine.updateWorldMatrix(false, true);
     for (const a of [zo, mo, m1]) a.B.chest.updateWorldMatrix(false, true);
   },
 });
@@ -73,10 +75,10 @@ const fr = staged('souk_mur', {
 export default beatScene(ID, {
   shots: { mu, fr },
   plan: {
-    b098: { shot: 'mu', size: 'M', on: 'zoubida' },
+    b098: { shot: 'mu', size: 'M', on: 'mohammed', z: 1.2 },   // all three in: mother, boy, neighbour
     b099: { shot: 'fr', size: 'W', on: 'zoubida', insAt: .62 },
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
-    b101: { shot: 'fr', size: 'CU', on: 'mohammed', z: 2.3, pt: [690, 815] },
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', z: 2.6, pt: [800, 800] },
+    b101: { shot: 'fr', size: 'CU', on: 'mohammed', z: 3.3 },
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', z: 2.8 },
   },
 });
