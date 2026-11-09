@@ -11,7 +11,7 @@ const ID = 's21_fievre', L = lines(ID), B = i => L[i] || [0, 0];
 // Argon r6: face 0 sent the feet at the lens (a "fetal sack"). r7 (stills14): the right mattress recedes into depth, so any
 // lie there foreshortens into a sitting doll. Now the back mattress, parallel to the lens: a clean side view, head at its right
 // end, feet toward the lamp table, a thin blanket to the chest, hands on the belly.
-const MO = { at: [1035, 645], face: [700, 645], pose: 'lie', o: { top: .3, turn: .35 }, seed: 3, talk: 0,
+const MO = { at: [1000, 668], face: [650, 668], pose: 'lie', o: { top: .26, turn: .35 }, seed: 3, talk: 0,
   look: (t, st, S3) => S3.cam.position.clone(), lookMax: .7,   // head rolled on the pillow toward the lens
   lids: t => .6 + .2 * (.5 + .5 * Math.sin(t * .6)) };
 function fever(mo, t, st, S3) {
@@ -44,7 +44,7 @@ const ch2 = staged('chambre_jour', { mohammed: MO, zoubida: { at: [1235, 765], f
     zo.B.chest.updateWorldMatrix(false, true);
       // stills14: the chest-height target sat inside the bent trunk and the IK threw the elbows up to her head → clasp lower,
     // in front of the belly, clear of the trunk, default elbow poles (elbows down)
-    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'spine', .26 * k, (s === 'L' ? -.03 : .03) * k, .02 * k).lerp(front(zo, 'root', .22 * k, (s === 'L' ? -.17 : .17) * k, .02 * k), 1 - u), { grip: .2 });
+    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'spine', .26 * k, (s === 'L' ? -.03 : .03) * k, .02 * k), { grip: .2 });   // held from the cut (the root→chest blend flipped the elbows up to her face)
   },
 });
 

@@ -8,7 +8,7 @@ import { beatScene, lines, sm, at, front, V, dirW } from '../lib/beatscene.js';
 
 const ID = 's19_matin', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
-const BED = { at: [1035, 645], face: [700, 645], pose: 'lie', o: { top: .3, turn: .25 }, seed: 3 };   // the back mattress, side-on to the lens (head at its right end, feet toward the lamp table), as s16/s21
+const BED = { at: [1000, 668], face: [650, 668], pose: 'lie', o: { top: .26, turn: .25 }, seed: 3 };   // the back mattress, side-on to the lens (head at its right end, feet toward the lamp table), as s16/s21
 const arms = (a, t, kind, u) => {   // Zoubida's gestures: 'chop' (both forearms down in beats), 'palms' (up to the ceiling)
   const k = a.group.scale.y / 1.6;
   for (const s of ['L', 'R']) {
