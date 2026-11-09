@@ -12,6 +12,8 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { bracelets } from './s17_retour.js';
+import { walk } from '../lib/acts.js';
+import { rest } from '../../../engine/rig3d.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
 
 const ID = 's12_souk', L = lines(ID), B = i => L[i] || [0, 0];
@@ -27,19 +29,19 @@ function turn(a, to, w) {
 
 // the lane blocking shared by s13/s14 (where the family ends up after the walk)
 export const SOUK = {
-  father: [800, 790], mohammed: [650, 830], zoubida: [1030, 800], fatma: [1135, 772], marchand: [905, 690],
+  father: [800, 790], mohammed: [650, 830], zoubida: [1030, 800], fatma: [1135, 772], marchand: [1290, 880],   // Argon r7: the dellal on the near right, so the family turns 3/4 to us
   man1: [600, 690], woman2: [668, 676],
 };
 const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 
 const la = staged('souk_bijoux', {
-  father: { ...WALK([905, 612], SOUK.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
+  father: { ...WALK([870, 690], SOUK.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
     look: (t, st) => t > f(6, .2) && t < f(6, .95) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
-  mohammed: { ...WALK([840, 618], SOUK.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .7,
+  mohammed: { ...WALK([790, 700], SOUK.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .7,
     look: (t, st) => t > B(5)[0] && st.br?.visible ? st.br.position : null },
-  zoubida: { ...WALK([955, 596], SOUK.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: .7,
+  zoubida: { ...WALK([930, 680], SOUK.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: .7,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
-  fatma: { ...WALK([1010, 590], SOUK.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: .7,
+  fatma: { ...WALK([1000, 670], SOUK.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: .7,
     look: (t, st) => t > f(7, .4) && t < f(7, .8) ? st.br?.position : t > B(7)[0] ? 'zoubida' : t > B(5)[0] ? 'marchand' : null },
   marchand: { at: SOUK.marchand, face: SOUK.father, seed: 13, talk: 0, lookMax: .8,
     look: t => t > f(8, .3) ? null : t > B(7)[0] ? 'zoubida' : t > B(6)[0] ? 'father' : [905, 900, 2.6],   // b079: up to the sky
@@ -57,7 +59,10 @@ const la = staged('souk_bijoux', {
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face); turn(mo, ma.group.position, .75 * face);
     turn(zo, ma.group.position, .8 * face); turn(ft, ma.group.position, .8 * face);
-    ma.group.visible = t > B(5)[0] - .3 && !(t > f(8, .92));
+    ma.group.visible = t > B(5)[0] - .3;
+    for (const a of [fa, mo, zo, ft]) a.group.visible = !(t > B(3)[0] - .1 && t < B(3)[1] + .2);   // b077: the couple alone in frame
+    // b082 he plunges back up the lane into the crowd, the bracelets held up over his head
+    if (t > f(8, .3)) { rest(ma.B); walk(ma, S3.floorAt(...SOUK.marchand), S3.floorAt(950, 575), f(8, .3), B(8)[1] + 1.2, t, { cps: 2.4 }); }
 
     // ---- the jewel of the grieving couple (always there: they stay in their corner all scene)
     st.jw ||= S3.prop(PR.cabochon({ col: 0xe0b040 }), 0, 0, 0);
@@ -78,9 +83,9 @@ const la = staged('souk_bijoux', {
     ma.B.spine.updateWorldMatrix(false, true);
     const give = sm(f(6, .12), f(6, .4), t) * (1 - sm(f(6, .45), f(6, .7), t));   // b080 the hand comes down and out to the father
     const mid = at(ma, 'chest').lerp(at(fa, 'chest'), .5).add(V(0, -.12, 0));
-    const up = front(ma, 'chest', .32 * km, .2 * km, (.24 + .03 * Math.sin(t * 7)) * km);
+    const up = front(ma, 'chest', .26 * km, .18 * km, (.42 + .04 * Math.sin(t * 7)) * km);   // high: the pair dangling above the heads
     const dive = sm(f(8, .3), f(8, .45), t);   // b082 back up the lane, the hand high
-    if (ma.group.visible) PO.reach(ma, 'R', up.clone().lerp(mid, give).lerp(front(ma, 'chest', .2 * km, .18 * km, .3 * km), dive), { grip: .35 });
+    if (ma.group.visible) PO.reach(ma, 'R', up.clone().lerp(mid, give).lerp(front(ma, 'chest', .12 * km, .16 * km, .58 * km), dive), { grip: .35 });
 
     // ---- b080 the father: his right hand meets the dellal's, takes the pair, brings it back to his chest
     const kf = k(fa), take = sm(f(6, .15), f(6, .42), t) * (1 - sm(f(6, .62), f(6, .85), t));
@@ -114,11 +119,11 @@ const la = staged('souk_bijoux', {
 
 // b076 the reverse: the boy alone before the shop window, his body 3/4 to the lens, the head turned to the trays
 const re = staged('souk_bijoux_rev', {
-  mohammed: { at: [400, 900], face: [1000, 960], seed: 3, lids: .32, look: [930, 800, .95], lookMax: .9, talk: 0 },
+  mohammed: { at: [1100, 900], face: [700, 1000], seed: 3, lids: .5, look: [930, 800, .95], lookMax: .9, talk: 0 },
 }, {
   act(lt, t, S, st) {
     const mo = st.A.mohammed, u = Math.max(0, t - B(2)[0]), no = win(2, .45, 1, t);
-    mo.B.neck.rotation.x += .1; mo.B.spine.rotation.x -= .04;   // chin tucked, leaning back from the glitter
+    mo.B.neck.rotation.x += .22; mo.B.spine.rotation.x -= .05;   // chin tucked, leaning back from the glitter
     mo.B.head.rotation.y += .14 * no * Math.sin(u * 3.2); mo.B.spine.updateWorldMatrix(false, true);
   },
 });
