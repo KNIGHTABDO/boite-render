@@ -32,6 +32,8 @@ export default beatScene(ID, {
   plan: {
     b044: { shot: 'esc', size: 'W', on: 'mohammed' },
     b045: { shot: 'esc', size: 'M', on: 'mohammed' },
+    b048: { move: 'forge' },
+    b049: { move: 'princess' },
     b050: { shot: 'esc', size: 'M', on: 'mohammed' },
     b051: { shot: 'esc', size: 'CU', on: 'mohammed' },
     b052: { shot: 'esc', size: 'M', on: 'mohammed' },
