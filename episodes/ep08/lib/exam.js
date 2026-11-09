@@ -17,7 +17,7 @@ export function examEvents(beats, timing, enums = {}) {
       const l = sc.lines[j], t0 = l ? l.start : sc.start;
       if (b.card) ev.push({ kind: 'card', text: b.card, a: t0, b: t0 + 3.2 });
       if (b.label) ev.push({ kind: 'label', text: b.label, a: t0 + .4, b: t0 + 4.4 });
-      if (enums[b.id]?.length && l) ev.push({ kind: 'enum', items: enums[b.id].map(([x, txt]) => [t0 + x, txt]), a: t0 + enums[b.id][0][0] - .1, b: t0 + l.dur + .8, side: b.enumSide });
+      if (enums[b.id]?.length && l && !/fiche/.test(sc.id)) ev.push({ kind: 'enum', items: enums[b.id].map(([x, txt]) => [t0 + x, txt]), a: t0 + enums[b.id][0][0] - .1, b: t0 + l.dur + .8, side: b.enumSide });
       if (b.tag) ev.push({ kind: 'tag', text: b.tag, a: t0 + .3, b: t0 + 6.3 });
       if (b.badge) { const [txt, at] = b.badge.split('@'), [m, s] = (at || '0:00').trim().split(':').map(Number); ev.push({ kind: 'badge', text: txt.trim(), a: sc.start + m * 60 + s, b: sc.start + m * 60 + s + 8 }); }
     });

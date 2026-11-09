@@ -1,7 +1,7 @@
 // s22 the revision sheet (51.6 s, screenshot-ready: the last frame holds the whole sheet). Paper sheet on the dark desk;
 // parts appear with the narration and stay: header (0.8 s), the 4-step chronology with its paintings (8.9 s, one card per
 // item), "Le detail a retenir" in three bullets (18.7 / 24.7 / 29.0 s), themes one by one (34.7 s) + the ch. IX teaser (43.4 s).
-// The part being read gets a gold frame. Times are char-proportional estimates inside each line (pending a clip check).
+// The part being read gets a gold frame. Chrono/theme times = enum.json word times (b157/b160); the detail bullets are char estimates. The global enum card is off for fiche scenes (lib/exam.js).
 import * as K from '../../../engine/core.js';
 import { loadStill } from '../lib/stage.js';
 const { c, W, H, clamp, ease } = K;
@@ -9,17 +9,17 @@ const SERIF = '"IM Fell English", Georgia, serif';
 const PAPER = '#f2e6c8', RED = '#b8322a', INK = '#2a1a10', GOLD = '#e0a53c', BG = '#140e0a';
 const LN = [.8, 8.94, 17.21, 34.67];
 const CHRONO = [
-  { id: 'p01_ete_patio', d: "L'été", t: 'Au mausolée', s: 'les jours de visite, la chaleur', at: 9.0 },
-  { id: 'p11_fleurs_terrasse', d: 'Le matin', t: "L'escalier & les fleurs", s: "les jeux et les rêves de l'enfant", at: 10.7 },
-  { id: 'p23_course', d: 'Au souk', t: 'La bagarre', s: 'le père contre le dellal', at: 13.1 },
-  { id: 'p31_cheval_noir', d: 'La nuit', t: 'Le cauchemar', s: 'le cheval noir, la fièvre', at: 14.9 },
+  { id: 'p01_ete_patio', d: "L'été", t: 'Au mausolée', s: 'les jours de visite, la chaleur', at: 9.06 },
+  { id: 'p11_fleurs_terrasse', d: 'Le matin', t: "L'escalier & les fleurs", s: "les jeux et les rêves de l'enfant", at: 11.23 },
+  { id: 'p23_course', d: 'Au souk', t: 'La bagarre', s: 'le père contre le dellal', at: 13.39 },
+  { id: 'p31_cheval_noir', d: 'La nuit', t: 'Le cauchemar', s: 'le cheval noir, la fièvre', at: 15.29 },
 ];
 const DETAIL = [
   { at: 18.7, html: [['Les bracelets', RED, 'bold'], [' désirés par la mère  →  ', INK], ['« bijoux de mauvais augure »', RED, 'italic']] },
   { at: 24.7, html: [['Le bonheur', INK, 'bold'], ['  se transforme en  ', INK], ['malheur', RED, 'bold']] },
   { at: 29.0, html: [['Sidi Larbi', RED, 'bold'], [' (annoncé chez le barbier, ch. VII)  =  ', INK], ['une seconde femme', RED, 'bold']] },
 ];
-const THEMES = [["l'imaginaire de l'enfant", 35.5], ['la solitude', 37.8], ['le regard des adultes', 39.0], ['la condition de la femme', 41.05]];
+const THEMES = [["l'imaginaire de l'enfant", 35.76], ['la solitude', 38.07], ['le regard des adultes', 39.67], ['la condition de la femme', 41.52]];
 const im = {};
 
 function rule(x0, x1, y, col = RED, w = 2) { c.strokeStyle = col; c.lineWidth = w; c.beginPath(); c.moveTo(x0, y); c.lineTo(x1, y); c.stroke(); }

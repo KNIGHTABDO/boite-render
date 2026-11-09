@@ -149,8 +149,8 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.6 },
-    b084: { shot: 'la', size: 'M', on: 'father', z: 1.6 },
-    b085: { shot: 'la', size: 'W', on: 'father' },
+    b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [905, 690] },   // over the father's shoulder onto the dellal's shout
+    b085: { shot: 'la', size: 'W', on: 'marchand', z: 1.1, pt: [880, 700] },   // the lane itself, mid-depth: the boil crosses frame
     b086: { shot: 'mu', size: 'M', on: 'zoubida' },
     b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.2 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.6 },
