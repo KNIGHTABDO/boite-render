@@ -6,7 +6,7 @@
 //   }, { addressee: { zoubida: 'mohammed' }, act(lt, t, S, st) { ...extra per-frame action... } });
 // marks: at = floor px on the plate; face = another role name | [px, py] floor px | 'cam' | yaw (radians);
 // pose = 'stand' | 'kneel' | 'cross' | 'lie' (lie: o.turn, o.top) ; o = extra pose options; seed = acting seed;
-// walk = { to: [px, py], t0, t1 } (scene-local seconds, standing only); look = role name | [px, py, h] fixed gaze.
+// walk = { to: [px, py], t0, t1 } (scene-local seconds, standing only); climb = { to: tread, t0, t1 } (on a stair mark); look = role name | [px, py, h] fixed gaze.
 // Rules kept from _3d.js: solves at build only; per-frame motion is additive on contact-free bones (acting.idle/speak/look).
 import * as THREE from 'three';
 import * as PO from '../../../engine/poses.js';
@@ -49,6 +49,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         if (POSES[m.pose]) memoPose(`${n}:${m.pose}`, a, [P[n].x, P[n].z, m.o || {}], () => POSES[m.pose](a, m.o || {}));
         snaps[n] = POSES[m.pose] ? PO.snap(a) : null;
         if (m.walk) m.walk.p0 = P[n].clone(), m.walk.p1 = S3.floorAt(...m.walk.to);
+        if (m.climb) Object.assign(m.climb, { p0: P[n].clone(), p1: ST.tread(m.climb.to, m.off || 0), j0: m.tread, rise: ST.RISE });
       }
       const fixed = {};
       for (const n of names) { const l = marks[n].look; if (Array.isArray(l)) fixed[n] = S3.floorAt(l[0], l[1]).setY(l[2] ?? 1.2); }
@@ -61,10 +62,15 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       for (const [i, n] of names.entries()) {
         const a = A[n], m = marks[n], seed = m.seed ?? i * 2 + 1;
         if (snaps[n]) PO.apply(a, snaps[n]);
+        else if (m.climb && t >= m.climb.t0) {   // up (or down) the flight tread by tread: walk() swings the legs, y steps
+          const c = m.climb; rest(a.B); walk(a, c.p0, c.p1, c.t0, c.t1, t);
+          const u = Math.min(1, (t - c.t0) / (c.t1 - c.t0)), e = u * u * (3 - 2 * u), s = e * Math.abs(c.to - c.j0), f = s % 1;
+          a.group.position.y = c.rise * (c.j0 + Math.sign(c.to - c.j0) * (Math.floor(s) + f * f * (3 - 2 * f))); a.group.updateMatrixWorld(true);
+        }
         else if (m.walk && t >= m.walk.t0) { rest(a.B); walk(a, m.walk.p0, m.walk.p1, m.walk.t0, m.walk.t1, t); }
         else rest(a.B);
         AC.idle(a, t, seed, { seated: !!snaps[n] });
-        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3)) AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: !snaps[n] });
+        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: !snaps[n] });
         AC.speak(a, t, S.lines, n);
       }
       act?.(lt, t, S, st, S3);

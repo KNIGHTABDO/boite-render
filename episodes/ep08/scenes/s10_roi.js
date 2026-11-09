@@ -7,7 +7,6 @@ import { staged } from '../lib/autostage.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { SEAT } from './s09_escalier.js';
 import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
-globalThis.DBG8 = true;   // TEMP: log s10 seat pose (remove after the run)
 
 const ID = 's10_roi', L = lines(ID);
 const B = i => L[i] || [0, 0];
@@ -16,14 +15,15 @@ const k = a => a.group.scale.y / 1.6;
 const laugh = (a, w, t, f = 13) => { if (w > 0) { a.B.chest.rotation.x += .05 * Math.sin(t * f) * w; a.B.neck.rotation.x -= .08 * w; a.B.chest.updateWorldMatrix(false, true); } };
 
 const esc = staged('escalier', {
-  mohammed: { ...SEAT, look: 'zoubida' },
+  mohammed: { ...SEAT, look: t => t < B(5)[0] ? 'zoubida' : null },
   zoubida: { tread: 0, off: .55, face: 'mohammed', seed: 7, look: 'mohammed' },
 }, {
   stairs: ESCALIER, addressee: { zoubida: 'mohammed', mohammed: 'zoubida' },
   act(lt, t, S, st) {
     const { zoubida: zo, mohammed: mo } = st.A, kz = k(zo);
-    const hips = win(4, .3, 1.05, t);   // hands to her hips, amused
-    if (hips > 0) for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'root', .02 * kz, (s === 'L' ? -.2 : .2) * kz, .08 * kz).lerp(front(zo, 'root', .15 * kz, (s === 'L' ? -.2 : .2) * kz, -.05 * kz), 1 - hips), { grip: .02 });
+    zo.group.visible = t < B(5)[0];   // b061 (back on the stairs): she has already gone out to the patio
+    const hips = win(4, .3, 1.05, t);   // hands to her hips, amused (wrists out at the waist, elbows wide, clear of the hip)
+    if (hips > 0) for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'root', .06 * kz, (s === 'L' ? -.27 : .27) * kz, .1 * kz).lerp(front(zo, 'root', .15 * kz, (s === 'L' ? -.2 : .2) * kz, -.05 * kz), 1 - hips), { grip: .02 });
     laugh(zo, win(4, .75, 1.1, t), t);
     const proud = win(3, 0, 1, t);   // "Au roi.": chin up, chest out
     if (proud > 0) { mo.B.neck.rotation.x -= .12 * proud; mo.B.chest.rotation.x -= .08 * proud; mo.B.chest.updateWorldMatrix(false, true); }
@@ -33,7 +33,7 @@ const esc = staged('escalier', {
 });
 
 const pa = staged('patio_matin', {
-  zoubida: { at: [760, 975], face: 'rahma', seed: 7 },
+  zoubida: { at: [760, 975], face: 'rahma', seed: 7, look: 'rahma', lookMax: .8 },
   rahma: { at: [1120, 960], face: 'zoubida', seed: 9 },
   woman1: { at: [1400, 990], face: 'zoubida', pose: 'kneel', seed: 11 },
   woman2: { at: [470, 1000], face: 'rahma', pose: 'kneel', seed: 13 },
@@ -46,8 +46,9 @@ const pa = staged('patio_matin', {
     laugh(ra, win(6, .7, 1.1, t), t, 12);
     const palms = win(9, .45, 1, t);   // "à peine une corde": palms up
     if (palms > 0) for (const s of ['L', 'R']) PO.reach(ra, s, front(ra, 'chest', .3 * kr, (s === 'L' ? -.2 : .2) * kr, -.15 * kr).lerp(front(ra, 'root', .2 * kr, (s === 'L' ? -.2 : .2) * kr, 0), 1 - palms), { grip: 0 });
+    if (palms > 0) for (const [s, g] of [['L', 1], ['R', -1]]) { ra.B['foreArm' + s].rotation.y += g * 1.4 * palms; ra.B['foreArm' + s].updateWorldMatrix(false, true); }   // supinate: palms to the sky
     const hand = win(10, .5, 1, t);   // "Dieu donne": right hand raised, palm out
-    if (hand > 0) PO.reach(zo, 'R', front(zo, 'head', .25 * kz, .15 * kz, .05 * kz).lerp(front(zo, 'root', .2 * kz, .2 * kz, 0), 1 - hand), { grip: 0 });
+    if (hand > 0) PO.reach(zo, 'R', front(zo, 'head', .3 * kz, .38 * kz, -.08 * kz).lerp(front(zo, 'root', .2 * kz, .2 * kz, 0), 1 - hand), { grip: 0 });
     const amen = win(11, 0, 1, t);   // the women lower their eyes together
     for (const a of [w1, w2, ra]) if (amen > 0) { a.B.neck.rotation.x += .2 * amen; a.B.neck.updateWorldMatrix(false, true); }
   },

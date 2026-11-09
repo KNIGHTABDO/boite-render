@@ -24,7 +24,7 @@ const pa = staged('patio_matin', {
 
 const nu = staged('chambre_nuit', {
   zoubida: { at: [760, 1030], face: [1300, 1000], pose: 'kneel', seed: 7 },
-  mohammed: { at: [1180, 845], face: 0, pose: 'lie', o: { top: .35, turn: .5 }, look: [800, 1000, .7], seed: 3 },
+  mohammed: { at: [1180, 845], face: Math.PI / 2, pose: 'lie', o: { top: .35, turn: .45 }, look: [800, 1000, .7], seed: 3 },
 }, {
   act(lt, t, S, st) {
     const zo = st.A.zoubida, k = zo.group.scale.y / 1.6;
