@@ -325,9 +325,11 @@ function naturalLie(a, { top, turn, pillow, sink, hands, headTurn }) {
   const B = a.B, k = a.group.scale.y / 1.6, floor = top - sink;
   rest(B);
   B.root.rotation.set(-Math.PI / 2, 0, 0); B.root.rotateY(turn); B.root.rotateX(-.025);
+  // A previous seated solve may have shortened the cloth hems. Restore their bind scale before reclining.
+  for (const b of new Set(Object.values(B))) b.scale.set(1, 1, 1);
   B.spine.rotation.x = .075; B.chest.rotation.x = .045;
   // Keep the upper legs near bind: the robe is carried by separate skirt bones. The old heel search could swing a
-  // thigh half a radian through that cloth. A small hip bend and twice as much knee bend keep the heels low instead.
+  // thigh half a radian through that cloth. A small hip bend and a soft knee bend keep the heels low instead.
   for (const [s, sign, bend] of [['L', 1, .10], ['R', -1, .14]]) {
     B['thigh' + s].rotation.x = -bend; B['thigh' + s].rotation.z = sign * .025;
     B['shin' + s].rotation.x = bend * 2 + .23;

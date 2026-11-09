@@ -3,6 +3,7 @@
 // b106 two-shot, no gaze between them. b107 patio at night (patio_nuit), empty: slow push up to their dark window.
 // b108 painting (green sparks).
 import * as PO from '../../../engine/poses.js';
+import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { shot } from './_3d.js';
 import { staged } from '../lib/autostage.js';
@@ -20,11 +21,16 @@ function mourn(zo, t) {
   zo.B.chest.rotation.x += .25 + .012 * sob; zo.B.neck.rotation.x += .28;
   zo.B.chest.updateWorldMatrix(false, true);   // body first: palms follow the bowed face
   for (const s of ['L', 'R']) {
-    const sign = s === 'L' ? 1 : -1, p = front(zo, 'head', .16 * k, -sign * .10 * k, .015 * k);
+    const sign = s === 'L' ? 1 : -1, p = at(zo, 'head', [sign * .10, .26, .19]);
     const knee = at(zo, 'shin' + s).add(V(0, .04 * k, 0));
     const pole = knee.sub(at(zo, 'root')).applyAxisAngle(V(0, 1, 0), -zo.group.rotation.y).multiplyScalar(1 / k).toArray();
-    PO.reach(zo, s, p, { grip: .02, pole });
-    PO.palmTo(zo, s, 1, at(zo, 'head').sub(p).normalize());
+    const wrist = p.clone();
+    for (let i = 0; i < 3; i++) {
+      PO.reach(zo, s, wrist, { grip: 0, pole });
+      aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .10, .36, .19]));
+      PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .10, .26, 0]).sub(p).normalize());
+      wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
+    }
     PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
   }
 }
@@ -32,7 +38,7 @@ function tears(lt, t, S, st, S3) {
   const zo = st.A.zoubida, c = K.c;
   c.save(); c.strokeStyle = 'rgba(180,212,230,.7)'; c.lineWidth = 1.8; c.lineCap = 'round';
   for (const sign of [-1, 1]) {
-    const pts = [[sign * .045, .10, .17], [sign * .043, .035, .175], [sign * .025, -.025, .15]].map(p => S3.project(at(zo, 'head', p)));
+    const pts = [[sign * .045, .10, .17], [sign * .043, .035, .175], [sign * .025, -.025, .15]].map(p => S3.project(at(zo, 'head', p)).slice(0, 2));
     c.beginPath(); c.moveTo(...pts[0]); c.quadraticCurveTo(...pts[1], ...pts[2]); c.stroke();
   }
   c.restore();

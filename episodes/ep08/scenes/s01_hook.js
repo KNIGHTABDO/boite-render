@@ -2,6 +2,7 @@
 // hand to his face, a small laugh. b002 same evening, chambre_nuit: Zoubida kneels on the floor weeping, face in her hands,
 // shoulders shaking; behind her Mohammed lies on the divan, awake, only blinking.
 import * as PO from '../../../engine/poses.js';
+import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
@@ -38,7 +39,7 @@ const pa = staged('patio_matin', {
 
 // b002: floor kneel, folded over the padded knees; palms cover the bowed face, elbows down in front.
 const nu = staged('chambre_nuit', {
-  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { lean: 1.25, spread: .065, hands: false },
+  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { lean: 1.5, hip: .18, spread: .065, hands: false },
     seed: 7, hands: false, talk: 0, lids: .95 },
   mohammed: { at: [1240, 800], face: [1560, 900], pose: 'lie', o: { top: .35, turn: .10, headTurn: -.16, hands: 'belly' }, seed: 3, talk: 0 },
 }, {
@@ -51,15 +52,19 @@ const nu = staged('chambre_nuit', {
       S3.prop(st.pillow, p.x, p.y, p.z, mo.group.rotation.y);
     }
     const sob = .025 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
-    zo.B.chest.rotation.x += .4 + sob; zo.B.neck.rotation.x += .25;
+    zo.B.chest.rotation.x += .3 + sob; zo.B.neck.rotation.x -= .35;   // keep the neck long within the deep bow
     zo.B.chest.rotation.z += .015 * Math.sin(t * 1.3); zo.B.spine.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
       const knee = at(zo, 'shin' + s).add(V(0, .10 * k, 0));   // padded knee surface, supporting the elbow
       const pole = knee.sub(at(zo, 'root')).applyAxisAngle(V(0, 1, 0), -zo.group.rotation.y).multiplyScalar(1 / k).toArray();
-      const p = front(zo, 'head', .16 * k, -sign * .10 * k, .015 * k);
-      PO.reach(zo, s, p, { grip: .02, pole });
-      PO.palmTo(zo, s, 1, at(zo, 'head').sub(p).normalize());
+      const p = at(zo, 'head', [sign * .10, .30, .19]), wrist = p.clone();
+      for (let i = 0; i < 3; i++) {
+        PO.reach(zo, s, wrist, { grip: 0, pole });
+        aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .10, .40, .19]));
+        PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .10, .30, 0]).sub(p).normalize());
+        wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
+      }
       PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
     }
   },
