@@ -14,7 +14,7 @@ const AMBER = { key: '#ffb870', keyI: 1.9, dir: [-3, 1.6, 1], fillI: .9, sky: '#
 
 const pa = staged('patio_matin', {
   mohammed: { at: [940, 1000], face: 'zoubida', seed: 3,
-    look: t => t < B(1)[0] ? [940, 600, 6] : 'zoubida' },
+    look: t => t < B(1)[0] ? [940, 740, 6] : 'zoubida' },
   zoubida: { at: [1240, 975], face: 'mohammed', seed: 7,
     look: t => t > B(3)[0] && t < B(5)[0] + .5 ? 'fatma' : 'mohammed' },
   fatma: { at: [1700, 945], face: [1240, 975], seed: 11 },
