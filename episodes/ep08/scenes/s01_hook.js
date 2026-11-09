@@ -42,7 +42,9 @@ const nu = staged('chambre_nuit', {
     const sob = .045 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.spine.rotation.x += .2 + .03 * Math.sin(t * .7); zo.B.neck.rotation.x += .4; zo.B.chest.rotation.x += .16 + sob; zo.B.chest.rotation.z += .05 * Math.sin(t * 1.3);
     zo.B.spine.updateWorldMatrix(false, true);
-    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'spine', .17 * k, (s === 'L' ? .06 : -.06) * k, .02 * k + sob * .3 * k), { grip: .3, pole: s === 'L' ? [.5, -.3, -.1] : [-.5, -.3, -.1] });
+    // stills14: the .17 target sat inside the bowed trunk and the custom poles threw the elbows up to her head → further out,
+    // forearms still crossing, default (down) elbow poles
+    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'spine', .27 * k, (s === 'L' ? .045 : -.045) * k, sob * .3 * k), { grip: .3 });
   },
 });
 

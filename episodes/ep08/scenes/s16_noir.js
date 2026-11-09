@@ -13,7 +13,7 @@ const ID = 's16_noir', L = lines(ID), B = i => L[i] || [0, 0];
 // mattresses on chambre_jour (1920 px): left one's front edge y≈855 (x 400–720), right one's floor centre ≈ (1320, 705), ~.2 m high
 const ch = staged('chambre_jour', {
   zoubida: { at: [560, 845], face: 'cam', pose: 'step', o: { seat: .2, floor: 0 }, seed: 7, look: [600, 1000, 0], lookMax: .9 },
-  mohammed: { at: [1330, 665], face: [1400, 745], pose: 'lie', o: { top: .3, turn: .25 }, seed: 3, look: t => [1330, 665, 3] },
+  mohammed: { at: [1035, 645], face: [700, 645], pose: 'lie', o: { top: .3, turn: .25 }, seed: 3, look: t => [1035, 645, 3] },
 }, {
   addressee: {},
   act(lt, t, S, st) {
