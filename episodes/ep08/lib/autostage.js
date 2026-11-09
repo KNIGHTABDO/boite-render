@@ -39,7 +39,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         else { P[n] = S3.floorAt(...m.at); Y[n] = 0; }
       }
       const down = ST ? Math.atan2(-ST.up.x, -ST.up.z) : 0;
-      const aim = (n, f) => f === 'down' ? down : f === 'cam' || f == null ? yawTo(P[n], camP) : typeof f === 'number' ? f
+      const aim = (n, f) => f === 'down' ? down : f === 'up' ? down + Math.PI : f === 'cam' || f == null ? yawTo(P[n], camP) : typeof f === 'number' ? f
         : typeof f === 'string' ? yawTo(P[n], P[f]) : yawTo(P[n], S3.floorAt(...f));
       const snaps = {};
       for (const n of names) {
