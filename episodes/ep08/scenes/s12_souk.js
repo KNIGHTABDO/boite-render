@@ -12,6 +12,7 @@ import { checkedStage } from './s13_attente.js';
 import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import { bracelets } from './s17_retour.js';
+import { apart, castScale, jewel, sealHaik } from '../lib/fix8c.js';
 import { walk } from '../lib/acts.js';
 import { rest } from '../../../engine/rig3d.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
@@ -80,6 +81,7 @@ const la = checkedStage('souk_bijoux', {
   act(lt, t, S, st, S3) {
     st.actcheck={exposed:t>=B(7)[0]&&t<B(8)[0]?{zoubida:['handL','handR','foreArmL','foreArmR'],fatma:['handL','handR','foreArmL','foreArmR']}:{},contacts:[{actors:['father','marchand'],parts:['foreArmR:foreArmR','foreArmL:foreArmR']}]};
     const { father: fa, mohammed: mo, zoubida: zo, fatma: ft, marchand: ma, man1: m1, woman2: w2 } = st.A;
+    for (const a of Object.values(st.A)) { castScale(a); if (a.actMark?.costume === 'haik' || a.haikClosed) sealHaik(a); }
     // b080: the men meet in the centre, the women stay behind the father. b081: make room for each fitting.
     const move = (a, p0, p1, t0, t1) => {
       if (t < t0) return;
@@ -116,10 +118,10 @@ const la = checkedStage('souk_bijoux', {
       if (t >= B(8)[0]) { rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), B(8)[0] + dt, B(8)[1] + dt, t, { cps: name.startsWith('kid') ? 2.3 : 1.7 }); }
     }
 
-    // b077: the same gold torus mechanism as the bracelets, resting between two cupped palms at chest height.
-    st.jw ||= bracelets(S3);
-    st.jw.children[1].visible = false; st.jw.scale.setScalar(1.35);
-    st.jw.visible = m1.group.visible && t < B(8)[0];
+    // b077: one jewel, not a second pair of bracelets. The auction pair is st.br and is the only pair in a shot.
+    st.jw ||= jewel(S3);
+    st.jw.visible = m1.group.visible && t >= B(3)[0] - .1 && t < B(3)[1] + .2;
+    if (t < B(8)[0] && m1.group.visible && w2.group.visible) apart(m1, w2, .48);
     const k1 = k(m1), rub = Math.sin(t * 2.6);
     if (t < B(8)[0]) {
       for (const [a, ph] of [[m1, 0], [w2, 2.1]]) {
@@ -185,7 +187,7 @@ const la = checkedStage('souk_bijoux', {
     }
     if (t >= f(8, .27)) PO.reach(ma, 'R', mid.clone().lerp(overhead(ma, t), sm(f(8, .27), f(8, .35), t)), { grip: .01 });
 
-    // The prop follows the solved palm, or the fitting wrist, never an unreachable IK target.
+    // The only bracelet pair. It follows one palm; the jewel above is hidden while this pair is out.
     st.br ||= bracelets(S3);
     const holder = t < B(5)[0] - .3 ? null : t < f(6, .32) ? [ma, 'R'] : t < B(7)[0] ? [fa, 'R'] : t < f(7, .48) ? [zo, 'L'] : t < f(7, .92) ? [ft, 'L'] : t < f(8, .25) ? [fa, 'L'] : [ma, 'R'];
     st.br.visible = !!holder && holder[0].group.visible;
@@ -204,6 +206,7 @@ const la = checkedStage('souk_bijoux', {
       }
       st.br.updateMatrixWorld(true);
     }
+    if (st.br?.visible) st.jw.visible = false;
     for (const a of [fa, mo, zo, ft, ma, m1, w2]) a.B.chest.updateWorldMatrix(false, true);
   },
 });
@@ -212,8 +215,14 @@ const la = checkedStage('souk_bijoux', {
 const re = checkedStage('souk_bijoux_rev', {
   mohammed: { at: [1100, 900], face: [930, 800], seed: 3, lids: .5, look: [930, 800, .7], lookMax: .25, talk: 0 },
 }, {
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     const mo = st.A.mohammed, u = Math.max(0, t - B(2)[0]);
+    castScale(mo);
+    const closer = S3.floorAt(1100, 980);
+    if (closer) mo.group.position.set(closer.x, mo.group.position.y, closer.z);
+    const cam = S3.cam.position, yCam = Math.atan2(cam.x - mo.group.position.x, cam.z - mo.group.position.z);
+    mo.group.rotation.y += Math.atan2(Math.sin(yCam - mo.group.rotation.y), Math.cos(yCam - mo.group.rotation.y)) * .4;
+    mo.group.updateMatrixWorld(true);
     mo.B.neck.rotation.x += .28; mo.B.head.rotation.x += .08; mo.B.spine.rotation.x -= .05;
     mo.B.head.rotation.y += .14 * Math.sin(u * 1.6); mo.B.spine.updateWorldMatrix(false, true);
   },
@@ -223,9 +232,9 @@ export default beatScene(ID, {
   shots: { la, re },
   plan: {
     b075: { shot: 'la', size: 'W', on: 'zoubida' },
-    b076: { shot: 're', size: 'M', on: 'mohammed', z: 1.55, dy:40, insAt: .5 },
+    b076: { shot: 're', size: 'M', on: 'mohammed', z: 1.35, dy: 110, insAt: .5 },
     b077: { shot: 'la', size: 'M', on: 'man1', z: 2.2, dx: 35, dy: 25 },
-    b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, dx: 0, dy: -70 },   // include the raised hand and dangling pair
+    b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -110 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
     b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [900, 850], z: 2, dx: 0, dy: 80,
       cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1080, 850], z: 2, dx: 0, dy: 80 }] },

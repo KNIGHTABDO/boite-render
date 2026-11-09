@@ -1,11 +1,12 @@
 // s07 "Un lundi". b027 patio (patio_matin): against all habit the father walks in at noon, Mohammed (kneeling by the
-// well, slate on his knees) looks up. b028–b037 bedroom lunch (chambre_jour): father kneels left, Zoubida right, Mohammed
-// between them, nearer the lens. Acting beats: b030 Zoubida's hand to her chest at "bracelets", b031 painting (sun/moon,
-// enumeration), b032 father lowers his eyes, b034 palms up at "miséricorde", b035 Mohammed sits up, b036 hand on his head.
+// well, slate on his knees) looks up. b028 to b036 bedroom lunch (chambre_jour): the parents and the boy, nearer the lens.
+// Acting beats: b030 her hand to her chest at "bracelets", b031 painting (sun/moon,
+// enumeration), b032 the father lowers his eyes, b034 palms up at "miséricorde", b035 the boy sits up, b036 hand on his head.
+// b037 CU on the father, eyebrows up, the question about the jewels.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
-import { staged, approach } from '../lib/fix8.js';
-import { holdBoard, lapRest, plant, reachSafe } from '../lib/fix8a.js';
+import { approach } from '../lib/fix8.js';
+import { fitKneel, holdBoard, lapRest, reachSafe, staged } from '../lib/fix8a.js';
 import { LUNCH } from '../lib/lunch.js';
 import { beatScene, lines, sm, at, front, V, dirW } from '../lib/beatscene.js';
 
@@ -17,16 +18,21 @@ const pa = staged('patio_matin', {
   father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: .3, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
   mohammed: { at: [930, 1000], face: 'cam', yaw: .25, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
-    look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: .9 },
+    look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: .35 },
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) {
     holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
-    const fa = st.A.father, k = fa.group.scale.y / 1.6, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
-    for (const [s, ph] of [['L', 0], ['R', Math.PI]]) { const w = Math.sin(t * 5.6 + ph) * go;
-      const sh = at(fa, 'upperArm' + s), len = sh.distanceTo(at(fa, 'foreArm' + s)) + at(fa, 'foreArm' + s).distanceTo(at(fa, 'hand' + s));
-      PO.reach(fa, s, sh.add(V(0, -.88 * len, 0)).addScaledVector(dirW(fa, 0, 0, 1), (.04 + .09 * w) * k), { grip: .15 }); }
+    const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
+    for (const [s, ph] of [['L', 0], ['R', Math.PI]]) {
+      const w = Math.sin(t * 5.6 + ph) * go, outZ = s === 'L' ? 1 : -1;
+      const ua = fa.B['upperArm' + s], eb = fa.B['foreArm' + s], ha = fa.B['hand' + s];
+      ua.quaternion.copy(ua.userData.rest); ua.rotateZ(outZ * .45); ua.rotateX(.28 * w);
+      eb.quaternion.copy(eb.userData.rest); eb.rotateX(-.62); eb.rotateZ(outZ * .12);
+      ha.quaternion.copy(ha.userData.rest);
+      ua.updateWorldMatrix(true, true);
+    }
   },
 });
 
@@ -66,7 +72,7 @@ const ch = staged('chambre_jour', {
     if (wel > 0) fa.B.spine.rotation.x += .08 * wel;
     if (ask > 0) { zo.B.spine.rotation.x += .1 * ask; zo.B.head.rotation.z += .08 * ask; }
     if (pat > 0) { fa.B.spine.rotation.x += .22 * pat; fa.B.chest.rotation.x += .1 * pat; fa.B.neck.rotation.x += .12 * pat; }   // over the boy, still upright enough that the forearm stays outside the ribs
-    for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); plant(a); }
+    for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); fitKneel(a); }
     for (const a of [fa, zo, mo]) for (const s of ['L', 'R']) lapRest(a, s, t);
     // b030: right hand to her chest from "bracelets", palm turned onto the breastbone
     if (chest > 0) {
@@ -94,8 +100,8 @@ const ch = staged('chambre_jour', {
     }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .06 * km, 0));
-      approach(fa, 'R', top, .05);
+      const top = at(mo, 'head').add(V(0, .12 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .09 * kf);
+      approach(fa, 'R', top, .08);
       PO.reach(fa, 'R', top, { grip: .01, pole: [-.4, .15, .15] });
       PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });
     }
@@ -113,7 +119,7 @@ export default beatScene(ID, {
     b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dy: -50 },
     b034: { shot: 'ch', size: 'M', on: 'father', z: 1.8, dy: -40 },
     b035: { shot: 'ch', size: 'W', on: 'mohammed' },
-    b036: { shot: 'ch', size: 'M', on: 'father' },
-    b037: { shot: 'ch', size: 'CU', on: 'father' },
+    b036: { shot: 'ch', size: 'M', on: 'father', z: 1.4, dx: 140, dy: -80 },
+    b037: { shot: 'ch', size: 'CU', on: 'father', z: 1.7, dy: -70 },
   },
 });

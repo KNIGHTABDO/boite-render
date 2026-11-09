@@ -64,7 +64,22 @@ function hemStop(a, bone, name, floor, k) {
   const lo = lowestOf(a, [name]), top = IK.wpos(bone).y;
   if (lo < floor + .004 * k && top - lo > 1e-3) { bone.scale.y = Math.max(.15, (top - floor - .006 * k) / (top - lo)); bone.updateWorldMatrix(false, true); }
 }
+const ROBE = ['SkirtFront1', 'SkirtFront2', 'SkirtBack1', 'SkirtBack2', 'LeftRobe1', 'LeftRobe2', 'RightRobe1', 'RightRobe2'];
+// The white haik is one closed sheet sharing the eight skirt bones. The seated solver below moves SkirtFront2
+// onto the knees and aims each flank on its own; those shared triangles split into vertical holes and the dark
+// inner garment shows through. Ep08 sets a.haikClosed so the scanned drape stays shut. Other robes are unchanged.
+function drapeHaikClosed(a, floor) {
+  const B = a.B;
+  for (const n of ROBE) {
+    const b = B[n]; if (!b?.userData?.rest) continue;
+    b.quaternion.copy(b.userData.rest); b.scale.set(1, 1, 1);
+    if (b.parent?.isBone && b.userData.abs && b.parent.userData.abs) b.position.copy(b.userData.abs).sub(b.parent.userData.abs);
+  }
+  a.group.updateMatrixWorld(true);
+  pinHem(a, floor);
+}
 export function drapeRobe(a, floor = 0) {
+  if (a?.haikClosed) return drapeHaikClosed(a, floor);
   const B = a.B; a.group.updateMatrixWorld(true);
   const k = a.group.scale.y / 1.6, D = new THREE.Vector3(0, -1, 0);
   const hq = new THREE.Quaternion(); B.Hips.getWorldQuaternion(hq);

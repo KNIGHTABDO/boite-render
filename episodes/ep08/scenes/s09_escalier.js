@@ -2,7 +2,7 @@
 // hands on his knees. b044 settles, b045 chin up (the idea deserved silence), b046–b049 paintings (flowers, genies),
 // b050 shoulders drop, b051 fists tighten on his knees "à mort", b052 enumeration (pieds / prière / bruit, feet and hush
 // inserts), b053 he repeats his sentence to himself, eyes up the flight, lips moving.
-import * as PO from '../../../engine/poses.js';
+import { castScale, pinKnees, sitStep } from '../lib/fix8c.js';
 import { staged } from '../lib/autostage.js';
 import { c } from '../../../engine/core.js';
 import { ESCALIER } from '../lib/stairs.js';
@@ -26,6 +26,9 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
   light: { shadow: .11, soft: 8, dir: [1, 6, 1] },
   act(lt, t, S, st) {
     const mo = st.A.mohammed, b = mo.B;
+    castScale(mo);
+    // Stool planted the knees on tread 3 and left the pelvis at tread 4. Sit the capsule on tread 3.
+    sitStep(mo, SEAT.o.seat, SEAT.o.floor);
     const think = win(0, .4, 1.1, t), chin = win(1, .05, .95, t);
     // Hold the deflated pose through b050's tail and the pause before b051.
     const drop = sm(B(6)[0], B(6)[0] + .65, t) * (1 - sm(B(7)[0], B(7)[0] + .6, t));
@@ -41,8 +44,8 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     b.spine.rotation.y -= .16 * dream; b.chest.rotation.y -= .14 * dream;
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
-    // Autostage re-pins the palms to the bent knees after the torso changes; fingers stay curled on top.
-    for (const side of ['L', 'R']) PO.fingers(mo, side, fist, { thumb: .85 * fist });
+    // After the lean, put the palms back on the kneecaps. Fists close on "à mort".
+    pinKnees(mo, fist);
   },
 });
 
@@ -80,18 +83,18 @@ export default beatScene(ID, {
   shots: { esc },
   plan: {
     // Lower, wider seated coverage keeps both soles and their tread contact above the bottom matte.
-    b044: { shot: 'esc', size: 'W', on: 'mohammed', cover: [{ f: .45, size: 'M', on: 'mohammed', z: 1.85, dy: 70 }] },
-    b045: { shot: 'esc', size: 'M', on: 'mohammed', z: 2, dy: 55 },
+    b044: { shot: 'esc', size: 'W', on: 'mohammed', cover: [{ f: .45, size: 'M', on: 'mohammed', z: 1.65, dy: 130 }] },
+    b045: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 120 },
     b048: { move: 'forge' },
     b049: { move: 'princess' },
-    b050: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.95, dy: 80 },
-    b051: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.9, dy: 80 },
+    b050: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130 },
+    b051: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130 },
     // Keep the feet visible beneath the list; omit the prayer painting with the extra painted digit.
-    b052: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.95, dy: 80, noIns: true, segs: [
+    b052: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130, noIns: true, segs: [
       [(3.22 - .08) / (B(8)[1] - B(8)[0]), 'i_bassine_pieds'],
       [(3.22 + .92) / (B(8)[1] - B(8)[0]), 'esc'],
       [(10.01 - .08) / (B(8)[1] - B(8)[0]), 'i_doigt_levres'],
     ] },
-    b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.9, dy: 80 },
+    b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.65, dy: 140 },
   },
 });

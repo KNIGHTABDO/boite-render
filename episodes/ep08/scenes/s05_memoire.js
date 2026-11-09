@@ -5,8 +5,7 @@
 // firm head shake, leaning back from the idea.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
-import { staged } from '../lib/fix8.js';
-import { holdBoard, lapRest, plant, reachSafe } from '../lib/fix8a.js';
+import { fitKneel, holdBoard, lapRest, reachSafe, staged } from '../lib/fix8a.js';
 import { LUNCH } from '../lib/lunch.js';
 import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
 
@@ -65,7 +64,7 @@ const ch = staged('chambre_jour', {
     // b021 Mohammed: leans back from the idea and shakes his head, slow and firm (three swings, the last smaller)
     const no = win(5, 0, 1, t), u = Math.max(0, t - B(5)[0]);
     mo.B.spine.rotation.x -= .08 * no; mo.B.head.rotation.y += .32 * no * Math.sin(u * 5.2) * Math.exp(-u * .35); mo.B.neck.rotation.x += .06 * no;
-    for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); plant(a); }
+    for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); fitKneel(a); }
     for (const a of [fa, zo, mo]) for (const s of ['L', 'R']) lapRest(a, s, t);
     // "il deviendra un savant": the right palm opens up and out toward her, held, then drops back to the knee
     const offer = win(3, .3, .9, t);

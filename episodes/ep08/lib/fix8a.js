@@ -1,36 +1,79 @@
 // Shared repairs for s05–s08. fix8.js owns seating and cloth; this file only
-// places hands inside a real arm span and keeps posed flesh off the floor.
+// places hands inside a real arm span and keeps the kneel thigh off the floor.
 import * as PO from '../../../engine/poses.js';
-import { at, V, dirW, front } from './beatscene.js';
+import * as IK from '../../../engine/ik.js';
+import { staged as base } from './fix8.js';
+import { at, V, dirW } from './beatscene.js';
 
-const idsOf = new WeakMap();
-function bodyIds(a) {
-  let ids = idsOf.get(a);
+const shinOf = new WeakMap();
+function legIds(a) {
+  let ids = shinOf.get(a);
   if (ids) return ids;
-  const m = a.mesh, p = m.geometry.attributes.position, si = m.geometry.attributes.skinIndex, sw = m.geometry.attributes.skinWeight;
-  const index = m.geometry.index?.array, n = index ? index.length : p.count, ex = new Map(), get = i => index ? index[i] : i;
-  const body = [], stride = Math.max(1, Math.ceil(n / 900));
-  for (let ii = 0; ii < n; ii++) {
-    const i = get(ii);
-    if (ii % stride === 0) body.push(i);
+  const m = a.mesh, si = m.geometry.attributes.skinIndex, sw = m.geometry.attributes.skinWeight;
+  const want = new Set([a.B.shinL, a.B.shinR, a.B.thighL, a.B.thighR, a.B.footL, a.B.footR].filter(Boolean).map(b => b.name));
+  const bones = m.skeleton.bones, index = m.geometry.index?.array, n = index ? index.length : si.count;
+  ids = [];
+  for (let ii = 0; ii < n; ii += 8) {
+    const i = index ? index[ii] : ii;
     let j = 0; for (let k = 1; k < 4; k++) if (sw.getComponent(i, k) > sw.getComponent(i, j)) j = k;
-    const bone = si.getComponent(i, j); let e = ex.get(bone); if (!e) ex.set(bone, e = Array(6).fill(i));
-    for (let d = 0; d < 3; d++) {
-      if (p.getComponent(i, d) < p.getComponent(e[d * 2], d)) e[d * 2] = i;
-      if (p.getComponent(i, d) > p.getComponent(e[d * 2 + 1], d)) e[d * 2 + 1] = i;
-    }
+    const b = bones[si.getComponent(i, j)]; if (b && want.has(b.name)) ids.push(i);
   }
-  ids = [...new Set([...body, ...[...ex.values()].flat()])];
-  idsOf.set(a, ids); return ids;
+  shinOf.set(a, ids); return ids;
 }
-
-/** Lift a posed actor until the sampled skin clears the support. Knees stay within the seat tolerance. */
-export function plant(a, floor = 0) {
+function shinUnder(a) {
   const m = a.mesh, v = V(0, 0, 0); let low = Infinity;
   a.group.updateMatrixWorld(true);
-  for (const i of bodyIds(a)) { m.getVertexPosition(i, v); m.localToWorld(v); if (v.y < low) low = v.y; }
-  const limit = floor - 0.003;
-  if (low < limit) { a.group.position.y += limit - low; a.group.updateMatrixWorld(true); }
+  for (const i of legIds(a)) { m.getVertexPosition(i, v); m.localToWorld(v); if (v.y < low) low = v.y; }
+  return low;
+}
+
+// The calf hangs below the shin bone. Pitch the ankle up around the knee until that meat clears the floor.
+export function fitKneel(a) {
+  const k = a.group.scale.y / 1.6;
+  for (let i = 0; i < 3; i++) {
+    const low = shinUnder(a);
+    if (low >= -0.002) break;
+    const lift = Math.min(0.01, -0.002 - low);
+    for (const side of ['L', 'R']) {
+      const ankle = at(a, 'foot' + side), knee = at(a, 'shin' + side);
+      ankle.y = Math.min(0.032, Math.max(0.008, ankle.y) + lift);
+      knee.y = Math.max(0.01 * k, knee.y);
+      IK.leg(a, side, ankle, knee.clone().addScaledVector(dirW(a, 0, 0, 1), 0.08 * k));
+    }
+  }
+  const low = shinUnder(a);
+  if (low < -0.002) { a.group.position.y += -0.002 - low; a.group.updateMatrixWorld(true); }
+  // Knee contact is the mesh around the joint, which sits below the bone once the calf clears the floor.
+  if (a.actMark) {
+    const ks = kneeLows(a);
+    a.actMark.o ||= {};
+    a.actMark.o.seat = (ks[0] + ks[1]) / 2;
+  }
+}
+const kneeOf = new WeakMap();
+function kneeLows(a) {
+  let ids = kneeOf.get(a);
+  if (!ids) {
+    const m = a.mesh, p = m.geometry.attributes.position, si = m.geometry.attributes.skinIndex;
+    const index = m.geometry.index?.array, n = index ? index.length : p.count, unit = a.S.top - a.S.bottom || 1.6;
+    ids = { L: [], R: [] };
+    for (const side of ['L', 'R']) {
+      const b = a.B['shin' + side]?.userData?.abs; if (!b) continue;
+      for (let ii = 0; ii < n; ii++) {
+        const i = index ? index[ii] : ii;
+        if (Math.hypot(p.getX(i) - b.x, p.getY(i) - b.y, p.getZ(i) - b.z) < 0.065 * unit) ids[side].push(i);
+      }
+    }
+    kneeOf.set(a, ids);
+  }
+  const m = a.mesh, v = V(0, 0, 0), out = [];
+  a.group.updateMatrixWorld(true);
+  for (const side of ['L', 'R']) {
+    let low = at(a, 'shin' + side).y;
+    for (const i of ids[side]) { m.getVertexPosition(i, v); m.localToWorld(v); if (v.y < low) low = v.y; }
+    out.push(low);
+  }
+  return out;
 }
 
 function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
@@ -41,9 +84,9 @@ export function reachSafe(a, side, want, opt = {}) {
   const sh = at(a, 'upperArm' + side);
   const len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
   const maxD = Math.max(.08, len * 0.96 + grip * k);
-  const minClear = (0.13 + 0.035) * k - 0.018;
+  const minClear = (0.13 + 0.035) * k - 0.02;
   const root = at(a, 'root'), axis = at(a, 'neck').sub(root), axisL = axis.lengthSq() || 1;
-  const outward = dirW(a, side === 'L' ? 1 : -1, 0, 0);
+  const outward = dirW(a, side === 'L' ? -1 : 1, 0, 0);
   let t = want.clone();
   for (let i = 0; i < 6; i++) {
     const d = t.clone().sub(sh);
@@ -51,22 +94,32 @@ export function reachSafe(a, side, want, opt = {}) {
     const rel = t.clone().sub(root), u = clamp01(rel.dot(axis) / axisL);
     const away = t.clone().sub(root.clone().addScaledVector(axis, u));
     const dist = away.length();
-    if (dist < minClear) t.addScaledVector(dist < 1e-4 ? outward : away.normalize(), minClear - dist + 0.012);
+    if (dist < minClear) t.addScaledVector(dist < 1e-4 ? outward : away.normalize(), minClear - dist + 0.01);
   }
-  const d = t.clone().sub(sh);
+  let d = t.clone().sub(sh);
   if (d.length() > maxD) t.copy(sh).addScaledVector(d.normalize(), maxD);
-  const err = PO.reach(a, side, t, opt);
-  if (err > 0.03 && !globalThis.__rsLog) { globalThis.__rsLog = 1; console.error('RS', a.name, side, 'len', +len.toFixed(3), 'maxD', +maxD.toFixed(3), 'dist', +t.distanceTo(at(a, 'upperArm' + side)).toFixed(3), 'want', +want.distanceTo(sh).toFixed(3), 'err', +err.toFixed(3), 'k', +k.toFixed(3)); }
-  return err;
+  const rel2 = t.clone().sub(root), u2 = clamp01(rel2.dot(axis) / axisL);
+  const away2 = t.clone().sub(root.clone().addScaledVector(axis, u2));
+  if (away2.length() < minClear) t.addScaledVector(away2.length() < 1e-4 ? outward : away2.normalize(), minClear - away2.length() + 0.008);
+  return PO.reach(a, side, t, opt);
 }
 
-/** Resting lap hand: forward of the belly, on the thigh, elbow out. */
+/** Resting hand just in front of its own knee, elbow wide, so the forearm stays outside the ribs. */
 export function lapRest(a, side, t = 0) {
   const k = a.group.scale.y / 1.6, sign = side === 'L' ? 1 : -1;
-  const breathe = 1 + 0.035 * Math.sin(t * 1.6 + (side === 'L' ? 0 : 1.4));
-  return reachSafe(a, side, front(a, 'root', 0.2 * k * breathe, sign * 0.16 * k, 0.05 * k), {
-    grip: 0.03, pole: [sign * 0.4, -0.15, 0.12],
-  });
+  const bob = 0.01 * k * Math.sin(t * 1.7 + (side === 'L' ? 0 : 1.3));
+  const knee = at(a, 'shin' + side);
+  const target = knee.clone()
+    .addScaledVector(dirW(a, 0, 0, 1), 0.09 * k)
+    .addScaledVector(dirW(a, -sign, 0, 0), 0.08 * k)
+    .add(V(0, 0.055 * k + bob, 0));
+  return reachSafe(a, side, target, { grip: 0.02, pole: [sign * 0.55, 0.15, 0.4] });
+}
+
+function seatPins(a) {
+  lapRest(a, 'L', 0); lapRest(a, 'R', 0);
+  // Pin where the hand already landed, so the pre-act solve is not an over-reach.
+  a.pins = ['L', 'R'].map(side => [side, a.B.root.worldToLocal(at(a, 'hand' + side).clone())]);
 }
 
 /** Parent a lap board to the actor so a later floor-fit cannot pull the hands off it. */
@@ -78,4 +131,20 @@ export function holdBoard(a, lh, worldPos, tilt, scale) {
   lh.rotation.order = 'YXZ';
   lh.rotation.set(tilt, 0, 0);
   lh.updateMatrixWorld(true);
+}
+
+export function staged(plate, marks, options = {}) {
+  const sh = base(plate, marks, options);
+  const load = sh.load;
+  sh.load = async () => {
+    await load();
+    for (const [n, a] of Object.entries(sh.st.A || {})) {
+      if (marks[n]?.pose !== 'kneel') continue;
+      fitKneel(a);
+      PO.drapeLap(a, 0);
+      seatPins(a);
+      if (sh.st.snaps) sh.st.snaps[n] = PO.snap(a);
+    }
+  };
+  return sh;
 }
