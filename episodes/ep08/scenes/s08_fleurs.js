@@ -21,11 +21,11 @@ const ch = staged('chambre_jour', {
   zoubida: { ...LUNCH.zoubida, look: () => null, lookMax: 0 },
 }, {
   addressee: { father: 'mohammed', mohammed: 'father' },
-  act(lt, t, S, st, S3) {
+  act(lt, t, S, st) {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { for (const a of [fa, zo, mo]) settleRobe(a); if (process.env.S08PROBE) probe(t, st, S3); };
+    st.G.apply = () => { for (const a of [fa, zo, mo]) settleRobe(a); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
@@ -152,34 +152,17 @@ function chestHand(a, s, t, ph, k) {
     .addScaledVector(dirW(a, -sign, 0, 0), (0.14 + 0.07 * w) * k);
 }
 
-function probe(t, st, S3) {
-  const want = [0.3, 1.8, 5, 8.6, 9, 10.6, 11.1, 12.7, 14.4, 16.9, 18, 20.2, 24.2];
-  if (!want.some(x => Math.abs(x - t) < 0.03)) return;
-  const { father: fa, zoubida: zo, mohammed: mo } = st.A;
-  const P = (a, b) => S3.project(at(a, b)).map(n => +n.toFixed(1));
-  const back = dirW(fa, 0, 0, -1);
-  const hip = at(fa, 'root'), tip = at(fa, 'SkirtBack2');
-  const line = JSON.stringify({
-    t: +t.toFixed(2),
-    fa: P(fa, 'head'), zo: P(zo, 'head'), mo: P(mo, 'head'),
-    faHand: P(fa, 'handL'), moHand: P(mo, 'handL'),
-    moFoot: P(mo, 'footL'), faFoot: P(fa, 'footL'),
-    turban: S3.project(at(fa, 'head').add(V(0, 0.16, 0))).map(n => +n.toFixed(1)),
-    moChin: S3.project(at(mo, 'head').add(V(0, -0.06, 0))).map(n => +n.toFixed(1)),
-    spike: +tip.clone().sub(hip).dot(back).toFixed(3),
-  });
-  console.error('S08PROBE ' + line);
-}
-
 export default beatScene(ID, {
   shots: { ch },
   plan: {
     // M + a hand-set zoom: wide enough for the turban and the boy's hands, without a dead left third.
-    b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.18, dx: -100, dy: 30 },
-    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.36, dx: 220, dy: 90 },
-    b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.14, dx: -90, dy: 48 },
-    b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -90, dy: 36 },
-    b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.08, dx: -15, dy: 170 },
-    b043: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.18, dx: -80, dy: 24 },
+    // Plate heads sit near y 490–750. A wide M is clamped to the bottom of the plate, so the turban and the hands share the frame.
+    b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -110, dy: 20 },
+    // Father-son two-shot: far enough right to drop the empty door, tight enough that the mother's skirt stays outside.
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.85, dx: 20, dy: -8 },
+    b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.14, dx: -100, dy: 36 },
+    b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -100, dy: 28 },
+    b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.08, dx: -20, dy: 180 },
+    b043: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -90, dy: 18 },
   },
 });

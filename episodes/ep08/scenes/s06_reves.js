@@ -64,7 +64,7 @@ const scene = beatScene(ID, {
   shots: { cl, p06, p07, matin, apres },
   plan: {
     b022: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.38, dy: -28 },
-    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.45, dx: -160, dy: 55, noIns: true,
+    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.45, dx: -160, dy: 46, noIns: true,
       segs: [[.177, 'matin'], [.463, 'apres'], [.9, 'cl']] },
     b024: { shot: 'p06' },
     b025: { shot: 'p07' },
@@ -75,7 +75,7 @@ scene.draw = (t, S) => {
   const fin = draw(t, S);
   const [a, b] = B(1);
   scene.noExam = t >= a - .2 && t < b + 1;
-  if (globalThis.FRAME8 && cl.v) {
+  if (process.env.FRAME8 && cl.v) {
     const v = cl.v, scr = p => { const q = cl.S3.project(p); return [Math.round((q[0] - v[0]) * v[2] + 960), Math.round((q[1] - v[1]) * v[2] + 540)]; };
     console.error('FRAME', t.toFixed(2), 'cl', v.map(x => +x.toFixed(1)).join(','), cl.st.actors.map(ac => ac.name + scr(ac.B.head.getWorldPosition(V())).join(',') + '/f' + scr(ac.B.footL.getWorldPosition(V())).join(',')).join(' '));
   }

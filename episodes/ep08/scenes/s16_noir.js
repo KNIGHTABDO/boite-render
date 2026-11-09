@@ -70,7 +70,7 @@ export default beatScene(ID, {
     b103: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.15, dy: -70 },
     b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dy: -35 },
     b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 2.3, dy: -55,
-      segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 2.5, dx: 20, dy: -50 }] },
+      segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: 10, dy: -80 }] },
     b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.28, dx: 70, dy: -30 },
     b107: { shot: 'win' },
   },

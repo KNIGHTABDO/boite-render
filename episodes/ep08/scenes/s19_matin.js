@@ -24,10 +24,16 @@ const arms = (a, t, kind, u) => {   // asymmetric: one arm leads, the other stay
 
 const ch1 = staged('chambre_jour', {
   mohammed: BED,
-  // beside the near edge of the divan, three-quarter toward the boy so the look can actually land on him
-  father: { height: 1.76, at: [1160, 780], face: [1358, 640], pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
-    look: t => (IN(0, t) || IN(1, t)) ? 'mohammed' : 'zoubida', lookMax: 1.05 },
-  zoubida: { at: [860, 900], face: 'father', yaw: .15, seed: 7, look: 'father', lookMax: .9 },
+  // Beside the divan. The look target stays near his own eye height: aiming at the boy's low
+  // skull spent the whole head turn on pitching down, so the face never came around.
+  father: { height: 1.76, at: [1040, 720], face: 'cam', yaw: -.4, pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
+    look: (t, st) => {
+      const who = (IN(0, t) || IN(1, t)) ? st.A.mohammed : st.A.zoubida;
+      const p = at(who, 'head').clone(), eye = at(st.A.father, 'head').y;
+      p.y = Math.max(p.y, eye - .2);
+      return p;
+    }, lookMax: 1.15 },
+  zoubida: { at: [860, 760], face: 'cam', yaw: .3, seed: 7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -55,8 +61,8 @@ const ch1 = staged('chambre_jour', {
 
 const ch2 = staged('chambre_jour', {
   mohammed: BED,
-  father: { height: 1.76, at: [470, 965], face: 'zoubida', seed: 5 },
-  zoubida: { at: [1080, 950], face: 'father', seed: 7 },
+  father: { height: 1.76, at: [700, 900], face: 'zoubida', yaw: .25, seed: 5, look: 'zoubida', lookMax: .7 },
+  zoubida: { at: [1040, 880], face: 'cam', yaw: .45, seed: 7, look: 'father', lookMax: .7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -77,14 +83,14 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { ch1, ch2, pa },
   plan: {
-    b133: { shot: 'ch1', size: 'M', on: 'mohammed', z: 1.42, dx: -30, dy: -85 },
-    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.42, dy: -90 },
-    b135: { shot: 'ch1', size: 'CU', on: 'father', z: 2.05, dy: -75 },
-    b136: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.42, dx: -20, dy: -80 },
-    b137: { shot: 'ch1', size: 'CU', on: 'father', z: 2.05, dy: -75 },
-    b138: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.42, dy: -80 },
-    b139: { shot: 'ch2', size: 'M', on: 'father', z: 1.45, dy: -70 },
-    b140: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.45, dy: -70 },
+    b133: { shot: 'ch1', size: 'M', on: 'mohammed', z: 1.18, dx: 10, dy: -110 },
+    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.22, dy: -105 },
+    b135: { shot: 'ch1', size: 'CU', on: 'father', z: 1.9, dy: -85 },
+    b136: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.18, dx: -10, dy: -105 },
+    b137: { shot: 'ch1', size: 'CU', on: 'father', z: 1.9, dy: -85 },
+    b138: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.18, dy: -105 },
+    b139: { shot: 'ch2', size: 'M', on: 'father', z: 1.15, dy: -100 },
+    b140: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.12, dy: -110 },
     b141: { shot: 'pa', size: 'W', on: 'father' },
     b142: { shot: 'ch2', size: 'W', on: 'zoubida' },
   },

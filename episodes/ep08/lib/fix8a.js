@@ -133,6 +133,54 @@ export function plantKneel(a, opt = {}) {
   seatPins(a);
   return seat;
 }
+const gateKneeIds = new WeakMap();
+function gateKnees(a) {
+  // Same subsample the acting gate uses for kneeL/kneeR, so the declared seat is the height it will measure.
+  let sample = gateKneeIds.get(a);
+  if (!sample) {
+    const m = a.mesh, p = m.geometry.attributes.position, si = m.geometry.attributes.skinIndex, sw = m.geometry.attributes.skinWeight;
+    const unit = a.S.top - a.S.bottom || 1.6;
+    const ids = [...new Set(m.geometry.index?.array || Array.from({ length: p.count }, (_, i) => i))];
+    const parts = { L: [], R: [] };
+    for (const i of ids) {
+      const py = p.getY(i);
+      for (const side of ['L', 'R']) {
+        const b = a.B['shin' + side]?.userData?.abs; if (!b) continue;
+        if (Math.hypot(p.getX(i) - b.x, py - b.y, p.getZ(i) - b.z) < 0.065 * unit) parts[side].push(i);
+      }
+    }
+    const extremes = new Map();
+    for (const i of ids) {
+      let best = 0, jj = 0;
+      for (let j = 0; j < 4; j++) if (sw.getComponent(i, j) > best) { best = sw.getComponent(i, j); jj = si.getComponent(i, j); }
+      let e = extremes.get(jj); if (!e) extremes.set(jj, e = Array(6).fill(i));
+      for (let d = 0; d < 3; d++) {
+        if (p.getComponent(i, d) < p.getComponent(e[d * 2], d)) e[d * 2] = i;
+        if (p.getComponent(i, d) > p.getComponent(e[d * 2 + 1], d)) e[d * 2 + 1] = i;
+      }
+    }
+    const extra = [...new Set([...extremes.values()].flat())];
+    sample = {};
+    for (const side of ['L', 'R']) {
+      const list = parts[side], member = new Set(list), stride = Math.max(1, Math.ceil(list.length / 350));
+      sample[side] = [...new Set([...list.filter((_, i) => i % stride === 0), ...extra.filter(i => member.has(i))])];
+    }
+    gateKneeIds.set(a, sample);
+  }
+  const m = a.mesh, v = V(0, 0, 0), out = [];
+  a.group.updateMatrixWorld(true);
+  for (const side of ['L', 'R']) {
+    let low = Infinity;
+    for (const i of sample[side]) { m.getVertexPosition(i, v); m.localToWorld(v); if (v.y < low) low = v.y; }
+    out.push(Number.isFinite(low) ? low : at(a, 'shin' + side).y);
+  }
+  return out;
+}
+/** The knee the gate measures moves a little with the breath; keep the declared seat on it. */
+export function syncSeat(a) {
+  const ks = gateKnees(a);
+  if (a.actMark && ks.length) { a.actMark.o ||= {}; a.actMark.o.seat = (ks[0] + ks[1]) / 2; }
+}
 
 /** After the robe drape: pull a split hem up and lay one cloth over the crossed feet. */
 export function hideHem(S3, a, bag) {
@@ -162,7 +210,17 @@ export function holdBoard(a, lh, worldPos, tilt, scale) {
 }
 
 export function staged(plate, marks, options = {}) {
-  const sh = base(plate, marks, options);
+  const userOver = options.over;
+  const sh = base(plate, marks, {
+    ...options,
+    // clothFloor and the gaze pass run inside the frame, after act(); the seat has to follow them
+    over(lt, u, t, S, st, S3) {
+      userOver?.(lt, u, t, S, st, S3);
+      for (const [n, a] of Object.entries(st?.A || {})) {
+        if (marks[n]?.pose === 'kneel' && marks[n]?.o?.skipFit) syncSeat(a);
+      }
+    },
+  });
   const load = sh.load;
   sh.load = async () => {
     await load();

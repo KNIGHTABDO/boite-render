@@ -7,9 +7,8 @@
 //      is the triangular spike on the father's lower back.
 // Both run again every frame from fix8.js, after the scene act. settleRobe() is
 // applied later in the same frame (from the gaze hook) and replaces that drape:
-// bones stay on their rest origins, they only rotate, and the end bones shorten
-// along their own axis so the hem meets the floor without a sideways fin.
-import * as PO from '../../../engine/poses.js';
+// bones stay on their rest origins, they only rotate, then the hems shrink in
+// place (uniform scale, plus a vertical lift) so nothing is dragged out behind the hips.
 import * as IK from '../../../engine/ik.js';
 import { reachSafe } from './fix8a.js';
 import { at, V, dirW } from './beatscene.js';
@@ -27,16 +26,70 @@ function restoreCloth(a) {
   a.group.updateMatrixWorld(true);
 }
 
-// Shorten an end bone along its own axis. The origin stays put: scaling a bone
-// that has been moved off its rest joint is what tore the hem into a spike.
-function hemBone(a, bone, name, floor) {
+const owned = new WeakMap();
+const _v = V(0, 0, 0);
+
+// Dominant-bone vertices. lowestOf() ignores weights under 0.5, and the gate's
+// extrema are exactly the ones that were still 18 cm through the floor.
+function vertsFor(a, name) {
+  let map = owned.get(a);
+  if (!map) {
+    map = new Map();
+    const m = a.mesh, si = m.geometry.attributes.skinIndex, sw = m.geometry.attributes.skinWeight;
+    const index = m.geometry.index?.array, n = index ? index.length : si.count, seen = new Set();
+    for (let ii = 0; ii < n; ii++) {
+      const i = index ? index[ii] : ii;
+      if (seen.has(i)) continue;
+      seen.add(i);
+      let j = 0;
+      for (let k = 1; k < 4; k++) if (sw.getComponent(i, k) > sw.getComponent(i, j)) j = k;
+      const b = m.skeleton.bones[si.getComponent(i, j)];
+      if (!b) continue;
+      let list = map.get(b.name);
+      if (!list) map.set(b.name, list = []);
+      list.push(i);
+    }
+    owned.set(a, map);
+  }
+  return map.get(name) || [];
+}
+
+function lowY(a, name) {
+  const ids = vertsFor(a, name), m = a.mesh;
+  let lo = Infinity;
+  for (let n = 0; n < ids.length; n++) {
+    m.getVertexPosition(ids[n], _v);
+    m.localToWorld(_v);
+    if (_v.y < lo) lo = _v.y;
+  }
+  return lo;
+}
+
+// Uniform scale keeps the panel's direction (a Y-only scale on a flared offset
+// swings the hem out into a fin). A leftover vertical lift clears cloth the
+// scale cannot reach; it does not drag the joint sideways.
+function seatHem(a, bone, name, floor) {
   if (!bone) return;
   bone.scale.set(1, 1, 1);
   bone.updateWorldMatrix(false, true);
-  const lo = PO.lowestOf(a, [name]), top = IK.wpos(bone).y;
-  if (!(top - lo > 1e-3) || lo >= floor + 0.008) return;
-  bone.scale.y = Math.max(0.28, (top - floor - 0.012) / (top - lo));
-  bone.updateWorldMatrix(false, true);
+  let lo = lowY(a, name);
+  if (!(lo < floor + 0.008)) return;
+  const top = IK.wpos(bone).y, span = top - lo;
+  if (span > 0.02) {
+    bone.scale.setScalar(Math.max(0.22, Math.min(0.94, (top - floor - 0.016) / span)));
+    bone.updateWorldMatrix(false, true);
+    lo = lowY(a, name);
+  }
+  for (let i = 0; i < 4 && lo < floor + 0.006; i++) {
+    const before = lo;
+    const p = bone.getWorldPosition(V(0, 0, 0));
+    const dy = (floor + 0.012 - lo) / 0.7;
+    p.y += dy;
+    bone.position.copy(bone.parent.worldToLocal(p));
+    bone.updateWorldMatrix(false, true);
+    lo = lowY(a, name);
+    if (before - lo < dy * 0.15) break;
+  }
 }
 
 export function settleRobe(a, floor = 0) {
@@ -67,12 +120,13 @@ export function settleRobe(a, floor = 0) {
   const hang = down.clone().addScaledVector(back, 0.06).normalize();
   IK.aim(B.SkirtBack1, B.SkirtBack2, hip.clone().addScaledVector(hang, 0.5));
   aimFar(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hang);
-  for (let pass = 0; pass < 2; pass++) {
-    hemBone(a, B.SkirtFront2, 'SkirtFront2', floor);
-    hemBone(a, B.LeftRobe2, 'LeftRobe2', floor);
-    hemBone(a, B.RightRobe2, 'RightRobe2', floor);
-    hemBone(a, B.SkirtBack2, 'SkirtBack2', floor);
-  }
+  // Shorten the upper back panel first, then aim the hem straight down again.
+  seatHem(a, B.SkirtBack1, 'SkirtBack1', floor);
+  aimFar(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hang);
+  seatHem(a, B.SkirtBack2, 'SkirtBack2', floor);
+  seatHem(a, B.SkirtFront2, 'SkirtFront2', floor);
+  seatHem(a, B.LeftRobe2, 'LeftRobe2', floor);
+  seatHem(a, B.RightRobe2, 'RightRobe2', floor);
 }
 
 /** Push a palm target forward until it clears the head, so a raised hand stops short of the cheek. */

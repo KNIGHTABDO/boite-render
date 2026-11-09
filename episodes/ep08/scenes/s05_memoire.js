@@ -5,7 +5,7 @@
 // firm head shake, leaning back from the idea.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
-import { hideHem, holdBoard, lapRest, plantKneel, reachSafe, staged } from '../lib/fix8a.js';
+import { hideHem, holdBoard, lapRest, plantKneel, reachSafe, staged, syncSeat } from '../lib/fix8a.js';
 import { LUNCH } from '../lib/lunch.js';
 import { beatScene, lines, sm, front, at, V, dirW } from '../lib/beatscene.js';
 
@@ -36,7 +36,7 @@ export function rock(a, t, amp = .1, rate = 3.4) { a.B.spine.rotation.x += amp *
 function life(a, t, seed = 0) {
   const br = Math.sin(t * 1.55 + seed);
   a.B.spine.rotation.x += .03 * Math.sin(t * .65 + seed);
-  a.B.spine.rotation.z += .055 * Math.sin(t * .5 + seed * 1.4);
+  a.B.spine.rotation.z += .018 * Math.sin(t * .5 + seed * 1.4);
   a.B.chest.rotation.x += .05 * br;
   a.B.chest.rotation.z += .035 * Math.sin(t * .8 + seed);
   a.B.spine.updateWorldMatrix(false, true);
@@ -70,13 +70,15 @@ const ch = staged('chambre_jour', {
   father: { ...LUNCH.father, height: 1.76, o: { ...LUNCH.father.o, skipFit: true },
     lookMax: t => t >= B(3)[0] && t < B(4)[0] ? 1.1 : .75,
     look: (t, st) => {
-      if (t >= B(3)[0] && t < B(4)[0]) return st.A.zoubida.B.head.getWorldPosition(V()).add(V(0, .4, 0));
+      // gaze and the robe lift run after act(); this is the last pose pass the gate samples
+      if (st) for (const a of Object.values(st.A)) if (a.actMark?.pose === 'kneel') syncSeat(a);
+      if (t >= B(3)[0] && t < B(4)[0] && st?.A) return st.A.zoubida.B.head.getWorldPosition(V()).add(V(0, .4, 0));
       return t < B(5)[0] ? 'zoubida' : 'mohammed';
     } },
   // floor in front of the right divan, deep enough that she is not between the lens and the boy
   zoubida: { ...LUNCH.zoubida, at: [1340, 860], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true }, look: 'father' },
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
-  mohammed: { ...LUNCH.mohammed, at: [820, 1000], face: 'cam', yaw: .48, lookMax: .4, o: { ...LUNCH.mohammed.o, skipFit: true },
+  mohammed: { ...LUNCH.mohammed, at: [900, 940], face: 'cam', yaw: .85, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
     look: (t, st, S3) => t >= B(5)[0] - .2 ? S3.cam.position.clone() : 'father' },
 }, {
   addressee: { father: 'zoubida' },
@@ -112,6 +114,7 @@ const ch = staged('chambre_jour', {
       }
     } else lapRest(fa, 'L', t), lapRest(fa, 'R', t);
     for (const s of ['L', 'R']) { lapRest(zo, s, t + 1.2); if (no < .5) lapRest(mo, s, t + .4); }
+    for (const a of [fa, zo, mo]) syncSeat(a);
   },
 });
 
@@ -138,9 +141,9 @@ const scene = beatScene(ID, {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
     b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.85, dy: 55 },
-    b018: { shot: 'ch', size: 'M', on: 'father', z: 1.55, dx: 200, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.7, dy: 8 },
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.3, dy: -8 },
+    b018: { shot: 'ch', size: 'M', on: 'father', z: 1.5, dx: 260, dy: -36 },
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.7, dx: -170, dy: 6 },
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.1, dx: 28, dy: 4 },
   },
 });
 const draw = scene.draw;
