@@ -10,8 +10,8 @@ import { beatScene, lines, sm, at, V } from '../lib/beatscene.js';
 const ID = 's21_fievre', L = lines(ID), B = i => L[i] || [0, 0];
 const TOP = .26;
 // Same right-bed axis and mattress height as s16. A small roll leaves him supine; the head turn alone faces the room.
-const MO = { at: [1320, 765], face: [1560, 900], pose: 'lie', o: { top: TOP, turn: .10, headTurn: -.16, hands: 'chest' }, seed: 3, talk: 0,
-  lids: t => .65 + .2 * (.5 + .5 * Math.sin(t * .6)) };
+const MO = { at: [1468, 800], face: [1560, 930], pose: 'lie', o: { top: TOP, turn: .12, headTurn: -.16, hands: 'chest' }, seed: 3, talk: 0,
+  lids: t => .45 + .12 * (.5 + .5 * Math.sin(t * .6)) };
 function fever(mo, t, st, S3) {
   if (!st.pillow) {
     st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x647c7c });
@@ -27,7 +27,7 @@ const ch1 = staged('chambre_jour', { mohammed: MO }, { act(lt, t, S, st, S3) { f
 // b154: adult-sized floor kneel on the near/left side of the right bed. Her head stays clear of his pillow.
 const ch2 = staged('chambre_jour', {
   mohammed: MO,
-  zoubida: { at: [1000, 900], face: [1320, 765], pose: 'kneel', o: { lean: 1.5, hip: .18, spread: .065, hands: false },
+  zoubida: { at: [1120, 920], face: 'cam', yaw: .35, pose: 'kneel', o: { grounded: true, lean: .18, hip: .30, spread: .065, hands: false },
     seed: 7, hands: false, talk: 0, lids: .6 },
 }, {
   act(lt, t, S, st, S3) {
@@ -35,18 +35,18 @@ const ch2 = staged('chambre_jour', {
     st.G.apply = () => {};   // apply the downward gaze before solving the palms, so it cannot break hand/temple contact
     fever(mo, t, st, S3);
     const u = sm(B(2)[0] - .6, B(2)[0] + .3, t), r = Math.sin((t - B(2)[0]) * 2.2);
-    zo.B.chest.rotation.x += .25 + .018 * r * u; zo.B.neck.rotation.x -= .18;
+    zo.B.chest.rotation.x += .035 + .018 * r * u; zo.B.neck.rotation.x += .06;
     zo.B.chest.rotation.z += .012 * Math.sin(t * 13) * u; zo.B.chest.updateWorldMatrix(false, true);
-    PO.look(zo, at(mo, 'head'), .4, { max: .2 });
+    
     for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
       const knee = at(zo, 'shin' + s).add(V(0, .10 * k, 0));
-      const pole = knee.sub(at(zo, 'root')).applyAxisAngle(V(0, 1, 0), -zo.group.rotation.y).multiplyScalar(1 / k).toArray();
-      const p = at(zo, 'head', [sign * .14, .24, .18]), wrist = p.clone();
+      const pole = [sign * .30, .23, .20];
+      const p = at(zo, 'head', [sign * .14, .12, .12]), wrist = p.clone();
       for (let i = 0; i < 3; i++) {
         PO.reach(zo, s, wrist, { grip: 0, pole });
-        aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .14, .35, .18]));
-        PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .10, .24, 0]).sub(p).normalize());
+        aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .14, .22, .12]));
+        PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .10, .12, 0]).sub(p).normalize());
         wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
       }
       PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });

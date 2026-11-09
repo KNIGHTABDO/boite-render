@@ -215,7 +215,8 @@ export function pour(a, pot, glass, { side = 'R', lift = .15, tilt = .75, yaw = 
  * (thigh = shin = .34 m) the hip lands at .30 m, the heels under it, and no robe vertex goes more than ~1 cm into the seat.
  * Returns the leg IK errors (m).
  */
-export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip = .30, pad = .13, hspread } = {}) {
+export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip = .30, pad = .13, hspread, grounded = false } = {}) {
+  if (grounded) return groundedKneel(a, { seat, lean, hands, spread, hip });
   const k = a.group.scale.y / 1.6, B = a.B;
   rest(B); B.spine.rotation.x = lean; a.group.updateMatrixWorld(true);
   const Lt = IK.wpos(B.thighL).distanceTo(IK.wpos(B.shinL)) / k, Ls = IK.wpos(B.shinL).distanceTo(IK.wpos(B.footL)) / k;
@@ -235,6 +236,82 @@ export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip
   drapeLap(a, seat);
   if (hands) err.push(lapHands(a, { fwd: kz * .8, lift: .1, ...(hspread ? { spread: hspread } : {}) }));
   return err;
+}
+
+// Opt-in floor-contact kneel for ep08. The legacy solve above remains unchanged.
+function groundedKneel(a, { seat, lean, hands, spread, hip }) {
+  const B=a.B, k=a.group.scale.y/1.6;
+  rest(B); for(const b of new Set(Object.values(B))) b.scale.set(1,1,1);
+  B.spine.rotation.x=lean; a.group.updateMatrixWorld(true);
+  const Lt=IK.wpos(B.thighL).distanceTo(IK.wpos(B.shinL)), Ls=IK.wpos(B.shinL).distanceTo(IK.wpos(B.footL));
+  setHipY(a,seat+hip*k);
+  const kneeY={L:seat+.055*k,R:seat+.055*k}, ankleY={L:seat+.035*k,R:seat+.035*k};let errors=[];
+  for(let i=0;i<14;i++) {
+    errors=[];
+    for(const [side,sign] of [['L',1],['R',-1]]) {
+      const thigh=IK.wpos(B['thigh'+side]), hy=thigh.y, dx=sign*spread*k;
+      const kz=Math.sqrt(Math.max(.0001,Lt*Lt-(hy-kneeY[side])**2-(dx-(thigh.clone().sub(IK.wpos(B.root)).applyAxisAngle(UP,-a.group.rotation.y).x))**2));
+      const back=Math.sqrt(Math.max(.0001,Ls*Ls-(kneeY[side]-ankleY[side])**2));
+      const W=(x,y,z)=>hipToWorld(a,x,y-IK.wpos(B.root).y,z);
+      errors.push(IK.leg(a,side,W(dx,ankleY[side],kz-back),W(dx,kneeY[side],kz)));
+      const foot=B['foot'+side], toe=B[(side==='L'?'Left':'Right')+'ToeBase'];
+      if(toe) IK.aim(foot,toe,W(dx,seat+.012*k,kz-back-.25*k));
+      else IK.aim(foot,IK.wpos(foot,[0,-.04,.15]),W(dx,seat+.012*k,kz-back-.25*k));
+      drapeLap(a,seat);
+      const kneeLow=regionLow(a,B['shin'+side].userData.abs,.065*(a.S.top-a.S.bottom));
+      const footLow=lowestOf(a,['foot'+side]);
+      kneeY[side]+=seat+.003-kneeLow; ankleY[side]+=seat+.003-footLow;
+    }
+  }
+  drapeLap(a,seat);
+  // Cloth panels are cut for a standing robe. Shorten their drop, keeping the leg skeleton untouched.
+  for(let i=0;i<3;i++)for(const n of ['SkirtFront1','SkirtFront2','SkirtBack1','SkirtBack2','LeftRobe1','LeftRobe2','RightRobe1','RightRobe2']) {
+    const b=B[n];if(!b)continue;const lo=lowestOf(a,[n]), y=IK.wpos(b).y;
+    if(lo<seat+.015&&y>seat+.025) {b.scale.y*=Math.max(.1,(y-seat-.018)/(y-lo));b.updateWorldMatrix(false,true);}
+  }
+  setHipY(a,IK.wpos(B.root).y+.012);
+  pinHem(a, seat);
+  if(hands) lapHands(a,{fwd:.24,lift:.14,spread:.14});
+  pinHem(a, seat);
+  return errors;
+}
+// The robe hem is skinned across several bones. lowestOf misses a vertex whose strongest weight is still under .5,
+// and that tail is what the gate measures under the floor. Shorten whichever cloth bone owns it.
+function pinHem(a, floor) {
+  const mesh = a.mesh; if (!mesh?.geometry?.attributes?.skinIndex) return;
+  const p = mesh.geometry.attributes.position, si = mesh.geometry.attributes.skinIndex, sw = mesh.geometry.attributes.skinWeight, bones = mesh.skeleton.bones;
+  const v = new THREE.Vector3();
+  for (let pass = 0; pass < 4; pass++) {
+    const low = new Map();
+    for (let i = 0; i < p.count; i += 2) {
+      let j = 0; for (let k = 1; k < 4; k++) if (sw.getComponent(i, k) > sw.getComponent(i, j)) j = k;
+      const name = bones[si.getComponent(i, j)]?.name;
+      if (!name || !/Skirt|Robe/.test(name)) continue;
+      mesh.getVertexPosition(i, v); mesh.localToWorld(v);
+      const y = low.get(name); if (y == null || v.y < y) low.set(name, v.y);
+    }
+    let moved = false;
+    for (const [name, lo] of low) {
+      const b = a.B[name]; if (!b || lo >= floor + .008) continue;
+      const top = IK.wpos(b).y; if (!(top > lo + 1e-3)) continue;
+      b.scale.y *= Math.max(.1, (top - floor - .04) / (top - lo));
+      b.updateWorldMatrix(false, true);
+      moved = true;
+    }
+    if (!moved) break;
+  }
+}
+function regionLow(a, center, radius) {
+  const mesh=a.mesh, p=mesh.geometry.attributes.position, v=new THREE.Vector3();let low=Infinity;
+  a.group.updateMatrixWorld(true);
+  const key=center.toArray().join(',')+':'+radius;
+  a._contactRegions ||= new Map();
+  if(!a._contactRegions.has(key)) {
+    const ids=[...new Set(mesh.geometry.index?.array||Array.from({length:p.count},(_,i)=>i))];
+    a._contactRegions.set(key,ids.filter(i=>Math.hypot(p.getX(i)-center.x,p.getY(i)-center.y,p.getZ(i)-center.z)<radius));
+  }
+  for(const i of a._contactRegions.get(key)){mesh.getVertexPosition(i,v);mesh.localToWorld(v);low=Math.min(low,v.y);}
+  return low;
 }
 
 /**
@@ -300,7 +377,7 @@ export function rail(a, { top = .9, gap = .2, spread = .17, lean = null, look: t
  * Its default sink is 4 cm (legacy: 1 cm). Omit natural to retain the original solve exactly.
  * Returns { low, heel, headLow, pillowAt } — pillowAt is the world point under the skull where the caller puts the pillow.
  */
-export function lie(a, { top = 0, turn = 0, pillow = .08, natural = false, sink = natural ? .04 : .01, hands = 'belly', headTurn = .16 } = {}) {
+export function lie(a, { top = 0, turn = 0, pillow = .08, natural = false, sink = natural ? .015 : .01, hands = 'belly', headTurn = .16 } = {}) {
   if (natural) return naturalLie(a, { top, turn, pillow, sink, hands, headTurn });
   const B = a.B, floor = top - sink;
   rest(B); B.root.rotation.set(-Math.PI / 2, 0, 0); B.root.rotateY(turn);
@@ -324,7 +401,7 @@ export function lie(a, { top = 0, turn = 0, pillow = .08, natural = false, sink 
 function naturalLie(a, { top, turn, pillow, sink, hands, headTurn }) {
   const B = a.B, k = a.group.scale.y / 1.6, floor = top - sink;
   rest(B);
-  B.root.rotation.set(-Math.PI / 2, 0, 0); B.root.rotateY(turn); B.root.rotateX(-.025);
+  B.root.rotation.set(-Math.PI / 2, 0, 0); B.root.rotateY(turn); B.root.rotateX(-.015);
   // A previous seated solve may have shortened the cloth hems. Restore their bind scale before reclining.
   for (const b of new Set(Object.values(B))) b.scale.set(1, 1, 1);
   B.spine.rotation.x = .075; B.chest.rotation.x = .045;
@@ -352,11 +429,11 @@ function naturalLie(a, { top, turn, pillow, sink, hands, headTurn }) {
   const W = (x, y, z) => new THREE.Vector3(x * k, y * k, z * k).applyQuaternion(q).add(hip);
   for (const [s, sign] of [['L', 1], ['R', -1]]) {
     const target = hands === 'side' ? W(sign * .23, .17, -.04)
-      : hands === 'chest' ? W(sign * .065, .225 + (sign > 0 ? .015 : 0), .13)
-      : W(sign * .065, .205 + (sign > 0 ? .015 : 0), .11);
+      : hands === 'chest' ? W(sign * .09, .36 + (sign > 0 ? .025 : 0), .23)
+      : W(sign * .09, .20 + (sign > 0 ? .025 : 0), .23);
     let wrist = target.clone();
     for (let i = 0; i < 3; i++) {
-      IK.arm(a, s, wrist, W(sign * .36, -.06, .07));
+      IK.arm(a, s, wrist, W(sign * .38, .16, .24));
       IK.aim(B['hand' + s], handPts(a, s).end, target.clone().addScaledVector(new THREE.Vector3(0, 1, 0).applyQuaternion(q), .1 * k));
       palmTo(a, s, 1, new THREE.Vector3(0, 0, -1).applyQuaternion(q));
       wrist.add(target.clone().sub(handPts(a, s).palm));

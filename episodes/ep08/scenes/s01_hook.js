@@ -11,7 +11,7 @@ import { bracelets } from './s17_retour.js';
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
 
 const pa = staged('patio_matin', {
-  father: { at: [700, 985], face: 'zoubida', seed: 5, look: 'zoubida', lookMax: .85 },   // Argon r6: his level gaze passed over her scarf → head pitched down to her face
+  father: { height: 1.76, at: [700, 985], face: 'zoubida', seed: 5, look: 'zoubida', lookMax: .85 },   // Argon r6: his level gaze passed over her scarf → head pitched down to her face
   zoubida: { at: [850, 975], face: 'father', seed: 7,
     look: (t, st) => t < B(0)[0] + .45 * (B(0)[1] - B(0)[0]) ? st.offer : 'father' },
 }, {
@@ -39,9 +39,11 @@ const pa = staged('patio_matin', {
 
 // b002: floor kneel, folded over the padded knees; palms cover the bowed face, elbows down in front.
 const nu = staged('chambre_nuit', {
-  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { lean: 1.5, hip: .18, spread: .065, hands: false },
+  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .22, hip: .30, spread: .065, hands: false },
     seed: 7, hands: false, talk: 0, lids: .95 },
-  mohammed: { at: [1240, 800], face: [1560, 900], pose: 'lie', o: { top: .35, turn: .10, headTurn: -.16, hands: 'belly' }, seed: 3, talk: 0 },
+  // right divan, lengthwise: hip over the mattress, feet toward its front edge but still on the cloth (the old mark
+  // put the heels in the dark gap in front of the bed)
+  mohammed: { at: [1470, 820], face: [1560, 940], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly' }, seed: 3, talk: 0 },
 }, {
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A, k = zo.group.scale.y / 1.6;
@@ -52,17 +54,17 @@ const nu = staged('chambre_nuit', {
       S3.prop(st.pillow, p.x, p.y, p.z, mo.group.rotation.y);
     }
     const sob = .025 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
-    zo.B.chest.rotation.x += .3 + sob; zo.B.neck.rotation.x -= .35;   // keep the neck long within the deep bow
+    zo.B.chest.rotation.x += .04 + sob; zo.B.neck.rotation.x += .08;   // keep the neck long within the deep bow
     zo.B.chest.rotation.z += .015 * Math.sin(t * 1.3); zo.B.spine.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
       const knee = at(zo, 'shin' + s).add(V(0, .10 * k, 0));   // padded knee surface, supporting the elbow
-      const pole = knee.sub(at(zo, 'root')).applyAxisAngle(V(0, 1, 0), -zo.group.rotation.y).multiplyScalar(1 / k).toArray();
-      const p = at(zo, 'head', [sign * .10, .30, .19]), wrist = p.clone();
+      const pole = [sign * .30, .23, .20];
+      const p = at(zo, 'head', [sign * .12, .10, .14]), wrist = p.clone();
       for (let i = 0; i < 3; i++) {
         PO.reach(zo, s, wrist, { grip: 0, pole });
-        aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .10, .40, .19]));
-        PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .10, .30, 0]).sub(p).normalize());
+        aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .12, .20, .14]));
+        PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .08, .10, 0]).sub(p).normalize());
         wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
       }
       PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
@@ -74,6 +76,6 @@ export default beatScene(ID, {
   shots: { pa, nu },
   plan: {
     b001: { shot: 'pa', size: 'CU', on: 'zoubida' },
-    b002: { shot: 'nu', size: 'W', on: 'zoubida' },   // Argon r6: the boy awake on the divan behind her must be in frame
+    b002: { shot: 'nu', size: 'M', on: 'zoubida', z: 2.05, dx: 220, dy: -10 },   // both figures large enough to read, boy still on the divan behind her
   },
 });

@@ -32,7 +32,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
     plate, light, cover, view, fx, over, under,
     async build(S3) {
       const camP = S3.cam.position.clone().setY(0), A = {}, P = {};
-      for (const n of names) A[n] = await role(n, { seat: SEATED.has(marks[n].pose), costume: marks[n].costume });
+      for (const n of names) { A[n] = await role(n, { seat: SEATED.has(marks[n].pose), costume: marks[n].costume }); if(marks[n].height) A[n].group.scale.setScalar(marks[n].height); }
       const ST = stairs && fitStairs(S3, stairs), Y = {}; ST?.catchers();
       for (const n of names) {   // tread: j stands on tread j / sits on it (pose 'step', feet one tread lower)
         const m = marks[n];
@@ -47,13 +47,13 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         const m = marks[n], a = A[n];
         S3.add(a, P[n].x, P[n].z, aim(n, m.face) + (m.yaw || 0)); a.home = P[n];
         if (Y[n]) { a.group.position.y = Y[n]; a.group.updateMatrixWorld(true); }
-        if (POSES[m.pose]) memoPose(`${n}:${m.pose}`, a, [P[n].x, P[n].z, m.o || {}], () => POSES[m.pose](a, m.o || {}));
+        if (POSES[m.pose]) memoPose(`${n}:${m.pose}`, a, [P[n].x, P[n].z, a.group.rotation.y, a.group.scale.y, 'bed-contact-v2', m.o || {}], () => POSES[m.pose](a, m.o || {}));
         snaps[n] = POSES[m.pose] ? PO.snap(a) : null;
         // seated hands REST on the body (Argon: hovering forearms poke into whoever sits in front): palm points on the thighs
         // (kneel / cross) or the kneecaps (step), kept in the pelvis frame so a chest lean or an idle sway can't lift them off
         const hm = m.hands ?? (m.pose === 'step' ? 'knees' : SEATED.has(m.pose) && m.pose !== 'lie' ? 'thighs' : null);
         if (hm && snaps[n]) { const k = a.group.scale.y / 1.6; a.pins = ['L', 'R'].map(s => { const th = a.B['thigh' + s].getWorldPosition(V(0, 0, 0)), kn = a.B['shin' + s].getWorldPosition(V(0, 0, 0));
-          return [s, a.B.root.worldToLocal(th.lerp(kn, hm === 'knees' ? .78 : .6).add(V(0, (hm === 'knees' ? .07 : .075) * k, 0)))]; }); }
+          const target=m.o?.grounded ? PO.hipToWorld(a,(s==='L'?1:-1)*.18*k,.10*k,.25*k) : th.lerp(kn, hm === 'knees' ? .78 : .6).add(V(0,(hm === 'knees' ? .07 : .075)*k,0)); return [s, a.B.root.worldToLocal(target)]; }); }
         if (m.walk) m.walk.p0 = P[n].clone(), m.walk.p1 = S3.floorAt(...m.walk.to);
         if (m.climb) Object.assign(m.climb, { p0: P[n].clone(), p1: ST.tread(m.climb.to, m.off || 0), j0: m.tread, rise: ST.RISE });
       }
@@ -64,7 +64,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
     },
     frame(lt, u, t, S, st, S3) {
       const { A, snaps } = st;
-      st.G ||= AC.gazeNet(S.lines, A, { addressee });
+      st.G ||= AC.gazeNet(S.lines, Object.fromEntries(Object.entries(A).filter(([n]) => marks[n].pose !== 'lie')), { addressee });
       for (const [i, n] of names.entries()) {
         const a = A[n], m = marks[n], seed = m.seed ?? i * 2 + 1;
         if (snaps[n]) PO.apply(a, snaps[n]);
@@ -75,9 +75,9 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         }
         else if (m.walk && t >= m.walk.t0) { rest(a.B); walk(a, m.walk.p0, m.walk.p1, m.walk.t0, m.walk.t1, t); }
         else rest(a.B);
-        AC.idle(a, t, seed, { seated: !!snaps[n] });
+        AC.idle(a, t, seed, { seated: !!snaps[n], k: m.pose === 'lie' ? 0 : 1 });
         pin(a);
-        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) { if (!snaps[n]) hang(a, t, seed, m.costume); AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: false }); }
+        if (m.pose !== 'lie' && !(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) { if (!snaps[n]) hang(a, t, seed, m.costume); AC.arms(a, t, seed, S.lines, n, { k: m.o?.grounded ? 0 : 1, talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: false }); }
         AC.speak(a, t, S.lines, n);
       }
       const K = ['spine', 'chest', 'upperArmL', 'foreArmL', 'upperArmR', 'foreArmR'], q0 = new Map();

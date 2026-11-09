@@ -14,21 +14,21 @@ const ID = 's16_noir', L = lines(ID), B = i => L[i] || [0, 0];
 const TOP = .26;
 // The right mattress runs toward the foreground: hip over its centre, feet toward its front edge.
 const MO = { at: [1320, 765], face: [1560, 900], pose: 'lie', o: { top: TOP, turn: .10, headTurn: .08, hands: 'belly' }, seed: 3, talk: 0 };
-const ZO = { at: [560, 845], face: 'cam', pose: 'step', o: { seat: .2, floor: 0, spread: .065, fz: .32, lean: .95, hands: false },
+const ZO = { at: [820, 950], face: 'cam', pose: 'kneel', o: { grounded: true, spread: .08, lean: .16, hands: false },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
   const k = zo.group.scale.y / 1.6, sob = .5 + .5 * Math.sin(t * 1.7);
-  zo.B.chest.rotation.x += .25 + .012 * sob; zo.B.neck.rotation.x += .28;
+  zo.B.chest.rotation.x += .04 + .012 * sob; zo.B.neck.rotation.x += .08;
   zo.B.chest.updateWorldMatrix(false, true);   // body first: palms follow the bowed face
   for (const s of ['L', 'R']) {
-    const sign = s === 'L' ? 1 : -1, p = at(zo, 'head', [sign * .10, .26, .19]);
+    const sign = s === 'L' ? 1 : -1, p = at(zo, 'head', [sign * .13, .10, .14]);
     const knee = at(zo, 'shin' + s).add(V(0, .04 * k, 0));
-    const pole = knee.sub(at(zo, 'root')).applyAxisAngle(V(0, 1, 0), -zo.group.rotation.y).multiplyScalar(1 / k).toArray();
+    const pole = [sign * .30, .23, .20];
     const wrist = p.clone();
     for (let i = 0; i < 3; i++) {
       PO.reach(zo, s, wrist, { grip: 0, pole });
-      aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .10, .36, .19]));
-      PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .10, .26, 0]).sub(p).normalize());
+      aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .13, .20, .14]));
+      PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .08, .10, 0]).sub(p).normalize());
       wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
     }
     PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
@@ -59,7 +59,7 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
 // both contact poses are solved by staged() at build, rather than sweeping his feet through the mattress in a blend.
 const cry = staged('chambre_jour', {
   zoubida: ZO,
-  mohammed: { at: MO.at, face: MO.face, pose: 'kneel', o: { seat: TOP, lean: .4, spread: .045, hands: false },
+  mohammed: { at: MO.at, face: MO.face, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false },
     hands: false, seed: 3, talk: 0, lids: .85 },
 }, {
   over: tears,
@@ -85,7 +85,7 @@ export default beatScene(ID, {
     b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.1, dy: -30 },
     b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 3.4, dy: -15,
       segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 4.2, dx: 45, dy: -20 }] },
-    b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.5, dx: 380, dy: 20 },
+    b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.55, dx: 220, dy: 10 },
     b107: { shot: 'win' },
   },
 });

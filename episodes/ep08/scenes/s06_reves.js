@@ -3,7 +3,8 @@
 // "le matin" fervent (fast rock, lips going, eyes on the slate, insert soleil_matin) / "l'après-midi" the rock slows, the
 // lips stop, the eyes drift up and away to the light (insert soleil_apresmidi). b024–b026 paintings (p06, p07, p08).
 import * as PR from '../../../engine/props3d.js';
-import { staged, THREE } from '../lib/autostage.js';
+import { staged } from '../lib/fix8.js';
+import { THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, at, V, ENUM } from '../lib/beatscene.js';
 import { CLASS, lapLouha, rock } from './s05_memoire.js';
 
