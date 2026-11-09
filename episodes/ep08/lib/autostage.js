@@ -77,7 +77,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         else rest(a.B);
         AC.idle(a, t, seed, { seated: !!snaps[n] });
         pin(a);
-        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) { if (!snaps[n]) hang(a, t, seed); AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: false }); }
+        if (!(m.walk && t >= m.walk.t0 && t < m.walk.t1 + .3) && !(m.climb && t >= m.climb.t0 && t < m.climb.t1 + .3)) { if (!snaps[n]) hang(a, t, seed, m.costume); AC.arms(a, t, seed, S.lines, n, { talk: (m.talk ?? 1) * (snaps[n] ? .6 : 1), relax: false }); }
         AC.speak(a, t, S.lines, n);
       }
       const K = ['spine', 'chest', 'upperArmL', 'foreArmL', 'upperArmR', 'foreArmR'], q0 = new Map();
@@ -102,8 +102,18 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
 }
 // Argon r7: idle standing arms read as an A-pose (the rig's bind angle + a small relax). The hands now hang from the
 // shoulders at the actor's own arm length (rig-agnostic), a hand-width out from the thigh, elbows soft and back.
-function hang(a, t, seed) {
+// Haik (Argon r8: a hanging hand burst through the cloth at the hip): both hands held in front at the waist, inside the
+// drape, the way the haik is held closed.
+function hang(a, t, seed, costume) {
   const k = a.group.scale.y / 1.6, B = a.B; a.group.updateMatrixWorld(true);
+  if (costume === 'haik') {
+    for (const s of ['L', 'R']) {
+      const w = b => B[b + s].getWorldPosition(V(0, 0, 0)), sh = w('upperArm'), len = (a.armLen ||= {})[s] ||= sh.distanceTo(w('foreArm')) + w('foreArm').distanceTo(w('hand'));
+      const tg = sh.clone().addScaledVector(dirW(a, s === 'L' ? -1 : 1, 0, 0), .1 * k).addScaledVector(dirW(a, 0, 0, 1), .16 * k).add(V(0, -.72 * len + .006 * Math.sin(t * .8 + seed), 0));
+      PO.reach(a, s, tg, { grip: .0, pole: s === 'L' ? [.35, .1, -.35] : [-.35, .1, -.35] });
+    }
+    return;
+  }
   for (const s of ['L', 'R']) {
     const w = b => B[b + s].getWorldPosition(V(0, 0, 0)), sh = w('upperArm'), len = (a.armLen ||= {})[s] ||= sh.distanceTo(w('foreArm')) + w('foreArm').distanceTo(w('hand'));
     const sw = .012 * Math.sin(t * .9 + seed + (s === 'L' ? 0 : 1.7));
