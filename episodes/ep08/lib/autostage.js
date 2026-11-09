@@ -69,16 +69,12 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       }
       act?.(lt, t, S, st, S3);
       st.G.apply(t);
-      for (const n of names) {   // fixed gazes win over the net (a prop, a window, another role)
-        const l = marks[n].look;
-        if (Array.isArray(l)) PO.look(A[n], st.fixed[n], .85);
-        else if (typeof l === 'string' && A[l]) PO.look(A[n], A[l].B.head.getWorldPosition(V(0, 0, 0)), .85);
-        else if (typeof l === 'function') {   // (t, st, S3) → null (keep the net) | role name | [px, py, h] | Vector3
-          const g = l(t, st, S3);
-          if (typeof g === 'string' && A[g]) PO.look(A[n], A[g].B.head.getWorldPosition(V(0, 0, 0)), .85);
-          else if (Array.isArray(g)) PO.look(A[n], S3.floorAt(g[0], g[1]).setY(g[2] ?? 1.2), .85);
-          else if (g?.isVector3) PO.look(A[n], g, .85);
-        }
+      for (const n of names) {   // fixed gazes win over the net (a prop, a window, another role); m.lookMax widens the head cap
+        const l = marks[n].look, o = { max: marks[n].lookMax ?? .55 };
+        const g = typeof l === 'function' ? l(t, st, S3) : l;   // (t, st, S3) → null (keep the net) | role name | [px, py, h] | Vector3
+        if (typeof g === 'string' && A[g]) PO.look(A[n], A[g].B.head.getWorldPosition(V(0, 0, 0)), .85, o);
+        else if (Array.isArray(g)) PO.look(A[n], typeof l === 'function' ? S3.floorAt(g[0], g[1]).setY(g[2] ?? 1.2) : st.fixed[n], .85, o);
+        else if (g?.isVector3) PO.look(A[n], g, .85, o);
       }
       for (const a of Object.values(A)) a.group.updateMatrixWorld(true);
       if (globalThis.DBG8) for (const n of names) { const a = A[n], h = a.B.head.getWorldPosition(V(0, 0, 0)); console.error('DBG', plate, n, marks[n].pose || 'stand', 't=' + t.toFixed(2), 'walk=' + (marks[n].walk ? marks[n].walk.t0.toFixed(2) : '-'), 'pos=' + a.group.position.x.toFixed(2) + ',' + a.group.position.z.toFixed(2), 'headY=' + h.y.toFixed(2), 'scale=' + a.group.scale.y.toFixed(2)); }

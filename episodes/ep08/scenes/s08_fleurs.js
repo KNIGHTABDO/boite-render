@@ -3,7 +3,7 @@
 // "fleurs"; b042 both parents rock back laughing, the boy still between them; b043 slow side-eye left, then right.
 import { staged } from '../lib/autostage.js';
 import { LUNCH } from '../lib/lunch.js';
-import { beatScene, lines, sm } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front } from '../lib/beatscene.js';
 
 const ID = 's08_fleurs', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
@@ -11,8 +11,8 @@ const f = (i, x) => B(i)[0] + x * (B(i)[1] - B(i)[0]);
 
 const ch = staged('chambre_jour', {
   ...LUNCH,
-  mohammed: { ...LUNCH.mohammed, look: t =>
-    IN(0, t) ? [560, 900, 1.25]
+  mohammed: { ...LUNCH.mohammed, look: (t, st) =>
+    IN(0, t) ? front(st.A.mohammed, 'head', .9, .35, .22)   // searching for the word: a small glance up and aside, not the ceiling
     : IN(2, t) ? [850, 1040, .25]
     : IN(3, t) ? (t > f(3, .7) ? [850, 900, 1.15] : [850, 1040, .3])
     : IN(5, t) ? (t < f(5, .5) ? 'father' : 'zoubida') : null },

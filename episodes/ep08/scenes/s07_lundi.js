@@ -19,7 +19,7 @@ const pa = staged('patio_matin', {
   mohammed: { at: [1080, 1010], face: [640, 1080], pose: 'cross', look: t => t > B(0)[0] + 1.2 ? 'father' : [1000, 1040, .2] },
 }, {
   addressee: { narrator: 'mohammed' },
-  act(lt, t, S, st, S3) { holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha(), 0, 0, 0)); },
+  act(lt, t, S, st, S3) { holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0)); },
 });
 
 /** louha held upright on the lap (as ep05 s03): bottom edge on the thighs, leaning back, palms on its side edges */
@@ -30,7 +30,13 @@ function holdLouha(a, lh) {
   PO.reach(a, 'L', lh.localToWorld(V(.135, .2, 0)), { grip: .04 }); PO.reach(a, 'R', lh.localToWorld(V(-.135, .2, 0)), { grip: .04 });
 }
 
-const ch = staged('chambre_jour', { ...LUNCH }, {
+// looks run after the gaze net: b032 the father lowers his eyes (his worker's mother), b036–b037 he looks down at his son;
+// the boy looks up at him under the hand on his head
+const ch = staged('chambre_jour', {
+  ...LUNCH,
+  father: { ...LUNCH.father, lookMax: .9, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'root', .9, 0, -.2) : t >= B(9)[0] ? 'mohammed' : null },
+  mohammed: { ...LUNCH.mohammed, lookMax: .8, look: t => t >= B(9)[0] ? 'father' : null },
+}, {
   // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
   addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
   act(lt, t, S, st) {
@@ -38,7 +44,7 @@ const ch = staged('chambre_jour', { ...LUNCH }, {
     const kz = zo.group.scale.y / 1.6, kf = fa.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;
     // b030: breath stops, right hand to her chest from the word "bracelets" (≈ 45 % of the line) to the end
     const chest = win(3, .42, 1.05, t);
-    if (chest > 0) PO.reach(zo, 'R', front(zo, 'chest', .07 * kz, .03 * kz, -.02 * kz).lerp(front(zo, 'root', .2 * kz, .15 * kz, 0), 1 - chest), { grip: .02 });
+    if (chest > 0) PO.reach(zo, 'R', front(zo, 'neck', .11 * kz, .03 * kz, -.15 * kz).lerp(front(zo, 'root', .2 * kz, .15 * kz, 0), 1 - chest), { grip: .03, pole: [-.3, -.15, -.05] });   // palm flat on the breastbone, elbow down
     // b032: father lowers his eyes (head pitch down on top of the gaze net, applied after it via fixed look below)
     // b034: palms up briefly at "miséricorde" (last third)
     const palms = win(7, .6, .95, t);
@@ -49,9 +55,8 @@ const ch = staged('chambre_jour', { ...LUNCH }, {
     // b036: the father's right hand comes to rest on the boy's head (reach clamps if too far; stills show it)
     const pat = win(9, .15, .9, t);
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .13 * km, 0));
+      const top = at(mo, 'head').add(V(0, .24 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), -.03 * km);   // on the crown, never through it
       PO.reach(fa, 'R', front(fa, 'chest', .25 * kf, .1 * kf, -.15 * kf).lerp(top, pat), { grip: .02 });
-      PO.look(mo, at(fa, 'head'), .8 * pat);
     }
   },
 });
@@ -65,9 +70,9 @@ export default beatScene(ID, {
     b030: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b032: { shot: 'ch', size: 'M', on: 'father' },
     b033: { shot: 'ch', size: 'CU', on: 'zoubida' },
-    b034: { shot: 'ch', size: 'CU', on: 'father' },
-    b035: { shot: 'ch', size: 'CU', on: 'mohammed' },
-    b036: { shot: 'ch', size: 'M', on: 'mohammed' },
+    b034: { shot: 'ch', size: 'M', on: 'father' },
+    b035: { shot: 'ch', size: 'W', on: 'mohammed' },
+    b036: { shot: 'ch', size: 'M', on: 'father' },
     b037: { shot: 'ch', size: 'CU', on: 'father' },
   },
 });

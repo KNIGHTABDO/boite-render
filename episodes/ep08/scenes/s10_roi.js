@@ -7,6 +7,7 @@ import { staged } from '../lib/autostage.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { SEAT } from './s09_escalier.js';
 import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
+globalThis.DBG8 = true;   // TEMP: log s10 seat pose (remove after the run)
 
 const ID = 's10_roi', L = lines(ID);
 const B = i => L[i] || [0, 0];

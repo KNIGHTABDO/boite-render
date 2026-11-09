@@ -215,7 +215,7 @@ export function pour(a, pot, glass, { side = 'R', lift = .15, tilt = .75, yaw = 
  * (thigh = shin = .34 m) the hip lands at .30 m, the heels under it, and no robe vertex goes more than ~1 cm into the seat.
  * Returns the leg IK errors (m).
  */
-export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip = .30, pad = .13 } = {}) {
+export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip = .30, pad = .13, hspread } = {}) {
   const k = a.group.scale.y / 1.6, B = a.B;
   rest(B); B.spine.rotation.x = lean; a.group.updateMatrixWorld(true);
   const Lt = IK.wpos(B.thighL).distanceTo(IK.wpos(B.shinL)) / k, Ls = IK.wpos(B.shinL).distanceTo(IK.wpos(B.footL)) / k;
@@ -233,7 +233,7 @@ export function kneel(a, { seat = 0, lean = .15, hands = true, spread = .09, hip
   for (let i = 0; i < 2; i++) { legs(); const lo = lowestOf(a, ['shinL', 'shinR', 'footL', 'footR']); if (Math.abs(lo - seat) < .004) break; setHipY(a, IK.wpos(B.root).y + seat + .003 - lo); }
   legs();
   drapeLap(a, seat);
-  if (hands) err.push(lapHands(a, { fwd: kz * .8, lift: .1 }));
+  if (hands) err.push(lapHands(a, { fwd: kz * .8, lift: .1, ...(hspread ? { spread: hspread } : {}) }));
   return err;
 }
 
