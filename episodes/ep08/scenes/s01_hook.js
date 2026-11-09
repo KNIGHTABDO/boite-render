@@ -4,7 +4,7 @@
 import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
-import { staged } from '../lib/autostage.js';
+import { staged, palmsOnFace } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { bracelets } from './s17_retour.js';
 
@@ -37,38 +37,26 @@ const pa = staged('patio_matin', {
   },
 });
 
-// b002: floor kneel, folded over the padded knees; palms cover the bowed face, elbows down in front.
+// Right divan top, clockwise from the back-left corner. The chest beside it is off limits.
+const MATTRESS = [[1055, 588], [1412, 588], [1420, 772], [1148, 748]];
+const CHEST = [[1418, 585], [1830, 585], [1830, 890], [1418, 890]];
+// b002: floor kneel, head bowed into her hands. Mohammed lies along the right divan, skull on the back cushions.
 const nu = staged('chambre_nuit', {
   zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .22, hip: .30, spread: .065, hands: false },
     seed: 7, hands: false, talk: 0, lids: .95 },
-  // right divan, lengthwise: hip over the mattress, feet toward its front edge but still on the cloth (the old mark
-  // put the heels in the dark gap in front of the bed)
-  mohammed: { at: [1470, 820], face: [1560, 940], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly' }, seed: 3, talk: 0 },
+  mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly', mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
 }, {
   act(lt, t, S, st, S3) {
-    const { zoubida: zo, mohammed: mo } = st.A, k = zo.group.scale.y / 1.6;
+    const { zoubida: zo, mohammed: mo } = st.A;
     st.G.apply = () => {};   // contact hands and the boy's pillow turn must survive the automatic gaze pass
     if (!st.pillow) {
       st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x586b8c });
       const p = at(mo, 'head', [0, .1, 0]).setY(.35);   // the same point returned as lie().pillowAt
       S3.prop(st.pillow, p.x, p.y, p.z, mo.group.rotation.y);
     }
-    const sob = .025 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
-    zo.B.chest.rotation.x += .04 + sob; zo.B.neck.rotation.x += .08;   // keep the neck long within the deep bow
-    zo.B.chest.rotation.z += .015 * Math.sin(t * 1.3); zo.B.spine.updateWorldMatrix(false, true);
-    for (const s of ['L', 'R']) {
-      const sign = s === 'L' ? 1 : -1;
-      const knee = at(zo, 'shin' + s).add(V(0, .10 * k, 0));   // padded knee surface, supporting the elbow
-      const pole = [sign * .30, .23, .20];
-      const p = at(zo, 'head', [sign * .12, .10, .14]), wrist = p.clone();
-      for (let i = 0; i < 3; i++) {
-        PO.reach(zo, s, wrist, { grip: 0, pole });
-        aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .12, .20, .14]));
-        PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .08, .10, 0]).sub(p).normalize());
-        wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
-      }
-      PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
-    }
+    const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
+    zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
+    palmsOnFace(zo, 'face');
   },
 });
 
@@ -76,6 +64,6 @@ export default beatScene(ID, {
   shots: { pa, nu },
   plan: {
     b001: { shot: 'pa', size: 'CU', on: 'zoubida' },
-    b002: { shot: 'nu', size: 'M', on: 'zoubida', z: 2.05, dx: 220, dy: -10 },   // both figures large enough to read, boy still on the divan behind her
+    b002: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.55, dx: 140, dy: -55 },   // her full head, and the boy on the divan behind her
   },
 });

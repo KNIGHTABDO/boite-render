@@ -5,11 +5,12 @@
 // turns her face away (b119), he insists, palm firm (b120), she takes them without looking and throws them in her chest
 // (b121), b122 her hand on her heart: "mon cœur ne ment pas".
 import * as PO from '../../../engine/poses.js';
-import { staged, approach, sideHold, yawToward } from '../lib/fix8b.js';
-import { THREE } from '../lib/autostage.js';
+import * as IK from '../../../engine/ik.js';
+import { approach, yawToward, staged as stagedFix } from '../lib/fix8b.js';
+import { staged, THREE } from '../lib/autostage.js';
 import { toon } from '../../../engine/props3d.js';
 import { ESCALIER } from '../lib/stairs.js';
-import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front, at, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's17_retour', L = lines(ID);
 const B = i => L[i] || [0, 0];
@@ -18,30 +19,45 @@ const k = a => a.group.scale.y / 1.6;
 const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#a8b4d8', shadow: .2 };
 
 // he climbs treads 2 → 3 with his back to us while the narrator speaks; a slow push-in on the whole flight
-const es = staged('escalier_nuit', { father: { tread: 2, face: 'down', seed: 5, height: 1.76, climb: { to: 3, t0: B(0)[0] + .2, t1: B(0)[1] - .2 } } },
+const es = stagedFix('escalier_nuit', { father: { tread: 2, face: 'down', seed: 5, height: 1.76, climb: { to: 3, t0: B(0)[0] + .2, t1: B(0)[1] - .2 } } },
   { stairs: ESCALIER, light: DARK, view: () => [1180, 480, 1.06],
     act(lt, t, S, st, S3) {
       const fa = st.A.father;
-      // Climb still carries him up the flight; yaw stays inside the lens so the face reads.
-      yawToward(fa, S3.cam, 1.05);
+      // Mostly his back: only enough yaw that the face stays inside the gate's 100° budget.
+      yawToward(fa, S3.cam, 1.55);
       st.actcheck = { supports: { father: fa.group.position.y } };
     } });
 // the ep05 penombre plate is a day room: a multiply grade turns it to night (the father's silhouette reads black on grey)
 const NIGHT = { grade: 'rgb(84,94,150)', gradeOp: 'multiply', vignette: .85 };
 
+const PEN_BED = [[900, 575], [1185, 575], [1185, 665], [900, 670]];   // centre/left divan, same layout as jour
+const CHEST_J = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
+const NUIT_BED = [[1055, 588], [1412, 588], [1420, 772], [1148, 748]];
+const CHEST_N = [[1418, 585], [1830, 585], [1830, 890], [1418, 890]];
+// Hands on the thighs. The wide side-hold read as arms stuck straight out.
+function lap(a) {
+  const kk = k(a);
+  for (const [s, sign] of [['L', 1], ['R', -1]]) PO.reach(a, s, PO.hipToWorld(a, sign * .12 * kk, .05 * kk, .22 * kk), { grip: .03, pole: [sign * .28, .04, .1] });
+}
+// Only pull a skirt panel down when it is sticking out behind the shoulders as a rigid plank.
+function veilDown(a) {
+  const B = a.B; if (!B.SkirtBack2) return;
+  const hip = at(a, 'root'), tip = IK.wpos(B.SkirtBack2, [0, -1, 0]);
+  const back = tip.clone().sub(hip); back.y = 0;
+  if (back.length() > .22 && tip.y > .16) IK.aim(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hip.clone().addScaledVector(back.normalize(), .08).setY(.03));
+}
 const pe = staged('chambre_penombre', {
-  father: { at: [170, 925], face: 'cam', seed: 5, height: 1.76, walk: { to: [430, 880], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
-    lookMax: .3, look: t => t > B(4)[0] ? [980, 700, .5] : t > B(2)[0] ? [800, 800, 1.05] : null },
-  zoubida: { at: [1170, 880], face: [900, 900], pose: 'kneel', seed: 7, look: [1100, 930, 0] },
-  // lying along the mattress (side-on to the lens: feet-first he read as a toddler sitting up), face turned to the room
-  mohammed: { at: [980, 700], face: Math.PI / 2, pose: 'lie', o: { top: .2, turn: .45, pillow: .1 }, seed: 3, look: null },
+  father: { at: [170, 925], face: [1000, 640], seed: 5, height: 1.76, walk: { to: [430, 860], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
+    lookMax: .95, look: t => t > B(4)[0] ? 'mohammed' : t > B(2)[0] ? [800, 760, 1.05] : null },
+  zoubida: { at: [1170, 860], face: [700, 900], pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, look: [1000, 700, .4] },
+  // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
+  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null },
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo } = st.A, kf = k(fa);
-    yawToward(fa, S3.cam, 1.0);
-    sideHold(zo);
-    // The solved skull sits a few centimetres off the pillow once the body has settled. Curl it back down.
+    yawToward(fa, S3.cam, 1.5);
+    lap(zo); veilDown(zo);
     const mo = st.A.mohammed, surface = .3;
     for (let i = 0; i < 5; i++) {
       const gap = PO.lowestOf(mo, ['head']) - surface;
@@ -50,9 +66,8 @@ const pe = staged('chambre_penombre', {
       mo.B.head.rotation.x += gap > 0 ? -.08 : .08;
       mo.B.head.updateWorldMatrix(false, true);
     }
-    yawToward(mo, S3.cam, 1.25);   // on his side, face turned enough toward the lens for the close-ups
-    const grope = win(2, .2, 1, t);   // left hand sliding along the shelf, out in front of the chest
-    if (grope > 0) PO.reach(fa, 'L', front(fa, 'chest', .4 * kf, -.28 * kf + .1 * Math.sin(t * 1.6) * kf, .08 * kf), { grip: .12, pole: [.4, .15, .2] });
+    const grope = win(2, .2, 1, t);
+    if (grope > 0) PO.reach(fa, 'L', front(fa, 'chest', .34 * kf, -.22 * kf + .06 * Math.sin(t * 1.6) * kf, .02 * kf), { grip: .08, pole: [.35, .1, .15] });
   },
 });
 
@@ -61,37 +76,55 @@ const nu = staged('chambre_nuit', {
   // he stands in the left foreground, facing her
   father: { at: [430, 1010], face: 'zoubida', seed: 5, height: 1.76 },
   // b117 she lifts her wet face to him (a bowed head showed only hair); b119 she turns away from the jewels; b121 to her chest
-  zoubida: { at: [1010, 905], face: [560, 1060], pose: 'kneel', seed: 7, lookMax: .95,
-    look: t => t >= B(8)[0] && t < B(9)[0] ? 'father' : t > B(10)[0] && t < B(12)[0] ? [1400, 980, .9] : t > B(12)[0] && t < B(13)[0] ? [1450, 950, .5] : null },
-  mohammed: { at: [1180, 845], face: Math.PI / 2, pose: 'lie', o: { top: .35, turn: .45 }, look: 'zoubida', lookMax: .8, seed: 3 },
+  zoubida: { at: [980, 880], face: [560, 1000], pose: 'kneel', o: { grounded: true, lean: .08, hands: false }, seed: 7, hands: false, lookMax: 1.15,
+    look: t => t >= B(8)[0] && t < B(10)[0] ? 'father' : t >= B(10)[0] ? [1680, 760, .7] : null },
+  mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0 },
 }, {
   light: { keyI: 1.5, key: '#ffc070', fillI: .55 },
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
 
     const { father: fa, zoubida: zo } = st.A, kf = k(fa), kz = k(zo);
-    const offer = Math.max(win(9, .7, 1, t), win(10, 0, 1, t), win(11, 0, .6, t));   // bracelets held out on his palm
-    const take = win(12, 0, .45, t), toss = win(12, .45, .95, t);   // takes them, throws them into the chest (her right)
-    const heart = win(13, .45, 1.1, t);
-    sideHold(zo, (take > 0 || toss > 0 || heart > 0) ? ['L'] : ['L', 'R']);
-    if (offer > 0 && take <= 0) PO.reach(fa, 'R', front(fa, 'chest', .46 * kf, .16 * kf, -.02 * kf), { grip: .08, pole: [-.35, .12, .2] });
-    const away = win(10, 0, 1, t);   // she turns her face away from the jewels
-    if (away > 0) { zo.B.neck.rotation.y -= .35 * away; zo.B.neck.updateWorldMatrix(false, true); }
-    if (take > 0) {
-      // Jewels at her shoulder, in front of her, above his thigh. He steps in until the palm can land.
-      const gift = PO.hipToWorld(zo, -.16 * kz, .55 * kz, .32 * kz);
-      approach(fa, 'R', gift, .04);
-      PO.reach(fa, 'R', gift, { grip: .05, pole: [-.32, .18, .22] });
-      PO.reach(zo, 'R', gift, { grip: .05, pole: [-.4, .16, .22] });
+    const offer = Math.max(win(9, .5, 1, t), win(10, 0, 1, t), win(11, 0, .55, t));
+    const take = win(12, 0, .4, t), toss = win(12, .4, 1, t);
+    const heart = win(13, .3, 1.2, t);
+    lap(zo);
+    if (offer > 0 && take <= 0) {
+      PO.reach(fa, 'R', front(fa, 'chest', .42 * kf, .18 * kf, -.04 * kf), { grip: 0, pole: [-.32, .06, .16] });
+      PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
-    if (toss > 0) PO.reach(zo, 'R', PO.hipToWorld(zo, -.34 * kz, .22 * kz, .3 * kz), { grip: 0, pole: [-.45, .1, .2] });
-    if (heart > 0) PO.reach(zo, 'R', PO.hipToWorld(zo, -.26 * kz, .32 * kz, .2 * kz), { grip: .02, pole: [-.42, .16, .22] });   // palm at the right side of the chest, off the spine
-    // the bracelets: on his palm while he offers them, in her hand while she takes them, then gone into the chest
+    if (take > 0) {
+      const gift = PO.hipToWorld(zo, -.1 * kz, .42 * kz, .28 * kz);
+      approach(fa, 'R', gift, .05);
+      PO.reach(fa, 'R', gift, { grip: 0, pole: [-.3, .12, .18] });
+      PO.fingers(fa, 'R', 0, { spread: .2 });
+      PO.reach(zo, 'R', gift, { grip: .02, pole: [-.32, .1, .16] });
+    }
+    if (toss > 0) {
+      const aim = S3.floorAt(1620, 700); aim.y = at(zo, 'chest').y + .05 * kz;
+      const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
+      const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
+      if (dir.length() > len * .82) dir.setLength(len * .82);
+      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-.3, .15, .2] });
+    }
+    if (heart > 0) {
+      PO.reach(zo, 'R', PO.hipToWorld(zo, -.06 * kz, .38 * kz, .16 * kz), { grip: 0, pole: [-.28, .12, .14] });
+      PO.fingers(zo, 'R', .05, { spread: .2 });
+    }
     const br = st.br ||= bracelets(S3);
-    const inHis = offer > .5 && take < .5, inHers = take >= .5 && toss < .6;
+    const inHis = offer > .5 && take < .5, inHers = take >= .5 && toss < .35;
     br.visible = inHis || inHers;
-    if (br.visible) { const h = (inHis ? fa : zo).B.handR, kk = inHis ? kf : kz; h.updateWorldMatrix(true, false);
-      br.position.copy(h.localToWorld(V(0, .07 * kk, .025 * kk))); br.scale.setScalar(Math.max(.75, kk)); br.updateMatrixWorld(true); }
+    if (br.visible) {
+      const who = inHis ? fa : zo, side = 'R';
+      PO.fingers(who, side, 0, { thumb: .05, spread: .3 });
+      const palm = PO.handPts(who, side).palm;
+      br.position.copy(palm).add(V(0, .015 * k(who), 0));
+      br.scale.setScalar(1.15 * Math.max(.85, k(who)));
+      br.updateMatrixWorld(true);
+    }
+    veilDown(zo);
+    const holder = inHis ? 'father' : 'zoubida';
+    st.actcheck = (inHis || inHers) ? { held: { actor: holder, side: 'R', prop: br, max: .08, required: true } } : {};
     const sob = win(8, .4, 1.2, t);
     if (sob > 0) { zo.B.chest.rotation.x += .03 * Math.sin(t * 9) * sob; zo.B.chest.updateWorldMatrix(false, true); }
   },
@@ -111,17 +144,17 @@ export default beatScene(ID, {
   plan: {
     b109: { shot: 'es', size: 'W', on: 'father' },
     b110: { shot: 'pe', size: 'W', on: 'father' },
-    b111: { shot: 'pe', size: 'M', on: 'father', z: 1.35, dy: 55 },
-    b112: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.4, dy: 60 },
+    b111: { shot: 'pe', size: 'M', on: 'father', z: 1.3, dy: 20 },
+    b112: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.35, dx: -40, dy: -30 },
     b113: { shot: 'pe', size: 'W', on: 'father' },
-    b114: { shot: 'pe', size: 'CU', on: 'mohammed' },
-    b115: { shot: 'pe', size: 'CU', on: 'father' },
-    b116: { shot: 'pe', size: 'CU', on: 'mohammed' },
+    b114: { shot: 'pe', size: 'CU', on: 'mohammed', z: 3.2, dy: -40 },
+    b115: { shot: 'pe', size: 'CU', on: 'father', z: 1.7, dy: -50 },
+    b116: { shot: 'pe', size: 'CU', on: 'mohammed', z: 3.2, dy: -40 },
     b117: { shot: 'nu', size: 'W', on: 'zoubida' },
-    b118: { shot: 'nu', size: 'M', on: 'father', z: 1.4, dx: 100, dy: -55 },
-    b119: { shot: 'nu', size: 'CU', on: 'zoubida', z: 1.7, dy: 45 },
-    b120: { shot: 'nu', size: 'CU', on: 'father', z: 1.45, dy: -35 },
-    b121: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.35, dy: -20 },
-    b122: { shot: 'nu', size: 'CU', on: 'zoubida', z: 1.55, dy: 50 },
+    b118: { shot: 'nu', size: 'M', on: 'father', z: 1.35, dx: 40, dy: -40 },
+    b119: { shot: 'nu', size: 'CU', on: 'zoubida', z: 1.85, dy: -35 },
+    b120: { shot: 'nu', size: 'CU', on: 'father', z: 1.7, dy: -45 },
+    b121: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.4, dx: 80, dy: -30 },
+    b122: { shot: 'nu', size: 'CU', on: 'zoubida', z: 1.85, dy: -30 },
   },
 });

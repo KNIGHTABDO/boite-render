@@ -42,17 +42,55 @@ export function sitStep(a, seat, floor) {
   const Ls = IK.wpos(B.shinL).distanceTo(IK.wpos(B.footL));
   const drop = Math.max(.05, hipY - (floor + .025));
   const maxF = Math.sqrt(Math.max(.01, (Lt + Ls) ** 2 - Math.min(drop, Lt + Ls - .02) ** 2)) * .9;
-  const fwd = Math.min(Lt * .92, maxF);
+  // Knees stay close enough for a child's arms. The sole mesh hangs ~6 cm under the ankle bone.
+  const fwd = Math.min(Lt * .48, maxF);
   const spread = .065 * k;
   for (const [side, sign] of [['L', 1], ['R', -1]]) {
-    const ankle = PO.hipToWorld(a, sign * spread, floor + .028 - hipY, fwd);
-    const pole = PO.hipToWorld(a, sign * spread * 1.1, .03 * k, fwd + .05);
+    const ankle = PO.hipToWorld(a, sign * spread, floor + .08 - hipY, fwd);
+    const pole = PO.hipToWorld(a, sign * spread * 1.1, .08 * k, fwd * .4);
     IK.leg(a, side, ankle, pole);
     const foot = B['foot' + side];
     foot.rotation.x = 0; foot.updateWorldMatrix(false, true);
-    IK.aim(foot, IK.wpos(foot, [0, 0, 1]), PO.hipToWorld(a, sign * spread, floor + .02 - hipY, fwd + .18));
+    IK.aim(foot, IK.wpos(foot, [0, 0, 1]), PO.hipToWorld(a, sign * spread, floor + .07 - hipY, fwd + .12));
   }
   if (B.lap) PO.drapeLap(a, floor);
+}
+
+// Turn the whole body until the head's face normal (+Z) is within `limit` radians of the camera.
+// Body yaw alone is not the face: the neck and the look that follows act() both move +Z.
+export function faceCam(a, cam, limit = 1.05) {
+  if (!cam?.position || !a?.B?.head) return;
+  a.group.updateMatrixWorld(true);
+  const hp = IK.wpos(a.B.head);
+  const fwd = a.B.head.localToWorld(new THREE.Vector3(0, 0, 1)).sub(hp);
+  fwd.y = 0; if (fwd.lengthSq() < 1e-8) return; fwd.normalize();
+  const to = cam.position.clone().sub(hp); to.y = 0; if (to.lengthSq() < 1e-8) return; to.normalize();
+  const ang = Math.acos(Math.min(1, Math.max(-1, fwd.dot(to))));
+  if (ang <= limit) return;
+  const d = Math.atan2(to.x, to.z) - Math.atan2(fwd.x, fwd.z);
+  const turn = Math.atan2(Math.sin(d), Math.cos(d));
+  a.group.rotation.y += turn - Math.sign(turn) * limit;
+  a.group.updateMatrixWorld(true);
+}
+
+// Hands in front of the waist, elbows wide of the ribcage. checkedStage's chest reach
+// folds the forearm through the torso capsule; this one stays outside it.
+export function haikArms(a) {
+  const k = a.group.scale.y / 1.6;
+  for (const [side, sign] of [['L', 1], ['R', -1]]) {
+    PO.reach(a, side, PO.hipToWorld(a, sign * .2 * k, .2 * k, .26 * k), {
+      grip: .01, pole: [sign * .48, .12, .2],
+    });
+  }
+}
+
+// Shorten a world target to what this arm can actually reach.
+export function reachClamp(a, side, target, opt) {
+  const sh = IK.wpos(a.B['upperArm' + side]);
+  const len = sh.distanceTo(IK.wpos(a.B['foreArm' + side])) + IK.wpos(a.B['foreArm' + side]).distanceTo(IK.wpos(a.B['hand' + side]));
+  const d = target.clone().sub(sh), reach = len * .9;
+  if (d.length() > reach) target = sh.clone().addScaledVector(d.normalize(), reach);
+  return PO.reach(a, side, target, opt);
 }
 
 // Palms on the kneecaps, in front of the belly. `curl` 0..1 closes the fists (à mort).
@@ -65,7 +103,7 @@ export function pinKnees(a, curl = 0) {
     const tgt = kn.clone();
     tgt.y = Math.min(hip.y - .03, kn.y + .035 * k);
     tgt.addScaledVector(fwd, .025 * k);
-    PO.reach(a, side, tgt, { grip: .015, pole: [sign * .32, .02, .16] });
+    reachClamp(a, side, tgt, { grip: .015, pole: [sign * .32, .08, .22] });
     PO.fingers(a, side, .12 + .88 * curl, { thumb: .15 + .7 * curl });
   }
 }

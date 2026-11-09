@@ -6,33 +6,22 @@ import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { shot } from './_3d.js';
-import { staged } from '../lib/autostage.js';
+import { staged, palmsOnFace } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import * as K from '../../../engine/core.js';
 
 const ID = 's16_noir', L = lines(ID), B = i => L[i] || [0, 0];
 const TOP = .26;
-// The right mattress runs toward the foreground: hip over its centre, feet toward its front edge.
-const MO = { at: [1320, 765], face: [1560, 900], pose: 'lie', o: { top: TOP, turn: .10, headTurn: .08, hands: 'belly' }, seed: 3, talk: 0 };
-const ZO = { at: [820, 950], face: 'cam', pose: 'kneel', o: { grounded: true, spread: .08, lean: .16, hands: false },
+const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
+const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
+// Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
+const MO = { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 };
+const ZO = { at: [1011, 679], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
-  const k = zo.group.scale.y / 1.6, sob = .5 + .5 * Math.sin(t * 1.7);
-  zo.B.chest.rotation.x += .04 + .012 * sob; zo.B.neck.rotation.x += .08;
-  zo.B.chest.updateWorldMatrix(false, true);   // body first: palms follow the bowed face
-  for (const s of ['L', 'R']) {
-    const sign = s === 'L' ? 1 : -1, p = at(zo, 'head', [sign * .13, .10, .14]);
-    const knee = at(zo, 'shin' + s).add(V(0, .04 * k, 0));
-    const pole = [sign * .30, .23, .20];
-    const wrist = p.clone();
-    for (let i = 0; i < 3; i++) {
-      PO.reach(zo, s, wrist, { grip: 0, pole });
-      aim(zo.B['hand' + s], PO.handPts(zo, s).end, at(zo, 'head', [sign * .13, .20, .14]));
-      PO.palmTo(zo, s, 1, at(zo, 'head', [sign * .08, .10, 0]).sub(p).normalize());
-      wrist.add(p.clone().sub(PO.handPts(zo, s).palm));
-    }
-    PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
-  }
+  const sob = .5 + .5 * Math.sin(t * 1.7);
+  zo.B.chest.rotation.x += .015 * sob;
+  palmsOnFace(zo, 'face');
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
@@ -59,33 +48,29 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
 // both contact poses are solved by staged() at build, rather than sweeping his feet through the mattress in a blend.
 const cry = staged('chambre_jour', {
   zoubida: ZO,
-  mohammed: { at: MO.at, face: MO.face, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false },
+  mohammed: { at: MO.at, face: MO.face, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false, avoid: CHEST },
     hands: false, seed: 3, talk: 0, lids: .85 },
 }, {
   over: tears,
   act(lt, t, S, st) {
     st.G.apply = () => {}; mourn(st.A.zoubida, t);
-    const mo = st.A.mohammed, k = mo.group.scale.y / 1.6;
-    mo.B.neck.rotation.x += .25; mo.B.chest.rotation.x += .025 * Math.sin(t * 9); mo.B.chest.updateWorldMatrix(false, true);
-    for (const s of ['L', 'R']) {
-      const sign = s === 'L' ? 1 : -1;
-      PO.reach(mo, s, front(mo, 'head', .15 * k, -sign * .085 * k, .01 * k), { grip: .02, pole: [sign * .22, -.12, .24] });
-      PO.fingers(mo, s, .06, { spread: .5 });
-    }
+    const mo = st.A.mohammed;
+    mo.B.chest.rotation.x += .02 * Math.sin(t * 9);
+    palmsOnFace(mo, 'face', { bow: .32 });
   },
 });
 
 const win = shot({ plate: 'patio_nuit', async build() { return {}; },
-  view: (lt, u, t) => [1100, 420 - 150 * sm(B(4)[0] + .9, B(4)[1], t), 1.04 + .16 * K.ease(u)] });
+  view: (lt, u, t) => [1100, 380 - 200 * sm(B(4)[0], B(4)[0] + 1.4, t), 1.08 + .4 * sm(B(4)[0], B(4)[1], t)] });
 
 export default beatScene(ID, {
   shots: { ch, cry, win },
   plan: {
-    b103: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.6, dy: -35 },
-    b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.1, dy: -30 },
-    b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 3.4, dy: -15,
-      segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 4.2, dx: 45, dy: -20 }] },
-    b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.55, dx: 220, dy: 10 },
+    b103: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.15, dy: -70 },
+    b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dy: -35 },
+    b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 2.3, dy: -55,
+      segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 2.5, dx: 20, dy: -50 }] },
+    b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.28, dx: 70, dy: -30 },
     b107: { shot: 'win' },
   },
 });

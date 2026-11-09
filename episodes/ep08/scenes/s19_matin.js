@@ -9,22 +9,25 @@ import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
 
 const ID = 's19_matin', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
-const BED = { at: [1468, 800], face: [1560, 930], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: -.16 }, seed: 3 };   // right divan, head toward the back cushions, heels still on the mattress
-const arms = (a, t, kind, u) => {   // Zoubida's gestures: 'chop' (both forearms down in beats), 'palms' (up to the ceiling)
+const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
+const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
+const BED = { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST }, seed: 3 };   // right divan, head on the back cushions
+const arms = (a, t, kind, u) => {   // asymmetric: one arm leads, the other stays lower, so she never holds a matched zombie pose
   const k = a.group.scale.y / 1.6;
-  for (const s of ['L', 'R']) {
-    const sx = (s === 'L' ? -1 : 1), ph = s === 'L' ? 0 : 1.3;
-    const p = kind === 'chop' ? front(a, 'chest', .32 * k, sx * .26 * k, (-.12 + .07 * Math.abs(Math.sin(t * 4.5 + ph))) * k)
-      : front(a, 'chest', .3 * k, sx * .30 * k, .10 * k);
-    PO.reach(a, s, p.lerp(front(a, 'root', .12 * k, sx * .2 * k, 0), 1 - u), { grip: 0 });
-  }
+  const lead = kind === 'chop' ? front(a, 'chest', .36 * k, -.2 * k, (-.18 + .05 * Math.sin(t * 4.5)) * k)
+    : front(a, 'chest', .28 * k, -.16 * k, .22 * k);
+  const off = kind === 'chop' ? front(a, 'chest', .2 * k, .14 * k, .02 * k) : front(a, 'chest', .22 * k, .2 * k, .18 * k);
+  PO.reach(a, 'L', lead.lerp(front(a, 'root', .14 * k, -.16 * k, 0), 1 - u), { grip: 0, pole: [.35, .05, .15] });
+  PO.reach(a, 'R', off.lerp(front(a, 'root', .12 * k, .16 * k, 0), 1 - u), { grip: 0, pole: [-.3, .05, .12] });
+  PO.fingers(a, 'L', .04, { spread: .4 }); PO.fingers(a, 'R', .04, { spread: .35 });
 };
 
 const ch1 = staged('chambre_jour', {
   mohammed: BED,
-  // beside the pillow, screen-left of the boy, turned toward the lens so his back does not fill the shot
-  father: { height: 1.76, at: [1240, 770], face: 'cam', yaw: .2, pose: 'kneel', o: { grounded: true, lean: .06 }, seed: 5, look: 'mohammed', lookMax: .5 },
-  zoubida: { at: [860, 940], face: 'cam', yaw: .35, seed: 7 },
+  // beside the near edge of the divan, three-quarter toward the boy so the look can actually land on him
+  father: { height: 1.76, at: [1160, 780], face: [1358, 640], pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
+    look: t => (IN(0, t) || IN(1, t)) ? 'mohammed' : 'zoubida', lookMax: 1.05 },
+  zoubida: { at: [860, 900], face: 'father', yaw: .15, seed: 7, look: 'father', lookMax: .9 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -44,7 +47,7 @@ const ch1 = staged('chambre_jour', {
     if (IN(0, t)) { const shk = .03 * Math.sin(t * 16) * sm(B(0)[0], B(0)[0] + .3, t); reach(at(mo, 'upperArm' + near).add(V(shk, .1 * km, .06)), { grip: .02, pole }); }
     if (IN(1, t) || IN(2, t)) reach(at(mo, 'head').add(V(side === 'L' ? .04 : -.04, .1 * km, .08)), { grip: 0, pole });
     if (IN(3, t)) arms(zo, t, 'chop', sm(B(3)[0], B(3)[0] + .4, t));
-    if (IN(4, t)) PO.reach(fa, 'L', front(fa, 'chest', .25 * kf, -.15 * kf, .15 * kf), { grip: 0 });
+    if (IN(4, t)) { PO.reach(fa, 'L', front(fa, 'chest', .28 * kf, -.12 * kf, .12 * kf), { grip: 0, pole: [.4, .08, .2] }); PO.fingers(fa, 'L', 0, { spread: .4 }); }
     if (IN(5, t)) arms(zo, t, 'palms', sm(B(5)[0], B(5)[0] + .5, t));
   },
 });
@@ -58,7 +61,8 @@ const ch2 = staged('chambre_jour', {
   act(lt, t, S, st, S3) {
     if(!st.pillow) { st.pillow=PR.cushion({w:.38,d:.3,h:.08,col:0x647c7c}); const p=at(st.A.mohammed,'head',[0,.1,0]).setY(.26);S3.prop(st.pillow,p.x,p.y,p.z,st.A.mohammed.group.rotation.y); }
     const zo = st.A.zoubida;
-    const fa=st.A.father, k=fa.group.scale.y/1.6; PO.reach(fa,'R',front(fa,'chest',.28*k,.18*k,-.12*k),{grip:0});
+    const fa=st.A.father, k=fa.group.scale.y/1.6;
+    PO.reach(fa,'R',front(fa,'chest',.3*k,.16*k,-.06*k),{grip:0,pole:[-.35,.08,.2]}); PO.fingers(fa,'R',0,{spread:.45});
     if (IN(7, t) || IN(9, t)) arms(zo, t, 'chop', .8);
     if (IN(7, t)) { zo.B.neck.rotation.x -= .12; zo.B.neck.updateWorldMatrix(false, true); }   // chin up
   },
@@ -71,14 +75,14 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { ch1, ch2, pa },
   plan: {
-    b133: { shot: 'ch1', size: 'M', on: 'mohammed', z: 2.0, dx: -120, dy: -40 },
-    b134: { shot: 'ch1', size: 'M', on: 'father', z: 2.0, dy: -35 },
-    b135: { shot: 'ch1', size: 'CU', on: 'father', z: 2.0, dy: -35 },
-    b136: { shot: 'ch1', size: 'M', on: 'zoubida', z: 2.0, dy: -35 },
-    b137: { shot: 'ch1', size: 'CU', on: 'father', z: 2.0, dy: -35 },
-    b138: { shot: 'ch1', size: 'M', on: 'zoubida', z: 2.0, dy: -35 },
-    b139: { shot: 'ch2', size: 'M', on: 'father', z: 2.0, dy: -35 },
-    b140: { shot: 'ch2', size: 'M', on: 'zoubida', z: 2.0, dy: -35 },
+    b133: { shot: 'ch1', size: 'M', on: 'mohammed', z: 1.42, dx: -30, dy: -85 },
+    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.42, dy: -90 },
+    b135: { shot: 'ch1', size: 'CU', on: 'father', z: 2.05, dy: -75 },
+    b136: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.42, dx: -20, dy: -80 },
+    b137: { shot: 'ch1', size: 'CU', on: 'father', z: 2.05, dy: -75 },
+    b138: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.42, dy: -80 },
+    b139: { shot: 'ch2', size: 'M', on: 'father', z: 1.45, dy: -70 },
+    b140: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.45, dy: -70 },
     b141: { shot: 'pa', size: 'W', on: 'father' },
     b142: { shot: 'ch2', size: 'W', on: 'zoubida' },
   },

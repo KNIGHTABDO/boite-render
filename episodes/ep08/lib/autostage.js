@@ -12,6 +12,7 @@
 import * as THREE from 'three';
 import * as PO from '../../../engine/poses.js';
 import * as AC from '../../../engine/acting.js';
+import { aim } from '../../../engine/ik.js';
 import { rest } from '../../../engine/rig3d.js';
 import { shot, role, memoPose } from '../scenes/_3d.js';
 import { walk } from './acts.js';
@@ -122,5 +123,31 @@ function hang(a, t, seed, costume) {
   }
 }
 function pin(a) { if (a.pins) for (const [s, p] of a.pins) PO.reach(a, s, a.B.root.localToWorld(p.clone()), { grip: .035, pole: s === 'L' ? [.35, .1, -.2] : [-.35, .1, -.2] }); }
+
+// Palms on the skin. kind 'face' covers the cheeks, 'temples' the sides of the forehead, 'cheeks' a flatter press.
+// The head bow happens first so the solve lands on the face the camera actually sees.
+const FACE = { face: [.045, .02, .07], temples: [.062, .055, .045], cheeks: [.05, .0, .075], cheek: [.055, .01, .07] };
+export function palmsOnFace(a, kind = 'face', { sides = ['L', 'R'], bow = null } = {}) {
+  const B = a.B;
+  B.chest.rotation.x += kind === 'temples' ? .06 : .1;
+  B.neck.rotation.x += bow ?? (kind === 'temples' ? .12 : kind === 'cheek' ? .04 : .4);
+  a.group.updateMatrixWorld(true);
+  const spot = FACE[kind] || FACE.face;
+  for (const s of sides) {
+    const sign = s === 'L' ? 1 : -1, lateral = kind === 'cheek' ? -spot[0] : sign * spot[0];
+    const skin = () => B.head.localToWorld(new THREE.Vector3(lateral, spot[1], spot[2]));
+    let wrist = skin();
+    const pole = [sign * .22, -.02, .16];
+    for (let i = 0; i < 4; i++) {
+      const p = skin();
+      PO.reach(a, s, wrist, { grip: 0, pole });
+      aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(new THREE.Vector3(lateral * .25, spot[1] + .03, .01)));
+      const into = B.head.getWorldPosition(new THREE.Vector3()).sub(PO.handPts(a, s).palm);
+      if (into.lengthSq() > 1e-6) PO.palmTo(a, s, 1, into.normalize());
+      wrist.add(p.clone().sub(PO.handPts(a, s).palm));
+    }
+    PO.fingers(a, s, .02, { thumb: .02, spread: kind === 'temples' ? .35 : .45 });
+  }
+}
 export const isSeated = p => SEATED.has(p);
 export { THREE };

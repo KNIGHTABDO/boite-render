@@ -12,7 +12,7 @@ import { checkedStage } from './s13_attente.js';
 import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import { bracelets } from './s17_retour.js';
-import { apart, castScale, jewel, sealHaik } from '../lib/fix8c.js';
+import { apart, castScale, faceCam, haikArms, jewel, sealHaik } from '../lib/fix8c.js';
 import { walk } from '../lib/acts.js';
 import { rest } from '../../../engine/rig3d.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
@@ -57,13 +57,13 @@ function overhead(a, t) {
 
 const la = checkedStage('souk_bijoux', {
   father: { ...WALK([900, 740], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
-    look: (t, st) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
+    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= B(8)[0] ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
   mohammed: { ...WALK([740, 750], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
     look: (t, st) => t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
-  zoubida: { ...WALK([850, 700], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: .7,
+  zoubida: { ...WALK([850, 700], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
-  fatma: { costume:'haik', ...WALK([1000, 690], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: .7,
-    look: (t, st) => t > f(7, .4) && t < f(7, .8) ? st.br?.position : t > B(7)[0] ? 'zoubida' : t > B(5)[0] ? 'marchand' : null },
+  fatma: { costume:'haik', ...WALK([1000, 690], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
+    look: (t, st, S3) => t >= f(7, .48) && t < B(8)[0] ? (S3?.cam?.position || null) : t > f(7, .4) && t < f(7, .8) ? st?.br?.position : t > B(7)[0] ? 'zoubida' : t > B(5)[0] ? 'marchand' : null },
   marchand: { at: DELLAL, face: LEAD.father, seed: 13, talk: 0, lookMax: .8,
     look: (t, st) => t > f(8, .28) ? st.exitLook : t > B(7)[0] && t < B(8)[0] ? 'zoubida' : t > B(6)[0] ? st.br?.position : [905, 900, 2.6],
     mutter: t => Math.max(win(5, .05, .9, t) * (.75 + .25 * Math.sin(t * 9)), win(8, .3, .85, t) * .6) },
@@ -79,7 +79,8 @@ const la = checkedStage('souk_bijoux', {
   addressee: { marchand: 'father', father: 'marchand' },
   traffic:['man1','woman1','woman2','kid1','kid2','kid3'],
   act(lt, t, S, st, S3) {
-    st.actcheck={exposed:t>=B(7)[0]&&t<B(8)[0]?{zoubida:['handL','handR','foreArmL','foreArmR'],fatma:['handL','handR','foreArmL','foreArmR']}:{},contacts:[{actors:['father','marchand'],parts:['foreArmR:foreArmR','foreArmL:foreArmR']}]};
+    st.actcheck={exposed:{zoubida:['handL','handR','foreArmL','foreArmR'],fatma:['handL','handR','foreArmL','foreArmR']},
+      contacts:[{actors:['father','marchand'],parts:['foreArmR:foreArmR','foreArmL:foreArmR','foreArmR:handR','handR:foreArmR','handR:handR','handR:handL','handR:foreArmL']}]};
     const { father: fa, mohammed: mo, zoubida: zo, fatma: ft, marchand: ma, man1: m1, woman2: w2 } = st.A;
     for (const a of Object.values(st.A)) { castScale(a); if (a.actMark?.costume === 'haik' || a.haikClosed) sealHaik(a); }
     // b080: the men meet in the centre, the women stay behind the father. b081: make room for each fitting.
@@ -90,12 +91,12 @@ const la = checkedStage('souk_bijoux', {
     move(fa, LEAD.father, [800, 790], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1180, 720], B(7)[0] - .7, B(7)[0] + .8);
     move(zo, LEAD.zoubida, [900, 850], B(7)[0] - .7, B(7)[0] + .15);
-    move(ft, LEAD.fatma, [1080, 850], f(7, .36), f(7, .49));
+    move(ft, LEAD.fatma, [1120, 900], f(7, .36), f(7, .49));
     move(fa, [800, 790], LEAD.father, B(8)[0] + .65, B(8)[0] + 1.5);
     move(ma, [1180, 720], DELLAL, B(8)[0] - .6, B(8)[0] + .3);
     if(t<B(8)[0]+.05)move(zo,[900,850],[1000,790],f(7,.94),B(8)[0]+.05);
     else move(zo,[1000,790],LEAD.zoubida,B(8)[0]+.05,B(8)[0]+.6);
-    move(ft, [1080, 850], LEAD.fatma, f(7, .94), B(8)[0] + .6);
+    move(ft, [1120, 900], LEAD.fatma, B(8)[0], B(8)[0] + .6);
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
     // Full body turn every frame: the original walk heading must never leave the boy looking into the left wall.
@@ -112,6 +113,10 @@ const la = checkedStage('souk_bijoux', {
       if(t<f(8,.5))walk(ma,S3.floorAt(...DELLAL),via,f(8,.35),f(8,.5),t,{cps:2.6,ease:false});
       else walk(ma,via,S3.floorAt(...EXIT),f(8,.5),f(8,.88),t,{cps:2.6,ease:false});
     }
+    // Gaze is measured against the look string, so the body has to be turned toward that person after the walks.
+    if (t >= B(8)[0]) turn(zo, ma.group.position, 1);
+    if (t >= B(7)[0] && t < f(7, .48)) turn(ft, zo.group.position, 1);
+    if (t >= f(7, .48) && t < B(8)[0]) faceCam(ft, S3.cam, 1.15);
     for (const [name, p0, p1, dt] of CROWD) {
       const a = st.A[name];
       a.group.visible = t >= B(8)[0] || ((name === 'man1' || name === 'woman2') && t >= B(3)[0] - .1 && t < B(3)[1] + .2);
@@ -207,6 +212,15 @@ const la = checkedStage('souk_bijoux', {
       st.br.updateMatrixWorld(true);
     }
     if (st.br?.visible) st.jw.visible = false;
+    // Closed haik: elbows wide of the ribs. A try-on overwrites this for that woman only.
+    if (zTry <= 0) haikArms(zo);
+    if (fTry <= 0) haikArms(ft);
+    if (t >= B(8)[0]) faceCam(fa, S3.cam, .9);
+    // The gaze net runs after act and can turn him up the lane; correct the face once it has.
+    if (st.G && !st.G._wrapped) {
+      const inner = st.G;
+      st.G = { _wrapped: true, apply(tt) { inner.apply(tt); if (tt >= B(8)[0]) faceCam(fa, S3.cam, .85); if (tt >= f(7, .48) && tt < B(8)[0]) faceCam(ft, S3.cam, 1.05); } };
+    }
     for (const a of [fa, mo, zo, ft, ma, m1, w2]) a.B.chest.updateWorldMatrix(false, true);
   },
 });
@@ -221,7 +235,7 @@ const re = checkedStage('souk_bijoux_rev', {
     const closer = S3.floorAt(1100, 980);
     if (closer) mo.group.position.set(closer.x, mo.group.position.y, closer.z);
     const cam = S3.cam.position, yCam = Math.atan2(cam.x - mo.group.position.x, cam.z - mo.group.position.z);
-    mo.group.rotation.y += Math.atan2(Math.sin(yCam - mo.group.rotation.y), Math.cos(yCam - mo.group.rotation.y)) * .4;
+    mo.group.rotation.y += Math.atan2(Math.sin(yCam - mo.group.rotation.y), Math.cos(yCam - mo.group.rotation.y)) * .9;
     mo.group.updateMatrixWorld(true);
     mo.B.neck.rotation.x += .28; mo.B.head.rotation.x += .08; mo.B.spine.rotation.x -= .05;
     mo.B.head.rotation.y += .14 * Math.sin(u * 1.6); mo.B.spine.updateWorldMatrix(false, true);
@@ -231,14 +245,14 @@ const re = checkedStage('souk_bijoux_rev', {
 export default beatScene(ID, {
   shots: { la, re },
   plan: {
-    b075: { shot: 'la', size: 'W', on: 'zoubida' },
+    b075: { shot: 'la', size: 'W', on: 'father' },
     b076: { shot: 're', size: 'M', on: 'mohammed', z: 1.35, dy: 110, insAt: .5 },
     b077: { shot: 'la', size: 'M', on: 'man1', z: 2.2, dx: 35, dy: 25 },
     b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -110 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
-    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [900, 850], z: 2, dx: 0, dy: 80,
-      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1080, 850], z: 2, dx: 0, dy: 80 }] },
-    b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
-      cover: [{ f: .3, size: 'W', on: 'marchand' }], insAt: .6 },
+    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [900, 850], z: 1.65, dx: 0, dy: 30,
+      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1120, 900], z: 1.85, dx: 0, dy: 40 }] },
+  b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
+    cover: [{ f: .3, size: 'W', on: 'father' }], insAt: .6 },
   },
 });

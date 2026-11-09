@@ -443,12 +443,14 @@ function naturalLie(a, { top, turn, pillow, sink, hands, headTurn }) {
   const q = B.root.getWorldQuaternion(new THREE.Quaternion()), hip = IK.wpos(B.root);
   const W = (x, y, z) => new THREE.Vector3(x * k, y * k, z * k).applyQuaternion(q).add(hip);
   for (const [s, sign] of [['L', 1], ['R', -1]]) {
+    // Third component is "up" off the mattress once the root is reclined. The old .23
+    // planted the palms above the skull, so the sleeves covered the face.
     const target = hands === 'side' ? W(sign * .23, .17, -.04)
-      : hands === 'chest' ? W(sign * .09, .36 + (sign > 0 ? .025 : 0), .23)
-      : W(sign * .09, .20 + (sign > 0 ? .025 : 0), .23);
+      : hands === 'chest' ? W(sign * .07, .42, .05)
+      : W(sign * .10, .16, .04);
     let wrist = target.clone();
     for (let i = 0; i < 3; i++) {
-      IK.arm(a, s, wrist, W(sign * .38, .16, .24));
+      IK.arm(a, s, wrist, W(sign * .32, .08, .03));
       IK.aim(B['hand' + s], handPts(a, s).end, target.clone().addScaledVector(new THREE.Vector3(0, 1, 0).applyQuaternion(q), .1 * k));
       palmTo(a, s, 1, new THREE.Vector3(0, 0, -1).applyQuaternion(q));
       wrist.add(target.clone().sub(handPts(a, s).palm));

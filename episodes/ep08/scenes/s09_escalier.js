@@ -26,6 +26,8 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
   light: { shadow: .11, soft: 8, dir: [1, 6, 1] },
   act(lt, t, S, st) {
     const mo = st.A.mohammed, b = mo.B;
+    // b052's cast is the three insert images (mother, father, neighbour), not people on the stair.
+    st.actcheck = { insert: t >= B(8)[0] && t < B(8)[1] + .8 };
     castScale(mo);
     // Stool planted the knees on tread 3 and left the pelvis at tread 4. Sit the capsule on tread 3.
     sitStep(mo, SEAT.o.seat, SEAT.o.floor);
@@ -83,18 +85,18 @@ export default beatScene(ID, {
   shots: { esc },
   plan: {
     // Lower, wider seated coverage keeps both soles and their tread contact above the bottom matte.
-    b044: { shot: 'esc', size: 'W', on: 'mohammed', cover: [{ f: .45, size: 'M', on: 'mohammed', z: 1.65, dy: 130 }] },
-    b045: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 120 },
+    b044: { shot: 'esc', size: 'W', on: 'mohammed', cover: [{ f: .45, size: 'M', on: 'mohammed', z: 1.5, dy: 90 }] },
+    b045: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 50 },
     b048: { move: 'forge' },
     b049: { move: 'princess' },
-    b050: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130 },
-    b051: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130 },
+    b050: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.55, dy: 60 },
+    b051: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 50 },
     // Keep the feet visible beneath the list; omit the prayer painting with the extra painted digit.
     b052: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130, noIns: true, segs: [
       [(3.22 - .08) / (B(8)[1] - B(8)[0]), 'i_bassine_pieds'],
       [(3.22 + .92) / (B(8)[1] - B(8)[0]), 'esc'],
       [(10.01 - .08) / (B(8)[1] - B(8)[0]), 'i_doigt_levres'],
     ] },
-    b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.65, dy: 140 },
+    b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 70 },
   },
 });
