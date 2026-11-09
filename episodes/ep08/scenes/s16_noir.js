@@ -37,6 +37,7 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
   act(lt, t, S, st, S3) {
     st.G.apply = () => {};   // b106 explicitly has no exchanged gaze; don't lift her face out of her palms
     mourn(st.A.zoubida, t);
+    st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.6);
     if (!st.pillow) {
       st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x647c7c });
       const p = at(st.A.mohammed, 'head', [0, .1, 0]).setY(TOP);   // lie().pillowAt

@@ -56,6 +56,7 @@ const nu = staged('chambre_nuit', {
     }
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
+    mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);
     palmsOnFace(zo, 'face');
   },
 });

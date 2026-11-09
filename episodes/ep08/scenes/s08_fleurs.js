@@ -1,63 +1,185 @@
 // s08 "beau comme les fleurs". Same lunch blocking as s07 (lib/lunch.js). b038 Mohammed searches for the word, eyes
-// up-left; b039 the father leans in, amused; b040 he lowers his eyes, hands fidget; b041 the whispered answer, eyes up on
-// "fleurs"; b042 both parents rock back laughing, the boy still between them; b043 slow side-eye left, then right.
-import { fitKneel, lapRest, reachSafe, staged } from '../lib/fix8a.js';
+// up-left, mouth half open; b039 the father leans in, amused, mouth working; b040 he lowers his eyes, hands fidget at
+// his chest; b041 the whispered answer, mouth moving, eyes up on "fleurs"; b042 both parents rock back laughing, hands
+// off the knees, the boy still between them; b043 slow side-eye left, then right, head level, lids lowered.
+import { fitKneel, staged } from '../lib/fix8a.js';
+import { palm, settleRobe } from '../lib/fix8g.js';
 import { LUNCH } from '../lib/lunch.js';
-import { at, beatScene, dirW, lines, sm, front, V } from '../lib/beatscene.js';
+import { at, beatScene, dirW, lines, sm, V } from '../lib/beatscene.js';
+import { mouth } from './_3d.js';
+import { fingers, look } from '../../../engine/poses.js';
 
 const ID = 's08_fleurs', L = lines(ID), B = i => L[i] || [0, 0];
-const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
 const f = (i, x) => B(i)[0] + x * (B(i)[1] - B(i)[0]);
+const ramp = (t0, t1, t) => sm(t0 - 0.12, t0 + 0.32, t) * (1 - sm(t1 - 0.12, t1 + 0.4, t));
 
 const ch = staged('chambre_jour', {
   ...LUNCH,
-  mohammed: { ...LUNCH.mohammed, look: (t, st) =>
-    IN(0, t) ? front(st.A.mohammed, 'head', .9, .35, .22)   // searching for the word: a small glance up and aside, not the ceiling
-    : IN(2, t) ? [850, 1040, .25]
-    : IN(3, t) ? (t > f(3, .7) ? [850, 900, 1.15] : [850, 1040, .3])
-    
-    : IN(5, t) ? (t < f(5, .5) ? 'father' : 'zoubida') : null, lookMax: t => IN(5, t) ? .18 : .5 },   // Argon r5: side-eye = head nearly front, the eyes do it   // side-eye at each parent; he faces the lens (LUNCH), the head cap keeps the face to camera
-  father: { ...LUNCH.father, height: 1.76, lookMax: .85, look: t => IN(1, t) || IN(3, t) ? 'mohammed' : IN(4, t) ? 'zoubida' : null },
-  zoubida: { ...LUNCH.zoubida, look: t => IN(3, t) ? 'mohammed' : IN(4, t) ? 'father' : null },
+  // Looks are aimed in act(). A marks.look would run after it and pull the head off the beat.
+  mohammed: { ...LUNCH.mohammed, look: () => null, lookMax: 0 },
+  father: { ...LUNCH.father, height: 1.76, look: () => null, lookMax: 0 },
+  zoubida: { ...LUNCH.zoubida, look: () => null, lookMax: 0 },
 }, {
   addressee: { father: 'mohammed', mohammed: 'father' },
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
-    // b039 the father leans in over the boy (spine + chest, ≈ 20°)
-    const lean = sm(B(1)[0], B(1)[0] + .7, t) * (1 - sm(B(2)[0], B(2)[0] + .6, t));
-    fa.B.spine.rotation.x += .2 * lean; fa.B.chest.rotation.x += .16 * lean; fa.B.neck.rotation.x += .08 * lean;
-    // b042 both parents rock back laughing: shoulders bounce, heads tip back
-    const laugh = sm(B(4)[0], B(4)[0] + .4, t) * (1 - sm(B(4)[1] - .2, B(4)[1] + .5, t));
-    for (const [a, ph] of [[fa, 0], [zo, 1.7]]) { a.B.spine.rotation.x -= (.16 + .05 * Math.sin(t * 2.4 + ph)) * laugh; a.B.chest.rotation.x += laugh * (-.12 + .1 * Math.sin(t * 11 + ph)); a.B.chest.rotation.z += .05 * laugh * Math.sin(t * 3.1 + ph); a.B.neck.rotation.x -= .22 * laugh; a.B.head.rotation.z += .08 * laugh * Math.sin(t * 2.3 + ph); }
+    // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
+    st.G.apply = () => { for (const a of [fa, zo, mo]) settleRobe(a); if (process.env.S08PROBE) probe(t, st, S3); };
+
+    const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
+    const lean = ramp(B(1)[0], B(1)[1], t);
+    const fidget = sm(B(2)[0] - 0.08, B(2)[0] + 0.2, t) * (1 - sm(B(3)[0] + 0.05, B(3)[0] + 0.5, t));
+    const whisper = ramp(B(3)[0], B(3)[1], t);
+    // Eyes stay lowered into the start of the whisper, then come up through "fleurs" (still a little shy).
+    const rise = sm(B(3)[0] + 0.2, f(3, 0.55), t);
+    const down = sm(B(2)[0] - 0.05, B(2)[0] + 0.22, t) * (1 - rise);
+    const laugh = sm(B(4)[0] - 0.05, B(4)[0] + 0.28, t) * (1 - sm(B(4)[1] - 0.08, B(4)[1] + 0.28, t));
+    const residue = sm(B(4)[0], B(4)[0] + 0.3, t) * (0.62 + 0.38 * (1 - sm(B(4)[1] + 0.2, B(5)[1], t)));
+    const side = sm(f(5, 0.36), f(5, 0.58), t);
+    const listen = sm(0.2, 2.4, t) * (1 - sm(B(4)[0] - 0.25, B(4)[0] + 0.1, t));
+    const sceptical = sm(B(5)[0] - 0.05, B(5)[0] + 0.35, t);
+
+    sway(fa, t, 5, 0.05);
+    sway(zo, t, 8.2, 0.046);
+    sway(mo, t, 2.4, 0.028);
+    // Listening lean grows through the search, the question leans further, the laugh rocks the torso back ~22°.
+    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.18 * lean - 0.4 * laugh - 0.16 * residue;
+    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.1 * lean - 0.05 * laugh;
+    zo.B.spine.rotation.x += 0.07 * listen * (1 - laugh) - 0.36 * laugh - 0.14 * residue;
+    zo.B.chest.rotation.x += 0.045 * Math.sin(t * 1.1 + 0.7) * listen - 0.05 * laugh;
+    shrug(fa, t, 0, laugh);
+    shrug(zo, t, 1.5, laugh);
     for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); fitKneel(a); }
-    for (const a of [fa, zo, mo]) for (const s of ['L', 'R']) lapRest(a, s, t);
-    if (laugh > 0) {
-      // her palm stays in front of the ribs; his hand pats his own knee
-      reachSafe(zo, 'R', front(zo, 'chest', .22 * kz, -.08 * kz, .06 * kz), { grip: .03, pole: [-.5, .1, .35] });
-      const slap = Math.max(0, Math.sin(t * 5.5));
-      const knee = at(fa, 'shinL');
-      reachSafe(fa, 'L', knee.clone().add(V(0, (.05 + .12 * slap) * kf, 0)).addScaledVector(dirW(fa, 0, 0, 1), .07 * kf), { grip: .04, pole: [.5, .15, .35] });
+
+    const raised = laugh + residue * 0.45;
+    for (const [a, ph, kk] of [[fa, 0.2, kf], [zo, 1.7, kz]]) {
+      palm(a, 'L', handAt(a, 'L', t, ph, kk, raised), { grip: 0.03, pole: [0.48, 0.22, 0.42], gap: 0.14 });
+      palm(a, 'R', handAt(a, 'R', t, ph + 0.9, kk, raised), { grip: 0.03, pole: [-0.48, 0.22, 0.42], gap: 0.14 });
     }
-    // b040–b041 the boy's hands fidget just above his knees
-    const fid = Math.max(win(2, 0, 1), win(3, 0, .65));
-    if (fid > 0) for (const [s, ph] of [['L', 0], ['R', 1.3]]) {
-      const w = Math.sin(t * 4.2 + ph), sign = s === 'L' ? 1 : -1;
-      const knee = at(mo, 'shin' + s);
-      reachSafe(mo, s, knee.clone().add(V(0, (.05 + .02 * w) * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), .06 * km).addScaledVector(dirW(mo, -sign, 0, 0), .03 * w * km), { grip: .03, pole: [sign * .5, .12, .35] });
+    for (const [s, ph] of [['L', 0], ['R', 1.6]]) {
+      const p = kneeHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), fidget);
+      palm(mo, s, p, { grip: 0.025, pole: [(s === 'L' ? 1 : -1) * 0.42, 0.24, 0.36], gap: 0.1 });
+      if (fidget > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
-    function win(i, a, b) { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D - .3, t0 + a * D + .2, t) * (1 - sm(t0 + b * D, t0 + b * D + .5, t)); }
+
+    const eye = at(mo, 'head').clone().add(V(0, 0.03 * km, 0));
+    if (sceptical < 0.5) {
+      const upLeft = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.5).addScaledVector(dirW(mo, -1, 0, 0), 0.46).add(V(0, 0.36 * km, 0));
+      const lowered = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.4).add(V(0, -0.08 * km, 0));
+      const parents = at(fa, 'head').lerp(at(zo, 'head'), 0.45);
+      const aim = upLeft.lerp(lowered, down).lerp(parents, rise * (1 - down));
+      look(mo, aim, 0.9, { max: 0.22 + 0.5 * search * (1 - down) + 0.2 * rise });
+    } else {
+      // Eyes only: a small yaw, pitch and roll pinned so the head stays level and the lids do the scepticism.
+      const yaw = (0.5 - side) * 0.3;
+      mo.B.neck.rotation.set(0.015, yaw * 0.25, 0);
+      mo.B.head.rotation.set(0.02, yaw, 0);
+      mo.B.head.updateWorldMatrix(false, true);
+    }
+    const boy = at(mo, 'head');
+    const faUp = at(fa, 'head').add(V(0, 0.22 * kf, 0)).addScaledVector(dirW(fa, 0, 0, 1), 0.3);
+    const zoUp = at(zo, 'head').add(V(0, 0.2 * kz, 0)).addScaledVector(dirW(zo, 0, 0, 1), 0.28);
+    look(fa, boy.clone().lerp(faUp, laugh), 0.85, { max: 0.4 });
+    look(zo, boy.clone().lerp(zoUp, laugh), 0.85, { max: 0.38 });
+    fa.B.head.rotation.z += 0.16 * lean + 0.08 * listen * (1 - lean);
+    fa.B.head.rotation.x -= 0.16 * laugh;
+    zo.B.head.rotation.z += 0.12 * Math.sin(t * 0.85 + 0.6) * listen + 0.08 * laugh;
+    zo.B.head.rotation.x -= 0.14 * laugh;
+    fa.B.neck.rotation.x -= 0.08 * laugh;
+    zo.B.neck.rotation.x -= 0.07 * laugh;
+
+    const row = name => st.faces.find(r => r[1] === name);
+    const said = mouth(S, 'mohammed', t);
+    const asked = mouth(S, 'father', t);
+    row('mohammed')[3] = () => ({
+      open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.26 + 0.34 * Math.abs(Math.sin(t * 12.2)))),
+      lid: sceptical * 0.52 + down * 0.18,
+    });
+    row('father')[3] = () => ({
+      open: Math.max(lean * (0.58 + 0.32 * Math.abs(Math.sin(t * 15.5))), lean * asked) + laugh * (0.75 + 0.2 * Math.abs(Math.sin(t * 9.2))) + residue * 0.2,
+      lid: 0.16 * lean + 0.32 * laugh,
+    });
+    row('zoubida')[3] = () => ({
+      open: laugh * (0.7 + 0.24 * Math.abs(Math.sin(t * 8.4 + 1.2))) + residue * 0.16 + listen * 0.1 * (1 - laugh),
+      lid: 0.08 * listen + 0.3 * laugh,
+    });
   },
 });
+
+function sway(a, t, seed, amp) {
+  a.B.spine.rotation.y += Math.sin(t * 0.52 + seed) * amp;
+  a.B.spine.rotation.z += Math.sin(t * 0.4 + seed * 1.2) * amp * 0.85;
+  a.B.spine.rotation.x += Math.sin(t * 1.4 + seed) * amp * 0.55;
+  a.B.chest.rotation.z += Math.sin(t * 0.72 + seed) * amp * 0.9;
+  a.B.chest.rotation.x += Math.sin(t * 1.6 + seed) * amp * 0.4;
+  if (a.B.LeftShoulder) a.B.LeftShoulder.rotation.z += Math.sin(t * 1.02 + seed) * amp;
+  if (a.B.RightShoulder) a.B.RightShoulder.rotation.z -= Math.sin(t * 0.9 + seed) * amp * 0.9;
+}
+
+function shrug(a, t, ph, laugh) {
+  const w = Math.sin(t * 12.5 + ph) * laugh;
+  if (a.B.LeftShoulder) a.B.LeftShoulder.rotation.z += 0.16 * w;
+  if (a.B.RightShoulder) a.B.RightShoulder.rotation.z -= 0.14 * Math.sin(t * 12.5 + ph + 1.2) * laugh;
+}
+
+function kneeHand(a, s, t, seed, k) {
+  const sign = s === 'L' ? 1 : -1;
+  const w = Math.sin(t * 1.35 + seed + (s === 'L' ? 0 : 1.3));
+  return at(a, 'shin' + s).clone()
+    .add(V(0, (0.11 + 0.03 * w) * k, 0))
+    .addScaledVector(dirW(a, 0, 0, 1), (0.17 + 0.025 * w) * k)
+    .addScaledVector(dirW(a, -sign, 0, 0), (0.06 + 0.02 * w) * k);
+}
+
+function handAt(a, s, t, ph, k, up) {
+  const sign = s === 'L' ? 1 : -1;
+  const bob = Math.sin(t * 10.5 + ph);
+  const lap = kneeHand(a, s, t, ph, k);
+  const high = at(a, 'root').clone()
+    .add(V(0, (0.28 + 0.045 * bob) * k, 0))
+    .addScaledVector(dirW(a, 0, 0, 1), (0.26 + 0.03 * bob) * k)
+    .addScaledVector(dirW(a, -sign, 0, 0), (0.14 + 0.035 * Math.sin(t * 8.5 + ph)) * k);
+  return lap.lerp(high, Math.min(1, up));
+}
+
+function chestHand(a, s, t, ph, k) {
+  const sign = s === 'L' ? 1 : -1;
+  const w = Math.sin(t * 6.6 + ph), w2 = Math.sin(t * 3.4 + ph);
+  return at(a, 'chest').clone()
+    .add(V(0, (0.02 + 0.07 * w2) * k, 0))
+    .addScaledVector(dirW(a, 0, 0, 1), (0.22 + 0.06 * w) * k)
+    .addScaledVector(dirW(a, -sign, 0, 0), (0.14 + 0.07 * w) * k);
+}
+
+function probe(t, st, S3) {
+  const want = [0.3, 1.8, 5, 8.6, 9, 10.6, 11.1, 12.7, 14.4, 16.9, 18, 20.2, 24.2];
+  if (!want.some(x => Math.abs(x - t) < 0.03)) return;
+  const { father: fa, zoubida: zo, mohammed: mo } = st.A;
+  const P = (a, b) => S3.project(at(a, b)).map(n => +n.toFixed(1));
+  const back = dirW(fa, 0, 0, -1);
+  const hip = at(fa, 'root'), tip = at(fa, 'SkirtBack2');
+  const line = JSON.stringify({
+    t: +t.toFixed(2),
+    fa: P(fa, 'head'), zo: P(zo, 'head'), mo: P(mo, 'head'),
+    faHand: P(fa, 'handL'), moHand: P(mo, 'handL'),
+    moFoot: P(mo, 'footL'), faFoot: P(fa, 'footL'),
+    turban: S3.project(at(fa, 'head').add(V(0, 0.16, 0))).map(n => +n.toFixed(1)),
+    moChin: S3.project(at(mo, 'head').add(V(0, -0.06, 0))).map(n => +n.toFixed(1)),
+    spike: +tip.clone().sub(hip).dot(back).toFixed(3),
+  });
+  console.error('S08PROBE ' + line);
+}
 
 export default beatScene(ID, {
   shots: { ch },
   plan: {
-    b038: { shot: 'ch', size: 'CU', on: 'mohammed', z: 1.8, dy: -60 },
-    b039: { shot: 'ch', size: 'CU', on: 'father', z: 1.8, dy: -40 },
-    b040: { shot: 'ch', size: 'CU', on: 'mohammed', z: 1.8, dy: -60 },
-    b041: { shot: 'ch', size: 'CU', on: 'mohammed', z: 1.8, dy: -60 },
-    b042: { shot: 'ch', size: 'W', on: 'mohammed' },   // both parents' heads in frame for the laugh
-    b043: { shot: 'ch', size: 'CU', on: 'mohammed', z: 1.8, dy: -60 },
+    // M + a hand-set zoom: wide enough for the turban and the boy's hands, without a dead left third.
+    b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.18, dx: -100, dy: 30 },
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.36, dx: 220, dy: 90 },
+    b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.14, dx: -90, dy: 48 },
+    b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -90, dy: 36 },
+    b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.08, dx: -15, dy: 170 },
+    b043: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.18, dx: -80, dy: 24 },
   },
 });

@@ -3,6 +3,7 @@
 import * as PO from '../../../engine/poses.js';
 import * as IK from '../../../engine/ik.js';
 import { staged as base } from './fix8.js';
+import { skirt } from '../scenes/_3d.js';
 import { at, V, dirW } from './beatscene.js';
 
 const shinOf = new WeakMap();
@@ -122,6 +123,33 @@ function seatPins(a) {
   a.pins = ['L', 'R'].map(side => [side, a.B.root.worldToLocal(at(a, 'hand' + side).clone())]);
 }
 
+/** Replace a kneel that fitKneel twisted: heels and knees on the floor, pelvis settled above them. */
+export function plantKneel(a, opt = {}) {
+  PO.kneel(a, { grounded: true, lean: .06, hip: .22, hands: false, spread: .1, ...opt });
+  PO.drapeLap(a, 0);
+  const ks = kneeLows(a);
+  const seat = ks.length ? (ks[0] + ks[1]) / 2 : 0;
+  if (a.actMark) { a.actMark.o ||= {}; a.actMark.o.seat = seat; }
+  seatPins(a);
+  return seat;
+}
+
+/** After the robe drape: pull a split hem up and lay one cloth over the crossed feet. */
+export function hideHem(S3, a, bag) {
+  if (!a?.B) return;
+  for (const n of ['SkirtFront2', 'SkirtBack2', 'LeftRobe2', 'RightRobe2']) {
+    const b = a.B[n]; if (!b) continue;
+    b.scale.y *= .68;
+    b.position.copy(b.parent.worldToLocal(at(a, n).add(V(0, .03, 0))));
+    b.updateWorldMatrix(false, true);
+  }
+  if (bag && !bag.hem) {
+    bag.hem = skirt(S3, a, 0, 0xe6dccb);
+    bag.hem.scale.x *= 1.25;
+    bag.hem.scale.z *= 1.4;
+  }
+}
+
 /** Parent a lap board to the actor so a later floor-fit cannot pull the hands off it. */
 export function holdBoard(a, lh, worldPos, tilt, scale) {
   if (lh.parent !== a.group) a.group.attach(lh);
@@ -139,7 +167,7 @@ export function staged(plate, marks, options = {}) {
   sh.load = async () => {
     await load();
     for (const [n, a] of Object.entries(sh.st.A || {})) {
-      if (marks[n]?.pose !== 'kneel') continue;
+      if (marks[n]?.pose !== 'kneel' || marks[n]?.o?.skipFit) continue;
       fitKneel(a);
       PO.drapeLap(a, 0);
       seatPins(a);

@@ -33,6 +33,7 @@ const ch1 = staged('chambre_jour', {
   act(lt, t, S, st, S3) {
     if(!st.pillow) { st.pillow=PR.cushion({w:.38,d:.3,h:.08,col:0x647c7c}); const p=at(st.A.mohammed,'head',[0,.1,0]).setY(.26);S3.prop(st.pillow,p.x,p.y,p.z,st.A.mohammed.group.rotation.y); }
     const { father: fa, zoubida: zo, mohammed: mo } = st.A, kf = fa.group.scale.y / 1.6;
+    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const km = mo.group.scale.y / 1.6;
     // the near shoulder is the one closer to the kneeling father; the hand stops inside his arm length
     // the boy lies to the father's left when he faces the lens: use that arm so it does not fold through his chest
@@ -60,6 +61,7 @@ const ch2 = staged('chambre_jour', {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
     if(!st.pillow) { st.pillow=PR.cushion({w:.38,d:.3,h:.08,col:0x647c7c}); const p=at(st.A.mohammed,'head',[0,.1,0]).setY(.26);S3.prop(st.pillow,p.x,p.y,p.z,st.A.mohammed.group.rotation.y); }
+    st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const zo = st.A.zoubida;
     const fa=st.A.father, k=fa.group.scale.y/1.6;
     PO.reach(fa,'R',front(fa,'chest',.3*k,.16*k,-.06*k),{grip:0,pole:[-.35,.08,.2]}); PO.fingers(fa,'R',0,{spread:.45});

@@ -5,11 +5,10 @@
 // street door, b073 "Passe": only then does he walk in.
 import * as PO from '../../../engine/poses.js';
 import { staged, littleBroom, holdBroom, handTo, yawToward } from '../lib/fix8b.js';
-import { beatScene, lines, sm, at, front, V, yawTo, dirW } from '../lib/beatscene.js';
+import { beatScene, lines, sm, at, V, yawTo, dirW } from '../lib/beatscene.js';
 
 const ID = 's11_depart', L = lines(ID);
 const B = i => L[i] || [0, 0];
-const k = a => a.group.scale.y / 1.6;
 const skyOf = a => at(a, 'head').add(V(.15, 3.2, .35));
 const AMBER = { key: '#ffb870', keyI: 1.7, dir: [-1.2, 5.2, .8], fillI: .85, sky: '#d9b48a', shadow: .26, soft: 10 };
 const WALK0 = () => B(7)[0] - .45;
@@ -40,7 +39,6 @@ const pa = staged('patio_matin', {
   addressee: { mohammed: 'zoubida', zoubida: 'mohammed', fatma: 'zoubida', father: 'zoubida' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo, fatma: fa, father: paFa } = st.A;
-    const km = k(mo), kz = k(zo), kf = k(fa), kp = k(paFa);
     const broom = st.broom ||= S3.prop(littleBroom(), 0, 0, 0);
     const sky = 1 - sm(B(1)[0] - .55, B(1)[0] - .05, t);
     mo.B.spine.rotation.x -= .14 * sky; mo.B.chest.rotation.x -= .18 * sky;

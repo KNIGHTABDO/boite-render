@@ -10,7 +10,7 @@ import { approach, yawToward, staged as stagedFix } from '../lib/fix8b.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { toon } from '../../../engine/props3d.js';
 import { ESCALIER } from '../lib/stairs.js';
-import { beatScene, lines, sm, front, at, dirW, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 
 const ID = 's17_retour', L = lines(ID);
 const B = i => L[i] || [0, 0];
@@ -59,6 +59,7 @@ const pe = staged('chambre_penombre', {
     yawToward(fa, S3.cam, 1.5);
     lap(zo); veilDown(zo);
     const mo = st.A.mohammed, surface = .3;
+    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     for (let i = 0; i < 5; i++) {
       const gap = PO.lowestOf(mo, ['head']) - surface;
       if (Math.abs(gap) < .012) break;
@@ -85,6 +86,7 @@ const nu = staged('chambre_nuit', {
   act(lt, t, S, st, S3) {
 
     const { father: fa, zoubida: zo } = st.A, kf = k(fa), kz = k(zo);
+    st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const offer = Math.max(win(9, .5, 1, t), win(10, 0, 1, t), win(11, 0, .55, t));
     const take = win(12, 0, .4, t), toss = win(12, .4, 1, t);
     const heart = win(13, .3, 1.2, t);
@@ -101,7 +103,7 @@ const nu = staged('chambre_nuit', {
       PO.reach(zo, 'R', gift, { grip: .02, pole: [-.32, .1, .16] });
     }
     if (toss > 0) {
-      const aim = S3.floorAt(1620, 700); aim.y = at(zo, 'chest').y + .05 * kz;
+      const aim = S3.floorAt(1620, 700) || at(zo, 'chest').clone(); aim.y = at(zo, 'chest').y + .05 * kz;
       const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
       const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > len * .82) dir.setLength(len * .82);

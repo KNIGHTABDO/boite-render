@@ -126,18 +126,18 @@ function pin(a) { if (a.pins) for (const [s, p] of a.pins) PO.reach(a, s, a.B.ro
 
 // Palms on the skin. kind 'face' covers the cheeks, 'temples' the sides of the forehead, 'cheeks' a flatter press.
 // The head bow happens first so the solve lands on the face the camera actually sees.
-const FACE = { face: [.045, .02, .07], temples: [.062, .055, .045], cheeks: [.05, .0, .075], cheek: [.055, .01, .07] };
+const FACE = { face: [.09, .05, .04], temples: [.088, .06, .03], cheeks: [.085, .03, .05], cheek: [.09, .04, .05] };
 export function palmsOnFace(a, kind = 'face', { sides = ['L', 'R'], bow = null } = {}) {
   const B = a.B;
-  B.chest.rotation.x += kind === 'temples' ? .06 : .1;
-  B.neck.rotation.x += bow ?? (kind === 'temples' ? .12 : kind === 'cheek' ? .04 : .4);
+  B.chest.rotation.x += kind === 'temples' ? .04 : .06;
+  B.neck.rotation.x += bow ?? (kind === 'temples' ? .08 : kind === 'cheek' ? .03 : .18);
   a.group.updateMatrixWorld(true);
   const spot = FACE[kind] || FACE.face;
   for (const s of sides) {
     const sign = s === 'L' ? 1 : -1, lateral = kind === 'cheek' ? -spot[0] : sign * spot[0];
     const skin = () => B.head.localToWorld(new THREE.Vector3(lateral, spot[1], spot[2]));
     let wrist = skin();
-    const pole = [sign * .22, -.02, .16];
+    const pole = [sign * .36, .06, .1];
     for (let i = 0; i < 4; i++) {
       const p = skin();
       PO.reach(a, s, wrist, { grip: 0, pole });

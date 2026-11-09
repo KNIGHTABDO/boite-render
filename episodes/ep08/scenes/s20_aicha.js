@@ -21,6 +21,7 @@ const ch = staged('chambre_jour', {
   addressee: { zoubida: 'aicha', aicha: 'zoubida', narrator: 'zoubida' },
   act(lt, t, S, st, S3) {
     if(!st.pillow) { st.pillow=PR.cushion({w:.38,d:.3,h:.08,col:0x647c7c});const p=at(st.A.mohammed,'head',[0,.1,0]).setY(.26);S3.prop(st.pillow,p.x,p.y,p.z,st.A.mohammed.group.rotation.y); }
+    st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const { zoubida: zo, aicha: ai } = st.A, kz = zo.group.scale.y / 1.6, ka = ai.group.scale.y / 1.6;
     const lap = (a, s, k) => PO.reach(a, s, PO.hipToWorld(a, (s === 'L' ? .14 : -.14) * k, .05 * k, .2 * k), { grip: .03, pole: s === 'L' ? [.3, .05, .1] : [-.3, .05, .1] });
     if (IN(1, t)) {

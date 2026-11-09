@@ -13,7 +13,6 @@ import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
 const ID = 's10_roi', L = lines(ID);
 const B = i => L[i] || [0, 0];
 const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .5, t) * (1 - sm(t0 + b * D, t0 + b * D + .5, t)); };
-const k = a => a.group.scale.y / 1.6;
 const hold = (t0, t1, t) => sm(t0, t0 + .35, t) * (1 - sm(t1 - .05, t1 + .2, t));
 const laugh = (a, w, t, f = 13) => { if (w > 0) { a.B.chest.rotation.x += .06 * Math.sin(t * f) * w; a.B.spine.rotation.x += .04 * w; a.B.neck.rotation.x -= .1 * w; a.B.chest.updateWorldMatrix(false, true); } };
 const onKnees = a => { if (!a.pins) return; for (const [s, p] of a.pins) PO.reach(a, s, a.B.root.localToWorld(p.clone()), { grip: .03, pole: s === 'L' ? [.5, .04, -.28] : [-.5, .04, -.28] }); };
