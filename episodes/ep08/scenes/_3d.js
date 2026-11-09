@@ -126,6 +126,8 @@ function coverCam(sh, t) {
     let need = 0, shift = 0;
     sh.heads.forEach((o, j) => {
       if (j === i) return;
+      // CU (Argon s08 r4): another head cut by the top edge through the eyes → push the frame down until that head is out
+      if (e.size === 'CU' && o[0] > L && o[0] < R && o[1] > T - .12 * hh && o[1] < T + .2 * hh && (h[1] - (o[1] + .14 * hh)) / hh > .12) need = Math.min(need, T - o[1] - .14 * hh);
       if (e.size === 'M' && o[0] > L + .03 * w && o[0] < R - .03 * w && o[1] < T + .14 * hh) need = Math.max(need, T + .14 * hh - o[1]);
       const dl = o[0] - L, dr = R - o[0];
       const ok = s => Math.abs(h[0] - (cx + s)) < .34 * w;   // the subject stays near the centre
@@ -134,7 +136,7 @@ function coverCam(sh, t) {
     });
     if (!need && !shift) break;
     cx += shift;
-    if (need) { if ((h[1] - (T - need)) / hh < .62) cy -= need; else if (z > 1.2) z = Math.max(1.2, z * .85), cy = h[1] + (.5 - hy) * K.H / z; else break; }
+    if (need < 0) cy -= need; else if (need) { if ((h[1] - (T - need)) / hh < .62) cy -= need; else if (z > 1.2) z = Math.max(1.2, z * .85), cy = h[1] + (.5 - hy) * K.H / z; else break; }
   }
   return [cx, cy, z];
 }

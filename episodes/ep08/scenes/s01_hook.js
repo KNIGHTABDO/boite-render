@@ -3,7 +3,7 @@
 // shoulders shaking; behind her Mohammed lies on the divan, awake, only blinking.
 import * as PO from '../../../engine/poses.js';
 import { staged } from '../lib/autostage.js';
-import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front, V, dirW } from '../lib/beatscene.js';
 import { bracelets } from './s17_retour.js';
 
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
@@ -33,9 +33,11 @@ const nu = staged('chambre_nuit', {
 }, {
   act(lt, t, S, st) {
     const zo = st.A.zoubida, k = zo.group.scale.y / 1.6;
-    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'head', .1 * k, (s === 'L' ? -.05 : .05) * k, -.02 * k), { grip: .03, pole: s === 'L' ? [.2, -.35, -.1] : [-.2, -.35, -.1] });   // palms over the bowed face, elbows down
-    zo.B.neck.rotation.x += .35; zo.B.chest.rotation.x += .18 + .035 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);   // sobs
-    zo.B.chest.updateWorldMatrix(false, true);
+    // Argon r4: hands stayed on the thighs → bow + sob FIRST, then the palms go over the (already bowed) face; the
+    // targets sit on the face plane (cheekbones), elbows down and in, fingers slightly curled
+    zo.B.spine.rotation.x += .12; zo.B.neck.rotation.x += .35; zo.B.chest.rotation.x += .18 + .035 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);   // sobs
+    zo.B.spine.updateWorldMatrix(false, true);
+    for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'head', .11 * k, (s === 'L' ? -.04 : .04) * k, .02 * k), { grip: .0, pole: s === 'L' ? [.15, -.4, .05] : [-.15, -.4, .05] }); PO.palmTo(zo, s, 1, dirW(zo, 0, 0, -1)); PO.fingers(zo, s, .25, { thumb: .2 }); }
   },
 });
 

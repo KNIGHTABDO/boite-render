@@ -8,9 +8,11 @@ import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
 const ID = 's21_fievre', L = lines(ID), B = i => L[i] || [0, 0];
 
 const ch = staged('chambre_jour', {
-  mohammed: { at: [1320, 705], face: Math.PI / 2, pose: 'lie', o: { top: .2, turn: .45 }, seed: 3, look: [1320, 705, 3], talk: 0,
+  mohammed: { at: [1330, 665], face: 0, pose: 'lie', o: { top: .3, turn: .25 }, seed: 3, look: [1330, 665, 3], talk: 0,
     lids: t => .6 + .2 * (.5 + .5 * Math.sin(t * .6)) },
-  zoubida: { at: [1250, 830], face: 'mohammed', pose: 'kneel', seed: 7, look: 'mohammed', lookMax: .9 },
+  // Argon r4: he floated across the mattress (lay along x, the mattress runs in depth) and her back hid the shot → he lies
+  // along the mattress, feet to the lens; she kneels on the floor at its left side, cheated 3/4 to camera
+  zoubida: { at: [1150, 720], face: 'mohammed', yaw: -.6, pose: 'kneel', seed: 7, look: 'mohammed', lookMax: 1 },
 }, {
   act(lt, t, S, st) {
     const { zoubida: zo, mohammed: mo } = st.A, k = zo.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;

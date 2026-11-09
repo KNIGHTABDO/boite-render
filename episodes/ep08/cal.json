@@ -71,25 +71,22 @@
   }
  },
  "patio_matin": {
-  "h": 0.7589,
+  "h": 1.75,
   "horizon": 700,
   "fov": 50,
   "seed": {
    "h": 1.1,
    "fov": 50
   },
-  "check": "back ground-floor door; courtyard paving and gallery rails converge near y700; upward view, seed unavailable",
+  "check": "2026-11-09 recal: old door ref (1100,820→540) was on the gallery, not the floor. Back door at x1100 foot 880 top 710 (≈2.0 m) → h≈2.1; well curb foot 930 top 815 (≈0.8 m) → h≈1.6; took 1.75. Horizon 700 kept.",
   "scale_check": {
    "foot": [
     1100,
-    820
+    880
    ],
-   "top": 540,
-   "height": 1.8,
-   "kind": "door",
-   "actor": 1.62,
-   "measured_actor_ratio": 0.9025,
-   "projected_top": 540.0
+   "top": 710,
+   "height": 2.0,
+   "kind": "door"
   },
   "light": {
    "dir": [

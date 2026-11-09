@@ -14,9 +14,9 @@ const B = i => L[i] || [0, 0];
 const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .5, t) * (1 - sm(t0 + b * D, t0 + b * D + .5, t)); };
 
 const pa = staged('patio_matin', {
-  father: { at: [330, 960], face: [800, 960], walk: { to: [760, 965], t0: B(0)[0] + .4, t1: B(0)[0] + 3.6 } },
+  father: { at: [330, 960], face: [800, 960], walk: { to: [760, 965], t0: .3, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
-  mohammed: { at: [1080, 1010], face: [640, 1080], pose: 'cross', look: t => t > B(0)[0] + 1.2 ? 'father' : [1000, 1040, .2] },
+  mohammed: { at: [1080, 1010], face: [640, 1080], pose: 'cross', look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: .9 },
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) { holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0)); },
@@ -34,8 +34,9 @@ function holdLouha(a, lh) {
 // the boy looks up at him under the hand on his head
 const ch = staged('chambre_jour', {
   ...LUNCH,
-  father: { ...LUNCH.father, lookMax: .9, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'root', .9, 0, -.2) : t >= B(9)[0] ? 'mohammed' : null },
-  mohammed: { ...LUNCH.mohammed, lookMax: .8, look: t => t >= B(9)[0] ? 'father' : null },
+  // Argon r4: he looked at the lens on b033/b034 and b036/b037 → explicit eyelines, wider head cap
+  father: { ...LUNCH.father, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'root', .9, 0, -.2) : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },
+  mohammed: { ...LUNCH.mohammed, lookMax: .9, look: t => t >= B(9)[0] || win(8, 0, .95, t) > .3 ? 'father' : null },
 }, {
   // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
   addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
@@ -45,18 +46,24 @@ const ch = staged('chambre_jour', {
     // b030: breath stops, right hand to her chest from the word "bracelets" (≈ 45 % of the line) to the end
     const chest = win(3, .42, 1.05, t);
     if (chest > 0) PO.reach(zo, 'R', front(zo, 'neck', .11 * kz, .03 * kz, -.15 * kz).lerp(front(zo, 'root', .2 * kz, .15 * kz, 0), 1 - chest), { grip: .03, pole: [-.3, -.15, -.05] });   // palm flat on the breastbone, elbow down
+    if (chest > 0) PO.palmTo(zo, 'R', chest, dirW(zo, 0, 0, -1));   // Argon r4: palm faced outward → turn it onto her chest
     // b032: father lowers his eyes (head pitch down on top of the gaze net, applied after it via fixed look below)
     // b034: palms up briefly at "miséricorde" (last third)
     const palms = win(7, .6, .95, t);
-    if (palms > 0) for (const s of ['L', 'R']) PO.reach(fa, s, front(fa, 'chest', .3 * kf, (s === 'L' ? -.18 : .18) * kf, -.12 * kf).lerp(front(fa, 'root', .2 * kf, (s === 'L' ? -.2 : .2) * kf, 0), 1 - palms), { grip: 0 });
+    if (palms > 0) for (const s of ['L', 'R']) { PO.reach(fa, s, front(fa, 'chest', .3 * kf, (s === 'L' ? -.2 : .2) * kf, -.16 * kf).lerp(front(fa, 'root', .2 * kf, (s === 'L' ? -.2 : .2) * kf, 0), 1 - palms), { grip: 0 }); PO.palmTo(fa, s, palms); PO.fingers(fa, s, .15, { spread: .3 }); }   // Argon r4: palms were not up → forearm roll
     // b035: Mohammed sits up straight, chest back
     const up = win(8, 0, .95, t);
-    if (up > 0) { mo.B.chest.rotation.x -= .12 * up; mo.B.chest.updateWorldMatrix(false, true); }
+    if (up > 0) {   // Argon r4: static on his outburst → chest up, chin lifts, head shakes "no", fists in front of his chest
+      mo.B.spine.rotation.x -= .08 * up; mo.B.chest.rotation.x -= .14 * up; mo.B.neck.rotation.x -= .1 * up;
+      mo.B.head.rotation.y += .18 * up * Math.sin(t * 5.2) * (1 - sm(B(8)[0] + 1.6, B(8)[0] + 2.4, t));
+      mo.B.spine.updateWorldMatrix(false, true);
+      for (const [s, ph] of [['L', 0], ['R', .9]]) { PO.reach(mo, s, front(mo, 'chest', (.2 + .03 * Math.sin(t * 6 + ph)) * km, (s === 'L' ? -.08 : .08) * km, -.05 * km).lerp(front(mo, 'root', .2 * km, (s === 'L' ? -.15 : .15) * km, 0), 1 - up), { grip: .05 }); PO.fingers(mo, s, .3 + .6 * up, { thumb: .5 }); }
+    }
     // b036: the father's right hand comes to rest on the boy's head (reach clamps if too far; stills show it)
     const pat = win(9, .15, .9, t);
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .24 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), -.03 * km);   // on the crown, never through it
-      PO.reach(fa, 'R', front(fa, 'chest', .25 * kf, .1 * kf, -.15 * kf).lerp(top, pat), { grip: .02 });
+      const top = at(mo, 'head').add(V(0, .2 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), -.05 * km);   // Argon r4: missed the crown → palm a little lower and further back
+      PO.reach(fa, 'R', front(fa, 'chest', .25 * kf, .1 * kf, -.15 * kf).lerp(top, pat), { grip: .01, pole: [-.45, .25, .1] }); PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });
     }
   },
 });

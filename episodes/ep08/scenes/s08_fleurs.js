@@ -16,7 +16,7 @@ const ch = staged('chambre_jour', {
     IN(0, t) ? front(st.A.mohammed, 'head', .9, .35, .22)   // searching for the word: a small glance up and aside, not the ceiling
     : IN(2, t) ? [850, 1040, .25]
     : IN(3, t) ? (t > f(3, .7) ? [850, 900, 1.15] : [850, 1040, .3])
-    : IN(5, t) ? front(st.A.mohammed, 'chest', 1, t < f(5, .5) ? -.35 : .35, .3) : null },   // side-eye: a small turn, the face stays to camera
+    : IN(5, t) ? (t < f(5, .5) ? 'father' : 'zoubida') : null, lookMax: .5 },   // side-eye at each parent; he faces the lens (LUNCH), the head cap keeps the face to camera
   father: { ...LUNCH.father, lookMax: .85, look: t => IN(1, t) || IN(3, t) ? 'mohammed' : IN(4, t) ? 'zoubida' : null },
   zoubida: { ...LUNCH.zoubida, look: t => IN(3, t) ? 'mohammed' : IN(4, t) ? 'father' : null },
 }, {
@@ -29,11 +29,12 @@ const ch = staged('chambre_jour', {
     fa.B.spine.rotation.x += .14 * lean; fa.B.chest.rotation.x += .2 * lean;
     // b042 both parents rock back laughing: shoulders bounce, heads tip back; she laughs behind her hand, he slaps his knee
     const laugh = sm(B(4)[0], B(4)[0] + .4, t) * (1 - sm(B(4)[1] - .2, B(4)[1] + .5, t));
-    for (const [a, ph] of [[fa, 0], [zo, 1.7]]) { a.B.spine.rotation.x -= .1 * laugh; a.B.chest.rotation.x += laugh * (-.12 + .1 * Math.sin(t * 13 + ph)); a.B.chest.rotation.z += .06 * laugh * Math.sin(t * 3.1 + ph); a.B.neck.rotation.x -= .3 * laugh; a.B.head.rotation.z += .08 * laugh * Math.sin(t * 2.3 + ph); }
+    for (const [a, ph] of [[fa, 0], [zo, 1.7]]) { a.B.spine.rotation.x -= (.16 + .05 * Math.sin(t * 2.4 + ph)) * laugh; a.B.chest.rotation.x += laugh * (-.14 + .12 * Math.sin(t * 11 + ph)); a.B.chest.rotation.z += .06 * laugh * Math.sin(t * 3.1 + ph); a.B.neck.rotation.x -= .3 * laugh; a.B.head.rotation.z += .08 * laugh * Math.sin(t * 2.3 + ph); }
     for (const a of [fa, zo, mo]) a.B.spine.updateWorldMatrix(false, true);
     if (laugh > 0) {
-      PO.reach(zo, 'R', front(zo, 'head', .12 * kz, .02 * kz, -.07 * kz).lerp(front(zo, 'root', .2 * kz, .15 * kz, 0), 1 - laugh), { grip: .03 });
-      PO.reach(fa, 'L', front(fa, 'root', .3 * kf, -.12 * kf, .05 * kf + .06 * kf * Math.abs(Math.sin(t * 6.5))).lerp(front(fa, 'root', .2 * kf, -.2 * kf, 0), 1 - laugh), { grip: .1 });
+      // Argon r4: hand-to-mouth read as "hands on cheeks, shocked" → her palm on her breastbone, laughing; his hand lifts high and slaps the knee
+      PO.reach(zo, 'R', front(zo, 'neck', .12 * kz, .03 * kz, -.17 * kz).lerp(front(zo, 'root', .2 * kz, .15 * kz, 0), 1 - laugh), { grip: .03, pole: [-.3, -.15, -.05] });
+      PO.reach(fa, 'L', front(fa, 'root', .32 * kf, -.14 * kf, .04 * kf + .2 * kf * Math.max(0, Math.sin(t * 5.5))).lerp(front(fa, 'root', .2 * kf, -.2 * kf, 0), 1 - laugh), { grip: .1 });
     }
     // b040–b041 the boy's hands come out of his sleeves and fidget in front of his lap (fingers rubbing, thumbs turning)
     const fid = Math.max(win(2, 0, 1), win(3, 0, .65));

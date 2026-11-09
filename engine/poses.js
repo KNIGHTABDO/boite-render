@@ -338,3 +338,20 @@ export function lowestOf(a, names) {
   if (lo === Infinity && names.includes('root')) return lowestOf(a, ['thighL', 'thighR', ...names.filter(n => n !== 'root')]);
   return lo;
 }
+
+/** turn the forearm (60 %) and wrist (40 %) about the forearm axis so the palm faces `to` (default: up), weight amt 0..1.
+ *  Uses the same palm normal as fingers(); real rigs only (needs the finger bones). */
+export function palmTo(a, side, amt = 1, to = new THREE.Vector3(0, 1, 0)) {
+  const B = a.B, S = (side === 'L' ? 'Left' : 'Right') + 'Hand'; if (!B[S + 'Index1'] || amt <= 0) return false;
+  a.group.updateMatrixWorld(true);
+  const P = n => IK.wpos(B[S + n]), hp = IK.wpos(B[S]);
+  const along = P('Index1').sub(hp).normalize(), t = P('Thumb1').sub(hp); t.addScaledVector(along, -t.dot(along));
+  const n = (side === 'L' ? new THREE.Vector3().crossVectors(along, t) : new THREE.Vector3().crossVectors(t, along)).normalize();
+  const ax = hp.clone().sub(IK.wpos(B['foreArm' + side])).normalize();
+  const proj = v => v.clone().addScaledVector(ax, -v.dot(ax));
+  const a0 = proj(n), a1 = proj(to); if (a0.lengthSq() < 1e-6 || a1.lengthSq() < 1e-6) return false;
+  a0.normalize(); a1.normalize();
+  const ang = Math.atan2(new THREE.Vector3().crossVectors(a0, a1).dot(ax), a0.dot(a1)) * amt;
+  turnWorld(B['foreArm' + side], ax, .6 * ang); turnWorld(B['hand' + side], ax, .4 * ang);
+  return ang;
+}

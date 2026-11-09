@@ -33,7 +33,7 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
     async build(S3) {
       const camP = S3.cam.position.clone().setY(0), A = {}, P = {};
       for (const n of names) A[n] = await role(n, { seat: SEATED.has(marks[n].pose), costume: marks[n].costume });
-      const ST = stairs && fitStairs(S3, stairs), Y = {};
+      const ST = stairs && fitStairs(S3, stairs), Y = {}; ST?.catchers();
       for (const n of names) {   // tread: j stands on tread j / sits on it (pose 'step', feet one tread lower)
         const m = marks[n];
         if (m.tread != null) { P[n] = ST.tread(m.tread, m.off || 0).addScaledVector(ST.up, m.back || 0); Y[n] = ST.y(m.pose === 'step' ? m.tread - 1 : m.tread); if (m.pose === 'step') m.o = { seat: ST.y(m.tread), floor: Y[n], ...(m.o || {}) }; }
@@ -53,14 +53,14 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         // (kneel / cross) or the kneecaps (step), kept in the pelvis frame so a chest lean or an idle sway can't lift them off
         const hm = m.hands ?? (m.pose === 'step' ? 'knees' : SEATED.has(m.pose) && m.pose !== 'lie' ? 'thighs' : null);
         if (hm && snaps[n]) { const k = a.group.scale.y / 1.6; a.pins = ['L', 'R'].map(s => { const th = a.B['thigh' + s].getWorldPosition(V(0, 0, 0)), kn = a.B['shin' + s].getWorldPosition(V(0, 0, 0));
-          return [s, a.B.root.worldToLocal(th.lerp(kn, hm === 'knees' ? .92 : .6).add(V(0, (hm === 'knees' ? .07 : .075) * k, 0)))]; }); }
+          return [s, a.B.root.worldToLocal(th.lerp(kn, hm === 'knees' ? .78 : .6).add(V(0, (hm === 'knees' ? .07 : .075) * k, 0)))]; }); }
         if (m.walk) m.walk.p0 = P[n].clone(), m.walk.p1 = S3.floorAt(...m.walk.to);
         if (m.climb) Object.assign(m.climb, { p0: P[n].clone(), p1: ST.tread(m.climb.to, m.off || 0), j0: m.tread, rise: ST.RISE });
       }
       const fixed = {};
       for (const n of names) { const l = marks[n].look; if (Array.isArray(l)) fixed[n] = S3.floorAt(l[0], l[1]).setY(l[2] ?? 1.2); }
-      const faces = names.map((n, i) => { const l = marks[n].lids; return [A[n], n, i * 3 + 1, l == null ? {} : (lt, t) => ({ lid: typeof l === 'function' ? l(t) : l })]; });   // m.lids: heavy eyelids 0..1 (or t => 0..1)
-      return { actors: names.map(n => A[n]), A, P, snaps, fixed, faces, S3 };
+      const faces = names.map((n, i) => { const l = marks[n].lids, mu = marks[n].mutter; return [A[n], n, i * 3 + 1, l == null && !mu ? {} : (lt, t) => ({ ...(l == null ? {} : { lid: typeof l === 'function' ? l(t) : l }), ...(mu && mu(t) > 0 ? { open: mu(t) * (.25 + .25 * Math.abs(Math.sin(t * 11) * Math.sin(t * 4.3))) } : {}) })]; });   // m.lids: heavy eyelids 0..1 (or t => 0..1); m.mutter: t => 0..1 silent lip movement   // m.lids: heavy eyelids 0..1 (or t => 0..1)
+      return { actors: names.map(n => A[n]), A, P, snaps, fixed, faces, S3, ST };
     },
     frame(lt, u, t, S, st, S3) {
       const { A, snaps } = st;
