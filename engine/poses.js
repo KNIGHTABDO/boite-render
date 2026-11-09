@@ -296,9 +296,12 @@ export function rail(a, { top = .9, gap = .2, spread = .17, lean = null, look: t
  * The body (head excluded) is settled so its lowest point presses `sink` m into the mattress, each leg swings down until its
  * heel rests on it, and with `pillow` (m, pillow height) the neck flexes (bisection) until the back of the head rests on
  * the pillow top. turn: roll toward a side (rad, + = onto the actor's left). Arms along the body.
+ * natural opts into a soft, asymmetric pose; hands = 'belly' | 'chest' | 'side', headTurn = radians about the neck.
+ * Its default sink is 4 cm (legacy: 1 cm). Omit natural to retain the original solve exactly.
  * Returns { low, heel, headLow, pillowAt } — pillowAt is the world point under the skull where the caller puts the pillow.
  */
-export function lie(a, { top = 0, turn = 0, pillow = .08, sink = .01 } = {}) {
+export function lie(a, { top = 0, turn = 0, pillow = .08, natural = false, sink = natural ? .04 : .01, hands = 'belly', headTurn = .16 } = {}) {
+  if (natural) return naturalLie(a, { top, turn, pillow, sink, hands, headTurn });
   const B = a.B, floor = top - sink;
   rest(B); B.root.rotation.set(-Math.PI / 2, 0, 0); B.root.rotateY(turn);
   for (const s of ['L', 'R']) { B['upperArm' + s].rotation.z = (s === 'L' ? 1 : -1) * .12; }
@@ -316,6 +319,63 @@ export function lie(a, { top = 0, turn = 0, pillow = .08, sink = .01 } = {}) {
     hl = lowestOf(a, ['head']); if (hl < floor + pillow) lo = m; else hi = m;
   }
   return { low: lowestOf(a, body), heel, headLow: hl, pillowAt: IK.wpos(B.head, [0, .1, 0]).setY(top) };
+}
+
+function naturalLie(a, { top, turn, pillow, sink, hands, headTurn }) {
+  const B = a.B, k = a.group.scale.y / 1.6, floor = top - sink;
+  rest(B);
+  B.root.rotation.set(-Math.PI / 2, 0, 0); B.root.rotateY(turn); B.root.rotateX(-.025);
+  B.spine.rotation.x = .075; B.chest.rotation.x = .045;
+  // Keep the upper legs near bind: the robe is carried by separate skirt bones. The old heel search could swing a
+  // thigh half a radian through that cloth. A small hip bend and twice as much knee bend keep the heels low instead.
+  for (const [s, sign, bend] of [['L', 1, .10], ['R', -1, .14]]) {
+    B['thigh' + s].rotation.x = -bend; B['thigh' + s].rotation.z = sign * .025;
+    B['shin' + s].rotation.x = bend * 2 + .23;
+    B['foot' + s].rotation.x = .5; B['foot' + s].rotation.y = sign * .24;
+  }
+  const headBones = new Set(); B.neck.traverse(b => headBones.add(b));
+  const body = Object.keys(B).filter(n => !headBones.has(B[n]));
+  const back = ['root', 'spine', 'chest', 'SkirtBack1', 'SkirtBack2'].filter(n => B[n]);
+  setHipY(a, IK.wpos(B.root).y + floor - lowestOf(a, back));
+  for (const s of ['L', 'R']) {
+    let lo = B['shin' + s].rotation.x, hi = lo + .55;
+    for (let i = 0; i < 10; i++) {
+      B['shin' + s].rotation.x = (lo + hi) / 2;
+      if (lowestOf(a, ['shin' + s, 'foot' + s]) < top - .01) hi = B['shin' + s].rotation.x;
+      else lo = B['shin' + s].rotation.x;
+    }
+  }
+  // Use the reclining pelvis frame for elbow poles (reach()'s hip frame is deliberately upright).
+  const q = B.root.getWorldQuaternion(new THREE.Quaternion()), hip = IK.wpos(B.root);
+  const W = (x, y, z) => new THREE.Vector3(x * k, y * k, z * k).applyQuaternion(q).add(hip);
+  for (const [s, sign] of [['L', 1], ['R', -1]]) {
+    const target = hands === 'side' ? W(sign * .23, .17, -.04)
+      : hands === 'chest' ? W(sign * .065, .225 + (sign > 0 ? .015 : 0), .13)
+      : W(sign * .065, .205 + (sign > 0 ? .015 : 0), .11);
+    let wrist = target.clone();
+    for (let i = 0; i < 3; i++) {
+      IK.arm(a, s, wrist, W(sign * .36, -.06, .07));
+      IK.aim(B['hand' + s], handPts(a, s).end, target.clone().addScaledVector(new THREE.Vector3(0, 1, 0).applyQuaternion(q), .1 * k));
+      palmTo(a, s, 1, new THREE.Vector3(0, 0, -1).applyQuaternion(q));
+      wrist.add(target.clone().sub(handPts(a, s).palm));
+    }
+    fingers(a, s, .12, { thumb: .08, spread: .3 });
+  }
+  // Include every body/cloth bone in the final clearance check, then fit the head independently to the pillow.
+  // Translating the hip preserves the small thigh angles and never pushes a limb below top - sink.
+  const low = lowestOf(a, body);
+  if (low < floor) setHipY(a, IK.wpos(B.root).y + floor - low);
+  B.neck.rotation.y = headTurn * .2; B.head.rotation.y = headTurn;
+  let lo = -.3, hi = .8;
+  const support = top + pillow;
+  for (let i = 0; i < 12; i++) {
+    const m = (lo + hi) / 2; B.neck.rotation.x = m * .6; B.head.rotation.x = m * .4;
+    if (lowestOf(a, ['head']) < support) lo = m; else hi = m;
+  }
+  const allLow = lowestOf(a, Object.keys(B));
+  if (allLow < floor) setHipY(a, IK.wpos(B.root).y + floor - allLow);
+  return { low: lowestOf(a, body), heel: Object.fromEntries(['L', 'R'].map(s => [s, +lowestOf(a, ['shin' + s, 'foot' + s]).toFixed(3)])),
+    headLow: lowestOf(a, ['head']), pillowAt: IK.wpos(B.head, [0, .1, 0]).setY(top) };
 }
 
 /** lift or lower the whole pose (via the hip) so its lowest skinned vertex sits at world height `y` */

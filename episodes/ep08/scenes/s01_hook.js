@@ -2,8 +2,9 @@
 // hand to his face, a small laugh. b002 same evening, chambre_nuit: Zoubida kneels on the floor weeping, face in her hands,
 // shoulders shaking; behind her Mohammed lies on the divan, awake, only blinking.
 import * as PO from '../../../engine/poses.js';
+import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
-import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { bracelets } from './s17_retour.js';
 
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
@@ -27,24 +28,40 @@ const pa = staged('patio_matin', {
     if (laugh > 0) { zo.B.chest.rotation.x += .07 * Math.sin(t * 14) * laugh; zo.B.neck.rotation.x -= .12 * laugh; zo.B.chest.updateWorldMatrix(false, true); }
     // Argon r5: she stood in a stiff A-pose → her hands meet in front of her waist, then rise to her breastbone as she laughs
     const kz = zo.group.scale.y / 1.6, see = sm(B(0)[0] + .2 * (B(0)[1] - B(0)[0]), B(0)[0] + .45 * (B(0)[1] - B(0)[0]), t);
-    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'root', .27 * kz, (s === 'L' ? -.06 : .06) * kz, .08 * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.045 : .045) * kz, -.17 * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
+    for (const s of ['L', 'R']) {
+      const early = sm(.3, B(0)[0] + .65, t) * (1 - see);   // b001: a small response before the laugh, preserving the opening offer
+      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.06 : .06) * kz, (.08 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.045 : .045) * kz, -.17 * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
+      if (early > 0) PO.fingers(zo, s, .16 * early, { spread: .25 });
+    }
   },
 });
 
+// b002: floor kneel, folded over the padded knees; palms cover the bowed face, elbows down in front.
 const nu = staged('chambre_nuit', {
-  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', seed: 7, hands: false },   // Argon r6: too near the lens (sunk, legs cut, boy out of frame) → mid-room, W shot   // stills7: back to lens → 3/4 front, the bowed face in her palms reads
-  mohammed: { at: [1240, 672], face: Math.PI / 2, pose: 'lie', o: { top: .2, turn: .45 }, look: (t, st, S3) => S3.cam.position.clone(), lookMax: .7, seed: 3 }   // Argon r5: his open eyes must read → head rolled toward the lens,
+  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { lean: 1.25, spread: .065, hands: false },
+    seed: 7, hands: false, talk: 0, lids: .95 },
+  mohammed: { at: [1240, 800], face: [1560, 900], pose: 'lie', o: { top: .35, turn: .10, headTurn: -.16, hands: 'belly' }, seed: 3, talk: 0 },
 }, {
-  act(lt, t, S, st) {
-    const zo = st.A.zoubida, k = zo.group.scale.y / 1.6;
-    // Argon r6: palms over the face clipped into cheeks and eyes (stylized big head) → she folds over herself instead: head bowed
-    // low, forearms crossed and hugging her middle, shoulders heaving in uneven sobs, one shoulder then the other
-    const sob = .045 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
-    zo.B.spine.rotation.x += .12 + .03 * Math.sin(t * .7); zo.B.neck.rotation.x += .28; zo.B.chest.rotation.x += .08 + sob;   // stills16: a ~45° bow dropped the face onto the hands zo.B.chest.rotation.z += .05 * Math.sin(t * 1.3);
-    zo.B.spine.updateWorldMatrix(false, true);
-    // stills14: the .17 target sat inside the bowed trunk and the custom poles threw the elbows up to her head → further out,
-    // forearms still crossing, default (down) elbow poles
-    for (const s of ['L', 'R']) PO.reach(zo, s, front(zo, 'root', .24 * k, (s === 'L' ? .05 : -.05) * k, (.2 + sob * .3) * k), { grip: .3 });   // belly height, anchored on the unbent hips
+  act(lt, t, S, st, S3) {
+    const { zoubida: zo, mohammed: mo } = st.A, k = zo.group.scale.y / 1.6;
+    st.G.apply = () => {};   // contact hands and the boy's pillow turn must survive the automatic gaze pass
+    if (!st.pillow) {
+      st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x586b8c });
+      const p = at(mo, 'head', [0, .1, 0]).setY(.35);   // the same point returned as lie().pillowAt
+      S3.prop(st.pillow, p.x, p.y, p.z, mo.group.rotation.y);
+    }
+    const sob = .025 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
+    zo.B.chest.rotation.x += .4 + sob; zo.B.neck.rotation.x += .25;
+    zo.B.chest.rotation.z += .015 * Math.sin(t * 1.3); zo.B.spine.updateWorldMatrix(false, true);
+    for (const s of ['L', 'R']) {
+      const sign = s === 'L' ? 1 : -1;
+      const knee = at(zo, 'shin' + s).add(V(0, .10 * k, 0));   // padded knee surface, supporting the elbow
+      const pole = knee.sub(at(zo, 'root')).applyAxisAngle(V(0, 1, 0), -zo.group.rotation.y).multiplyScalar(1 / k).toArray();
+      const p = front(zo, 'head', .16 * k, -sign * .10 * k, .015 * k);
+      PO.reach(zo, s, p, { grip: .02, pole });
+      PO.palmTo(zo, s, 1, at(zo, 'head').sub(p).normalize());
+      PO.fingers(zo, s, .015, { thumb: .02, spread: .85 });
+    }
   },
 });
 

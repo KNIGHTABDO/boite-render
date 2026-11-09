@@ -22,7 +22,7 @@ const SEATED = new Set(['kneel', 'cross', 'lie', 'step']);
 const POSES = {
   kneel: (a, o) => PO.kneel(a, o),
   cross: (a, o) => PO.crossLegged(a, o),
-  lie: (a, o) => PO.lie(a, o),
+  lie: (a, o) => PO.lie(a, { ...o, natural: true }),
   step: (a, o) => PO.stool(a, { lean: .15, fz: .3, ...o }),   // sitting on a stair tread (o.seat / o.floor set from the tread)
 };
 
