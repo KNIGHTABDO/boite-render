@@ -12,7 +12,7 @@ const ch = staged('chambre_jour', {
     lids: t => .6 + .2 * (.5 + .5 * Math.sin(t * .6)) },
   // Argon r4: he floated across the mattress (lay along x, the mattress runs in depth) and her back hid the shot → he lies
   // along the mattress, feet to the lens; she kneels on the floor at its left side, cheated 3/4 to camera
-  zoubida: { at: [1150, 720], face: 'mohammed', yaw: -.6, pose: 'kneel', seed: 7, look: 'mohammed', lookMax: 1 },
+  zoubida: { at: [1150, 720], face: 'mohammed', yaw: .9, pose: 'kneel', seed: 7, look: 'mohammed', lookMax: 1 },
 }, {
   act(lt, t, S, st) {
     const { zoubida: zo, mohammed: mo } = st.A, k = zo.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;

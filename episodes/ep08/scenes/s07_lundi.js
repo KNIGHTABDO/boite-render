@@ -16,7 +16,7 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 const pa = staged('patio_matin', {
   father: { at: [330, 960], face: [800, 960], walk: { to: [760, 965], t0: .3, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
-  mohammed: { at: [1080, 1010], face: [640, 1080], pose: 'cross', look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: .9 },
+  mohammed: { at: [1150, 950], face: [640, 1080], pose: 'cross', look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: .9 },
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) { holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0)); },
@@ -71,7 +71,7 @@ const ch = staged('chambre_jour', {
 export default beatScene(ID, {
   shots: { pa, ch },
   plan: {
-    b027: { shot: 'pa', size: 'W', on: 'father' },
+    b027: { shot: 'pa', size: 'M', on: 'father' },   // recal h 1.75: actors are true size now, W shows the whole patio with tiny figures
     b028: { shot: 'ch', size: 'M', on: 'father', insAt: .55 },
     b029: { shot: 'ch', size: 'CU', on: 'father' },
     b030: { shot: 'ch', size: 'CU', on: 'zoubida' },

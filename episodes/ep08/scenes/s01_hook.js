@@ -28,7 +28,7 @@ const pa = staged('patio_matin', {
 });
 
 const nu = staged('chambre_nuit', {
-  zoubida: { at: [760, 1030], face: [1300, 1000], pose: 'kneel', seed: 7 },
+  zoubida: { at: [760, 1030], face: 'cam', yaw: .45, pose: 'kneel', seed: 7 },   // stills7: back to lens → 3/4 front, the bowed face in her palms reads
   mohammed: { at: [1240, 672], face: Math.PI / 2, pose: 'lie', o: { top: .2, turn: .45 }, look: [800, 1000, .7], seed: 3 },
 }, {
   act(lt, t, S, st) {
