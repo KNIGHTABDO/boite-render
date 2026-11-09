@@ -85,7 +85,7 @@ const ca = staged('souk_mur', {
     const { father: fa, mohammed: mo } = st.A, kf = k(fa), km = k(mo);
     const lift = sm(B(4)[0] - .4, B(4)[0] + .9, t), fy = fa.group.rotation.y;
     // the boy: from his standing height up onto the arm, in front of the father's right chest, facing him
-    const base = at(fa, 'root').add(V(Math.sin(fy) * .17 * kf + Math.cos(fy) * -.17 * kf, 0, Math.cos(fy) * .17 * kf - Math.sin(fy) * -.17 * kf));
+    const base = at(fa, 'root').add(V(Math.sin(fy) * .14 * kf + Math.cos(fy) * -.27 * kf, 0, Math.cos(fy) * .14 * kf - Math.sin(fy) * -.27 * kf));   // on his side: the father's face stays clear
     if (!st.h0) { st.h0 = at(mo, 'root').y - mo.group.position.y; }
     mo.group.position.set(base.x, (CARRY * kf / 1.1 - st.h0) * lift, base.z); mo.group.rotation.y = fy + Math.PI; mo.group.updateMatrixWorld(true);
     // breathing: the father's chest heaves (he ran), sweat-heavy head bowed a little
@@ -152,7 +152,7 @@ export default beatScene(ID, {
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [905, 690] },   // over the father's shoulder onto the dellal's shout
     b085: { shot: 'la', size: 'W', on: 'marchand', z: 1.1, pt: [880, 700] },   // the lane itself, mid-depth: the boil crosses frame
     b086: { shot: 'mu', size: 'M', on: 'zoubida' },
-    b087: { shot: 'ca', size: 'CU', on: 'mohammed', z: 2.2 },
+    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.0 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 2.6 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.5 },
   },
