@@ -265,8 +265,8 @@ const ROW = [['kid1', 820, 2], ['kid2', 1060, 4], ['mohammed', 1300, 3], ['kid3'
 // The qibla is the left-hand wall: rows seen from behind and three-quarters, so every face stays within reach of the lens.
 const QIBLA = Math.PI;   // straight away from the lens: a row of backs behind the leading fqih
 const pray = sized(checkedStage('mausolee', {
-  fqih: { at: [1180, 730], face: QIBLA, seed: 9, talk: 0 },
-  ...Object.fromEntries(ROW.map(([n, x, seed]) => [n, { at: [x, 915], face: QIBLA, seed, talk: 0 }])),
+  fqih: { at: [1180, 730], face: QIBLA, seed: 9, talk: 0, backOk: true },
+  ...Object.fromEntries(ROW.map(([n, x, seed]) => [n, { at: [x, 915], face: QIBLA, seed, talk: 0, backOk: true }])),
 }, {
   act(lt, t, S, st, S3) {
     const [t0, t1] = B(5), D = t1 - t0;
@@ -274,7 +274,7 @@ const pray = sized(checkedStage('mausolee', {
     const all = [['fqih', 0], ...ROW.map(([n]) => [n, .12])];
     st.G.apply = () => {};   // all five keep their heads aligned with the qibla
     // r16: backs to the lens whatever the camera yaw is (the reviewer wants a row of backs behind the fqih)
-    for (const n of ['fqih', ...ROW.map(r => r[0])]) { const a = st.A[n]; a.group.rotation.y = yawTo(a.group.position, S3.cam.position) + .95 + (({ kid1: .06, kid2: -.05, mohammed: .04, kid3: -.07 })[n] || 0); a.group.updateMatrixWorld(true); }
+    for (const n of ['fqih', ...ROW.map(r => r[0])]) { const a = st.A[n]; a.group.rotation.y = yawTo(a.group.position, S3.cam.position) + Math.PI + (({ kid1: .06, kid2: -.05, mohammed: .04, kid3: -.07 })[n] || 0); a.group.updateMatrixWorld(true); }
     for (const [n, lag] of all) {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
@@ -314,7 +314,7 @@ export default beatScene(ID, {
     b011: { shot: 'pr', size: 'W', on: 'mohammed' },   // walkers: covers frame build positions → wide only
     b012: { shot: 'fl', size: 'W', on: 'woman2', cover: [{ f: .06, size: 'W', on: 'fatma' }, { f: .41, size: 'W', on: 'woman2' }, { f: .47, size: 'W', on: 'fatma' }] },   // whoever is on the near half of the lap leads the frame
     b013: { shot: 'br', size: 'M', on: 'mohammed', z: 1.6, dx: 0, dy: 0, cover: [{ f: .35, size: 'M', on: 'mohammed', z: 2.05, dx: 0, dy: -10 }] },
-    b014: { shot: 'ab', size: 'M', on: 'fqih', z: 1.4, dx: 70, dy: -90, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
+    b014: { shot: 'ab', size: 'M', on: 'fqih', z: 1.25, dx: 70, dy: -90, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
     b015: { shot: 'pray', size: 'W', on: 'mohammed' },
   },
 });
