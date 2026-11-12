@@ -3,6 +3,7 @@
 // b050 shoulders drop, b051 fists tighten on his knees "à mort", b052 enumeration (pieds / prière / bruit, feet and hush
 // inserts), b053 he repeats his sentence to himself, eyes up the flight, lips moving.
 import { castScale, reachClamp } from '../lib/fix8c.js';
+import * as THREE from 'three';
 import * as IK from '../../../engine/ik.js';
 import * as PO from '../../../engine/poses.js';
 import { sitStepDrop as sitStep } from '../lib/fix8_R15C.js';
