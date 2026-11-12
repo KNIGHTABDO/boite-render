@@ -24,6 +24,25 @@ const hipsOn = (a, w) => {
   a.B.spine.rotation.z += .03 * w;
 };
 
+// Turn the body to a 3/4-front view of the camera (chest normal `want` rad off the camera axis), whatever the head does.
+const open34 = (a, cam, want = .6) => {
+  if (!cam) return;
+  a.group.updateMatrixWorld(true);
+  const c0 = a.B.chest.getWorldPosition(V(0, 0, 0)), f = a.B.chest.localToWorld(V(0, 0, 1)).sub(c0); f.y = 0;
+  const to = cam.position.clone().sub(c0); to.y = 0;
+  if (f.lengthSq() < 1e-8 || to.lengthSq() < 1e-8) return;
+  const d = Math.atan2(to.x, to.z) - Math.atan2(f.x, f.z), turn = Math.atan2(Math.sin(d), Math.cos(d));
+  if (Math.abs(turn) > want) { a.group.rotation.y += turn - Math.sign(turn) * want; a.group.updateMatrixWorld(true); }
+};
+// Conversational arms: one hand low and loose, the other gesturing (palm half up) in time with the speech.
+const chat = (a, w, t, seed = 0) => {
+  if (w <= 0) return;
+  const s1 = Math.sin(t * 2.3 + seed), s2 = Math.sin(t * 1.7 + seed * 2);
+  handTo(a, 'R', { fwd: .2 + .05 * s1, out: .12, drop: .12 + .06 * s2, curl: .15, spread: .25 });
+  PO.palmTo(a, 'R', .7 * w, V(0, 1, .3));
+  handTo(a, 'L', { fwd: .06, out: .15, drop: .27, curl: .3, spread: .12 });
+  a.B.spine.rotation.z += .03 * s2 * w; a.B.head.rotation.z += .03 * s1 * w;
+};
 const esc = staged('escalier', {
   mohammed: { ...SEAT, o: { ...SEAT.o, crouch: true }, talk: 0, lookMax: .75,
     look: (t, st) => {
@@ -42,13 +61,21 @@ const esc = staged('escalier', {
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A;
     yawToward(zo, S3.cam, .3);
+    open34(zo, S3.cam, .55);
     castScale(mo);
     sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
-    if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud; mo.B.chest.updateWorldMatrix(false, true); }
+    if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;
+      mo.B.head.rotation.x -= .08 * proud; mo.B.chest.rotation.y += .1 * proud;
+      PO.reach(mo, 'R', mo.B.upperArmR.getWorldPosition(V(0, 0, 0)).add(V(.2 * mo.group.scale.y / 1.6 * proud, .05, .22 * mo.group.scale.y / 1.6)), { grip: .02, pole: [.5, .3, -.3] }); PO.fingers(mo, 'R', .3); mo.B.chest.updateWorldMatrix(false, true); }
     const hips = sm(B(2)[0] - .05, B(2)[0] + .28, t) * (1 - sm(B(4)[1] + .1, B(4)[1] + .3, t));
-    if (hips > 0 && zo.group.visible) hipsOn(zo, hips);
+    // The first questions are open-handed chat (arms away from the hips); the scolding keeps one hand on the hip, the other still talking.
+    const scold = zo.group.visible ? hips : 0;
+    if (zo.group.visible) {
+      chat(zo, 1 - .6 * scold, t, 1);
+      if (scold > 0) { handTo(zo, 'L', { fwd: -.02, out: .17, drop: .31, curl: .35, spread: .1 }); zo.B.spine.rotation.z += .03 * scold; }
+    }
     laugh(zo, win(4, .35, 1.05, t), t);
     if (!st.scornFace) {
       st.scornFace = true;
@@ -79,15 +106,22 @@ const pa = staged('patio_matin', {
     const { zoubida: zo, rahma: ra, fatma: fa, woman1: w1, woman2: w2 } = st.A;
     // Dream beats b062-b064 are Rahma and Zoubida alone; b065 is the three women. Others stay hidden so no laughing group leaks in.
     const dream = t >= B(8)[0] && t < B(11)[0], trio = t >= B(11)[0];
-    if (dream || trio) { if (dream) for (const a of [w1, w2]) a.group.visible = false;
-    fa.group.visible = trio; zo.group.visible = ra.group.visible = true; }
+    if (dream || trio) { fa.group.visible = trio; zo.group.visible = ra.group.visible = true; }
     yawToward(zo, S3.cam, .45);
-    if (t >= B(6)[0] && t < B(7)[0]) for (const a of [w1, w2]) a.group.visible = false;
+    for (const a of [w1, w2]) a.group.visible = true;
+    open34(zo, S3.cam, .5); open34(ra, S3.cam, .75);
     const fun = hold(B(5)[0] - .1, B(5)[1], t);
-    for (const [a, f] of [[w1, 12], [w2, 15], [ra, 11], [fa, 14], [zo, 10]]) laugh(a, fun, t, f);
-    if (fun > .2) {
-      handTo(ra, 'R', { fwd: .14, out: .14, drop: .02, curl: .12, spread: .25 });
-      handTo(fa, 'L', { fwd: .12, out: .14, drop: .02, curl: .12, spread: .2 });
+    // Staggered, visible laughter: chest shakes, head tipped back, one hand to the mouth or chest, each woman on her own delay.
+    for (const [a, f, d, side, mouth] of [[w1, 12, .0, 'R', 1], [w2, 15, .35, 'L', 0], [ra, 11, .15, 'R', 1], [fa, 14, .5, 'L', 0], [zo, 10, .7, 'R', 0]]) {
+      const w = hold(B(5)[0] + d - .1, B(5)[1], t);
+      laugh(a, w, t, f);
+      if (w > 0) {
+        const sh = Math.sin(t * f + d * 7);
+        a.B.spine.rotation.x += .03 * sh * w; a.B.chest.rotation.z += .05 * sh * w;
+        a.B.neck.rotation.x += .26 * w; a.B.head.rotation.x -= .22 * w; a.B.head.rotation.z += .12 * (side === 'R' ? 1 : -1) * w;
+        a.B.chest.updateWorldMatrix(false, true);
+        if (!(a === w1 || a === w2)) handTo(a, side, mouth ? { fwd: .2, out: -.02, drop: -.1, curl: .3, spread: .1 } : { fwd: .14, out: .0, drop: .08, curl: .25, spread: .1 });
+      }
     }
     const tease = hold(B(6)[0] - .15, B(6)[1], t);
     if (tease > 0) {
@@ -99,13 +133,13 @@ const pa = staged('patio_matin', {
     }
     const envy = win(8, 0, 1, t);
     if (envy > 0) {
-      for (const side of ['L', 'R']) handTo(zo, side, { fwd: .08, out: .14, drop: .26, curl: .25, spread: .15 });
+      for (const side of ['L', 'R']) handTo(zo, side, { fwd: .03, out: .13, drop: .31, curl: .3, spread: .1 });
       zo.B.chest.rotation.x -= .04 * envy; zo.B.head.rotation.z += .05 * envy;
       ra.B.spine.rotation.z += .08 * envy; ra.B.chest.rotation.y += .06 * envy;
       fa.B.spine.rotation.x += .06 * envy; fa.B.chest.rotation.y -= .05 * envy;
       handTo(fa, 'R', { fwd: .12, out: .14, drop: .08, curl: .2 });
     }
-    const palms = sm(B(9)[0] - .4, B(9)[0] + .1, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
+    const palms = sm(B(9)[0] - .6, B(9)[0] - .1, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
     if (palms > 0) {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
       for (const s of ['L', 'R']) {
@@ -116,19 +150,21 @@ const pa = staged('patio_matin', {
     const hand = sm(B(10)[0] - .05, B(10)[0] + .28, t) * (1 - sm(B(10)[1] - .1, B(10)[1], t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
-      handTo(zo, 'R', { fwd: .2, out: .16, drop: -.22, curl: .1, spread: .25 });
+      handTo(zo, 'R', { fwd: .3, out: .2, drop: -.12, curl: .12, spread: .25 });
       PO.palmTo(zo, 'R', hand, V(0, .3, 1));
-      handTo(zo, 'L', { fwd: .04, out: .16, drop: .3, curl: .3 });
+      handTo(zo, 'L', { fwd: .02, out: .13, drop: .3, curl: .3, spread: .1 });
       fa.B.chest.rotation.y -= .06 * hand;
     }
     const amen = sm(B(11)[0] - .15, B(11)[0] + .4, t);
     if (amen > 0) {
+      let k = 0;
       for (const a of [zo, ra, fa]) {
-        a.B.spine.rotation.x += .04 * amen; a.B.neck.rotation.x += .1 * amen;
-        for (const s of ['L', 'R']) {
-          handTo(a, s, { fwd: .14, out: .14, drop: .02, curl: .12, spread: .2 });
-          PO.palmTo(a, s, amen * .7, V(0, 1, .25));
-        }
+        const w = sm(B(11)[0] + .1 * k, B(11)[0] + .1 * k + .5, t); k++;
+        a.B.spine.rotation.x += .05 * w; a.B.neck.rotation.x += .14 * w;
+        handTo(a, 'R', { fwd: .16, out: -.04, drop: .02, curl: .25, spread: .1 });
+        PO.palmTo(a, 'R', w * .8, V(0, 0, -1));
+        handTo(a, 'L', { fwd: .1, out: .14, drop: .18, curl: .2, spread: .15 });
+        a.B.head.rotation.z += .05 * w * (k % 2 ? 1 : -1);
       }
       for (const a of [w1, w2]) { a.B.neck.rotation.x += .16 * amen; a.B.neck.updateWorldMatrix(false, true); }
     }
@@ -150,11 +186,11 @@ export default beatScene(ID, {
     b057: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.1, dy: 40 },
     b058: { shot: 'esc', size: 'M', on: 'zoubida', z: 1.1, dy: 30 },
     b059: { shot: 'pa', size: 'W', on: 'rahma' },
-    b060: { shot: 'pa', size: 'M', on: 'rahma', z: 1.9, dx: -90, dy: 25 },
+    b060: { shot: 'pa', size: 'M', on: 'rahma', z: 1.8, dx: -90, dy: 75 },
     b061: { shot: 'esc', size: 'CU', on: 'mohammed', z: 2.15, dy: -36 },
-    b062: { shot: 'pa', size: 'M', on: 'zoubida', z: 2.05, dx: -70, dy: -36 },
-    b063: { shot: 'pa', size: 'M', on: 'rahma', z: 2.05, dx: -70, dy: -36 },
-    b064: { shot: 'pa', size: 'CU', on: 'zoubida', z: 2.15, dx: -90, dy: -34 },
+    b062: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.85, dx: -70, dy: 60 },
+    b063: { shot: 'pa', size: 'M', on: 'rahma', z: 1.85, dx: -70, dy: 60 },
+    b064: { shot: 'pa', size: 'CU', on: 'zoubida', z: 2.0, dx: -90, dy: 20 },
     b065: { shot: 'pa', size: 'W', on: 'zoubida' },
   },
 });

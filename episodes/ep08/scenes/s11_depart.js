@@ -135,6 +135,7 @@ const pa = staged('patio_matin', {
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
     if (fa.group.visible) holdBroomFwd(fa, broom, S3.scene, 'R'); else broom.visible = false;
+    if (process.env.S11DBG && Math.abs(t%2)<.03) { const h=mo.B.head; const f=h.localToWorld(V(0,0,1)).sub(at(mo,'head')); console.error('DBG',t.toFixed(2),'gy',mo.group.rotation.y.toFixed(2),'camdir',Math.atan2(S3.cam.position.x-mo.group.position.x,S3.cam.position.z-mo.group.position.z).toFixed(2),'headfwd',Math.atan2(f.x,f.z).toFixed(2)); }
     // Nod rides on top of the eyeline, after the camera yaw, so it is not pulled back to the lens.
     if (nod > 0) {
       zo.B.neck.rotation.x += .1 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5)) * nod;

@@ -98,7 +98,8 @@ const ch = staged('chambre_jour', {
   zoubida: { ...LUNCH.zoubida, at: [1300, 925], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true },
     look: (t, st) => st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father', lookMax: 1.2 },   // G1: she looked at the floor
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
-  mohammed: { ...LUNCH.mohammed, at: [920, 965], face: 'cam', yaw: .45, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
+  // r19: x 920→965 so the plate's lamp table is clear of his head and the same place holds for b018, b019 and b021
+  mohammed: { ...LUNCH.mohammed, at: [965, 965], face: 'cam', yaw: .45, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
     look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A && S3?.cam ? st.A.father.B.head.getWorldPosition(V()).lerp(S3.cam.position, .15) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father' },   // r18: eyes up to the father's face; on b021 the gaze goes to the lens so his face reads   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
@@ -169,10 +170,10 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.5, dy: 70 },
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2, dx: 198, dy: -23 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 1.9, dx: -20, dy: 6 },
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.3, dx: -10, dy: -45 },
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.25, dx: -146, dy: -48 },   // r19: head+shoulders, Mohammed's head fully out right,
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },
 });
