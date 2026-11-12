@@ -170,9 +170,9 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2, dx: 198, dy: -23 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2, dx: 198, dy: -73 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.25, dx: -146, dy: -48 },   // r19: head+shoulders, Mohammed's head fully out right,
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.25, dx: -121, dy: -48 },   // r19: head+shoulders, Mohammed's head fully out right,
     b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },

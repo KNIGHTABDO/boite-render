@@ -100,7 +100,7 @@ const ms = checkedStage('ep03/msid_estrade', {
   fqih: { at: [1000, 795], face: 'cam', pose: 'cross', o: { seat: .34, floor: .34 }, seed: 9, lids: .35, talk: 0 },
   kid1: { at: [500, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 2, look: 'fqih', lids: .3 },
   kid2: { at: [1460, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 4, look: 'fqih', lids: .25 },
-  mohammed: { at: [700, 830], face: [1000, 1060], pose: 'cross', hands:false, seed: 3, look: 'fqih', lookMax: .35, lids: .45 },   // beside the master, 3/4 to the lens: he can look at him without turning his back to us
+  mohammed: { at: [700, 830], face: [1000, 1060], pose: 'cross', hands:false, seed: 3, look: 'fqih', lookMax: .6, lids: .45 },   // beside the master, 3/4 to the lens: he can look at him without turning his back to us
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo } = st.A, kf = k(fq);
@@ -140,14 +140,14 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1160, 845], ...T11(1.7, 3.4) } },
-  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 900], ...T11(2.4, 3.4) } },
-  kid3: { at: [1150, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(3.1, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1140, 845], ...T11(2.0, 3.4) } },
+  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 900], ...T11(3.0, 3.4) } },
+  kid3: { at: [1150, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(4.0, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
     // nobody stands in the doorway before his turn: each one steps in over the threshold on his own t0
-    [[fq, 0], [kid1, 1.7], [mo, 1], [kid2, 2.4], [kid3, 3.1]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
+    [[fq, 0], [kid1, 2.0], [mo, 1], [kid2, 3.0], [kid3, 4.0]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
     // Keep Mohammed's torso and slate toward the room/camera even as he steps diagonally out of the doorway.
     mo.group.rotation.y = -.18; mo.group.updateMatrixWorld(true);
     const t1f = T11(0, 3.6).t1;
@@ -163,7 +163,7 @@ const pr = sized(checkedStage('mausolee_rev', {
       PO.fingers(fq, 'R', .12, { thumb: .1, spread: .35 });
     }
     // after stopping, each boy settles into his own stance (varied yaw)
-    [[kid1, 1.7, -.3], [kid2, 2.4, .12], [kid3, 3.1, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
+    [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 4.0, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
     st.lh ||= [kid1, mo, kid2, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     [kid1, mo, kid2, kid3].forEach((a, i) => { st.lh[i].visible = a.group.visible; chestLouha(a, st.lh[i]); });
   },
@@ -249,8 +249,8 @@ const ab = sized(checkedStage('mausolee_rev', {
   kid2: { at: [200, 785], face: [220, 770], seed: 4, talk: 0, look: (t, st) => t < B(4)[0] + 2.2 ? 'fqih' : basinGaze(st, 0) },
   mohammed: { at: [345, 785], face: [275, 770], seed: 3, talk: 0, look: (t, st) => t < B(4)[0] + 2.5 ? 'fqih' : basinGaze(st, 1), lookMax: .55 },
   // the two other boys wait their turn behind, listening to the master (they stay in the room for the whole beat)
-  kid1: { at: [470, 860], face: [760, 850], seed: 2, talk: 0, look: 'fqih', lookMax: .6 },
-  kid3: { at: [600, 905], face: [760, 850], seed: 6, talk: 0, look: 'fqih', lookMax: .6 },
+  kid1: { at: [520, 765], face: [760, 850], seed: 2, talk: 0, look: 'fqih', lookMax: .6 },
+  kid3: { at: [640, 775], face: [760, 850], seed: 6, talk: 0, look: 'fqih', lookMax: .6 },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid2, mohammed: mo, kid1, kid3 } = st.A, kf = k(fq);
@@ -333,7 +333,7 @@ const pray = sized(checkedStage('mausolee', {
       for (const s of ['L', 'R']) {   // qiyam: right hand over left on the chest → ruku: palms on the knees
         const kn = front(a, 'shin' + s, .045 * ka, 0, .025 * ka);
         const fold = front(a, 'chest', .17 * ka, (s === 'L' ? -.02 : .03) * ka, (s === 'L' ? -.16 : -.13) * ka);
-        PO.reach(a, s, fold.lerp(kn, r), { grip: 0, pole: [(s === 'L' ? 1 : -1) * (.05 + .25 * r), -.45 * (1 - r) + .05 * r, -.2 * (1 - r) + .25 * r] });   // qiyam: elbows tucked in, no A-pose
+        PO.reach(a, s, fold.lerp(kn, r), { grip: 0, pole: [(s === 'L' ? 1 : -1) * (.3 - .1 * (1 - r)), .05, .25] });   // qiyam: a little less flared than before
         if (r > .95) PO.palmTo(a, s, r, V(0, -1, 0));
         PO.fingers(a, s, .08, { thumb: .12, spread: .2 });
       }
