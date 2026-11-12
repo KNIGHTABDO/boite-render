@@ -19,10 +19,10 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 const zwin = t => Math.max(win(3, .3, 1, t), sm(B(6)[0], B(6)[0] + .5, t) * (1 - sm(B(8)[0] - .9, B(8)[0] - .4, t)));
 
 const pa = staged('patio_matin', {
-  father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: .3, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
+  father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: 0, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
   mohammed: { at: [930, 1000], face: 'cam', yaw: .4, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
-    look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: t => t > 1.3 ? .7 : .35 },
+    look: t => t > 1.3 ? 'father' : [1000, 985, .2], lookMax: t => t > 1.3 ? .7 : .35 },
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) {
@@ -30,6 +30,11 @@ const pa = staged('patio_matin', {
     // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
+    // r17: mid-stride legs while he walks in (thighs/shins/feet as in rig3d.walkPose), settling when he stops
+    { const a = t * 5.6, k = go * .9, B = fa.B;
+      B.thighL.rotation.x = -Math.sin(a) * .42 * k; B.thighR.rotation.x = Math.sin(a) * .42 * k;
+      B.shinL.rotation.x = Math.max(0, Math.sin(a - 1.4)) * .7 * k; B.shinR.rotation.x = Math.max(0, -Math.sin(a - 1.4)) * .7 * k; }
+    { const mo = st.A.mohammed; mo.B.neck.rotation.x -= .12; mo.B.head.rotation.x -= .08; }   // r17: head not so far down by the well
     for (const [s, ph] of [['L', 0], ['R', Math.PI]]) {
       const w = Math.sin(t * 5.6 + ph) * go, outZ = s === 'L' ? 1 : -1;
       const ua = fa.B['upperArm' + s], eb = fa.B['foreArm' + s], ha = fa.B['hand' + s];
@@ -57,7 +62,7 @@ const ch = staged('chambre_jour', {
   father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(10)[0] - .2 ? 'zoubida' : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
   // Argon r5: he drifted to the lens → he follows the talk: his mother on her reaction (b030) and her question (b033), else his father.
   // b035 the head-shake stays toward the lens: a look at his father on top of the body yaw turned the face past the camera.
-  mohammed: { ...LUNCH.mohammed, at: [930, 1000], yaw: .2, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 1.2 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
+  mohammed: { ...LUNCH.mohammed, at: [930, 1000], yaw: .2, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? .55 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 'father' : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
 }, {
   // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
   addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
@@ -100,10 +105,10 @@ const ch = staged('chambre_jour', {
     }
     // b035: left fist at his chest, right hand open toward his father
     if (up > 0) {
-      reachSafe(mo, 'L', front(mo, 'chest', .16 * km, .08 * km, .02 * km), { grip: .04, pole: [.3, -.1, .1] });
+      reachSafe(mo, 'L', front(mo, 'chest', .16 * km, .04 * km, .02 * km), { grip: .04, pole: [.12, -.1, .1] });
       PO.fingers(mo, 'L', .3 + .6 * up, { thumb: .5 });
       const pump = .5 + .5 * Math.sin(t * 4.5);
-      reachSafe(mo, 'R', front(mo, 'chest', (.22 + .03 * pump) * km, -.12 * km, .02 * km), { grip: 0, pole: [-.3, -.05, .12] });
+      reachSafe(mo, 'R', front(mo, 'chest', (.22 + .03 * pump) * km, -.07 * km, .02 * km), { grip: 0, pole: [-.12, -.05, .12] });
       PO.palmTo(mo, 'R', up); PO.fingers(mo, 'R', .12, { spread: .3 });
     }
     // b028–b029: a small open-handed welcome as he announces the outing
@@ -126,13 +131,13 @@ export default beatScene(ID, {
   plan: {
     b027: { shot: 'pa', size: 'M', on: 'mohammed', z: 1.5, dx: -230 },   // Argon r5: the boy in the foreground, the father crossing behind (hand-set: the M zoom of a seated child would lose the walk)   // recal h 1.75: actors are true size now, W shows the whole patio with tiny figures
     b028: { shot: 'ch', size: 'M', on: 'father', z: 1.6, dx: 170, dy: -25, insAt: .55 },
-    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.9, dy: -50 },
+    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.6, dy: -50 },
     b030: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.6, dx: -150, dy: -40 },
     b032: { shot: 'ch', size: 'M', on: 'father', z: 1.45, dx: 220, dy: -55 },   // both of them in the master, crown inside the frame
     b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dy: -50 },
     b034: { shot: 'ch', size: 'M', on: 'father', z: 1.8, dy: -40 },
     b035: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.35, dy: -40 },   // r16: the W master read as a scale pop with floating actors → same M grammar as its neighbours
     b036: { shot: 'ch', size: 'M', on: 'father', z: 1.4, dx: 140, dy: -80 },
-    b037: { shot: 'ch', size: 'CU', on: 'father', z: 2.4, dy: -75, dx: 40 },   // r16: a true close-up (the boy's head left the frame)
+    b037: { shot: 'ch', size: 'CU', on: 'father', z: 2.0, dy: -75, dx: 130 },   // r16: a true close-up (the boy's head left the frame)
   },
 });

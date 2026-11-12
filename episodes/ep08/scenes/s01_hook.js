@@ -6,7 +6,7 @@ import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
-import { bracelets } from './s17_retour.js';
+import { bangles } from '../lib/fix8_R17A.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
 
 // G1: both palms flat in front of the face (fingers over the eyes), wrists clear of the cheeks; palmsOnFace put them on the ears/jaw
@@ -37,13 +37,24 @@ const pa = staged('patio_matin', {
     PO.reach(fa, 'R', p, { grip: .08, pole: [-.25, -.5, -.15] }); st.offer = p.clone().add(V(0, .03, 0));
     fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true);   // supinate: the palm turns to the sky
     PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });   // Argon r6: bracelets clipped the curled thumb/fingers → flat open palm
-    const br = st.br ||= bracelets(S3), h = fa.B.handR;   // the sun and moon bracelets lying on his palm
+    const br = st.br ||= bangles(S3), h = fa.B.handR;   // the sun and moon bracelets lying on his palm
     br.visible = true; h.updateWorldMatrix(true, false);
-    br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .05 * k, 0))); br.scale.setScalar(1.35 * Math.max(.75, k))   /* Argon r5: invisible at patio scale */; br.updateMatrixWorld(true);
+    br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.15 * Math.max(.75, k))   /* Argon r5: invisible at patio scale */; br.updateMatrixWorld(true);
+    // r17: the father is alive: weight shift, a slight torso turn toward the lens, head nods, far arm gesturing/resting at his belt
+    {
+      const w = Math.sin(t * .9), n = Math.sin(t * 1.7 + 1);
+      fa.B.chest.rotation.y += .22 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
+      fa.B.head.rotation.x += .05 * n + .04; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
+      PO.reach(fa, 'L', front(fa, 'chest', .2 * k, -.22 * k, -.12 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.5, -.6, -.2] });
+      PO.reach(fa, 'R', p.clone(), { grip: .08, pole: [-.25, -.5, -.15] });
+      fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true); PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });
+      st.offer = p.clone().add(V(0, .03, 0));
+    }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
     if (laugh > 0) { zo.B.chest.rotation.x += .07 * Math.sin(t * 14) * laugh; zo.B.neck.rotation.x -= .12 * laugh; zo.B.chest.updateWorldMatrix(false, true); }
     // Argon r5: she stood in a stiff A-pose → her hands meet in front of her waist, then rise to her breastbone as she laughs
     const kz = zo.group.scale.y / 1.6, see = sm(B(0)[0] + .2 * (B(0)[1] - B(0)[0]), B(0)[0] + .45 * (B(0)[1] - B(0)[0]), t);
+    zo.B.chest.rotation.z += .02 * Math.sin(t * 1.1); zo.B.head.rotation.z += .05 * (.4 + laugh); zo.B.head.rotation.y += .06 * Math.sin(t * .8); zo.B.chest.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) {
       const early = sm(.3, B(0)[0] + .65, t) * (1 - see);   // b001: a small response before the laugh, preserving the opening offer
       PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.09 : .09) * kz, (.08 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.045 : .045) * kz, -.17 * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
@@ -57,7 +68,7 @@ const MATTRESS = [[1055, 588], [1412, 588], [1420, 772], [1148, 748]];
 const CHEST = [[1418, 585], [1830, 585], [1830, 890], [1418, 890]];
 // b002: floor kneel, head bowed into her hands. Mohammed lies along the right divan, skull on the back cushions.
 const nu = staged('chambre_nuit', {
-  zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .22, hip: .30, spread: .065, hands: false },
+  zoubida: { at: [820, 880], face: 'cam', yaw: 1.15, pose: 'kneel', o: { grounded: true, lean: .22, hip: .30, spread: .065, hands: false },
     seed: 7, hands: false, talk: 0, lids: .95 },
   mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly', pillow: .1, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
 }, {
@@ -69,6 +80,9 @@ const nu = staged('chambre_nuit', {
       st.pillow2 ||= PR.cushion({ w: .4, d: .3, h: .07, col: 0x586b8c });
       const q = mo.B.head.localToWorld(new THREE.Vector3(0, .0, -.09));
       S3.prop(st.pillow2, q.x, .35 + .035 - .004, q.z, mo.group.rotation.y); st.pillow2.visible = true; }
+    mo.B.head.scale.setScalar(.86); mo.B.head.updateWorldMatrix(false, true);   // r17: child head proportion
+    for (const [sd, sg] of [['L', 1], ['R', -1]]) { mo.B['upperArm' + sd]?.rotation && (mo.B['upperArm' + sd].rotation.z += sg * .12); }
+    mo.group.updateMatrixWorld(true);
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
     mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);

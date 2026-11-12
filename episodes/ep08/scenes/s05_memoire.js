@@ -3,6 +3,7 @@
 // b018 the bedroom (chambre_jour, the s07 lunch places): the father, chest out, tells his wife what the teacher said.
 // b019 CU on the father quoting, chin up, an open palm offered on "savant". b020 painting p05_savant. b021 CU Mohammed: a slow,
 // firm head shake, leaning back from the idea.
+import * as THREE from 'three';
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { hideHem, holdBoard, lapRest, plantKneel, reachSafe, staged, syncSeat } from '../lib/fix8a.js';
@@ -44,7 +45,7 @@ function life(a, t, seed = 0) {
 }
 
 const cl = staged('mausolee', {
-  fqih: { ...CLASS.fqih, lids: .22, talk: .4 },
+  fqih: { ...CLASS.fqih, lids: .34, talk: .4 },
   mohammed: { ...CLASS.mohammed, lids: .35, mutter: t => win(1, 0, 1, t), lookMax: .28,
     look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return st.slate; } },
 }, {
@@ -53,8 +54,8 @@ const cl = staged('mausolee', {
     life(fq, t, 2); life(mo, t, 5);
     // b016 the kind master, including the pre-roll: head tilted, a slow nod, shoulders uneven, a forward lean
     const kind = t < B(1)[0] ? 1 : 0;
-    fq.B.head.rotation.z += (.1 + .035 * Math.sin(t * .7)) * kind;
-    fq.B.neck.rotation.x += (.08 + .05 * Math.sin(t * 1.3)) * kind;
+    fq.B.head.rotation.z += (.17 + .035 * Math.sin(t * .7)) * kind;
+    fq.B.neck.rotation.x += (.12 + .06 * Math.sin(t * 1.3)) * kind;
     fq.B.chest.rotation.x += .07 * kind;
     fq.B.upperArmL.rotation.z += .1 * kind;
     fq.B.upperArmR.rotation.z -= .16 * kind;
@@ -62,7 +63,13 @@ const cl = staged('mausolee', {
     fq.B.spine.updateWorldMatrix(false, true);
     // b017 reciting from the slate, rocking; the rock quickens a little as the lines multiply
     rock(mo, t, .09 + .03 * win(1, .45, 1, t), 3.2 + .8 * win(1, .45, 1, t));
-    st.lh ||= S3.prop(PR.louha({ col: 0x8a5a2c }), 0, 0, 0);
+    if (!st.lh) {
+      st.lh = S3.prop(PR.louha({ col: 0xc99a58 }), 0, 0, 0);   // r17: pale wood board with dark lines of writing so it reads as a slate
+      for (let i = 0; i < 6; i++) {
+        const bar = new THREE.Mesh(new THREE.BoxGeometry(i % 2 ? .15 : .19, .012, .004), PR.toon(0x2a1a10));
+        bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
+      }
+    }
     st.slate = lapLouha(mo, st.lh);
   },
 });
@@ -80,8 +87,8 @@ const ch = staged('chambre_jour', {
   zoubida: { ...LUNCH.zoubida, at: [1300, 925], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true },
     look: (t, st) => st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father', lookMax: 1.2 },   // G1: she looked at the floor
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
-  mohammed: { ...LUNCH.mohammed, at: [900, 1010], face: 'cam', yaw: .5, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
-    look: (t, st, S3) => t >= B(5)[0] - .2 ? S3.cam.position.clone() : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.14, 0)) : 'father' },   // G1: eyes on his face, not the ceiling above the turban
+  mohammed: { ...LUNCH.mohammed, at: [920, 965], face: 'cam', yaw: .45, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
+    look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.05, 0)) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.14, 0)) : 'father' },   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
   act(lt, t, S, st) {
@@ -95,7 +102,7 @@ const ch = staged('chambre_jour', {
     zo.B.spine.updateWorldMatrix(false, true);
     // b021 Mohammed: leans back from the idea and shakes his head, slow and firm
     const no = t >= B(5)[0] - .15 ? 1 : 0, u = Math.max(0, t - B(5)[0]);
-    mo.B.spine.rotation.x -= .24 * no; mo.B.chest.rotation.x -= .14 * no;
+    mo.B.spine.rotation.x -= .36 * no; mo.B.chest.rotation.x -= .2 * no;
     mo.B.head.rotation.y += .34 * no * Math.sin(u * 5.2) * Math.exp(-u * .35);
     mo.B.neck.rotation.x += .05 * no;
     mo.B.spine.updateWorldMatrix(false, true);
@@ -146,7 +153,7 @@ const scene = beatScene(ID, {
     b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.5, dy: 70 },
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
     b019: { shot: 'ch', size: 'CU', on: 'father', z: 1.9, dx: -20, dy: 6 },
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.4, dx: 0, dy: -50 },
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.3, dx: -10, dy: -45 },
     b020: { shot: 'p05' },
   },
 });
