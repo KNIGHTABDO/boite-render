@@ -97,9 +97,9 @@ const ch = staged('chambre_jour', {
     {
       const hsh = n => { const x = Math.sin(n * 127.1) * 43758.5; return x - Math.floor(x); };
       const homes = st.fh ||= flies.children.map((_, i) => { const fx = 340 + hsh(i + 1) * 1240, fy = 780 + hsh(i + 5) * 200, py = 190 + hsh(i + 9) * 290; return S3.floorAt(fx, fy).setY(heightAt(S3, fx, fy, py)); });
-      const wf = S3.floorAt(1450, 760), wd = wf.clone().setY(heightAt(S3, 1450, 760, 450)), t0 = B(5)[0] + 1.2;
+      const wf = S3.floorAt(1450, 760), wd = wf.clone().setY(heightAt(S3, 1450, 760, 450)), t0 = B(5)[0] + 4.3;
       flies.children.forEach((f, i) => {
-        const out = Math.min(1, Math.max(0, (t - t0 - hsh(i + 17) * 1.6) / 1.2)), e = out * out * (3 - 2 * out), j = Math.floor(t * 8 + i * .37), sp = .035 * k * (1 - e) + .01 * k;
+        const out = Math.min(1, Math.max(0, (t - t0 - hsh(i + 17) * 1.2) / 1.8)), e = out * out * (3 - 2 * out), j = Math.floor(t * 8 + i * .37), sp = .035 * k * (1 - e) + .01 * k;
         f.visible = out < .98; f.scale.setScalar(k);
         f.position.copy(homes[i]).lerp(wd, e).add(V(.07 * k * Math.sin(t * .8 + i * 1.7) * (1 - e) + sp * (hsh(i + j * 3.1) - .5) * 2, .05 * k * Math.sin(t * 1.1 + i * 2.3) * (1 - e) + sp * (hsh(i * 2.3 + j) - .5) * 2, sp * (hsh(i * 5.7 + j * 1.3) - .5) * 2));
         f.children[1].rotation.z = .5 * Math.sin(t * 60 + i); f.children[2].rotation.z = -.5 * Math.sin(t * 60 + i);
