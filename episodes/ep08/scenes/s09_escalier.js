@@ -18,7 +18,7 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 
 // Absolute support heights: autostage places the group on tread 2, but PO.stool solves in WORLD metres.
 // Shorten the ankle reach for this child's legs: .24 gives ~90° knees and level thighs; .087 puts the soles on .40.
-export const SEAT = { tread: 3, back: .1, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
+export const SEAT = { tread: 3, back: .2, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
   o: { seat: .6, floor: .4, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
 const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
   mutter: t => sm(B(9)[0], B(9)[0] + .25, t),
@@ -33,8 +33,9 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     // b052's cast is the three insert images (mother, father, neighbour), not people on the stair.
     st.actcheck = { insert: t >= B(8)[0] && t < B(8)[1] + .8 };
     castScale(mo);
+    // R23C: pelvis moved .1 m further back (SEAT.back .2) so the seat rests behind tread 3's nosing; longer reach puts soles on tread 2.
     // Stool planted the knees on tread 3 and left the pelvis at tread 4. Sit the capsule on tread 3.
-    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
+    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor, 1.15);
     const think = win(0, .4, 1.1, t), chin = win(1, .05, .95, t);
     // Hold the deflated pose through b050's tail and the pause before b051.
     const drop = sm(B(6)[0], B(6)[0] + .65, t) * (1 - sm(B(7)[0], B(7)[0] + .6, t));

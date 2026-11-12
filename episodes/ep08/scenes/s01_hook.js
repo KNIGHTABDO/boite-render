@@ -104,7 +104,7 @@ const nu = staged('chambre_nuit', {
 });
 
 // r23 stop rule: b002 recut as painting p41_pleurs_nuit (3D night kneel failed 3+ rounds); slow push toward the mother.
-const p41 = { async load() { await loadStill('p41_pleurs_nuit'); }, fn(lt, u) { still('p41_pleurs_nuit', u, [.5, .5, 1, .4, .48, 1.08]); return { vignette: .55, paper: .2 }; } };
+const p41 = { async load() { await loadStill('p41_pleurs_nuit'); }, fn(lt, u) { still('p41_pleurs_nuit', u, [.5, .5, 1.07, .42, .48, 1.15]); return { vignette: .55, paper: .2 }; } };
 
 export default beatScene(ID, {
   shots: { pa, nu, p41 },
