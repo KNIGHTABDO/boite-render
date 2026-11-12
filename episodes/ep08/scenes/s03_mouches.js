@@ -17,7 +17,7 @@ const beams = [980, 700, 2.55];   // Argon r6: a near, high target cranked the h
 const ch = staged('chambre_jour', {
   zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: t => IN(1, t) || IN(4, t) ? .32 : IN(5, t) ? .3 : .7,   // up-looks: eyes + head, a chest arch does the rest
     lids: t => IN(1, t) || IN(4, t) ? .9 : 0,   // Argon r5: squint up at the beams (r7: this sat inside a comment → never ran)
-    walk: { to: [280, 960], t0: B(3)[0] - 2.4, t1: B(3)[0] - .2 }, // on the doorway threshold before the talisman
+    walk: { to: [380, 950], t0: B(3)[0] - 2.4, t1: B(3)[0] - .2 }, // on the doorway threshold before the talisman
     look: t => IN(1, t) ? beams : IN(4, t) ? beams : IN(3, t) && t < B(3)[0] + .5 * (B(3)[1] - B(3)[0]) ? [280, 960, 1.72] : IN(5, t) ? [1450, 760, 1.5] : null },
 }, {
   act(lt, t, S, st, S3) {
@@ -26,7 +26,7 @@ const ch = staged('chambre_jour', {
     if (t >= B(5)[0] - 1.6) {
       rest(zo.B); walk(zo, S3.floorAt(440, 900), S3.floorAt(1060, 950), B(5)[0] - 1.6, B(5)[0] + .15, t);
     } else if (t >= B(4)[0] - .4) {
-      rest(zo.B); walk(zo, S3.floorAt(280, 960), S3.floorAt(440, 900), B(4)[0] - .4, B(4)[0] + 1.3, t);
+      rest(zo.B); walk(zo, S3.floorAt(380, 950), S3.floorAt(440, 900), B(4)[0] - .4, B(4)[0] + 1.3, t);
     }
     const turn = sm(B(4)[0] - 1.4, B(4)[0] + .4, t);
     if (turn > 0 && t < B(5)[0] - .2) {
@@ -54,7 +54,7 @@ const ch = staged('chambre_jour', {
     if (IN(2, t)) {   // b006 "total war": Argon r5 found a mannequin → fists on her hips, elbows out, chin up, eyes sweeping the room
       const w = sm(B(2)[0] - .1, B(2)[0] + .6, t) * (1 - sm(B(2)[1] - .1, B(2)[1] + .4, t));
       zo.B.neck.rotation.x -= .08 * w; zo.B.head.rotation.y += .25 * w * Math.sin((t - B(2)[0]) * 1.1); zo.B.chest.rotation.x -= .05 * w; zo.B.spine.updateWorldMatrix(false, true);
-      for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'root', .07 * k, (s === 'L' ? -.3 : .3) * k, .12 * k).lerp(front(zo, 'root', .12 * k, (s === 'L' ? -.29 : .29) * k, 0), 1 - w), { grip: .05, pole: s === 'L' ? [.7, 0, -.3] : [-.7, 0, -.3] }); PO.fingers(zo, s, .6 * w, { thumb: .5 }); }
+      for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'root', .07 * k, (s === 'L' ? -.35 : .35) * k, .12 * k).lerp(front(zo, 'root', .12 * k, (s === 'L' ? -.29 : .29) * k, 0), 1 - w), { grip: .05, pole: s === 'L' ? [.9, 0, -.3] : [-.9, 0, -.3] }); PO.fingers(zo, s, .6 * w, { thumb: .5 }); }
     }
     if (IN(3, t)) {
       const D = B(3)[1] - B(3)[0], up = sm(B(3)[0] - .1, B(3)[0] + .5, t)
@@ -62,7 +62,8 @@ const ch = staged('chambre_jour', {
       const blow = sm(B(3)[0] + .68 * D, B(3)[0] + .68 * D + .5, t);
       const lintel = S3.floorAt(280, 960).setY(heightAt(S3, 280, 960, 125));
       const sh = at(zo, 'upperArmR'), len = sh.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
-      lintel.y = Math.min(lintel.y, sh.y + len * .97);
+      // r18: she stands a step off the doorway (not under the lintel) so the arm reaches out and up in front of her, not folded behind her head
+      { const d = lintel.clone().sub(sh); if (d.length() > len * .93) lintel.copy(sh).addScaledVector(d.normalize(), len * .93); }
       // 3/4 to the lens: blend from the lens toward the doorway (back to camera failed the acting gate)
       const yd = yawTo(zo.group.position, S3.floorAt(330, 880)), yc = yawTo(zo.group.position, S3.cam.position);
       const yaw = yc + Math.atan2(Math.sin(yd - yc), Math.cos(yd - yc)) * .2;   // r17: more to the lens so the raised arm stays on the door side, off her face
@@ -128,7 +129,7 @@ const ch = staged('chambre_jour', {
       PO.reach(zo, 'L', target(p), { grip: .015, pole: [.5, .1, -.15] });
       PO.reach(zo, 'R', front(zo, 'root', .1 * k, .3 * k, .16 * k - .1 * k * drive + .02 * k * Math.sin(t * 2)), { grip: .03, pole: [-.7, 0, -.3] });   // r17: loose counter-swing
       PO.fingers(zo, 'R', .35, { thumb: .3 });
-      PO.fingers(zo, 'L', .9, { thumb: .85 });
+      PO.fingers(zo, 'L', 1, { thumb: .95 });
       const h = PO.handPts(zo, 'L'); cloth.position.copy(h.palm);
       const outward = front(zo, 'chest', 0, -1, 0).sub(at(zo, 'chest'));
       const velocity = target(p).sub(target(prev));
@@ -137,7 +138,7 @@ const ch = staged('chambre_jour', {
       const trail = V(0, -1, 0).addScaledVector(fw, .25).addScaledVector(velocity, done ? 0 : -.8);
       trail.addScaledVector(outward, Math.max(0, (done ? .15 : .35) - trail.dot(outward)));
       cloth.quaternion.setFromUnitVectors(V(0, -1, 0), trail.normalize());
-      cloth.scale.setScalar(k); cloth.updateMatrixWorld(true); wave(cloth.children[0], t, done ? .12 : drive);
+      cloth.scale.setScalar(k); cloth.updateMatrixWorld(true); wave(cloth.children[0], t, done ? .35 : .25 + drive);
     }
     const sole = PO.lowestOf(zo, ['footL', 'footR']);
     if (Number.isFinite(sole)) { zo.group.position.y -= sole; zo.group.updateMatrixWorld(true); }
@@ -146,7 +147,7 @@ const ch = staged('chambre_jour', {
 
 /** a striped cotton dish cloth hanging from the grip point (local −y): one subdivided sheet bent each frame by wave() */
 function dishCloth() {
-  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.17, .3, 8, 18); geo.translate(0, -.15, 0);
+  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.24, .42, 8, 18); geo.translate(0, -.21, 0);
   geo.userData.rest = geo.attributes.position.array.slice();
   const N = 32, px = new Uint8Array(4 * N * N);   // cream cotton with two indigo bands (a Moroccan kitchen towel)
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const band = (y > 4 && y < 7) || (y > 24 && y < 27), o = 4 * (y * N + x); px.set(band ? [52, 74, 130, 255] : [226, 214, 186, 255], o); }
@@ -157,7 +158,7 @@ function dishCloth() {
 /** travelling wave down the cloth: the free end lags and flaps (amplitude grows with the distance from the grip and the whip speed) */
 function wave(m, t, e = 1) {
   const p = m.geometry.attributes.position, r = m.geometry.userData.rest, A = 1.3 + 1.3 * e;
-  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .3, w = .3 + .7 * Math.min(1, d * 2.2);   // pinched at the grip, gathered folds across the width
+  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .42, w = .3 + .7 * Math.min(1, d * 2.2);   // pinched at the grip, gathered folds across the width
     p.setXYZ(i, x * w * (1 - .25 * d) + .05 * d * d * Math.sin(t * 9 - 3 * d) * A, r[i * 3 + 1] * (1 - .3 * d) - .04 * d * d,
       .05 * A * d * d * Math.sin(t * 9 - 4 * d + 1) + .028 * d * Math.sin(x * 55 + t * 3) + .7 * x * d * Math.sin(t * 4 + d * 3)); }
   p.needsUpdate = true; m.geometry.computeVertexNormals();
