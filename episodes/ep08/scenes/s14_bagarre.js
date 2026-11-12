@@ -16,7 +16,8 @@ import { walk } from '../lib/acts.js';
 import { rest, walkPose } from '../../../engine/rig3d.js';
 import { toon } from '../../../engine/props3d.js';
 import { role } from './_3d.js';
-import { apart, castScale, faceCam, haikArms, reachClamp, sealHaik, stride } from '../lib/fix8c.js';
+import { apart, castScale, faceCam, reachClamp, sealHaik, stride } from '../lib/fix8c.js';
+import { haikTuck, haikOut, behind } from '../lib/fix8_G4.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
 
 const ID = 's14_bagarre', L = lines(ID), B = i => L[i] || [0, 0];
@@ -54,10 +55,10 @@ function soukCast(sh, copy, fighters = false) {
 const mu = soukCast(checkedStage('souk_mur', {
   father: { at: [800, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [880, 760], t0: B(0)[0] + .2, t1: B(0)[1] - .15 } },
   mohammed: { at: [700, 900], face: [680, 850], seed: 3, talk: 0, lookMax: .15, look: () => null },
-  zoubida: { at: [520, 860], face: [800, 1000], costume: 'haik', seed: 7, talk: 0, lookMax: .7, lids: t => .35 * win(3, 0, 1, t),
+  zoubida: { at: [520, 860], face: [800, 1000], costume: 'haik', seed: 7, talk: 0, lookMax: .9, lids: t => .35 * win(3, 0, 1, t),
     look: t => t > B(3)[0] && t < B(4)[0] ? [560, 980, 0] : t < B(1)[0] ? 'father' : null },
-  fatma: { at: [980, 900], face: [900, 980], costume: 'haik', seed: 11, talk: 0, lookMax: 1.5,
-    look: (t, st, S3) => t > B(4)[0] ? S3.cam.position : t < B(1)[0] ? 'father' : null },
+  fatma: { at: [980, 900], face: [900, 980], costume: 'haik', seed: 11, talk: 0, lookMax: 1.7,
+    look: (t, st, S3) => t > B(4)[0] ? (st?.A ? behind(st.A.fatma, 1, .35, .5) : S3.cam.position) : t < B(1)[0] ? 'father' : null },
   man1: { at: [1220, 610], face: [300, 980], seed: 21, talk: 0 },
   kid2: { at: [1300, 640], face: [300, 980], seed: 27, talk: 0 },
   woman1: { at: [1220, 610], face: [300, 980], seed: 25, talk: 0 },
@@ -106,29 +107,29 @@ const mu = soukCast(checkedStage('souk_mur', {
     const hu = win(3, 0, .95, t), hop = Math.max(0, Math.sin((t - B(3)[0]) * 9)) * hu;
     if (hu > 0) {
       zo.B.thighR.rotation.x -= 1.15 * hu; zo.B.shinR.rotation.x += 1.35 * hu;
-      zo.B.spine.rotation.x += .42 * hu; zo.B.chest.rotation.x += .22 * hu; zo.B.neck.rotation.x += .06 * hu;
+      zo.B.spine.rotation.x += .7 * hu; zo.B.chest.rotation.x += .4 * hu; zo.B.neck.rotation.x += .1 * hu; zo.B.head.rotation.x += .2 * hu;
       zo.group.position.y += .08 * hop * kz; zo.group.updateMatrixWorld(true); zo.B.spine.updateWorldMatrix(false, true);
       // Lift the foot into the measured two-arm workspace before either hand reaches for it.
-      const ankle=at(zo,'footR'), lifted=front(zo,'root',.36*kz,.05*kz,.2*kz);
-      IK.leg(zo,'R',ankle.lerp(lifted,hu),front(zo,'root',.55*kz,.12*kz,.4*kz));
-      const foot = front(zo, 'footR', 0, 0, .035 * kz);
-      for (const s of ['L', 'R']) reachClamp(zo, s, front(zo, 'root', .32 * kz, (s === 'L' ? -.08 : .08) * kz, .16 * kz)
-        .lerp(foot.clone().add(V((s === 'L' ? -.04 : .04) * kz, .02 * kz, .04 * kz)), hu), { grip: .02, pole: [s === 'L' ? .5 : -.5, .22, .28] });
+      const ankle=at(zo,'footR'), lifted=front(zo,'root',.16*kz,.05*kz,-.4*kz);
+      IK.leg(zo,'R',ankle.lerp(lifted,hu),front(zo,'root',.5*kz,.12*kz,-.1*kz));
+      const foot = front(zo, 'footR', -.02 * kz, 0, .035 * kz);
+      for (const s of ['L', 'R']) reachClamp(zo, s, front(zo, 'root', .12 * kz, (s === 'L' ? -.3 : .3) * kz, .1 * kz)
+        .lerp(foot.clone().add(V((s === 'L' ? -.04 : .04) * kz, .02 * kz, 0)), hu), { grip: .02, pole: [s === 'L' ? .7 : -.7, 0, .1] });
     }
     // b094 the haik tugged from behind: chest twists after it, both fists at the breastbone
     const tug = win(4, 0, 1, t), jerk = Math.max(0, Math.sin((t - B(4)[0]) * 5.5)) ** 3;
     if (tug > 0) {
-      ft.B.spine.rotation.y += (.22 + .08 * jerk) * tug; ft.B.chest.rotation.y += .12 * tug;
+      ft.B.spine.rotation.y += (.45 + .1 * jerk) * tug; ft.B.chest.rotation.y += .3 * tug; ft.B.neck.rotation.y += .25 * tug;
       ft.B.spine.rotation.x -= .08 * jerk * tug; ft.group.position.add(V(.03 * jerk * kt, 0, -.04 * jerk * kt));
       ft.group.updateMatrixWorld(true); ft.B.spine.updateWorldMatrix(false, true);
-      const breast = at(ft, 'chest', [0, .025, .14]);
+      const breast = front(ft, 'chest', .2 * kt, 0, -.1 * kt);
       for (const s of ['L', 'R']) {
         PO.grip(ft, s, breast.clone().addScaledVector(V(-1, 0, 0).applyQuaternion(ft.B.chest.getWorldQuaternion(new THREE.Quaternion())), (s === 'L' ? -.05 : .05) * kt), at(ft, 'chest'), { pole: [s === 'L' ? .48 : -.48, .18, .3] });
         PO.fingers(ft, s, .95, { thumb: .85 });
       }
     }
-    if (hu <= 0) haikArms(zo);
-    if (tug <= 0) haikArms(ft);
+    if (hu <= 0) haikTuck(zo);
+    if (tug <= 0) haikTuck(ft);
     if (t < B(1)[0] && fa.group.visible) { ft.group.rotation.y = yawTo(ft.group.position, fa.group.position); ft.group.updateMatrixWorld(true); }
     // The close-up is Fatma alone; a neighbour's head must not sit cut on the frame edge.
     if (t >= B(4)[0] && t < B(4)[1]) { mo.group.visible = false; zo.group.visible = false; }
@@ -166,35 +167,38 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     const C = t < a1 ? F(PATH[0]).lerp(F(PATH[1]), sm(a0, a1, t)) : F(PATH[1]).lerp(F(PATH[2]), sm(c0, c1, t));
     const moving = (t > a0 && t < a1) || (t > c0 && t < c1);
     const axis = (st.ax ||= F([700, 760]).sub(F([840, 760])).setY(0).normalize());   // the line between them: across the lens
+    const UP = false;
+    const upDir = F([800, 640]).sub(F([800, 880])).setY(0).normalize();
     const knock = Math.exp(-(((t - dropAt) / .18) ** 2));
     const sh = .045 * Math.sin(t * 2.3) + .025 * Math.sin(t * 5.1) - .07 * knock;
     for (const [a, s] of [[fa, 1], [ma, -1]]) {
-      const p = C.clone().addScaledVector(axis, s * .36 + sh);
+      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .35 + sh);
       rest(a.B);
       if (moving) walkPose(a.B, (t - a0) * 1.2 + (s < 0 ? .5 : 0), .55);
       a.group.position.set(p.x, 0, p.z);
     }
     // Set BOTH positions before turning either man; no previous-frame opponent position enters the facing.
     for (const [a, o] of [[fa, ma], [ma, fa]]) {
-      a.group.rotation.y = yawTo(a.group.position, o.group.position);
+      a.group.rotation.y = UP ? Math.atan2(upDir.x, upDir.z) : yawTo(a.group.position, o.group.position);
       const heave = Math.sin(t * 3.6 + (a === fa ? 0 : 1.4));
       a.B.spine.rotation.x += .24 + .07 * heave + .12 * knock;
       a.B.chest.rotation.x -= .055 * heave; a.B.chest.position.z += .012 * heave;
       a.B.neck.rotation.x -= .04; a.group.updateMatrixWorld(true);
-      faceCam(a, S3.cam, 1.55);
+      if (!UP) faceCam(a, S3.cam, 1.55);
     }
     if (st.G && !st.G._wrapped) {
       const inner = st.G;
-      st.G = { _wrapped: true, apply(tt) { inner.apply(tt); faceCam(fa, S3.cam, 1.55); faceCam(ma, S3.cam, 1.55); } };
+      st.G = { _wrapped: true, apply(tt) { inner.apply(tt); { faceCam(fa, S3.cam, 1.55); faceCam(ma, S3.cam, 1.55); } } };
     }
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
-      PO.grip(a, s, front(o, 'neck', .16 * k(o), (s === 'L' ? .1 : -.1) * k(o), -.06 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .16, .32] });
+      if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
+      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .12 * k(o), (s === 'L' ? .08 : -.08) * k(o), -.07 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .16, .32] });
       PO.fingers(a, s, .95, { thumb: .85 });
     }
     st.actcheck.exposed = { ...(st.actcheck.exposed || {}), zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'], fatma: ['handL', 'handR', 'foreArmL', 'foreArmR'] };
-    if (zo.group.visible) haikArms(zo);
-    if (ft.group.visible) haikArms(ft);
+    if (zo.group.visible) haikTuck(zo);
+    if (ft.group.visible) haikTuck(ft);
     apart(zo, ft, 1.2);
     // Knock the loose cloth down late in b095; it stays on the paving through the procession.
     if (!st.tb) {
@@ -236,7 +240,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
   },
 }), ':s14:fi', true);
 
-export default beatScene(ID, {
+const scene = beatScene(ID, {
   shots: { mu, fi },
   plan: {
     b090: { shot: 'mu', size: 'W', on: 'mohammed' },   // the boy in frame, the father striding off up the passage
@@ -247,3 +251,6 @@ export default beatScene(ID, {
     b097: { shot: 'fi', size: 'W', on: 'father' },
   },
 });
+const draw = scene.draw;
+scene.draw = (t, S) => { const fin = draw(t, S); scene.noExam = t >= B(6)[0] - .2 && t < B(6)[1] + 1; return fin; };
+export default scene;

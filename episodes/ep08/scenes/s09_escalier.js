@@ -14,12 +14,12 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 
 // Absolute support heights: autostage places the group on tread 2, but PO.stool solves in WORLD metres.
 // Shorten the ankle reach for this child's legs: .24 gives ~90° knees and level thighs; .087 puts the soles on .40.
-export const SEAT = { tread: 3, back: .06, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
-  o: { seat: .6, floor: .4, fz: .24, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
+export const SEAT = { tread: 3, back: .1, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
+  o: { seat: .6, floor: .4, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
 const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
   mutter: t => sm(B(9)[0], B(9)[0] + .25, t),
   look: (t, st) => t >= B(9)[0]
-    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, .65).addScaledVector(st.ST.side, -1.5).add(V(0, .65, 0))
+    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, 1.4).addScaledVector(st.ST.side, -.2).add(V(0, 1.1, 0))
     : win(0, .4, 1.1, t) > .2 ? front(st.A.mohammed, 'head', .55, 0, -.4) : null,
 } }, {
   stairs: ESCALIER,
@@ -30,11 +30,11 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     st.actcheck = { insert: t >= B(8)[0] && t < B(8)[1] + .8 };
     castScale(mo);
     // Stool planted the knees on tread 3 and left the pelvis at tread 4. Sit the capsule on tread 3.
-    sitStep(mo, SEAT.o.seat, SEAT.o.floor);
+    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
     const think = win(0, .4, 1.1, t), chin = win(1, .05, .95, t);
     // Hold the deflated pose through b050's tail and the pause before b051.
     const drop = sm(B(6)[0], B(6)[0] + .65, t) * (1 - sm(B(7)[0], B(7)[0] + .6, t));
-    const fist = sm(B(7)[0] + .48 * (B(7)[1] - B(7)[0]), B(7)[0] + .53 * (B(7)[1] - B(7)[0]), t)
+    const fist = sm(B(7)[0] + .1 * (B(7)[1] - B(7)[0]), B(7)[0] + .2 * (B(7)[1] - B(7)[0]), t)
       * (1 - sm(B(8)[0], B(8)[0] + .4, t));
     const dream = sm(B(9)[0] - .35, B(9)[0] + .1, t), settle = sm(0, 2.4, t);
     b.spine.rotation.x += .07 * settle + .08 * think + .16 * drop + .1 * fist;
@@ -92,7 +92,7 @@ export default beatScene(ID, {
     b050: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.55, dy: 60 },
     b051: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 50 },
     // Keep the feet visible beneath the list; omit the prayer painting with the extra painted digit.
-    b052: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.7, dy: 130, noIns: true, segs: [
+    b052: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.55, dy: 80, noIns: true, segs: [
       [(3.22 - .08) / (B(8)[1] - B(8)[0]), 'i_bassine_pieds'],
       [(3.22 + .92) / (B(8)[1] - B(8)[0]), 'esc'],
       [(10.01 - .08) / (B(8)[1] - B(8)[0]), 'i_doigt_levres'],

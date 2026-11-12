@@ -32,7 +32,7 @@ const ch = staged('chambre_jour', {
     const fidget = sm(B(2)[0] - 0.08, B(2)[0] + 0.2, t) * (1 - sm(B(3)[0] + 0.05, B(3)[0] + 0.5, t));
     const whisper = ramp(B(3)[0], B(3)[1], t);
     // Eyes stay lowered into the start of the whisper, then come up through "fleurs" (still a little shy).
-    const rise = sm(B(3)[0] + 0.2, f(3, 0.55), t);
+    const rise = sm(B(3)[0] + 0.05, f(3, 0.3), t);
     const down = sm(B(2)[0] - 0.05, B(2)[0] + 0.22, t) * (1 - rise);
     const laugh = sm(B(4)[0] - 0.05, B(4)[0] + 0.28, t) * (1 - sm(B(4)[1] - 0.08, B(4)[1] + 0.28, t));
     const residue = sm(B(4)[0], B(4)[0] + 0.3, t) * (0.62 + 0.38 * (1 - sm(B(4)[1] + 0.2, B(5)[1], t)));
@@ -44,10 +44,10 @@ const ch = staged('chambre_jour', {
     sway(zo, t, 8.2, 0.046);
     sway(mo, t, 2.4, 0.028);
     // Listening lean grows through the search, the question leans further, the laugh rocks the torso back ~22°.
-    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.18 * lean - 0.4 * laugh - 0.16 * residue;
-    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.1 * lean - 0.05 * laugh;
-    zo.B.spine.rotation.x += 0.07 * listen * (1 - laugh) - 0.36 * laugh - 0.14 * residue;
-    zo.B.chest.rotation.x += 0.045 * Math.sin(t * 1.1 + 0.7) * listen - 0.05 * laugh;
+    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.3 * lean - 0.17 * laugh - 0.16 * residue;
+    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.07 * laugh;
+    zo.B.spine.rotation.x += 0.07 * listen * (1 - laugh) - 0.15 * laugh - 0.14 * residue;
+    zo.B.chest.rotation.x += 0.045 * Math.sin(t * 1.1 + 0.7) * listen - 0.07 * laugh;
     shrug(fa, t, 0, laugh);
     shrug(zo, t, 1.5, laugh);
     for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); fitKneel(a); }
@@ -72,9 +72,9 @@ const ch = staged('chambre_jour', {
       look(mo, aim, 0.9, { max: 0.22 + 0.5 * search * (1 - down) + 0.2 * rise });
     } else {
       // Eyes only: a small yaw, pitch and roll pinned so the head stays level and the lids do the scepticism.
-      const yaw = (0.5 - side) * 0.3;
-      mo.B.neck.rotation.set(0.015, yaw * 0.25, 0);
-      mo.B.head.rotation.set(0.02, yaw, 0);
+      const yaw = (0.5 - side) * 0.6;
+      mo.B.neck.rotation.set(-0.06, yaw * 0.25, 0);
+      mo.B.head.rotation.set(-0.08, yaw, 0);
       mo.B.head.updateWorldMatrix(false, true);
     }
     const boy = at(mo, 'head');
@@ -83,9 +83,9 @@ const ch = staged('chambre_jour', {
     look(fa, boy.clone().lerp(faUp, laugh), 0.85, { max: 0.4 });
     look(zo, boy.clone().lerp(zoUp, laugh), 0.85, { max: 0.38 });
     fa.B.head.rotation.z += 0.16 * lean + 0.08 * listen * (1 - lean);
-    fa.B.head.rotation.x -= 0.16 * laugh;
+    fa.B.head.rotation.x -= 0.3 * laugh;
     zo.B.head.rotation.z += 0.12 * Math.sin(t * 0.85 + 0.6) * listen + 0.08 * laugh;
-    zo.B.head.rotation.x -= 0.14 * laugh;
+    zo.B.head.rotation.x -= 0.28 * laugh;
     fa.B.neck.rotation.x -= 0.08 * laugh;
     zo.B.neck.rotation.x -= 0.07 * laugh;
 
@@ -147,9 +147,9 @@ function chestHand(a, s, t, ph, k) {
   const sign = s === 'L' ? 1 : -1;
   const w = Math.sin(t * 6.6 + ph), w2 = Math.sin(t * 3.4 + ph);
   return at(a, 'chest').clone()
-    .add(V(0, (0.02 + 0.07 * w2) * k, 0))
-    .addScaledVector(dirW(a, 0, 0, 1), (0.22 + 0.06 * w) * k)
-    .addScaledVector(dirW(a, -sign, 0, 0), (0.14 + 0.07 * w) * k);
+    .add(V(0, (-0.1 + 0.03 * w2) * k, 0))
+    .addScaledVector(dirW(a, 0, 0, 1), (0.2 + 0.03 * w) * k)
+    .addScaledVector(dirW(a, -sign, 0, 0), (0.07 + 0.03 * w) * k);
 }
 
 export default beatScene(ID, {
@@ -159,7 +159,7 @@ export default beatScene(ID, {
     // Plate heads sit near y 490–750. A wide M is clamped to the bottom of the plate, so the turban and the hands share the frame.
     b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -110, dy: 20 },
     // Father-son two-shot: far enough right to drop the empty door, tight enough that the mother's skirt stays outside.
-    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.85, dx: 20, dy: -8 },
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.95, dx: -30, dy: -8 },
     b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.14, dx: -100, dy: 36 },
     b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -100, dy: 28 },
     b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.08, dx: -20, dy: 180 },

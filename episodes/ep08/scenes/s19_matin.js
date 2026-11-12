@@ -5,13 +5,14 @@
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
+import { bareHead } from '../lib/fix8_g5.js';
 import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
 
 const ID = 's19_matin', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
-const BED = { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST }, seed: 3 };   // right divan, head on the back cushions
+const BED = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: .06, mattress: MATTRESS, avoid: CHEST }, seed: 3 };   // right divan, head on the back cushions
 const arms = (a, t, kind, u) => {   // asymmetric: one arm leads, the other stays lower, so she never holds a matched zombie pose
   const k = a.group.scale.y / 1.6;
   const lead = kind === 'chop' ? front(a, 'chest', .36 * k, -.2 * k, (-.18 + .05 * Math.sin(t * 4.5)) * k)
@@ -22,11 +23,19 @@ const arms = (a, t, kind, u) => {   // asymmetric: one arm leads, the other stay
   PO.fingers(a, 'L', .04, { spread: .4 }); PO.fingers(a, 'R', .04, { spread: .35 });
 };
 
+// Zoubida all gesture: both arms thrown wide and up, alternating, big amplitude (the 'arms' helper is the small version)
+const agitate = (a, t, u = 1) => {
+  const k = a.group.scale.y / 1.6, w = Math.sin(t * 4.2), v = Math.sin(t * 3.1 + 1.4);
+  const L = front(a, 'chest', (.30 + .08 * w) * k, -.40 * k, (.12 + .22 * (.5 + .5 * v)) * k), R = front(a, 'chest', (.26 - .06 * w) * k, .42 * k, (.30 + .20 * (.5 + .5 * w)) * k);
+  PO.reach(a, 'L', L.lerp(front(a, 'root', .14 * k, -.16 * k, 0), 1 - u), { grip: 0, pole: [.5, .1, .1] });
+  PO.reach(a, 'R', R.lerp(front(a, 'root', .12 * k, .16 * k, 0), 1 - u), { grip: 0, pole: [-.5, .1, .1] });
+  PO.fingers(a, 'L', .02, { spread: .6 }); PO.fingers(a, 'R', .02, { spread: .6 });
+};
 const ch1 = staged('chambre_jour', {
   mohammed: BED,
   // Beside the divan. The look target stays near his own eye height: aiming at the boy's low
   // skull spent the whole head turn on pitching down, so the face never came around.
-  father: { height: 1.76, at: [1040, 720], face: 'cam', yaw: -.4, pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
+  father: { height: 1.76, at: [1228, 742], face: 'cam', yaw: -.75, pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
     look: (t, st) => {
       const who = (IN(0, t) || IN(1, t)) ? st.A.mohammed : st.A.zoubida;
       const p = at(who, 'head').clone(), eye = at(st.A.father, 'head').y;
@@ -37,6 +46,7 @@ const ch1 = staged('chambre_jour', {
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
+    bareHead(st.A.father);
     if(!st.pillow) { st.pillow=PR.cushion({w:.38,d:.3,h:.08,col:0x647c7c}); const p=at(st.A.mohammed,'head',[0,.1,0]).setY(.26);S3.prop(st.pillow,p.x,p.y,p.z,st.A.mohammed.group.rotation.y); }
     const { father: fa, zoubida: zo, mohammed: mo } = st.A, kf = fa.group.scale.y / 1.6;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
@@ -61,17 +71,18 @@ const ch1 = staged('chambre_jour', {
 
 const ch2 = staged('chambre_jour', {
   mohammed: BED,
-  father: { height: 1.76, at: [700, 900], face: 'zoubida', yaw: .25, seed: 5, look: 'zoubida', lookMax: .7 },
-  zoubida: { at: [1040, 880], face: 'cam', yaw: .45, seed: 7, look: 'father', lookMax: .7 },
+  father: { height: 1.76, at: [560, 900], face: 'zoubida', yaw: .25, seed: 5, look: 'zoubida', lookMax: .7 },
+  zoubida: { at: [930, 880], face: 'cam', yaw: .45, seed: 7, look: 'father', lookMax: .7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
+    bareHead(st.A.father);
     if(!st.pillow) { st.pillow=PR.cushion({w:.38,d:.3,h:.08,col:0x647c7c}); const p=at(st.A.mohammed,'head',[0,.1,0]).setY(.26);S3.prop(st.pillow,p.x,p.y,p.z,st.A.mohammed.group.rotation.y); }
     st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const zo = st.A.zoubida;
     const fa=st.A.father, k=fa.group.scale.y/1.6;
     PO.reach(fa,'R',front(fa,'chest',.3*k,.16*k,-.06*k),{grip:0,pole:[-.35,.08,.2]}); PO.fingers(fa,'R',0,{spread:.45});
-    if (IN(7, t) || IN(9, t)) arms(zo, t, 'chop', .8);
+    if (IN(6, t) || IN(7, t) || IN(9, t)) agitate(zo, t, sm(B(6)[0], B(6)[0] + .5, t));
     if (IN(7, t)) { zo.B.neck.rotation.x -= .12; zo.B.neck.updateWorldMatrix(false, true); }   // chin up
   },
 });

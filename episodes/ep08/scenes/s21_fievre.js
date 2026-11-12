@@ -29,7 +29,7 @@ const ch1 = staged('chambre_jour', { mohammed: MO }, { act(lt, t, S, st, S3) { f
 // b154: adult-sized floor kneel on the near/left side of the right bed. Her head stays clear of his pillow.
 const ch2 = staged('chambre_jour', {
   mohammed: MO,
-  zoubida: { at: [1100, 800], face: [1300, 980], pose: 'kneel', o: { grounded: true, lean: .16, hip: .30, spread: .065, hands: false, avoid: CHEST },
+  zoubida: { at: [1215, 790], face: [1290, 900], pose: 'kneel', o: { grounded: true, lean: .16, hip: .30, spread: .065, hands: false, avoid: CHEST },
     seed: 7, hands: false, talk: 0, lids: .6 },
 }, {
   act(lt, t, S, st, S3) {

@@ -10,15 +10,19 @@ import { fitKneel, holdBoard, lapRest, reachSafe, staged } from '../lib/fix8a.js
 import { LUNCH } from '../lib/lunch.js';
 import { beatScene, lines, sm, at, front, V, dirW } from '../lib/beatscene.js';
 
+const ZS = 1;
 const ID = 's07_lundi', L = lines(ID);
 const B = i => L[i] || [0, 0];
 const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .5, t) * (1 - sm(t0 + b * D, t0 + b * D + .5, t)); };
 
+// the boy follows Zoubida (b030 bracelets, then b033 her question and b034 the answer about the dead mother), shoulders and gaze together
+const zwin = t => Math.max(win(3, .3, 1, t), sm(B(6)[0], B(6)[0] + .5, t) * (1 - sm(B(8)[0] - .9, B(8)[0] - .4, t)));
+
 const pa = staged('patio_matin', {
   father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: .3, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
-  mohammed: { at: [930, 1000], face: 'cam', yaw: .25, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
-    look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: .35 },
+  mohammed: { at: [930, 1000], face: 'cam', yaw: .4, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
+    look: t => t > 1.3 ? 'father' : [1000, 1040, .2], lookMax: t => t > 1.3 ? .7 : .35 },
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) {
@@ -52,7 +56,7 @@ const ch = staged('chambre_jour', {
   father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(10)[0] - .2 ? [1020, 960, .75] : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
   // Argon r5: he drifted to the lens → he follows the talk: his mother on her reaction (b030) and her question (b033), else his father.
   // b035 the head-shake stays toward the lens: a look at his father on top of the body yaw turned the face past the camera.
-  mohammed: { ...LUNCH.mohammed, yaw: .3, lookMax: t => win(8, 0, .95, t) > .15 ? 1.2 : .55, look: (t, st, S3) => win(8, 0, .95, t) > .15 ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || win(6, 0, .9, t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
+  mohammed: { ...LUNCH.mohammed, yaw: .3, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 1.2 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
 }, {
   // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
   addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
@@ -69,6 +73,9 @@ const ch = staged('chambre_jour', {
       mo.B.spine.rotation.x -= .08 * up; mo.B.chest.rotation.x -= .14 * up; mo.B.neck.rotation.x -= .1 * up;
       mo.B.head.rotation.y += .12 * up * Math.sin(t * 5.2) * (1 - sm(B(8)[0] + 1.6, B(8)[0] + 2.4, t));
     }
+    // he turns his shoulders toward Zoubida when she speaks (b030, b033, b034) so head + body reach her
+    const zw = zwin(t);
+    if (zw > 0) { mo.B.spine.rotation.y += ZS * .35 * zw; mo.B.chest.rotation.y += ZS * .3 * zw; }
     if (wel > 0) fa.B.spine.rotation.x += .08 * wel;
     if (ask > 0) { zo.B.spine.rotation.x += .1 * ask; zo.B.head.rotation.z += .08 * ask; }
     if (pat > 0) { fa.B.spine.rotation.x += .22 * pat; fa.B.chest.rotation.x += .1 * pat; fa.B.neck.rotation.x += .12 * pat; }   // over the boy, still upright enough that the forearm stays outside the ribs

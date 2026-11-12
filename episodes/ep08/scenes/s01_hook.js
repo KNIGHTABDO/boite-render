@@ -4,10 +4,24 @@
 import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
-import { staged, palmsOnFace } from '../lib/autostage.js';
+import { staged, THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { bracelets } from './s17_retour.js';
 
+// G1: both palms flat in front of the face (fingers over the eyes), wrists clear of the cheeks; palmsOnFace put them on the ears/jaw
+function palmsCover(a) {
+  const B = a.B;
+  B.chest.rotation.x += .06; B.neck.rotation.x += .26; a.group.updateMatrixWorld(true);
+  for (const s of ['L', 'R']) {
+    const sign = s === 'L' ? 1 : -1, spot = () => B.head.localToWorld(new THREE.Vector3(sign * .04, .045, .135));
+    const pole = [sign * .9, -.05, .15];
+    for (let i = 0; i < 3; i++) {
+      PO.reach(a, s, spot(), { grip: 0, pole });
+      aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(new THREE.Vector3(sign * .01, .09, .1)));
+    }
+    PO.fingers(a, s, .02, { thumb: .02, spread: .1 });
+  }
+}
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
 
 const pa = staged('patio_matin', {
@@ -57,7 +71,7 @@ const nu = staged('chambre_nuit', {
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
     mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);
-    palmsOnFace(zo, 'face');
+    palmsCover(zo);
   },
 });
 

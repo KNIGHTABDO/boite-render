@@ -28,9 +28,9 @@ const ch = staged('chambre_jour', {
     } else if (t >= B(4)[0] - .4) {
       rest(zo.B); walk(zo, S3.floorAt(280, 960), S3.floorAt(440, 900), B(4)[0] - .4, B(4)[0] + 1.3, t);
     }
-    const turn = sm(B(4)[0] - .4, B(4)[0] + 1.4, t);
+    const turn = sm(B(4)[0] - 1.4, B(4)[0] + .4, t);
     if (turn > 0 && t < B(5)[0] - .2) {
-      const g = zo.group.position, y1 = yawTo(g, S3.cam.position) + .55, y0 = zo.group.rotation.y;
+      const g = zo.group.position, y1 = yawTo(g, S3.cam.position) - .4, y0 = zo.group.rotation.y;
       zo.group.rotation.y += Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn;
       zo.group.updateMatrixWorld(true);
     }
@@ -62,13 +62,15 @@ const ch = staged('chambre_jour', {
       const lintel = S3.floorAt(280, 960).setY(heightAt(S3, 280, 960, 110));
       const sh = at(zo, 'upperArmR'), len = sh.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       lintel.y = Math.min(lintel.y, sh.y + len * .92);
-      const yaw = yawTo(zo.group.position, S3.floorAt(330, 880));
+      // 3/4 to the lens: blend from the lens toward the doorway (back to camera failed the acting gate)
+      const yd = yawTo(zo.group.position, S3.floorAt(330, 880)), yc = yawTo(zo.group.position, S3.cam.position);
+      const yaw = yc + Math.atan2(Math.sin(yd - yc), Math.cos(yd - yc)) * .5;
       zo.group.rotation.y = yaw;
       // A small rise onto her toes makes the real lintel reachable without stretching the arm.
       // Keep the soles planted; the lintel target is limited to measured overhead reach.
       zo.B.spine.rotation.x -= .05 * up; zo.group.updateMatrixWorld(true);
-      const hand = lintel.clone().lerp(front(zo, 'head', .13 * k, 0, -.06 * k), blow);
-      PO.reach(zo, 'R', front(zo, 'root', .15 * k, .25 * k, .04 * k).lerp(hand, Math.max(up, blow)), { grip: .01, pole: [-.4, .2, .1] });
+      const hand = lintel.clone().lerp(front(zo, 'head', .16 * k, .06 * k, -.02 * k), blow);
+      PO.reach(zo, 'R', front(zo, 'root', .18 * k, .3 * k, .06 * k).lerp(hand, Math.max(up, blow)), { grip: .01, pole: [-.4, .2, .1] });
       // Correct the palm, rather than just the wrist, onto the wood during the held touch.
       if (up > .99 && blow === 0) PO.grip(zo, 'R', lintel, lintel.clone().add(V(0, .08, 0)), { pole: [-.4, .2, .1] });
       PO.fingers(zo, 'R', .3 * blow, { thumb: .5 });
@@ -81,7 +83,7 @@ const ch = staged('chambre_jour', {
     if (holdingCloth) {
       const elapsed = t - B(5)[0], a = sm(B(5)[0] - .2, B(5)[0] + .15, t);
       const win = S3.floorAt(1450, 760), g = zo.group.position;
-      const y1 = yawTo(g, win) - .35, y0 = zo.group.rotation.y;
+      const yc = yawTo(g, S3.cam.position), yw = yawTo(g, win), y1 = yc + Math.atan2(Math.sin(yw - yc), Math.cos(yw - yc)) * .1, y0 = zo.group.rotation.y;
       zo.group.rotation.y += Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * a;
       const done = elapsed >= 3 * 1.15, phase = done ? 1 : (elapsed % 1.15) / 1.15;
       const drive = done ? 0 : sm(.35, .72, phase) * (1 - sm(.72, 1, phase));
@@ -93,7 +95,7 @@ const ch = staged('chambre_jour', {
       zo.group.updateMatrixWorld(true);
       // Broad continuous arc: chest-ready -> above/outside the shoulder -> forward toward the window -> recovery.
       const path = ph => {
-        const ready = V(.26, .44, -.06), high = V(.04, .48, .22), strike = V(.38, .44, .02), held = V(.30, .44, -.06);
+        const ready = V(.3, .38, -.1), high = V(.04, .48, .22), strike = V(.38, .44, .02), held = V(.30, .44, -.06);
         return ph < .35 ? ready.lerp(high, sm(0, .35, ph))
           : ph < .72 ? high.lerp(strike, sm(.35, .72, ph)) : strike.lerp(held, sm(.72, 1, ph));
       };

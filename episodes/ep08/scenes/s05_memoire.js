@@ -23,7 +23,7 @@ export const CLASS = {
 export function lapLouha(a, lh) {
   const kk = k(a);
   const sc = Math.min(.78, Math.max(.58, kk * 1.05));
-  holdBoard(a, lh, front(a, 'root', .22 * kk, 0, .06 * kk), -1.2, sc);
+  holdBoard(a, lh, front(a, 'root', .25 * kk, 0, .1 * kk), -.9, sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
   reachSafe(a, 'L', lh.localToWorld(V(.125, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
   reachSafe(a, 'R', lh.localToWorld(V(-.125, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });
   PO.fingers(a, 'L', .32, { thumb: .35, spread: .15 });
@@ -76,10 +76,11 @@ const ch = staged('chambre_jour', {
       return t < B(5)[0] ? 'zoubida' : 'mohammed';
     } },
   // floor in front of the right divan, deep enough that she is not between the lens and the boy
-  zoubida: { ...LUNCH.zoubida, at: [1340, 860], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true }, look: 'father' },
+  zoubida: { ...LUNCH.zoubida, at: [1340, 860], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true },
+    look: (t, st) => st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father', lookMax: 1.2 },   // G1: she looked at the floor
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
-  mohammed: { ...LUNCH.mohammed, at: [900, 940], face: 'cam', yaw: .85, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
-    look: (t, st, S3) => t >= B(5)[0] - .2 ? S3.cam.position.clone() : 'father' },
+  mohammed: { ...LUNCH.mohammed, at: [900, 940], face: 'cam', yaw: .5, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
+    look: (t, st, S3) => t >= B(5)[0] - .2 ? S3.cam.position.clone() : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.14, 0)) : 'father' },   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
   act(lt, t, S, st) {
@@ -93,24 +94,24 @@ const ch = staged('chambre_jour', {
     zo.B.spine.updateWorldMatrix(false, true);
     // b021 Mohammed: leans back from the idea and shakes his head, slow and firm
     const no = t >= B(5)[0] - .15 ? 1 : 0, u = Math.max(0, t - B(5)[0]);
-    mo.B.spine.rotation.x -= .16 * no; mo.B.chest.rotation.x -= .1 * no;
+    mo.B.spine.rotation.x -= .24 * no; mo.B.chest.rotation.x -= .14 * no;
     mo.B.head.rotation.y += .34 * no * Math.sin(u * 5.2) * Math.exp(-u * .35);
     mo.B.neck.rotation.x += .05 * no;
     mo.B.spine.updateWorldMatrix(false, true);
     const quote = t >= B(3)[0] && t < B(4)[0] ? sm(B(3)[0], B(3)[0] + .35, t) : 0;
     const tell = win(2, .08, 1, t) * (1 - quote);
     if (quote > .05) {
-      reachSafe(fa, 'R', front(fa, 'chest', .44 * kf, .26 * kf, .08 * kf), { grip: .04, pole: [-.5, -.02, .3] });
+      reachSafe(fa, 'R', front(fa, 'chest', .4 * kf, .17 * kf, .02 * kf), { grip: .04, pole: [-.5, -.02, .3] });
       PO.palmTo(fa, 'R', quote, dirW(fa, -.15, .25, 1));
       PO.fingers(fa, 'R', .02, { thumb: .04, spread: .45 });
-      reachSafe(fa, 'L', front(fa, 'chest', .2 * kf, -.2 * kf, 0), { grip: .04, pole: [.4, -.1, .2] });
-      PO.fingers(fa, 'L', .12, { spread: .2 });
+      reachSafe(fa, 'L', front(fa, 'chest', .26 * kf, -.24 * kf, -.24 * kf), { grip: .04, pole: [.4, -.4, .2] });   // G1: off the beard, down by the thigh
+      PO.fingers(fa, 'L', .04, { spread: .3 });
     } else if (tell > .05) {
       for (const s of ['L', 'R']) {
         const right = s === 'R' ? 1 : -1, bob = .035 * Math.sin(t * 1.5 + right);
-        reachSafe(fa, s, front(fa, 'chest', .3 * kf, right * .24 * kf, (.04 + bob) * kf), { grip: .04, pole: [-right * .45, -.1, .22] });
+        reachSafe(fa, s, front(fa, 'chest', .34 * kf, right * .22 * kf, (-.1 + bob) * kf), { grip: .04, pole: [-right * .45, -.1, .22] });
         PO.palmTo(fa, s, .75 * tell, dirW(fa, 0, .3, 1));
-        PO.fingers(fa, s, .05, { thumb: .06, spread: .32 });
+        PO.fingers(fa, s, .02, { thumb: .03, spread: .4 });
       }
     } else lapRest(fa, 'L', t), lapRest(fa, 'R', t);
     for (const s of ['L', 'R']) { lapRest(zo, s, t + 1.2); if (no < .5) lapRest(mo, s, t + .4); }
@@ -140,10 +141,10 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.85, dy: 55 },
-    b018: { shot: 'ch', size: 'M', on: 'father', z: 1.5, dx: 260, dy: -36 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.7, dx: -170, dy: 6 },
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.1, dx: 28, dy: 4 },
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.7, dy: 40 },
+    b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 1.9, dx: -20, dy: 6 },
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.6, dx: 28, dy: 4 },
   },
 });
 const draw = scene.draw;

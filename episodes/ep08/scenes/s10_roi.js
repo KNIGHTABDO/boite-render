@@ -8,6 +8,7 @@ import * as PO from '../../../engine/poses.js';
 import { staged, yawToward, handTo } from '../lib/fix8b.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { SEAT } from './s09_escalier.js';
+import { castScale, sitStep, pinKnees } from '../lib/fix8c.js';
 import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
 
 const ID = 's10_roi', L = lines(ID);
@@ -17,7 +18,7 @@ const hold = (t0, t1, t) => sm(t0, t0 + .35, t) * (1 - sm(t1 - .05, t1 + .2, t))
 const laugh = (a, w, t, f = 13) => { if (w > 0) { a.B.chest.rotation.x += .06 * Math.sin(t * f) * w; a.B.spine.rotation.x += .04 * w; a.B.neck.rotation.x -= .1 * w; a.B.chest.updateWorldMatrix(false, true); } };
 const onKnees = a => { if (!a.pins) return; for (const [s, p] of a.pins) PO.reach(a, s, a.B.root.localToWorld(p.clone()), { grip: .03, pole: s === 'L' ? [.5, .04, -.28] : [-.5, .04, -.28] }); };
 const hipsOn = (a, w) => {
-  for (const s of ['L', 'R']) handTo(a, s, { fwd: .05, out: .16, drop: .3, curl: .4 });
+  for (const s of ['L', 'R']) handTo(a, s, { fwd: -.02, out: .1, drop: .38, curl: .4 });
   a.B.spine.rotation.z += .03 * w;
 };
 
@@ -38,7 +39,9 @@ const esc = staged('escalier', {
   addressee: { zoubida: 'mohammed', mohammed: 'zoubida' },
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A;
-    yawToward(zo, S3.cam, 1.05);
+    yawToward(zo, S3.cam, .55);
+    castScale(mo);
+    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud; mo.B.chest.updateWorldMatrix(false, true); }
@@ -57,7 +60,7 @@ const esc = staged('escalier', {
         };
       }
     }
-    onKnees(mo);
+    pinKnees(mo, 0);
   },
 });
 
@@ -67,7 +70,7 @@ const pa = staged('patio_matin', {
   woman1: { at: [1340, 1005], face: 'zoubida', pose: 'kneel', seed: 11 },
   fatma: { at: [890, 955], face: 'zoubida', seed: 17, talk: 0, lookMax: .75,
     look: t => t >= B(9)[0] ? 'rahma' : 'zoubida' },
-  woman2: { at: [480, 1010], face: 'rahma', pose: 'kneel', hands: false, seed: 13 },
+  woman2: { at: [1520, 1010], face: 'rahma', pose: 'kneel', hands: false, seed: 13 },
 }, {
   addressee: { rahma: 'zoubida', zoubida: 'rahma', femmes: 'zoubida' },
   act(lt, t, S, st) {
@@ -93,7 +96,7 @@ const pa = staged('patio_matin', {
       fa.B.spine.rotation.x += .06 * envy; fa.B.chest.rotation.y -= .05 * envy;
       handTo(fa, 'R', { fwd: .12, out: .14, drop: .08, curl: .2 });
     }
-    const palms = sm(B(9)[0] - .05, B(9)[0] + .3, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
+    const palms = sm(B(9)[0] - .4, B(9)[0] + .1, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
     if (palms > 0) {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
       for (const s of ['L', 'R']) {

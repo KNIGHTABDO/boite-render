@@ -5,6 +5,7 @@
 // street door, b073 "Passe": only then does he walk in.
 import * as PO from '../../../engine/poses.js';
 import { staged, littleBroom, holdBroom, handTo, yawToward } from '../lib/fix8b.js';
+import { yawBody } from '../lib/fix8_g3.js';
 import { beatScene, lines, sm, at, V, yawTo, dirW } from '../lib/beatscene.js';
 
 const ID = 's11_depart', L = lines(ID);
@@ -17,7 +18,7 @@ const pa = staged('patio_matin', {
   mohammed: { at: [960, 1035], face: 'cam', yaw: -.2, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : .5,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : 'zoubida' },
   zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
-    lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .32 : t >= B(3)[0] && t < B(6)[0] ? .5 : .45,
+    lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
     look: (t, st) => {
       if (t >= B(6)[0]) return 'father';
       if (t >= B(3)[0]) {
@@ -28,10 +29,10 @@ const pa = staged('patio_matin', {
       return t < B(1)[0] - .1 ? skyOf(st.A.zoubida) : 'mohammed';
     } },
   // Right arcade doorway, facing left into the court — not the foreground bush.
-  fatma: { at: [1500, 860], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
+  fatma: { at: [1612, 882], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
     look: t => t >= B(6)[0] + .4 ? 'father' : 'zoubida' },
   // Left street door. He is outside the court until "Passe", then walks in.
-  father: { at: [300, 830], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
+  father: { at: [270, 902], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
     look: 'zoubida',
     walk: { to: [680, 1005], t0: WALK0(), t1: B(7)[0] + 2.1 } },
 }, {
@@ -124,15 +125,15 @@ const pa = staged('patio_matin', {
     if (fa.group.visible && eager <= 0) restArm(fa, 'L', 'faL');
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
-      yawToward(zo, S3.cam, t >= B(5)[0] ? .65 : t >= B(3)[0] ? .95 : .9);
-      yawToward(mo, S3.cam, .85);
+      yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
+      yawBody(mo, S3.cam, .5);
     }
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, 1.25);
     if (fa.group.visible) holdBroom(fa, broom, 'R'); else broom.visible = false;
     // Nod rides on top of the eyeline, after the camera yaw, so it is not pulled back to the lens.
     if (nod > 0) {
-      zo.B.neck.rotation.x += .2 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5)) * nod;
+      zo.B.neck.rotation.x += .1 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5)) * nod;
       zo.B.neck.updateWorldMatrix(false, true);
     }
   },

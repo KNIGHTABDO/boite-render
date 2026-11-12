@@ -14,6 +14,7 @@ import { staged, THREE } from '../lib/autostage.js';
 import { walk } from '../lib/acts.js';
 import { rest } from '../../../engine/rig3d.js';
 import { role } from './_3d.js';
+import { castScale } from '../lib/fix8c.js';
 import { bracelets } from './s17_retour.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
 
@@ -55,6 +56,8 @@ export function haikCloth(a) {
 export function checkedStage(plate, marks, options={}) {
   const act=options.act;
   const sh=staged(plate,marks,{...options,act(lt,t,S,st,S3){
+    // Cast heights from cast.json (heightOf() gives every adult 1.62 / child 1.15).
+    for(const a of Object.values(st.A))castScale(a);
     act?.(lt,t,S,st,S3);
     const traffic=typeof options.traffic==='function'?options.traffic(t):options.traffic||[];
     // Extras yield a shoulder-width in the lane; linked hands and embraces remain authored contacts.
@@ -70,7 +73,7 @@ export function checkedStage(plate, marks, options={}) {
       if(!a.group.visible)continue;
       if(marks[name].costume==='haik'||a.qa?.model==='zoubida_haik') {
         for(const side of ['L','R'])if(!st.actcheck.exposed?.[name]?.includes('hand'+side)) {
-          PO.reach(a,side,front(a,'chest',.10*k(a),(side==='L'?-.055:.055)*k(a),-.20*k(a)),{grip:.01,pole:side==='L'?[.12,.08,.04]:[-.12,.08,.04]});
+          PO.reach(a,side,front(a,'chest',(st.actcheck.haikFwd?.[name]??.22)*k(a),(side==='L'?-1:1)*(st.actcheck.haikLat?.[name]??.075)*k(a),-.20*k(a)),{grip:.01,pole:side==='L'?[.12,.08,.04]:[-.12,.08,.04]});
         }
         haikCloth(a);
       }
@@ -139,6 +142,7 @@ const mu = checkedStage('souk_mur', {
     // mutter's face driver multiplies by .25.. .5: four keeps the yawn wide throughout its hold.
     mutter: t => 4 * win(0, .46, .88, t) },
   father: { at: WALL.father, face: 'cam', yaw: -.35, seed: 5, talk: 0, lookMax: .35, look: [1100, 700, 1.5] },
+  fatma: { at: [900, 770], face: 'cam', yaw: -.2, costume: 'haik', seed: 9, talk: 0, lookMax: .7, look: 'father' },
   man1: { at: [1330, 930], face: [120, 905], seed: 21, talk: 0 },
   fqih: { at: [1330, 980], face: [120, 905], seed: 23, talk: 0 },
   guerrab: { at: [1250, 940], face: [200, 880], seed: 24, talk: 0 },
@@ -150,9 +154,10 @@ const mu = checkedStage('souk_mur', {
   act(lt, t, S, st, S3) {
     // The later Zoubida line otherwise makes the gaze net turn the boy toward her even in b083.
     st.G = scriptedGaze;
-    const { zoubida: zo, mohammed: mo, father: fa } = st.A;
+    const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    st.actcheck={exposed:{zoubida:t>=B(5)[0]?['handR','foreArmR']:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(4)[0]; if (fm.group.visible) { closeHaik(fm); sync(fm); } }
+    st.actcheck={haikLat:{zoubida:.095},haikFwd:{zoubida:.30},exposed:{zoubida:t>=B(5)[0]?['handR','foreArmR']:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: a planted-foot buckle, already tired during pre-roll, then a deeper collapse.
     if (t < B(1)[0]) {
@@ -188,7 +193,7 @@ const mu = checkedStage('souk_mur', {
     const rush = [
       ['man1', [1330, 930], [120, 905], .00],
       ['fqih', [1330, 980], [200, 930], .16],
-      ['guerrab', [1250, 940], [120, 905], .32],
+      ['guerrab', [1250, 940], [120, 905], .27],
       ['driss', [1330, 930], [200, 930], .48],
       ['woman1', [1250, 940], [120, 905], .64],
     ];
@@ -243,7 +248,7 @@ const mu = checkedStage('souk_mur', {
 // b087: use the standing child rig at its normal 1.10m scale. A floor-seated pose would
 // pull the robe down to the floor after lifting it; here the bent legs and robe dangle together.
 const ca = checkedStage('souk_mur', {
-  father: { at: [1000, 790], face: 'cam', yaw: 2.5, seed: 5, talk: 0, lookMax: .12 },
+  father: { at: [1000, 790], face: 'cam', yaw: -.9, seed: 5, talk: 0, lookMax: .12 },
   mohammed: { at: [1180, 820], face: 'cam', seed: 3, lids: .7, talk: 0, lookMax: 0 },
   zoubida: { at: WALL.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, look: 'mohammed', lookMax: .25 },
 }, {
@@ -276,19 +281,19 @@ const ca = checkedStage('souk_mur', {
     st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.14*km,.02*km,0).add(V(0,-.075*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>front(mo,'chest',-.19*km,.05*km,-.06*km),purpose:'arm around boy back'}];
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.48, -.12, .34] });
     PO.reach(fa, 'L', front(mo, 'chest', -.19 * km, .05 * km, -.06 * km), { grip: .015, pole: [.4, .2, .35] });
-    PO.reach(mo, 'R', front(fa, 'neck', .09, .09 * kf, -.08), { grip: .01 });
-    PO.reach(mo, 'L', front(fa, 'upperArmR', .16 * kf, .08 * kf, .05), { grip: .01 });
+    PO.reach(mo, 'R', front(fa, 'neck', .13, .09 * kf, -.08), { grip: .01 });
+    PO.reach(mo, 'L', front(fa, 'upperArmR', .24 * kf, .16 * kf, .05), { grip: .01 });
     sync(fa, mo, zo);
   },
 });
 
 // b084/b085/b089: a readable mid-depth lane, with the whole family kept beside it.
 const la = checkedStage('souk_bijoux', {
-  father: { at: LANE.father, face: 'cam', yaw: -.4, seed: 5, talk: 0, lookMax: .42,
+  father: { at: LANE.father, face: 'cam', yaw: 0, seed: 5, talk: 0, lookMax: .7,
     look: (t, st) => t >= B(6)[0] ? front(st.A.father, 'head', 1.8, 1.3 * Math.sin((t - B(6)[0]) * .7 - .9), 0) : 'marchand' },
   zoubida: { at: LANE.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, lookMax: .32,
     look: (t, st) => t >= B(6)[0] ? front(st.A.zoubida, 'head', 1.8, 1.1 * Math.sin(.9 - (t - B(6)[0]) * .75), 0) : [1180, 720, 1.5] },
-  mohammed: { at: LANE.mohammed, face: 'cam', seed: 3, lids: .4, talk: 0, look: 'father', lookMax: .3 },
+  mohammed: { at: LANE.mohammed, face: 'cam', seed: 3, lids: .4, talk: 0, look: 'father', lookMax: .8 },
   marchand: { at: [1080, 690], face: [700, 790], seed: 13, talk: 1,
     mutter: t => t < B(2)[0] ? 3 * win(1, 0, .66, t) : 2 * win(2, 0, 1.1, t) },
   man1: { at: [880, 830], face: [1180, 720], seed: 21, talk: 0 },
@@ -317,8 +322,8 @@ const la = checkedStage('souk_bijoux', {
       ma.group.position.copy(F(1180, 720));
       ma.group.rotation.y = addressYaw(ma.group.position);
     } else {
-      walk(ma, F(1180, 720), F(1080, 640), tc, td, t, { cps: 2.9 });
-      const turn = sm(tc, tc + .4, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(1080, 640));
+      walk(ma, F(1180, 720), F(960, 860), tc, td, t, { cps: 2.9 });
+      const turn = sm(tc, tc + .4, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(960, 860));
       ma.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn;
     }
     const shout = win(1, 0, .66, t);
@@ -335,28 +340,29 @@ const la = checkedStage('souk_bijoux', {
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR']} ]};
+    st.actcheck={contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
       const t0 = B(2)[0] - .2, t1 = B(3)[0];
       // Common travel vector keeps the clasp within both men's reach for the entire run.
       rest(ma.B); rest(client.B); ma.group.visible = true;
-      walk(ma, F(960, 830), F(1180, 720), t0, t1, t, { cps: 3.7, ease: false });
-      const off = F(880, 830).sub(F(960, 830)).setLength(.65);
-      walk(client, F(960, 830).add(off), F(1180, 720).add(off), t0, t1, t, { cps: 3.5, ease: false });
+      walk(ma, F(1180, 720), F(960, 830), t0, t1, t, { cps: 3.7, ease: false });
+      const off = F(960, 830).sub(F(880, 830)).setLength(.65);
+      off.add(V(off.z, 0, -off.x).setLength(.3));
+      walk(client, F(1180, 720).add(off), F(960, 830).add(off), t0, t1, t, { cps: 3.5, ease: false });
       ma.B.spine.rotation.x += .25; client.B.spine.rotation.x += .18;
       sync(ma, client);
-      const nearest=(a,b)=>at(a,'upperArmL').distanceTo(at(b,'root'))<at(a,'upperArmR').distanceTo(at(b,'root'))?'L':'R';
+      const nearest=(a,b)=>a.group.worldToLocal(b.group.position.clone()).x>0?'L':'R';
       const drag=st.dragSide=nearest(ma,client), receive=nearest(client,ma);
       const clasp = at(ma, 'upperArm'+drag).lerp(at(client, 'upperArm'+receive), .5);
-      clasp.y -= .25;
+      clasp.y -= .32;
       PO.reach(ma, drag, clasp, { grip: 0, pole: [.3, .05, -.25] });
       PO.reach(client, receive, clasp, { grip: 0, pole: [-.3, .05, .25] });
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
         ['woman1', [1250, 690], [700, 930], 0],
-        ['kid2', [1180, 720], [1000, 790], .12],
+        ['kid2', [1180, 720], [1000, 790], .35],
         ['kid3', [1330, 690], [1250, 940], .25],
         ['fqih', [700, 930], [560, 900], .05],
         ['woman2', [1080, 640], [1180, 720], .18],
@@ -402,8 +408,8 @@ export default beatScene(ID, {
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'W', on: 'marchand' },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
-    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.6, dx: -65, dy: 70 },
+    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.6, dx: -65, dy: 40 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.4, dx: -55, dy: 25 },
-    b089: { shot: 'la', size: 'M', on: 'father', z: 1.55, dx: 180, dy: 95 },
+    b089: { shot: 'la', size: 'M', on: 'father', z: 1.3, dx: 120, dy: 95 },
   },
 });

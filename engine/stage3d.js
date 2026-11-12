@@ -30,7 +30,7 @@ const cache = {};
 /** a rigged actor at real height. seat:true = robe weights that fold for floor sitting (use a separate copy for walking) */
 export async function cast(name, { seat = false, copy = 0, outline = .0035 } = {}) {
   const id = `${name}#${copy}${seat ? 's' : ''}`;
-  if (cache[id]) return cache[id];
+  if (cache[id]) return resetCast(cache[id]);   // shared between scenes: start every build from the pristine actor
   const S = SPECS[name]; if (!S) throw new Error('no spec for ' + name);
   const real = RIGGED[name] && !globalThis.location?.search.includes('oldrig');
   const a = real ? await loadSkinned(`/art/rigged/${RIGGED[name]}`, S, { outline, tint: S.tint }) : await loadRigged(`/art/models/${S.file}`, S, { outline, tint: S.tint, seat });
@@ -40,7 +40,17 @@ export async function cast(name, { seat = false, copy = 0, outline = .0035 } = {
     qa.actors.push(a); a.qa = { model: name, expectedHeight: heightOf(S) };
   }
   a.group.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = false; } });
+  a.pristine = { scale: a.group.scale.clone(), meshes: [] };
+  a.group.traverse(o => { if (o.isMesh || o.isObject3D) a.pristine.meshes.push([o, o.visible, o.geometry, o.scale.clone()]); });
   return cache[id] = a;
+}
+/** undo what an earlier scene did to a cached actor (scale, hidden parts, swapped geometry) so results never depend on scene order */
+export function resetCast(a) {
+  const P = a.pristine; if (!P) return a;
+  a.group.scale.copy(P.scale); a.group.visible = true;
+  for (const [o, vis, geo, sc] of P.meshes) { o.visible = vis; if (geo && o.geometry !== geo) o.geometry = geo; o.scale.copy(sc); }
+  if (a.B) rest(a.B);
+  return a;
 }
 
 // ---------------------------------------------------------------- the stage

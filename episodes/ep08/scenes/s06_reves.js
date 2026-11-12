@@ -7,7 +7,7 @@ import { staged } from '../lib/fix8.js';
 import { hideHem } from '../lib/fix8a.js';
 import { THREE } from '../lib/autostage.js';
 import { still, loadStill } from '../lib/stage.js';
-import { beatScene, lines, sm, at, V, dirW } from '../lib/beatscene.js';
+import { beatScene, lines, sm, at, V, dirW, front } from '../lib/beatscene.js';
 import { CLASS, lapLouha, rock } from './s05_memoire.js';
 
 const ID = 's06_reves', L = lines(ID), B = i => L[i] || [0, 0];
@@ -49,9 +49,9 @@ const cl = staged('mausolee', {
       const geo = new THREE.CylinderGeometry(.008, .012, .46, 6);
       st.rod = S3.prop(new THREE.Mesh(geo, PR.toon(0x6e4a28)), 0, 0, 0); st.rod.castShadow = true;
     }
-    const knee = at(fq, 'shinR').add(V(0, .05 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .05 * kf);
+    const knee = front(fq, 'root', .2 * kf, 0, .1 * kf);   // G1: across the lap, centred in front of the crossed shins
     st.rod.position.copy(knee);
-    st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), dirW(fq, 1, .03, .16));
+    st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), dirW(fq, 1, .02, .1));
     st.rod.scale.setScalar(kf);
     st.rod.updateMatrixWorld(true);
     fq.B.upperArmR.rotation.z -= .08;
@@ -63,7 +63,7 @@ const scene = beatScene(ID, {
   shots: { cl, p06, p07, matin, apres },
   plan: {
     b022: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.38, dy: -28 },
-    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.45, dx: -250, dy: 46, noIns: true,
+    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.2, dx: -40, dy: 40, noIns: true,
       segs: [[.177, 'matin'], [.463, 'apres'], [.9, 'cl']] },
     b024: { shot: 'p06' },
     b025: { shot: 'p07' },

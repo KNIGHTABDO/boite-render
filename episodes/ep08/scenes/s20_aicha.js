@@ -14,8 +14,8 @@ const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const ch = staged('chambre_jour', {
   // Side by side on the carpet, knees toward the lens so the thighs don't meet. A small yaw turns each face toward the other.
-  zoubida: { at: [720, 900], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7 },
-  aicha: { at: [1160, 900], face: 'cam', yaw: -.45, pose: 'kneel', o: { grounded: true, lean: .08, avoid: CHEST }, seed: 9 },
+  zoubida: { at: [750, 905], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7 },
+  aicha: { at: [1120, 905], face: 'cam', yaw: -.45, pose: 'kneel', o: { grounded: true, lean: .08, avoid: CHEST }, seed: 9 },
   mohammed: { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
 }, {
   addressee: { zoubida: 'aicha', aicha: 'zoubida', narrator: 'zoubida' },
@@ -40,8 +40,12 @@ const ch = staged('chambre_jour', {
       PO.reach(zo, 'R', palm.clone().add(V(.08, .02 + .012 * n, .03)), { grip: 0, pole: [-.34, .12, .14] });
       PO.fingers(zo, 'R', .3, { spread: .2 });
     }
-    if (IN(2, t)) { palmsOnFace(ai, 'cheek', { sides: ['R'], bow: .02 }); lap(ai, 'L', ka); }
-    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); palmsOnFace(ai, 'face', { bow: .08, hover: true }); }
+    if (IN(2, t)) {
+      palmsOnFace(ai, 'cheek', { sides: ['R'], bow: .02 }); lap(ai, 'L', ka);
+      const tap = Math.max(0, Math.sin((t - B(2)[0]) * 9)) * .22;   // three taps: the forearm pats the cheek
+      ai.B.foreArmR.rotation.x += tap; ai.B.foreArmR.updateWorldMatrix(false, true);
+    }
+    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); palmsOnFace(ai, 'face', { bow: .12, hover: true }); }
     if (IN(5, t)) {
       // One offered hand, Aïcha's hands a palm-width apart around it. Not the same point twice.
       const offered = front(zo, 'chest', .32 * kz, .06 * kz, .06 * kz);

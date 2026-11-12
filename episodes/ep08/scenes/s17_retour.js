@@ -7,6 +7,7 @@
 import * as PO from '../../../engine/poses.js';
 import * as IK from '../../../engine/ik.js';
 import { approach, yawToward, staged as stagedFix } from '../lib/fix8b.js';
+import { bareHead } from '../lib/fix8_g5.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { toon } from '../../../engine/props3d.js';
 import { ESCALIER } from '../lib/stairs.js';
@@ -20,9 +21,9 @@ const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#
 
 // he climbs treads 2 → 3 with his back to us while the narrator speaks; a slow push-in on the whole flight
 const es = stagedFix('escalier_nuit', { father: { tread: 2, face: 'down', seed: 5, height: 1.76, climb: { to: 3, t0: B(0)[0] + .2, t1: B(0)[1] - .2 } } },
-  { stairs: ESCALIER, light: DARK, view: () => [1180, 480, 1.06],
+  { stairs: ESCALIER, light: DARK, view: () => [1180, 520, 1.06],
     act(lt, t, S, st, S3) {
-      const fa = st.A.father;
+      const fa = st.A.father; bareHead(fa);
       // Mostly his back: only enough yaw that the face stays inside the gate's 100° budget.
       yawToward(fa, S3.cam, 1.55);
       st.actcheck = { supports: { father: fa.group.position.y } };
@@ -54,13 +55,13 @@ const pe = staged('chambre_penombre', {
       p.y = Math.max(p.y, at(st.A.father, 'head').y - .22);
       return p;
     } },
-  zoubida: { at: [620, 960], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false },
+  zoubida: { at: [620, 960], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .5, look: (t, st, S3) => S3.floorAt(500, 990) || null },
   // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
   mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null },
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
-    const { father: fa, zoubida: zo } = st.A, kf = k(fa);
+    const { father: fa, zoubida: zo } = st.A, kf = k(fa); bareHead(fa);
     yawToward(fa, S3.cam, .4);
     lap(zo); veilDown(zo);
     const mo = st.A.mohammed, surface = .3;
@@ -83,24 +84,24 @@ const nu = staged('chambre_nuit', {
   father: { at: [420, 900], face: 'cam', yaw: .2, seed: 5, height: 1.76, lookMax: .35,
     look: (t, st) => { const p = at(st.A.zoubida, 'head').clone(); p.y = Math.max(p.y, at(st.A.father, 'head').y - .18); return p; } },
   // b117 she lifts her face toward him; from b119 she glances toward the chest without turning her back on the lens
-  zoubida: { at: [980, 880], face: 'cam', yaw: -.4, pose: 'kneel', o: { grounded: true, lean: .08, hands: false }, seed: 7, hands: false, lookMax: .6,
+  zoubida: { at: [880, 905], face: 'father', yaw: .5, seed: 7, hands: false, lookMax: .6,
     look: (t, st, S3) => {
       if (t >= B(8)[0] && t < B(10)[0]) { const p = at(st.A.father, 'head').clone(); p.y = Math.max(p.y, at(st.A.zoubida, 'head').y - .15); return p; }
       if (t >= B(10)[0]) { const p = S3.floorAt(1580, 760) || at(st.A.zoubida, 'head').clone(); p.y = at(st.A.zoubida, 'head').y - .1; return p; }
       return null;
     } },
-  mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0 },
+  mohammed: { at: [1170, 665], face: [1290, 690], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0 },
 }, {
   light: { keyI: 1.5, key: '#ffc070', fillI: .55 },
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
 
-    const { father: fa, zoubida: zo } = st.A, kf = k(fa), kz = k(zo);
+    const { father: fa, zoubida: zo } = st.A, kf = k(fa), kz = k(zo); bareHead(fa);
     st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const offer = Math.max(win(9, .5, 1, t), win(10, 0, 1, t), win(11, 0, .55, t));
     const take = win(12, 0, .4, t), toss = win(12, .4, 1, t);
     const heart = win(13, .3, 1.2, t);
-    lap(zo);
+    if (!(offer > 0 || take > 0 || toss > 0 || heart > 0)) for (const [sd, sg] of [['L', 1], ['R', -1]]) PO.reach(zo, sd, PO.hipToWorld(zo, sg * .16 * kz, -.02 * kz, .0), { grip: .03, pole: [sg * .3, .04, .1] });
     if (offer > 0 && take <= 0) {
       PO.reach(fa, 'R', front(fa, 'chest', .42 * kf, .18 * kf, -.04 * kf), { grip: 0, pole: [-.32, .06, .16] });
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
@@ -125,7 +126,7 @@ const nu = staged('chambre_nuit', {
       PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-.3, .15, .2] });
     }
     if (heart > 0) {
-      PO.reach(zo, 'R', PO.hipToWorld(zo, -.06 * kz, .38 * kz, .16 * kz), { grip: 0, pole: [-.28, .12, .14] });
+      PO.reach(zo, 'R', front(zo, 'chest', .15 * kz, -.04 * kz, -.04 * kz), { grip: 0, pole: [-.28, .12, .14] });
       PO.fingers(zo, 'R', .05, { spread: .2 });
     }
     const br = st.br ||= bracelets(S3);

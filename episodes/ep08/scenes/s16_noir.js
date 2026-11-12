@@ -15,17 +15,17 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
-const MO = { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 };
+const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 };
 const ZO = { at: [1011, 679], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
   const sob = .5 + .5 * Math.sin(t * 1.7);
-  zo.B.chest.rotation.x += .015 * sob;
-  palmsOnFace(zo, 'face');
+  zo.B.chest.rotation.x += .1 + .015 * sob;   // bowed forward, face down into both palms
+  palmsOnFace(zo, 'face', { bow: .5 });
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
-  c.save(); c.strokeStyle = 'rgba(180,212,230,.7)'; c.lineWidth = 1.8; c.lineCap = 'round';
+  c.save(); c.strokeStyle = 'rgba(180,212,230,.32)'; c.lineWidth = 1.1; c.lineCap = 'round';
   for (const sign of [-1, 1]) {
     const pts = [[sign * .045, .10, .17], [sign * .043, .035, .175], [sign * .025, -.025, .15]].map(p => S3.project(at(zo, 'head', p)).slice(0, 2));
     c.beginPath(); c.moveTo(...pts[0]); c.quadraticCurveTo(...pts[1], ...pts[2]); c.stroke();
@@ -37,7 +37,11 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
   act(lt, t, S, st, S3) {
     st.G.apply = () => {};   // b106 explicitly has no exchanged gaze; don't lift her face out of her palms
     mourn(st.A.zoubida, t);
-    st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.6);
+    // he is still crying upright (the 'cry' shot) until "Puis je m'étendis": b103/b104 show only her
+    const mo = st.A.mohammed, lieT = B(2)[0] + .32 * (B(2)[1] - B(2)[0]), here = t >= lieT - .05;
+    mo.group.visible = here;
+    if (st.pillow) st.pillow.visible = here;
+    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.6);
     if (!st.pillow) {
       st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x647c7c });
       const p = at(st.A.mohammed, 'head', [0, .1, 0]).setY(TOP);   // lie().pillowAt
@@ -49,14 +53,14 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
 // both contact poses are solved by staged() at build, rather than sweeping his feet through the mattress in a blend.
 const cry = staged('chambre_jour', {
   zoubida: ZO,
-  mohammed: { at: MO.at, face: MO.face, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false, avoid: CHEST },
+  mohammed: { at: [1350, 694], face: [1336, 754], pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false, avoid: CHEST },
     hands: false, seed: 3, talk: 0, lids: .85 },
 }, {
   over: tears,
   act(lt, t, S, st) {
     st.G.apply = () => {}; mourn(st.A.zoubida, t);
     const mo = st.A.mohammed;
-    mo.B.chest.rotation.x += .02 * Math.sin(t * 9);
+    mo.B.chest.rotation.x += .06 + .02 * Math.sin(t * 9);   // hunched, shoulders heaving
     palmsOnFace(mo, 'face', { bow: .32 });
   },
 });
