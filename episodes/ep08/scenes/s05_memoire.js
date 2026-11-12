@@ -119,7 +119,7 @@ const ch = staged('chambre_jour', {
     mo.B.spine.rotation.z += .03 * Math.sin(t * .45 + 1);   // weight shift
     mo.B.head.rotation.y += .34 * no * Math.sin(u * 5.2) * Math.exp(-u * .35);
     mo.B.neck.rotation.x += .05 * no;
-    mo.group.rotation.y -= .38 * sm(B(5)[0] - .5, B(5)[0] - .1, t);   // r20: turn from the father to 3/4 front so the face reads in the b021 CU
+    mo.group.rotation.y -= .8 * sm(B(5)[0] - .5, B(5)[0] - .1, t);   // r20: turn from the father to 3/4 front so the face reads in the b021 CU
     mo.group.updateMatrixWorld(true);
     mo.B.spine.updateWorldMatrix(false, true);
     const quote = t >= B(3)[0] && t < B(4)[0] ? sm(B(3)[0], B(3)[0] + .35, t) : 0;
