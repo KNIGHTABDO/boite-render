@@ -7,6 +7,7 @@ import * as PR from '../../../engine/props3d.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { bangles } from '../lib/fix8_R17A.js';
+import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
 
 // G1: both palms flat in front of the face (fingers over the eyes), wrists clear of the cheeks; palmsOnFace put them on the ears/jaw
@@ -37,18 +38,21 @@ const pa = staged('patio_matin', {
     PO.reach(fa, 'R', p, { grip: .08, pole: [-.25, -.5, -.15] }); st.offer = p.clone().add(V(0, .03, 0));
     fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true);   // supinate: the palm turns to the sky
     PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });   // Argon r6: bracelets clipped the curled thumb/fingers → flat open palm
-    const br = st.br ||= bangles(S3), h = fa.B.handR;   // the sun and moon bracelets lying on his palm
-    br.visible = true; h.updateWorldMatrix(true, false);
-    br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.15 * Math.max(.75, k))   /* Argon r5: invisible at patio scale */; br.updateMatrixWorld(true);
     // r17: the father is alive: weight shift, a slight torso turn toward the lens, head nods, far arm gesturing/resting at his belt
     {
       const w = Math.sin(t * .9), n = Math.sin(t * 1.7 + 1);
       fa.B.chest.rotation.y += .22 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
-      fa.B.head.rotation.x += .05 * n + .04; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
+      fa.B.head.rotation.x += .03 * n; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
       PO.reach(fa, 'L', front(fa, 'chest', .2 * k, -.22 * k, -.12 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.5, -.6, -.2] });
       PO.reach(fa, 'R', p.clone(), { grip: .08, pole: [-.25, -.5, -.15] });
       fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true); PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });
       st.offer = p.clone().add(V(0, .03, 0));
+    }
+    {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
+      const br = st.br ||= bangles(S3);
+      fa.group.updateMatrixWorld(true); br.visible = true;
+      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.15 * Math.max(.75, k)); br.updateMatrixWorld(true);
+      st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
     if (laugh > 0) { zo.B.chest.rotation.x += .07 * Math.sin(t * 14) * laugh; zo.B.neck.rotation.x -= .12 * laugh; zo.B.chest.updateWorldMatrix(false, true); }
@@ -74,6 +78,7 @@ const nu = staged('chambre_nuit', {
 }, {
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A;
+    faceCam(zo, S3.cam, .6);   // r18: 3/4 front toward the lens, face and hands readable
     st.G.apply = () => {};   // contact hands and the boy's pillow turn must survive the automatic gaze pass
     lieOnBed(mo, { top: .35, feet: [.5, .87], hands: 'chest', pillow: .08, tuck: .06, headTurn: -.1 });   // r15: flat on the cloth at cast scale
     {   // r16: a low cushion under the back of the skull (further behind the head so the chin never meets it)
