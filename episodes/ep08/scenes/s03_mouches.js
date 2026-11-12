@@ -123,7 +123,7 @@ const ch = staged('chambre_jour', {
       zo.group.updateMatrixWorld(true);
       // Broad continuous arc: chest-ready -> above/outside the shoulder -> forward toward the window -> recovery.
       const path = ph => {
-        const ready = V(.3, -.36, -.08), high = V(-.02, -.12, .1), strike = V(.62, -.42, .3), held = V(.3, -.44, -.06);   // r17: cloth in her LEFT hand: on screen-right, so the whip goes toward the window
+        const ready = V(.3, -.36, -.08), high = V(.34, -.2, -.14), strike = V(.62, -.42, .3), held = V(.3, -.44, -.06);   // r17: cloth in her LEFT hand: on screen-right, so the whip goes toward the window
         return ph < .35 ? ready.lerp(high, sm(0, .35, ph))
           : ph < .72 ? high.lerp(strike, sm(.35, .72, ph)) : strike.lerp(held, sm(.72, 1, ph));
       };
