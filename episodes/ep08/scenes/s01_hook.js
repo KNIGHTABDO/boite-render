@@ -45,7 +45,7 @@ const pa = staged('patio_matin', {
       const w = Math.sin(t * .9), n = Math.sin(t * 1.7 + 1);
       fa.B.chest.rotation.y += .3 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
       fa.B.head.rotation.x += .03 * n; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
-      PO.reach(fa, 'L', front(fa, 'chest', .2 * k, -.22 * k, -.16 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.1, -1, .35] });
+      PO.reach(fa, 'L', front(fa, 'chest', .24 * k, -.25 * k, -.16 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.55, -1, .3] });
       PO.reach(fa, 'R', p.clone(), { grip: 0, pole: [-.95, -.25, -.1] });
       fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true); PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });
       st.offer = p.clone().add(V(0, .03, 0));
