@@ -36,17 +36,25 @@ const cl = staged('mausolee', {
   mohammed: { ...CLASS.mohammed, lids: t => .3 + .25 * drift(t),
     mutter: t => (t > B(0)[0] - .3 ? 1 : 0) * (1 - drift(t)),
     lookMax: t => .28 + .35 * drift(t),
-    look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return drift(t) > .35 ? [420, 620, 2.8] : st.slate; } },
+    look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return drift(t) > .35 ? [420, 620, 2.8] : st.slate.clone().add(V(0, .1, 0)); } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A, d = drift(t), kf = fq.group.scale.y / 1.6;
     life(fq, t, 2); life(mo, t, 5);
     rock(mo, t, .2 - .13 * d, 4 - 2.4 * d);
-    mo.B.head.rotation.x += .06 * Math.sin(t * 4 - 2.4 * d * t) * (1 - d);
+    mo.B.head.rotation.x += (.05 + .1 * Math.sin(t * 4 - 2.4 * d * t)) * (1 - d) - .06;   // r17: reciting nods, chin up off the chest
+    mo.B.neck.rotation.x += .05 * Math.sin(t * 4 - 2.4 * d * t + .6) * (1 - d);
+    mo.B.neck.updateWorldMatrix(false, true);
     mo.B.head.rotation.z += .05 * Math.sin(t * .9 + 1);
     fq.B.head.rotation.z += .05 * Math.sin(t * .6);
     fq.B.spine.rotation.x += .03 * Math.sin(t * .45);
-    st.lh ||= S3.prop(PR.louha({ col: 0x8a5a2c }), 0, 0, 0);
+    if (!st.lh) {
+      st.lh = S3.prop(PR.louha({ col: 0xc99a58 }), 0, 0, 0);   // r17: pale wood board with dark writing bars (same as s05)
+      for (let i = 0; i < 6; i++) {
+        const bar = new THREE.Mesh(new THREE.BoxGeometry(i % 2 ? .15 : .19, .012, .004), PR.toon(0x2a1a10));
+        bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
+      }
+    }
     st.slate = lapLouha(mo, st.lh);
     // the quince rod lies across the right knee, a little in front of the lap, not back through the hips
     if (!st.rod) {
@@ -68,7 +76,7 @@ const scene = beatScene(ID, {
   plan: {
     b022: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.5, dx: 120, dy: -70 },
     b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.75, dx: 120, dy: -75, noIns: true,
-      segs: [[.177, 'matin'], [.463, 'apres'], [.9, 'cl']] },
+      segs: [[.177, 'matin'], [.26, 'cl'], [.463, 'apres'], [.545, 'cl']] },   // r17: the inserts are ~1 s; the painting starts at b024
     b024: { shot: 'p06', segs: [[.42, 'p07']] },
     b025: { shot: 'p07' },
   },
