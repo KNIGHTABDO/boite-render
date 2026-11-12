@@ -44,15 +44,14 @@ const cl = staged('mausolee', {
     rock(mo, t, .11 - .07 * d, 4 - 2.4 * d);
     st.lh ||= S3.prop(PR.louha({ col: 0xc9a46a }), 0, 0, 0);
     st.slate = lapLouha(mo, st.lh);
-    // the quince rod lies ON the right knee and points toward the boy, not back through the hips
+    // the quince rod lies across the right knee, a little in front of the lap, not back through the hips
     if (!st.rod) {
-      const geo = new THREE.CylinderGeometry(.006, .01, .72, 6); geo.translate(0, .36, 0);
+      const geo = new THREE.CylinderGeometry(.008, .012, .46, 6);
       st.rod = S3.prop(new THREE.Mesh(geo, PR.toon(0x6e4a28)), 0, 0, 0); st.rod.castShadow = true;
     }
-    const knee = at(fq, 'shinR').add(V(0, .035 * kf, 0));
-    const aim = dirW(fq, .15, .08, 1);
+    const knee = at(fq, 'shinR').add(V(0, .05 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .05 * kf);
     st.rod.position.copy(knee);
-    st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), aim);
+    st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), dirW(fq, 1, .03, .16));
     st.rod.scale.setScalar(kf);
     st.rod.updateMatrixWorld(true);
     fq.B.upperArmR.rotation.z -= .08;
@@ -64,7 +63,7 @@ const scene = beatScene(ID, {
   shots: { cl, p06, p07, matin, apres },
   plan: {
     b022: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.38, dy: -28 },
-    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.45, dx: -160, dy: 46, noIns: true,
+    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.45, dx: -250, dy: 46, noIns: true,
       segs: [[.177, 'matin'], [.463, 'apres'], [.9, 'cl']] },
     b024: { shot: 'p06' },
     b025: { shot: 'p07' },
@@ -75,10 +74,6 @@ scene.draw = (t, S) => {
   const fin = draw(t, S);
   const [a, b] = B(1);
   scene.noExam = t >= a - .2 && t < b + 1;
-  if (process.env.FRAME8 && cl.v) {
-    const v = cl.v, scr = p => { const q = cl.S3.project(p); return [Math.round((q[0] - v[0]) * v[2] + 960), Math.round((q[1] - v[1]) * v[2] + 540)]; };
-    console.error('FRAME', t.toFixed(2), 'cl', v.map(x => +x.toFixed(1)).join(','), cl.st.actors.map(ac => ac.name + scr(ac.B.head.getWorldPosition(V())).join(',') + '/f' + scr(ac.B.footL.getWorldPosition(V())).join(',')).join(' '));
-  }
   return fin;
 };
 export default scene;

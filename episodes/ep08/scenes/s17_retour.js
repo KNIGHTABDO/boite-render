@@ -47,16 +47,21 @@ function veilDown(a) {
   if (back.length() > .22 && tip.y > .16) IK.aim(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hip.clone().addScaledVector(back.normalize(), .08).setY(.03));
 }
 const pe = staged('chambre_penombre', {
-  father: { at: [170, 925], face: [1000, 640], seed: 5, height: 1.76, walk: { to: [430, 860], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
-    lookMax: .95, look: t => t > B(4)[0] ? 'mohammed' : t > B(2)[0] ? [800, 760, 1.05] : null },
-  zoubida: { at: [1170, 860], face: [700, 900], pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, look: [1000, 700, .4] },
+  father: { at: [170, 925], face: 'cam', yaw: -.4, seed: 5, height: 1.76, walk: { to: [430, 860], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
+    lookMax: .4, look: (t, st) => {
+      if (!(t > B(4)[0])) return null;
+      const p = at(st.A.mohammed, 'head').clone();
+      p.y = Math.max(p.y, at(st.A.father, 'head').y - .22);
+      return p;
+    } },
+  zoubida: { at: [620, 960], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false },
   // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
   mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null },
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo } = st.A, kf = k(fa);
-    yawToward(fa, S3.cam, 1.5);
+    yawToward(fa, S3.cam, .4);
     lap(zo); veilDown(zo);
     const mo = st.A.mohammed, surface = .3;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
@@ -75,10 +80,15 @@ const pe = staged('chambre_penombre', {
 const nu = staged('chambre_nuit', {
   // Zoubida kneels right of the table, turned three-quarters to the lens (toward him, lower left) so her tears read;
   // he stands in the left foreground, facing her
-  father: { at: [430, 1010], face: 'zoubida', seed: 5, height: 1.76 },
-  // b117 she lifts her wet face to him (a bowed head showed only hair); b119 she turns away from the jewels; b121 to her chest
-  zoubida: { at: [980, 880], face: [560, 1000], pose: 'kneel', o: { grounded: true, lean: .08, hands: false }, seed: 7, hands: false, lookMax: 1.15,
-    look: t => t >= B(8)[0] && t < B(10)[0] ? 'father' : t >= B(10)[0] ? [1680, 760, .7] : null },
+  father: { at: [420, 900], face: 'cam', yaw: .2, seed: 5, height: 1.76, lookMax: .35,
+    look: (t, st) => { const p = at(st.A.zoubida, 'head').clone(); p.y = Math.max(p.y, at(st.A.father, 'head').y - .18); return p; } },
+  // b117 she lifts her face toward him; from b119 she glances toward the chest without turning her back on the lens
+  zoubida: { at: [980, 880], face: 'cam', yaw: -.4, pose: 'kneel', o: { grounded: true, lean: .08, hands: false }, seed: 7, hands: false, lookMax: .6,
+    look: (t, st, S3) => {
+      if (t >= B(8)[0] && t < B(10)[0]) { const p = at(st.A.father, 'head').clone(); p.y = Math.max(p.y, at(st.A.zoubida, 'head').y - .15); return p; }
+      if (t >= B(10)[0]) { const p = S3.floorAt(1580, 760) || at(st.A.zoubida, 'head').clone(); p.y = at(st.A.zoubida, 'head').y - .1; return p; }
+      return null;
+    } },
   mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0 },
 }, {
   light: { keyI: 1.5, key: '#ffc070', fillI: .55 },
@@ -96,11 +106,16 @@ const nu = staged('chambre_nuit', {
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
     if (take > 0) {
-      const gift = PO.hipToWorld(zo, -.1 * kz, .42 * kz, .28 * kz);
-      approach(fa, 'R', gift, .05);
-      PO.reach(fa, 'R', gift, { grip: 0, pole: [-.3, .12, .18] });
-      PO.fingers(fa, 'R', 0, { spread: .2 });
-      PO.reach(zo, 'R', gift, { grip: .02, pole: [-.32, .1, .16] });
+      // Meet between them. Stepping into her put his legs through her lap and his arm through his own chest.
+      const clamp = (a, side, target) => {
+        const sh = at(a, 'upperArm' + side), len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
+        const d = target.clone().sub(sh); if (d.length() > len * .86) target = sh.clone().addScaledVector(d.normalize(), len * .86);
+        return target;
+      };
+      const offer = PO.hipToWorld(fa, -.32 * kf, .22 * kf, .38 * kf);
+      PO.reach(fa, 'R', offer, { grip: 0, pole: [-.5, .28, .16] });
+      PO.fingers(fa, 'R', 0, { spread: .25 });
+      PO.reach(zo, 'R', clamp(zo, 'R', offer.clone().add(V(.04, .07, .05))), { grip: 0, pole: [-.4, .18, .16] });
     }
     if (toss > 0) {
       const aim = S3.floorAt(1620, 700) || at(zo, 'chest').clone(); aim.y = at(zo, 'chest').y + .05 * kz;
@@ -146,17 +161,17 @@ export default beatScene(ID, {
   plan: {
     b109: { shot: 'es', size: 'W', on: 'father' },
     b110: { shot: 'pe', size: 'W', on: 'father' },
-    b111: { shot: 'pe', size: 'M', on: 'father', z: 1.3, dy: 20 },
-    b112: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.35, dx: -40, dy: -30 },
+    b111: { shot: 'pe', size: 'M', on: 'father', z: 1.15, dy: -75 },
+    b112: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.08, dx: -10, dy: -95 },
     b113: { shot: 'pe', size: 'W', on: 'father' },
-    b114: { shot: 'pe', size: 'CU', on: 'mohammed', z: 3.2, dy: -40 },
-    b115: { shot: 'pe', size: 'CU', on: 'father', z: 1.7, dy: -50 },
-    b116: { shot: 'pe', size: 'CU', on: 'mohammed', z: 3.2, dy: -40 },
+    b114: { shot: 'pe', size: 'CU', on: 'mohammed', z: 3.2, dy: -50 },
+    b115: { shot: 'pe', size: 'CU', on: 'father', z: 1.85, dx: 40, dy: -75 },
+    b116: { shot: 'pe', size: 'CU', on: 'mohammed', z: 3.2, dy: -50 },
     b117: { shot: 'nu', size: 'W', on: 'zoubida' },
-    b118: { shot: 'nu', size: 'M', on: 'father', z: 1.35, dx: 40, dy: -40 },
-    b119: { shot: 'nu', size: 'CU', on: 'zoubida', z: 1.85, dy: -35 },
-    b120: { shot: 'nu', size: 'CU', on: 'father', z: 1.7, dy: -45 },
-    b121: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.4, dx: 80, dy: -30 },
-    b122: { shot: 'nu', size: 'CU', on: 'zoubida', z: 1.85, dy: -30 },
+    b118: { shot: 'nu', size: 'M', on: 'father', z: 1.2, dx: 10, dy: -75 },
+    b119: { shot: 'nu', size: 'CU', on: 'zoubida', z: 2.1, dx: 140, dy: -55 },
+    b120: { shot: 'nu', size: 'CU', on: 'father', z: 1.8, dx: -80, dy: -70 },
+    b121: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.15, dx: 80, dy: -85 },
+    b122: { shot: 'nu', size: 'CU', on: 'zoubida', z: 2.1, dx: 140, dy: -55 },
   },
 });

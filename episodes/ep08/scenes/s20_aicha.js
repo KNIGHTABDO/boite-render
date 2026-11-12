@@ -41,7 +41,7 @@ const ch = staged('chambre_jour', {
       PO.fingers(zo, 'R', .3, { spread: .2 });
     }
     if (IN(2, t)) { palmsOnFace(ai, 'cheek', { sides: ['R'], bow: .02 }); lap(ai, 'L', ka); }
-    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); palmsOnFace(ai, 'face', { bow: .16 }); }
+    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); palmsOnFace(ai, 'face', { bow: .08, hover: true }); }
     if (IN(5, t)) {
       // One offered hand, Aïcha's hands a palm-width apart around it. Not the same point twice.
       const offered = front(zo, 'chest', .32 * kz, .06 * kz, .06 * kz);
@@ -71,12 +71,12 @@ const ch = staged('chambre_jour', {
       }
       zo.B.chest.rotation.z += .1 * u; ai.B.chest.rotation.z -= .1 * u;
       zo.B.chest.updateWorldMatrix(false, true); ai.B.chest.updateWorldMatrix(false, true);
-      const hug = (a, other) => {
-        const side = at(other, 'chest').x > at(a, 'chest').x ? 'L' : 'R';
-        const shoulder = at(other, 'upperArm' + (side === 'L' ? 'R' : 'L')).add(V(0, .05, .06));
-        reach(a, side, shoulder, { grip: .02, pole: side === 'L' ? [.34, .1, .2] : [-.34, .1, .2] });
+      const hug = (a, other, lift) => {
+        const side = at(other, 'chest').x > at(a, 'chest').x ? 'R' : 'L';
+        const shoulder = at(other, 'upperArm' + side).add(V(0, lift, .08));
+        reach(a, side, shoulder, { grip: .02, pole: side === 'L' ? [.3, .16, .22] : [-.3, .16, .22] });
       };
-      hug(zo, ai); hug(ai, zo);
+      hug(zo, ai, .1); hug(ai, zo, -.02);
     }
     for (const a of [zo, ai]) a.B.chest.updateWorldMatrix(false, true);
   },
@@ -86,7 +86,7 @@ export default beatScene(ID, {
   shots: { ch },
   plan: {
     b143: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.35, dx: -40, dy: -40 },
-    b144: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.55, dx: 40, dy: -55 },
+    b144: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.25, dx: 20, dy: -95 },
     b145: { shot: 'ch', size: 'CU', on: 'aicha', z: 2.4, dx: 200, dy: -50 },
     b146: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.4, dx: -180, dy: -50 },
     b147: { shot: 'ch', size: 'CU', on: 'aicha', z: 2.5, dx: 220, dy: -55 },

@@ -127,7 +127,7 @@ function pin(a) { if (a.pins) for (const [s, p] of a.pins) PO.reach(a, s, a.B.ro
 // Palms on the skin. kind 'face' covers the cheeks, 'temples' the sides of the forehead, 'cheeks' a flatter press.
 // The head bow happens first so the solve lands on the face the camera actually sees.
 const FACE = { face: [.09, .05, .04], temples: [.088, .06, .03], cheeks: [.085, .03, .05], cheek: [.09, .04, .05] };
-export function palmsOnFace(a, kind = 'face', { sides = ['L', 'R'], bow = null } = {}) {
+export function palmsOnFace(a, kind = 'face', { sides = ['L', 'R'], bow = null, hover = false } = {}) {
   const B = a.B;
   B.chest.rotation.x += kind === 'temples' ? .04 : .06;
   B.neck.rotation.x += bow ?? (kind === 'temples' ? .08 : kind === 'cheek' ? .03 : .18);
@@ -136,15 +136,18 @@ export function palmsOnFace(a, kind = 'face', { sides = ['L', 'R'], bow = null }
   for (const s of sides) {
     const sign = s === 'L' ? 1 : -1, lateral = kind === 'cheek' ? -spot[0] : sign * spot[0];
     const skin = () => B.head.localToWorld(new THREE.Vector3(lateral, spot[1], spot[2]));
-    let wrist = skin();
-    const pole = [sign * .36, .06, .1];
-    for (let i = 0; i < 4; i++) {
-      const p = skin();
+    // hover keeps the wrist outside the torso capsule and lets the palm (mid-hand) land on the skin
+    const park = () => B.head.localToWorld(new THREE.Vector3(lateral * 1.7, spot[1] - .01, spot[2] + .03));
+    let wrist = hover ? park() : skin();
+    const pole = hover ? [sign * .42, .3, .14] : [sign * .36, .06, .1];
+    for (let i = 0; i < (hover ? 2 : 4); i++) {
+      const p = hover ? park() : skin();
       PO.reach(a, s, wrist, { grip: 0, pole });
       aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(new THREE.Vector3(lateral * .25, spot[1] + .03, .01)));
       const into = B.head.getWorldPosition(new THREE.Vector3()).sub(PO.handPts(a, s).palm);
       if (into.lengthSq() > 1e-6) PO.palmTo(a, s, 1, into.normalize());
-      wrist.add(p.clone().sub(PO.handPts(a, s).palm));
+      if (!hover) wrist.add(p.clone().sub(PO.handPts(a, s).palm));
+      else wrist = park();
     }
     PO.fingers(a, s, .02, { thumb: .02, spread: kind === 'temples' ? .35 : .45 });
   }

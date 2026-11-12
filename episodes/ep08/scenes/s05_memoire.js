@@ -151,10 +151,6 @@ scene.draw = (t, S) => {
   const fin = draw(t, S);
   const [a, b] = B(1);
   scene.noExam = t >= a - .2 && t < b + 1;
-  if (process.env.FRAME8 && ch.v) {
-    const scr = (sh, p) => { const q = sh.S3.project(p), v = sh.v; return [Math.round((q[0] - v[0]) * v[2] + 960), Math.round((q[1] - v[1]) * v[2] + 540)]; };
-    for (const [n, sh] of [['cl', cl], ['ch', ch]]) if (sh.v) console.error('FRAME', t.toFixed(2), n, sh.v.map(x => +x.toFixed(1)).join(','), sh.st.actors.map(ac => ac.name + scr(sh, ac.B.head.getWorldPosition(V())).join(',')).join(' '));
-  }
   return fin;
 };
 export default scene;
