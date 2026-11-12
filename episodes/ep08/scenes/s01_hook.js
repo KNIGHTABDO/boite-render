@@ -36,7 +36,7 @@ const pa = staged('patio_matin', {
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
     const u = 1;   // Argon r6: the hand was empty at the open → he already holds the bracelets out, waist height, elbow bent and down, palm up
-    const p = front(fa, 'chest', .42 * k, .2 * k, -.2 * k).lerp(front(fa, 'root', .15 * k, .2 * k, 0), 1 - u);
+    const p = front(fa, 'chest', .42 * k, .2 * k, -.2 * k).add(V(0, .015 * k * Math.sin(t * 1.1), 0)).lerp(front(fa, 'root', .15 * k, .2 * k, 0), 1 - u);
     PO.reach(fa, 'R', p, { grip: 0, pole: [-.95, -.25, -.1] }); st.offer = p.clone().add(V(0, .03, 0));
     fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true);   // supinate: the palm turns to the sky
     PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });   // Argon r6: bracelets clipped the curled thumb/fingers → flat open palm
@@ -45,7 +45,7 @@ const pa = staged('patio_matin', {
       const w = Math.sin(t * .9), n = Math.sin(t * 1.7 + 1);
       fa.B.chest.rotation.y += .3 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
       fa.B.head.rotation.x += .03 * n; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
-      PO.reach(fa, 'L', front(fa, 'chest', .2 * k, -.22 * k, -.12 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.5, -.6, -.2] });
+      PO.reach(fa, 'L', front(fa, 'chest', .2 * k, -.22 * k, -.16 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.1, -1, .35] });
       PO.reach(fa, 'R', p.clone(), { grip: 0, pole: [-.95, -.25, -.1] });
       fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true); PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });
       st.offer = p.clone().add(V(0, .03, 0));
@@ -63,7 +63,7 @@ const pa = staged('patio_matin', {
     zo.B.chest.rotation.z += .02 * Math.sin(t * 1.1); zo.B.head.rotation.z += .05 * (.4 + laugh); zo.B.head.rotation.y += .06 * Math.sin(t * .8); zo.B.chest.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) {
       const early = sm(.3, B(0)[0] + .65, t) * (1 - see);   // b001: a small response before the laugh, preserving the opening offer
-      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.09 : .09) * kz, (.08 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.045 : .045) * kz, -.17 * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
+      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.11 : .11) * kz, (s === 'L' ? .1 : .06 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.07 : .07) * kz, (s === 'L' ? -.15 : -.2) * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
       if (early > 0) PO.fingers(zo, s, .08 * early, { spread: .3 });
     }
   },
@@ -74,7 +74,7 @@ const MATTRESS = [[1055, 588], [1412, 588], [1420, 772], [1148, 748]];
 const CHEST = [[1418, 585], [1830, 585], [1830, 890], [1418, 890]];
 // b002: floor kneel, head bowed into her hands. Mohammed lies along the right divan, skull on the back cushions.
 const nu = staged('chambre_nuit', {
-  zoubida: { at: [820, 880], face: 'cam', yaw: 1.15, pose: 'kneel', o: { grounded: true, lean: .22, hip: .30, spread: .065, hands: false },
+  zoubida: { at: [820, 880], face: 'cam', yaw: 1.15, pose: 'kneel', o: { grounded: true, lean: .3, hip: .26, spread: .09, hands: false },
     seed: 7, hands: false, talk: 0, lids: .95 },
   mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly', pillow: .1, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
 }, {

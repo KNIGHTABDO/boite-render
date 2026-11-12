@@ -1,0 +1,93 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s03 0.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 2.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 7.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 12.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 16.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 20.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 24.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 28.8",
+   "verdict": "minor",
+   "defects": [
+    "Missing/invisible talisman prop: Zoubida presses an empty open hand against the blank plaster above the left doorway with no visible amulet or paper talisman in her fingers or on the wall.",
+    "Left arm hangs straight and slightly stiff at her side."
+   ],
+   "fix": "Add a clearly readable folded paper/leather talisman prop in Zoubida's raised right hand (and affixed above the door lintel) and give her left arm a slight natural bend/weight shift."
+  },
+  {
+   "tile": "s03 33.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 38.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 43.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 48.7",
+   "verdict": "minor",
+   "defects": [
+    "The white dish cloth hangs from Zoubida's raised right hand like a stiff triangular wedge rather than whipping fabric.",
+    "Zoubida's pose with her left hand parked on her hip looks static rather than engaged in a vigorous sweeping motion."
+   ],
+   "fix": "Give the dish cloth a dynamic curved trail and put weight/twist into Zoubida's torso and off-arm to sell a real whipping stroke."
+  },
+  {
+   "tile": "s03 53.1",
+   "verdict": "fail",
+   "defects": [
+    "Flies are not exiting through the open window on the right: the main swarm remains hovering behind Zoubida on the left side of the room, contradicting the beat ('flies out' / 'Elles sortaient par la fenêtre').",
+    "The dish cloth collapses into a small, stiff crumpled lump in Zoubida's outstretched hand while her left hand remains locked on her hip."
+   ],
+   "fix": "Animate the flies streaming toward and out through the right-side window instead of lingering behind Zoubida, and extend Zoubida's follow-through pose with a clearly readable billowing dish cloth."
+  }
+ ],
+ "worst_problem": "In s03 53.1, the flies stay clustered behind Zoubida on the left side of the room instead of flying out through the window on the right as the beat requires."
+}
