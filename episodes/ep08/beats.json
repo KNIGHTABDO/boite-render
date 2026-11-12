@@ -37,9 +37,7 @@
    "text": "Le soir même, elle pleurait dans le noir. Et moi, j'attendais.",
    "speaker": "narrator",
    "dur": 4.6,
-   "mode": "3d",
-   "size": "CU",
-   "room": "chambre_nuit",
+   "mode": "painting",
    "cast": [
     "zoubida",
     "mohammed"
@@ -48,14 +46,14 @@
     "bracelet"
    ],
    "visual": "Same evening, dark room: Zoubida weeps on her mattress, face in her hands; in the background the boy lies on the bed, eyes open, waiting. The bracelets glint on the floor.",
-   "cam": "master",
    "peak": true,
-   "light": "night_window",
    "sfx": [
     "soft sobbing",
     "far city night"
    ],
-   "act": "Zoubida's shoulders shake (breath idle x3); Mohammed only blinks"
+   "reason": "recut",
+   "still": "p41_pleurs_nuit",
+   "move": "slow push in toward the mother, 8%"
   },
   {
    "id": "b003",

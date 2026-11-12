@@ -6,6 +6,7 @@ import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
+import { still, loadStill } from '../lib/stage.js';
 import { bangles } from '../lib/fix8_R17A.js';
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -102,10 +103,13 @@ const nu = staged('chambre_nuit', {
   },
 });
 
+// r23 stop rule: b002 recut as painting p41_pleurs_nuit (3D night kneel failed 3+ rounds); slow push toward the mother.
+const p41 = { async load() { await loadStill('p41_pleurs_nuit'); }, fn(lt, u) { still('p41_pleurs_nuit', u, [.5, .5, 1, .4, .48, 1.08]); return { vignette: .55, paper: .2 }; } };
+
 export default beatScene(ID, {
-  shots: { pa, nu },
+  shots: { pa, nu, p41 },
   plan: {
     b001: { shot: 'pa', size: 'CU', on: 'zoubida' },
-    b002: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.55, dx: 140, dy: -55 },   // her full head, and the boy on the divan behind her
+    b002: { shot: 'p41' },   // r23: painting (was 3D nu shot)
   },
 });
