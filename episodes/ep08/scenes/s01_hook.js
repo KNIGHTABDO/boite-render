@@ -54,6 +54,7 @@ const pa = staged('patio_matin', {
       br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.15 * Math.max(.75, k)); br.updateMatrixWorld(true);
       st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
+    if (globalThis.DBG19 && Math.abs(t-1.9)<.06) { const r=n=>fa.B[n]?.rotation.toArray().slice(0,3).map(x=>+x.toFixed(2)).join(","); globalThis.__w19(["DBG19",t.toFixed(2),Object.keys(fa.B).join(" "),"spine",r("spine"),"chest",r("chest"),"neck",r("neck"),"head",r("head"),"LS",r("LeftShoulder"),"RS",r("RightShoulder")].join(" ")+"\n"); }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
     if (laugh > 0) { zo.B.chest.rotation.x += .07 * Math.sin(t * 14) * laugh; zo.B.neck.rotation.x -= .12 * laugh; zo.B.chest.updateWorldMatrix(false, true); }
     // Argon r5: she stood in a stiff A-pose → her hands meet in front of her waist, then rise to her breastbone as she laughs

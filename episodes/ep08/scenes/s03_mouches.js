@@ -17,7 +17,7 @@ const beams = [980, 700, 2.55];   // Argon r6: a near, high target cranked the h
 const ch = staged('chambre_jour', {
   zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: t => IN(1, t) || IN(4, t) ? .32 : IN(5, t) ? .3 : .7,   // up-looks: eyes + head, a chest arch does the rest
     lids: t => IN(1, t) || IN(4, t) ? .9 : 0,   // Argon r5: squint up at the beams (r7: this sat inside a comment → never ran)
-    walk: { to: [380, 950], t0: B(3)[0] - 2.4, t1: B(3)[0] - .2 }, // on the doorway threshold before the talisman
+    walk: { to: [380, 972], t0: B(3)[0] - 2.4, t1: B(3)[0] - .2 }, // on the doorway threshold before the talisman
     look: t => IN(1, t) ? beams : IN(4, t) ? beams : IN(3, t) && t < B(3)[0] + .5 * (B(3)[1] - B(3)[0]) ? [280, 960, 1.72] : IN(5, t) ? [1450, 760, 1.5] : null },
 }, {
   act(lt, t, S, st, S3) {
@@ -26,7 +26,7 @@ const ch = staged('chambre_jour', {
     if (t >= B(5)[0] - 1.6) {
       rest(zo.B); walk(zo, S3.floorAt(440, 900), S3.floorAt(1060, 950), B(5)[0] - 1.6, B(5)[0] + .15, t);
     } else if (t >= B(4)[0] - .4) {
-      rest(zo.B); walk(zo, S3.floorAt(380, 950), S3.floorAt(440, 900), B(4)[0] - .4, B(4)[0] + 1.3, t);
+      rest(zo.B); walk(zo, S3.floorAt(380, 972), S3.floorAt(440, 900), B(4)[0] - .4, B(4)[0] + 1.3, t);
     }
     const turn = sm(B(4)[0] - 1.4, B(4)[0] + .4, t);
     if (turn > 0 && t < B(5)[0] - .2) {
@@ -54,7 +54,10 @@ const ch = staged('chambre_jour', {
     if (IN(2, t)) {   // b006 "total war": Argon r5 found a mannequin → fists on her hips, elbows out, chin up, eyes sweeping the room
       const w = sm(B(2)[0] - .1, B(2)[0] + .6, t) * (1 - sm(B(2)[1] - .1, B(2)[1] + .4, t));
       zo.B.neck.rotation.x -= .08 * w; zo.B.head.rotation.y += .25 * w * Math.sin((t - B(2)[0]) * 1.1); zo.B.chest.rotation.x -= .05 * w; zo.B.spine.updateWorldMatrix(false, true);
-      for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'root', .07 * k, (s === 'L' ? -.35 : .35) * k, .12 * k).lerp(front(zo, 'root', .12 * k, (s === 'L' ? -.29 : .29) * k, 0), 1 - w), { grip: .05, pole: s === 'L' ? [.9, 0, -.3] : [-.9, 0, -.3] }); PO.fingers(zo, s, .6 * w, { thumb: .5 }); }
+      // r19: a declaring gesture, not an A-pose: right hand raised at chest height palm up, left hand bent in near the belt (inside the frame)
+      zo.B.spine.rotation.y += .1 * w; zo.B.root.rotation.z += .02 * w; zo.B.spine.updateWorldMatrix(false, true);
+      PO.reach(zo, 'R', front(zo, 'root', .12 * k, .29 * k, 0).lerp(front(zo, 'root', .3 * k, .2 * k, .5 * k), w), { grip: .05, pole: [-.7, -.2, -.3] }); PO.palmTo(zo, 'R', w, V(0, 1, 0)); PO.fingers(zo, 'R', .15 * w, { thumb: .1 });
+      PO.reach(zo, 'L', front(zo, 'root', .12 * k, -.29 * k, 0).lerp(front(zo, 'root', .1 * k, -.2 * k, .12 * k), w), { grip: .05, pole: [.7, -.1, -.3] }); PO.fingers(zo, 'L', .4 * w, { thumb: .3 });
     }
     if (IN(3, t)) {
       const D = B(3)[1] - B(3)[0], up = sm(B(3)[0] - .1, B(3)[0] + .5, t)
@@ -94,9 +97,9 @@ const ch = staged('chambre_jour', {
     {
       const hsh = n => { const x = Math.sin(n * 127.1) * 43758.5; return x - Math.floor(x); };
       const homes = st.fh ||= flies.children.map((_, i) => { const fx = 340 + hsh(i + 1) * 1240, fy = 780 + hsh(i + 5) * 200, py = 190 + hsh(i + 9) * 290; return S3.floorAt(fx, fy).setY(heightAt(S3, fx, fy, py)); });
-      const wf = S3.floorAt(1450, 760), wd = wf.clone().setY(heightAt(S3, 1450, 760, 450)), t0 = B(5)[0] + 4.1;
+      const wf = S3.floorAt(1450, 760), wd = wf.clone().setY(heightAt(S3, 1450, 760, 450)), t0 = B(5)[0] + 1.2;
       flies.children.forEach((f, i) => {
-        const out = Math.min(1, Math.max(0, (t - t0 - i * .13) / 1.3)), e = out * out * (3 - 2 * out), j = Math.floor(t * 8 + i * .37), sp = .035 * k * (1 - e) + .01 * k;
+        const out = Math.min(1, Math.max(0, (t - t0 - hsh(i + 17) * 1.6) / 1.2)), e = out * out * (3 - 2 * out), j = Math.floor(t * 8 + i * .37), sp = .035 * k * (1 - e) + .01 * k;
         f.visible = out < .98; f.scale.setScalar(k);
         f.position.copy(homes[i]).lerp(wd, e).add(V(.07 * k * Math.sin(t * .8 + i * 1.7) * (1 - e) + sp * (hsh(i + j * 3.1) - .5) * 2, .05 * k * Math.sin(t * 1.1 + i * 2.3) * (1 - e) + sp * (hsh(i * 2.3 + j) - .5) * 2, sp * (hsh(i * 5.7 + j * 1.3) - .5) * 2));
         f.children[1].rotation.z = .5 * Math.sin(t * 60 + i); f.children[2].rotation.z = -.5 * Math.sin(t * 60 + i);
@@ -114,7 +117,7 @@ const ch = staged('chambre_jour', {
       const fw = V(Math.sin(zo.group.rotation.y), 0, Math.cos(zo.group.rotation.y));
       zo.group.position.addScaledVector(fw, .07 * k * drive); 
       zo.B.spine.rotation.y += done ? -.08 : .18 - .36 * sm(.3, .75, phase);
-      zo.B.chest.rotation.y -= .1 * drive; zo.B.spine.rotation.x += .1 * drive;
+      zo.B.chest.rotation.y -= .1 * drive + .14 * sm(.3, .75, phase) * (done ? 0 : 1); zo.B.root.rotation.y += .06 * (done ? 0 : Math.sin(phase * Math.PI)); zo.B.root.rotation.z += .03 * (done ? 0 : Math.sin(phase * Math.PI)); zo.B.spine.rotation.x += .1 * drive;
       zo.B.thighR.rotation.x -= .1; zo.B.shinR.rotation.x += .15; zo.B.thighL.rotation.x += .05;   // r17: lead leg bent, weight forward
       for (const side of ['L', 'R']) { zo.B['thigh' + side].rotation.x -= .14 * drive; zo.B['shin' + side].rotation.x += .2 * drive; }
       zo.group.updateMatrixWorld(true);
@@ -127,7 +130,7 @@ const ch = staged('chambre_jour', {
       const p = path(phase), prev = path(Math.max(0, phase - .025));
       const target = q => front(zo, 'chest', q.x * k, q.y * k, q.z * k);
       PO.reach(zo, 'L', target(p), { grip: .015, pole: [.5, .1, -.15] });
-      PO.reach(zo, 'R', front(zo, 'root', .1 * k, .3 * k, .16 * k - .1 * k * drive + .02 * k * Math.sin(t * 2)), { grip: .03, pole: [-.7, 0, -.3] });   // r17: loose counter-swing
+      PO.reach(zo, 'R', front(zo, 'root', (.16 + .1 * drive) * k, (.22 - .06 * drive) * k, (.3 - .08 * drive) * k + .02 * k * Math.sin(t * 2)), { grip: .03, pole: [-.8, -.1, -.1] });   // r17: loose counter-swing
       PO.fingers(zo, 'R', .35, { thumb: .3 });
       PO.fingers(zo, 'L', 1, { thumb: .95 });
       const h = PO.handPts(zo, 'L'); cloth.position.copy(h.palm);
