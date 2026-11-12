@@ -1,0 +1,95 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s06 0.2",
+   "verdict": "minor",
+   "defects": [
+    "Center-foreground and mid-right: missing contact shadows under Mohammed's slippers/robe hem and the fqih's crossed legs on the straw mat, creating a pasted-on floating appearance",
+    "Mid-right (fqih's lap): the quince rod rests stiffly across the front of his shins/robe without clear hand contact or weight"
+   ],
+   "fix": "Seat the quince rod firmly against the fqih's thighs with his hands resting naturally on or beside it, and add grounding contact shadows on the mat in the lighting pass."
+  },
+  {
+   "tile": "s06 1.7",
+   "verdict": "minor",
+   "defects": [
+    "Mid-right (fqih): completely frozen in the exact same mannequin pose as s06 0.2 with the quince rod hovering stiffly across his knees",
+    "Center-foreground (Mohammed): torso and arms holding the slate are rigidly unchanged from s06 0.2 and his mouth is closed rather than reciting"
+   ],
+   "fix": "Animate subtle breathing/weight shifts on the fqih and give Mohammed visible reciting lip movement and slight torso lean."
+  },
+  {
+   "tile": "s06 5.1",
+   "verdict": "fail",
+   "defects": [
+    "Center-foreground (Mohammed's head/eyes): Mohammed lifts his head and looks forward/screen-left away from his slate with closed lips, contradicting b022/b023 where he should be reciting with eyes on the slate until 'l'après-midi'",
+    "Mid-right (fqih): remains completely frozen in the identical s06 0.2 pose with the rod perched stiffly across his knees"
+   ],
+   "fix": "Keep Mohammed's head and eyes directed down at the slate with active mouth shapes for reciting during b022, and add subtle idle motion to the fqih."
+  },
+  {
+   "tile": "s06 8.7",
+   "verdict": "minor",
+   "defects": [
+    "Center-foreground (Mohammed): posture and symmetric slate grip are nearly identical and stiff compared to s06 0.2–1.7, lacking clear staging/energy shift into b023",
+    "Mid-right (fqih): completely static in the same s06 0.2 pose"
+   ],
+   "fix": "Vary Mohammed's torso lean and shoulder posture to distinguish the b023 'programme' beat and add subtle idle movement to the fqih."
+  },
+  {
+   "tile": "s06 15.8",
+   "verdict": "minor",
+   "defects": [
+    "Mid-right (fqih): completely frozen in the exact same pose across 15.6 seconds (s06 0.2 to s06 15.8)",
+    "Center-foreground (Mohammed): while his upward gaze and closed mouth match 'l'après-midi', his arms and slate remain rigidly locked in the same symmetric pose"
+   ],
+   "fix": "Relax Mohammed's arms and lower the slate slightly as he drifts off into daydreaming, and give the fqih subtle idle motion."
+  },
+  {
+   "tile": "s06 21.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s06 25.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s06 29.3",
+   "verdict": "minor",
+   "defects": [
+    "Full frame: identical static hold to s06 25.5 with zero camera pan, zoom, or painterly motion across ~4 seconds"
+   ],
+   "fix": "Add a slow camera push-in or gentle drift across painting p07 so the hold feels alive."
+  },
+  {
+   "tile": "s06 34.4",
+   "verdict": "minor",
+   "defects": [
+    "Full frame: identical static hold to s06 25.5 and s06 29.3 with no camera movement across ~9 seconds"
+   ],
+   "fix": "Continue a subtle camera pan/push-in or subtle atmospheric cloud drift through the end of p07."
+  },
+  {
+   "tile": "s06 39.2",
+   "verdict": "minor",
+   "defects": [
+    "Upper sky (painting p08): the dark cloud islands already dominate most of the sky during 'je continuais le même songe...', leaving no visual contrast before they arrive to shatter the dream"
+   ],
+   "fix": "Start p08 with a clearer golden dream sky or gradual cloud encroachment before the dark masses overtake the frame at s06 44.6."
+  },
+  {
+   "tile": "s06 44.6",
+   "verdict": "minor",
+   "defects": [
+    "Full frame: completely identical static image to s06 39.2 with no cloud animation or camera move to sell the black islands closing in and breaking the dream"
+   ],
+   "fix": "Animate the dark cloud layer creeping inward or add a tightening camera move on the second line."
+  }
+ ],
+ "worst_problem": "In the 3D classroom sequence (s06 0.2–15.8), the fqih stays completely frozen with the quince rod perched stiffly across his knees while Mohammed's arms remain rigid and his gaze breaks away from his slate prematurely at s06 5.1."
+}

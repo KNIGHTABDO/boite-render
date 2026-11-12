@@ -15,7 +15,7 @@ function palmsCover(a) {
   const B = a.B;
   B.chest.rotation.x += .06; B.neck.rotation.x += .26; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sign = s === 'L' ? 1 : -1, spot = () => B.head.localToWorld(new THREE.Vector3(sign * (s === 'L' ? .03 : .05), s === 'L' ? .05 : .04, .15));
+    const sign = s === 'L' ? 1 : -1, spot = () => B.head.localToWorld(new THREE.Vector3(sign * (s === 'L' ? .03 : .05), s === "L" ? .08 : .07, .16));
     const pole = [sign * .95, -.1, .15];   // r16: elbows down and in (not flared out beside the cheeks)
     for (let i = 0; i < 3; i++) {
       PO.reach(a, s, spot(), { grip: 0, pole });
@@ -82,12 +82,12 @@ const nu = staged('chambre_nuit', {
     const { zoubida: zo, mohammed: mo } = st.A;
     faceCam(zo, S3.cam, .6);   // r18: 3/4 front toward the lens, face and hands readable
     st.G.apply = () => {};   // contact hands and the boy's pillow turn must survive the automatic gaze pass
-    lieOnBed(mo, { top: .35, feet: [.5, .87], hands: 'chest', pillow: .08, tuck: .06, headTurn: -.1 });   // r15: flat on the cloth at cast scale
+    lieOnBed(mo, { top: .35, feet: [.5, .87], hands: 'chest', pillow: .08, tuck: .06, headTurn: -.5 });   // r15: flat on the cloth at cast scale
     {   // r16: a low cushion under the back of the skull (further behind the head so the chin never meets it)
       st.pillow2 ||= PR.cushion({ w: .4, d: .3, h: .07, col: 0x586b8c });
       const q = mo.B.head.localToWorld(new THREE.Vector3(0, .0, -.09));
       S3.prop(st.pillow2, q.x, .35 + .035 - .004, q.z, mo.group.rotation.y); st.pillow2.visible = true; }
-    mo.B.head.scale.setScalar(.72); mo.B.head.updateWorldMatrix(false, true);   // r17: child head proportion
+    mo.B.head.scale.setScalar(.95); mo.B.head.updateWorldMatrix(false, true);   // r17: child head proportion
     for (const [sd, sg] of [['L', 1], ['R', -1]]) { mo.B['upperArm' + sd]?.rotation && (mo.B['upperArm' + sd].rotation.z += sg * .12); }
     mo.group.updateMatrixWorld(true);
     {   // r19: a blanket over his legs hides the tan blob and the stubby legs; smaller head reads as a sleeping child
