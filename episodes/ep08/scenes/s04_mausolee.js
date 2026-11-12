@@ -158,7 +158,7 @@ const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [170
 const TOMB = { top: 1.25, front: [[184, 886], [430, 932]], back: [[190, 729], [663, 735]] };   // plate-px footprint of the plinth
 let PLATE; plate(platePath('mausolee')).then(i => { PLATE = i; });
 const leaves = () => { if (!PLATE) return; for (const [x0, x1] of [[0, 196], [1812, 1920]]) { c.save(); c.beginPath(); c.rect(x0, 0, x1 - x0, 1080); c.clip(); drawPlate(PLATE); c.restore(); } };
-const fl = checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: LAP[0], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
+const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: LAP[0], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
   fx: WARM, over: leaves,
   act(lt, t, S, st, S3) {
     if (!st.lap) {   // the path as a dense polyline on the floor, with its arc length
@@ -193,7 +193,7 @@ const fl = checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n,
       if (index) IK.aim(a.B.handR, IK.wpos(index), at(a, 'handR').add(V(0, .2 * ka, 0)));
     }
   },
-});
+}), { woman1: 1.22, woman2: 1.22, fatma: 1.22 });   // r16: adult height against the 1.25 m rail
 
 // ---------------------------------------------------------------- b013 the coolness: eyes closed, one deep breath
 const br = sized(checkedStage('mausolee', {
@@ -225,10 +225,10 @@ const ab = sized(checkedStage('mausolee_rev', {
     const { fqih: fq, kid2, mohammed: mo } = st.A, kf = k(fq);
     // the finger to the lips (index straight, other fingers curled), held, then lowered
     const sh = 1 - sm(B(4)[0] + .3 * (B(4)[1] - B(4)[0]), B(4)[0] + .42 * (B(4)[1] - B(4)[0]), t);
-    fq.group.rotation.y = -.2 - .6 * (1 - sh); fq.group.updateMatrixWorld(true);   // after the gesture he turns 3/4 toward the boys at the fountain
+    fq.group.rotation.y = -.2 - .3 * (1 - sh); fq.group.updateMatrixWorld(true);   // after the gesture he turns 3/4 toward the boys at the fountain
     hangArms(fq, t);
     if (sh > 0) {
-      const lips = at(fq, 'head', [-.085, .055, .17]);
+      const lips = at(fq, 'head', [-.085, .0, .17]);
       const palm = lips.clone().add(V(0, -.09 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .025 * kf);
       PO.reach(fq, 'R', at(fq, 'handR').lerp(palm, sh), { grip: 0, pole: [-.32, .05, -.12] });
       PO.fingers(fq, 'R', .95 * sh, { thumb: .6 * sh, each: [1, 0, 1, 1, 1] });
@@ -236,16 +236,16 @@ const ab = sized(checkedStage('mausolee_rev', {
       if (index) IK.aim(fq.B.handR, IK.wpos(index), lips);
     }
     // Fixed targets on the painted basin, not chest-relative reaches out into the empty room.
-    st.water ||= [[180, 785], [345, 785]].map(p => S3.floorAt(...p).setY(.43));
-    const wash = (a, d, ph, water) => {
-      const ka = k(a), u = sm(B(4)[0] + d, B(4)[0] + d + .8, t);
+    st.water ||= [[180, 785], [320, 790]].map(p => S3.floorAt(...p).setY(.43));
+    const wash = (a, d, ph, water, dur) => {
+      const ka = k(a), u = sm(B(4)[0] + d, B(4)[0] + d + .8, t) * (1 - sm(B(4)[0] + d + dur, B(4)[0] + d + dur + .6, t));   // r16: one boy at the basin at a time
       // Stand within an arm's reach of the rim, measured in world metres, at the entrance shot's scale.
       // He stands BESIDE the basin, three-quarters to the lens: before the wash he faces the master (the look target), then
       // turns to the water as he starts, so neither his back nor a 150 degree head twist is ever toward us.
       const yaw1 = yawTo(a.group.position, fq.group.position), yaw2 = -1.15, turn = sm(B(4)[0] + d - .1, B(4)[0] + d + .6, t);
       const yawW = yaw1 + Math.atan2(Math.sin(yaw2 - yaw1), Math.cos(yaw2 - yaw1)) * turn;
       a.group.rotation.y = yaw2; a.group.updateMatrixWorld(true);
-      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .72 * ka);
+      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .8 * ka);
       a.group.rotation.y = yawW; a.group.updateMatrixWorld(true);
       if (u <= 0) return;
       a.B.spine.rotation.set(1.15 * u, 0, 0); a.B.chest.rotation.set(0, 0, 0);
@@ -256,23 +256,25 @@ const ab = sized(checkedStage('mausolee_rev', {
         PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015 });   // lower the torso before extending to the water
       }
     };
-    wash(kid2, 2.2, 0, st.water[0]); wash(mo, 3.2, 1.3, st.water[1]);
+    wash(kid2, 2.2, 0, st.water[0], 2.4); wash(mo, 5.9, 1.3, st.water[1], 3);
   },
 }), STANDING);
 
 // ---------------------------------------------------------------- b015 prayer rows behind the master
 const ROW = [['kid1', 820, 2], ['kid2', 1060, 4], ['mohammed', 1300, 3], ['kid3', 1540, 6]];
 // The qibla is the left-hand wall: rows seen from behind and three-quarters, so every face stays within reach of the lens.
-const QIBLA = Math.PI + .75;   // straight away from the lens: a row of backs behind the leading fqih
+const QIBLA = Math.PI;   // straight away from the lens: a row of backs behind the leading fqih
 const pray = sized(checkedStage('mausolee', {
   fqih: { at: [1180, 730], face: QIBLA, seed: 9, talk: 0 },
   ...Object.fromEntries(ROW.map(([n, x, seed]) => [n, { at: [x, 915], face: QIBLA, seed, talk: 0 }])),
 }, {
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     const [t0, t1] = B(5), D = t1 - t0;
     const ruku = lag => sm(t0 + .2 * D + lag, t0 + .2 * D + lag + .75, t) * (1 - sm(t0 + .68 * D + lag, t0 + .68 * D + lag + .75, t));
     const all = [['fqih', 0], ...ROW.map(([n]) => [n, .12])];
     st.G.apply = () => {};   // all five keep their heads aligned with the qibla
+    // r16: backs to the lens whatever the camera yaw is (the reviewer wants a row of backs behind the fqih)
+    for (const n of ['fqih', ...ROW.map(r => r[0])]) { const a = st.A[n]; a.group.rotation.y = yawTo(a.group.position, S3.cam.position) + .95 + (({ kid1: .06, kid2: -.05, mohammed: .04, kid3: -.07 })[n] || 0); a.group.updateMatrixWorld(true); }
     for (const [n, lag] of all) {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
@@ -280,7 +282,7 @@ const pray = sized(checkedStage('mausolee', {
       const hinge = Math.PI / 2 * r;
       a.B.spine.rotation.set(hinge, 0, 0); a.B.chest.rotation.set(0, 0, 0);
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hinge);
-      a.B.neck.rotation.set(0, 0, 0); a.B.head.rotation.set(0, .55, 0); upd(a, 'spine');   // head a little toward the lens
+      a.B.neck.rotation.set(0, 0, 0); a.B.head.rotation.set(-.45 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
       const fw = dirW(a, 0, 0, 1); let settle = 0;

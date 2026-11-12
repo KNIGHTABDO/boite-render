@@ -6,13 +6,14 @@
 import * as PO from '../../../engine/poses.js';
 import { staged, littleBroom, holdBroom, handTo, yawToward } from '../lib/fix8b.js';
 import { yawBody } from '../lib/fix8_g3.js';
+import { brightBroom, holdBroomFwd } from '../lib/fix8_R16C.js';
 import { beatScene, lines, sm, at, V, yawTo, dirW } from '../lib/beatscene.js';
 
 const ID = 's11_depart', L = lines(ID);
 const B = i => L[i] || [0, 0];
 const skyOf = a => at(a, 'head').add(V(.15, 3.2, .35));
 const AMBER = { key: '#ffb870', keyI: 1.7, dir: [-1.2, 5.2, .8], fillI: .85, sky: '#d9b48a', shadow: .26, soft: 10 };
-const WALK0 = () => B(7)[0] - .45;
+const WALK0 = () => B(7)[0] - .1;
 
 const pa = staged('patio_matin', {
   mohammed: { at: [960, 1035], face: 'cam', yaw: -.2, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : .5,
@@ -40,7 +41,7 @@ const pa = staged('patio_matin', {
   addressee: { mohammed: 'zoubida', zoubida: 'mohammed', fatma: 'zoubida', father: 'zoubida' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo, fatma: fa, father: paFa } = st.A;
-    const broom = st.broom ||= S3.prop(littleBroom(), 0, 0, 0);
+    const broom = st.broom ||= S3.prop(brightBroom(), 0, 0, 0);
     const sky = 1 - sm(B(1)[0] - .55, B(1)[0] - .05, t);
     mo.B.spine.rotation.x -= .14 * sky; mo.B.chest.rotation.x -= .18 * sky;
     zo.B.spine.rotation.x -= .04 * sky; zo.B.chest.rotation.x -= .06 * sky;
@@ -133,7 +134,7 @@ const pa = staged('patio_matin', {
     }
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
-    if (fa.group.visible) holdBroom(fa, broom, 'R'); else broom.visible = false;
+    if (fa.group.visible) holdBroomFwd(fa, broom, S3.scene, 'R'); else broom.visible = false;
     // Nod rides on top of the eyeline, after the camera yaw, so it is not pulled back to the lens.
     if (nod > 0) {
       zo.B.neck.rotation.x += .1 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5)) * nod;

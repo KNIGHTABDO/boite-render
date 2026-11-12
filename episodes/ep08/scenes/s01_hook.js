@@ -14,8 +14,8 @@ function palmsCover(a) {
   const B = a.B;
   B.chest.rotation.x += .06; B.neck.rotation.x += .26; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sign = s === 'L' ? 1 : -1, spot = () => B.head.localToWorld(new THREE.Vector3(sign * .04, .045, .135));
-    const pole = [sign * .9, -.05, .15];
+    const sign = s === 'L' ? 1 : -1, spot = () => B.head.localToWorld(new THREE.Vector3(sign * (s === 'L' ? .03 : .05), s === 'L' ? .05 : .04, .15));
+    const pole = [sign * .95, -.1, .15];   // r16: elbows down and in (not flared out beside the cheeks)
     for (let i = 0; i < 3; i++) {
       PO.reach(a, s, spot(), { grip: 0, pole });
       aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(new THREE.Vector3(sign * .01, .09, .1)));
@@ -64,12 +64,16 @@ const nu = staged('chambre_nuit', {
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A;
     st.G.apply = () => {};   // contact hands and the boy's pillow turn must survive the automatic gaze pass
-    lieOnBed(mo, { top: .35, feet: [.5, .87], hands: 'belly', pillow: .1, tuck: .22, headTurn: -.1 });   // r15: flat on the cloth at cast scale
-    pillowUnder(S3, st, mo, { top: .35, h: .1, col: 0x586b8c });
+    lieOnBed(mo, { top: .35, feet: [.5, .87], hands: 'chest', pillow: .08, tuck: .06, headTurn: -.1 });   // r15: flat on the cloth at cast scale
+    {   // r16: a low cushion under the back of the skull (further behind the head so the chin never meets it)
+      st.pillow2 ||= PR.cushion({ w: .4, d: .3, h: .07, col: 0x586b8c });
+      const q = mo.B.head.localToWorld(new THREE.Vector3(0, .0, -.09));
+      S3.prop(st.pillow2, q.x, .35 + .035 - .004, q.z, mo.group.rotation.y); st.pillow2.visible = true; }
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
     mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);
-    palmsOverEyes(zo, { bow: .14 });
+    palmsCover(zo);   // r16: both palms over the face, head bowed into them
+    zo.B.spine.rotation.x += .05; zo.B.chest.rotation.z += .03; zo.group.updateMatrixWorld(true); palmsCover(zo);
   },
 });
 

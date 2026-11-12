@@ -27,6 +27,7 @@ const pa = staged('patio_matin', {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) {
     holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
+    // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
     for (const [s, ph] of [['L', 0], ['R', Math.PI]]) {
@@ -43,7 +44,7 @@ const pa = staged('patio_matin', {
 /** louha on the knees, tilted back so its top stays under the chin, palms on the lower side edges */
 function holdLouha(a, lh) {
   const kk = a.group.scale.y / 1.6;
-  holdBoard(a, lh, front(a, 'root', .18 * kk, 0, .04 * kk), -1.1, Math.min(.85, kk * 1.15));
+  holdBoard(a, lh, front(a, 'root', .18 * kk, 0, .04 * kk), -1.1, Math.min(1.2, kk * 1.6));
   reachSafe(a, 'L', lh.localToWorld(V(.125, .1, .01)), { grip: .03, pole: [.3, -.12, .1] });
   reachSafe(a, 'R', lh.localToWorld(V(-.125, .1, .01)), { grip: .03, pole: [-.3, -.12, .1] });
 }
@@ -53,10 +54,10 @@ function holdLouha(a, lh) {
 const ch = staged('chambre_jour', {
   ...LUNCH,
   // Argon r4: he looked at the lens on b033/b034 and b036/b037 → explicit eyelines, wider head cap
-  father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(10)[0] - .2 ? [1020, 960, .75] : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
+  father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(10)[0] - .2 ? 'zoubida' : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
   // Argon r5: he drifted to the lens → he follows the talk: his mother on her reaction (b030) and her question (b033), else his father.
   // b035 the head-shake stays toward the lens: a look at his father on top of the body yaw turned the face past the camera.
-  mohammed: { ...LUNCH.mohammed, at: [930, 1000], yaw: .3, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 1.2 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
+  mohammed: { ...LUNCH.mohammed, at: [930, 1000], yaw: .2, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 1.2 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
 }, {
   // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
   addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
@@ -95,7 +96,7 @@ const ch = staged('chambre_jour', {
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
       reachSafe(fa, s, front(fa, 'chest', .3 * kf, sign * .17 * kf, -.14 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .4, -.1, .12] });
-      PO.palmTo(fa, s, palms); PO.fingers(fa, s, .15, { spread: .3 });
+      PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .15, { spread: .3 });
     }
     // b035: left fist at his chest, right hand open toward his father
     if (up > 0) {
@@ -112,7 +113,7 @@ const ch = staged('chambre_jour', {
     }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .12 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .09 * kf);
+      const top = at(mo, 'head').add(V(0, .15 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);
       approach(fa, 'R', top, .08);
       PO.reach(fa, 'R', top, { grip: .01, pole: [-.4, .15, .15] });
       PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });
@@ -130,8 +131,8 @@ export default beatScene(ID, {
     b032: { shot: 'ch', size: 'M', on: 'father', z: 1.45, dx: 220, dy: -55 },   // both of them in the master, crown inside the frame
     b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dy: -50 },
     b034: { shot: 'ch', size: 'M', on: 'father', z: 1.8, dy: -40 },
-    b035: { shot: 'ch', size: 'W', on: 'mohammed' },
+    b035: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.35, dy: -40 },   // r16: the W master read as a scale pop with floating actors → same M grammar as its neighbours
     b036: { shot: 'ch', size: 'M', on: 'father', z: 1.4, dx: 140, dy: -80 },
-    b037: { shot: 'ch', size: 'CU', on: 'father', z: 1.7, dy: -70 },
+    b037: { shot: 'ch', size: 'CU', on: 'father', z: 2.4, dy: -75, dx: 40 },   // r16: a true close-up (the boy's head left the frame)
   },
 });

@@ -17,13 +17,13 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 // the class layout in the cool room, shared with s06: the fqih cross-legged against the back wall, Mohammed in front of him
 // toward the lens, 3/4 to camera (his face reads), his slate up on his lap
 export const CLASS = {
-  fqih: { at: [1150, 780], face: [1000, 1080], pose: 'cross', seed: 9, height: 1.74 },
-  mohammed: { at: [840, 890], face: 'cam', yaw: .22, pose: 'cross', seed: 3, hands: false },
+  fqih: { at: [1150, 830], face: [1000, 1080], pose: 'cross', seed: 9, height: 1.74 },
+  mohammed: { at: [840, 965], face: 'cam', yaw: .22, pose: 'cross', seed: 3, hands: false },
 };
 /** the slate flat on the crossed shins, a hand on each side edge (clear of the thighs) */
 export function lapLouha(a, lh) {
   const kk = k(a);
-  const sc = Math.min(1, Math.max(.8, kk * 1.3));
+  const sc = Math.min(1.15, Math.max(.95, kk * 1.5));   // r16: bigger so it reads as a board
   holdBoard(a, lh, front(a, 'root', .3 * kk, 0, .06 * kk), -1.05, sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
   reachSafe(a, 'L', lh.localToWorld(V(.125, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
   reachSafe(a, 'R', lh.localToWorld(V(-.125, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });
@@ -62,7 +62,7 @@ const cl = staged('mausolee', {
     fq.B.spine.updateWorldMatrix(false, true);
     // b017 reciting from the slate, rocking; the rock quickens a little as the lines multiply
     rock(mo, t, .09 + .03 * win(1, .45, 1, t), 3.2 + .8 * win(1, .45, 1, t));
-    st.lh ||= S3.prop(PR.louha({ col: 0xc9a46a }), 0, 0, 0);
+    st.lh ||= S3.prop(PR.louha({ col: 0x8a5a2c }), 0, 0, 0);
     st.slate = lapLouha(mo, st.lh);
   },
 });
@@ -143,10 +143,10 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.55, dy: 0 },
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.5, dy: 70 },
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
     b019: { shot: 'ch', size: 'CU', on: 'father', z: 1.9, dx: -20, dy: 6 },
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.2, dx: 0, dy: -20 },
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.4, dx: 0, dy: -50 },
     b020: { shot: 'p05' },
   },
 });

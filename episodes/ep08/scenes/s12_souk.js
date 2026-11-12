@@ -185,7 +185,7 @@ const la = checkedStage('souk_bijoux', {
     const tryOn = (a, w) => {
       if (w <= 0) return 0;
       const ka = k(a), p = ((t - B(7)[0]) * .95) % 1, sl = Math.sin(p * Math.PI);
-      const wrist = front(a, 'chest', .36 * ka, -.17 * ka, -.12 * ka);
+      const wrist = front(a, 'chest', .5 * ka, -.11 * ka, -.1 * ka);   // r16: well out in front of the haik cone so wrist + bracelets show
       PO.reach(a, 'L', front(a, 'root', .1 * ka, -.12 * ka, .1 * ka).lerp(wrist, w), { grip: .01 });
       const lw = at(a, 'handL'), fwd = lw.clone().sub(at(a, 'foreArmL')).normalize();
       PO.reach(a, 'R', PO.hipToWorld(a, -.26 * ka, .06 * ka, .03 * ka).lerp(lw.clone().addScaledVector(fwd, (.07 - .1 * sl) * ka).add(V(0, .025 * ka, 0)), Math.min(1, w * 2.5)), { grip: .01, pole: [-.7, .05, 0] });
@@ -208,7 +208,7 @@ const la = checkedStage('souk_bijoux', {
     st.br ||= bracelets(S3);
     const holder = t < B(5)[0] - .3 ? null : t < f(6, .32) ? [ma, 'R'] : t < B(7)[0] ? [fa, 'R'] : t < f(7, .48) ? [zo, 'L'] : t < f(7, .92) ? [ft, 'L'] : t < f(8, .25) ? [fa, 'L'] : [ma, 'R'];
     st.br.visible = !!holder && holder[0].group.visible;
-    st.br.scale.setScalar(1.1);
+    st.br.scale.setScalar(holder && (holder[0] === zo || holder[0] === ft) ? 1.7 : 1.1);
     if (holder) {
       const [a, side] = holder, fitting = a === zo || a === ft;
       st.br.position.copy(PO.handPts(a, side).palm); st.br.rotation.set(0, 0, 0);

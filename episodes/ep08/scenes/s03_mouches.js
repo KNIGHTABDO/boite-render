@@ -46,14 +46,14 @@ const ch = staged('chambre_jour', {
       const shift = .025 * Math.sin((t - B(4)[0]) * 1.3);
       zo.group.position.add(front(zo, 'root', 0, shift, 0).sub(at(zo, 'root')));
       zo.B.root.rotation.z += .015 * Math.sin((t - B(4)[0]) * 1.3); zo.group.updateMatrixWorld(true);
-      PO.reach(zo, 'R', front(zo, 'head', .13 * k, .035 * k, .13 * k), { grip: .015, pole: [-.4, .1, .15] });
+      PO.reach(zo, 'R', front(zo, 'head', .17 * k, .04 * k, .13 * k), { grip: .015, pole: [-.4, .1, .15] });
       PO.palmTo(zo, 'R', 1, V(0, -1, 0)); PO.fingers(zo, 'R', .05, { spread: .2 });
       PO.reach(zo, 'L', front(zo, 'root', .16 * k, -.3 * k, .02 * k), { grip: .015, pole: [.4, -.1, -.15] });
     }
     if (IN(2, t)) {   // b006 "total war": Argon r5 found a mannequin → fists on her hips, elbows out, chin up, eyes sweeping the room
       const w = sm(B(2)[0] - .1, B(2)[0] + .6, t) * (1 - sm(B(2)[1] - .1, B(2)[1] + .4, t));
       zo.B.neck.rotation.x -= .08 * w; zo.B.head.rotation.y += .25 * w * Math.sin((t - B(2)[0]) * 1.1); zo.B.chest.rotation.x -= .05 * w; zo.B.spine.updateWorldMatrix(false, true);
-      for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'root', .04 * k, (s === 'L' ? -.24 : .24) * k, .1 * k).lerp(front(zo, 'root', .12 * k, (s === 'L' ? -.27 : .27) * k, 0), 1 - w), { grip: .05, pole: s === 'L' ? [.7, 0, -.3] : [-.7, 0, -.3] }); PO.fingers(zo, s, .6 * w, { thumb: .5 }); }
+      for (const s of ['L', 'R']) { PO.reach(zo, s, front(zo, 'root', .07 * k, (s === 'L' ? -.3 : .3) * k, .12 * k).lerp(front(zo, 'root', .12 * k, (s === 'L' ? -.29 : .29) * k, 0), 1 - w), { grip: .05, pole: s === 'L' ? [.7, 0, -.3] : [-.7, 0, -.3] }); PO.fingers(zo, s, .6 * w, { thumb: .5 }); }
     }
     if (IN(3, t)) {
       const D = B(3)[1] - B(3)[0], up = sm(B(3)[0] - .1, B(3)[0] + .5, t)
@@ -102,7 +102,7 @@ const ch = staged('chambre_jour', {
       const p = path(phase), prev = path(Math.max(0, phase - .025));
       const target = q => front(zo, 'chest', q.x * k, q.y * k, q.z * k);
       PO.reach(zo, 'R', target(p), { grip: .015, pole: [-.5, .1, -.15] });
-      PO.reach(zo, 'L', front(zo, 'root', .07 * k, -.2 * k, .1 * k + .03 * k * Math.sin(t * 2)), { grip: .015, pole: [.7, 0, -.3] });   // fist near the hip, elbow bent: no A-pose
+      PO.reach(zo, 'L', front(zo, 'root', .08 * k, -.3 * k, .12 * k + .02 * k * Math.sin(t * 2)), { grip: .015, pole: [.7, 0, -.3] });   // fist near the hip, elbow bent: no A-pose
       PO.fingers(zo, 'L', .7, { thumb: .5 });
       PO.fingers(zo, 'R', .9, { thumb: .85 });
       const h = PO.handPts(zo, 'R'); cloth.position.copy(h.palm);
@@ -114,11 +114,14 @@ const ch = staged('chambre_jour', {
       trail.addScaledVector(outward, Math.max(0, .8 - trail.dot(outward)));
       cloth.quaternion.setFromUnitVectors(V(0, -1, 0), trail.normalize());
       cloth.scale.setScalar(k); cloth.updateMatrixWorld(true); wave(cloth.children[0], t, done ? .12 : drive);
-      // flies: smaller, each darting (held, then a jump) inside a cloud that drifts out through the window as she lashes
-      const d = win.clone().setY(1.5 * k), hsh = n => (Math.sin(n * 127.1) * 43758.5) % 1;
-      flies.children.forEach((f, i) => { const u = Math.min(1, Math.max(0, (t - B(5)[0]) * .3 - i * .03)), j = Math.floor(t * 7 + i * .37), sp = (1 - u) * .5;
-        f.visible = u < .97;
-        f.position.copy(g).setY(1.7 * k).lerp(d, u).add(V(sp * hsh(i + j * 3.1), sp * .5 * hsh(i * 2.3 + j), sp * hsh(i * 5.7 + j * 1.3))); });
+      // flies (r16): tiny bodies scattered over the whole room (not a halo over her head), each buzzing in place, then streaming out of the window one after another until the end of the line
+      const d = win.clone().setY(1.55 * k), hsh = n => { const x = Math.sin(n * 127.1) * 43758.5; return x - Math.floor(x); };
+      const span = Math.max(2, B(5)[1] - B(5)[0]);
+      flies.children.forEach((f, i) => {
+        const home = V(g.x + (hsh(i + 1) - .45) * 2.6 * k, (1.2 + hsh(i + 9) * 1.1) * k, g.z - (hsh(i + 5) - .3) * 1.4 * k);
+        const out = Math.min(1, Math.max(0, (elapsed - (.35 + i * span * .045)) / 1.3)), e = out * out * (3 - 2 * out), j = Math.floor(t * 6 + i * .37), sp = .09 * k * (1 - e) + .02 * k;
+        f.visible = true; f.scale.setScalar(1);
+        f.position.copy(home).lerp(d, e).add(V(sp * (hsh(i + j * 3.1) - .5) * 2, sp * (hsh(i * 2.3 + j) - .5) * 2, sp * (hsh(i * 5.7 + j * 1.3) - .5) * 2)); });
       flies.position.set(0, 0, 0); flies.updateMatrixWorld(true);
     }
     const sole = PO.lowestOf(zo, ['footL', 'footR']);
@@ -128,7 +131,7 @@ const ch = staged('chambre_jour', {
 
 /** a striped cotton dish cloth hanging from the grip point (local −y): one subdivided sheet bent each frame by wave() */
 function dishCloth() {
-  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.22, .36, 6, 16); geo.translate(0, -.18, 0);
+  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.17, .3, 8, 18); geo.translate(0, -.15, 0);
   geo.userData.rest = geo.attributes.position.array.slice();
   const N = 32, px = new Uint8Array(4 * N * N);   // cream cotton with two indigo bands (a Moroccan kitchen towel)
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const band = (y > 4 && y < 7) || (y > 24 && y < 27), o = 4 * (y * N + x); px.set(band ? [52, 74, 130, 255] : [226, 214, 186, 255], o); }
@@ -138,15 +141,16 @@ function dishCloth() {
 }
 /** travelling wave down the cloth: the free end lags and flaps (amplitude grows with the distance from the grip and the whip speed) */
 function wave(m, t, e = 1) {
-  const p = m.geometry.attributes.position, r = m.geometry.userData.rest, A = .9 + .9 * e;
-  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .36;
-    p.setXYZ(i, x * (1 - .3 * d) + .06 * d * d * Math.sin(t * 9 - 3 * d) * A, r[i * 3 + 1] * (1 - .22 * d) - .03 * d * d, .065 * A * d * d * Math.sin(t * 9 - 4 * d + 1) + .5 * x * d * Math.sin(t * 4 + d * 3)); }
+  const p = m.geometry.attributes.position, r = m.geometry.userData.rest, A = 1.3 + 1.3 * e;
+  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .3, w = .3 + .7 * Math.min(1, d * 2.2);   // pinched at the grip, gathered folds across the width
+    p.setXYZ(i, x * w * (1 - .25 * d) + .05 * d * d * Math.sin(t * 9 - 3 * d) * A, r[i * 3 + 1] * (1 - .3 * d) - .04 * d * d,
+      .05 * A * d * d * Math.sin(t * 9 - 4 * d + 1) + .028 * d * Math.sin(x * 55 + t * 3) + .7 * x * d * Math.sin(t * 4 + d * 3)); }
   p.needsUpdate = true; m.geometry.computeVertexNormals();
 }
 /** eighteen house flies: tiny dark bodies with a pale wing blur */
 function swarm() {
   const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: 0x14100c }), wm = new THREE.MeshBasicMaterial({ color: 0xcfd6dc, transparent: true, opacity: .45 });
-  for (let i = 0; i < 18; i++) { const f = new THREE.Mesh(new THREE.SphereGeometry(.011, 6, 4), m); f.scale.set(1.5, 1, 1); f.add(new THREE.Mesh(new THREE.CircleGeometry(.016, 8), wm)); g.add(f); }
+  for (let i = 0; i < 18; i++) { const f = new THREE.Mesh(new THREE.SphereGeometry(.006, 5, 4), m); g.add(f); }
   return g;
 }
 
