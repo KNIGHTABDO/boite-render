@@ -100,7 +100,7 @@ const ch = staged('chambre_jour', {
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
   // r19: x 920→965 so the plate's lamp table is clear of his head and the same place holds for b018, b019 and b021
   mohammed: { ...LUNCH.mohammed, at: [965, 965], face: 'cam', yaw: .45, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
-    look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A && S3?.cam ? st.A.father.B.head.getWorldPosition(V()).lerp(S3.cam.position, .15) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father' },   // r18: eyes up to the father's face; on b021 the gaze goes to the lens so his face reads   // G1: eyes on his face, not the ceiling above the turban
+    look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A && S3?.cam ? st.A.father.B.head.getWorldPosition(V()).lerp(S3.cam.position, .15).add(V(1, 0, 0).applyQuaternion(S3.cam.quaternion).multiplyScalar(1.3 * Math.sin(Math.max(0, t - B(5)[0]) * 5.2) * sm(B(5)[0] - .2, B(5)[0] + .2, t))) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father' },   // r18: eyes up to the father's face; on b021 the gaze goes to the lens so his face reads   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
   act(lt, t, S, st) {
@@ -117,7 +117,8 @@ const ch = staged('chambre_jour', {
     mo.B.spine.rotation.x -= .36 * no; mo.B.chest.rotation.x -= .2 * no;
     mo.B.head.rotation.y += .045 * Math.sin(t * .8 + 2) * (1 - no); mo.B.neck.rotation.x -= .04 * (.5 + .5 * Math.sin(t * .6)) * (1 - no);   // r18: idle so a held beat is not frozen
     mo.B.spine.rotation.z += .03 * Math.sin(t * .45 + 1);   // weight shift
-    mo.B.head.rotation.y += .34 * no * Math.sin(u * 5.2) * Math.exp(-u * .35);
+    mo.B.head.rotation.y += .4 * no * Math.sin(u * 5.2);
+    fa.group.visible = zo.group.visible = !no;   // R23B: no cropped father/mother wedges in the b021 CU corners
     mo.B.neck.rotation.x += .05 * no;
     mo.group.rotation.y -= .8 * sm(B(5)[0] - .5, B(5)[0] - .1, t);   // r20: turn from the father to 3/4 front so the face reads in the b021 CU
     mo.group.updateMatrixWorld(true);
@@ -125,8 +126,13 @@ const ch = staged('chambre_jour', {
     const quote = t >= B(3)[0] && t < B(4)[0] ? sm(B(3)[0], B(3)[0] + .35, t) : 0;
     const tell = win(2, .08, 1, t) * (1 - quote);
     if (quote > .05) {
-      reachSafe(fa, 'R', front(fa, 'chest', .4 * kf, .17 * kf, .02 * kf), { grip: .04, pole: [-.5, -.02, .3] });
-      PO.palmTo(fa, 'R', quote, dirW(fa, -.15, .25, 1));
+      // R23B b019: chin rises with pride, nod/tilt, the hand opens palm-up toward screen right and rises between the two lines
+      const q = Math.min(1, Math.max(0, (t - B(3)[0]) / Math.max(.1, B(3)[1] - B(3)[0])));
+      fa.B.neck.rotation.x -= (.1 + .22 * q) * quote; fa.B.head.rotation.x -= .1 * q * quote;
+      fa.B.head.rotation.z += (.1 * Math.sin(q * 6.3) + .07) * quote; fa.B.neck.rotation.y += .12 * Math.sin(q * 5) * quote;
+      fa.B.spine.updateWorldMatrix(false, true);
+      reachSafe(fa, 'R', front(fa, 'chest', (.36 + .12 * q) * kf, (.12 + .2 * q) * kf, (-.08 + .3 * q) * kf), { grip: .04, pole: [-.5, -.02, .3] });
+      PO.palmTo(fa, 'R', quote, dirW(fa, .5 * q, .2 + 1.1 * q, .6));
       PO.fingers(fa, 'R', .02, { thumb: .04, spread: .45 });
       reachSafe(fa, 'L', front(fa, 'chest', .26 * kf, -.24 * kf, -.24 * kf), { grip: .04, pole: [.4, -.4, .2] });   // G1: off the beard, down by the thigh
       PO.fingers(fa, 'L', .04, { spread: .3 });
@@ -174,7 +180,7 @@ const scene = beatScene(ID, {
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
     b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.3, dx: -230, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.25, dx: -121, dy: -48 },   // r19: head+shoulders, Mohammed's head fully out right,
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 3.7, dx: -70, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
     b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },
