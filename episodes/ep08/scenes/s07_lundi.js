@@ -101,7 +101,7 @@ const ch = staged('chambre_jour', {
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .2 * kf, sign * .18 * kf, -.17 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .75, -.35, 0] });
+      reachSafe(fa, s, front(fa, 'chest', .24 * kf, sign * .25 * kf, -.15 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
       PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .15, { spread: .3 });
     }
     // b035: left fist at his chest, right hand open toward his father

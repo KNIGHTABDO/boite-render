@@ -66,8 +66,8 @@ function hangArms(a, t, sides = ['L', 'R'], swing = 0, rate = 2.4) {
 function foldHands(a, t, ph = 0, w = 1) {
   const ka = k(a), br = .008 * Math.sin(t * 1.3 + ph);
   for (const [s, sg] of [['L', -1], ['R', 1]]) {
-    const hand = front(a, 'chest', (.2 + (s === 'R' ? .02 : 0)) * ka, sg * -.03 * ka, (-.30 + br + (s === 'R' ? .015 : 0)) * ka);
-    PO.reach(a, s, w >= 1 ? hand : at(a, 'hand' + s).lerp(hand, w), { grip: 0, pole: [sg * -.35, -.35, -.2] });
+    const hand = front(a, 'chest', (.24 + (s === 'R' ? .02 : 0)) * ka, sg * .09 * ka, (-.30 + br + (s === 'R' ? .015 : 0)) * ka);
+    PO.reach(a, s, w >= 1 ? hand : at(a, 'hand' + s).lerp(hand, w), { grip: 0, pole: [sg * .4, -.2, -.2] });
     PO.fingers(a, s, .3, { thumb: .25 });
   }
 }
@@ -142,12 +142,12 @@ const pr = sized(checkedStage('mausolee_rev', {
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
   kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1140, 845], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 900], ...T11(3.0, 3.4) } },
-  kid3: { at: [1150, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(4.0, 3.4) } },
+  kid3: { at: [1150, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(4.6, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
     // nobody stands in the doorway before his turn: each one steps in over the threshold on his own t0
-    [[fq, 0], [kid1, 2.0], [mo, 1], [kid2, 3.0], [kid3, 4.0]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
+    [[fq, 0], [kid1, 2.0], [mo, 1], [kid2, 3.0], [kid3, 4.6]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
     // Keep Mohammed's torso and slate toward the room/camera even as he steps diagonally out of the doorway.
     mo.group.rotation.y = -.18; mo.group.updateMatrixWorld(true);
     const t1f = T11(0, 3.6).t1;
@@ -163,7 +163,7 @@ const pr = sized(checkedStage('mausolee_rev', {
       PO.fingers(fq, 'R', .12, { thumb: .1, spread: .35 });
     }
     // after stopping, each boy settles into his own stance (varied yaw)
-    [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 4.0, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
+    [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 4.6, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
     st.lh ||= [kid1, mo, kid2, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     [kid1, mo, kid2, kid3].forEach((a, i) => { st.lh[i].visible = a.group.visible; chestLouha(a, st.lh[i]); });
   },
@@ -346,7 +346,7 @@ export default beatScene(ID, {
   plan: {
     b010: { shot: 'ms', size: 'W', on: 'fqih', cover: [{ f: .5, size: 'M', on: 'mohammed', z: 1.12, dx: 0, dy: 80 }] },
     b011: { shot: 'pr', size: 'W', on: 'mohammed' },   // walkers: covers frame build positions → wide only
-    b012: { shot: 'fl', size: 'W', on: 'woman2', cover: [{ f: .06, size: 'W', on: 'fatma' }, { f: .41, size: 'W', on: 'woman2' }, { f: .47, size: 'W', on: 'fatma' }] },   // whoever is on the near half of the lap leads the frame
+    b012: { shot: 'fl', size: 'W', on: 'woman2', cover: [{ f: .06, size: 'W', on: 'fatma' }, { f: .41, size: 'W', on: 'woman2' }, { f: .47, size: 'W', on: 'woman1' }] },   // whoever is on the near half of the lap leads the frame
     b013: { shot: 'br', size: 'M', on: 'mohammed', z: 1.6, dx: 0, dy: 0, cover: [{ f: .35, size: 'M', on: 'mohammed', z: 2.05, dx: 0, dy: -10 }] },
     b014: { shot: 'ab', size: 'M', on: 'fqih', z: 1.25, dx: 70, dy: -90, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
     b015: { shot: 'pray', size: 'W', on: 'mohammed' },

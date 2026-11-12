@@ -171,10 +171,10 @@ const pa = staged('patio_matin', {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
       if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
         const yc = yawTo(mo.group.position, S3.cam.position);
-        mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .45; mo.group.updateMatrixWorld(true);
+        mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true);
       }
     }
-    yawToward(mo, S3.cam, t < B(6)[0] ? .6 : .95); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    yawToward(mo, S3.cam, t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
