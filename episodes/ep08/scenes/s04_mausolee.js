@@ -142,12 +142,12 @@ const pr = sized(checkedStage('mausolee_rev', {
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
   kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1140, 845], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 900], ...T11(3.0, 3.4) } },
-  kid3: { at: [1150, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(4.6, 3.4) } },
+  kid3: { at: [1150, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
     // nobody stands in the doorway before his turn: each one steps in over the threshold on his own t0
-    [[fq, 0], [kid1, 2.0], [mo, 1], [kid2, 3.0], [kid3, 4.6]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
+    [[fq, 0], [kid1, 2.0], [mo, 1], [kid2, 3.0], [kid3, 3.95]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
     // Keep Mohammed's torso and slate toward the room/camera even as he steps diagonally out of the doorway.
     mo.group.rotation.y = -.18; mo.group.updateMatrixWorld(true);
     const t1f = T11(0, 3.6).t1;
@@ -163,7 +163,7 @@ const pr = sized(checkedStage('mausolee_rev', {
       PO.fingers(fq, 'R', .12, { thumb: .1, spread: .35 });
     }
     // after stopping, each boy settles into his own stance (varied yaw)
-    [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 4.6, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
+    [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 3.95, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
     st.lh ||= [kid1, mo, kid2, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     [kid1, mo, kid2, kid3].forEach((a, i) => { st.lh[i].visible = a.group.visible; chestLouha(a, st.lh[i]); });
   },
@@ -176,8 +176,8 @@ const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
 const GIRLS = [['woman1', 0], ['woman2', 1.6], ['fatma', 3.2]];   // spacing along the path (m)
 // The far half runs along the wall BEHIND the tomb: the women stay real, posed actors the whole lap, and the tomb is a depth
 // holdout (below), so the renderer hides them behind its painted body and only heads above the rail show.
-const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [90, 1000], [60, 850], [80, 722], [420, 705], [650, 712]];
-const TOMB = { top: 1.25, front: [[124, 886], [430, 932]], back: [[124, 729], [663, 735]] };   // R23A: plinth hides the left flank up to the rail's real left end   // plate-px footprint of the plinth
+const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [105, 1000], [75, 850], [100, 722], [420, 705], [650, 712]];
+const TOMB = { top: 1.25, front: [[184, 886], [430, 932]], back: [[190, 729], [663, 735]] };   // plate-px footprint of the plinth
 let PLATE; plate(platePath('mausolee')).then(i => { PLATE = i; });
 const leaves = () => { if (!PLATE) return; for (const [x0, x1] of [[0, 196], [1812, 1920]]) { c.save(); c.beginPath(); c.rect(x0, 0, x1 - x0, 1080); c.clip(); drawPlate(PLATE); c.restore(); } };
 const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: LAP[0], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
@@ -346,7 +346,7 @@ export default beatScene(ID, {
   plan: {
     b010: { shot: 'ms', size: 'W', on: 'fqih', cover: [{ f: .5, size: 'M', on: 'mohammed', z: 1.12, dx: 0, dy: 80 }] },
     b011: { shot: 'pr', size: 'W', on: 'mohammed' },   // walkers: covers frame build positions → wide only
-    b012: { shot: 'fl', size: 'W', on: 'woman2', cover: [{ f: .06, size: 'W', on: 'fatma' }, { f: .41, size: 'W', on: 'woman2' }, { f: .47, size: 'W', on: 'woman1' }] },   // whoever is on the near half of the lap leads the frame
+    b012: { shot: 'fl', size: 'W', on: 'woman2', cover: [{ f: .06, size: 'W', on: 'fatma' }, { f: .41, size: 'W', on: 'woman2' }] },   // whoever is on the near half of the lap leads the frame
     b013: { shot: 'br', size: 'M', on: 'mohammed', z: 1.6, dx: 0, dy: 0, cover: [{ f: .35, size: 'M', on: 'mohammed', z: 2.05, dx: 0, dy: -10 }] },
     b014: { shot: 'ab', size: 'M', on: 'fqih', z: 1.25, dx: 70, dy: -90, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
     b015: { shot: 'pray', size: 'W', on: 'mohammed' },
