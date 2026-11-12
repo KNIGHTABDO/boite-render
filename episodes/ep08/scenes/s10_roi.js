@@ -10,6 +10,7 @@ import { ESCALIER } from '../lib/stairs.js';
 import { SEAT } from './s09_escalier.js';
 import { castScale, pinKnees } from '../lib/fix8c.js';
 import { sitStepDrop as sitStep } from '../lib/fix8_R15C.js';
+import { akimbo } from '../lib/fix8_R16F.js';
 import { beatScene, lines, sm, front, V } from '../lib/beatscene.js';
 
 const ID = 's10_roi', L = lines(ID);
@@ -19,7 +20,7 @@ const hold = (t0, t1, t) => sm(t0, t0 + .35, t) * (1 - sm(t1 - .05, t1 + .2, t))
 const laugh = (a, w, t, f = 13) => { if (w > 0) { a.B.chest.rotation.x += .06 * Math.sin(t * f) * w; a.B.spine.rotation.x += .04 * w; a.B.neck.rotation.x -= .1 * w; a.B.chest.updateWorldMatrix(false, true); } };
 const onKnees = a => { if (!a.pins) return; for (const [s, p] of a.pins) PO.reach(a, s, a.B.root.localToWorld(p.clone()), { grip: .03, pole: s === 'L' ? [.5, .04, -.28] : [-.5, .04, -.28] }); };
 const hipsOn = (a, w) => {
-  for (const s of ['L', 'R']) handTo(a, s, { fwd: -.03, out: .13, drop: .34, curl: .4 });
+  akimbo(a);
   a.B.spine.rotation.z += .03 * w;
 };
 
@@ -40,13 +41,13 @@ const esc = staged('escalier', {
   addressee: { zoubida: 'mohammed', mohammed: 'zoubida' },
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A;
-    yawToward(zo, S3.cam, .5);
+    yawToward(zo, S3.cam, .3);
     castScale(mo);
     sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud; mo.B.chest.updateWorldMatrix(false, true); }
-    const hips = sm(B(2)[0] - .05, B(2)[0] + .28, t) * (1 - sm(B(4)[1] - .1, B(4)[1], t));
+    const hips = sm(B(2)[0] - .05, B(2)[0] + .28, t) * (1 - sm(B(4)[1] + .1, B(4)[1] + .3, t));
     if (hips > 0 && zo.group.visible) hipsOn(zo, hips);
     laugh(zo, win(4, .35, 1.05, t), t);
     if (!st.scornFace) {
