@@ -6,7 +6,9 @@
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { approach } from '../lib/fix8.js';
-import { fitKneel, holdBoard, lapRest, reachSafe, staged } from '../lib/fix8a.js';
+import { fitKneel, lapRest, reachSafe, staged } from '../lib/fix8a.js';
+import { THREE } from '../lib/autostage.js';
+import { lapLouha } from './s05_memoire.js';
 import { LUNCH } from '../lib/lunch.js';
 import { beatScene, lines, sm, at, front, V, dirW } from '../lib/beatscene.js';
 
@@ -21,12 +23,19 @@ const zwin = t => Math.max(win(3, .3, 1, t), sm(B(6)[0], B(6)[0] + .5, t) * (1 -
 const pa = staged('patio_matin', {
   father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: 0, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
-  mohammed: { at: [930, 1000], face: 'cam', yaw: .4, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
-    look: t => t > 1.3 ? 'father' : [1000, 985, .2], lookMax: t => t > 1.3 ? .7 : .35 },
+  mohammed: { at: [1230, 992], face: 'cam', yaw: .4, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
+    look: t => t > 1.0 ? 'father' : [1000, 985, .2], lookMax: t => t > 1.0 ? 1.1 : .5 },
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) {
-    holdLouha(st.A.mohammed, st.lh ||= S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
+    if (!st.lh) {   // r19: same pale board with writing bars as s05/s06, laid on the knees with lapLouha
+      st.lh = S3.prop(PR.louha({ col: 0xc99a58 }), 0, 0, 0);
+      for (let i = 0; i < 6; i++) {
+        const bar = new THREE.Mesh(new THREE.BoxGeometry(i % 2 ? .15 : .19, .012, .004), PR.toon(0x2a1a10));
+        bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
+      }
+    }
+    lapLouha(st.A.mohammed, st.lh);
     // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
@@ -46,20 +55,12 @@ const pa = staged('patio_matin', {
   },
 });
 
-/** louha on the knees, tilted back so its top stays under the chin, palms on the lower side edges */
-function holdLouha(a, lh) {
-  const kk = a.group.scale.y / 1.6;
-  holdBoard(a, lh, front(a, 'root', .18 * kk, 0, .04 * kk), -1.1, Math.min(1.2, kk * 1.6));
-  reachSafe(a, 'L', lh.localToWorld(V(.125, .1, .01)), { grip: .03, pole: [.3, -.12, .1] });
-  reachSafe(a, 'R', lh.localToWorld(V(-.125, .1, .01)), { grip: .03, pole: [-.3, -.12, .1] });
-}
-
 // looks run after the gaze net: b032 the father lowers his eyes (his worker's mother), b036–b037 he looks down at his son;
 // the boy looks up at him under the hand on his head
 const ch = staged('chambre_jour', {
   ...LUNCH,
   // Argon r4: he looked at the lens on b033/b034 and b036/b037 → explicit eyelines, wider head cap
-  father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(10)[0] - .2 ? 'zoubida' : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
+  father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
   // Argon r5: he drifted to the lens → he follows the talk: his mother on her reaction (b030) and her question (b033), else his father.
   // b035 the head-shake stays toward the lens: a look at his father on top of the body yaw turned the face past the camera.
   mohammed: { ...LUNCH.mohammed, at: [930, 1000], yaw: .2, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? .55 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 'father' : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
@@ -100,7 +101,7 @@ const ch = staged('chambre_jour', {
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .3 * kf, sign * .17 * kf, -.14 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .4, -.1, .12] });
+      reachSafe(fa, s, front(fa, 'chest', .2 * kf, sign * .15 * kf, -.17 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .3, -.45, -.1] });
       PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .15, { spread: .3 });
     }
     // b035: left fist at his chest, right hand open toward his father
@@ -118,9 +119,9 @@ const ch = staged('chambre_jour', {
     }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .15 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);
+      const top = at(mo, 'head').add(V(0, .2 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);
       approach(fa, 'R', top, .08);
-      PO.reach(fa, 'R', top, { grip: .01, pole: [-.4, .15, .15] });
+      PO.reach(fa, 'R', top, { grip: .01, pole: [-.3, .5, .05] });
       PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });
     }
   },

@@ -2,6 +2,7 @@
 // lying across his knee (insert: baguette de cognassier). b023 his programme, two halves cut on the enumeration words:
 // "le matin" fervent (fast rock, lips going, eyes on the slate, insert soleil_matin) / "l'après-midi" the rock slows, the
 // lips stop, the eyes drift up and away to the light (insert soleil_apresmidi). b024–b026 paintings (p06, p07, p08).
+import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/fix8.js';
 import { hideHem } from '../lib/fix8a.js';
@@ -65,18 +66,27 @@ const cl = staged('mausolee', {
     }
     const sb = 1 - d * .7;   // slate bobs / tips with the rock so the arms move too
     st.slate = lapLouha(mo, st.lh, { f: .02 * Math.sin(t * 4.6 - .8) * sb, x: .018 * Math.sin(t * 2.3 + 1) * sb, y: .015 * Math.sin(t * 4.6 + .4) * sb, tilt: .12 * Math.sin(t * 2.3 + 2) * sb });
-    // the quince rod lies across the right knee, a little in front of the lap, not back through the hips
+    // r19: asymmetric arms. R hand grips the quince rod (fingers curled, rod angled diagonally down to the floor in front of
+    // the right knee, placed LAST from the palm point so it rides the hand); L hand rests on the left knee with a slow lift.
     if (!st.rod) {
-      const geo = new THREE.CylinderGeometry(.011, .016, .62, 8);
+      const geo = new THREE.CylinderGeometry(.011, .016, .62, 8); geo.translate(0, -.19, 0);   // origin = the grip point
       st.rod = S3.prop(new THREE.Mesh(geo, PR.toon(0x6e4a28)), 0, 0, 0); st.rod.castShadow = true;
     }
-    const knee = front(fq, 'root', .27 * kf, 0, .17 * kf);   // G1: across the lap, centred in front of the crossed shins
-    st.rod.position.copy(knee);
-    st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), dirW(fq, 1, .02, .1));
+    const lift = .012 * kf * Math.sin(t * .8 + 1);
+    const kn = at(fq, 'shinR'), kl = at(fq, 'shinL');
+    const hr = kn.clone().addScaledVector(dirW(fq, 0, 0, 1), .17 * kf).addScaledVector(dirW(fq, 1, 0, 0), .0).add(V(0, .12 * kf + .01 * kf * Math.sin(t * .6), 0));
+    PO.reach(fq, 'R', hr, { grip: .02, pole: [-.5, -.1, .3] });
+    PO.reach(fq, 'L', kl.clone().addScaledVector(dirW(fq, 0, 0, 1), .05 * kf).addScaledVector(dirW(fq, 1, 0, 0), .04 * kf).add(V(0, .06 * kf + lift, 0)), { grip: .02, pole: [.5, -.1, .3] });
+    PO.fingers(fq, 'R', .85, { thumb: .7 });
+    PO.fingers(fq, 'L', .3, { thumb: .25, spread: .15 });
+    fq.group.updateMatrixWorld(true);
+    const palm = PO.handPts(fq, 'R').palm;
+    const rd = dirW(fq, .22, -.35, .9).normalize();   // from the top end toward the floor tip: forward, slightly outward, down
+    st.rod.position.copy(palm);   // ~12 cm of rod above the fist, the rest below it
+    st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), rd.clone().negate());
     st.rod.scale.setScalar(kf);
     st.rod.updateMatrixWorld(true);
-    fq.B.upperArmR.rotation.z -= .08;
-    fq.B.foreArmL.rotation.x += .06 * Math.sin(t * .9);
+    st.actcheck = { held: { actor: 'fqih', side: 'R', prop: st.rod, max: .08, required: true } };
   },
 });
 

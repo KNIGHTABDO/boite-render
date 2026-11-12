@@ -27,34 +27,35 @@ function palmsCover(a) {
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
 
 const pa = staged('patio_matin', {
-  father: { height: 1.76, at: [700, 985], face: 'zoubida', seed: 5, look: 'zoubida', lookMax: .85 },   // Argon r6: his level gaze passed over her scarf → head pitched down to her face
+  father: { height: 1.76, at: [700, 985], face: 'zoubida', seed: 5, 
+    // r19: head pitch kicks the neck-weighted hood rim backwards into a spike; aim half way between his own eye line and her head
+    look: (t, st) => { const f = st.A.father.B.head.getWorldPosition(V(0, 0, 0)), z = st.A.zoubida.B.head.getWorldPosition(V(0, 0, 0)); return z.setY(f.y * .6 + z.y * .4); }, lookMax: .85 },   // Argon r6: his level gaze passed over her scarf → head pitched down to her face
   zoubida: { at: [850, 975], face: 'father', seed: 7,
     look: (t, st) => t < B(0)[0] + .45 * (B(0)[1] - B(0)[0]) ? st.offer : 'father' },
 }, {
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
     const u = 1;   // Argon r6: the hand was empty at the open → he already holds the bracelets out, waist height, elbow bent and down, palm up
-    const p = front(fa, 'chest', .3 * k, .1 * k, -.26 * k).lerp(front(fa, 'root', .15 * k, .2 * k, 0), 1 - u);
-    PO.reach(fa, 'R', p, { grip: .08, pole: [-.25, -.5, -.15] }); st.offer = p.clone().add(V(0, .03, 0));
+    const p = front(fa, 'chest', .42 * k, .2 * k, -.2 * k).lerp(front(fa, 'root', .15 * k, .2 * k, 0), 1 - u);
+    PO.reach(fa, 'R', p, { grip: 0, pole: [-.95, -.25, -.1] }); st.offer = p.clone().add(V(0, .03, 0));
     fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true);   // supinate: the palm turns to the sky
     PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });   // Argon r6: bracelets clipped the curled thumb/fingers → flat open palm
     // r17: the father is alive: weight shift, a slight torso turn toward the lens, head nods, far arm gesturing/resting at his belt
     {
       const w = Math.sin(t * .9), n = Math.sin(t * 1.7 + 1);
-      fa.B.chest.rotation.y += .22 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
+      fa.B.chest.rotation.y += .3 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
       fa.B.head.rotation.x += .03 * n; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
       PO.reach(fa, 'L', front(fa, 'chest', .2 * k, -.22 * k, -.12 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.5, -.6, -.2] });
-      PO.reach(fa, 'R', p.clone(), { grip: .08, pole: [-.25, -.5, -.15] });
+      PO.reach(fa, 'R', p.clone(), { grip: 0, pole: [-.95, -.25, -.1] });
       fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true); PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });
       st.offer = p.clone().add(V(0, .03, 0));
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
       const br = st.br ||= bangles(S3);
       fa.group.updateMatrixWorld(true); br.visible = true;
-      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.15 * Math.max(.75, k)); br.updateMatrixWorld(true);
+      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.2 * Math.max(.9, k)); br.updateMatrixWorld(true);
       st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
-    if (globalThis.DBG19 && Math.abs(t-1.9)<.06) { const r=n=>fa.B[n]?.rotation.toArray().slice(0,3).map(x=>+x.toFixed(2)).join(","); globalThis.__w19(["DBG19",t.toFixed(2),Object.keys(fa.B).join(" "),"spine",r("spine"),"chest",r("chest"),"neck",r("neck"),"head",r("head"),"LS",r("LeftShoulder"),"RS",r("RightShoulder")].join(" ")+"\n"); }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
     if (laugh > 0) { zo.B.chest.rotation.x += .07 * Math.sin(t * 14) * laugh; zo.B.neck.rotation.x -= .12 * laugh; zo.B.chest.updateWorldMatrix(false, true); }
     // Argon r5: she stood in a stiff A-pose → her hands meet in front of her waist, then rise to her breastbone as she laughs
@@ -86,9 +87,13 @@ const nu = staged('chambre_nuit', {
       st.pillow2 ||= PR.cushion({ w: .4, d: .3, h: .07, col: 0x586b8c });
       const q = mo.B.head.localToWorld(new THREE.Vector3(0, .0, -.09));
       S3.prop(st.pillow2, q.x, .35 + .035 - .004, q.z, mo.group.rotation.y); st.pillow2.visible = true; }
-    mo.B.head.scale.setScalar(.86); mo.B.head.updateWorldMatrix(false, true);   // r17: child head proportion
+    mo.B.head.scale.setScalar(.72); mo.B.head.updateWorldMatrix(false, true);   // r17: child head proportion
     for (const [sd, sg] of [['L', 1], ['R', -1]]) { mo.B['upperArm' + sd]?.rotation && (mo.B['upperArm' + sd].rotation.z += sg * .12); }
     mo.group.updateMatrixWorld(true);
+    {   // r19: a blanket over his legs hides the tan blob and the stubby legs; smaller head reads as a sleeping child
+      st.cover ||= PR.blanket({ w: .36, l: .5, h: .06, col: 0x9a4a38 });
+      const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y, fx = Math.sin(ry), fz = Math.cos(ry);
+      S3.prop(st.cover, hp.x + fx * .27, .35 + .03 - .004, hp.z + fz * .27, ry); st.cover.visible = true; }
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
     mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);

@@ -21,7 +21,7 @@ const ch = staged('chambre_jour', {
   zoubida: { ...LUNCH.zoubida, look: () => null, lookMax: 0 },
 }, {
   addressee: { father: 'mohammed', mohammed: 'father' },
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A;
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
@@ -45,8 +45,9 @@ const ch = staged('chambre_jour', {
     sway(zo, t, 8.2, 0.046);
     sway(mo, t, 2.4, 0.028 * (1 - sm(B(5)[0] - 0.1, B(5)[0] + 0.3, t)));
     // Listening lean grows through the search, the question leans further, the laugh rocks the torso back ~22°.
-    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.3 * lean - 0.09 * laugh - 0.04 * residue + 0.03 * Math.sin(t * 11.5) * laugh;
-    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.07 * laugh;
+    // Father's laugh: the lean back is mostly head/neck/chest so the robe front stays settled on the floor (a big spine swing retracted the hem off the floor).
+    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.3 * lean - 0.04 * laugh - 0.015 * residue + 0.025 * Math.sin(t * 11.5) * laugh;
+    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.05 * laugh;
     zo.B.spine.rotation.x += 0.07 * listen * (1 - laugh) - 0.09 * laugh - 0.04 * residue + 0.03 * Math.sin(t * 10.5 + 1) * laugh;
     zo.B.chest.rotation.x += 0.045 * Math.sin(t * 1.1 + 0.7) * listen - 0.07 * laugh;
     shrug(fa, t, 0, laugh);
@@ -59,15 +60,21 @@ const ch = staged('chambre_jour', {
       palm(a, 'R', handAt(a, 'R', t, ph + 0.9, kk, raised), { grip: 0.03, pole: [-0.6, 0.3, 0.3], gap: 0.14 });
     }
     for (const [s, ph] of [['L', 0], ['R', 1.6]]) {
-      const p = kneeHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), fidget);
-      palm(mo, s, p, { grip: 0.025, pole: [(s === 'L' ? 1 : -1) * 0.5, 0.2, 0.3], gap: 0.16 });
+      // Resting hand: flat on the thigh, elbow clearly bent and pushed out (pole), not a straight arm hanging from the shoulder.
+      const sg = s === 'L' ? 1 : -1;
+      const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), fidget);
+      palm(mo, s, p, { grip: 0.025, pole: [sg * (0.95 - 0.5 * fidget), -0.15 + 0.35 * fidget, -0.25 + 0.55 * fidget], gap: 0.16 });
       if (fidget > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
 
     const eye = at(mo, 'head').clone().add(V(0, 0.03 * km, 0));
     if (sceptical < 0.5) {
-      const upLeft = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.5).addScaledVector(dirW(mo, 1, 0, 0), 0.46).add(V(0, 0.36 * km, 0));
-      const lowered = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.4).add(V(0, -0.03 * km, 0));
+      // Gaze built in SCREEN space from the scene camera (no actor-axis sign guessing): toward the lens, then camR/camU.
+      const cam = S3.cam, camR = V(1, 0, 0).applyQuaternion(cam.quaternion), camU = V(0, 1, 0).applyQuaternion(cam.quaternion);
+      const toCam = cam.position.clone().sub(eye).normalize();
+      const scr = (r, u, d = 0.5) => eye.clone().addScaledVector(toCam, d).addScaledVector(camR, r).addScaledVector(camU, u);
+      const upLeft = scr(-0.2 * km, 0.2 * km);                // searching: up and to screen-LEFT, away from the mother
+      const lowered = scr(0.03 * km, -0.26 * km, 0.4);        // eyes dropped to the floor in front of him
       const parents = at(fa, 'head').lerp(at(zo, 'head'), 0.45).add(V(0, 0.42 * km, 0));
       const level = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.6);
       const aim = upLeft.lerp(lowered, down).lerp(parents, rise * (1 - down)).lerp(level, Math.max(laugh, residue * 0.8));
@@ -86,10 +93,10 @@ const ch = staged('chambre_jour', {
     look(fa, boy.clone().lerp(faUp, laugh), 0.85, { max: 0.4 });
     look(zo, boy.clone().lerp(zoUp, laugh), 0.85, { max: 0.38 });
     fa.B.head.rotation.z += 0.16 * lean + 0.08 * listen * (1 - lean);
-    fa.B.head.rotation.x -= 0.04 * laugh;
+    fa.B.head.rotation.x -= 0.12 * laugh;
     zo.B.head.rotation.z += 0.12 * Math.sin(t * 0.85 + 0.6) * listen + 0.08 * laugh;
     zo.B.head.rotation.x -= 0.04 * laugh;
-    fa.B.neck.rotation.x -= 0.02 * laugh;
+    fa.B.neck.rotation.x -= 0.06 * laugh;
     zo.B.neck.rotation.x -= 0.02 * laugh;
 
     const row = name => st.faces.find(r => r[1] === name);
@@ -97,7 +104,7 @@ const ch = staged('chambre_jour', {
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
       open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.26 + 0.34 * Math.abs(Math.sin(t * 12.2)))),
-      lid: sceptical * 0.55 + down * 0.18,
+      lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
       open: Math.max(sm(B(1)[0] - 0.05, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.15, t)) * (0.4 + 0.3 * Math.abs(Math.sin(t * 13))), lean * (0.58 + 0.32 * Math.abs(Math.sin(t * 15.5))), lean * asked) + laugh * (0.75 + 0.2 * Math.abs(Math.sin(t * 9.2))) + residue * 0.2,
@@ -134,6 +141,14 @@ function kneeHand(a, s, t, seed, k) {
     .add(V(0, (0.11 + 0.03 * w) * k, 0))
     .addScaledVector(dirW(a, 0, 0, 1), (0.17 + 0.025 * w) * k)
     .addScaledVector(dirW(a, -sign, 0, 0), (0.06 + 0.02 * w) * k);
+}
+
+/** Mohammed's resting hand: on the thigh, between hip and knee, a little forward and in. */
+function lapHand(a, s, t, seed, k) {
+  const sign = s === 'L' ? 1 : -1, w = Math.sin(t * 1.35 + seed + (s === 'L' ? 0 : 1.3));
+  return at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.4)
+    .add(V(0, (0.13 + 0.01 * w) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.07 * k)
+    .addScaledVector(dirW(a, -sign, 0, 0), 0.02 * k);
 }
 
 /** Parent's resting hand: flat on the thigh, midway between hip and knee, clear of the knee cloth. */
@@ -177,7 +192,7 @@ export default beatScene(ID, {
     // Plate heads sit near y 490–750. A wide M is clamped to the bottom of the plate, so the turban and the hands share the frame.
     b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -110, dy: 100 },
     // Father-son two-shot: far enough right to drop the empty door, tight enough that the mother's skirt stays outside.
-    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.7, dx: -20, dy: 44 },
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.3, dx: 240, dy: -13 },
     b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.14, dx: -100, dy: 110 },
     b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -100, dy: 110 },
     b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.04, dx: -20, dy: 180 },
