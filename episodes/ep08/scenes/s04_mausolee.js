@@ -66,8 +66,8 @@ function hangArms(a, t, sides = ['L', 'R'], swing = 0, rate = 2.4) {
 function foldHands(a, t, ph = 0, w = 1) {
   const ka = k(a), br = .008 * Math.sin(t * 1.3 + ph);
   for (const [s, sg] of [['L', -1], ['R', 1]]) {
-    const hand = front(a, 'chest', (.24 + (s === 'R' ? .02 : 0)) * ka, sg * .09 * ka, (-.30 + br + (s === 'R' ? .015 : 0)) * ka);
-    PO.reach(a, s, w >= 1 ? hand : at(a, 'hand' + s).lerp(hand, w), { grip: 0, pole: [sg * .4, -.2, -.2] });
+    const hand = front(a, 'chest', (.34 + (s === 'R' ? .02 : 0)) * ka, sg * .06 * ka, (-.28 + br + (s === 'R' ? .015 : 0)) * ka);
+    PO.reach(a, s, w >= 1 ? hand : at(a, 'hand' + s).lerp(hand, w), { grip: 0, pole: [-sg * .6, -.25, .05] });   // R23A: elbows OUT and forward (were pushed inward through the torso)
     PO.fingers(a, s, .3, { thumb: .25 });
   }
 }
@@ -176,8 +176,8 @@ const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
 const GIRLS = [['woman1', 0], ['woman2', 1.6], ['fatma', 3.2]];   // spacing along the path (m)
 // The far half runs along the wall BEHIND the tomb: the women stay real, posed actors the whole lap, and the tomb is a depth
 // holdout (below), so the renderer hides them behind its painted body and only heads above the rail show.
-const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [120, 1000], [100, 850], [130, 722], [420, 705], [650, 712]];
-const TOMB = { top: 1.25, front: [[184, 886], [430, 932]], back: [[190, 729], [663, 735]] };   // plate-px footprint of the plinth
+const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [90, 1000], [60, 850], [80, 722], [420, 705], [650, 712]];
+const TOMB = { top: 1.25, front: [[124, 886], [430, 932]], back: [[124, 729], [663, 735]] };   // R23A: plinth hides the left flank up to the rail's real left end   // plate-px footprint of the plinth
 let PLATE; plate(platePath('mausolee')).then(i => { PLATE = i; });
 const leaves = () => { if (!PLATE) return; for (const [x0, x1] of [[0, 196], [1812, 1920]]) { c.save(); c.beginPath(); c.rect(x0, 0, x1 - x0, 1080); c.clip(); drawPlate(PLATE); c.restore(); } };
 const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) => [n, { at: LAP[0], face: 'cam', seed: 11 + i * 2, talk: 0, mutter: () => .6 }])), {
@@ -287,7 +287,7 @@ const ab = sized(checkedStage('mausolee_rev', {
       for (const [s, q] of [['L', 0], ['R', Math.PI]]) {
         const c = Math.cos(t * 4.2 + ph + q) * .035, e = Math.sin(t * 4.2 + ph + q) * .04;
         const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e, 0));
-        PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015 });   // lower the torso before extending to the water
+        PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015, pole: [s === 'L' ? .5 : -.5, 0, .1] });   // R23A elbows out of the torso   // lower the torso before extending to the water
       }
     };
     wash(kid2, 1.9, 0, st.water[0], 4.9); wash(mo, 2.6, 1.3, st.water[1], 4.5);   // both are at the basin through the middle of the beat (39.4 s)
