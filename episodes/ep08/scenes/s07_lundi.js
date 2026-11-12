@@ -131,7 +131,7 @@ export default beatScene(ID, {
   plan: {
     b027: { shot: 'pa', size: 'M', on: 'mohammed', z: 1.5, dx: -230 },   // Argon r5: the boy in the foreground, the father crossing behind (hand-set: the M zoom of a seated child would lose the walk)   // recal h 1.75: actors are true size now, W shows the whole patio with tiny figures
     b028: { shot: 'ch', size: 'M', on: 'father', z: 1.6, dx: 170, dy: -25, insAt: .55 },
-    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.6, dx: -110, dy: -50 },   // r18: dx -110 pushes the mother's head fully out of the right edge (was sliced), boy fully in
+    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.7, dx: 200, dy: -50 },   // r18: the view cannot pan left of the plate (x>=960/z), so push-out failed; all three heads fully IN instead (father left third, hand still in frame)
     b030: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.6, dx: -150, dy: -40 },
     b032: { shot: 'ch', size: 'M', on: 'father', z: 1.45, dx: 220, dy: -55 },   // both of them in the master, crown inside the frame
     b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dx: 70, dy: -50 },   // r18: father's head fully off the left edge, boy's head fully in
