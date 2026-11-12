@@ -2,7 +2,9 @@
 // hands on his knees. b044 settles, b045 chin up (the idea deserved silence), b046–b049 paintings (flowers, genies),
 // b050 shoulders drop, b051 fists tighten on his knees "à mort", b052 enumeration (pieds / prière / bruit, feet and hush
 // inserts), b053 he repeats his sentence to himself, eyes up the flight, lips moving.
-import { castScale, pinKnees } from '../lib/fix8c.js';
+import { castScale, reachClamp } from '../lib/fix8c.js';
+import * as IK from '../../../engine/ik.js';
+import * as PO from '../../../engine/poses.js';
 import { sitStepDrop as sitStep } from '../lib/fix8_R15C.js';
 import { staged } from '../lib/autostage.js';
 import { c } from '../../../engine/core.js';
@@ -51,7 +53,7 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     b.neck.rotation.x -= .08 * up53; b.head.rotation.x -= .06 * up53;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
     // After the lean, put the palms back on the kneecaps. Fists close on "à mort".
-    pinKnees(mo, fist);
+    pinKneesOut(mo, fist);
   },
 });
 
@@ -104,3 +106,20 @@ export default beatScene(ID, {
     b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 90 },
   },
 });
+
+// R21D: hands rest on the tops of the knees (apart, not tucked in the lap); fists clench tight and press down on "à mort".
+function pinKneesOut(a, curl) {
+  const k = a.group.scale.y / 1.6, B = a.B;
+  a.group.updateMatrixWorld(true);
+  const fwd = new THREE.Vector3(Math.sin(a.group.rotation.y), 0, Math.cos(a.group.rotation.y));
+  const lat = IK.wpos(B.shinL).sub(IK.wpos(B.shinR)); lat.y = 0; lat.normalize();
+  for (const [side, sign] of [['L', 1], ['R', -1]]) {
+    const kn = IK.wpos(B['shin' + side]), hip = IK.wpos(B.root);
+    const tgt = kn.clone();
+    tgt.y = Math.min(hip.y - .03, kn.y + .035 * k) - .012 * k * curl;
+    tgt.addScaledVector(fwd, .05 * k).addScaledVector(lat, sign * (.035 + .02 * curl) * k);
+    reachClamp(a, side, tgt, { grip: .015, pole: [sign * .45, .08, .15] });
+    PO.fingers(a, side, .12 + .88 * Math.min(1, curl * 1.15), { thumb: .15 + .85 * curl });
+    for (const n of ['shoulder', 'clavicle']) if (B[n + side]) B[n + side].rotation.z += sign * .05 * curl;
+  }
+}
