@@ -141,14 +141,6 @@ const pa = staged('patio_matin', {
       fa.B.spine.rotation.x += .06 * envy; fa.B.chest.rotation.y -= .05 * envy;
       handTo(fa, 'R', { fwd: .12, out: .14, drop: .08, curl: .2 });
     }
-    const palms = sm(B(9)[0] - 1.0, B(9)[0] - .5, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
-    if (palms > 0) {
-      ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
-      for (const s of ['L', 'R']) {
-        handTo(ra, s, { fwd: .3, out: .28, drop: -.04, curl: .05, spread: .4 });
-        PO.palmTo(ra, s, palms, V(0, 1, .15));
-      }
-    }
     const hand = sm(B(10)[0] - .05, B(10)[0] + .28, t) * (1 - sm(B(10)[1] - .1, B(10)[1], t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
@@ -178,6 +170,14 @@ const pa = staged('patio_matin', {
       fa.B.spine.rotation.z += .05 * Math.sin(t * .8);
       handTo(fa, 'L', { fwd: .06, out: .16, drop: .22, curl: .3 });
       handTo(fa, 'R', { fwd: .1, out: .14, drop: .16, curl: .25 });
+    }
+    const palms = sm(B(9)[0] - 1.0, B(9)[0] - .5, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
+    if (palms > 0) {
+      ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
+      for (const s of ['L', 'R']) {
+        for (let r = 0; r < 2; r++) handTo(ra, s, { fwd: .3, out: .3, drop: -.08, curl: .05, spread: .4 });
+        PO.palmTo(ra, s, palms, V(0, 1, .15));
+      }
     }
   },
 });
