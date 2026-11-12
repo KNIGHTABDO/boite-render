@@ -146,9 +146,13 @@ function kneeHand(a, s, t, seed, k) {
 /** Mohammed's resting hand: on the thigh, between hip and knee, a little forward and in. */
 function lapHand(a, s, t, seed, k) {
   const sign = s === 'L' ? 1 : -1, w = Math.sin(t * 1.35 + seed + (s === 'L' ? 0 : 1.3));
-  return at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.62)
+  const p = at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.62)
     .add(V(0, (0.15 + 0.01 * w) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.1 * k)
     .addScaledVector(dirW(a, -sign, 0, 0), 0.03 * k);
+  // Keep the shoulder-to-palm reach at ~74% of the arm so the elbow stays visibly bent (a full reach reads as a stiff arm).
+  const sh = at(a, 'upperArm' + s), len = sh.distanceTo(at(a, 'foreArm' + s)) + at(a, 'foreArm' + s).distanceTo(at(a, 'hand' + s));
+  const d = p.clone().sub(sh), m = 0.74 * len;
+  return d.length() > m ? sh.clone().addScaledVector(d.normalize(), m) : p;
 }
 
 /** Parent's resting hand: flat on the thigh, midway between hip and knee, clear of the knee cloth. */

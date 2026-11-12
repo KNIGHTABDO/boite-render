@@ -1,0 +1,42 @@
+name: TikTok stills (native 1920x1080, no subtitles)
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: Episode directory (epNN)
+        required: true
+        default: ep08
+      times:
+        description: Comma-separated global times in seconds
+        required: true
+permissions:
+  contents: read
+jobs:
+  stills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund --silent
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+      - name: Stills
+        env:
+          CHROME: ${{ steps.chrome.outputs.chrome-path }}
+          CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
+          NOSUB: '1'
+          EP: ${{ inputs.episode }}
+          TIMES: ${{ inputs.times }}
+        run: |
+          [[ "$EP" =~ ^ep[0-9]{2}$ && "$TIMES" =~ ^[0-9.,]+$ ]] || exit 2
+          mkdir -p out/tk
+          node tools/shot.mjs "episodes/$EP/film.html" out/tk/f.png "$TIMES" 2>&1 | grep -v objectNormal | tail -40
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tkstills
+          path: out/tk/
+          if-no-files-found: error

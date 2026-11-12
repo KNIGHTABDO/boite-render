@@ -3,6 +3,7 @@
 // b069 Fatma Bziouya leans out of the right-hand doorway with her little broom, b070 eager question,
 // b071 Zoubida keeps her eyes on that doorway and nods, b072 Maâlem Abdeslem calls from the left
 // street door, b073 "Passe": only then does he walk in.
+import { THREE } from '../lib/fix8_g3.js';
 import * as PO from '../../../engine/poses.js';
 import { staged, littleBroom, holdBroom, handTo, yawToward } from '../lib/fix8b.js';
 import { yawBody } from '../lib/fix8_g3.js';
@@ -13,10 +14,45 @@ const ID = 's11_depart', L = lines(ID);
 const B = i => L[i] || [0, 0];
 const skyOf = a => at(a, 'head').add(V(.15, 3.2, .35));
 const AMBER = { key: '#ffb870', keyI: 1.7, dir: [-1.2, 5.2, .8], fillI: .85, sky: '#d9b48a', shadow: .26, soft: 10 };
+const wrap = d => Math.atan2(Math.sin(d), Math.cos(d));
+// Djellaba stains: soft brown/grey blotches (DataTexture, no DOM needed), laid on the robe surface by ray from the lens.
+function blotchTex() {
+  const N = 64, d = new Uint8Array(N * N * 4);
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    const u = (x - 31.5) / 31.5, v = (y - 31.5) / 31.5, r = Math.hypot(u * 1.05, v) + .18 * Math.sin(u * 7.1 + v * 3.3) + .1 * Math.sin(v * 9.7 - u * 2.1);
+    const a = Math.max(0, Math.min(1, (1 - r) * 2.2)), i = (y * N + x) * 4;
+    d[i] = 112; d[i + 1] = 86; d[i + 2] = 58; d[i + 3] = Math.round(a * a * (3 - 2 * a) * 215);
+  }
+  const t = new THREE.DataTexture(d, N, N, THREE.RGBAFormat); t.needsUpdate = true; return t;
+}
+function addStains(mo, S3) {
+  if (mo.stains) return; mo.stains = true;
+  try {
+    mo.group.updateMatrixWorld(true);
+    const ch = at(mo, 'chest'), u = ch.distanceTo(at(mo, 'root')), cam = S3.cam.position;
+    const toCam = cam.clone().sub(ch); toCam.y = 0; toCam.normalize();
+    const right = V(0, 1, 0).cross(toCam).normalize();
+    const tex = blotchTex(), rc = new THREE.Raycaster();
+    const spots = [[-.38, .12, .62, 0], [.3, -.55, .78, 1.1], [-.1, -1.0, .56, 2.3], [.42, -.15, .4, 3.4]];
+    for (const [rx, ry, sz, rot] of spots) {
+      const target = ch.clone().addScaledVector(right, rx * u).add(V(0, ry * u, 0));
+      const o = target.clone().addScaledVector(toCam, 1.2);
+      rc.set(o, toCam.clone().negate());
+      const hit = rc.intersectObject(mo.group, true).find(h => h.object.isMesh && !h.object.userData.stain);
+      if (!hit) continue;
+      const n = (hit.face ? hit.face.normal.clone().transformDirection(hit.object.matrixWorld) : toCam.clone());
+      if (n.dot(toCam) < 0) n.negate();
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(sz * u, sz * u * 1.15), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, color: '#d9c4a0' }));
+      m.userData.stain = true; m.renderOrder = 5;
+      m.position.copy(hit.point).addScaledVector(n, .006); m.lookAt(hit.point.clone().add(n)); m.rotateZ(rot);
+      mo.group.add(m); m.updateMatrixWorld(true); mo.B.chest.attach(m);
+    }
+  } catch (e) { /* stains are cosmetic */ }
+}
 const WALK0 = () => B(7)[0] - .1;
 
 const pa = staged('patio_matin', {
-  mohammed: { at: [960, 1035], face: 'cam', yaw: -.2, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : .5,
+  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : .5,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : 'zoubida' },
   zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
@@ -30,10 +66,10 @@ const pa = staged('patio_matin', {
       return t < B(1)[0] - .1 ? skyOf(st.A.zoubida) : 'mohammed';
     } },
   // Right arcade doorway, facing left into the court — not the foreground bush.
-  fatma: { at: [1612, 882], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
+  fatma: { at: [1552, 872], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
     look: t => t >= B(6)[0] + .4 ? 'father' : 'zoubida' },
   // Left street door. He is outside the court until "Passe", then walks in.
-  father: { at: [215, 902], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
+  father: { at: [205, 888], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
     look: 'zoubida',
     walk: { to: [680, 1005], t0: WALK0(), t1: B(7)[0] + 2.1 } },
 }, {
@@ -45,6 +81,8 @@ const pa = staged('patio_matin', {
     const sky = 1 - sm(B(1)[0] - .55, B(1)[0] - .05, t);
     mo.B.spine.rotation.x -= .14 * sky; mo.B.chest.rotation.x -= .18 * sky;
     zo.B.spine.rotation.x -= .04 * sky; zo.B.chest.rotation.x -= .06 * sky;
+    mo.B.neck.rotation.x -= .34 * sky; mo.B.head.rotation.x -= .26 * sky;
+    mo.B.neck.updateWorldMatrix(false, true);
     mo.B.chest.updateWorldMatrix(false, true); zo.B.chest.updateWorldMatrix(false, true);
     const ask = sm(B(1)[0] - .3, B(1)[0] + .15, t) * (1 - sm(B(1)[1], B(1)[1] + .2, t));
     if (ask > 0) {
@@ -76,7 +114,7 @@ const pa = staged('patio_matin', {
     const sway = Math.sin((t - B(3)[0]) * 1.6);
     fa.B.spine.rotation.x += .1 * lean * (1 + sway * .5); fa.B.spine.rotation.z += .07 * lean * sway;
     fa.B.neck.rotation.z += .08 * lean * Math.sin((t - B(3)[0]) * 2.1);
-    fa.B.spine.rotation.x += .22 * lean; fa.B.chest.rotation.x += .08 * lean;
+    fa.B.spine.rotation.x += .36 * lean; fa.B.chest.rotation.x += .14 * lean;
     fa.B.spine.updateWorldMatrix(false, true);
     const eager = sm(B(4)[0] - .12, B(4)[0] + .18, t) * (1 - sm(B(4)[1], B(4)[1] + .25, t));
     if (eager > 0) {
@@ -92,20 +130,20 @@ const pa = staged('patio_matin', {
     if (call) {
       const w = sm(B(6)[0] - .1, B(6)[0] + .25, t);
       paFa.B.spine.rotation.x += .22 * w; paFa.B.chest.rotation.x += .06 * w;
-      handTo(paFa, 'R', { fwd: .1, out: .08, drop: -.06, curl: .2 });
+      handTo(paFa, 'R', { fwd: .12, out: .2, drop: -.42 + .04 * Math.sin(t * 5), curl: .12, spread: .3 });
       handTo(paFa, 'L', { fwd: .06, out: .14, drop: .22, curl: .25 });
     }
     if (t >= B(6)[0] - .4) {
       const u = sm(B(6)[0] - .4, B(6)[0] - .05, t);
-      for (const a of [zo, mo]) {
-        const y = yawTo(a.group.position, paFa.group.position);
-        a.group.rotation.y += Math.atan2(Math.sin(y - a.group.rotation.y), Math.cos(y - a.group.rotation.y)) * u;
+      for (const a of [zo, mo]) {   // half-turn toward him, the rest stays open to the lens so faces read
+        const yc = yawTo(a.group.position, S3.cam.position), y = yc + wrap(yawTo(a.group.position, paFa.group.position) - yc) * .5;
+        a.group.rotation.y += wrap(y - a.group.rotation.y) * u;
         a.group.updateMatrixWorld(true);
       }
       if (t >= B(7)[0]) {
         const welcome = sm(B(7)[0], B(7)[0] + .35, t);
-        handTo(zo, 'L', { fwd: .14, out: .12, drop: .02, curl: .12 });
-        PO.palmTo(zo, 'L', welcome, V(0, .3, 1));
+        handTo(zo, 'R', { fwd: .24, out: .36, drop: -.04, curl: .04, spread: .38 });   // open palm toward the street door (screen-left)
+        PO.palmTo(zo, 'R', welcome, V(0, .5, .7));
         mo.B.chest.rotation.y += .08 * welcome;
       }
     }
@@ -118,11 +156,12 @@ const pa = staged('patio_matin', {
     if (eager > 0) posed.add('faL');
     if (fa.group.visible) posed.add('faR');
     if (call) { posed.add('paR'); posed.add('paL'); }
-    if (t >= B(7)[0]) posed.add('zoL');
+    if (t >= B(7)[0]) posed.add('zoR');
     const restArm = (a, side, tag) => {
       if (posed.has(tag) || !a.group.visible) return;
-      const sway = .01 * Math.sin(t * .7 + (side === 'L' ? 0 : 1.4));
-      handTo(a, side, { fwd: .04, out: .1, drop: .2 + sway, curl: .22, spread: .12 });
+      const ph = side === 'L' ? 0 : 1.4, sway = .03 * Math.sin(t * .8 + ph);
+      if (a === mo) handTo(a, side, { fwd: .1 + .05 * Math.sin(t * 2.1 + ph), out: .1 + .02 * Math.sin(t * 1.3 + ph), drop: .16 + sway, curl: .3 + .12 * Math.sin(t * 2.7 + ph), spread: .15 });   // fiddling with the robe
+      else handTo(a, side, { fwd: .06, out: a === zo ? .18 : .1, drop: .2 + sway, curl: .22, spread: .12 });
     };
     restArm(mo, 'L', 'moL'); restArm(mo, 'R', 'moR');
     restArm(zo, 'L', 'zoL'); restArm(zo, 'R', 'zoR');
@@ -130,12 +169,16 @@ const pa = staged('patio_matin', {
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
-      yawBody(mo, S3.cam, .22);
+      if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
+        const yc = yawTo(mo.group.position, S3.cam.position);
+        mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .45; mo.group.updateMatrixWorld(true);
+      }
     }
+    yawToward(mo, S3.cam, t < B(6)[0] ? .6 : .95); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
     if (fa.group.visible) holdBroomFwd(fa, broom, S3.scene, 'R'); else broom.visible = false;
-    if (process.env.S11DBG && Math.abs(t%2)<.03) { const h=mo.B.head; const f=h.localToWorld(V(0,0,1)).sub(at(mo,'head')); console.error('DBG',t.toFixed(2),'gy',mo.group.rotation.y.toFixed(2),'camdir',Math.atan2(S3.cam.position.x-mo.group.position.x,S3.cam.position.z-mo.group.position.z).toFixed(2),'headfwd',Math.atan2(f.x,f.z).toFixed(2)); }
     // Nod rides on top of the eyeline, after the camera yaw, so it is not pulled back to the lens.
     if (nod > 0) {
       zo.B.neck.rotation.x += .1 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5)) * nod;
@@ -148,10 +191,10 @@ export default beatScene(ID, {
   shots: { pa },
   plan: {
     b066: { shot: 'pa', size: 'W', on: 'mohammed' },
-    b067: { shot: 'pa', size: 'CU', on: 'mohammed', z: 2.05, dy: -40 },
+    b067: { shot: 'pa', size: 'CU', on: 'mohammed', z: 1.75, dy: 60, dx: 40 },
     b068: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.28, dx: -20, dy: -28 },
     b069: { shot: 'pa', size: 'M', on: 'fatma', z: 1.55, dy: -36 },
-    b070: { shot: 'pa', size: 'CU', on: 'fatma', z: 2.15, dy: -34 },
+    b070: { shot: 'pa', size: 'CU', on: 'fatma', z: 1.75, dy: 62, dx: -200 },
     b071: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.7, dx: 40, dy: -30 },
     b072: { shot: 'pa', size: 'M', on: 'father', z: 1.55, dy: -32 },
     b073: { shot: 'pa', size: 'W', on: 'father' },
