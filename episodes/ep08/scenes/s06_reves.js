@@ -22,13 +22,13 @@ function life(a, t, seed = 0) {
 }
 
 // paintings: keep the crown inside by sitting on the top of the plate at the minimum zoom
-function paint(id) {
+function paint(id, cam = [.5, .4, 1.06, .5, .45, 1.07]) {
   return {
     async load() { await loadStill(id); },
-    fn(lt, u) { still(id, u, [.5, .4, 1.06, .5, .45, 1.07]); return { vignette: .5, paper: .2 }; },
+    fn(lt, u) { still(id, u, cam); return { vignette: .5, paper: .2 }; },
   };
 }
-const p06 = paint('p06_envol'), p07 = paint('p07_homme');
+const p06 = paint('p06_envol'), p07 = paint('p07_homme', [.5, .33, 1.03, .5, .38, 1.04]);   // r18: more headroom on the adult man's hair
 const matin = paint('i_soleil_matin'), apres = paint('i_soleil_apresmidi');
 
 const cl = staged('mausolee', {
@@ -41,9 +41,17 @@ const cl = staged('mausolee', {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A, d = drift(t), kf = fq.group.scale.y / 1.6;
     life(fq, t, 2); life(mo, t, 5);
-    rock(mo, t, .2 - .13 * d, 4 - 2.4 * d);
-    mo.B.head.rotation.x += (.05 + .1 * Math.sin(t * 4 - 2.4 * d * t)) * (1 - d) - .06;   // r17: reciting nods, chin up off the chest
-    mo.B.neck.rotation.x += .05 * Math.sin(t * 4 - 2.4 * d * t + .6) * (1 - d);
+    const ra = .2 - .13 * d, rr = 4.6 - 3 * d, rp = .5 + .5 * Math.sin(t * rr), w = 1 - d;
+    rock(mo, t, ra, rr);
+    // r18: recitation. The trunk rocks from the hips, the head counter-rotates so the chin stays up (head near level, eyes
+    // do the looking down), a small nod rides on top, plus side sway + twist so the torso is never the same twice.
+    mo.B.head.rotation.x += -.55 * ra * rp - .1 + (.05 * Math.sin(t * rr * 2 + .5)) * w;
+    mo.B.neck.rotation.x += -.25 * ra * rp + .04 * Math.sin(t * rr + .6) * w;
+    mo.B.spine.rotation.z += .07 * Math.sin(t * rr * .5 + 1) * w + .02 * Math.sin(t * .8);
+    mo.B.spine.rotation.y += .08 * Math.sin(t * rr * .5 + .3) * w;
+    mo.B.chest.rotation.z += .05 * Math.sin(t * rr * .5 + 2) * w;
+    mo.B.chest.rotation.y += .05 * Math.sin(t * .7 + 1);
+    mo.B.spine.updateWorldMatrix(false, true);
     mo.B.neck.updateWorldMatrix(false, true);
     mo.B.head.rotation.z += .05 * Math.sin(t * .9 + 1);
     fq.B.head.rotation.z += .05 * Math.sin(t * .6);
@@ -55,7 +63,8 @@ const cl = staged('mausolee', {
         bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
       }
     }
-    st.slate = lapLouha(mo, st.lh);
+    const sb = 1 - d * .7;   // slate bobs / tips with the rock so the arms move too
+    st.slate = lapLouha(mo, st.lh, { f: .02 * Math.sin(t * 4.6 - .8) * sb, x: .018 * Math.sin(t * 2.3 + 1) * sb, y: .015 * Math.sin(t * 4.6 + .4) * sb, tilt: .12 * Math.sin(t * 2.3 + 2) * sb });
     // the quince rod lies across the right knee, a little in front of the lap, not back through the hips
     if (!st.rod) {
       const geo = new THREE.CylinderGeometry(.011, .016, .62, 8);

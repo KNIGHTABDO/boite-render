@@ -131,13 +131,13 @@ export default beatScene(ID, {
   plan: {
     b027: { shot: 'pa', size: 'M', on: 'mohammed', z: 1.5, dx: -230 },   // Argon r5: the boy in the foreground, the father crossing behind (hand-set: the M zoom of a seated child would lose the walk)   // recal h 1.75: actors are true size now, W shows the whole patio with tiny figures
     b028: { shot: 'ch', size: 'M', on: 'father', z: 1.6, dx: 170, dy: -25, insAt: .55 },
-    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.6, dy: -50 },
+    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.6, dx: -110, dy: -50 },   // r18: dx -110 pushes the mother's head fully out of the right edge (was sliced), boy fully in
     b030: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.6, dx: -150, dy: -40 },
     b032: { shot: 'ch', size: 'M', on: 'father', z: 1.45, dx: 220, dy: -55 },   // both of them in the master, crown inside the frame
-    b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dy: -50 },
-    b034: { shot: 'ch', size: 'M', on: 'father', z: 1.8, dy: -40 },
+    b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dx: 70, dy: -50 },   // r18: father's head fully off the left edge, boy's head fully in
+    b034: { shot: 'ch', size: 'M', on: 'father', z: 1.8, dx: -60, dy: -40 },   // r18: mother clear of the right edge
     b035: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.35, dy: -40 },   // r16: the W master read as a scale pop with floating actors → same M grammar as its neighbours
     b036: { shot: 'ch', size: 'M', on: 'father', z: 1.4, dx: 140, dy: -80 },
-    b037: { shot: 'ch', size: 'CU', on: 'father', z: 2.0, dy: -75, dx: 130 },   // r16: a true close-up (the boy's head left the frame)
+    b037: { shot: 'ch', size: 'CU', on: 'father', z: 2.4, dy: -45, dx: 80 },   // r18: real CU, father head+shoulders centre-left and dominant, boy fully in lower right, mother fully out
   },
 });
