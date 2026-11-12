@@ -40,14 +40,15 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     const dream = sm(B(9)[0] - .35, B(9)[0] + .1, t), settle = sm(0, 2.4, t);
     b.spine.rotation.x += .07 * settle + .08 * think + .16 * drop + .1 * fist;
     b.chest.rotation.x += .06 * settle + .08 * think + .2 * drop + .12 * fist;
-    b.neck.rotation.x += .18 * think - .3 * chin + .18 * drop;
-    b.head.rotation.x += .1 * think - .12 * chin + .12 * drop;
+    b.neck.rotation.x += .18 * think - .42 * chin + .18 * drop;
+    b.head.rotation.x += .1 * think - .2 * chin + .12 * drop;
     b.head.rotation.z += .06 * think;
     // Turn left through the upper body as well as the head, toward the upper railing/landing.
     b.spine.rotation.y -= .16 * dream; b.chest.rotation.y -= .14 * dream;
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
-    const up53 = sm(B(9)[0] - .1, B(9)[0] + .5, t);
-    b.neck.rotation.x -= .06 * up53; b.head.rotation.x -= .05 * up53;
+    // R20A: head starts rising ~1.4 s before b053 and ends clearly up the flight.
+    const up53 = sm(B(9)[0] - 1.4, B(9)[0] + .3, t);
+    b.neck.rotation.x -= .3 * up53; b.head.rotation.x -= .26 * up53;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
     // After the lean, put the palms back on the kneecaps. Fists close on "à mort".
     pinKnees(mo, fist);

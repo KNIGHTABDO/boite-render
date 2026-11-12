@@ -174,7 +174,9 @@ const pa = staged('patio_matin', {
         mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true);
       }
     }
-    yawToward(mo, S3.cam, t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    const dbg = k => { if (t > 6 && t < 6.45) { const f = mo.B.head.localToWorld(V(0, 0, 1)).sub(at(mo, 'head')); const hp = at(mo, 'head'); const c = S3.cam.position.clone().sub(hp); console.error('DBG', k, t.toFixed(2), 'gy', mo.group.rotation.y.toFixed(2), 'camyaw', Math.atan2(c.x, c.z).toFixed(2), 'headfwd', Math.atan2(f.x, f.z).toFixed(2), 'pitch', f.y.toFixed(2), 'zoyaw', yawTo(mo.group.position, zo.group.position).toFixed(2)); } };
+    dbg('pre');
+    yawToward(mo, S3.cam, t < B(6)[0] ? .3 : .9); dbg('post'); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
