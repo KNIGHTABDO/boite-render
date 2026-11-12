@@ -97,10 +97,10 @@ const ch = staged('chambre_jour', {
     {
       const hsh = n => { const x = Math.sin(n * 127.1) * 43758.5; return x - Math.floor(x); };
       const homes = st.fh ||= flies.children.map((_, i) => { const fx = 340 + hsh(i + 1) * 1240, fy = 780 + hsh(i + 5) * 200, py = 190 + hsh(i + 9) * 290; return S3.floorAt(fx, fy).setY(heightAt(S3, fx, fy, py)); });
-      const wf = S3.floorAt(1450, 760), wd = wf.clone().setY(heightAt(S3, 1450, 760, 450)), t0 = B(5)[0] + 4.3;
+      const wf = S3.floorAt(1450, 760), wd = wf.clone().setY(heightAt(S3, 1450, 760, 450)), t0 = B(5)[0] + 2.0;
       flies.children.forEach((f, i) => {
-        const out = Math.min(1, Math.max(0, (t - t0 - hsh(i + 17) * 1.2) / 1.8)), e = out * out * (3 - 2 * out), j = Math.floor(t * 8 + i * .37), sp = .035 * k * (1 - e) + .01 * k;
-        f.visible = out < .98; f.scale.setScalar(k);
+        const out = Math.min(1, Math.max(0, (t - t0 - hsh(i + 17) * .9) / 1.5)), e = out * out * (3 - 2 * out), j = Math.floor(t * 8 + i * .37), sp = .035 * k * (1 - e) + .01 * k;
+        f.visible = out < .98; f.scale.setScalar(k * .62);
         f.position.copy(homes[i]).lerp(wd, e).add(V(.07 * k * Math.sin(t * .8 + i * 1.7) * (1 - e) + sp * (hsh(i + j * 3.1) - .5) * 2, .05 * k * Math.sin(t * 1.1 + i * 2.3) * (1 - e) + sp * (hsh(i * 2.3 + j) - .5) * 2, sp * (hsh(i * 5.7 + j * 1.3) - .5) * 2));
         f.children[1].rotation.z = .5 * Math.sin(t * 60 + i); f.children[2].rotation.z = -.5 * Math.sin(t * 60 + i);
       });
@@ -115,22 +115,22 @@ const ch = staged('chambre_jour', {
       const P = 1.35, done = elapsed >= 4 * P, phase = done ? 1 : (elapsed % P) / P;
       const drive = done ? 0 : sm(.35, .72, phase) * (1 - sm(.72, 1, phase));
       const fw = V(Math.sin(zo.group.rotation.y), 0, Math.cos(zo.group.rotation.y));
-      zo.group.position.addScaledVector(fw, .07 * k * drive); 
-      zo.B.spine.rotation.y += done ? -.08 : .18 - .36 * sm(.3, .75, phase);
-      zo.B.chest.rotation.y -= .1 * drive + .14 * sm(.3, .75, phase) * (done ? 0 : 1); zo.B.root.rotation.y += .06 * (done ? 0 : Math.sin(phase * Math.PI)); zo.B.root.rotation.z += .03 * (done ? 0 : Math.sin(phase * Math.PI)); zo.B.spine.rotation.x += .1 * drive;
+      zo.group.position.addScaledVector(fw, .16 * k * drive); 
+      zo.B.spine.rotation.y += done ? -.08 : .35 - .7 * sm(.3, .75, phase);
+      zo.B.chest.rotation.y -= .1 * drive + .14 * sm(.3, .75, phase) * (done ? 0 : 1); zo.B.root.rotation.y += .06 * (done ? 0 : Math.sin(phase * Math.PI)); zo.B.root.rotation.z += .03 * (done ? 0 : Math.sin(phase * Math.PI)); zo.B.spine.rotation.x += .26 * drive; zo.B.chest.rotation.x += .12 * drive; zo.B.hips && (zo.B.hips.rotation.y += .2 * Math.sin(phase * Math.PI) * (done ? 0 : 1));
       zo.B.thighR.rotation.x -= .1; zo.B.shinR.rotation.x += .15; zo.B.thighL.rotation.x += .05;   // r17: lead leg bent, weight forward
       for (const side of ['L', 'R']) { zo.B['thigh' + side].rotation.x -= .14 * drive; zo.B['shin' + side].rotation.x += .2 * drive; }
       zo.group.updateMatrixWorld(true);
       // Broad continuous arc: chest-ready -> above/outside the shoulder -> forward toward the window -> recovery.
       const path = ph => {
-        const ready = V(.3, -.38, -.1), high = V(.04, -.48, .22), strike = V(.46, -.4, .08), held = V(.3, -.44, -.06);   // r17: cloth in her LEFT hand: on screen-right, so the whip goes toward the window
+        const ready = V(.3, -.36, -.08), high = V(-.02, -.12, .1), strike = V(.62, -.42, .3), held = V(.3, -.44, -.06);   // r17: cloth in her LEFT hand: on screen-right, so the whip goes toward the window
         return ph < .35 ? ready.lerp(high, sm(0, .35, ph))
           : ph < .72 ? high.lerp(strike, sm(.35, .72, ph)) : strike.lerp(held, sm(.72, 1, ph));
       };
       const p = path(phase), prev = path(Math.max(0, phase - .025));
       const target = q => front(zo, 'chest', q.x * k, q.y * k, q.z * k);
       PO.reach(zo, 'L', target(p), { grip: .015, pole: [.5, .1, -.15] });
-      PO.reach(zo, 'R', front(zo, 'root', (.16 + .1 * drive) * k, (.22 - .06 * drive) * k, (.3 - .08 * drive) * k + .02 * k * Math.sin(t * 2)), { grip: .03, pole: [-.8, -.1, -.1] });   // r17: loose counter-swing
+      PO.reach(zo, "R", front(zo, "root", (.16 + .25 * drive) * k, (.22 - .06 * drive) * k, (.3 - .08 * drive) * k + .02 * k * Math.sin(t * 2)), { grip: .03, pole: [-.8, -.1, -.1] });   // r17: loose counter-swing
       PO.fingers(zo, 'R', .35, { thumb: .3 });
       PO.fingers(zo, 'L', 1, { thumb: .95 });
       const h = PO.handPts(zo, 'L'); cloth.position.copy(h.palm);
