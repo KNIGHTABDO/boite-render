@@ -25,7 +25,7 @@ export const CLASS = {
 export function lapLouha(a, lh) {
   const kk = k(a);
   const sc = Math.min(1.15, Math.max(.95, kk * 1.5));   // r16: bigger so it reads as a board
-  holdBoard(a, lh, front(a, 'root', .3 * kk, 0, .06 * kk), -1.05, sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
+  holdBoard(a, lh, front(a, 'root', .36 * kk, 0, .13 * kk), -1.05, sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
   reachSafe(a, 'L', lh.localToWorld(V(.125, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
   reachSafe(a, 'R', lh.localToWorld(V(-.125, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });
   PO.fingers(a, 'L', .32, { thumb: .35, spread: .15 });
@@ -55,6 +55,10 @@ const cl = staged('mausolee', {
     // b016 the kind master, including the pre-roll: head tilted, a slow nod, shoulders uneven, a forward lean
     const kind = t < B(1)[0] ? 1 : 0;
     fq.B.head.rotation.z += (.17 + .035 * Math.sin(t * .7)) * kind;
+    fq.B.neck.rotation.z += (.1 + .02 * Math.sin(t * .55)) * kind;   // r18: clear lateral roll (~15 deg total) that survives the gaze pass
+    fq.B.chest.rotation.z += (.07 + .02 * Math.sin(t * .6)) * kind;   // shoulder drop, one side lower
+    fq.B.upperArmR.rotation.z -= .05 * kind;
+    fq.B.neck.rotation.x += .03 * Math.sin(t * .9 + 1) * kind;
     fq.B.neck.rotation.x += (.12 + .06 * Math.sin(t * 1.3)) * kind;
     fq.B.chest.rotation.x += .07 * kind;
     fq.B.upperArmL.rotation.z += .1 * kind;
@@ -65,9 +69,16 @@ const cl = staged('mausolee', {
     rock(mo, t, .09 + .03 * win(1, .45, 1, t), 3.2 + .8 * win(1, .45, 1, t));
     if (!st.lh) {
       st.lh = S3.prop(PR.louha({ col: 0xc99a58 }), 0, 0, 0);   // r17: pale wood board with dark lines of writing so it reads as a slate
-      for (let i = 0; i < 6; i++) {
-        const bar = new THREE.Mesh(new THREE.BoxGeometry(i % 2 ? .15 : .19, .012, .004), PR.toon(0x2a1a10));
-        bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
+      // r18: fine calligraphy-like strokes, several thin broken lines per row instead of solid bars
+      const ink = PR.toon(0x2a1a10);
+      for (let row = 0; row < 7; row++) {
+        let x = .105;
+        for (let j = 0; x > -.1; j++) {
+          const w = .018 + .014 * ((row * 5 + j * 3) % 4) / 3, g = .006 + .004 * ((row + j) % 3);
+          const st1 = new THREE.Mesh(new THREE.BoxGeometry(w, .0028, .003), ink);
+          st1.position.set(x - w / 2, .075 + row * .036 + .004 * Math.sin(j * 1.7 + row), .0095); st1.rotation.z = .12 * Math.sin(j + row * 2);
+          st.lh.add(st1); x -= w + g;
+        }
       }
     }
     st.slate = lapLouha(mo, st.lh);
@@ -88,7 +99,7 @@ const ch = staged('chambre_jour', {
     look: (t, st) => st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father', lookMax: 1.2 },   // G1: she looked at the floor
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
   mohammed: { ...LUNCH.mohammed, at: [920, 965], face: 'cam', yaw: .45, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
-    look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.05, 0)) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.14, 0)) : 'father' },   // G1: eyes on his face, not the ceiling above the turban
+    look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A && S3?.cam ? st.A.father.B.head.getWorldPosition(V()).lerp(S3.cam.position, .15) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father' },   // r18: eyes up to the father's face; on b021 the gaze goes to the lens so his face reads   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
   act(lt, t, S, st) {
@@ -103,6 +114,8 @@ const ch = staged('chambre_jour', {
     // b021 Mohammed: leans back from the idea and shakes his head, slow and firm
     const no = t >= B(5)[0] - .15 ? 1 : 0, u = Math.max(0, t - B(5)[0]);
     mo.B.spine.rotation.x -= .36 * no; mo.B.chest.rotation.x -= .2 * no;
+    mo.B.head.rotation.y += .045 * Math.sin(t * .8 + 2) * (1 - no); mo.B.neck.rotation.x -= .04 * (.5 + .5 * Math.sin(t * .6)) * (1 - no);   // r18: idle so a held beat is not frozen
+    mo.B.spine.rotation.z += .03 * Math.sin(t * .45 + 1);   // weight shift
     mo.B.head.rotation.y += .34 * no * Math.sin(u * 5.2) * Math.exp(-u * .35);
     mo.B.neck.rotation.x += .05 * no;
     mo.B.spine.updateWorldMatrix(false, true);
@@ -122,7 +135,13 @@ const ch = staged('chambre_jour', {
         PO.fingers(fa, s, .02, { thumb: .03, spread: .4 });
       }
     } else lapRest(fa, 'L', t), lapRest(fa, 'R', t);
-    for (const s of ['L', 'R']) { lapRest(zo, s, t + 1.2); if (no < .5) lapRest(mo, s, t + .4); }
+    for (const s of ['L', 'R']) {
+      lapRest(zo, s, t + 1.2);
+      // r18: Mohammed standing: forearms bent, hands loosely together in front of the belt (no hanging mannequin arms)
+      const km = k(mo), sg = s === 'R' ? 1 : -1;
+      reachSafe(mo, s, front(mo, 'chest', .24 * km, sg * .055 * km, (-.33 + .012 * Math.sin(t * 1.1 + sg)) * km), { grip: .03, pole: [-sg * .5, -.2, .3] });
+      PO.fingers(mo, s, .15, { thumb: .1, spread: .1 });
+    }
     for (const a of [fa, zo, mo]) syncSeat(a);
   },
 });
