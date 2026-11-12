@@ -11,6 +11,7 @@ import { bareHead } from '../lib/fix8_g5.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { toon } from '../../../engine/props3d.js';
 import { ESCALIER } from '../lib/stairs.js';
+import { armToward } from '../lib/fix8_R15E.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 
 const ID = 's17_retour', L = lines(ID);
@@ -21,11 +22,11 @@ const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#
 
 // he climbs treads 2 → 3 with his back to us while the narrator speaks; a slow push-in on the whole flight
 const es = stagedFix('escalier_nuit', { father: { tread: 2, face: 'down', seed: 5, height: 1.76, climb: { to: 3, t0: B(0)[0] + .2, t1: B(0)[1] - .2 } } },
-  { stairs: ESCALIER, light: DARK, view: () => [1180, 520, 1.06],
+  { stairs: ESCALIER, light: DARK, view: () => [1180, 250, 1.1],
     act(lt, t, S, st, S3) {
       const fa = st.A.father; bareHead(fa);
       // Mostly his back: only enough yaw that the face stays inside the gate's 100° budget.
-      yawToward(fa, S3.cam, 1.55);
+      yawToward(fa, S3.cam, 1.72);
       st.actcheck = { supports: { father: fa.group.position.y } };
     } });
 // the ep05 penombre plate is a day room: a multiply grade turns it to night (the father's silhouette reads black on grey)
@@ -48,21 +49,21 @@ function veilDown(a) {
   if (back.length() > .22 && tip.y > .16) IK.aim(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hip.clone().addScaledVector(back.normalize(), .08).setY(.03));
 }
 const pe = staged('chambre_penombre', {
-  father: { at: [170, 925], face: 'cam', yaw: -.4, seed: 5, height: 1.76, walk: { to: [430, 860], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
+  father: { at: [170, 925], face: [1000, 800], seed: 5, height: 1.76, walk: { to: [430, 860], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
     lookMax: .4, look: (t, st) => {
       if (!(t > B(4)[0])) return null;
       const p = at(st.A.mohammed, 'head').clone();
       p.y = Math.max(p.y, at(st.A.father, 'head').y - .22);
       return p;
     } },
-  zoubida: { at: [620, 960], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .5, look: (t, st, S3) => S3.floorAt(500, 990) || null },
+  zoubida: { at: [720, 950], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .5, look: (t, st, S3) => S3.floorAt(500, 990) || null },
   // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
-  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null },
+  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null },
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo } = st.A, kf = k(fa); bareHead(fa);
-    yawToward(fa, S3.cam, .4);
+    yawToward(fa, S3.cam, 1.6);
     lap(zo); veilDown(zo);
     const mo = st.A.mohammed, surface = .3;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
@@ -74,7 +75,7 @@ const pe = staged('chambre_penombre', {
       mo.B.head.updateWorldMatrix(false, true);
     }
     const grope = win(2, .2, 1, t);
-    if (grope > 0) PO.reach(fa, 'L', front(fa, 'chest', .34 * kf, -.22 * kf + .06 * Math.sin(t * 1.6) * kf, .02 * kf), { grip: .08, pole: [.35, .1, .15] });
+    if (grope > 0) { const sd = armToward(fa, zo) === 'L' ? 'R' : 'L', sg = sd === 'L' ? 1 : -1; PO.reach(fa, sd, front(fa, 'chest', .44 * kf, sg * (.06 + .1 * Math.sin(t * 1.6)) * kf, .12 * kf), { grip: .08, pole: [sg * .35, .1, .15] }); }
   },
 });
 
@@ -98,12 +99,15 @@ const nu = staged('chambre_nuit', {
 
     const { father: fa, zoubida: zo } = st.A, kf = k(fa), kz = k(zo); bareHead(fa);
     st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
+    st.zy0 ??= zo.group.rotation.y;
+    zo.group.rotation.y = st.zy0 + 1.1 * Math.max(win(10, .05, 1, t), win(11, 0, 1, t), .2 * win(12, 0, 1, t), .6 * win(13, 0, 1, t));
+    zo.group.updateMatrixWorld(true);
     const offer = Math.max(win(9, .5, 1, t), win(10, 0, 1, t), win(11, 0, .55, t));
     const take = win(12, 0, .4, t), toss = win(12, .4, 1, t);
     const heart = win(13, .3, 1.2, t);
     if (!(offer > 0 || take > 0 || toss > 0 || heart > 0)) for (const [sd, sg] of [['L', 1], ['R', -1]]) PO.reach(zo, sd, PO.hipToWorld(zo, sg * .16 * kz, -.02 * kz, .0), { grip: .03, pole: [sg * .3, .04, .1] });
     if (offer > 0 && take <= 0) {
-      PO.reach(fa, 'R', front(fa, 'chest', .42 * kf, .18 * kf, -.04 * kf), { grip: 0, pole: [-.32, .06, .16] });
+      PO.reach(fa, 'R', front(fa, 'chest', .5 * kf, .1 * kf, -.04 * kf), { grip: 0, pole: [-.32, .06, .16] });
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
     if (take > 0) {
@@ -126,7 +130,7 @@ const nu = staged('chambre_nuit', {
       PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-.3, .15, .2] });
     }
     if (heart > 0) {
-      PO.reach(zo, 'R', front(zo, 'chest', .15 * kz, -.04 * kz, -.04 * kz), { grip: 0, pole: [-.28, .12, .14] });
+      PO.reach(zo, 'R', front(zo, 'chest', .14 * kz, -.06 * kz, -.04 * kz), { grip: 0, pole: [-.28, .12, .14] });
       PO.fingers(zo, 'R', .05, { spread: .2 });
     }
     const br = st.br ||= bracelets(S3);
@@ -137,7 +141,7 @@ const nu = staged('chambre_nuit', {
       PO.fingers(who, side, 0, { thumb: .05, spread: .3 });
       const palm = PO.handPts(who, side).palm;
       br.position.copy(palm).add(V(0, .015 * k(who), 0));
-      br.scale.setScalar(1.15 * Math.max(.85, k(who)));
+      br.scale.setScalar(1.8 * Math.max(.85, k(who)));
       br.updateMatrixWorld(true);
     }
     veilDown(zo);

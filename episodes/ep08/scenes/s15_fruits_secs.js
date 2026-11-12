@@ -81,8 +81,8 @@ const mu = checkedStage('souk_mur', {
 
 const fr = checkedStage('souk_mur', {
   zoubida: { at: [860, 660], costume: 'haik', seed: 7, talk: 0, walk: { to: STOP.zoubida, t0: B(1)[0] - .2, t1: B(1)[1] },
-    lookMax: t => t >= B(4)[0] ? .075 : .55,
-    look: (t, st) => t >= B(4)[0] ? at(st.A.mohammed, 'head') : [880 + 210 * Math.sin((t - B(1)[0]) * 1.7), 790, 1.4],
+    lookMax: t => t >= B(4)[0] ? .3 : .55,
+    look: (t, st) => t >= B(4)[0] ? [STOP.zoubida[0], STOP.zoubida[1] + 140, .45] : [880 + 210 * Math.sin((t - B(1)[0]) * 1.7), 790, 1.4],
     lids: t => .25 + .15 * sm(B(4)[0] - .3, B(4)[0] + .7, t) },
   mohammed: { at: [700, 670], seed: 3, talk: 0, walk: { to: STOP.mohammed, t0: B(1)[0] - .2, t1: B(1)[1] }, lookMax: .65,
     look: (t, st) => {
@@ -111,8 +111,8 @@ const fr = checkedStage('souk_mur', {
     // Different action from mu: quick strides and low swinging hands, with no chest/veil reaches.
     const hurry = sm(B(1)[0] - .2, B(1)[0] + .15, t) * (1 - sm(B(1)[1] - .45, B(1)[1], t));
     for (const [a, ph] of [[zo, 0], [mo, .8], [ft, 1.7]]) {
-      a.B.neck.rotation.y = .38 * Math.sin((t - B(1)[0]) * 1.7 + ph) * hurry;
-      a.B.head.rotation.set(.04 * hurry, .5 * Math.sin((t - B(1)[0]) * 1.7 + ph), 0);
+      a.B.neck.rotation.y = .45 * Math.sin((t - B(1)[0]) * 1.7 + ph) * hurry;
+      a.B.head.rotation.set(.04 * hurry, .6 * Math.sin((t - B(1)[0]) * 1.7 + ph), 0);
       sync(a);
     }
     for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[1] + .4;
@@ -126,9 +126,14 @@ const fr = checkedStage('souk_mur', {
     m1.group.rotation.y = yawTo(m1.group.position, w1.group.position) + .18 * Math.sin(t * 1.7);
     m1.B.spine.rotation.x += .16 * (1 - scoop); m1.B.chest.rotation.y += .14 * Math.sin(t * 1.7);
     w1.B.chest.rotation.x += .045 * Math.sin(t * 1.7 + 1); sync(m1, w1);
-    PO.reach(m1, 'R', front(m1, 'root', (.27 + .10 * scoop) * k1, (.12 - .08 * scoop) * k1, (.10 + .16 * scoop) * k1), { grip: .02, pole: [-.4, -.05, .18] });
-    PO.reach(m1, 'L', front(m1, 'root', .29 * k1, -.17 * k1, (.12 + .035 * Math.sin(t * 1.7 + .7)) * k1), { grip: .015 });
+    PO.reach(m1, 'R', front(m1, 'root', (.36 + .12 * scoop) * k1, (.20 - .08 * scoop) * k1, (.16 + .20 * scoop) * k1), { grip: .02, pole: [-.6, -.05, .18] });
+    PO.reach(m1, 'L', front(m1, 'root', .40 * k1, -.22 * k1, (.30 + .06 * Math.sin(t * 1.7 + .7)) * k1), { grip: .015, pole: [.6, -.05, .18] });
     PO.fingers(m1, 'R', .5);
+    // urchins: plain arm swing, opposite phases
+    for (const [a, ph] of [[k2, 0], [k3, .4]]) if (a.group.visible) for (const s of ['L', 'R']) {
+      const sw = .13 * Math.sin(t * 5.5 + ph + (s === 'L' ? 0 : Math.PI));
+      PO.reach(a, s, hanging(a, s, sw), { grip: 0, pole: [s === 'L' ? .3 : -.3, -.1, -.25] });
+    }
     PO.reach(w1, 'R', front(w1, 'root', .25 * k(w1), .12 * k(w1), .12 + .04 * scoop), { grip: .02 });
 
     // Stopped: both mother's hands remain inside the waist drape, as set by hang('haik').
@@ -138,7 +143,7 @@ const fr = checkedStage('souk_mur', {
       const zr = at(zo, 'root'), mr = at(mo, 'root'), d = mr.clone().sub(zr).setY(0).normalize();
       // The boy steps beside the hip before reaching; keep his shoulder within his measured arm span.
       const handTarget = zr.clone().addScaledVector(d, .225 * kz);
-      handTarget.y = at(mo, 'root').y + .04;
+      handTarget.y = zr.y - .02 * kz;
       const shoulder=at(mo,'upperArmL'),len=arm(mo,'L').len,offset=handTarget.clone().sub(shoulder),dist=offset.length();
       if(dist>len*.90){offset.y=0;mo.group.position.addScaledVector(offset.normalize(),(dist-len*.90)*cling);sync(mo);}
       mo.B.spine.rotation.x += .035 * cling; mo.B.spine.rotation.z += .05 * Math.sin(t * 1.6) * cling;
