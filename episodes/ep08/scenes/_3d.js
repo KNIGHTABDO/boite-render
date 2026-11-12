@@ -161,7 +161,7 @@ export function shot({ plate: name, light = {}, build, frame, view, cover, move,
     memoPrefix = name;
     sh.st = (await build(S3, CAL[name])) || {};
     sh.st.actors ||= []; sh.st.faces ||= [];
-    sh.place = sh.st.actors.map(a => { const m = []; a.group.traverse(o => m.push([o, o.visible, o.geometry, o.scale.clone()])); return [a.group.position.clone(), a.group.rotation.clone(), a.group.scale.clone(), m]; });   // restored each frame (shared casts)
+    sh.place = sh.st.actors.map(a => { const m = []; a.group.traverse(o => m.push([o, o.visible, o.geometry, o.scale.clone(), o.position.clone(), o.quaternion.clone()])); return [a.group.position.clone(), a.group.rotation.clone(), a.group.scale.clone(), m]; });   // restored each frame (shared casts)
     sh.heads = sh.st.actors.map(a => S3.project(IK.wpos(a.B.head)));   // coverage framing targets (fixed per shot: deterministic in chunked renders)
     sh.bodyPx = sh.st.actors.map(a => { const h = IK.wpos(a.B.head), f = h.clone(); f.y -= .83 * a.group.scale.y; return S3.project(f)[1] - S3.project(h)[1]; });
     sh.headOff = sh.st.actors.map(a => IK.wpos(a.B.head).sub(a.group.position));   // for plan pt: framing a walker where it will be
@@ -180,7 +180,10 @@ export function shot({ plate: name, light = {}, build, frame, view, cover, move,
     st.actors.forEach((a, i) => {   // a cast() actor may be shared with another shot: re-parent and put it back where this build placed it
       if (a.group.parent !== S3.scene) S3.scene.add(a.group);
       const pl = sh.place[i]; a.group.position.copy(pl[0]); a.group.rotation.copy(pl[1]); a.group.scale.copy(pl[2]); a.group.visible = true;
-      for (const [o, vis, geo, sc] of pl[3]) { if (o === a.group) continue; o.visible = vis; if (geo && o.geometry !== geo) o.geometry = geo; o.scale.copy(sc); } a.group.updateMatrixWorld(true);
+      if (!pl[4]) pl[4] = new Set(pl[3].map(m => m[0]));
+      const extra = []; a.group.traverse(o => { if (!pl[4].has(o)) extra.push(o); });   // props another scene's frames attached (s05 slate…)
+      for (const o of extra) if (pl[4].has(o.parent)) o.parent.remove(o);
+      for (const [o, vis, geo, sc, ps, q] of pl[3]) { if (o === a.group) continue; o.visible = vis; if (geo && o.geometry !== geo) o.geometry = geo; o.scale.copy(sc); o.position.copy(ps); o.quaternion.copy(q); } a.group.updateMatrixWorld(true);
     });
     frame?.(lt, u, t, S, st, S3);
     S3.draw({ ink, grade: typeof grade === 'function' ? grade(lt, u, t) : grade, view: v && clampCam(v[0], v[1], v[2]) });

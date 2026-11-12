@@ -40,15 +40,19 @@ export async function cast(name, { seat = false, copy = 0, outline = .0035 } = {
     qa.actors.push(a); a.qa = { model: name, expectedHeight: heightOf(S) };
   }
   a.group.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = false; } });
-  a.pristine = { scale: a.group.scale.clone(), meshes: [] };
-  a.group.traverse(o => { if (o.isMesh || o.isObject3D) a.pristine.meshes.push([o, o.visible, o.geometry, o.scale.clone()]); });
+  a.pristine = { scale: a.group.scale.clone(), meshes: [], keys: new Set([...Object.keys(a), 'pristine']) };
+  a.group.traverse(o => { if (o.isMesh || o.isObject3D) a.pristine.meshes.push([o, o.visible, o.geometry, o.scale.clone(), o.position.clone()]); });
   return cache[id] = a;
 }
 /** undo what an earlier scene did to a cached actor (scale, hidden parts, swapped geometry) so results never depend on scene order */
 export function resetCast(a) {
   const P = a.pristine; if (!P) return a;
+  for (const k of Object.keys(a)) if (!P.keys.has(k)) delete a[k];   // per-scene state an earlier scene left (pins, contact regions, marks…)
+  const known = new Set(P.meshes.map(m => m[0]));
+  const extra = []; a.group.traverse(o => { if (!known.has(o)) extra.push(o); });   // props an earlier scene attached (slate, bracelet…)
+  for (const o of extra) if (known.has(o.parent)) o.parent.remove(o);
   a.group.scale.copy(P.scale); a.group.visible = true;
-  for (const [o, vis, geo, sc] of P.meshes) { o.visible = vis; if (geo && o.geometry !== geo) o.geometry = geo; o.scale.copy(sc); }
+  for (const [o, vis, geo, sc, ps] of P.meshes) { if (o === a.group) continue; o.visible = vis; if (geo && o.geometry !== geo) o.geometry = geo; o.scale.copy(sc); o.position.copy(ps); }
   if (a.B) rest(a.B);
   return a;
 }

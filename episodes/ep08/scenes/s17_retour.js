@@ -84,7 +84,7 @@ const nu = staged('chambre_nuit', {
   father: { at: [420, 900], face: 'cam', yaw: .2, seed: 5, height: 1.76, lookMax: .35,
     look: (t, st) => { const p = at(st.A.zoubida, 'head').clone(); p.y = Math.max(p.y, at(st.A.father, 'head').y - .18); return p; } },
   // b117 she lifts her face toward him; from b119 she glances toward the chest without turning her back on the lens
-  zoubida: { at: [880, 905], face: 'father', yaw: .5, seed: 7, hands: false, lookMax: .6,
+  zoubida: { at: [880, 905], face: 'cam', yaw: -.7, seed: 7, hands: false, lookMax: .6,
     look: (t, st, S3) => {
       if (t >= B(8)[0] && t < B(10)[0]) { const p = at(st.A.father, 'head').clone(); p.y = Math.max(p.y, at(st.A.zoubida, 'head').y - .15); return p; }
       if (t >= B(10)[0]) { const p = S3.floorAt(1580, 760) || at(st.A.zoubida, 'head').clone(); p.y = at(st.A.zoubida, 'head').y - .1; return p; }
