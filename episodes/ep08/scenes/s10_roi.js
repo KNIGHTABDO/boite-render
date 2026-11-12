@@ -53,7 +53,7 @@ const esc = staged('escalier', {
       }
       return null;
     } },
-  zoubida: { tread: 0, off: -.7, face: 'cam', seed: 7, lookMax: .55,
+  zoubida: { tread: 0, off: -.7, face: 'cam', seed: 7, lookMax: .42,
     look: (t, st) => { if (!st.A.zoubida.group.visible) return null; const p = st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)); return p.add(V(0, .2, 0)); } },
 }, {
   stairs: ESCALIER,
