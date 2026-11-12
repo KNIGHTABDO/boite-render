@@ -119,6 +119,8 @@ const ch = staged('chambre_jour', {
     mo.B.spine.rotation.z += .03 * Math.sin(t * .45 + 1);   // weight shift
     mo.B.head.rotation.y += .34 * no * Math.sin(u * 5.2) * Math.exp(-u * .35);
     mo.B.neck.rotation.x += .05 * no;
+    mo.group.rotation.y -= .38 * sm(B(5)[0] - .5, B(5)[0] - .1, t);   // r20: turn from the father to 3/4 front so the face reads in the b021 CU
+    mo.group.updateMatrixWorld(true);
     mo.B.spine.updateWorldMatrix(false, true);
     const quote = t >= B(3)[0] && t < B(4)[0] ? sm(B(3)[0], B(3)[0] + .35, t) : 0;
     const tell = win(2, .08, 1, t) * (1 - quote);
@@ -170,7 +172,7 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2, dx: 198, dy: -73 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.3, dx: 40, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
     b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.25, dx: -121, dy: -48 },   // r19: head+shoulders, Mohammed's head fully out right,
     b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
