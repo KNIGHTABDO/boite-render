@@ -1,0 +1,103 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s05 0.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 1.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 5.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 8.9",
+   "verdict": "fail",
+   "defects": [
+    "Framing is a wide two-shot with the fqih in the background instead of a medium shot on Mohammed, and Mohammed's folded legs are cut off by the bottom frame edge.",
+    "The wooden slate sits upright in front of Mohammed's torso rather than resting on his lap, and his hands disappear awkwardly behind the slate edges without clearly holding it.",
+    "The fqih in the background sits rigidly upright staring straight ahead rather than looking toward Mohammed."
+   ],
+   "fix": "Reframe as a medium shot focused on Mohammed, rest the slate tilted on his lap with both hands clearly gripping its side edges, and turn the fqih's gaze toward Mohammed if he remains visible."
+  },
+  {
+   "tile": "s05 12.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 16.3",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed is completely absent from the carpet in front of the low table, then abruptly appears in the same beat at s05 19.5.",
+    "The father leans slightly forward with his hands held together near his chest rather than sitting upright with his chest puffed out proudly."
+   ],
+   "fix": "Place Mohammed in the room consistently from the start of b018 (staged so his face can be seen later) and lift the father's sternum and shoulders into a proud, chest-out posture."
+  },
+  {
+   "tile": "s05 19.5",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed pops into the center of the rug after being missing in s05 16.3 and is positioned facing away from the camera with his back/three-quarter back to the viewer.",
+    "The father's torso remains neutral rather than clearly showing a proud, chest-out posture."
+   ],
+   "fix": "Keep Mohammed present throughout b018 angled three-quarter toward camera so his face is readable, and puff the father's chest out further."
+  },
+  {
+   "tile": "s05 23.0",
+   "verdict": "minor",
+   "defects": [
+    "The father's head is level/slightly lowered rather than lifted chin-up as specified by the brief.",
+    "His lower right forearm and hand are cropped off at the bottom frame edge."
+   ],
+   "fix": "Tilt the father's chin slightly upward while keeping his extended open palm and lower arm cleanly inside the bottom frame."
+  },
+  {
+   "tile": "s05 26.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 29.8",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 35.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s05 40.2",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed is framed from three-quarter behind so most of his face and mouth are hidden behind his skull and ear on a close-up beat about his facial reaction.",
+    "His torso stays nearly upright rather than clearly leaning back from the idea."
+   ],
+   "fix": "Re-angle b021 (or restage Mohammed in b018) so his face is clearly visible in front three-quarter view as he leans back and shakes his head."
+  },
+  {
+   "tile": "s05 41.8",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed's face remains hidden in a three-quarter rear view showing mostly the back of his head and ear, making his firm head shake and reluctant expression unreadable.",
+    "His posture barely leans back compared with s05 40.2."
+   ],
+   "fix": "Shot-reverse-shot or turn Mohammed toward the camera so both eyes and his mouth are visible while clearly leaning his torso back during the head shake."
+  }
+ ],
+ "worst_problem": "Mohammed is absent in s05 16.3, pops into s05 19.5 facing away from the camera, and consequently has his face hidden in a three-quarter rear view during his b021 reaction close-ups (s05 40.2 and s05 41.8)."
+}

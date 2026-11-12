@@ -56,7 +56,8 @@ const cl = staged('mausolee', {
     mo.B.neck.updateWorldMatrix(false, true);
     mo.B.head.rotation.z += .05 * Math.sin(t * .9 + 1);
     fq.B.head.rotation.z += .05 * Math.sin(t * .6);
-    fq.B.spine.rotation.x += .03 * Math.sin(t * .45);
+    fq.B.spine.rotation.x += .03 * Math.sin(t * .45) + .012 * Math.sin(t * 1.7);
+    fq.B.head.rotation.y += .06 * Math.sin(t * .35 + 2);
     if (!st.lh) {
       st.lh = S3.prop(PR.louha({ col: 0xc99a58 }), 0, 0, 0);   // r17: pale wood board with dark writing bars (same as s05)
       for (let i = 0; i < 6; i++) {
@@ -74,14 +75,14 @@ const cl = staged('mausolee', {
     }
     const lift = .012 * kf * Math.sin(t * .8 + 1);
     const kn = at(fq, 'shinR'), kl = at(fq, 'shinL');
-    const hr = kn.clone().addScaledVector(dirW(fq, 0, 0, 1), .17 * kf).addScaledVector(dirW(fq, 1, 0, 0), .0).add(V(0, .12 * kf + .01 * kf * Math.sin(t * .6), 0));
+    const hr = kn.clone().addScaledVector(dirW(fq, 0, 0, 1), .08 * kf).addScaledVector(dirW(fq, 1, 0, 0), -.03 * kf).add(V(0, .08 * kf + .01 * kf * Math.sin(t * .6), 0));
     PO.reach(fq, 'R', hr, { grip: .02, pole: [-.5, -.1, .3] });
     PO.reach(fq, 'L', kl.clone().addScaledVector(dirW(fq, 0, 0, 1), .05 * kf).addScaledVector(dirW(fq, 1, 0, 0), .04 * kf).add(V(0, .06 * kf + lift, 0)), { grip: .02, pole: [.5, -.1, .3] });
     PO.fingers(fq, 'R', .85, { thumb: .7 });
     PO.fingers(fq, 'L', .3, { thumb: .25, spread: .15 });
     fq.group.updateMatrixWorld(true);
     const palm = PO.handPts(fq, 'R').palm;
-    const rd = dirW(fq, .22, -.35, .9).normalize();   // from the top end toward the floor tip: forward, slightly outward, down
+    const rd = dirW(fq, -1, -.04, .12).normalize();   // r20: rod lies horizontally across the lap, from the right knee toward the left
     st.rod.position.copy(palm);   // ~12 cm of rod above the fist, the rest below it
     st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), rd.clone().negate());
     st.rod.scale.setScalar(kf);

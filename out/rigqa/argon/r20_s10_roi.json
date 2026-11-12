@@ -1,0 +1,208 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s10 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's right hand is held against her temple/headscarf, partially blocking the side of her face and keeping her head angled slightly down rather than clearly looking toward Mohammed on tread 3."
+   ],
+   "fix": "Lower Zoubida's right hand away from her face and tilt her head/gaze clearly toward Mohammed."
+  },
+  {
+   "tile": "s10 1.8",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida keeps her right hand raised against her temple/headscarf in the exact same frozen pose as 0.3, obscuring her face and expression as she speaks."
+   ],
+   "fix": "Drop Zoubida's right hand from her temple so her face and gaze toward Mohammed are unobstructed."
+  },
+  {
+   "tile": "s10 2.2",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's right hand remains frozen against her temple/scarf, blocking the side of her face while she delivers her line."
+   ],
+   "fix": "Lower Zoubida's right hand from her face and animate a natural speaking head/hand beat."
+  },
+  {
+   "tile": "s10 3.8",
+   "verdict": "minor",
+   "defects": [
+    "Duplicate timestamp tile (s10 3.8 appears twice); Zoubida's right hand remains stuck against her temple/scarf in an unchanged frozen pose."
+   ],
+   "fix": "Remove the duplicate 3.8 still and lower Zoubida's right hand from her face so her pose stays alive."
+  },
+  {
+   "tile": "s10 3.8",
+   "verdict": "minor",
+   "defects": [
+    "Duplicate timestamp tile (s10 3.8 appears twice); Zoubida's right hand remains frozen against her temple/scarf."
+   ],
+   "fix": "Deduplicate the contact sheet tile and release Zoubida's static hand-on-temple pose."
+  },
+  {
+   "tile": "s10 5.2",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida does not have both hands on her hips as required from 'À quoi tu joues ?' onward—her right hand is still raised over her temple/face.",
+    "Framing defect: Zoubida's raised right hand hides half of her face, and Mohammed's face is cut off below the eyes by the bottom edge of the frame."
+   ],
+   "fix": "Put Zoubida's right hand onto her hip to match her left, and widen/tilt down the framing so Mohammed's full face and Zoubida's unobstructed face fit cleanly."
+  },
+  {
+   "tile": "s10 5.5",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida fails to put both hands on her hips—her right hand remains raised against her temple/scarf.",
+    "Framing defect: Zoubida's raised hand covers half her face and Mohammed is cropped below the eyes at the bottom frame edge."
+   ],
+   "fix": "Move Zoubida's right hand to her hip and adjust the medium/close crop downward so Mohammed's face is not cut off."
+  },
+  {
+   "tile": "s10 7.1",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida still has her right hand frozen against her temple/scarf instead of having both hands on her hips (required from 'À quoi tu joues ?' through 'accroupi sur une marche')."
+   ],
+   "fix": "Place both of Zoubida's hands firmly on her hips and keep her face uncovered looking at Mohammed."
+  },
+  {
+   "tile": "s10 7.2",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida still has her right hand raised against her temple/scarf instead of both hands on her hips."
+   ],
+   "fix": "Place Zoubida's right hand on her hip so both hands rest on her hips throughout this beat."
+  },
+  {
+   "tile": "s10 8.7",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's right hand remains raised to her temple/scarf instead of having both hands on her hips during 'Je me demande ce que peut faire un roi...'."
+   ],
+   "fix": "Put both of Zoubida's hands on her hips and give her an exasperated posture toward Mohammed."
+  },
+  {
+   "tile": "s10 11.3",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida still keeps her right hand up on her temple/scarf instead of both hands on her hips through 'accroupi sur une marche'."
+   ],
+   "fix": "Place both of Zoubida's hands on her hips for the entire beat."
+  },
+  {
+   "tile": "s10 14.4",
+   "verdict": "fail",
+   "defects": [
+    "Beat b059 requires the neighbours by the well to laugh, but the two seated women by the well and the standing neighbours remain in stiff, neutral, mannequin-like poses with no laughing gestures or body language."
+   ],
+   "fix": "Animate the neighbours by the well and Rahma with clear laughing poses (tilted heads, lifted hands/shoulders, leaning toward one another)."
+  },
+  {
+   "tile": "s10 15.0",
+   "verdict": "fail",
+   "defects": [
+    "The neighbours by the well and the standing women remain stiff and motionless with arms down, showing no visible laughter for b059."
+   ],
+   "fix": "Give the women by the well and Rahma lively, unmistakable laughing postures and hand gestures."
+  },
+  {
+   "tile": "s10 16.9",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida (far left) and the green-clad neighbour stand in stiff, arms-straight-down mannequin poses, and the two seated women by the well remain completely frozen."
+   ],
+   "fix": "Relax Zoubida's and the green neighbour's arms into natural listening/reacting poses and add subtle weight shifts to the seated women."
+  },
+  {
+   "tile": "s10 19.2",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida (far left) and the green-clad neighbour remain in stiff arms-down poses, and the two women seated by the well stay frozen."
+   ],
+   "fix": "Give Zoubida and the green-clad neighbour natural reactive stances instead of straight-armed idle poses."
+  },
+  {
+   "tile": "s10 22.1",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 24.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 27.7",
+   "verdict": "fail",
+   "defects": [
+    "Framing defect: Rahma is sliced vertically in half by the right edge of the frame.",
+    "Continuity/staging defect: the green-clad neighbour who stood beside Zoubida in the preceding and following patio shots has vanished from the background."
+   ],
+   "fix": "Reframe tighter on Zoubida (or pan right to include Rahma cleanly) so Rahma is not cut in half at the border, and keep the green-clad neighbour's staging consistent."
+  },
+  {
+   "tile": "s10 34.2",
+   "verdict": "fail",
+   "defects": [
+    "Framing defect: Rahma is still sliced vertically in half at the right edge of the frame.",
+    "Zoubida stands stiffly with both arms straight down, and the green-clad neighbour is missing from the courtyard."
+   ],
+   "fix": "Crop Rahma cleanly out of the shot or frame her fully inside, and relax Zoubida's arms into a natural calm pose."
+  },
+  {
+   "tile": "s10 39.9",
+   "verdict": "fail",
+   "defects": [
+    "Beat b063 requires Rahma to complain 'with palms up from the first word', but only her right hand is raised while her left arm hangs straight down at her side.",
+    "Zoubida (far left) and the green-clad neighbour stand in stiff, arms-straight-down mannequin poses, and the two seated women by the well remain frozen."
+   ],
+   "fix": "Raise both of Rahma's hands/forearms with palms upturned in a two-handed complaining gesture, and relax Zoubida's and the neighbour's idle stances."
+  },
+  {
+   "tile": "s10 43.1",
+   "verdict": "fail",
+   "defects": [
+    "Rahma still raises only her right hand with her left arm hanging down at her side instead of holding both palms up as directed for b063.",
+    "Zoubida and the green-clad neighbour remain in stiff arms-down poses."
+   ],
+   "fix": "Animate Rahma with both palms turned upward throughout her complaint and give Zoubida and the neighbour natural listening postures."
+  },
+  {
+   "tile": "s10 46.6",
+   "verdict": "minor",
+   "defects": [
+    "Continuity/staging issue: the green-clad neighbour who stood right next to Zoubida in 43.1 (and returns in 52.8) disappears while Zoubida shifts into that spot."
+   ],
+   "fix": "Maintain consistent spatial blocking with the green-clad neighbour visible or naturally positioned relative to Zoubida."
+  },
+  {
+   "tile": "s10 49.5",
+   "verdict": "minor",
+   "defects": [
+    "Continuity/staging issue: the green-clad neighbour remains missing from Zoubida's side despite appearing in the same courtyard area right before and after."
+   ],
+   "fix": "Keep the green-clad neighbour's blocking consistent across the patio cuts."
+  },
+  {
+   "tile": "s10 52.8",
+   "verdict": "minor",
+   "defects": [
+    "For b065 ('the three women together'), Zoubida, the green-clad neighbour, and Rahma stand apart in stiff, arms-straight-down mannequin poses with no shared gesture or reaction, and the seated women by the well stay frozen."
+   ],
+   "fix": "Bring the three women into a more connected, reactive grouping with natural pious/agreeing hand or head gestures."
+  },
+  {
+   "tile": "s10 53.9",
+   "verdict": "minor",
+   "defects": [
+    "All three standing women remain in stiff, arms-down idle poses with no shared reaction to 'Il n'y a de Dieu que Dieu !', and the seated women by the well remain frozen."
+   ],
+   "fix": "Animate subtle shared gestures (nods, clasped or raised hands) among the three women so the beat reads as a unified reaction."
+  }
+ ],
+ "worst_problem": "Zoubida never puts both hands on her hips from 'À quoi tu joues ?' through 'accroupi sur une marche' (keeping her right hand frozen over her face/temple, which also hides half her face in the close-up while Mohammed's face is cropped), compounded by explicit patio failures where the neighbours fail to laugh, Rahma is sliced in half at the right frame edge, and Rahma complains with only one hand instead of both palms up."
+}
