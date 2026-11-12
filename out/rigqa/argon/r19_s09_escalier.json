@@ -1,0 +1,140 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s09 0.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 2.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 8.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 14.1",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 17.2",
+   "verdict": "minor",
+   "defects": [
+    "Beat b045 calls for 'chin up' on this line, but Mohammed's head and chin remain almost level/slightly bowed from s09 14.1 rather than clearly lifted."
+   ],
+   "fix": "Pitch Mohammed's head and chin upward by ~10-15 degrees in s09 17.2 so the 'chin up' beat reads clearly."
+  },
+  {
+   "tile": "s09 20.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 28.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 35.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 39.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 44.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 51.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 57.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 64.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 71.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 73.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 76.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 80.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 85.2",
+   "verdict": "minor",
+   "defects": [
+    "Beat b052 specifies a feet insert for the 'pieds' enumeration item, but at s09 85.2 (on the line 'si je me lavais les pieds') the shot stays on Mohammed seated on the stairs with no feet insert shown."
+   ],
+   "fix": "Cut to the feet insert during the 'pieds' beat around s09 85.2 as specified for b052."
+  },
+  {
+   "tile": "s09 91.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 96.6",
+   "verdict": "minor",
+   "defects": [
+    "Entering b053 ('je me répétais :'), Mohammed's head and eyes are still aimed downward toward the lower-left flight instead of beginning to look up the flight."
+   ],
+   "fix": "Begin turning Mohammed's head and shifting his eyes upward toward the upper stair flight by s09 96.6."
+  },
+  {
+   "tile": "s09 101.4",
+   "verdict": "fail",
+   "defects": [
+    "Beat b053 requires 'eyes up the flight, lips moving' while he repeats his sentence, but Mohammed is still facing and looking down/forward-left down the flight rather than turning or gazing up the stairs behind/above him, and his mouth is barely open."
+   ],
+   "fix": "Turn Mohammed's head and eyes clearly upward/over his shoulder toward the top of the stair flight and animate open lip shapes for the repeated line in s09 101.4."
+  }
+ ],
+ "worst_problem": "In b053 (s09 96.6 and especially s09 101.4), Mohammed keeps facing and gazing down the stairs toward camera-left instead of directing his eyes up the flight with clearly moving lips as the brief requires."
+}

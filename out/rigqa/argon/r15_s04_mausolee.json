@@ -1,0 +1,112 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s04 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (in white, center-left) is scaled noticeably smaller than the two boys seated on the same floor plane beside him and has his back turned to the camera."
+   ],
+   "fix": "Scale Mohammed up to match the other two boys on the mat and cheat his torso/head into a three-quarter front/profile angle so his face and slate-fanning action read."
+  },
+  {
+   "tile": "s04 2.8",
+   "verdict": "minor",
+   "defects": [
+    "Same as s04 0.3: Mohammed in white is underscaled relative to the boys flanking him and faces away from the lens."
+   ],
+   "fix": "Match Mohammed's scale to the flanking boys and angle him so his face and fanning slate are visible to the camera."
+  },
+  {
+   "tile": "s04 6.1",
+   "verdict": "minor",
+   "defects": [
+    "Same as s04 0.3: Mohammed in white reads too small next to the left boy and has his back turned to the camera."
+   ],
+   "fix": "Increase Mohammed's scale to match his classmates and rotate him toward a three-quarter front view."
+  },
+  {
+   "tile": "s04 9.8",
+   "verdict": "minor",
+   "defects": [
+    "The three boys entering through the doorway are bunched on the exact same spot on the threshold, with the two rear boys overlapping and clipping directly behind Mohammed.",
+    "The fqih on the left still holds his right hand up by his forehead in the brow-wiping pose from the previous beat."
+   ],
+   "fix": "Stagger the three boys along the entry path through the doorway so they do not intersect, and lower the fqih's right arm into a natural walking/guiding posture."
+  },
+  {
+   "tile": "s04 13.7",
+   "verdict": "minor",
+   "defects": [
+    "A ghosted pedagogical callout pill ('un mausolée : la tombe d'un saint') is faintly visible at low opacity over the lower-left fountain and floor.",
+    "The fqih stands in profile with his right hand covering his face/eyes before the silence beat."
+   ],
+   "fix": "Remove the semi-transparent text overlay on the lower left and give the fqih a neutral standing pose as the boys file in."
+  },
+  {
+   "tile": "s04 17.7",
+   "verdict": "minor",
+   "defects": [
+    "Neither woman is positioned on the far side of the tomb so that the back half of her lap is hidden behind the railed structure, and their hands are too small and indistinct to read as counting on their fingers."
+   ],
+   "fix": "Place one of the women behind the railed tomb (partially occluded by the wooden screen/draped catafalque) and make the foreground woman's finger-counting gesture clearly legible."
+  },
+  {
+   "tile": "s04 23.9",
+   "verdict": "minor",
+   "defects": [
+    "The foreground woman in red on the left stands in front of the railing with her back to the lens and her legs cut at the knees by the bottom frame edge, while neither woman is partially occluded behind the tomb or visibly counting on her fingers."
+   ],
+   "fix": "Stage one woman walking behind the railed tomb to show the far half of the circuit and pose the closer woman facing three-quarter toward camera clearly counting on her fingers."
+  },
+  {
+   "tile": "s04 29.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s04 31.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s04 34.4",
+   "verdict": "fail",
+   "defects": [
+    "Bad crop at bottom-left: the three boys are cut off at the neck by the bottom frame edge, with Mohammed's head sliced horizontally across the eyes.",
+    "The fqih's right hand is splayed across his nose and eye, clipping into his face and beard instead of placing a single index finger cleanly to his lips."
+   ],
+   "fix": "Reframe the medium shot (or adjust actor placement) so the boys' heads are either cleanly included or out of frame, and pose the fqih with his index finger touching his lips without hand-to-face mesh penetration."
+  },
+  {
+   "tile": "s04 39.4",
+   "verdict": "fail",
+   "defects": [
+    "The three boys are lined up single-file left-to-right in identical bent-over poses; only the front boy is near the basin, while the middle boy and Mohammed bend over the dry floor tiles washing their hands in mid-air behind the boy in front of them.",
+    "The first two boys on the left clip into each other at the hips and thighs, and the middle boy is missing his red fez."
+   ],
+   "fix": "Cluster the boys around the fountain basin (or have one wash while the others wait immediately beside the basin), eliminate hip/leg clipping, and restore the middle boy's red fez."
+  },
+  {
+   "tile": "s04 44.1",
+   "verdict": "fail",
+   "defects": [
+    "Wrong staging and camera orientation: instead of the boys standing in a prayer row behind the fqih with their backs to the lens, all actors are arranged in side profile facing left across the room, with two boys standing in front of the fqih.",
+    "In qiyam, the boys hold both hands cupped in front of their faces as if holding invisible slates rather than a valid standing prayer posture."
+   ],
+   "fix": "Stage the fqih in front facing away from the camera toward the qibla and align all four boys in a neat horizontal row behind him with their backs to the lens and arms in proper qiyam posture."
+  },
+  {
+   "tile": "s04 48.7",
+   "verdict": "fail",
+   "defects": [
+    "Wrong staging: actors remain in a side-profile line facing left with the fqih behind/upstage of the boys rather than leading in front with backs to the lens.",
+    "Broken ruku poses: instead of bowing 90 degrees at the waist with hands on knees and feet planted, all four boys are pitched head-first toward the floor like toppling mannequins, legs colliding with the boy behind them and the leftmost boy's head clipping into the tomb railing."
+   ],
+   "fix": "Keep the prayer row aligned behind the fqih with backs to the camera, and pose ruku properly with feet planted on the carpet, torsos hinged horizontally at the hips, and hands resting on knees."
+  }
+ ],
+ "worst_problem": "In the prayer beat (s04 44.1 and s04 48.7), the boys are staged in side profile in front of the fqih rather than in a row behind him with backs to the lens, and in ruku (s04 48.7) all four boys pitch head-first into the floor like falling mannequins clipping into each other and the tomb railing."
+}

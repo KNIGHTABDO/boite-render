@@ -1,0 +1,45 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s01 0.2",
+"verdict": "fail",
+"defects": [
+"Zoubida stands in a stiff, mannequin-like default pose with arms straight down at her sides.",
+"The father and Zoubida are staged too far apart on opposite sides of the fountain for an intimate hand-to-eye interaction.",
+"Both characters' feet are cropped right at the bottom edge of the frame, making their floor contact ambiguous.",
+"The father's hands are down by his waist with no bracelets visible."
+],
+"fix": "Move the father and Zoubida closer together on the same side of the fountain, step their positions slightly up-stage so their feet sit clearly on the tiled floor inside the frame, and relax Zoubida's arms out of the rigid A-pose."},
+{"tile": "s01 1.9",
+"verdict": "fail",
+"defects": [
+"The father's raised right hand is empty—the bracelets prop is missing.",
+"Zoubida is 100% frozen in the exact same rigid posture and head angle as s01 0.2, with her gaze fixed downward at his chest rather than looking at his hand.",
+"The wide framing makes it impossible to read the hand gesture and her eye-line shift."
+],
+"fix": "Place the bracelets in the father's open palm extended toward Zoubida, and pitch Zoubida's head down slightly more so her gaze clearly targets his open hand."},
+{"tile": "s01 5.5",
+"verdict": "fail",
+"defects": [
+"Zoubida remains completely static—neither her head, eyes, nor body have moved since s01 0.2, failing the beat where her eyes go from his hand to his face with a small laugh.",
+"The father's hand is still empty and only minimally raised in a stiff elbow bend.",
+"Framing is too wide and static across all three patio beats to read the acting reaction."
+],
+"fix": "Animate Zoubida raising her head and gaze from the father's hand up to his face with a slight torso/shoulder reaction, or punch in to a medium two-shot so the interaction reads."},
+{"tile": "s01 9.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's pose contradicts the brief: instead of burying her face in her hands, her arms extend downward with her forearms and hands clipping into her thighs/skirt while her head hangs down.",
+"On the background divan, Mohammed's mesh reads as a featureless brown silhouette with his head turned so his face and eyes are invisible, making 'awake, only blinking' unreadable.",
+"Zoubida's kneeling legs and right foot are awkwardly cropped by the bottom frame edge."
+],
+"fix": "Bend Zoubida's elbows upward so her hands cover her bowed face, and rotate Mohammed's head on the divan pillow toward the camera/Zoubida so his open eyes are visible."},
+{"tile": "s01 12.4",
+"verdict": "fail",
+"defects": [
+"Zoubida's pose is completely frozen from s01 9.3 with zero shoulder or torso movement to convey weeping/shaking shoulders.",
+"Her forearms and hands remain reaching down and clipping into her lap instead of covering her face.",
+"Mohammed remains a static, faceless silhouette on the right divan with no readable gaze or blink."
+],
+"fix": "Keep Zoubida's hands raised over her face and animate a clear vertical/forward oscillation in her shoulders and upper spine between 9.3 and 12.4 to show sobbing."}
+],
+"worst_problem": "Zoubida is completely frozen across beats and posed with her arms down clipping into her lap in the bedroom instead of weeping with her face in her hands, while the father's hand lacks the bracelets in the patio."}

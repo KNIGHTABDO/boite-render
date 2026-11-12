@@ -1,0 +1,163 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s12 0.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s12 3.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s12 5.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s12 8.7",
+   "verdict": "fail",
+   "defects": [
+    "Severe scale mismatch in center frame: with feet at y≈77% beside the third stall, the entire family is rendered at roughly half normal human height (the father's head stays below the horizon/distant gate arch and below waist/chest-level stall displays).",
+    "The father's arms hang slightly stiffly away from his torso, and missing floor contact shadows weaken grounding."
+   ],
+   "fix": "Scale the family up to realistic perspective height matching the adjacent stalls at that floor depth (or move them much further back toward the vanishing point) and add subtle contact shadows while relaxing the father's arms."
+  },
+  {
+   "tile": "s12 11.7",
+   "verdict": "fail",
+   "defects": [
+    "Severe scale mismatch persists in center frame: with feet advancing to y≈80%, the father's turban only reaches y≈53% (below the horizon line and shorter than Mohammed in later shots at similar depth).",
+    "Minimal forward progression from s12 8.7 and the father's arms remain stiff."
+   ],
+   "fix": "Scale the family up roughly 1.8x to match the perspective height of the flanking stalls at y≈80% and advance their walk further toward camera."
+  },
+  {
+   "tile": "s12 15.0",
+   "verdict": "minor",
+   "defects": [
+    "Bottom framing is overly tight, crowding and slightly clipping the bottom of Mohammed's shoes behind the bottom border.",
+    "Mohammed's arms hang somewhat stiffly straight down against his sides."
+   ],
+   "fix": "Tilt or pull the framing down slightly to leave floor margin beneath Mohammed's shoes and add a subtle bend to his elbows and wrists."
+  },
+  {
+   "tile": "s12 21.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s12 27.0",
+   "verdict": "fail",
+   "defects": [
+    "The man (left-center) cups his two hands together with no family jewel visible between them, making his hands look empty.",
+    "The man's head and torso stay nearly upright rather than bowed over the jewel.",
+    "The woman's burgundy skirt hem forms a rigid flat cone on the floor with no visible shoes, and her raised right fingers press awkwardly into the front fold of her white veil."
+   ],
+   "fix": "Place a clearly visible gold family jewel resting in the man's open cupped hands, bow his head down toward his hands, reveal the woman's shoe tips beneath her skirt hem, and pull her hand slightly clear of the veil edge."
+  },
+  {
+   "tile": "s12 29.6",
+   "verdict": "fail",
+   "defects": [
+    "The family jewel remains completely invisible between the man's closed cupped hands (left-center).",
+    "The man's head is still barely tilted forward rather than bowed over his hands, and the woman's skirt bottom still shows no feet."
+   ],
+   "fix": "Open the man's cupped hands so the family jewel is clearly visible, bow his head forward over it, and show the woman's shoes below her skirt hem."
+  },
+  {
+   "tile": "s12 32.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s12 38.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s12 44.1",
+   "verdict": "minor",
+   "defects": [
+    "The dellal (right-center) holds his right hand only at turban/forehead level rather than high above his head, so the small gold bracelets blend into the stall pillar behind them.",
+    "Fatma (the second woman in a white haik) is missing from the family group on the left in this wide shot.",
+    "The father (left-center) stands with arms hanging stiffly straight down."
+   ],
+   "fix": "Raise the dellal's right arm higher so the bracelets dangle clearly above his turban against the bright arch, place Fatma beside Zoubida on the left, and soften the father's arm posture."
+  },
+  {
+   "tile": "s12 47.8",
+   "verdict": "minor",
+   "defects": [
+    "The dellal's right hand (right-center) remains low beside his turban rather than held high above his head, making the dangling bracelets faint against the stall wall.",
+    "Fatma is still missing from the family group on the left, and the father's arms remain stiff."
+   ],
+   "fix": "Extend the dellal's right arm higher above his head so the bracelets read cleanly and include Fatma beside Zoubida behind the father."
+  },
+  {
+   "tile": "s12 51.7",
+   "verdict": "minor",
+   "defects": [
+    "The father (left-center) holds his head level looking toward the dellal's neck rather than angling his gaze toward the bracelets.",
+    "Mohammed (left) stands rigidly with both arms pinned straight down, and the dellal's left arm hangs stiffly at his hip."
+   ],
+   "fix": "Angle the father's head and eyes slightly down toward the bracelets at chest height and give Mohammed and the dellal's left arm relaxed natural bends."
+  },
+  {
+   "tile": "s12 56.1",
+   "verdict": "fail",
+   "defects": [
+    "Gaze failure on the father (left-center): after taking the bracelets into his hands at chest height, his head and eyes remain level staring straight ahead at the dellal instead of looking down at the bracelets.",
+    "The dellal's right fingers linger awkwardly against the father's knuckles after handing them over, while Mohammed (left) and the dellal's left arm remain frozen in stiff idle poses."
+   ],
+   "fix": "Tilt the father's head and eyes clearly downward onto the bracelets in his hands, pull the dellal's right hand back slightly, and relax Mohammed's and the dellal's idle arms."
+  },
+  {
+   "tile": "s12 60.5",
+   "verdict": "fail",
+   "defects": [
+    "The gold bracelets are virtually invisible/unreadable on Zoubida's raised wrist (center) inside her haik opening in this wide shot.",
+    "Fatma is completely missing from the wide lane despite standing beside Zoubida in the next shot.",
+    "The father and Mohammed (left) stand in stiff mannequin-like poses with arms hanging rigidly at their sides."
+   ],
+   "fix": "Have Zoubida hold her wrist clearly outside the haik folds so the gold bracelets are readable, stage Fatma beside her, and relax the father's and Mohammed's arm postures."
+  },
+  {
+   "tile": "s12 65.6",
+   "verdict": "minor",
+   "defects": [
+    "Gaze drift: both women in white haiks (center) appear to look forward toward the camera rather than clearly down/across at the bracelets on the raised wrist.",
+    "Staging continuity and crowding: the father vanished from the gap between Mohammed (left) and the left woman, the dellal (right-center) is crowded directly behind the right woman's shoulder, and the right woman's forearm crosses in front of the left woman's shoulder while her torso sits behind at waist level.",
+    "Mohammed's visible left arm (far left) hangs stiffly straight down."
+   ],
+   "fix": "Direct both women's eyes clearly onto the bracelets on the raised wrist, give slight lateral separation between the two women and the dellal, and relax Mohammed's arm."
+  },
+  {
+   "tile": "s12 70.4",
+   "verdict": "minor",
+   "defects": [
+    "Two foreground bystanders (far left man and far right woman, reusing b077 models) face away in stiff, symmetrical A-pose mannequin stances with arms splayed out from their sides and no shoes visible beneath the woman's bell-shaped skirt.",
+    "The father's two-finger signal (left-center) is held low against the white haik so it barely separates in the wide shot, while Mohammed's and the dellal's arms hang stiffly."
+   ],
+   "fix": "Break the symmetrical A-poses on both foreground bystanders (show feet under the woman's hem and vary arm positions), raise the father's two-finger hand higher for a clear silhouette, and relax Mohammed's and the dellal's arms."
+  },
+  {
+   "tile": "s12 77.5",
+   "verdict": "fail",
+   "defects": [
+    "Major staging failure: the lane ahead of the walking dellal (center) is completely deserted all the way to the gate, leaving no crowd for him to plunge into or heads for his raised bracelet hand to travel above.",
+    "The foreground bystanders on left and right remain frozen in rigid A-pose mannequin stances with arms splayed out and no feet under the pink skirt, and Mohammed/father stand stiffly."
+   ],
+   "fix": "Populate the midground and upper lane with crowd actors around and ahead of the dellal so his raised hand clearly travels above their heads, and replace the foreground bystanders' stiff A-poses with natural relaxed stances."
+  }
+ ],
+ "worst_problem": "In s12 8.7 and s12 11.7 the entire family is rendered at roughly half normal human scale relative to the souk stalls, while later beats fail key story requirements—invisible jewel in s12 27.0/29.6, the father not looking down in s12 56.1, unreadable bracelets and missing Fatma in s12 60.5, and an empty crowdless lane in s12 77.5."
+}

@@ -1,0 +1,178 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s20 0.3",
+   "verdict": "fail",
+   "defects": [
+    "Lalla Aïcha's head is pitched back so her gaze aims above Zoubida's head toward the upper-left wall instead of at Zoubida.",
+    "Both women are in stiff high-kneeling mannequin poses (with missing ground contact shadows across the scene) and their hands press into their hips/thighs, clipping into Lalla Aïcha's green belt/kaftan and Zoubida's skirt.",
+    "The boy on the background bed is scaled like a tiny rigid doll, sunken into the green cushion and staring straight up at the ceiling instead of toward the women."
+   ],
+   "fix": "Sit both women naturally on their heels with hands resting cleanly on their laps without mesh penetration, pitch Lalla Aïcha's head down to meet Zoubida's eyes, and scale/pose the 6-year-old boy propped on the pillow looking toward the women."
+  },
+  {
+   "tile": "s20 1.8",
+   "verdict": "fail",
+   "defects": [
+    "Staging continuity error: the line says 'Je dus quand même garder le lit' (before Lalla Aïcha's arrival in s20 5.0), yet Lalla Aïcha is already kneeling in the room.",
+    "Lalla Aïcha's chin is tilted up looking over Zoubida's head, and both women's hands clip into their hip/thigh garments in a frozen mannequin pose.",
+    "The boy in bed is underscaled, sunken into the pillow, and staring rigidly at the ceiling."
+   ],
+   "fix": "Either hold on the boy and Zoubida before Lalla Aïcha enters on s20 5.0, or fix both women's kneeling poses, hand clipping, Lalla Aïcha's eye-line, and the boy's scale and gaze."
+  },
+  {
+   "tile": "s20 5.0",
+   "verdict": "fail",
+   "defects": [
+    "Lalla Aïcha gazes over Zoubida's head instead of at her face.",
+    "Both women remain frozen in the same stiff pose as s20 0.3 with hands clipping into their belts/skirts.",
+    "The boy in bed is doll-sized, sunken into the mattress/pillow, and staring at the ceiling."
+   ],
+   "fix": "Angle Lalla Aïcha's head and eyes down toward Zoubida, pull both characters' hands out of their garment meshes, and correct the boy's scale and head orientation."
+  },
+  {
+   "tile": "s20 8.5",
+   "verdict": "minor",
+   "defects": [
+    "In b144 (Zoubida counts on her fingers), Zoubida's right index finger hovers near her left hand without clear finger-to-finger contact.",
+    "Lalla Aïcha stays completely frozen in her default pose with hands clipping into her belt and her gaze aimed above Zoubida's head.",
+    "The boy on the bed remains underscaled and staring straight up at the ceiling."
+   ],
+   "fix": "Make Zoubida's right index finger clearly touch the fingers of her left hand, lower Lalla Aïcha's gaze onto Zoubida's hands/face with unclipped hands, and turn the boy's head toward the women."
+  },
+  {
+   "tile": "s20 15.3",
+   "verdict": "fail",
+   "defects": [
+    "The dialogue states Lalla Aïcha weeps, sighs, invokes the saints, and prophesies disasters, but she is still locked in her rigid idle pose with hands glued to her hips (clipping into her belt) and chin pitched up looking over Zoubida.",
+    "Zoubida is still holding her finger-counting pose from s20 8.5 instead of letting Lalla Aïcha react."
+   ],
+   "fix": "Animate Lalla Aïcha reacting to the story (raising her hands toward heaven / sighing) while looking at Zoubida, and relax Zoubida's hands into a listening pose."
+  },
+  {
+   "tile": "s20 21.2",
+   "verdict": "fail",
+   "defects": [
+    "Beat b145 requires Lalla Aïcha to tap her own cheek ×3, but her right hand is down near her chest at the bottom-left frame edge, cropped and nowhere near her cheek.",
+    "In the background, the boy's head sinks into the green pillow while staring vertically at the ceiling."
+   ],
+   "fix": "Raise Lalla Aïcha's right hand up into the frame so her fingers clearly tap her right cheek, and adjust the boy's head above the pillow surface."
+  },
+  {
+   "tile": "s20 25.4",
+   "verdict": "fail",
+   "defects": [
+    "Still in beat b145 (tapping her cheek ×3), Lalla Aïcha's right hand remains low by her chest/shoulder, cut off by the bottom-left frame border without ever reaching her cheek.",
+    "The boy in the background remains sunken into the cushion staring at the ceiling."
+   ],
+   "fix": "Bring Lalla Aïcha's hand cleanly up onto her cheek inside the close-up frame to complete the tapping gesture."
+  },
+  {
+   "tile": "s20 29.6",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's forearms and hands are cut off by the bottom edge of the frame, leaving a stiff upper-body posture with no questioning gesture for 'Mais toi ? Tu ne me dis rien.'"
+   ],
+   "fix": "Add a slight lean forward or bring one hand up into the frame as Zoubida questions Lalla Aïcha."
+  },
+  {
+   "tile": "s20 31.1",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's pose is completely static and identical to s20 29.6, with her arms cropped below the elbows at the bottom frame border."
+   ],
+   "fix": "Add a subtle head tilt and hand gesture within the frame as she asks 'Comment va ton mari ?'."
+  },
+  {
+   "tile": "s20 33.5",
+   "verdict": "fail",
+   "defects": [
+    "Beat b147 requires Lalla Aïcha to bury her face in her hands ('enfouit son visage dans ses mains'), but her hands are down at her collarbone—mostly cut off by the bottom frame edge—leaving her face completely uncovered."
+   ],
+   "fix": "Raise both of Lalla Aïcha's hands up to cover her face and incline her head forward into her palms."
+  },
+  {
+   "tile": "s20 36.4",
+   "verdict": "fail",
+   "defects": [
+    "Beat b147 still requires Lalla Aïcha's face to be buried in her hands, yet her hands hover down in front of her chest (cropped at the bottom edge) with her face fully exposed.",
+    "Lalla Aïcha's right forearm/sleeve clips into her chest/kaftan."
+   ],
+   "fix": "Place both palms directly over Lalla Aïcha's face with her head bowed in sobs, clearing the sleeve-to-chest mesh intersection."
+  },
+  {
+   "tile": "s20 39.8",
+   "verdict": "fail",
+   "defects": [
+    "Beat b148 requires Lalla Aïcha to take Zoubida's hand, but there is no contact: Lalla Aïcha's hands float in empty air in front of her chest with a wide gap between them and Zoubida.",
+    "Zoubida prematurely raises her hands to her own cheeks (b150) instead of having her hand held by Lalla Aïcha.",
+    "Lalla Aïcha's maroon sleeve stretches and clips at the chest/armpit, and her head is pitched back gazing over Zoubida's head."
+   ],
+   "fix": "Lean both women slightly forward so Lalla Aïcha's hands clasp Zoubida's extended hand at the midpoint between them, fix the armpit sleeve distortion, and align Lalla Aïcha's gaze with Zoubida."
+  },
+  {
+   "tile": "s20 42.7",
+   "verdict": "fail",
+   "defects": [
+    "Beat b148 (takes Zoubida's hand) shows zero contact: Lalla Aïcha reaches into empty space while Zoubida holds her own cheeks.",
+    "Lalla Aïcha's sleeve mesh tears/clips at the upper chest and her gaze points above Zoubida's head."
+   ],
+   "fix": "Connect Lalla Aïcha's hands directly onto Zoubida's hand, fix the kaftan sleeve rigging at the shoulder, and pitch Lalla Aïcha's head down toward Zoubida."
+  },
+  {
+   "tile": "s20 46.1",
+   "verdict": "fail",
+   "defects": [
+    "Still in b148, Lalla Aïcha's hands hover in mid-air without touching Zoubida's hand, while Zoubida keeps her hands on her own cheeks.",
+    "Lalla Aïcha's sleeve clips at the chest and her chin is tilted up so she looks over Zoubida's head."
+   ],
+   "fix": "Maintain actual hand-to-hand contact between Lalla Aïcha and Zoubida, resolve the sleeve clipping, and keep Lalla Aïcha looking at Zoubida."
+  },
+  {
+   "tile": "s20 52.6",
+   "verdict": "fail",
+   "defects": [
+    "Beat b149 requires Lalla Aïcha's bitter laugh in tears ('Il a pris une seconde femme'), but both actors snap back to their rigid s20 0.3 idle poses with hands glued to their hips/thighs and clipping into their garments.",
+    "Lalla Aïcha gazes up over Zoubida's head instead of looking at her."
+   ],
+   "fix": "Pose Lalla Aïcha in a hunched/throwing-head-back bitter laugh with tearful gesture while maintaining engagement with Zoubida, instead of resetting both rigs to default idle."
+  },
+  {
+   "tile": "s20 58.3",
+   "verdict": "fail",
+   "defects": [
+    "In b150 (Zoubida's hands to her cheeks), Zoubida's eyes look off toward screen-left instead of toward Lalla Aïcha on screen-right.",
+    "Zoubida's fingertips clip into her lower cheeks and headscarf edges."
+   ],
+   "fix": "Direct Zoubida's gaze to screen-right toward Lalla Aïcha and position her palms flat against her cheeks without finger penetration."
+  },
+  {
+   "tile": "s20 63.4",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's pose is frozen identically to s20 58.3, with her eyes looking away to screen-left instead of at Lalla Aïcha and her fingertips clipping into her jawline/headscarf."
+   ],
+   "fix": "Turn Zoubida's eyes toward Lalla Aïcha on screen-right, clear the finger-to-cheek clipping, and add subtle grieving motion between 58.3 and 63.4."
+  },
+  {
+   "tile": "s20 68.2",
+   "verdict": "fail",
+   "defects": [
+    "Beat b151 requires the two women to lean into each other's arms with their hands on each other's shoulders ('dans les bras l'une de l'autre'), but they kneel half a metre apart without touching: Zoubida holds her hands up in front of her own chest and Lalla Aïcha's hands hover near her own waist.",
+    "Lalla Aïcha still looks over Zoubida's head, and the boy on the bed lies flat staring at the ceiling instead of watching them as required by the brief."
+   ],
+   "fix": "Move the two women together leaning forward into an embrace with each woman's hands resting on the other's shoulders, and turn the boy's head on the pillow to watch them."
+  },
+  {
+   "tile": "s20 71.5",
+   "verdict": "fail",
+   "defects": [
+    "Still in b151 ('dans les bras l'une de l'autre'), the two women remain separated by a wide gap with no embrace or shoulder contact—Zoubida's hands float in mid-air and Lalla Aïcha's hands stay by her waist.",
+    "The boy on the bed stares straight up at the ceiling instead of watching the two women."
+   ],
+   "fix": "Keep both women leaning into each other's arms with hands on each other's shoulders, and pose the boy watching them from the bed."
+  }
+ ],
+ "worst_problem": "Key interactive beats are completely missing or broken—Lalla Aïcha never taps her cheek (b145), never covers her face with her hands (b147), never touches Zoubida's hand (b148), and the two women never embrace or touch each other's shoulders at the climax (b151) while the boy stares rigidly at the ceiling instead of watching them."
+}

@@ -58,12 +58,49 @@ jobs:
           CHROME_EXTRA: --no-sandbox --use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader
         run: |
           node tools/scene-stills.mjs "${{ inputs.episode }}" "${{ matrix.scene }}" out/st 2>&1 | grep -v '^\s*$' | tail -300
-          python3 tools/scene-sheet.py "out/st/${{ matrix.scene }}"
+          python3 tools/scene-sheet.py "out/st/${{ matrix.scene }}" halves
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: stills-${{ matrix.scene }}
           path: |
-            out/st/*-sheet.jpg
+            out/st/*-sheet*.jpg
+            out/st/*-halves.json
+            out/st/${{ matrix.scene }}/times.json
             out/st/${{ matrix.scene }}/*.jpg
+          if-no-files-found: warn
+  gate:
+    # CPU geometry gate (tools/actcheck8.mjs), one runner per scene, independent of the stills job (both always run).
+    needs: discover
+    if: inputs.episode == 'ep08'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 40
+      matrix:
+        scene: ${{ fromJSON(needs.discover.outputs.scenes) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund --silent
+      - name: Geometry gate
+        run: |
+          mkdir -p out/gate out/rigqa/argon
+          set +e
+          node tools/actcheck8.mjs --step 5 --scenes "${{ matrix.scene }}" --out "out/gate/${{ matrix.scene }}.json" > "out/gate/${{ matrix.scene }}.txt" 2>&1
+          rc=$?
+          echo "$rc" > "out/gate/${{ matrix.scene }}.status"
+          verdict=$([ $rc -eq 0 ] && echo PASS || echo FAIL)
+          echo "GATE ${{ matrix.scene }} $verdict (exit $rc)" | tee -a "out/gate/${{ matrix.scene }}.status"
+          tail -n 60 "out/gate/${{ matrix.scene }}.txt"
+          { echo "### Gate ${{ matrix.scene }}: $verdict"; echo '```'; tail -n 60 "out/gate/${{ matrix.scene }}.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gate-${{ matrix.scene }}
+          path: out/gate/
           if-no-files-found: warn

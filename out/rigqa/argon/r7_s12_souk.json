@@ -1,0 +1,152 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s12 0.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "none"
+  },
+  {
+   "tile": "s12 3.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "none"
+  },
+  {
+   "tile": "s12 5.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "none"
+  },
+  {
+   "tile": "s12 8.7",
+   "verdict": "minor",
+   "defects": [
+    "The family is staged too far back near the gate so their walk and silhouettes barely read in the wide frame, and two stray tiny background figures clutter the archway behind them.",
+    "Characters lack ground contact shadows on the sunlit lane floor (applies across the 3D shots in this scene)."
+   ],
+   "fix": "Start the family closer to camera (around y=720\u2013780) with father and Mohammed clearly in front and Zoubida and Fatma two steps behind on the lane floor."
+  },
+  {
+   "tile": "s12 11.7",
+   "verdict": "minor",
+   "defects": [
+    "The family remains too small in the deep background, and Fatma (green dress on the right) drifts laterally off the lane floor toward the right stall base instead of walking two steps behind the father and son along the lane axis."
+   ],
+   "fix": "Move the group closer down the lane toward the lens and keep Fatma aligned beside Zoubida two steps behind the father."
+  },
+  {
+   "tile": "s12 15.0",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed stands too far left in the middle of the floor with his chin tilted up and eyes wide open looking above the stall, instead of standing right before the glittering counter with his chin tucked and lids half down in an unimpressed pose."
+   ],
+   "fix": "Move Mohammed closer to the right counter (x\u22481100) and pose his head with chin tucked, lids half lowered, and a slight disdainful head turn."
+  },
+  {
+   "tile": "s12 21.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "none"
+  },
+  {
+   "tile": "s12 27.0",
+   "verdict": "fail",
+   "defects": [
+    "Wrong characters, staging, and acting: instead of a man and a woman by the left stalls bowing their heads over a family jewel held in his two hands, the shot shows the father, Mohammed, and a woman standing on the right side in stiff neutral poses staring straight at the camera.",
+    "Mohammed stands directly in front of the woman in pink, awkwardly overlapping and blocking her body."
+   ],
+   "fix": "Stage the couple by the left stalls (x\u2248450\u2013650) angled toward each other with heads bowed over a jewel cupped in the man's two hands at chest height and shoulders raised in a sniff."
+  },
+  {
+   "tile": "s12 29.6",
+   "verdict": "fail",
+   "defects": [
+    "Identical staging and acting failure to s12 27.0: the father, Mohammed, and the woman behind him stand immobile in neutral frontal poses on the right while the left stalls are empty and no jewel or bowed-head grief acting is shown."
+   ],
+   "fix": "Keep the grieving man and woman by the left stalls with heads bowed over the jewel in his cupped hands and animate a small shoulder lift."
+  },
+  {
+   "tile": "s12 32.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "none"
+  },
+  {
+   "tile": "s12 38.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "none"
+  },
+  {
+   "tile": "s12 44.1",
+   "verdict": "fail",
+   "defects": [
+    "The dellal does not read as big and loud shouting a price: his head is level rather than thrown back, his mouth is not wide open, his right hand is only raised to his ear/cheek rather than high in the air, and the pair of bracelets is missing from his right hand.",
+    "The foreground backs of the father and Zoubida dominate the frame with the tops of their heads cut off by the upper border, while Fatma is sliced in half at the right edge."
+   ],
+   "fix": "Stage the group in three-quarter profile so faces and hands are open to camera, scale/pose the dellal taller with head thrown back, mouth wide, and his right arm raised high dangling the pair of bracelets."
+  },
+  {
+   "tile": "s12 47.8",
+   "verdict": "fail",
+   "defects": [
+    "Even in the wider framing, the dellal appears smaller than the foreground father, his head is not thrown back, his right hand rests by his cheek without any bracelets dangling high, and the foreground backs of the father and Zoubida block the staging."
+   ],
+   "fix": "Open the staging to three-quarter views and raise the dellal's right hand high above his head holding the dangling bracelets while throwing his head back in a shout."
+  },
+  {
+   "tile": "s12 51.7",
+   "verdict": "fail",
+   "defects": [
+    "No action occurs: the father stands with his back to the camera and both arms hanging down at his sides while the dellal remains frozen in his previous pose with his hand at his cheek; there is no hand-to-hand transfer of bracelets at chest height and the father does not look down at them.",
+    "The crop cuts off the tops of the father's turban and Zoubida's head and slices Fatma at the right frame edge."
+   ],
+   "fix": "Pose the dellal extending the bracelets at chest height and the father reaching out to take them hand-to-hand with his head bowed looking down at the bracelets, framed cleanly without cutting heads."
+  },
+  {
+   "tile": "s12 56.1",
+   "verdict": "fail",
+   "defects": [
+    "Identical frozen pose to s12 51.7: the father's arms are still down at his sides with no bracelets in his hands, the dellal's right hand is still stuck by his ear, and the upper and right frame edges cut through the father, Zoubida, and Fatma."
+   ],
+   "fix": "Show the father holding the bracelets in both hands at chest height and inspecting them with his head tilted down."
+  },
+  {
+   "tile": "s12 60.5",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida has her back to the camera and only lifts one bare left hand near her chin without bracelets or her other hand sliding them onto her wrist, Fatma is half cropped off the right edge and never tries them on, and the dellal is still frozen with his hand at his ear.",
+    "The top of the frame cuts off the father's turban and Zoubida's head."
+   ],
+   "fix": "Angle Zoubida and Fatma in three-quarter view toward camera so Zoubida's right hand clearly slides the bracelets onto her left wrist, with Fatma fully in frame ready to take her turn."
+  },
+  {
+   "tile": "s12 65.6",
+   "verdict": "fail",
+   "defects": [
+    "During the 'quatre / cinq' enumeration, neither Zoubida nor Fatma is trying on the bracelets: Zoubida's hands are dropped out of sight inside her haik, Fatma stands idle and half cut off on the right edge, and the dellal remains frozen in his s12 44.1 pose.",
+    "The top border cuts off the father's and Zoubida's heads."
+   ],
+   "fix": "Pose Fatma (or Zoubida passing them to Fatma) actively slipping the bracelets onto her extended wrist in clear view of the camera."
+  },
+  {
+   "tile": "s12 70.4",
+   "verdict": "fail",
+   "defects": [
+    "The shot cuts to a distant wide view where the characters are tiny in an empty lane: the father has his back turned with both arms down instead of lifting two fingers, and the dellal is still facing him rather than turning and plunging back up the lane into a crowd with the bracelets held high above his head."
+   ],
+   "fix": "Pose the father clearly raising two fingers in signal while the dellal turns up-lane holding the bracelets high above his head toward a crowd in the background."
+  },
+  {
+   "tile": "s12 77.5",
+   "verdict": "fail",
+   "defects": [
+    "Instead of the dellal plunging away into the crowd with his hand holding the bracelets high above the heads (or a close insert of his hand over the crowd's heads), the shot repeats the static distant wide view of the group standing in an empty lane with the dellal still facing the father."
+   ],
+   "fix": "Frame a tight shot or populated lane view of the dellal moving away into the crowd with his raised hand holding the bracelets clearly visible above the turbans."
+  }
+ ],
+ "worst_problem": "Beats b077 and b079\u2013b082 fail to stage the scripted actions\u2014b077 places the main family in stiff frontal poses instead of the grieving couple by the left stalls, and b079\u2013b082 hold the father, dellal, Zoubida, and Fatma in nearly identical frozen poses without the bracelets, hand-to-hand exchange, wrist try-ons, two-finger signal, or crowd departure."
+}

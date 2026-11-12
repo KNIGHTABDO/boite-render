@@ -1,0 +1,17 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s03 0.2", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 2.9", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 7.5", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 12.0", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 16.3", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 20.5", "verdict": "minor", "defects": ["Zoubida's left hand (screen right) clips slightly into her yellow waist sash, and her pose is stiff for declaring total war."], "fix": "Pull the left hand geometry clear of the sash mesh and add a stronger upper-body lean into thehands-on-hips pose."},
+{"tile": "s03 24.6", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 28.8", "verdict": "minor", "defects": ["Zoubida's raised hands hover in mid-air at head height in front of the open door leaf rather than reaching up to contact the door frame/lintel to place a talisman, and her raised left arm blocks her face."], "fix": "Move Zoubida closer to the doorway and extend her reach upward so her hand touches the upper door frame while keeping her profile clear of the foreground arm."},
+{"tile": "s03 33.6", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 38.2", "verdict": "minor", "defects": ["Zoubida's right hand (screen left) clips into her brow and headscarf while shading her eyes, and her feet lack contact shadows on the floor rug."], "fix": "Offset the shading hand slightly forward from the forehead mesh and add grounding contact shadows beneath her feet across the wide room shots."},
+{"tile": "s03 43.7", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s03 48.7", "verdict": "fail", "defects": ["The dish cloth (torchon) in Zoubida's right hand looks like a rigid, flat white polygonal slab rather than a flexible cloth being whipped.", "The flies are rendered as oversized black blobs arranged in a static halo arc right over Zoubida's head.", "Zoubida's left hand on her hip clips into her yellow waist sash."], "fix": "Deform the dish cloth mesh with a curved cloth-whip arc, scale down the flies and scatter them dynamically across the room, and pull the left hand clear of the waist sash."},
+{"tile": "s03 53.1", "verdict": "fail", "defects": ["No flies are visible anywhere in the frame despite the line stating they exited through the window ('Elles sortaient par la fenêtre'), and Zoubida swings toward the left doorway instead of driving them toward the window.", "The dish cloth remains a stiff, flat rectangular slab with no cloth drape or whipping deformation, and her left hand still clips into her waist sash."], "fix": "Animate a swarm of flies streaming out through the window, orient Zoubida's follow-through toward the opening, and bend the cloth prop naturally."}
+],
+"worst_problem": "In beats b009 (s03 48.7 and s03 53.1), the dish cloth looks like a rigid cardboard polygon and the flies are either oversized black blobs arranged in a halo over Zoubida's head or completely missing when the line says they fly out the window."}

@@ -1,0 +1,163 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s07 0.2",
+   "verdict": "minor",
+   "defects": [
+    "Left archway: the father stands upright with feet together and arms stiff at his sides rather than mid-stride walking into the courtyard.",
+    "Right by the well: Mohammed's head is angled downward toward his slate instead of looking up toward the entering father."
+   ],
+   "fix": "Start the father mid-stride walking into the patio and angle Mohammed's head and gaze upward toward him slightly earlier."
+  },
+  {
+   "tile": "s07 2.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 6.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 9.8",
+   "verdict": "fail",
+   "defects": [
+    "Bottom center: two different subtitle lines are rendered directly on top of each other, making the text garbled and unreadable.",
+    "Upper right above the mother's head: faint ghosted light-colored French text is faintly visible on the bedroom wall where the plate should be clean."
+   ],
+   "fix": "Remove the colliding subtitle overlap so only the single current line displays, and strip the ghosted text overlay above the mother's head."
+  },
+  {
+   "tile": "s07 16.1",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 21.8",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 24.3",
+   "verdict": "minor",
+   "defects": [
+    "Bottom center: the father's foreground right hand is cut off at the wrist by the lower frame edge."
+   ],
+   "fix": "Tilt or slightly widen the M crop downward, or raise the father's right hand higher onto his thigh so it stays inside the frame."
+  },
+  {
+   "tile": "s07 27.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 31.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 35.7",
+   "verdict": "fail",
+   "defects": [
+    "Bottom center: two subtitle strings are rendered simultaneously on top of each other, producing a garbled, unreadable double-text overlay."
+   ],
+   "fix": "Fix the subtitle timing overlap so only the single line 'Soleil et lune : un bracelet d'or, et un bracelet d'argent.' renders at 35.7s."
+  },
+  {
+   "tile": "s07 37.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 40.8",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 43.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 46.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 47.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 49.1",
+   "verdict": "minor",
+   "defects": [
+    "Bottom center: the father's foreground right forearm ends at the bottom border, cropping his hand out of frame."
+   ],
+   "fix": "Raise the father's right hand slightly or shift the M crop down a few pixels so his hand is not sliced off at the wrist."
+  },
+  {
+   "tile": "s07 51.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 54.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 57.8",
+   "verdict": "minor",
+   "defects": [
+    "Center foreground: Mohammed stares directly forward into the camera lens instead of looking toward his father or mother while speaking.",
+    "Center foreground: both of Mohammed's arms are splayed outward symmetrically with open palms in a stiff, mannequin-like pose."
+   ],
+   "fix": "Aim Mohammed's head and eyes up-left toward his father and break the symmetry of his arm gesture so one hand leads naturally."
+  },
+  {
+   "tile": "s07 61.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 65.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s07 69.7",
+   "verdict": "minor",
+   "defects": [
+    "Lower right corner: Mohammed's head remains in the edge of the father's tight CU crop and is sliced awkwardly across the lower jaw and mouth by the bottom border."
+   ],
+   "fix": "Reframe the CU crop slightly left and up onto the father so Mohammed's head is either cleanly cleared out of the corner or given clean chin clearance."
+  },
+  {
+   "tile": "s07 71.2",
+   "verdict": "minor",
+   "defects": [
+    "Lower right corner: Mohammed's face is cropped awkwardly across his lower jaw and mouth by the bottom frame edge in the father's CU."
+   ],
+   "fix": "Shift the CU crop slightly left and upward so Mohammed's partial head is not cut mid-jaw at the bottom right."
+  }
+ ],
+ "worst_problem": "Overlapping double-rendered subtitles at the bottom of s07 9.8 and s07 35.7—along with faint ghosted text above the mother's head in s07 9.8—render the on-screen text garbled and unreadable."
+}

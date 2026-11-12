@@ -1,0 +1,144 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s13 0.3",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed stands in a stiff, symmetrical A-pose instead of sagging from exhaustion or leaning against Zoubida's haik.",
+    "Framing cuts off both parents' heads at the top and all characters' feet at the bottom.",
+    "Mohammed's outstretched hands overlap Zoubida's haik on screen left and the father's djellaba on screen right with no physical contact."
+   ],
+   "fix": "Drop Mohammed's pelvis and bend his knees so his torso slumps sideways against Zoubida's haik, and bring his arms down out of the A-pose."
+  },
+  {
+   "tile": "s13 1.8",
+   "verdict": "fail",
+   "defects": [
+    "On the line 'Mes jambes ne me portaient plus', Mohammed remains completely upright in the same rigid A-pose with straight legs and an erect trunk.",
+    "Both parents are static mannequins with their heads cropped out of the top of the frame."
+   ],
+   "fix": "Buckle Mohammed's knees, round his spine forward, and tilt his head down to read leg fatigue."
+  },
+  {
+   "tile": "s13 6.6",
+   "verdict": "fail",
+   "defects": [
+    "On the yawn beat ('Je b\u00e2illais \u00e0 me d\u00e9crocher les m\u00e2choires'), Mohammed's mouth is shut in a flat line and his eyes are wide open instead of jaw wide open and eyes shut.",
+    "He remains standing upright in the center in an A-pose instead of leaning his weight onto his mother's haik."
+   ],
+   "fix": "Open Mohammed's jaw wide, close his eyes, tilt his head back, and lean his upper body onto Zoubida's haik on screen left."
+  },
+  {
+   "tile": "s13 11.2",
+   "verdict": "fail",
+   "defects": [
+    "The dellal is completely missing from the shot despite the line 'Le dellal revint' and the brief requiring him to come down the lane with his arm up.",
+    "Zoubida's left sleeve and haik clip into the father's right arm and hip."
+   ],
+   "fix": "Place the dellal in the lane facing the father with one arm raised holding the bracelets, and separate Zoubida slightly to the right so her haik clears the father's arm."
+  },
+  {
+   "tile": "s13 14.6",
+   "verdict": "fail",
+   "defects": [
+    "The dellal is still missing from the frame on 'Et le dellal disparut de nouveau', leaving the father gesturing at an empty street.",
+    "Seen directly from behind, the father's nod and hand sign are mostly hidden by his own torso and hood."
+   ],
+   "fix": "Show the dellal turning away up the lane in front of the parents, and angle the father slightly into three-quarter rear view so his nod and raised right hand read clearly in silhouette."
+  },
+  {
+   "tile": "s13 18.2",
+   "verdict": "fail",
+   "defects": [
+    "The father and Zoubida shrink by roughly 25% on the exact same background plate compared to s13 11.2 and s13 14.6, breaking their scale against the shop counters.",
+    "Instead of 'the souk at full boil' with the dellal dragging a client and a woman with two urchins hurrying past, the lane is nearly empty save for one tiny figure partly occluded between the parents' shoulders."
+   ],
+   "fix": "Restore the parents' scale to match the plate perspective and populate the lane with the running dellal dragging a client up-lane and the woman with two urchins moving down-lane."
+  },
+  {
+   "tile": "s13 21.5",
+   "verdict": "fail",
+   "defects": [
+    "On the line describing brokers shouting, running, and dragging clients by the hand, the alley is completely deserted.",
+    "The father and Zoubida remain at the shrunken scale on the unscaled background plate."
+   ],
+   "fix": "Animate the dellal pulling a client by the hand up the center of the lane past the woman and two urchins, and restore the parents' correct scale."
+  },
+  {
+   "tile": "s13 25.0",
+   "verdict": "fail",
+   "defects": [
+    "Instead of a wave of men rushing past in front of the family and shoving them against the bench, a girl in green stands beside Mohammed and a woman with two boys stands far to the right.",
+    "The father is almost completely occluded behind Zoubida (only his feet and the top of his turban are visible).",
+    "The family stands upright out on the floor rather than jolting back against the stone bench, and Zoubida's arm is not around Mohammed."
+   ],
+   "fix": "Stage the three family members visible side-by-side pressed back against the left stone bench with Zoubida's arm wrapped around Mohammed, and run a crowd of men across the foreground in front of them."
+  },
+  {
+   "tile": "s13 28.6",
+   "verdict": "fail",
+   "defects": [
+    "The passersby (the woman in yellow and two boys) walk directly in front of the family and completely block Zoubida, Mohammed, and the father from the camera, making the family's reaction invisible.",
+    "The girl in green is frozen in the exact same pose in the middle of the passage as in s13 25.0."
+   ],
+   "fix": "Keep the rushing crowd offset in the right/foreground lane or clearing the frame so the family remains unobstructed against the left bench showing the shove reaction."
+  },
+  {
+   "tile": "s13 32.4",
+   "verdict": "fail",
+   "defects": [
+    "Severe mesh intersection: Mohammed's torso and white djellaba clip straight into the father's chest and robe, and the father's arms disappear inside Mohammed's body instead of wrapping around him.",
+    "Mohammed's head is upright in profile in front of the father's chin rather than resting his cheek on the father's shoulder.",
+    "Framed as a flat medium shot with Zoubida standing idle on the left instead of the intended close-up (OTS)."
+   ],
+   "fix": "Pull Mohammed's mesh forward out of the father's chest, wrap the father's forearms and hands visibly around the boy's back, rest the boy's cheek on the father's shoulder, and punch in to the intended CU."
+  },
+  {
+   "tile": "s13 36.1",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed's torso clips deeply into the father's chest with no visible hands or forearms supporting him, making the boy look pasted onto the father's front.",
+    "Mohammed's face overlaps the father's neck and jaw in flat profile instead of resting his cheek on the father's shoulder."
+   ],
+   "fix": "Offset Mohammed onto the father's upper chest/shoulder with the father's arms wrapped around the outside of the boy's djellaba and the boy's cheek resting on the shoulder."
+  },
+  {
+   "tile": "s13 40.0",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's right hand is not slicing the air as directed; both of her hands are raised into her own face and clip through her veil/haik fabric.",
+    "Framed as a wide 3-shot with Mohammed's disembodied head poking up at the bottom frame edge and the father turned away in profile on the right, instead of a low CU on Zoubida."
+   ],
+   "fix": "Crop in to a low CU on Zoubida and extend her right arm outward from her body in a sharp slicing gesture clear of her face veil."
+  },
+  {
+   "tile": "s13 43.2",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's right hand remains tucked into her veil while her left hand hovers by her shoulder with sleeve/haik clipping, missing the sharp right-hand slicing gesture.",
+    "The father looks off-screen right into the wall instead of looking at Zoubida or down the passage, and Mohammed is cut off at the neck at the bottom edge of the frame."
+   ],
+   "fix": "Frame a clean low CU on Zoubida (or turn the father toward her in OTS) and animate a clear downward chop with her right hand."
+  },
+  {
+   "tile": "s13 46.8",
+   "verdict": "fail",
+   "defects": [
+    "With both the father and Zoubida staged squarely from behind under hoods/haiks, their head turns scanning the souk do not read at all.",
+    "Zoubida's left arm and haik intersect the father's right sleeve."
+   ],
+   "fix": "Rotate both characters and their heads into three-quarter profiles looking toward the left stalls so their scanning action reads in silhouette, and separate their overlapping arms."
+  },
+  {
+   "tile": "s13 47.9",
+   "verdict": "fail",
+   "defects": [
+    "Pose and silhouette are nearly identical to s13 46.8 with no readable head turn from the rear camera angle, making the beat look like a freeze-frame.",
+    "Zoubida's haik still clips into the father's right arm."
+   ],
+   "fix": "Turn both characters' heads clearly to the opposite side (screen right) to complete the slow scan across the alley, keeping their sleeves separated."
+  }
+ ],
+ "worst_problem": "Throughout the scene, key staging and acting beats are missing or broken\u2014the dellal and crowd never appear in the souk_bijoux shots, passersby completely block the family during the crowd-shove beat, and Mohammed's mesh clips straight through his father's chest when lifted."
+}

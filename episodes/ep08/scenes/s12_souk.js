@@ -40,7 +40,7 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
 const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [990, 725] };
-const DELLAL = [1115, 895], EXIT = [950, 620];
+const DELLAL = [1185, 878], EXIT = [950, 620];
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [740, 690], 0, 1],
   ['woman2', [1250, 790], [1060, 680], .25, 1],
@@ -112,14 +112,15 @@ const la = checkedStage('souk_bijoux', {
     };
     move(fa, LEAD.father, [800, 790], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1180, 720], B(7)[0] - .7, B(7)[0] + .8);
-    move(zo, LEAD.zoubida, [900, 850], B(7)[0] - .7, B(7)[0] + .15);
-    move(ft, LEAD.fatma, [1120, 900], f(7, .36), f(7, .49));
+    move(zo, LEAD.zoubida, [945, 850], B(7)[0] - .7, B(7)[0] + .15);
+    move(ft, LEAD.fatma, [1070, 905], f(7, .36), f(7, .49));
     move(fa, [800, 790], LEAD.father, B(8)[0] + .65, B(8)[0] + 1.5);
     move(ma, [1180, 720], DELLAL, B(8)[0] - .6, B(8)[0] + .3);
-    if(t<B(8)[0]+.05)move(zo,[900,850],[1000,790],f(7,.94),B(8)[0]+.05);
+    if(t<B(8)[0]+.05)move(zo,[945,850],[1000,790],f(7,.94),B(8)[0]+.05);
     else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(1000, 790); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
     else move(zo,[1000,790],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
-    move(ft, [1120, 900], LEAD.fatma, B(8)[0], B(8)[0] + .6);
+    if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1070, 905); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
+    else move(ft, [1070, 905], LEAD.fatma, B(8)[0] + 1.9, B(8)[0] + 2.6);
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
     // Full body turn every frame: the original walk heading must never leave the boy looking into the left wall.
@@ -299,8 +300,8 @@ export default beatScene(ID, {
     b077: { shot: 'la', size: 'M', on: 'man1', z: 2.2, dx: 35, dy: 25 },
     b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -110 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
-    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [900, 850], z: 1.65, dx: 0, dy: 30,
-      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1120, 900], z: 1.85, dx: 0, dy: 40 }] },
+    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [945, 850], z: 1.65, dx: 0, dy: 30,
+      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1070, 905], z: 1.85, dx: 0, dy: 40 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
     cover: [{ f: .3, size: 'W', on: 'father' }], insAt: .6 },
   },

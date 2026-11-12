@@ -1,0 +1,129 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s09 0.3",
+"verdict": "fail",
+"defects": [
+"Mohammed is not seated on tread 3 with his feet on tread 2: his pelvis hovers in front of riser 3 at the level of tread 2's nosing while his legs extend nearly straight down across riser 2 with his feet resting down on tread 1, making him look semi-standing against the steps.",
+"Because his knees are barely bent (~140°), his hands rest flat against the front of his thighs with fingers clipping slightly into the white djellaba cloth instead of resting on bent knees.",
+"A hard-edged dark triangular cast shadow is projected across three steps to screen-left, mismatching the soft diffused lighting of the painted staircase plate."
+],
+"fix": "Translate Mohammed's pelvis back and up so his buttocks rest solidly on the horizontal surface of tread 3, bend his knees to ~90° so his feet plant flat on tread 2, and soften the projected stair shadow."},
+{"tile": "s09 2.4",
+"verdict": "fail",
+"defects": [
+"Pose is completely static and identical to s09 0.3: Mohammed's pelvis still hovers in front of riser 3 while his feet reach down to tread 1 across two steps instead of settling onto tread 3 with feet on tread 2.",
+"Fingers clip slightly into the front of the djellaba skirt over his straight thighs."
+],
+"fix": "Seat Mohammed's pelvis fully onto tread 3 with knees bent and feet planted on tread 2, adding a slight settling compression in the torso and shoulders."},
+{"tile": "s09 8.5",
+"verdict": "fail",
+"defects": [
+"Despite the line 'Accroupi sur une marche, les mains sur les genoux, je réfléchis profondément', Mohammed is in an upright semi-standing slouch spanning from tread 2/riser 3 (pelvis) down to tread 1 (feet) with barely bent knees.",
+"His head and gaze remain level toward screen-right rather than bowed in deep thought, and his fingertips clip into the white robe on his thighs."
+],
+"fix": "Put Mohammed into a true compact seated/crouched pose on tread 3 with feet on tread 2, hands resting cleanly on bent knees, and bow his head slightly in thought."},
+{"tile": "s09 14.1",
+"verdict": "fail",
+"defects": [
+"Bad bottom framing: the tighter crop cuts right through Mohammed's ankles and slices off his feet at the bottom edge of the frame.",
+"His pelvis still hovers in front of riser 3 with nearly straight legs spanning down toward tread 1 instead of sitting on tread 3 with feet on tread 2."
+],
+"fix": "Once Mohammed is properly seated on tread 3 with feet on tread 2, tilt or widen the crop slightly so his full feet and tread 2 contact remain visible inside the frame."},
+{"tile": "s09 17.2",
+"verdict": "fail",
+"defects": [
+"While the chin-up head tilt reads for 'Elle méritait le silence', his body remains in the same semi-standing hover across two risers (pelvis at tread 2 nosing, feet down on tread 1).",
+"The bottom frame edge cuts through his ankles/feet."
+],
+"fix": "Keep the proud chin-up head angle but seat his pelvis on tread 3 with bent knees and feet visible on tread 2 within the frame."},
+{"tile": "s09 20.7",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 28.7",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 35.4",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 39.9",
+"verdict": "minor",
+"defects": [
+"The enumeration box is placed directly over the left pottery planter, obscuring the painted geranium blossoms it names, and the lower listed words ('œillets', 'roses') are dark brown on a dark brown box, making them nearly illegible."
+],
+"fix": "Move the enumeration box into the upper-left wall/sky area above the flower pot and brighten the text for 'œillets' and 'roses' as each word is spoken."},
+{"tile": "s09 44.4",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 51.5",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 57.7",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 64.9",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s09 71.0",
+"verdict": "fail",
+"defects": [
+"Mohammed's head lowers slightly for b050, but his shoulders remain stiff and his pelvis still hovers in front of riser 3 with legs stretched down to tread 1.",
+"His feet are cropped off by the bottom edge of the frame."
+],
+"fix": "Seat Mohammed on tread 3 with feet on tread 2 inside the frame and drop his shoulders and chest into a clear deflated slump."},
+{"tile": "s09 73.2",
+"verdict": "fail",
+"defects": [
+"Duplicate subtitle line with s09 71.0, and Mohammed snaps back to his neutral upright head pose instead of holding the deflated shoulder-drop beat.",
+"Pelvis still hovers at tread 2 nosing with legs extending to tread 1 and feet cut off at the bottom frame edge."
+],
+"fix": "Hold the slumped shoulders and lowered head through the end of the line while seated properly on tread 3 with feet visible on tread 2."},
+{"tile": "s09 76.0",
+"verdict": "fail",
+"defects": [
+"Mohammed remains in the stiff semi-standing hover spanning riser 2 and riser 3 with his feet sliced off at the bottom edge of the frame."
+],
+"fix": "Seat Mohammed on tread 3 with bent knees and feet on tread 2 fully visible inside the crop."},
+{"tile": "s09 80.7",
+"verdict": "fail",
+"defects": [
+"Missing key acting beat (b051 'fists tighten on his knees'): Mohammed's hands remain flat and open against his thighs with extended fingers, identical to the previous tiles.",
+"Pelvis still hovers in front of riser 3 with legs reaching down to tread 1 and feet cropped at the bottom frame edge."
+],
+"fix": "Clench both of Mohammed's hands into tight fists pressing into his bent knees and tense his shoulders forward while seated on tread 3."},
+{"tile": "s09 85.2",
+"verdict": "fail",
+"defects": [
+"Missing enumeration device/insert for 'pieds' (b052): the shot stays on the static stair view of Mohammed with no on-screen enumeration box or insert.",
+"Mohammed is still hovering across two steps with his feet cut off at the bottom frame edge—ironically hiding his feet on the line 'si je me lavais les pieds'."
+],
+"fix": "Either cut to the 'pieds' insert with the enumeration box highlighting 'pieds', or show the enumeration box and ensure Mohammed's bare feet are fully visible on tread 2."},
+{"tile": "s09 91.2",
+"verdict": "fail",
+"defects": [
+"In theenumeration box, 'pieds' is highlighted in bright cream while 'prière' (the active word for this beat) is left dim dark brown and barely legible.",
+"Anatomical defect in the painted plate: the father's right-most/center hand resting on the prayer rug has six digits (five long fingers plus a thumb on the left side)."
+],
+"fix": "Highlight 'prière' in bright cream inside the enumeration box and paint out the extra sixth finger on the father's center hand."},
+{"tile": "s09 96.6",
+"verdict": "fail",
+"defects": [
+"Wrong gaze direction for b053 ('eyes up the flight'): Mohammed is still looking down and screen-right (down the staircase) instead of looking up the flight (screen-left/up).",
+"Despite 'accroupi sur ma marche', he remains in the semi-standing hover with pelvis at tread 2 nosing and feet cut off at the bottom edge of the frame."
+],
+"fix": "Seat Mohammed compactly on tread 3 with feet on tread 2 and turn his head and eyes screen-left/upward toward the top of the stairs."},
+{"tile": "s09 101.4",
+"verdict": "fail",
+"defects": [
+"Wrong gaze and facial acting for b053 ('he repeats his sentence to himself, eyes up the flight, lips moving'): Mohammed looks down the stairs (screen-right) with his mouth firmly closed.",
+"Pelvis still hovers in front of riser 3 with feet extending to tread 1 and cropped at the bottom of the frame."
+],
+"fix": "Direct Mohammed's head and eye-line up the flight (screen-left/up), open his lips slightly to read as speaking to himself, and seat him properly on tread 3 with feet on tread 2."}
+],
+"worst_problem": "Throughout all 3D stair shots, Mohammed is not seated on tread 3 with his feet on tread 2 (his pelvis hovers in front of riser 3 while his nearly straight legs reach down to tread 1 with feet cropped off in the closer shots), and key acting beats—clenched fists on 'à mort' (s09 80.7) and looking up the flight while speaking (s09 96.6–101.4)—are missing."}

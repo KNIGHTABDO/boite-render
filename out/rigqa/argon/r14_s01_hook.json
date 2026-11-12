@@ -1,0 +1,32 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s01 0.2",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s01 1.9",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s01 5.5",
+"verdict": "minor",
+"defects": [
+"Zoubida's gaze and raised hands hit the beat, but her face remains completely neutral with a closed mouth instead of showing the small laugh called for in the brief."
+],
+"fix": "Add a subtle smile/laugh expression on Zoubida's face as she looks up at the father."},
+{"tile": "s01 9.3",
+"verdict": "fail",
+"defects": [
+"On the right divan, Mohammed is scaled far too small (nearly doll-sized relative to the pillow, divan, and Zoubida) and his rig is collapsed into a deformed, squashed bundle in the middle of the mattress with his head jammed into his chest instead of lying naturally on the divan.",
+"Zoubida's hands are placed against the sides of her jaw and ears (with fingers clipping into her cheeks and headscarf) rather than covering her face as she weeps."
+],
+"fix": "Scale Mohammed up to proper 6-year-old proportions and pose him lying naturally along the divan with his head on the pillow looking toward Zoubida; move Zoubida's hands forward to cover her face without clipping into her head."},
+{"tile": "s01 12.4",
+"verdict": "fail",
+"defects": [
+"Mohammed on the right divan has the same broken, underscaled, crumpled body pose with his head sunk into his torso instead of lying on the divan.",
+"Zoubida's hands remain on the sides of her cheeks/ears (clipping into the mesh) leaving her neutral face completely uncovered instead of weeping with her face in her hands."
+],
+"fix": "Fix Mohammed's scale and lying pose on the right divan, and pose Zoubida with her hands covering her bowed face."}
+],
+"worst_problem": "In b002 (s01 9.3 and s01 12.4), Mohammed is underscaled and collapsed into a deformed blob on the right divan while Zoubida holds the sides of her jaw instead of burying her face in her hands."}

@@ -1,0 +1,90 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s15 0.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's right hand clips out through the top-left of her haik beside her temple instead of pressing the veil over her mouth, while her arm is hidden inside a rigid cylindrical haik mesh.",
+"The boy stands in a stiff neutral pose with mouth closed and eyes wide open instead of chin up and wailing.",
+"Fatma's head is upright facing the camera rather than bowed in grief.",
+"All three characters lack ground contact shadows on the sunlit alley floor."
+],
+"fix": "Place Zoubida's right hand against her mouth veil, tilt the boy's head up into a wailing pose, and bow Fatma's head forward."},
+{"tile": "s15 1.8",
+"verdict": "fail",
+"defects": [
+"Zoubida's right hand still protrudes from the side of her hood at temple height instead of covering her mouth veil.",
+"The boy remains in a stiff mannequin pose staring straight ahead with a closed mouth instead of wailing with chin raised.",
+"Fatma's head is still barely tilted rather than bowed."
+],
+"fix": "Move Zoubida's hand to her mouth veil and raise the boy's chin into an open-mouthed crying pose."},
+{"tile": "s15 5.5",
+"verdict": "fail",
+"defects": [
+"Pose is completely frozen and identical to s15 1.8: Zoubida's hand clips out near her temple, the boy stares ahead without crying, and Fatma's head is not bowed."
+],
+"fix": "Drop Zoubida's shoulders into a sobbing hunch with her hand on her mouth veil and bow Fatma's head."},
+{"tile": "s15 9.4",
+"verdict": "fail",
+"defects": [
+"The seller (grey robe, red fez) and client (yellow robe, green headscarf) stand in the walkway blocking the right side of the frame and the dried-fruit counter, with their hands clipping into each other's torsos.",
+"In the background, Zoubida, the boy, and Fatma look static and upright rather than hurrying and looking left and right."
+],
+"fix": "Move the seller behind/beside the counter on the right so the dried-fruit displays are visible and pose the approaching trio in an active hurried walk looking side to side."},
+{"tile": "s15 11.9",
+"verdict": "fail",
+"defects": [
+"Zoubida's both hands pierce straight through the solid front mesh of her white haik at waist height.",
+"The trio slides forward in stiff upright poses looking straight ahead instead of hurrying and scanning left and right.",
+"The foreground seller and client remain completely frozen in the walkway with intersecting hands."
+],
+"fix": "Keep Zoubida's hands inside or wrapping the haik fold without piercing the cloth mesh, and turn the trio's heads left and right as they hurry forward."},
+{"tile": "s15 15.0",
+"verdict": "fail",
+"defects": [
+"Zoubida's hands clip straight through the front surface of her white haik.",
+"The blue-shirted urchin suddenly appears right behind the main boy on screen left, crowding and overlapping his silhouette.",
+"The trio stands stiffly facing camera rather than searching the stalls."
+],
+"fix": "Fix the hand-through-haik mesh clipping on Zoubida and separate the blue urchin from the boy's silhouette."},
+{"tile": "s15 22.5",
+"verdict": "fail",
+"defects": [
+"The seller in the grey robe and red fez is frozen in the walkway holding the client's hands instead of weighing goods at the counter scale behind him.",
+"The two urchins on the left are jammed tightly against the boy and Zoubida with closed mouths and stiff arms rather than strolling past singing and swinging their arms.",
+"Zoubida's hands still poke straight through the front mesh of her white haik."
+],
+"fix": "Turn the seller toward the counter scale to weigh fruit, space the two urchins forward in the alley swinging their arms and singing, and fix Zoubida's haik clipping."},
+{"tile": "s15 28.9",
+"verdict": "fail",
+"defects": [
+"Framing is a full-body wide/medium shot in the middle of the alley instead of the intended high-angle close-up on the small boy beside his mother's hip.",
+"The boy's arms hang down at his sides with his left shoulder clipping into Zoubida's haik instead of his hand gripping her haik at her hip.",
+"Zoubida stands in profile with both hands protruding straight through the side of her rigid haik mesh."
+],
+"fix": "Frame a high-angle close-up on the boy, pose his hand gripping the fold of Zoubida's haik at her hip, and turn his head as if searching."},
+{"tile": "s15 32.0",
+"verdict": "fail",
+"defects": [
+"Camera remains a full-body shot instead of a high-angle CU on the boy.",
+"The boy faces straight ahead with arms at his sides rather than gripping his mother's haik at the hip and turning his head to search.",
+"Zoubida's hands still pierce straight through the side of her haik mesh."
+],
+"fix": "Crop/move to a high-angle CU on the boy with his hand clutching Zoubida's haik at her hip and his head turned away from s15 28.9 to show searching."},
+{"tile": "s15 35.5",
+"verdict": "fail",
+"defects": [
+"Both of Zoubida's hands punch straight through the solid front of her white haik at waist level with visible dark mesh holes around her wrists.",
+"Framing is a medium-full shot from the knees up with an inflated bell-shaped haik rather than a close-up on Zoubida's upper body and face.",
+"Zoubida stares straight into the camera with wide eyes instead of beginning a defeated nod with eyes down."
+],
+"fix": "Frame a tighter CU on Zoubida's head and shoulders, remove the hands piercing through the front of the haik, and lower her eyelids and chin."},
+{"tile": "s15 38.5",
+"verdict": "fail",
+"defects": [
+"Both hands still clip directly through the front surface of Zoubida's white haik mesh.",
+"Zoubida tilts her head sideways with eyes still open looking left instead of bowing her head forward with eyes down and shoulders dropped in defeat.",
+"Framing remains too wide (knees-up) rather than a CU."
+],
+"fix": "Pitch Zoubida's head forward with eyes cast down and shoulders slumped in a tighter close-up that hides the clipped waist hands."}
+],
+"worst_problem": "Zoubida's hands repeatedly punch straight through the solid mesh of her rigid bell-shaped white haik, while b101 and b102 miss their required close-up framing and core acting beats (the boy never grips his mother's haik or searches, and the trio never visibly cries in b098)."}

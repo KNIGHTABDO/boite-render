@@ -1,0 +1,167 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s09 0.3",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed is not properly seated on tread 3 with feet on tread 2: his bare feet rest on the nosing of tread 3 and his pelvis hovers just above the back of that same tread in front of riser 4 (below tread 4's nosing), making his lower body look squashed on a single step rather than seated with shins dropping down the riser to the tread below",
+    "His hands are clasped together in front of his belly (with his left hand clipping into his right wrist/cuff) instead of resting on his knees, and his djellaba hangs like an unbent sack with no readable knee shapes"
+   ],
+   "fix": "Place Mohammed's pelvis firmly on tread 3 and his feet one step lower on tread 2 so his shins drop down across riser 3, bend his knees clearly under the djellaba, and rest both hands on his knees."
+  },
+  {
+   "tile": "s09 2.4",
+   "verdict": "fail",
+   "defects": [
+    "Pelvis and feet remain on the same step level (feet on tread 3 nosing, pelvis hovering over the back of tread 3 in front of riser 4) instead of sitting on tread 3 with feet on tread 2",
+    "Hands remain clasped at his stomach with wrist/cuff intersection instead of settling onto his knees for b044"
+   ],
+   "fix": "Seat his pelvis on tread 3 with feet planted on tread 2 below, and animate him settling his hands onto his bent knees."
+  },
+  {
+   "tile": "s09 8.5",
+   "verdict": "fail",
+   "defects": [
+    "The line explicitly says 'Accroupi sur une marche, les mains sur les genoux', but Mohammed's hands are clasped together at his waist/belly well above his knees, with his left hand clipping into his right sleeve cuff",
+    "His feet and pelvis are on the same step (feet on tread 3 nosing, pelvis hovering just above the back of tread 3 in front of riser 4) instead of sitting on tread 3 with feet on tread 2"
+   ],
+   "fix": "Lower his feet onto tread 2 while keeping his pelvis seated on tread 3, and place both palms/hands directly on his knees."
+  },
+  {
+   "tile": "s09 14.1",
+   "verdict": "fail",
+   "defects": [
+    "Hands are still clasped in front of his stomach (with wrist/sleeve clipping) instead of resting on his knees",
+    "Feet and pelvis remain compressed onto tread 3 instead of pelvis on tread 3 and feet on tread 2"
+   ],
+   "fix": "Keep his pelvis seated on tread 3 with feet on tread 2 and hands resting on his knees."
+  },
+  {
+   "tile": "s09 17.2",
+   "verdict": "minor",
+   "defects": [
+    "The chin-up head angle for b045 reads well, but his hands are still clasped at his stomach instead of on his knees and his feet rest on the same tread level as his hovering pelvis (tread 3) rather than on tread 2"
+   ],
+   "fix": "Preserve the raised chin pose for b045 while seating his pelvis on tread 3, placing his feet on tread 2, and resting his hands on his knees."
+  },
+  {
+   "tile": "s09 20.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 28.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 35.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 39.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 44.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 51.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 57.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 64.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 71.0",
+   "verdict": "fail",
+   "defects": [
+    "For b050 ('shoulders drop'), Mohammed's torso, shoulders, and clasped hands at his belly are locked in the exact same pose as before the paintings with no shoulder drop",
+    "Hands are at his belly instead of on his knees, and his feet and pelvis remain on tread 3 instead of pelvis on tread 3 and feet on tread 2"
+   ],
+   "fix": "Seat his pelvis on tread 3 with feet on tread 2 and hands on his knees, and slump his shoulders and upper back downward for b050."
+  },
+  {
+   "tile": "s09 73.2",
+   "verdict": "fail",
+   "defects": [
+    "Shoulders and arms remain frozen in the same rigid posture with hands clasped at his stomach instead of resting on his knees",
+    "Feet and pelvis are still on the same step (tread 3) rather than pelvis on tread 3 and feet on tread 2"
+   ],
+   "fix": "Maintain the slumped shoulders from b050 with hands on his knees, pelvis on tread 3, and feet on tread 2."
+  },
+  {
+   "tile": "s09 76.0",
+   "verdict": "fail",
+   "defects": [
+    "Hands remain clasped at his belly (left hand clipping into right wrist/cuff) instead of on his knees, and his feet sit on tread 3 with his pelvis hovering over the back of that same tread instead of feet on tread 2"
+   ],
+   "fix": "Keep his pelvis seated on tread 3, feet on tread 2, and hands resting on his knees."
+  },
+  {
+   "tile": "s09 80.7",
+   "verdict": "fail",
+   "defects": [
+    "For b051 ('fists tighten on his knees à mort'), his hands have not moved at all: they remain loosely clasped together at his belly instead of clenching into tight fists on his knees",
+    "Feet and pelvis remain on the same tread (tread 3) instead of pelvis on tread 3 and feet on tread 2"
+   ],
+   "fix": "Place both hands on his knees and clench the fingers into tight fists with tense shoulders and brow for 'à mort', with pelvis on tread 3 and feet on tread 2."
+  },
+  {
+   "tile": "s09 85.2",
+   "verdict": "minor",
+   "defects": [
+    "The enumeration box is cleanly placed on the left wall, but Mohammed's body remains frozen in the same wrong base pose (hands clasped at belly instead of on knees, feet and pelvis both on tread 3 instead of feet on tread 2)"
+   ],
+   "fix": "Use the corrected seated base pose (pelvis on tread 3, feet on tread 2, hands on knees) during the enumeration."
+  },
+  {
+   "tile": "s09 91.2",
+   "verdict": "minor",
+   "defects": [
+    "The enumeration box is well placed, but Mohammed's body and arms remain locked with hands clasped at his stomach instead of on his knees and feet on tread 3 instead of tread 2"
+   ],
+   "fix": "Keep his pelvis on tread 3, feet on tread 2, and hands resting on his knees."
+  },
+  {
+   "tile": "s09 96.6",
+   "verdict": "fail",
+   "defects": [
+    "For b053 ('he repeats his sentence to himself, eyes up the flight, lips moving'), his head is bowed and his eyes look down the flight (down-left) instead of up the flight, and his lips are closed",
+    "Hands are still clasped at his stomach instead of on his knees, and feet/pelvis remain on the same step (tread 3)"
+   ],
+   "fix": "Turn his head and eyes up the stair flight (screen-left/up), part his lips as he speaks to himself, and keep his hands on his knees with pelvis on tread 3 and feet on tread 2."
+  },
+  {
+   "tile": "s09 101.4",
+   "verdict": "fail",
+   "defects": [
+    "His head and eyes still point down the flight instead of looking up the flight for b053, and his mouth is closed while delivering his final line to himself",
+    "Hands remain clasped at his belly instead of on his knees, and his feet and pelvis are on the same step level (tread 3) instead of pelvis on tread 3 and feet on tread 2"
+   ],
+   "fix": "Direct his gaze up the flight with lips moving as he repeats his sentence, seated on tread 3 with feet on tread 2 and hands on his knees."
+  }
+ ],
+ "worst_problem": "Across every 3D shot, Mohammed's body is locked in a single broken base pose where his feet and hovering pelvis occupy the same tread (tread 3) instead of sitting on tread 3 with feet on tread 2, his hands are clasped at his belly instead of resting or clenching into fists on his knees, and in b053 he looks down the stairs with closed lips instead of looking up the flight while speaking to himself."
+}

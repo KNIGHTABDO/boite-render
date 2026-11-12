@@ -1,0 +1,154 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s11 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (centre-left) is staged with his back to the camera, hiding his face at the start of the beat where he lifts his face to the sky",
+    "Both actors lack ground contact shadows on the courtyard tiles (applies across the scene)"
+   ],
+   "fix": "Angle Mohammed in 3/4 front or profile view so his face is visible as he reacts to the call to prayer, and add contact shadows under all actors' feet."
+  },
+  {
+   "tile": "s11 1.8",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed (centre-left) has his back turned to the camera, completely hiding his face while the brief requires him to lift his face to the sky",
+    "Mohammed raises his right hand in a stiff speaking gesture instead of a listening pose looking up at the sky"
+   ],
+   "fix": "Turn Mohammed into a profile or 3/4 front angle, lower his gesturing hand, and tilt his head clearly upward toward the open sky of the patio."
+  },
+  {
+   "tile": "s11 3.6",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed (centre-left) remains turned away from the camera with his face hidden and his right arm held in the same static speaking gesture"
+   ],
+   "fix": "Show Mohammed's upturned face in profile or 3/4 view with relaxed arms as he listens to the muezzin."
+  },
+  {
+   "tile": "s11 6.2",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (left) is still angled mostly away from the camera so his face is hidden while asking his mother a question"
+   ],
+   "fix": "Cheat Mohammed's body and head into a clean profile so his face and gaze toward Zoubida read clearly."
+  },
+  {
+   "tile": "s11 7.0",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (left) remains in a 3/4 back view with his face obscured during his dialogue line"
+   ],
+   "fix": "Rotate Mohammed toward profile so his face and eye-line toward his mother are visible."
+  },
+  {
+   "tile": "s11 9.0",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida (centre) raises her right hand horizontally at chest height instead of preparing to point down at the stains on Mohammed's djellaba"
+   ],
+   "fix": "Angle Zoubida's right arm and index finger downward toward Mohammed's robe."
+  },
+  {
+   "tile": "s11 11.1",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (centre) points horizontally above Mohammed's head instead of pointing down at the stains on his djellaba as required by b068",
+    "Fatma Bziouya is already visible standing in the right-hand doorway before her entrance cue in b069"
+   ],
+   "fix": "Aim Zoubida's pointing hand downward at Mohammed's stained djellaba and keep Fatma Bziouya out of sight until beat b069."
+  },
+  {
+   "tile": "s11 14.0",
+   "verdict": "fail",
+   "defects": [
+    "Fatma Bziouya (right doorway) stands stiffly upright facing straight forward rather than leaning out of the doorway as required by b069",
+    "Her broom is held vertically in mid-air like a staff instead of a small hand broom stopped mid-sweep"
+   ],
+   "fix": "Pose Fatma Bziouya leaning forward out of the right doorway looking toward Zoubida, holding a small short-handled broom low in a halted sweeping pose."
+  },
+  {
+   "tile": "s11 18.9",
+   "verdict": "fail",
+   "defects": [
+    "Fatma Bziouya (right doorway) is completely frozen in the exact same upright front-facing pose as s11 14.0, neither leaning out nor looking at Zoubida"
+   ],
+   "fix": "Have Fatma Bziouya lean out of the doorway with her head turned toward Zoubida."
+  },
+  {
+   "tile": "s11 23.5",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (left) is facing left out of frame away from Fatma Bziouya while Fatma addresses her",
+    "Fatma Bziouya (right doorway) remains frozen in the same static upright pose from s11 11.1 instead of leaning out with an eager question (b070)"
+   ],
+   "fix": "Turn Zoubida's head toward the right doorway and animate Fatma Bziouya leaning forward with an eager questioning gesture toward Zoubida."
+  },
+  {
+   "tile": "s11 24.0",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (left) still looks left out of frame with her back to Fatma Bziouya",
+    "Fatma Bziouya (right doorway) is still locked in the same static pose with no eager questioning gesture"
+   ],
+   "fix": "Have Zoubida look right toward Fatma Bziouya and pose Fatma leaning out expressively as she finishes her question."
+  },
+  {
+   "tile": "s11 25.7",
+   "verdict": "minor",
+   "defects": [
+    "Fatma Bziouya (right doorway) remains frozen in the exact same upright pose even as the narration states a chest lid slams shut in her room"
+   ],
+   "fix": "Have Fatma Bziouya react to Zoubida's nod and step back into her room."
+  },
+  {
+   "tile": "s11 28.2",
+   "verdict": "minor",
+   "defects": [
+    "Fatma Bziouya (right doorway) is still frozen in the doorway instead of retreating into her room as the chest lid slams"
+   ],
+   "fix": "Move Fatma Bziouya back inside the right doorway out of the courtyard view."
+  },
+  {
+   "tile": "s11 31.2",
+   "verdict": "fail",
+   "defects": [
+    "Maâlem Abdeslem (left) is already standing inside the courtyard in front of a closed door during b072 ('Il n'y a personne ? Je peux passer ?'), whereas the brief specifies he calls from the left street door and only walks in on b073",
+    "Zoubida (right) has her back turned to Maâlem Abdeslem, still facing the right-hand doorway instead of reacting to his call from the left"
+   ],
+   "fix": "Keep Maâlem Abdeslem partially hidden in the open left entrance doorway calling out before entering, and turn Zoubida and Mohammed toward the left door."
+  },
+  {
+   "tile": "s11 32.4",
+   "verdict": "fail",
+   "defects": [
+    "Maâlem Abdeslem (left) is already standing inside the patio in full view before receiving permission to pass",
+    "Zoubida (right) still faces right with her back to her husband on the left"
+   ],
+   "fix": "Hold Maâlem Abdeslem at the threshold of the left street entrance until b073 and turn Zoubida left toward him."
+  },
+  {
+   "tile": "s11 34.6",
+   "verdict": "fail",
+   "defects": [
+    "Maâlem Abdeslem (left) does not walk in on 'Passe' (b073); he stands frozen in the exact same spot and pose as s11 31.2",
+    "Zoubida (centre-right) still has her back turned to Maâlem Abdeslem, facing the right doorway",
+    "Fatma Bziouya (far right doorway) is still frozen in full view in the doorway"
+   ],
+   "fix": "Animate Maâlem Abdeslem stepping forward into the courtyard on 'Passe', turn Zoubida to face him on the left, and clear Fatma Bziouya from the doorway."
+  },
+  {
+   "tile": "s11 35.6",
+   "verdict": "fail",
+   "defects": [
+    "Maâlem Abdeslem (left) remains stationary in the same pose as s11 31.2 instead of walking into the patio",
+    "Zoubida (centre-right) continues facing right with her back to Maâlem Abdeslem",
+    "Fatma Bziouya (far right) remains frozen in the same statue pose held since s11 11.1"
+   ],
+   "fix": "Show Maâlem Abdeslem mid-stride walking into the patio while Zoubida and Mohammed face him."
+  }
+ ],
+ "worst_problem": "Maâlem Abdeslem is already standing inside the courtyard in front of a closed door when calling for permission to enter (b072) and never walks in on 'Passe' (b073), while Zoubida keeps her back turned to him and Fatma Bziouya remains frozen in a single static pose from s11 11.1 to the end of the scene."
+}

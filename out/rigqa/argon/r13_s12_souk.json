@@ -1,0 +1,23 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s12 0.3", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 3.0", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 5.6", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 8.7", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 11.7", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 15.0", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 21.4", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 27.0", "verdict": "minor", "defects": ["The weeping man holds his right hand to his mouth with the gold jewel clipping against his beard/chin instead of holding the jewel in both hands at chest level, and the woman stands with her back completely turned to the lens hiding her face and bowed head."], "fix": "Angle both characters in three-quarter profile toward the camera with their heads bowed over the jewel cupped in the man's two hands at chest height."},
+{"tile": "s12 29.6", "verdict": "minor", "defects": ["Same pose issue in the closer crop: the jewel clips into the man's chin/beard under one hand while the woman's back blocks her face and expression."], "fix": "Rotate the woman into three-quarter view and lower the man's hands to chest level holding the jewel between them."},
+{"tile": "s12 32.7", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 38.7", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 44.1", "verdict": "fail", "defects": ["The dellal stands with both arms folded down at his waist and no bracelets visible instead of throwing his head back and holding the pair of bracelets high in his raised right hand as he shouts."], "fix": "Raise the dellal's right arm above head height with the bracelets dangling clearly from his hand and tilt his head back with mouth wide open."},
+{"tile": "s12 47.8", "verdict": "fail", "defects": ["Same missing gesture on the dellal: his arms remain down at his waist with no bracelets held aloft while shouting the price."], "fix": "Pose the dellal with his right hand raised high holding the dangling bracelets and head tilted back."},
+{"tile": "s12 51.7", "verdict": "fail", "defects": ["For the hand-to-hand transfer ('Mon père prit de ses mains une paire de bracelets'), the dellal shoots his right arm straight up so his hand and the bracelets are cropped out of the top of the frame while the father reaches toward the dellal's chin; their hands never meet at chest height."], "fix": "Lower the dellal's right hand to chest height so it meets the father's outstretched hand with the bracelets passing directly between their hands inside the frame."},
+{"tile": "s12 56.1", "verdict": "minor", "defects": ["The father holds his hands up against his own chin/beard rather than examining the bracelets at chest height after taking them from the dellal."], "fix": "Lower the father's hands to chest height holding the bracelets clearly in front of him and tilt his gaze down toward them."},
+{"tile": "s12 60.5", "verdict": "pass", "defects": [], "fix": ""},
+{"tile": "s12 65.6", "verdict": "minor", "defects": ["Zoubida and Fatma are posed in near-identical mirrored stances holding bracelets simultaneously, and Zoubida's left sleeve/wrist clips through the front of her white haik."], "fix": "Pull Zoubida's forearms slightly forward clear of her haik mesh and offset Fatma's pose so she leans in to inspect the bracelets on Zoubida's wrist before trying them on."},
+{"tile": "s12 70.4", "verdict": "fail", "defects": ["On 'Mon père fit un signe', the father stands with both arms completely down/hidden inside his djellaba and makes no hand or two-finger signal gesture at all."], "fix": "Raise the father's right hand to chest/shoulder height with two fingers extended toward the dellal."},
+{"tile": "s12 77.5", "verdict": "fail", "defects": ["On 'Sa main seule voyagea un moment, au-dessus des têtes, avec les bracelets', the dellal walks up the lane with both arms down at his sides instead of holding the bracelets high above his head, and the gold bracelets are left floating in mid-air in front of the father's chest in the foreground."], "fix": "Attach the bracelets to the dellal's raised right hand held high above his head as he walks up the lane into the crowd."}
+],
+"worst_problem": "The bracelet prop and hand gestures break across beats b079–b082: the dellal's raised hand is missing in s12 44.1/47.8 and cropped out of the top of the frame during the hand-off in s12 51.7, the father makes no signal in s12 70.4, and in s12 77.5 the bracelets float in mid-air near the father's chest while the dellal walks away with his arms down."}

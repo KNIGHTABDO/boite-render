@@ -1,0 +1,103 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s03 0.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 2.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 7.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 12.0",
+   "verdict": "minor",
+   "defects": [
+    "Only two tiny flies appear in the entire frame, clipped against the top-right edge (one bisected by the right border), failing to show the invading colonies of flies.",
+    "Zoubida's eyes are wide open rather than squinting up at the cedar beams as directed for b005."
+   ],
+   "fix": "Move several flies into the open upper room air ahead of Zoubida's gaze away from the right frame border and narrow her eyelids into a squint."
+  },
+  {
+   "tile": "s03 16.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 20.5",
+   "verdict": "minor",
+   "defects": [
+    "The fly cluster is crammed into the extreme top-right corner above the red curtain, with flies touching and clipping the top and right frame edges."
+   ],
+   "fix": "Spread the fly swarm further down and left into the upper bedroom air so no flies clip against the top-right corner border."
+  },
+  {
+   "tile": "s03 24.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 28.8",
+   "verdict": "fail",
+   "defects": [
+    "No talisman prop is visible in Zoubida's hands or mounted over the doorway on the left.",
+    "Her left arm bends straight up across her head, hiding her face and gaze behind her sleeve while her left hand rests on top of her own headscarf instead of reaching toward the door.",
+    "Her right hand only reaches eye-level beside the inward-swung door leaf edge rather than stretching up high over the doorway lintel, while her feet and lower body stand stiffly upright."
+   ],
+   "fix": "Add a visible talisman prop in her hand, step her closer to the doorway with an upward reach over the door lintel, and keep her left arm out of the way of her face so her upward gaze stays clear."
+  },
+  {
+   "tile": "s03 33.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 38.2",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's raised right hand hovers awkwardly out beside her temple/ear rather than shading just above her brow, while her left arm hangs stiffly straight down at her side with feet planted rigidly parallel."
+   ],
+   "fix": "Shift her raised right hand slightly higher and forward over her brow to read clearly as peering up, and relax her hanging left arm and stance."
+  },
+  {
+   "tile": "s03 43.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 48.7",
+   "verdict": "fail",
+   "defects": [
+    "Zero flies are visible anywhere in the bedroom, leaving Zoubida raising the dish cloth at empty air.",
+    "Zoubida faces and winds up toward the left doorway instead of orienting toward the window on the right where the flies are supposed to exit.",
+    "The white dish cloth stands stiffly upward above her gripped right hand like a rigid placard, while her left fist on her sash and parallel feet form a static mannequin stance."
+   ],
+   "fix": "Add a swarm of flies in the room ahead of her toward the right-hand window, turn her body, gaze, and cloth wind-up toward the right window with a wider dynamic stance, and drape the dish cloth softly from her hand."
+  },
+  {
+   "tile": "s03 53.1",
+   "verdict": "fail",
+   "defects": [
+    "Zero flies appear in the room or exiting through the right-hand window, breaking the beat ('flies out') and directly contradicting the line.",
+    "Zoubida looks and extends her whipping arm straight left toward the doorway—completely away from the window on the right.",
+    "The white dish cloth projects horizontally left as a stiff, gravity-defying curved plank, while her torso, legs, feet, and clenched left fist remain frozen in the same pose as s03 48.7."
+   ],
+   "fix": "Animate flies streaming out of the right-hand window, turn Zoubida's body, gaze, and cloth whip toward the right window with a weight-shifted lunge, and bend the dish cloth naturally along the swing arc."
+  }
+ ],
+ "worst_problem": "In b009 (s03 48.7 and s03 53.1), there are zero flies in the room or flying out the window while Zoubida stands rigidly and whips a stiff plank-like dish cloth toward the left doorway instead of the right-hand window."
+}

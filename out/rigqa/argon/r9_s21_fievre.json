@@ -1,0 +1,59 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s21 0.2",
+"verdict": "fail",
+"defects": [
+"Mohammed's arms and hands are completely missing/clipped inside his torso and robe instead of resting on his chest as directed.",
+"Mohammed's left eye (viewer's right) is a solid black hole with missing sclera/eyelid geometry, and his right eye is wide open instead of heavy-lidded.",
+"Mohammed lies like a stiff armless plank diagonally across the front corner of the mattress with his feet hovering above the mattress surface."
+],
+"fix": "Pull both of Mohammed's arms outside the djellaba mesh so his hands rest visibly on his chest, fix the corrupted left eyelid/eyeball shader to half-closed heavy eyes, and settle his body and legs flat onto the mattress."},
+{"tile": "s21 1.7",
+"verdict": "fail",
+"defects": [
+"Mohammed's arms and hands are still completely buried inside his torso/robe mesh rather than resting on his chest.",
+"His body remains a rigid, mannequin-like plank perched on the corner edge of the mattress with both feet floating above the cloth."
+],
+"fix": "Pose both arms outside the robe with hands resting on his chest and relax his spine and legs onto the mattress surface."},
+{"tile": "s21 7.2",
+"verdict": "fail",
+"defects": [
+"Both of Mohammed's arms and hands remain clipped entirely inside his torso mesh instead of resting on his chest.",
+"The camera push from M to CU is too weak—it stays a medium-full shot showing his whole body and floating feet rather than a close-up on his feverish face and chest."
+],
+"fix": "Bring Mohammed's hands out onto his chest and push the crop tighter into a true CU framing his head, shoulders, and hands on his chest."},
+{"tile": "s21 12.2",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 15.0",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 18.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's acting does not match the beat: instead of kneeling with both palms to her temples, she is hunched forward with her head bowed down, her face completely hidden, and her palms held out flat in front of the bed.",
+"Zoubida's blue robe mesh is torn and intersecting her lower back/legs, with her beige trousers clipping through the back of the skirt.",
+"Mohammed on the bed still has both arms clipped completely inside his torso and lies stiffly with his feet hovering off the mattress edge."
+],
+"fix": "Raise Zoubida's torso into an upright kneeling pose angled 3/4 toward the camera and bed with both palms pressed to her temples so her face is visible, fix the leg-through-skirt clipping, and keep Mohammed's hands visible on his chest."},
+{"tile": "s21 22.3",
+"verdict": "fail",
+"defects": [
+"Zoubida remains hunched over with her face hidden and hands outstretched instead of rocking with both palms pressed to her temples.",
+"Zoubida's leg/trouser mesh clips through the back of her blue robe skirt.",
+"A stray, detached dark shadow shaped like a spread-eagled figure appears on the floor tiles next to the mattress underneath Zoubida's hands.",
+"Mohammed remains armless with his hands clipped inside his chest."
+],
+"fix": "Pose Zoubida upright on her knees rocking with both palms at her temples, repair her skirt skinning, remove the stray floating shadow artifact on the floor, and expose Mohammed's hands on his chest."},
+{"tile": "s21 26.3",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 32.7",
+"verdict": "pass",
+"defects": [],
+"fix": ""}
+],
+"worst_problem": "Across all 3D shots Mohammed's arms and hands are completely clipped inside his torso like an armless mummy instead of resting on his chest, while Zoubida is slumped face-down with a torn skirt instead of kneeling with her palms to her temples."}

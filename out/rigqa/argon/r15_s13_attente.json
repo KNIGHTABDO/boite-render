@@ -1,0 +1,141 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s13 0.3",
+   "verdict": "fail",
+   "defects": [
+    "A large flat grey-white vertical shape blocks the entire left third of the frame, hiding the stone bench and the family.",
+    "Mohammed is standing stiffly in a neutral pose rather than sagging at the knees on the floor in front of the bench."
+   ],
+   "fix": "Remove the foreground obstruction on the left, stage Mohammed with the family in front of the bench, and animate his knees giving way and trunk sagging."
+  },
+  {
+   "tile": "s13 1.8",
+   "verdict": "fail",
+   "defects": [
+    "Shredded black ink-outline fragments of Zoubida's corrupted/invisible haik mesh float in mid-air at the top left next to Mohammed's head.",
+    "Mohammed's body posture is stiff and upright; only his head tilts down slightly instead of his knees giving and trunk sagging."
+   ],
+   "fix": "Fix Zoubida's corrupted haik mesh so her full body renders properly behind Mohammed, and bend Mohammed's knees and spine so his trunk visibly sags."
+  },
+  {
+   "tile": "s13 6.6",
+   "verdict": "fail",
+   "defects": [
+    "Shredded ink-outline fragments of Zoubida's broken haik mesh float in the upper left corner, leaving nothing for Mohammed to lean against.",
+    "Mohammed's eyes are wide open and his mouth is barely open in a tiny dot instead of a huge yawn with jaw wide, head back, and eyes shut."
+   ],
+   "fix": "Repair Zoubida's haik mesh and pose Mohammed leaning against it with his head tilted back, eyes shut, and jaw wide open in a full yawn."
+  },
+  {
+   "tile": "s13 11.2",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's haik mesh below her chest is completely missing/transparent except for two thin jagged vertical strips, leaving her upper body floating in mid-air.",
+    "The dellal on the right raises an empty hand with no bracelets visible."
+   ],
+   "fix": "Restore Zoubida's full haik skirt mesh so it reaches the ground and put the pair of bracelets in the dellal's raised hand."
+  },
+  {
+   "tile": "s13 14.6",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's lower body mesh is missing/corrupted into thin floating vertical strips with the background visible through her torso and skirt.",
+    "Both the father and the dellal are frozen in the exact same pose as s13 11.2; the father has not nodded and the dellal has not turned to leave."
+   ],
+   "fix": "Repair Zoubida's haik mesh, animate the father's small nod, and turn the dellal away up the lane."
+  },
+  {
+   "tile": "s13 18.2",
+   "verdict": "fail",
+   "defects": [
+    "In the foreground left, the father stands with his back to camera directly in front of Mohammed, hiding the boy except for the side of his head and feet, while Zoubida is missing.",
+    "In the background right, the dellal and two men stand in a static cluster instead of the dellal running up the lane dragging a client by the hand while a woman and two urchins hurry the other way."
+   ],
+   "fix": "Clear the foreground occlusion of the family and animate the dellal running up the lane pulling a client by the hand while the woman and two urchins hurry past in the opposite direction."
+  },
+  {
+   "tile": "s13 21.5",
+   "verdict": "fail",
+   "defects": [
+    "In the foreground left, Mohammed clips into the front of the father's djellaba and shredded black outlines of Zoubida's broken mesh poke through the father's shoulder.",
+    "In the middle of the lane, the woman, two urchins, dellal, and clients are jammed into an overlapping static pile clipping into each other rather than running in opposite directions."
+   ],
+   "fix": "Separate the foreground family meshes and repair Zoubida's haik, and space out the crowd actors in the lane with clear running poses in opposite directions."
+  },
+  {
+   "tile": "s13 25.0",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida on the left is missing her entire lower body mesh below her veil, floating in mid-air above two jagged vertical cloth strips.",
+    "Zoubida stands separated from Mohammed with her arms hidden instead of putting her arm around the boy as they jolt back.",
+    "Behind the father in the center, a white-robed figure and a brown-robed man clip into each other's bodies."
+   ],
+   "fix": "Repair Zoubida's haik mesh, pose her arm wrapping protectively around Mohammed as all three jolt back against the wall, and separate the intersecting crowd extras."
+  },
+  {
+   "tile": "s13 28.6",
+   "verdict": "fail",
+   "defects": [
+    "In the center, the father and the brown-robed passerby completely intersect in the same space, merging their heads, torsos, and robes into a single two-headed figure.",
+    "Zoubida on the left still has her entire lower body mesh missing except for two thin vertical strips, and her arm is not around Mohammed."
+   ],
+   "fix": "Move the brown-robed passerby forward on the floor plane so he passes in front of the father without clipping, and fix Zoubida's mesh and protective arm pose around the boy."
+  },
+  {
+   "tile": "s13 32.4",
+   "verdict": "fail",
+   "defects": [
+    "Severe mesh clipping: Mohammed's torso and legs penetrate straight inside the father's chest and djellaba, with the father's forearms clipping through the boy's back.",
+    "Mohammed's face is buried inside the father's neck and beard instead of resting his cheek on the father's shoulder."
+   ],
+   "fix": "Offset Mohammed forward outside the father's chest mesh so the father's arms wrap cleanly around his back and the boy's cheek rests visibly on the father's shoulder."
+  },
+  {
+   "tile": "s13 36.1",
+   "verdict": "fail",
+   "defects": [
+    "Identical severe mesh intersection as s13 32.4: Mohammed's body is sunk inside the father's chest and robe with jagged clipping lines along his legs and back, and his face is buried in the father's neck."
+   ],
+   "fix": "Pull Mohammed's mesh outside the father's torso, rest his cheek on the father's shoulder, and animate the father's chest heaving."
+  },
+  {
+   "tile": "s13 40.0",
+   "verdict": "fail",
+   "defects": [
+    "Catastrophic mesh corruption on Zoubida: her entire torso and haik below the veil are missing/transparent except for two thin jagged vertical strips, showing the background wall right through her body.",
+    "Her left hand (screen right) is raised in a calm open-palm gesture while her right side (screen left) is shredded into spiky vertical artifacts instead of her right hand slicing the air."
+   ],
+   "fix": "Rebuild/re-export Zoubida's full haik mesh without missing polygons and animate sharp head jerks with her right hand slicing the air."
+  },
+  {
+   "tile": "s13 43.2",
+   "verdict": "fail",
+   "defects": [
+    "Same catastrophic mesh corruption on Zoubida: her entire body below her chest is transparent/missing except for two jagged vertical stilt-like strips.",
+    "Her pose is frozen identical to s13 40.0 with no head jerk or slicing right-hand gesture."
+   ],
+   "fix": "Fix Zoubida's missing torso and skirt geometry and animate a sharp head turn and right-hand slicing gesture."
+  },
+  {
+   "tile": "s13 46.8",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida on the left is still missing her entire lower body mesh, floating in mid-air on two thin vertical strips behind the father.",
+    "Two small children stand right beside the father clipping into his robe while a static crowd blocks the lane, and neither the father nor Zoubida is turning their head to scan."
+   ],
+   "fix": "Repair Zoubida's haik mesh, clear the extras encroaching on the family, and animate the father and Zoubida slowly turning their heads to scan the lane."
+  },
+  {
+   "tile": "s13 47.9",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's lower body mesh remains completely missing/transparent except for thin vertical strips floating above the curb.",
+    "All characters are completely frozen in the exact same pose as s13 46.8; neither the father nor Zoubida turns their head to scan the crowd."
+   ],
+   "fix": "Fix Zoubida's broken haik mesh and keyframe the father's and Zoubida's heads turning across the crowd between s13 46.8 and s13 47.9."
+  }
+ ],
+ "worst_problem": "Zoubida's 3D haik mesh is catastrophically corrupted across the entire scene—her torso and skirt below the veil are missing/transparent except for two jagged vertical strips—combined with severe full-body mesh intersections between the father, Mohammed, and crowd extras."
+}

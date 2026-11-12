@@ -1,0 +1,94 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s06 0.2",
+   "verdict": "fail",
+   "defects": [
+    "Foreground center (Mohammed): his curly hair tuft (guettaia) seen in s06 15.8 and the paintings is completely missing from his crown/forehead.",
+    "Foreground center (Mohammed): his head is pitched sharply down with his chin tucked into his collar, hiding his mouth rather than showing a reciting pose, and his torso and featureless mitten-hands are posed in a stiff, mirror-symmetrical hold on the slate edges.",
+    "Midground right (fqih): sits in a rigid symmetrical pose with the horizontal quince rod clipping across the front of his sleeve cuffs rather than resting on his knees or being visibly gripped by his hands.",
+    "Floor under both actors: heavy opaque near-black contact-shadow blobs sit harshly against the softly lit painted mat."
+   ],
+   "fix": "Restore Mohammed's hair tuft, lift his head slightly with a visible reciting mouth and asymmetric hand/arm pose on the slate, seat the quince rod naturally on the fqih's knees or in his hands without clipping the cuffs, and soften the contact shadows."
+  },
+  {
+   "tile": "s06 1.7",
+   "verdict": "fail",
+   "defects": [
+    "Foreground center (Mohammed): his curly hair tuft is missing from his crown/forehead.",
+    "Foreground center (Mohammed): during b022 (Mohammed reciting), his head remains pitched down with his chin buried in his collar and mouth hidden/closed, holding the exact same stiff symmetrical posture and fingerless hand placement as s06 0.2.",
+    "Midground right (fqih): unchanged rigid symmetrical pose with the horizontal quince rod clipping across his sleeve cuffs instead of resting naturally on his knees or in his hands."
+   ],
+   "fix": "Restore Mohammed's hair tuft and animate him visibly reciting with parted lips, eyes tracking the slate, and varied torso/arm posture, while placing the quince rod naturally in the fqih's hands or across his lap."
+  },
+  {
+   "tile": "s06 5.1",
+   "verdict": "fail",
+   "defects": [
+    "Foreground center (Mohammed): his curly hair tuft is missing from his crown/forehead.",
+    "Foreground center (Mohammed): remains locked in the identical static pose from s06 0.2–1.7 with chin buried in his collar hiding his mouth during the reciting beat and stiff symmetrical arms/mitten-hands on the slate.",
+    "Midground right (fqih): identical static symmetrical pose with the quince rod clipping across the front of his sleeve cuffs."
+   ],
+   "fix": "Break the multi-second freeze with active reciting mouth/head motion, restored hair tuft, and less rigid arm symmetry on Mohammed, and fix the quince rod clipping across the fqih's cuffs."
+  },
+  {
+   "tile": "s06 8.7",
+   "verdict": "fail",
+   "defects": [
+    "Foreground center (Mohammed): his curly hair tuft is still missing from his head.",
+    "Foreground center (Mohammed): torso, arms, slate angle, and tucked-chin head pitch remain identical to s06 0.2–5.1, hiding his mouth and showing zero posture transition entering b023.",
+    "Midground right (fqih): identical stiff symmetrical pose with the quince rod clipping across the front of his sleeve cuffs."
+   ],
+   "fix": "Restore Mohammed's hair tuft, add natural posture variation and a clear view of his face/mouth entering b023, and adjust the fqih's posture and rod-to-knee/hand contact."
+  },
+  {
+   "tile": "s06 15.8",
+   "verdict": "minor",
+   "defects": [
+    "Foreground center (Mohammed): although his tilted-up head, stopped lips, upward-right gaze, and reappearing hair tuft fit the afternoon daydream beat, his torso, shoulders, sleeves, and featureless hands stay locked in the exact same stiff symmetrical pose as s06 0.2–8.7.",
+    "Midground right (fqih): remains completely frozen in the identical symmetrical pose from earlier tiles, with the quince rod still clipping across the front of his sleeve cuffs."
+   ],
+   "fix": "Relax Mohammed's shoulders, torso, and hands slightly as his head drifts upward to daydream, and fix the fqih's static pose and quince-rod clipping across his cuffs."
+  },
+  {
+   "tile": "s06 21.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s06 25.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s06 29.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s06 34.4",
+   "verdict": "minor",
+   "defects": [
+    "Top center (adult man's head): the zoom-in leaves zero headroom, grazing/clipping the very top curl of his hair against the upper frame edge."
+   ],
+   "fix": "Ease the painting zoom-in back slightly or shift framing downward a few pixels to preserve clean headroom above the man's hair."
+  },
+  {
+   "tile": "s06 39.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s06 44.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  }
+ ],
+ "worst_problem": "Across s06 0.2–8.7 both 3D actors hold an identical frozen, stiffly symmetrical pose where Mohammed's tucked chin hides his closed mouth instead of reciting, his curly hair tuft vanishes until s06 15.8, and the fqih's quince rod clips flatly across his sleeve cuffs."
+}

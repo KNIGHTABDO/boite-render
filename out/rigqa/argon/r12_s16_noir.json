@@ -1,0 +1,84 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s16 0.2",
+"verdict": "fail",
+"defects": [
+"Zoubida's acting pose is stiff and robotic: her head and torso are bolt upright and both hands hover symmetrically beside her ears with palms facing the camera instead of holding her head in her hands.",
+"Zoubida is positioned in front of the gap between the two divans rather than sitting on the mattress edge or kneeling directly in front of a mattress."
+],
+"fix": "Seat Zoubida on the edge of the left mattress, bend her torso and neck forward, and cup both palms directly over her face and forehead."},
+{"tile": "s16 2.7",
+"verdict": "fail",
+"defects": [
+"Directly contradicts the spoken line ('s'assit sur un matelas, la tête dans ses deux mains'): Zoubida's head is upright and her hands float beside her temples with palms turned toward the camera instead of burying her face in her hands.",
+"She is placed in front of the wooden corner post between the divans rather than seated on a mattress."
+],
+"fix": "Move Zoubida onto the mattress, tilt her head down, and press both hands against her face and eyes."},
+{"tile": "s16 9.3",
+"verdict": "fail",
+"defects": [
+"Zoubida remains frozen in the same upright mannequin pose with her palms facing the camera beside her ears, showing a visible gap between her hands and head instead of holding her head in grief."
+],
+"fix": "Hunch Zoubida's shoulders and upper back forward and place her face down into her cupped palms."},
+{"tile": "s16 15.1",
+"verdict": "fail",
+"defects": [
+"Framing does not change to the intended close-up (b104 CU): it uses the exact same medium crop as b103.",
+"Zoubida's palms still face the camera beside her ears in an unnatural 'surrender' gesture instead of cradling her bowed head."
+],
+"fix": "Crop tighter into a true close-up on Zoubida's head and hands, with her head bowed into her palms."},
+{"tile": "s16 22.4",
+"verdict": "fail",
+"defects": [
+"Framing is still the medium shot rather than the intended CU.",
+"Zoubida's hands remain floating next to her cheeks with palms facing forward rather than holding her head."
+],
+"fix": "Use a tight close-up framing on Zoubida's bowed head resting in her hands."},
+{"tile": "s16 28.6",
+"verdict": "fail",
+"defects": [
+"Mohammed's lower legs and feet are completely missing below the hem of his white djellaba, making his body float in mid-air in front of the mattress edge.",
+"His sleeves flare out stiffly while his hands press flat against his eyes."
+],
+"fix": "Place Mohammed's feet and lower legs visibly on the floor (or kneeling on the mattress) so his body has solid ground contact."},
+{"tile": "s16 33.5",
+"verdict": "fail",
+"defects": [
+"Mohammed lies perpendicularly across the narrow width of the mattress so his head and the added 3D teal pillow hang off the left wooden edge into mid-air.",
+"His hands clip into his bloated djellaba chest with harsh black ink-outline artifacts across the torso, and his feet are missing at the bottom hem."
+],
+"fix": "Rotate Mohammed 90 degrees to lie lengthwise along the mattress with his head and pillow fully supported on the bed, and fix the djellaba mesh clipping around his hands and feet."},
+{"tile": "s16 38.2",
+"verdict": "fail",
+"defects": [
+"In the wide two-shot, Zoubida stands or kneels upright in the middle of the floor with her ankles cut off by the bottom frame edge and her palms facing the camera beside her ears, instead of sitting on a mattress with her head in her hands.",
+"Mohammed in the background right looks far too small in scale compared to Zoubida, and his head and 3D pillow stick out over the inner wooden edge of the right mattress in mid-air."
+],
+"fix": "Seat Zoubida on the left mattress hunched forward with her face in her hands, scale Mohammed up to match the room perspective, and orient him lengthwise along the right mattress."},
+{"tile": "s16 42.1",
+"verdict": "fail",
+"defects": [
+"Zoubida is still upright in the foreground center with her hands held out beside her ears like a mannequin instead of seated on the mattress crying into her hands.",
+"Mohammed's head and 3D pillow overhang the edge of the back-right mattress in mid-air, and his scale is too small relative to Zoubida."
+],
+"fix": "Pose Zoubida seated on the left mattress with her head bowed into her hands and align Mohammed lengthwise on the right mattress at proper scale."},
+{"tile": "s16 46.0",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s16 49.8",
+"verdict": "minor",
+"defects": [
+"Camera framing is identical to s16 46.0 and has not pushed up toward the dark upstairs window as directed for beat b107."
+],
+"fix": "Push and tilt the camera upward to frame the dark upper-story window at the end of the beat."},
+{"tile": "s16 53.8",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s16 59.6",
+"verdict": "pass",
+"defects": [],
+"fix": ""}
+],
+"worst_problem": "Zoubida is posed upright in the middle of the floor holding her palms facing the camera beside her ears instead of sitting on the mattress with her head bowed in her hands, while Mohammed floats without feet when crying and lies across the narrow width of the mattress with his head and pillow hanging in mid-air."}

@@ -1,0 +1,17 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s03 0.2", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 2.9", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 7.5", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 12.0", "verdict": "minor", "defects": ["Framing crops off the top of Zoubida's forehead and headscarf at the top edge of the frame.", "Zoubida's neck bends back at an extreme angle while her upper torso stays vertical, creating a stiff crease at the nape/jaw."], "fix": "Shift the crop up or zoom out slightly to leave headroom above her headscarf, and arch her upper chest back slightly so the upward gaze isn't all in the neck joint."},
+{"tile": "s03 16.3", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 20.5", "verdict": "minor", "defects": ["Awkward framing cuts Zoubida's legs right across the lower shins just above the ankles.", "Static hands-on-hips mannequin pose with her left fingers clipping slightly into her yellow waist sash."], "fix": "Crop higher (around knees or mid-thigh) for a clean medium shot and pull her left hand slightly outward so the fingers sit cleanly on the sash without intersecting it."},
+{"tile": "s03 24.6", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 28.8", "verdict": "minor", "defects": ["Zoubida stands too far inside the room and reaches her right hand up into empty space in front of the wall niche instead of touching the doorway lintel to place a talisman.", "Her left hand stays locked on her hip in the exact same pose as the previous beat."], "fix": "Move Zoubida a step left into the doorway opening so her raised right hand makes actual contact with the door frame/lintel."},
+{"tile": "s03 33.6", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 38.2", "verdict": "minor", "defects": ["Zoubida remains rooted on the exact same floor mark with her left hand still glued to her hip.", "Her raised right hand hovers stiffly in front of her forehead at an unnatural wrist angle rather than shading her eyes to peer up at the ceiling beams."], "fix": "Move her a step toward the center of the room to look up at the beams, drop her left hand from her hip, and angle her right palm flat at her brow to shade her eyes."},
+{"tile": "s03 43.7", "verdict": "pass", "defects": [], "fix": "None"},
+{"tile": "s03 48.7", "verdict": "fail", "defects": ["Instead of whipping the dish cloth at the flies, Zoubida stands passively in the same spot with her right arm lowered by her side.", "The dish cloth is a rigid, flat rectangular plane that clips straight through her skirt and yellow waist sash."], "fix": "Pose Zoubida mid-swing with her right arm sweeping upward/across the room and deform the dish cloth out in the air clear of her dress mesh."},
+{"tile": "s03 53.1", "verdict": "fail", "defects": ["Prop continuity error: the dish cloth completely disappears from Zoubida's right hand, leaving her holding an empty curled hand in front of her chest.", "She is still rooted in the exact same floor spot with her left hand glued to her hip from the start of the scene."], "fix": "Keep the dish cloth in Zoubida's right hand in a follow-through pose pointed toward the right window, and relax her left arm down from her hip."}
+],
+"worst_problem": "In the final two beats (s03 48.7 and s03 53.1), Zoubida never whips the dish cloth: at 48.7 it is a rigid board clipping through her skirt while her arm hangs down, and by 53.1 the cloth prop vanishes completely from her empty raised hand."}

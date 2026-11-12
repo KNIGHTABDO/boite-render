@@ -1,0 +1,117 @@
+{"scene_ok": false,
+"tiles": [
+{
+"tile": "s05 0.2",
+"verdict": "fail",
+"defects": [
+"Framing is a wide two-shot instead of the intended CU on the fqih (b016).",
+"Mohammed in the foreground right is awkwardly cut off just below the shoulders by the bottom frame edge, looking like a floating bust.",
+"The fqih is posed in a stiff, perfectly symmetrical frontal posture with hands glued to his knees and knees clipped by the bottom frame edge."
+],
+"fix": "Crop in to a true close-up on the fqih (excluding Mohammed's back from the foreground) and break the symmetrical torso/arm pose."
+},
+{
+"tile": "s05 1.7",
+"verdict": "fail",
+"defects": [
+"Still framed as a wide shot with Mohammed's severed bust obstructing the bottom-right foreground instead of a CU on the fqih.",
+"From the neck down, the fqih's body and hands on knees are completely frozen and symmetrical; only the neck tilts slightly left."
+],
+"fix": "Use a close-up camera on the fqih and relax his shoulders and torso into a warm, forward-leaning posture to support the head tilt."
+},
+{
+"tile": "s05 5.2",
+"verdict": "fail",
+"defects": [
+"Wide framing persists instead of the required CU on the fqih, keeping Mohammed's cut-off head and shoulders in the bottom-right foreground.",
+"The fqih's torso and hands remain locked in the exact same rigid, symmetrical pose while the head tilts right."
+],
+"fix": "Frame the fqih in a tight close-up and add slight shoulder/spine movement so the nod does not read as an isolated neck pivot."
+},
+{
+"tile": "s05 8.9",
+"verdict": "fail",
+"defects": [
+"Mohammed is positioned far too low in the frame, cut off at the chest by the bottom frame edge so his lap, hands, and the slate (planchette) he is reciting from are completely invisible.",
+"Scale and vertical placement make Mohammed look tiny and sunk into the floor in front of the mausoleum railing, leaving vast empty background above him."
+],
+"fix": "Raise Mohammed in the frame and reframe to a true medium shot from the waist/lap up so his hands holding the slate on his lap are clearly visible."
+},
+{
+"tile": "s05 12.5",
+"verdict": "minor",
+"defects": [
+"A raw dark-grey debug/placeholder box with sans-serif text 'dix' is overlaid on the right side of the painted slate insert, even while the spoken line has already progressed to 'quinze'."
+],
+"fix": "Remove the 'dix' placeholder UI box from the painted slate insert."
+},
+{
+"tile": "s05 16.3",
+"verdict": "fail",
+"defects": [
+"Mother on the right is floating above the floor in front of the divan with severely twisted, clipping lower legs/skirt and bare feet sticking out in mid-air.",
+"Mohammed is placed dead-center with his back to the camera and cut off at the hips by the bottom frame edge, blocking the staging between father and mother.",
+"Father on the left has a stiff upright spine rather than puffing his chest out with pride ('gonflé d'orgueil'), his lower legs are clipped at the bottom edge, and his left arm/hand is hidden/clipped behind his torso."
+],
+"fix": "Seat the mother properly on the right divan or floor cushion with grounded legs, arch the father's chest out proudly, and move Mohammed out of the center foreground obstruction."
+},
+{
+"tile": "s05 19.5",
+"verdict": "fail",
+"defects": [
+"Mother remains completely frozen in the same floating, twisted-legged broken pose in front of the right divan.",
+"Mohammed remains cut off at the hips in the center foreground with his back to camera.",
+"Father's torso remains stiff and flat-chested, with only a tiny rigid drop of his right forearm."
+],
+"fix": "Fix the mother's seated contact and leg mesh on the right divan, and pose the father with a proud, puffed-out chest and open two-handed storytelling gesture."
+},
+{
+"tile": "s05 23.0",
+"verdict": "fail",
+"defects": [
+"In this CU on the father (b019), his chin is level rather than raised ('chin up') and both forearms/hands are dropped below the bottom frame edge so no quoting gesture is visible."
+],
+"fix": "Tilt the father's chin up proudly and bring his gesturing hand up into the frame as he begins quoting the fqih."
+},
+{
+"tile": "s05 26.3",
+"verdict": "minor",
+"defects": [
+"Instead of an open palm offered outward toward his wife on 'savant', the father's right hand is held close to his beard with the palm turned inward in a cramped, cupped shape.",
+"His chin and head remain level and static rather than lifted proudly."
+],
+"fix": "Extend the father's right forearm slightly forward with the wrist supinated into a clear, open palm offered toward his wife, and lift his chin."
+},
+{
+"tile": "s05 29.8",
+"verdict": "pass",
+"defects": [],
+"fix": "None."
+},
+{
+"tile": "s05 35.2",
+"verdict": "pass",
+"defects": [],
+"fix": "None."
+},
+{
+"tile": "s05 40.2",
+"verdict": "fail",
+"defects": [
+"Framed as the full wide shot of the bedroom instead of the intended CU on Mohammed (b021).",
+"Mohammed has flipped 180 degrees from his previous back-to-camera pose in the same spot, stands stiffly upright cut off at the thighs at the bottom frame edge, and does not lean back from the idea.",
+"Mother on the right is still floating with broken, twisted legs in front of the divan, and both parents stare past Mohammed at each other, frozen from the earlier beat."
+],
+"fix": "Crop to a close-up on Mohammed so the frozen parents are out of frame, and pose his upper body leaning back in aversion."
+},
+{
+"tile": "s05 41.8",
+"verdict": "fail",
+"defects": [
+"Still framed as a full wide three-shot instead of a CU on Mohammed, leaving the mother's floating/twisted lower body and both parents' frozen poses fully visible.",
+"Mohammed's torso and arms remain stiffly upright and hanging at his sides rather than leaning back during his head shake."
+],
+"fix": "Keep the camera in a tight close-up on Mohammed and tilt his torso and shoulders back to sell a firm rejection of becoming a scholar."
+}
+],
+"worst_problem": "Camera framing repeatedly ignores the director's shot list (wide shots used instead of close-ups on the fqih in b016 and Mohammed in b021, and Mohammed's slate completely cut off below frame in b017), while in the bedroom the mother's twisted lower body floats in mid-air in front of the divan."}

@@ -1,0 +1,100 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s05 0.2",
+   "verdict": "minor",
+   "defects": [
+    "At shot open, the fqih's head is still upright rather than tilted/nodding and his eyelids remain open in a neutral-stern look instead of the brief's kind face with soft lids."
+   ],
+   "fix": "Begin the slight head tilt and softened eyelids right from 0.2s so the shot opens on a gentle expression."
+  },
+  {
+   "tile": "s05 1.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 5.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 8.9",
+   "verdict": "fail",
+   "defects": [
+    "The wooden slate (planchette) is completely missing from Mohammed's lap; both arms hang empty down toward his ankles/shins instead of holding or resting on the slate he is supposed to recite from.",
+    "Poor M framing: Mohammed's hair tuft nearly touches the top edge (almost no headroom) while a large white-robed adult on the right is decapitated at the chest by the upper frame edge.",
+    "Mohammed's mouth is closed rather than reciting."
+   ],
+   "fix": "Put the wooden slate on Mohammed's lap with his hands resting on it, animate his mouth reciting, and tighten the M crop above his shoulders with comfortable headroom so the cut-off figure on the right is excluded."
+  },
+  {
+   "tile": "s05 12.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 16.3",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed is completely absent from his seated lunch spot in the center-left (before popping into place by s05 19.5).",
+    "The father is leaning slightly forward with hands held tightly together rather than chest out telling his wife proudly.",
+    "The father's extended white knees/skirt overlap straight across the front-left edge and leg of the painted wooden table, appearing to merge/clip into it."
+   ],
+   "fix": "Keep Mohammed seated in his lunch place from the start of b018, pose the father upright with chest out and gesturing hands, and shift the father slightly left so his knees do not overlap the painted table."
+  },
+  {
+   "tile": "s05 19.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 23.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 26.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 29.8",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 35.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s05 40.2",
+   "verdict": "fail",
+   "defects": [
+    "Staging and scale mismatch against the bedroom plate: Mohammed is positioned to the right of the painted wooden table (where the mother sat in s05 19.5, while the mother is gone) and scaled too large relative to the table and cushions directly behind his right shoulder (the painted table top is narrower than his head).",
+    "Mohammed's torso and shoulders sit stiffly upright rather than leaning back from the idea as required by b021."
+   ],
+   "fix": "Keep Mohammed staged at a consistent scale on the father's side of the table (or pull the camera/plate crop so the furniture behind him is properly scaled and the mother's spot isn't overwritten), and lean his upper torso distinctly backward during the head shake."
+  },
+  {
+   "tile": "s05 41.8",
+   "verdict": "fail",
+   "defects": [
+    "Same staging and scale mismatch as s05 40.2: Mohammed sits on the mother's side of the painted table, oversized against the miniature-looking table and cushions behind his shoulder while the mother is missing.",
+    "Mohammed's torso stays upright with no lean-back posture, and his eyes stare straight into the camera lens instead of turning firmly away from the idea."
+   ],
+   "fix": "Align Mohammed's staging and scale with the b018 bedroom layout, lean his torso visibly backward from the waist/shoulders, and turn his head/gaze firmly off-axis away from camera rather than staring straight ahead."
+  }
+ ],
+ "worst_problem": "In s05 8.9 (b017), Mohammed is missing the wooden slate on his lap—his hands hang empty near his ankles while a decapitated bystander intrudes on the right—and staging continuity breaks in the bedroom beats (Mohammed absent at s05 16.3, then oversized on the mother's side of the table in s05 40.2 and 41.8)."
+}

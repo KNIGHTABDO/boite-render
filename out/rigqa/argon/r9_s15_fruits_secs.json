@@ -1,0 +1,91 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s15 0.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's right hand is held low at her chest with fingers clipping into her white haik instead of being pressed to her veil over her mouth, and her gaze is directed sideways to screen right.",
+"The boy's head is tilted back staring up-left with arms stiffly at his sides, and his shoulders and sleeves overlap and clip into both Zoubida's left sleeve and Fatma's white apron.",
+"All three characters are slightly too small relative to the masonry bench on the left and the stall counter on the right (the counter top reaches adult chest height)."
+],
+"fix": "Space the three characters slightly apart so their garments do not intersect, raise Zoubida's right hand to press against her veil over her mouth, and bow Fatma's head deeper with her hand flat on her chest."},
+{"tile": "s15 1.8",
+"verdict": "fail",
+"defects": [
+"Zoubida, the boy, and Fatma are in the exact same frozen pose as s15 0.3 with Zoubida's right hand clipping into her haik at chest level rather than covering her mouth veil.",
+"The boy remains jammed between the two women with his left arm clipping into Fatma's apron and his right shoulder intersecting Zoubida's haik.",
+"Zoubida's eye-line is still directed calmly to screen right instead of hunched into a crying posture."
+],
+"fix": "Hunch Zoubida's shoulders forward with her right hand pressed over her mouth veil and tilt the boy's chin up in a full wailing pose clear of Fatma's skirt."},
+{"tile": "s15 5.5",
+"verdict": "fail",
+"defects": [
+"All three characters hold the identical static pose from s15 0.3 and s15 1.8 with no change in body posture, head angle, or arm gesture.",
+"Zoubida's right hand still penetrates her chest drapery well below her face, and the boy's torso and sleeves still clip into the garments of both women."
+],
+"fix": "Drop Zoubida's and Fatma's shoulders into a shaken crying posture with Zoubida's hand on her veil over her mouth and separate the boy slightly forward so his arms hang clear of their clothing."},
+{"tile": "s15 9.4",
+"verdict": "fail",
+"defects": [
+"In the foreground right, the seller (in grey tunic and red fez) and the client (in yellow robe and green headscarf) are underscaled relative to the counter—the counter top reaches their chins/chests—and stand in stiff mannequin poses.",
+"The seller is standing out in the street passage facing left with arms hanging stiffly at his sides instead of tending the counter scales or facing the client, and both foreground background characters lack floor contact shadows.",
+"In the background at the far gate, Zoubida, the boy, and Fatma retain their static crying poses from b098 while translating forward instead of looking left and right in a hurried walk."
+],
+"fix": "Scale up the characters to match the counter height, pose Zoubida, Fatma, and the boy in hurried walking strides turning their heads toward the stalls, and turn the seller toward the counter scales and the client."},
+{"tile": "s15 11.9",
+"verdict": "fail",
+"defects": [
+"As the trio advances down the passage, they are still locked in their b098 poses: the boy's head is tipped back staring at the ceiling with arms stiff at his sides, and Zoubida and Fatma still hold their right hands on their chests instead of hurrying and looking left and right.",
+"The seller in grey and client in yellow on the right are completely frozen in the exact same mannequin poses as s15 9.4.",
+"Character scale against the environment is too small: as Zoubida and Fatma approach the foreground, the stone bench on the left is nearly waist-high and the counter on the right reaches their shoulders."
+],
+"fix": "Animate walking arm swings and alternating head turns left and right for Zoubida, Fatma, and the boy as they hurry forward, and scale the characters up so the counter sits at adult waist-to-hip height."},
+{"tile": "s15 15.0",
+"verdict": "fail",
+"defects": [
+"The boy raises his left hand high to Zoubida's chest instead of her hip, where it collides with Zoubida's right hand as her fingers clip through her white haik mesh.",
+"The boy's head remains tilted backward looking up at the roof beams rather than looking around the souk.",
+"An urchin in brown appears behind Zoubida on the left in a stiff standing pose at a tiny scale relative to the masonry bench, while the seller and client on the right remain frozen."
+],
+"fix": "Lower the boy's left hand to grip Zoubida's haik at her hip, pull Zoubida's right arm out of her chest mesh, and level the boy's head to look across the market passage."},
+{"tile": "s15 22.5",
+"verdict": "fail",
+"defects": [
+"The seller (grey tunic, red fez) and client (yellow robe) on the right are still frozen in the exact same idle poses from s15 9.4: the seller is neither using the brass scales on the counter nor turned toward the client.",
+"The two urchins on the left stand stiffly with arms hanging straight down at their sides instead of strolling past swinging their arms.",
+"The boy's raised left hand and Zoubida's right hand still intersect and clip through her white haik at chest level."
+],
+"fix": "Pose the seller reaching toward the counter scales while turned to the client, pose the two urchins mid-stride with swinging arms walking past, and move the boy's hand down to Zoubida's hip."},
+{"tile": "s15 28.9",
+"verdict": "fail",
+"defects": [
+"Bad framing from the crop: Zoubida's head is sliced off across her mouth veil and Fatma is completely decapitated at the neck.",
+"Severe mesh clipping at the center of the frame: Zoubida's right hand pokes through her white haik at chest height in tangled polygons, and the boy's left hand is raised to head height pressing directly into that clipped hand instead of gripping her haik at her hip.",
+"The boy's head is tilted back gazing up-left rather than turning horizontally to search the crowd."
+],
+"fix": "Reframe the crop lower or adjust the camera tilt so the boy and Zoubida's hip are centered without decapitating the women at the neck, lower Zoubida's right arm clear of her haik, and place the boy's left hand gripping her haik at hip height."},
+{"tile": "s15 32.0",
+"verdict": "fail",
+"defects": [
+"Identical framing defect to s15 28.9: the top frame edge cuts off Zoubida's head at the mouth veil and slices off Fatma's entire head at the collar.",
+"The boy's left hand and Zoubida's right hand remain locked in the same chest-high mesh intersection through Zoubida's white haik instead of the boy gripping her haik at her hip.",
+"The boy's pose and head angle are virtually unchanged from s15 28.9 instead of turning his head to search the souk."
+],
+"fix": "Turn the boy's head to look across toward screen right while keeping his left hand down on Zoubida's haik at hip level, and fix Zoubida's right hand clipping through her drapery."},
+{"tile": "s15 35.5",
+"verdict": "fail",
+"defects": [
+"The beat calls for a CU on Zoubida giving up, but the top border of the frame cuts straight across Zoubida's and Fatma's foreheads while leaving the boy prominent in the lower left.",
+"Zoubida's eyes are open and looking sideways to screen left with an upright torso instead of dropping her shoulders in a slow defeated nod with eyes down.",
+"Zoubida's right hand and the boy's left hand are still colliding and clipping through the front of her white haik."
+],
+"fix": "Shift the crop upward and leftward to frame Zoubida's full head and shoulders cleanly, lower her chin and gaze downward with dropped shoulders, and move both hands out of her chest mesh."},
+{"tile": "s15 38.5",
+"verdict": "fail",
+"defects": [
+"Framing still cuts through the top of Zoubida's eyes and Fatma's forehead instead of framing Zoubida's head cleanly for her CU reaction.",
+"A large dark mesh polygon clips through Zoubida's right eye socket, covering her right eye like a black patch while her left eye stays wide open.",
+"The boy's left forearm bends back against his own cheek while Zoubida's right hand continues to clip through her white haik at her chest."
+],
+"fix": "Raise the crop to keep Zoubida's full head in frame, fix the dark mesh clipping over her right eye so both eyelids lower cleanly with a bowed head and dropped shoulders, and lower the boy's arm to her hip."}
+],
+"worst_problem": "Characters hold frozen poses across multiple beats with severe hand-through-haik mesh clipping on Zoubida's chest, while the CU digital crops decapitate Zoubida and Fatma and expose an eye-socket mesh glitch on Zoubida."}

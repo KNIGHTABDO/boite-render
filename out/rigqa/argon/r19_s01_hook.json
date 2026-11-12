@@ -1,0 +1,58 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s01 0.2",
+   "verdict": "fail",
+   "defects": [
+    "Father (left): white djellaba hood juts straight out horizontally behind his upper back like a rigid wing/hump.",
+    "Father (left): upper arm is pinned rigidly to his ribs and his hand is curled in a closed side-grip instead of an open hand held out to Zoubida.",
+    "Father (left, prop): the gold and silver bracelets in his fist are scaled down to finger-ring size, far too small for Zoubida's wrist.",
+    "Zoubida (right): both forearms and hands are held out stiffly parallel like flat mannequin paddles, with her gaze angled slightly low toward her own hands rather than clearly locked onto the bracelets."
+   ],
+   "fix": "Relax Father's djellaba hood down his back, extend his forearm forward with an open palm holding wrist-sized gold and silver bracelets toward Zoubida, and soften Zoubida's paddle-like hands while aiming her eyes cleanly at the bracelets."
+  },
+  {
+   "tile": "s01 1.9",
+   "verdict": "fail",
+   "defects": [
+    "Father (left): white djellaba hood remains stuck horizontally straight out behind his upper back.",
+    "Father (left): arm stays pinned to his waist with a closed fist gripping tiny finger-ring-sized bracelets rather than an open palm presenting wrist bracelets toward Zoubida.",
+    "Zoubida (right): both hands remain stiff, flat, parallel mannequin paddles, with her downward gaze aimed slightly short toward her own hands."
+   ],
+   "fix": "Drop Father's rigid hood cleanly along his back, extend his open palm forward holding wrist-sized bracelets, and pose Zoubida's hands naturally with her gaze focused directly on his open hand."
+  },
+  {
+   "tile": "s01 5.5",
+   "verdict": "fail",
+   "defects": [
+    "Father (left): the deformed djellaba hood behind his upper back folds into a sharp backward-pointing spike.",
+    "Father (left): remains locked in the same stiff posture with elbow glued to his ribs and closed fingers pinching tiny ring-sized loops instead of an open hand held out.",
+    "Zoubida (right): although her gaze lifts to Father's face, her hands raised to her chest look stiff and slightly claw-like, and her closed neutral mouth misses the brief's small laugh."
+   ],
+   "fix": "Fix Father's spiked hood geometry and extend his open hand with wrist-sized bracelets toward Zoubida; relax Zoubida's stiff chest-level hands and give her a slight open smile/small laugh as she looks at him."
+  },
+  {
+   "tile": "s01 9.3",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed (back-right divan): distorted plush-toy proportions and oversized scale—his neckless spherical head is nearly as wide on screen as foreground Zoubida's head, attached to a seamless tan blob torso with tiny stubby flipper-like arm and legs.",
+    "Mohammed (back-right divan): upper chest and head float propped off the mattress while his visible left arm tucks tightly against his side rather than supporting his weight on the bed.",
+    "Mohammed (back-right divan): visible eye reads as an unreadable dark slit/smudge, looking asleep rather than awake.",
+    "Zoubida (center-left): lower dress drops like a rigid bell cut flat against the floor plane with no visible knees, tucked calves/feet, or pooled fabric to ground a kneeling pose; her torso stays upright instead of hunched in grief, and the orange waist sash bows stiffly outward off her right hip."
+   ],
+   "fix": "Rescale and re-articulate Mohammed with believable child proportions, distinct clothing, an arm propping or resting his chest on the mattress, and clearly open awake eyes; pose Zoubida hunched forward with visible knees, tucked feet, and pooled skirt fabric on the floor."
+  },
+  {
+   "tile": "s01 12.4",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed (back-right divan): oversized neckless head, seamless tan cylinder body, and vestigial stubby limbs read like a stuffed bear rather than a boy, with head scale nearly matching foreground Zoubida.",
+    "Mohammed (back-right divan): chest hovers propped above the mattress with no arm supporting it, and his eye remains an unreadable dark closed smudge instead of looking awake.",
+    "Zoubida (center-left): lower skirt ends in a flat horizontal cut on the floor like a rigid cone with no knees, feet behind her, or fabric pooling to show kneeling contact; her shoulders stay stiffly level and the orange sash juts stiffly off her right hip."
+   ],
+   "fix": "Replace or rescale Mohammed to realistic child proportions resting solidly on the mattress with open awake eyes, and reshape Zoubida's lower skirt, legs, sash, and hunched shoulders so she visibly kneels and sobs on the floor."
+  }
+ ],
+ "worst_problem": "Mohammed on the divan reads like an oversized-head, neckless tan plush toy with vestigial limbs, a floating chest, and unreadable eyes, while the patio beat suffers from Father's deformed jutting hood and closed fist holding tiny ring-sized bracelets at his waist."
+}

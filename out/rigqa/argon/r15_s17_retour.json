@@ -1,0 +1,252 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s17 0.3",
+   "verdict": "fail",
+   "defects": [
+    "Father is facing the camera in a stiff standing pose with both feet planted flat on the same step instead of climbing the stairs with his back to us and one foot stepping up to the next tread as required by b109.",
+    "The top of the father's turban/head is clipped by the top edge of the frame."
+   ],
+   "fix": "Rotate the father 180 degrees so his back is to the camera, pose him mid-climb with one foot stepping onto the next tread, and lower him or tilt the camera up so his head is not cropped."
+  },
+  {
+   "tile": "s17 1.8",
+   "verdict": "fail",
+   "defects": [
+    "Father is turned in left profile standing flat-footed on one step instead of climbing up the stairs with his back to the camera and one step forward.",
+    "The top of the father's headwear is clipped by the top frame edge."
+   ],
+   "fix": "Orient the father with his back to the camera in a climbing stride up the stairs and adjust framing so his head clears the top border."
+  },
+  {
+   "tile": "s17 4.9",
+   "verdict": "fail",
+   "defects": [
+    "Father remains static in left profile on the same tread with both feet together rather than climbing away up the staircase with his back to us.",
+    "Top of his turban is clipped by the top edge of the frame."
+   ],
+   "fix": "Pose the father from behind climbing up to the next step and reframe to keep his full head inside the shot."
+  },
+  {
+   "tile": "s17 8.3",
+   "verdict": "fail",
+   "defects": [
+    "The door on the left is closed behind the father instead of opening to silhouette him against the grey wall.",
+    "Mother is standing upright right beside the father looking diminutive (child-sized scale relative to him) instead of kneeling on the floor.",
+    "3D Mohammed on the mattress is composited directly on top of a painted sleeping child already present on the background plate mattress."
+   ],
+   "fix": "Show the open doorway behind the father, pose the mother kneeling at proper adult scale, and paint out the duplicate sleeping figure on the background plate."
+  },
+  {
+   "tile": "s17 12.5",
+   "verdict": "fail",
+   "defects": [
+    "Identical static pose to s17 8.3: door remains closed, mother stands upright at undersized scale beside the father instead of kneeling, and Mohammed lies face-down over the painted figure on the mattress."
+   ],
+   "fix": "Stage the mother kneeling with her head bowed, show the open door behind the father, and clean the background plate under Mohammed."
+  },
+  {
+   "tile": "s17 16.6",
+   "verdict": "fail",
+   "defects": [
+    "Father raises his right hand to his own beard/chin while standing by the left door instead of groping along the shelf (which is on the right wall).",
+    "Mother stands upright staring blankly ahead instead of kneeling without looking up."
+   ],
+   "fix": "Move and pose the father reaching/groping along the shelf for the lamp, and place the mother in a kneeling pose with her gaze lowered."
+  },
+  {
+   "tile": "s17 18.4",
+   "verdict": "fail",
+   "defects": [
+    "Father is still standing by the door with his hand at his chin rather than groping along the shelf.",
+    "Mother is standing upright in a stiff idle pose looking forward instead of kneeling with head bowed."
+   ],
+   "fix": "Animate the father's hand searching along the shelf and pose the mother kneeling on the floor."
+  },
+  {
+   "tile": "s17 21.0",
+   "verdict": "fail",
+   "defects": [
+    "On the line 'Sur l'étagère, contre la boîte à thé' (b111/b112), the father stands arms-down on the far left nowhere near the shelf/tea box on the right wall, and the mother stands upright staring straight ahead instead of kneeling without looking up."
+   ],
+   "fix": "Pose the mother kneeling with eyes cast down and have the father reach along the shelf next to the tea box."
+  },
+  {
+   "tile": "s17 22.4",
+   "verdict": "fail",
+   "defects": [
+    "Both father and mother are frozen in upright idle poses on the left; the mother is not kneeling and the father is not groping along the shelf."
+   ],
+   "fix": "Keep the mother kneeling without looking up while the father locates the lamp on the shelf."
+  },
+  {
+   "tile": "s17 24.8",
+   "verdict": "fail",
+   "defects": [
+    "Father asks 'Si Mohammed dort déjà ?' (b113) while staring straight ahead with arms at his sides instead of turning toward the mattress on the right.",
+    "Mother remains standing upright instead of kneeling."
+   ],
+   "fix": "Turn the father's body and gaze toward Mohammed's mattress on the right and keep the mother kneeling."
+  },
+  {
+   "tile": "s17 26.0",
+   "verdict": "fail",
+   "defects": [
+    "Father hasStill not turned toward the mattress on the right, and the mother is still standing upright in a rigid idle pose."
+   ],
+   "fix": "Rotate the father's head and torso to face Mohammed on the mattress and pose the mother kneeling."
+  },
+  {
+   "tile": "s17 28.1",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed delivers the line 'Non, papa. Je ne dors pas.' while lying completely face-down/curled away with his face buried and hidden, so he does not read as awake or speaking to his father.",
+    "The 3D boy mesh sits on top of the painted child on the background mattress."
+   ],
+   "fix": "Pose Mohammed lying awake with his head and eyes turned toward his father on the left, and remove the painted child beneath him."
+  },
+  {
+   "tile": "s17 29.1",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed remains motionless face-down with only the back of his cap visible while speaking."
+   ],
+   "fix": "Show Mohammed's face awake and looking left toward his father."
+  },
+  {
+   "tile": "s17 31.1",
+   "verdict": "fail",
+   "defects": [
+    "Medium crop cuts the mother's head in half along the bottom right edge of the frame.",
+    "Father holds his hand to his chin looking straight ahead instead of turning down toward Mohammed on the mattress."
+   ],
+   "fix": "Reframe or adjust staging so the mother's cut-off head is not at the bottom edge (she should be kneeling lower), and aim the father's gaze down toward Mohammed's mattress."
+  },
+  {
+   "tile": "s17 31.6",
+   "verdict": "fail",
+   "defects": [
+    "Mother's head is sliced off at the bottom right frame edge, and the father is still posing with his hand on his chin instead of looking at Mohammed."
+   ],
+   "fix": "Direct the father's gaze toward Mohammed and clear the mother's severed head from the bottom frame border."
+  },
+  {
+   "tile": "s17 33.4",
+   "verdict": "fail",
+   "defects": [
+    "On 'J'attendais ton retour', Mohammed is still lying face-down with his face hidden from the camera and from his father."
+   ],
+   "fix": "Turn Mohammed's head and upper body so his awake face looks toward his father."
+  },
+  {
+   "tile": "s17 33.9",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed remains face-down in an unchanging blob pose with his face completely obscured."
+   ],
+   "fix": "Keep Mohammed looking up at his father with his face visible."
+  },
+  {
+   "tile": "s17 35.7",
+   "verdict": "fail",
+   "defects": [
+    "The narration states 'Le visage de ma mère ruisselait encore de larmes' (b117), but the shot is a wide profile where her face is tiny, turned sideways, and shows no tears.",
+    "Mother's scale is too small relative to the father (she reaches only to his chest).",
+    "The 3D Mohammed actor has vanished from the mattress, leaving only the unpainted/flesh-toned background figure lying uncovered."
+   ],
+   "fix": "Scale the mother to proper adult proportions, show her tear-streaked face clearly (or turn her head so the tears read), and keep the consistent 3D Mohammed on the mattress."
+  },
+  {
+   "tile": "s17 39.0",
+   "verdict": "fail",
+   "defects": [
+    "Identical wide shot where the mother's tearful face cannot be seen, her scale is child-like compared to the father, and both actors stand stiffly with arms at their sides."
+   ],
+   "fix": "Correct the mother's scale and pose her so her tear-streaming face is visible to the viewer."
+  },
+  {
+   "tile": "s17 42.5",
+   "verdict": "fail",
+   "defects": [
+    "Father and mother remain locked in the exact same stiff arms-down standing pose as s17 35.7 and 39.0; mother is undersized."
+   ],
+   "fix": "Give the father a sympathetic speaking gesture toward the mother and correct her scale."
+  },
+  {
+   "tile": "s17 47.2",
+   "verdict": "fail",
+   "defects": [
+    "On 'Et voici tes bracelets' (b118: 'he holds the bracelets out'), the father raises an empty hand to his own beard/shoulder instead of holding the bracelets out toward the mother, and the bracelet prop is missing."
+   ],
+   "fix": "Extend the father's arm toward the mother holding the silver/gold bracelets prop clearly in his hand."
+  },
+  {
+   "tile": "s17 51.7",
+   "verdict": "fail",
+   "defects": [
+    "On 'Je ne veux pas les voir' (b119: 'she turns her face away'), the mother is facing straight left looking directly at the father with her hand at her chin instead of turning her head and gaze away."
+   ],
+   "fix": "Rotate the mother's head and torso away from the father and the bracelets in refusal."
+  },
+  {
+   "tile": "s17 56.0",
+   "verdict": "fail",
+   "defects": [
+    "Mother is still facing directly left toward the father in a neutral idle pose instead of turning her face away in aversion (b119)."
+   ],
+   "fix": "Keep the mother's face turned away from the offered bracelets."
+  },
+  {
+   "tile": "s17 60.3",
+   "verdict": "fail",
+   "defects": [
+    "In b120 ('he insists, palm firm'), the father holds an empty hand near his own chest with no bracelets visible instead of extending a firm palm offering the bracelets.",
+    "The mother on the right is vertically sliced in half by the right edge of the frame."
+   ],
+   "fix": "Pose the father extending his hand palm-up with the bracelets toward the mother, and reframe the camera so the mother is not cut in half at the right edge."
+  },
+  {
+   "tile": "s17 63.5",
+   "verdict": "fail",
+   "defects": [
+    "On 'Prends-les' (b120), the father's arms are hanging down at his sides with no bracelets and no insistent palm gesture.",
+    "Mother is still cut in half by the right edge of the frame."
+   ],
+   "fix": "Keep the father's hand firmly extended holding out the bracelets and adjust the framing to avoid slicing the mother on the right border."
+  },
+  {
+   "tile": "s17 67.1",
+   "verdict": "fail",
+   "defects": [
+    "On 'Ma mère prit les bijoux sans les regarder, ouvrit son coffre, et les jeta dedans' (b121), the mother looks directly at the father while reaching into empty air (no bracelets prop), and she is standing in the center of the room nowhere near the wooden chest on the right."
+   ],
+   "fix": "Have the mother take the bracelets prop from the father's hand while averting her gaze, then turn to the open wooden chest on the right."
+  },
+  {
+   "tile": "s17 70.4",
+   "verdict": "fail",
+   "defects": [
+    "For the second half of b121 ('ouvrit son coffre, et les jeta dedans'), both characters simply stand motionless in the center of the room with their arms at their sides; the chest on the right remains closed and untouched."
+   ],
+   "fix": "Stage the mother at the wooden chest on the right with its lid open, tossing the bracelets inside."
+  },
+  {
+   "tile": "s17 74.0",
+   "verdict": "fail",
+   "defects": [
+    "In b122 ('her hand on her heart: mon cœur ne ment pas'), the mother holds her right hand out in front of her mouth/chin instead of placing her palm flat over her heart."
+   ],
+   "fix": "Place the mother's hand flat against her chest over her heart."
+  },
+  {
+   "tile": "s17 78.3",
+   "verdict": "fail",
+   "defects": [
+    "On 'mais mon cœur ne ment pas' (b122), the mother drops both arms straight down at her sides instead of holding her hand on her heart."
+   ],
+   "fix": "Keep the mother's hand pressed to her heart through the end of the line."
+  }
+ ],
+ "worst_problem": "None of the key acting beats or prop interactions match the brief: the father climbs facing camera, never gropes along the shelf or holds out the bracelets prop, Mohammed speaks face-down, and the mother never kneels, never turns her face away, never throws the bracelets into the chest, and never puts her hand on her heart."
+}

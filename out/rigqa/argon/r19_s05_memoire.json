@@ -1,0 +1,114 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s05 0.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No change needed."
+  },
+  {
+   "tile": "s05 1.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No change needed."
+  },
+  {
+   "tile": "s05 5.2",
+   "verdict": "minor",
+   "defects": [
+    "In the center, the fqih tilts his head to viewer's right while his eyes dart sharply to viewer's left with raised lids and a stern, furrowed brow instead of soft lids and a benevolent expression."
+   ],
+   "fix": "Lower the fqih's upper eyelids, soften his brow, and keep his head tilted gently downward toward viewer's left aligned with his gaze."
+  },
+  {
+   "tile": "s05 8.9",
+   "verdict": "fail",
+   "defects": [
+    "In the upper-right quarter, the fqih is cropped headlessly across his chest by the top frame edge in what should be a medium shot focused on Mohammed.",
+    "At the bottom-left edge, Mohammed is cropped across the shins while leaving excessive empty background in the upper-left.",
+    "Mohammed's left hand (on the viewer's right side of the slate) hangs loosely near the lower-right corner without firmly gripping the board, while the slate leans steeply forward away from his face."
+   ],
+   "fix": "Reframe tighter and slightly lower on Mohammed to exclude the headless fqih and keep Mohammed's full seated lap inside the frame, and wrap his left fingers onto the slate's right edge while tilting the board slightly more upward toward him."
+  },
+  {
+   "tile": "s05 12.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No change needed."
+  },
+  {
+   "tile": "s05 16.3",
+   "verdict": "fail",
+   "defects": [
+    "Staging continuity breaks inside beat b018: Mohammed is completely missing from his center-left floor place and the round lamp table sits forward in front of the father's knees, contradicting s05 19.5.",
+    "On the right bench, the mother is scaled noticeably too small (~30% smaller head and torso) relative to the father at nearly the same depth.",
+    "On the left bench, the father leans forward with rounded shoulders and hands clenched closely in front of his chest instead of a proud 'chest out' posture.",
+    "At the bottom-right, the mother's right bare foot sits flat on the rug at a stiff ankle angle while her left foot appears partially sunk behind her stiff skirt hem."
+   ],
+   "fix": "Stage Mohammed in his center-left floor lunch place with the round table pushed back to match s05 19.5, scale the mother up by ~25-30% to match adult proportions next to the father, lift the father's chest with open shoulders, and relax the mother's feet and skirt contact on the rug."
+  },
+  {
+   "tile": "s05 19.5",
+   "verdict": "minor",
+   "defects": [
+    "On the right bench, the mother remains noticeably undersized relative to the father and has a smaller head than seated young Mohammed in the center-left.",
+    "On the left bench, the father leans slightly forward rather than presenting a clearly puffed 'chest out' posture, and his closer right hand looks stiffly curled.",
+    "At the bottom-center and bottom-right, the mother's bare foot extends stiffly from beneath a rigid arched skirt hem, and both Mohammed's seated tunic and her foot lack grounding contact shadows on the rug."
+   ],
+   "fix": "Scale the mother up to match the father's adult proportions, open and lift the father's chest slightly more proudly, soften the mother's skirt hem over her ankles, and add grounding contact shadows on the rug."
+  },
+  {
+   "tile": "s05 23.0",
+   "verdict": "fail",
+   "defects": [
+    "The shot is framed as a loose medium two-shot from the father's hips up (showing the doorway on the left, Mohammed in the right third, and excess headroom) rather than a close-up on the father.",
+    "On the left, the father's head is level/slightly forward instead of 'chin up'.",
+    "At center, the father's extended left hand is held sideways/cupped inward rather than an open palm offered upward/outward on 'savant'."
+   ],
+   "fix": "Tighten the crop onto the father's chest and head for a true close-up, tilt his chin up proudly, and turn his extended left hand palm-upward/outward in an offering gesture inside the frame."
+  },
+  {
+   "tile": "s05 26.3",
+   "verdict": "minor",
+   "defects": [
+    "Still framed as a medium two-shot (showing down to the father's hips, the left doorway, and Mohammed's chest/shoulders) rather than a close-up on the father.",
+    "The father's upward gaze tilts slightly above his wife's eyeline off-screen right, and his closer right hand hovers stiffly curled near his chest."
+   ],
+   "fix": "Tighten the crop closer to the father's shoulders and head while keeping his offered open palm cleanly inside the right edge, lower his eye gaze slightly toward his wife off-screen right, and relax his right hand."
+  },
+  {
+   "tile": "s05 29.8",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No change needed."
+  },
+  {
+   "tile": "s05 35.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No change needed."
+  },
+  {
+   "tile": "s05 40.2",
+   "verdict": "fail",
+   "defects": [
+    "At the upper-left and lower-left edges, the father's face is sliced vertically down his nose and beard and his white sleeve cuts across the lower-left corner.",
+    "Cropped from the back-3/4 wide camera behind Mohammed, Mohammed is turned mostly away from camera so his mouth and far side of his face are hidden during his reaction.",
+    "Mohammed's upper back and shoulders remain angled slightly forward toward the father rather than leaning back away from the idea, and his left eye shows excessive white sclera while glancing sharply up-left."
+   ],
+   "fix": "Shift and tighten the crop slightly right to exclude the father's sliced face and arm, lean Mohammed's upper torso clearly back toward camera-right, and turn his head further toward camera so his face and head shake read cleanly."
+  },
+  {
+   "tile": "s05 41.8",
+   "verdict": "minor",
+   "defects": [
+    "At the bottom-left edge, a wedge of the father's white forearm/robe still intrudes and is sliced by the frame border.",
+    "Mohammed's shoulders and spine remain vertical/slightly hunched forward rather than visibly leaning back from the idea.",
+    "Mohammed's left eye shows a wide patch of white sclera glancing toward the far-left edge, and the back-3/4 angle leaves his mouth largely obscured."
+   ],
+   "fix": "Nudge the crop slightly right to clear the father's sleeve from the lower-left corner and lean Mohammed's shoulders noticeably back toward camera-right."
+  }
+ ],
+ "worst_problem": "Within the same bedroom beat (b018), Mohammed completely disappears and the lamp table shifts forward in s05 16.3 before reappearing in s05 19.5, while the mother remains noticeably undersized and several digital CU crops either slice the father's face at the edge (s05 40.2) or play far too loose (s05 23.0)."
+}

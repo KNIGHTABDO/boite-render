@@ -1,0 +1,101 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s08 0.3",
+"verdict": "minor",
+"defects": [
+"Framing: top of the father's turban is clipped by the upper frame edge, and Mohammed is cut off at the hips at the bottom edge, hiding his hands and legs.",
+"Mesh/clothing: a sharp triangular spike of cloth protrudes from the lower back of the father's djellaba on the left, the mother's skirt bunches into a thick inflated roll around her hips above the pouf, and her hands are buried inside her lap mesh.",
+"Staging: the characters kneel on the bare foreground floor in front of the painted background table rather than around a lunch setup."
+],
+"fix": "Widen/lower the medium framing so the father's full turban and Mohammed's hands/lap are in frame, and fix the father's back-hem mesh spike and the mother's buried hands."},
+{"tile": "s08 1.8",
+"verdict": "fail",
+"defects": [
+"Acting/gaze: Mohammed looks straight ahead toward the camera instead of searching for the word with his eyes up-left as directed for b038.",
+"Framing: the father's turban is cut off at the top edge and Mohammed's hands/lower body are cropped out at the bottom edge.",
+"Mesh/clothing: sharp triangular cloth spike at the lower back of the father's robe and mother's hands intersecting her skirt mesh."
+],
+"fix": "Direct Mohammed's gaze up-left from the start of his line and pull the medium crop back to include the father's turban and Mohammed's hands."},
+{"tile": "s08 5.0",
+"verdict": "minor",
+"defects": [
+"Acting: while Mohammed now looks up-left, both parents remain completely frozen like mannequins in the exact same pose and expression as s08 0.3.",
+"Framing: father's turban is clipped at the top frame edge and Mohammed's hands and legs are cut off at the bottom edge.",
+"Mesh/clothing: persistent triangular spike on the back of the father's robe and mother's hands buried inside her lap mesh."
+],
+"fix": "Add subtle listening reactions to the parents and adjust the medium crop to keep the father's turban and Mohammed's hands visible."},
+{"tile": "s08 8.6",
+"verdict": "fail",
+"defects": [
+"Framing: badly off-center crop leaves the left third of the frame empty (door/wall), pushes Mohammed's head into the bottom-right corner cut off at the chin, and leaves a stray sliver of the mother's skirt on the right border.",
+"Acting: the father leans forward stiffly from the waist with a flat, blank expression rather than looking amused, and his mouth barely opens for his line."
+],
+"fix": "Pan the crop right and slightly down to center the father-son two-shot cleanly (removing the mother's skirt sliver) and give the father a warm, amused smile with clear lip-sync."},
+{"tile": "s08 9.0",
+"verdict": "fail",
+"defects": [
+"Framing: same unbalanced crop with dead space on the left, Mohammed's head severed at the chin in the lower-right corner, the father's hands/knees cut off at the bottom, and the mother's skirt intruding on the far right.",
+"Acting: nearly identical to s08 8.6; the father's face reads neutral rather than amused and Mohammed is frozen in the corner."
+],
+"fix": "Re-center the two-shot on the father and Mohammed so both chests/shoulders are in frame and animate an amused expression on the father."},
+{"tile": "s08 10.6",
+"verdict": "fail",
+"defects": [
+"Framing/acting: because the camera crops Mohammed at the hips at the bottom edge, his hands are completely out of frame, making the directed 'hands fidget' action for b040 invisible.",
+"Mesh/clothing: Mohammed's chin sinks into his collar crease when bowing his head, and the triangular spike still sticks out from the lower back of the father's robe.",
+"Framing: top of the father's turban is clipped by the upper frame border."
+],
+"fix": "Raise Mohammed's fidgeting hands to chest/waist level (and loosen the bottom crop) so the hand-fidgeting beat clearly reads on screen."},
+{"tile": "s08 11.1",
+"verdict": "fail",
+"defects": [
+"Framing/acting: Mohammed's hands remain completely outside the bottom frame edge so the hand-fidgeting beat is unseen, and his pose is entirely static compared to s08 10.6.",
+"Framing/mesh: father's turban clipped at the top edge, sharp spike protruding from the back of the father's robe, and both parents frozen."
+],
+"fix": "Bring Mohammed's hands up in front of his torso with visible finger/wrist fidgeting and widen the crop so his hands and the father's turban are inside the frame."},
+{"tile": "s08 12.7",
+"verdict": "fail",
+"defects": [
+"Acting: Mohammed delivers the spoken line ('Les bijoux, c'est beau comme les fleurs.') with his head still buried downward in the exact same pose as s08 10.6 and his mouth completely closed.",
+"Framing/mesh: father's turban clipped at top, Mohammed's hands/legs cut off at bottom, spike on the back of the father's robe, and both parents static."
+],
+"fix": "Animate subtle whispered lip-sync on Mohammed and begin lifting his head/gaze slightly toward the end of the phrase."},
+{"tile": "s08 14.4",
+"verdict": "fail",
+"defects": [
+"Acting: misses the b041 director's beat—Mohammed fails to raise his eyes on 'fleurs'; his head and gaze remain bowed straight at the floor identically to s08 11.1 and 12.7 with a closed mouth.",
+"Framing/mesh: top of the father's turban clipped, Mohammed's lower body/hands cropped out at the bottom, and cloth spike on the back of the father's djellaba."
+],
+"fix": "Have Mohammed raise his eyes (with his head still slightly bowed/shy) to look up at his parents on the word 'fleurs'."},
+{"tile": "s08 16.9",
+"verdict": "fail",
+"defects": [
+"Acting: the father fails to 'rock back laughing' for b042—he tilts his torso back only a few degrees while keeping his hands glued to his knees and his mouth closed.",
+"Mesh/clipping: the mother's raised left hand/fingers clip directly into her left cheek and mouth; the spike on the back of the father's robe remains.",
+"Framing: even in the wide shot, the bottom of the cushions and Mohammed's knees/feet are clipped by the lower frame border."
+],
+"fix": "Animate a real open-mouthed laugh on the father with his torso rocking back and shoulders/hands releasing from his knees, and pull the mother's left hand slightly forward so it does not intersect her cheek."},
+{"tile": "s08 18.0",
+"verdict": "fail",
+"defects": [
+"Acting: neither parent reads as bursting into laughter—the father sits stiffly with hands on his knees and mouth closed, and the mother is frozen in the same pose as s08 16.9.",
+"Mesh/clipping: mother's left hand still penetrates her cheek mesh and the father's back robe spike persists.",
+"Framing: cushions and Mohammed's lower legs are clipped at the bottom edge of the wide frame."
+],
+"fix": "Give both parents dynamic laughing poses (open mouths, tilted heads/shoulders, father rocking back off his knees) and tilt the wide camera down slightly so their cushions and feet sit on the floor inside the frame."},
+{"tile": "s08 20.2",
+"verdict": "minor",
+"defects": [
+"Acting: instead of a slow sceptical side-eye left with a still head, Mohammed rotates his whole head up-left with wide innocent eyes, while both parents have snapped back instantly to their frozen default pose from s08 0.3.",
+"Framing/mesh: father's turban clipped at the top edge, Mohammed cut off at the hips at the bottom edge, spike on the back of the father's robe, and mother's hands buried in her skirt."
+],
+"fix": "Keep Mohammed's head facing forward with narrowed lids so his gaze shifts sideways to the left as a true side-eye, and keep residual post-laugh smiles on the parents."},
+{"tile": "s08 24.2",
+"verdict": "minor",
+"defects": [
+"Acting: Mohammed turns his whole head up-right with wide eyes rather than giving a sceptical side-eye right, while both parents remain completely frozen like statues.",
+"Framing/mesh: top of the father's turban clipped, Mohammed's hands/legs cut off at the bottom edge, cloth spike on the back of the father's robe, and mother's hands hidden inside her lap mesh."
+],
+"fix": "Keep Mohammed's head level facing camera with half-lowered sceptical eyelids while shifting his pupils hard right toward the mother."}
+],
+"worst_problem": "Key acting beats from the brief are missing or invisible—Mohammed's fidgeting hands are cropped out of the frame in b040, he never raises his eyes on 'fleurs' in b041, and the father stays stiffly posed with hands on his knees and mouth closed instead of rocking back laughing in b042."}

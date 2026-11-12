@@ -1,0 +1,106 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s04 0.3",
+"verdict": "minor",
+"defects": [
+"Sidi Mohammed (white tunic, center foreground) is positioned directly in front of the Fqih on the same vertical camera axis, creating a totem-pole overlap where the boy's head blocks the Fqih's knees and lower torso.",
+"All three seated boys (red fez on left, Sidi Mohammed in center, bareheaded boy on right) share the exact same cloned seated pose and identical raised left-hand gesture next to their slates."
+],
+"fix": "Shift Sidi Mohammed slightly screen-left into the gap between the left boy and the Fqih, and vary the three boys' seated postures and arm positions so they read as hot and tired rather than cloned."
+},
+{"tile": "s04 2.8",
+"verdict": "minor",
+"defects": [
+"Sidi Mohammed in the center foreground remains stacked directly in front of the Fqih along the vertical axis.",
+"The three students remain frozen in identical cloned poses with their left hands hovering in the exact same position beside their slates."
+],
+"fix": "Offset Sidi Mohammed screen-left off the Fqih's axis and give each boy a distinct slumped, heat-exhausted posture."
+},
+{"tile": "s04 6.1",
+"verdict": "minor",
+"defects": [
+"In this tighter crop, the vertical stacking of Sidi Mohammed directly in front of the Fqih is even more prominent, and the three boys still hold the same cloned pose and hand gesture."
+],
+"fix": "Keep the staggered student placement from the wide shot and vary the boys' poses so the transition to abandoning the hot Msid reads naturally."
+},
+{"tile": "s04 9.8",
+"verdict": "fail",
+"defects": [
+"Sidi Mohammed (in white) is almost completely occluded in the doorway, wedged behind the Fqih's left shoulder and the brown-robed boy's head so only half of his face is visible.",
+"The Fqih repeats the exact same brow-wiping right-hand gesture from the hot Msid while walking through the doorway.",
+"The narration mentions carrying both slates and inkwells ('nos planchettes et nos encriers'), but no inkwells are visible."
+],
+"fix": "Spread the three characters across the doorway threshold so Sidi Mohammed is clearly visible in the foreground beside the brown-robed boy, and lower the Fqih's right arm into a natural walking or guiding gesture."
+},
+{"tile": "s04 13.7",
+"verdict": "minor",
+"defects": [
+"The Fqih is still holding the same brow-wiping gesture inside the cool sanctuary.",
+"Sidi Mohammed and the brown-robed boy stand stiffly facing straight into the camera with identical symmetrical two-handed grips on their slates.",
+"The callout label at bottom-left ('un mausolée : la tombe d'un saint') has dark grey text with no backing panel over busy tilework, making it nearly illegible."
+],
+"fix": "Turn the two boys slightly three-quarter toward the interior of the mausoleum looking around at the space, drop the Fqih's hand from his forehead, and add an opaque light backing panel behind the bottom-left callout text."
+},
+{"tile": "s04 17.7",
+"verdict": "minor",
+"defects": [
+"The beat introduces the saint's tomb ('Ce mausolée abritait la tombe d'un saint'), but the green catafalque is cut off on the left edge while a small girl in a pink kaftan stands dead-center facing the camera with a stiff waving gesture.",
+"The girl in pink is scaled too small relative to the wooden screen of the tomb beside her."
+],
+"fix": "Frame or stage the shot to feature the saint's tomb clearly without a visitor waving directly at the camera, or turn the visitor toward the tomb in a respectful posture at proper adult/adolescent scale."
+},
+{"tile": "s04 23.9",
+"verdict": "fail",
+"defects": [
+"The narration states that young women came on Thursdays to walk seven times around the tomb ('venaient faire sept fois le tour du tombeau'), but a single woman in green stands stationary facing the camera and waving with the exact same raised right-hand pose as the girl in s04 17.7.",
+"With the tomb pushed against the left edge of the frame, there is no visible path around it to sell the circumambulation."
+],
+"fix": "Stage at least two young women in mid-stride walking around the catafalque (oriented in profile/three-quarter along the tomb's side rather than waving at the camera)."
+},
+{"tile": "s04 29.4",
+"verdict": "minor",
+"defects": [
+"On the line 'La grande salle était d'une fraîcheur de paradis', Sidi Mohammed stands dead-center facing the camera in the exact same stiff, mannequin-like slate-holding pose from s04 13.7, conveying nothing of the refreshing coolness of the hall."
+],
+"fix": "Have Sidi Mohammed lower his slate to one side, tilt his head back slightly, and look up at the vaulted ceiling in a relaxed pose that expresses relief and coolness."
+},
+{"tile": "s04 31.6",
+"verdict": "minor",
+"defects": [
+"Same stiff frontal pose as s04 29.4: Sidi Mohammed clutches his slate symmetrically against his chest and stares blankly ahead instead of reacting to the cool sanctuary."
+],
+"fix": "Use the relaxed, upward-looking pose from s04 29.4 so the medium crop reads as enjoying the sanctuary's coolness."
+},
+{"tile": "s04 34.4",
+"verdict": "fail",
+"defects": [
+"The Fqih's raised right hand is positioned directly over the center of his face, with his index finger and knuckles obscuring and clipping against his nose and right eye instead of reading as a clear 'silence' gesture in profile/three-quarter."
+],
+"fix": "Move the Fqih's right hand a few inches forward away from his face with the index finger clearly raised vertically in front of his lips so both eyes and the bridge of his nose remain unobstructed."
+},
+{"tile": "s04 39.4",
+"verdict": "fail",
+"defects": [
+"Sidi Mohammed (white tunic) bends over directly behind the blue-robed boy's buttocks, with his head right at the blue boy's rear and his hands dangling in empty air over the floor tiles far from the wall fountain.",
+"Even the blue-robed boy's hands hang in mid-air below the fountain rim rather than reaching the water basin/spout."
+],
+"fix": "Position both boys side-by-side in depth around the fountain basin with their hands actually reaching into the basin water, eliminating the front-to-back buttock overlap."
+},
+{"tile": "s04 44.1",
+"verdict": "minor",
+"defects": [
+"The line says the boys are lined up behind the master ('alignés derrière notre maître'), but the Fqih stands nearly inside the row of boys so that Sidi Mohammed (white tunic) overlaps the lower back of the Fqih's robe.",
+"While the Fqih raises his hands for the opening of prayer, all four boys stand with their arms hanging stiffly at their sides."
+],
+"fix": "Move the Fqih further forward toward the back wall (or step the four boys slightly back toward the camera) to create clear separation between the imam and the aligned row of students, and match the boys' prayer arm posture."
+},
+{"tile": "s04 48.7",
+"verdict": "fail",
+"defects": [
+"When bowing, Sidi Mohammed (white tunic) and the blue-robed boy directly behind the Fqih crash visually into the Fqih's white robe, merging Sidi Mohammed's head and torso into the Fqih's backside.",
+"All five characters reuse the awkward half-bent pose with arms dangling loosely in mid-air rather than a proper prayer bow (hands resting on knees) or prostration (forehead and hands on the floor)."
+],
+"fix": "Separate the Fqih in depth ahead of the boys' line and pose all five characters in a proper ruku' (backs flat, hands resting on knees) or sujud (prostrated on the mat) with no mesh or silhouette collision."
+}
+],
+"worst_problem": "In s04 39.4 (ablutions) and s04 48.7 (prayer), Sidi Mohammed bends over directly behind another character's buttocks with his hands dangling in empty air, creating comical head-to-rear collisions instead of touching the fountain water or performing a proper prayer posture."}

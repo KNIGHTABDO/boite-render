@@ -1,0 +1,65 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s21 0.2",
+"verdict": "fail",
+"defects": [
+"Mohammed is staged on the back-left mattress instead of the right mattress specified for chambre_jour.",
+"Mohammed lies sideways like a rigid plank with his head twisted toward the camera and wide eyes instead of lying on his back with heavy eyes and hands resting on his chest.",
+"Mohammed's brown leg/hip mesh clips heavily through the side of his white djellaba, and his arms are buried inside his torso/robe.",
+"Camera framing is a wide shot of the room rather than the requested medium shot (M) on Mohammed."
+],
+"fix": "Place Mohammed on the right mattress lying on his back with both hands resting on his chest, fix the leg-through-robe mesh clipping, and frame him in a medium shot."},
+{"tile": "s21 1.7",
+"verdict": "fail",
+"defects": [
+"Mohammed remains on the wrong (back-left) mattress in a stiff, horizontal mannequin pose with his head turned toward the camera.",
+"Severe mesh clipping of Mohammed's brown legs/hips through his white robe, with both arms/hands hidden instead of resting on his chest.",
+"Shot is still a wide room view rather than a medium framing on Mohammed."
+],
+"fix": "Pose Mohammed naturally on his back on the right mattress with hands on his chest, resolve the robe clipping, and move the camera in to a medium shot."},
+{"tile": "s21 7.2",
+"verdict": "fail",
+"defects": [
+"The push-in stops at a wide-medium crop instead of reaching the requested close-up (CU) on Mohammed.",
+"Mohammed is still in a rigid sideways plank pose on the back-left mattress with hands hidden instead of resting on his chest.",
+"Mohammed's brown body/leg mesh clips through the middle of his white robe."
+],
+"fix": "Crop in to a true close-up on Mohammed on the right mattress with his hands visible on his chest and clean robe geometry."},
+{"tile": "s21 12.2",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 15.0",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 18.3",
+"verdict": "fail",
+"defects": [
+"Zoubida looks like a miniature standing figure in the middle of the floor (or sunk through the floor to her knees with a flat standing hem) rather than properly kneeling beside the mattress.",
+"Zoubida holds her hands clasped at her chest/chin instead of pressing both palms to her temples as directed.",
+"Zoubida's head overlaps directly in front of Mohammed's face, blocking him.",
+"Mohammed in the background still exhibits the stiff sideways pose and brown mesh clipping through his white robe."
+],
+"fix": "Scale and pose Zoubida clearly kneeling on the floor beside the right mattress without blocking Mohammed's head, and raise both of her palms to her temples."},
+{"tile": "s21 22.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's hands are held at her chest instead of both palms pressed to her temples.",
+"Zoubida appears to be standing at miniature scale (or sunk into the floor) rather than kneeling by the bed, with an unnaturally harsh black shadow streak across the floor.",
+"Zoubida's eye-line points left toward the lamp table rather than down at Mohammed.",
+"Mohammed remains on the back-left mattress in a stiff plank pose with his brown leg mesh clipping through his white djellaba."
+],
+"fix": "Put Zoubida in a clear kneeling pose next to Mohammed's mattress, bring both palms to her temples, and direct her gaze down toward Mohammed's face."},
+{"tile": "s21 26.3",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 32.7",
+"verdict": "minor",
+"defects": [
+"The zoom crop cuts right through Mohammed's mouth and chin at the bottom edge of the frame."
+],
+"fix": "Shift the crop slightly downward or widen it so Mohammed's full head and face remain inside the frame."}
+],
+"worst_problem": "Mohammed is rigidly posed like a sideways plank on the wrong mattress with severe leg-through-robe mesh clipping and missing hands on his chest, while Zoubida looks like a miniature standing doll clutching her chest instead of kneeling by the bed with her palms to her temples."}

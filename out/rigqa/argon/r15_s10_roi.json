@@ -1,0 +1,224 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s10 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida on tread 1 has her head turned toward the back wall so her headscarf completely hides her face from the camera.",
+    "Zoubida's right hand clips slightly into her hip/skirt while her left arm hangs stiffly at her side."
+   ],
+   "fix": "Rotate Zoubida's head and torso slightly toward camera (three-quarter profile) so her face and gaze up at Mohammed read clearly, and clean up the right-hand hip contact."
+  },
+  {
+   "tile": "s10 1.8",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida delivers 'Que fais-tu dans l'escalier ?' with the back of her headscarf to the camera, completely hiding her face.",
+    "Her pose is completely static from s10 0.3 with her right hand clipping slightly into her hip."
+   ],
+   "fix": "Angle Zoubida into a three-quarter profile so her face and lip-sync are visible while looking up at Mohammed."
+  },
+  {
+   "tile": "s10 2.2",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida is still speaking with her face completely hidden behind her headscarf.",
+    "Both actors are frozen in the exact same pose as s10 0.3 and s10 1.8."
+   ],
+   "fix": "Turn Zoubida's head enough toward camera to show her face while speaking."
+  },
+  {
+   "tile": "s10 3.8",
+   "verdict": "fail",
+   "defects": [
+    "Duplicate tile timestamp: 's10 3.8' is printed twice in row 2 (columns 1 and 2) with identical frames.",
+    "Zoubida's face remains completely hidden by her headscarf while listening to Mohammed."
+   ],
+   "fix": "Remove the duplicate s10 3.8 tile and orient Zoubida's head so her face is visible looking at Mohammed."
+  },
+  {
+   "tile": "s10 3.8",
+   "verdict": "fail",
+   "defects": [
+    "Exact duplicate of the preceding 's10 3.8' tile.",
+    "Zoubida's headscarf still hides her entire face from the camera."
+   ],
+   "fix": "Replace this duplicate timestamp with the proper beat frame and keep Zoubida's face visible in three-quarter view."
+  },
+  {
+   "tile": "s10 5.2",
+   "verdict": "fail",
+   "defects": [
+    "Bad framing: Mohammed at bottom-left is cut off at the neck by the bottom frame edge so only the top of his head appears in shot.",
+    "Zoubida bends forward with the top/back of her headscarf facing the camera, completely hiding her face while she asks 'À quoi tu joues ?'.",
+    "Zoubida's hands on her hips clip into her orange waist sash and are cut by the bottom edge of the frame."
+   ],
+   "fix": "Reframe the medium shot lower and wider to include Mohammed's full crouched body and Zoubida's waist, unclip her hands from her sash, and angle her head so her face is visible."
+  },
+  {
+   "tile": "s10 5.5",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed is decapitated by the bottom frame edge, leaving only the top of his head visible at bottom-left.",
+    "Zoubida's face is completely hidden by the top of her headscarf while speaking, and her hands clip into her orange sash at the bottom crop line."
+   ],
+   "fix": "Tilt/pan the crop down to include Mohammed's crouched body and Zoubida's hands cleanly on her hips, and show Zoubida's face."
+  },
+  {
+   "tile": "s10 7.1",
+   "verdict": "fail",
+   "defects": [
+    "Pose brief violation: Zoubida must keep both hands on her hips from 'À quoi tu joues ?' through 'accroupi sur une marche', but here she has dropped both arms to her sides.",
+    "Zoubida's face is still hidden behind her headscarf."
+   ],
+   "fix": "Keep both of Zoubida's hands on her hips through b057 ('Au roi') and angle her head so her face reads."
+  },
+  {
+   "tile": "s10 7.2",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida's arms hang down at her sides instead of keeping both hands on her hips as required from 'À quoi tu joues ?' through 'accroupi sur une marche'.",
+    "Zoubida's headscarf still hides her face completely."
+   ],
+   "fix": "Maintain Zoubida's hands-on-hips pose and three-quarter facial visibility through this beat."
+  },
+  {
+   "tile": "s10 8.7",
+   "verdict": "fail",
+   "defects": [
+    "Bad framing: although the line says 'accroupi sur une marche !', the bottom frame edge cuts right through Mohammed's eyes so only his forehead and skull cap are visible, and cuts off Zoubida's feet.",
+    "Zoubida delivers the entire line with the back of her headscarf to the camera, hiding her face completely.",
+    "Zoubida's hands clip into her orange sash at the waist."
+   ],
+   "fix": "Widen or lower the framing so Mohammed's crouched pose on tread 3 and Zoubida's feet are fully in frame, unclip her hands at the hips, and turn her head to show her face."
+  },
+  {
+   "tile": "s10 11.3",
+   "verdict": "fail",
+   "defects": [
+    "Bottom frame edge cuts Mohammed off across the eyes (hiding his face and crouch) and cuts off Zoubida's feet.",
+    "Zoubida's face remains completely hidden behind her headscarf while speaking, and her hands clip into her waist sash."
+   ],
+   "fix": "Reframe to keep Mohammed's full crouched body and Zoubida's feet inside the shot, fix the waist clipping, and show Zoubida's face."
+  },
+  {
+   "tile": "s10 14.4",
+   "verdict": "minor",
+   "defects": [
+    "Scale discrepancy in the painted plate: the two neighbours by the well on the right are painted noticeably smaller in scale than Fatma, Rahma, and Zoubida on the left.",
+    "Costume/style mismatch with the 3D patio shots later in the scene (here Rahma wears a white apron and sleeves and Zoubida lacks her orange sash)."
+   ],
+   "fix": "Scale up the two women by the well to match the perspective of the courtyard and unify the character costumes between the 2D painted plates and 3D patio renders."
+  },
+  {
+   "tile": "s10 15.0",
+   "verdict": "minor",
+   "defects": [
+    "Same static painted plate as s10 14.4 with underscaled neighbours by the well on the right and costume discrepancies against the 3D patio shots."
+   ],
+   "fix": "Match the scale of the women by the well and keep character outfits consistent across 2D and 3D patio beats."
+  },
+  {
+   "tile": "s10 16.9",
+   "verdict": "fail",
+   "defects": [
+    "Brief requires 'Rahma teases (b060)', but this tile merely crops the b059 laughing painting: Rahma (center, green) stands silent and motionless with hands clasped while Fatma (right, red) holds her hand to her mouth laughing.",
+    "Bottom edge of the crop cuts off the feet of Zoubida, Rahma, and Fatma and cuts through the kneeling neighbour at bottom-right."
+   ],
+   "fix": "Stage b060 with Rahma actively teasing Zoubida (open mouth, teasing gesture toward Zoubida) and reframe so the women's feet are not clipped at the bottom edge."
+  },
+  {
+   "tile": "s10 19.2",
+   "verdict": "fail",
+   "defects": [
+    "Identical static crop of the b059 painting: Rahma remains silent with clasped hands instead of teasing Zoubida (b060), while Fatma holds the frozen laugh pose.",
+    "All three standing women's feet and the lower half of the woman at bottom-right are cut off by the bottom frame edge."
+   ],
+   "fix": "Show Rahma delivering the teasing line with an active gesture and full-body framing that keeps feet inside the frame."
+  },
+  {
+   "tile": "s10 22.1",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 24.7",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed's close-up pose is completely static from s10 22.1 over 2.6 seconds, with his upper arms splayed out slightly at the bottom crop edge."
+   ],
+   "fix": "Relax Mohammed's shoulders inward so they read as resting on his knees and add a subtle head/eye shift."
+  },
+  {
+   "tile": "s10 27.7",
+   "verdict": "minor",
+   "defects": [
+    "Jarring continuity jump from the painted patio (s10 14.4–19.2) to a different 3D patio plate: Fatma and the neighbours by the well vanish, the architecture changes, and Rahma's white apron disappears.",
+    "Brief calls for 'Zoubida's quiet smile (b062)', but Zoubida is staged in strict side profile with both hands raised to her chest so her smile barely reads."
+   ],
+   "fix": "Keep consistent patio staging/costumes across the scene and angle Zoubida toward camera with relaxed arms so her quiet smile is clearly visible."
+  },
+  {
+   "tile": "s10 34.2",
+   "verdict": "minor",
+   "defects": [
+    "Both Zoubida and Rahma hold almost the exact same pose as s10 27.7 (6.5 seconds earlier), with Zoubida in strict profile raising both hands to her chest instead of a simple quiet smile."
+   ],
+   "fix": "Turn Zoubida slightly toward camera with lowered hands so her quiet smile reads clearly."
+  },
+  {
+   "tile": "s10 39.9",
+   "verdict": "fail",
+   "defects": [
+    "Fails b063 brief ('Rahma complains with palms up from the first word'): instead of animating Rahma with palms up, this shot reuses the static b059/b060 painting crop where Rahma stands silent with her hands clasped at her waist and Fatma is still laughing.",
+    "Abrupt style, background, and costume jump from the 3D patio in s10 34.2 back to the 2D painted plate.",
+    "Bottom frame edge cuts off the women's feet and bisects the kneeling woman at bottom-right."
+   ],
+   "fix": "Replace the reused b059 painting crop with a proper b063 shot in the consistent patio setup showing Rahma complaining with both palms turned up from the first word."
+  },
+  {
+   "tile": "s10 43.1",
+   "verdict": "fail",
+   "defects": [
+    "Still displays the reused b059/b060 painting crop: Rahma's hands remain clasped at her waist instead of palms up (b063), Fatma is frozen laughing, costumes/background clash with adjacent 3D shots, and feet are cut off at the bottom frame edge."
+   ],
+   "fix": "Show Rahma delivering her complaint with palms up in the same visual style and setting as b062 and b064."
+  },
+  {
+   "tile": "s10 46.6",
+   "verdict": "fail",
+   "defects": [
+    "Abrupt continuity jump back from the 2D painting in s10 43.1 to the 3D patio (Fatma and the well vanish again and Rahma loses her white apron).",
+    "Brief requires 'Zoubida answers with a raised hand (b064)', but Zoubida keeps both hands bunched together against her chest in virtually the same pose she held in b062 (s10 27.7/34.2), while Rahma remains frozen in her s10 27.7 pose."
+   ],
+   "fix": "Give Zoubida a clear single raised-hand gesture for b064 and maintain consistent staging and characters across the patio beats."
+  },
+  {
+   "tile": "s10 49.5",
+   "verdict": "fail",
+   "defects": [
+    "Both Zoubida and Rahma remain frozen in the same pose as s10 46.6 (and b062), with Zoubida holding both hands at her chest rather than a clear raised hand, and the third woman (Fatma) missing."
+   ],
+   "fix": "Pose Zoubida with one distinct raised hand answering Rahma and keep the third neighbour present for continuity with b065."
+  },
+  {
+   "tile": "s10 52.8",
+   "verdict": "fail",
+   "defects": [
+    "Reuses the exact b059 laughing painting from s10 14.4 for b065 ('the three women together', line 'Il n'y a de Dieu que Dieu !'): Fatma is still laughing with her hand to her mouth during a solemn religious line, five women are shown instead of three, the two women by the well are underscaled, and the style/costumes clash with s10 49.5."
+   ],
+   "fix": "Stage a dedicated b065 shot of the three women together in a calm, agreeing posture matching the patio style and costumes of the preceding shots."
+  },
+  {
+   "tile": "s10 53.9",
+   "verdict": "fail",
+   "defects": [
+    "Identical reused b059 laughing painting as s10 52.8: Fatma is still frozen laughing during 'Il n'y a de Dieu que Dieu !', five women appear instead of three (with underscaled figures by the well), and the visual style/costumes jump from the 3D patio shots."
+   ],
+   "fix": "Replace the reused laughing painting with the proper three-women b065 composition in consistent patio staging."
+  }
+ ],
+ "worst_problem": "On the stairs Zoubida's headscarf hides her face throughout and medium crops cut Mohammed off at the eyes/neck, while in the patio the b059 laughing painting is erroneously reused for b060, b063, and b065—causing jarring 2D/3D continuity jumps and violating the pose briefs (such as Rahma keeping clasped hands instead of palms up in b063)."
+}

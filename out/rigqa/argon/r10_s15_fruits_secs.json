@@ -1,0 +1,90 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s15 0.3",
+"verdict": "fail",
+"defects": [
+"Acting/pose does not match b098: Zoubida's hand is not pressed to her veil over her mouth, Fatma's hand is not on her chest with head bowed, and the boy's mouth is closed instead of wide open wailing.",
+"Mesh clipping: Zoubida's hands and inner garment clip through the front of her white haik at the waist/chest, and Fatma's hands clip into the sides of her white apron.",
+"Scale/perspective: all three characters are underscaled relative to the foreground left masonry bench, which rises up to the boy's chest."
+],
+"fix": "Scale the trio up to match the bench perspective, pose Zoubida with her right hand pressed to her mouth-veil, Fatma with bowed head and hand on chest, and open the boy's mouth wide in a cry while pulling all hands clear of cloth meshes."},
+{"tile": "s15 1.8",
+"verdict": "fail",
+"defects": [
+"Complete pose freeze: all three characters are in the exact same rigid A-poses as at 0.3s with no crying motion or shoulder shaking.",
+"Zoubida's hands and green/brown inner clothing clip through the front of her white haik instead of pressing her veil to her mouth.",
+"Fatma's arms hang stiffly at her sides clipping into her apron rather than holding a hand to her chest with bowed head."
+],
+"fix": "Animate the crying breakdown poses (Zoubida's hand on mouth-veil with hunched shaking shoulders, Fatma's hand on chest, boy wailing with wide-open mouth) and fix the haik and apron hand penetrations."},
+{"tile": "s15 5.5",
+"verdict": "fail",
+"defects": [
+"Still frozen in the same stiff lineup after five seconds: none of the directed b098 crying gestures (hand to veil, hand to chest, open wailing mouth) are present.",
+"Persistent mesh clipping of Zoubida's hands/inner robe through the front of her white haik and Fatma's hands into her apron.",
+"Characters remain too small against the left stone bench."
+],
+"fix": "Break the symmetry and static freeze by keyframing the grief acting beats and resolving the cloth-hand interpenetrations on Zoubida and Fatma."},
+{"tile": "s15 9.4",
+"verdict": "fail",
+"defects": [
+"Zoubida's dark inner garment/arms clip prominently through the chest and stomach of her white haik in the background.",
+"Acting/staging (b099/b100): the seller in grey and client in orange stand frozen in the aisle with the man's left arm clipping into the woman's orange robe, rather than the seller weighing goods by the counter.",
+"The trio in the distance face straight forward in stiff upright poses rather than hurrying and looking left and right at the stalls."
+],
+"fix": "Fix Zoubida's haik skinning/cloth offset so inner meshes do not poke through, move the seller behind/against the counter with a weighing pose, and animate head-turns on the approaching trio."},
+{"tile": "s15 11.9",
+"verdict": "fail",
+"defects": [
+"Zoubida's white haik is heavily penetrated across the torso by her inner dress and arms as she translates forward.",
+"Stiff sliding locomotion: the boy, Zoubida, and Fatma face straight at the camera without running/hurrying body lean or looking left and right as directed in b099.",
+"Foreground client in orange and seller in grey remain completely frozen with his hand intersecting her chest."
+],
+"fix": "Add proper hurrying walk/run cycles with alternating left-right head searches for the trio, fix Zoubida's torso cloth clipping, and separate the foreground seller and client meshes."},
+{"tile": "s15 15.0",
+"verdict": "fail",
+"defects": [
+"Floor contact failure: the boy on the left is elevated off the ground plane, floating against the side of the stone bench with his shadow cast horizontally onto the vertical bench wall.",
+"Mesh tearing and clipping on Zoubida: her inner sleeves/hands clip through her chest haik, and the bottom-left hem of her white robe stretches into a sharp polygonal spike.",
+"The foreground couple on the right remains completely frozen like statues."
+],
+"fix": "Drop the boy onto the corridor floor plane away from the bench collider, fix the spiked vertex and chest clipping on Zoubida's haik, and add subtle weight/weighing motion to the seller."},
+{"tile": "s15 22.5",
+"verdict": "fail",
+"defects": [
+"Acting failure (b100): the two urchins on the left stand dead still facing the camera in stiff A-poses crammed against the boy, instead of strolling past singing and swinging their arms.",
+"Zoubida's white haik still shows chest mesh penetration and a sharp triangular spike at the bottom-left hem.",
+"The seller and client on the right have been frozen in the exact same pose since 9.4s, with no weighing action at the counter."
+],
+"fix": "Animate the two urchins walking past down the passage while swinging their arms and singing, and place the seller at the counter scales interacting with the client."},
+{"tile": "s15 28.9",
+"verdict": "fail",
+"defects": [
+"Missing contact/gesture (b101): the boy's arms hang stiffly at his own sides instead of his hand gripping his mother's haik at her hip.",
+"Severe mesh clipping on Zoubida: her hands and coloured inner garments burst through the chest of her white haik, and her left hand/inner skirt pokes out through the right side of her hip cloth.",
+"Framing/camera: flat eye-level medium two-shot that crops the top of Zoubida's head instead of the directed high-angle CU emphasizing how small the boy is."
+],
+"fix": "Raise and tilt the camera down for a high-angle framing on the boy, pose his left hand clutching Zoubida's haik at her hip, and pull Zoubida's hands and inner dress inside her outer robe mesh."},
+{"tile": "s15 32.0",
+"verdict": "fail",
+"defects": [
+"Acting freeze (b101): the boy is completely motionless from 28.9s, staring blankly forward instead of turning his head to search around him, and still does not grip his mother's haik.",
+"Same severe mesh penetrations on Zoubida's chest and left hip where hands and inner cloth poke through the white haik.",
+"Top of Zoubida's head remains awkwardly clipped by the top frame edge."
+],
+"fix": "Animate the boy turning his head left and right in a searching motion while holding Zoubida's hip cloth, and clean up Zoubida's cloth collisions."},
+{"tile": "s15 35.5",
+"verdict": "fail",
+"defects": [
+"Severe mesh clipping: both of Zoubida's hands and green/brown inner sleeves poke straight through the front of her white haik at the bottom of the frame.",
+"Acting (b102): Zoubida's eyes are fully shut rather than cast down in defeat."
+],
+"fix": "Tuck Zoubida's hands and inner sleeves cleanly behind/under the white haik surface and open her eyelids slightly with downward gaze for the start of the defeated nod."},
+{"tile": "s15 38.5",
+"verdict": "fail",
+"defects": [
+"Pose freeze (b102): Zoubida is 100% identical to 35.5s with zero downward head nod or shoulder drop to convey giving up.",
+"Hands and green/brown inner garment remain clipped through the front of her white haik at the bottom edge."
+],
+"fix": "Keyframe a slow downward head pitch and dropping shoulders between 35.5s and 38.5s, and eliminate the chest/waist hand clipping through the haik."}
+],
+"worst_problem": "Zoubida's hands and inner garments severely clip through the front and sides of her white haik in every single shot, combined with completely frozen mannequin poses that omit the directed crying, searching, urchin strolling, and defeated nod actions."}

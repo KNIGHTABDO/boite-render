@@ -1,0 +1,57 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s01 0.2",
+   "verdict": "fail",
+   "defects": [
+    "Center-left, in front of the father's upper chest/beard: the gold and silver bracelets float completely in mid-air roughly 30 cm above his empty outstretched right hand.",
+    "Center-left, father's right arm/hand: arm is bent stiffly at waist height with palm vertical and flat rigid fingers rather than an open palm-up presentation gesture.",
+    "Far left, back of the father's djellaba: the hood protrudes stiffly outward and upward behind his shoulders like a rigid sack.",
+    "Center-right, Zoubida's arms and gaze: both arms reach out symmetrically in a stiff mannequin/claw-hand pose, and her eyes aim down at his empty lower hand rather than the bracelets."
+   ],
+   "fix": "Turn the father's right hand palm-up, snap the bracelets directly onto his open palm, settle his djellaba hood naturally against his back, and lower Zoubida's arms into a relaxed posture with her gaze aimed at the bracelets in his hand."
+  },
+  {
+   "tile": "s01 1.9",
+   "verdict": "fail",
+   "defects": [
+    "Center-left, in front of the father's chest: the two bracelets remain floating in mid-air far above his empty right hand.",
+    "Center-left, father's pose and djellaba hood: his arm remains frozen in a stiff vertical-palm extension while the hood juts out rigidly behind his shoulders.",
+    "Center-right, Zoubida: her arms and hands remain locked in a stiff, symmetric double-reach claw gesture while her eyes look toward his empty hand instead of the bracelets."
+   ],
+   "fix": "Parent the bracelets into the father's upturned open right palm, relax the stiff protrusion of his djellaba hood, and replace Zoubida's symmetric reaching pose with a natural stance looking directly at the bracelets in his hand."
+  },
+  {
+   "tile": "s01 5.5",
+   "verdict": "fail",
+   "defects": [
+    "Center-left, in front of the father's chest: the two bracelets are still floating in mid-air above his empty lower hand.",
+    "Far left, back of the father's shoulder: the djellaba hood has collapsed into a sharp, pinched horizontal wedge sticking straight out behind his neck/shoulder.",
+    "Center-right, Zoubida's hands and expression: her hands are raised stiffly in front of her chest with sharp wrist bends and overlapping/colliding fingertips, reading as tense or pleading rather than showing the requested small laugh as she looks at his face."
+   ],
+   "fix": "Place the bracelets in the father's upturned open palm, fix the pinched horizontal spike on his djellaba hood, and relax Zoubida's chest-level hands so her fingers do not collide while giving her a gentle smiling reaction."
+  },
+  {
+   "tile": "s01 9.3",
+   "verdict": "fail",
+   "defects": [
+    "Center foreground, Zoubida: staged in a 3/4 rear view facing away from the camera, completely hiding her face and the 'face in her hands' weeping gesture behind the back of her headscarf and shoulders.",
+    "Center foreground, Zoubida's arms/headscarf: her forearms and hands disappear tightly beneath her bowed head and headscarf silhouette, making the hand-to-face contact unreadable.",
+    "Upper-right divan, Mohammed: his upper leg floats horizontally in mid-air above the mattress without resting on the divan, his torso is swollen and cylindrical with stubby toy-like limbs and no neck, and his tiny distant face makes 'awake, only blinking' unreadable."
+   ],
+   "fix": "Re-stage Zoubida or the camera to a front-3/4 angle so her weeping face in her hands is clearly visible, and give Mohammed natural child proportions with his upper leg resting down on the divan and clearer framing toward the camera."
+  },
+  {
+   "tile": "s01 12.4",
+   "verdict": "fail",
+   "defects": [
+    "Center foreground, Zoubida: facing away from the camera in 3/4 back view, completely concealing her face and hands during a beat centered on her weeping with her face in her hands.",
+    "Center foreground, Zoubida's upper body: her arms tuck obscurely underneath her bowed head/scarf silhouette with a stiff, frozen posture.",
+    "Upper-right divan, Mohammed: his upper leg continues floating horizontally above the mattress, and his barrel-shaped torso with tiny stubby limbs and indistinct background head fails to read clearly as an awake boy lying on the divan."
+   ],
+   "fix": "Turn Zoubida (or move the camera) to a front-3/4 view so her face cradled in her hands is clearly seen, and re-pose Mohammed with realistic child anatomy and full leg contact on the mattress."
+  }
+ ],
+ "worst_problem": "In b001 the gold and silver bracelets float in mid-air in front of the father's chest above his empty outstretched hand across every tile, breaking the core prop interaction of the scene."
+}

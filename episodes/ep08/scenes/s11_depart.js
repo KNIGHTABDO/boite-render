@@ -52,7 +52,7 @@ function addStains(mo, S3) {
 const WALK0 = () => B(7)[0] - .1;
 
 const pa = staged('patio_matin', {
-  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : .5,
+  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : .32,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : 'zoubida' },
   zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
@@ -174,9 +174,7 @@ const pa = staged('patio_matin', {
         mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true);
       }
     }
-    const dbg = k => { if (t > 6 && t < 6.45) { const f = mo.B.head.localToWorld(V(0, 0, 1)).sub(at(mo, 'head')); const hp = at(mo, 'head'); const c = S3.cam.position.clone().sub(hp); console.error('DBG', k, t.toFixed(2), 'gy', mo.group.rotation.y.toFixed(2), 'camyaw', Math.atan2(c.x, c.z).toFixed(2), 'headfwd', Math.atan2(f.x, f.z).toFixed(2), 'pitch', f.y.toFixed(2), 'zoyaw', yawTo(mo.group.position, zo.group.position).toFixed(2)); } };
-    dbg('pre');
-    yawToward(mo, S3.cam, t < B(6)[0] ? .3 : .9); dbg('post'); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    yawToward(mo, S3.cam, t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);

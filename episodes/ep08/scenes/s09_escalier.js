@@ -48,7 +48,7 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
     // R20A: head starts rising ~1.4 s before b053 and ends clearly up the flight.
     const up53 = sm(B(9)[0] - 1.4, B(9)[0] + .3, t);
-    b.neck.rotation.x -= .3 * up53; b.head.rotation.x -= .26 * up53;
+    b.neck.rotation.x -= .16 * up53; b.head.rotation.x -= .14 * up53;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
     // After the lean, put the palms back on the kneecaps. Fists close on "à mort".
     pinKnees(mo, fist);

@@ -1,0 +1,35 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s01 0.2",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s01 1.9",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s01 5.5",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s01 9.3",
+"verdict": "fail",
+"defects": [
+"Scale: both Zoubida and Mohammed are far too small relative to the room furniture—Zoubida's entire body on the floor is barely wider than the small round lamp table beside her and smaller than the divan cushions.",
+"Zoubida pose, mesh and acting: instead of kneeling with her face in her hands, she is squashed flat against the floor in a tangled, self-intersecting heap with her torso collapsed into her legs and her head twisted near the floor, reading as an indistinct bundle of cloth rather than a kneeling woman weeping into her hands.",
+"Mohammed contact and pose: he lies diagonally across the right divan so his calves and feet hang out in mid-air past the front edge of the mattress, with a harsh black shadow cast onto the divan face and floor that makes him look like he is floating.",
+"Mohammed mesh and acting: his body reads as a stiff, armless beige sack with fused legs and his head is tipped back toward the ceiling/wall, making the intended awake blinking acting unreadable.",
+"Framing: the extreme wide shot leaves most of the frame empty room while reducing both characters to tiny, unreadable figures."
+],
+"fix": "Scale both characters up to match the divans and table, pose Zoubida kneeling upright with her torso bowed and her face clearly buried in her raised hands, align Mohammed lengthwise along the mattress so his whole body rests on the divan with his head turned toward Zoubida, and punch the camera in closer on the two characters."},
+{"tile": "s01 12.4",
+"verdict": "fail",
+"defects": [
+"Scale: both Zoubida and Mohammed remain severely underscaled relative to the divans, cushions, wooden chest and lamp table.",
+"Zoubida pose, mesh and acting: she is still collapsed flat on the floor in a compressed, self-intersecting ball rather than kneeling with her face in her hands, so neither her hands on her face nor her shaking shoulders read clearly.",
+"Mohammed contact and mesh: his lower legs and feet still protrude off the front edge of the right divan into mid-air over a dark floating drop-shadow, and his torso/limbs look like a rigid, armless cylinder.",
+"Mohammed acting and framing: from this distant wide camera and with his head tilted back away from camera, Mohammed's awake blinking expression is completely invisible."
+],
+"fix": "Bring the camera closer to a medium-wide two-shot, scale both characters up to fit the furniture, put Zoubida in a clear upright kneeling pose with hands covering her bowed face, and place Mohammed fully on the mattress lengthwise facing toward her."}
+],
+"worst_problem": "In the bedroom beat (s01 9.3 and s01 12.4), both characters are severely underscaled, Zoubida is crushed flat into an unreadable heap on the floor instead of kneeling with her face in her hands, and Mohammed hangs diagonally off the front edge of the divan like a stiff armless sack."}

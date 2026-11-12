@@ -1,0 +1,57 @@
+{"scene_ok": false,
+"tiles": [
+{"tile": "s21 0.2",
+"verdict": "fail",
+"defects": [
+"Mohammed's arms are raised up around his head with his wide sleeves and hands covering his face, cheeks, nose and right eye instead of his hands resting on his chest as directed",
+"Mohammed's torso is hunched and tilted toward the camera like a curled doll across the narrow width of the mattress rather than lying naturally on the bed plane"
+],
+"fix": "Lower Mohammed's arms so both hands rest on his chest, leaving his face and heavy eyes fully visible, and align his back naturally with the mattress surface."},
+{"tile": "s21 1.7",
+"verdict": "fail",
+"defects": [
+"Mohammed's raised arms, sleeves and hands still cover his face and right eye instead of resting on his chest, hiding his facial expression",
+"His body remains stiffly hunched across the width of the mattress with no natural supine contact"
+],
+"fix": "Place Mohammed's hands down on his chest and open up his face to the camera so his heavy eyes and shallow breathing read clearly."},
+{"tile": "s21 7.2",
+"verdict": "fail",
+"defects": [
+"Intended as the CU push on Mohammed, the framing is only slightly tighter than the M shot—still showing his entire body down to his ankles while cutting off his feet cleanly at the bottom frame edge",
+"Mohammed's raised sleeves and hands still obscure his face instead of resting on his chest"
+],
+"fix": "Push the camera into a true close-up framing Mohammed's head, shoulders and upper chest, with his hands resting on his chest and his face unobstructed."},
+{"tile": "s21 12.2",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 15.0",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 18.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's hands float in mid-air several inches away from the sides of her headscarf with a visible gap, rather than pressing both palms to her temples",
+"Zoubida is positioned in the left-center foreground facing dead-front at the camera with her legs cropped below the hips, visually disconnected from Mohammed rather than kneeling by his bed",
+"In the background on the right mattress, Mohammed still has his arms and sleeves covering his face"
+],
+"fix": "Position Zoubida kneeling directly beside the right mattress angled toward Mohammed, bring both palms firmly into contact with her temples, and fix Mohammed's arm pose so his hands rest on his chest."},
+{"tile": "s21 22.3",
+"verdict": "fail",
+"defects": [
+"Zoubida's hands remain floating in mid-air beside her head without touching her temples, and her torso stays upright in the exact same dead-front pose as 18.3 with no rocking body inclination",
+"Zoubida remains staged away from the bed facing the lens with no spatial or eye-line connection to Mohammed",
+"Mohammed in the background still has his face covered by his raised sleeves and hands"
+],
+"fix": "Press Zoubida's palms against her temples, pitch her upper body into a grieving rock beside the bed toward her son, and lower Mohammed's hands onto his chest."},
+{"tile": "s21 26.3",
+"verdict": "pass",
+"defects": [],
+"fix": ""},
+{"tile": "s21 32.7",
+"verdict": "pass",
+"defects": [],
+"fix": ""}
+],
+"worst_problem": "In every 3D tile, Mohammed's arms are raised over his head with his sleeves and hands covering his face instead of resting on his chest, while in b154 Zoubida faces dead-front away from the bed with her hands floating in mid-air inches from her temples."}

@@ -1,0 +1,98 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s03 0.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 2.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 7.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 12.0",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's head tilts up toward the beams, but her eyes are wide open with a neutral expression rather than squinting as the brief specifies for b005."
+   ],
+   "fix": "Narrow Zoubida's eyelids into a squint and furrow her brows as she looks up at the ceiling beams."
+  },
+  {
+   "tile": "s03 16.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 20.5",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's screen-right hand clips slightly into her hip/sash and her feet lack contact shadows on the floor across the bedroom wide/medium shots."
+   ],
+   "fix": "Pull the right hand fingers cleanly onto the outer surface of the hip sash and add floor contact shadows under her feet."
+  },
+  {
+   "tile": "s03 24.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 28.8",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida is meant to reach up to place a talisman over the door on the left, but her hands only rise to forehead level beside the doorjamb with her right hand curled by her cheek and no clear reach toward the lintel."
+   ],
+   "fix": "Extend Zoubida's arm overhead toward the top of the doorframe so the gesture clearly reads as tucking a talisman above the door."
+  },
+  {
+   "tile": "s03 33.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 38.2",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's raised right hand shading her eyes intersects slightly with her brow and headscarf edge, and her left arm hangs stiffly at her side."
+   ],
+   "fix": "Offset the shading hand slightly forward of the brow/headscarf mesh and relax the left arm pose."
+  },
+  {
+   "tile": "s03 43.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s03 48.7",
+   "verdict": "fail",
+   "defects": [
+    "The dish cloth (torchon) is a completely rigid, flat rectangular plane hanging vertically from Zoubida's fist like a cardboard sign with zero cloth drape or fold.",
+    "Zoubida's left arm and splayed fingers are held out in a stiff mannequin A-pose."
+   ],
+   "fix": "Deform or simulate the dish cloth so it drapes and curves dynamically as fabric whipped through the air, and relax her left arm and fingers."
+  },
+  {
+   "tile": "s03 53.1",
+   "verdict": "fail",
+   "defects": [
+    "The dish cloth remains an unbent, rigid flat rectangular board floating at the tips of her right fingers with no cloth deformation.",
+    "Her left arm stays locked in a stiff A-pose with splayed fingers, and no flies are visible being chased out toward the window."
+   ],
+   "fix": "Add cloth bend/drape and proper grip contact on the dish cloth, relax the left arm pose, and add flies exiting toward the window."
+  }
+ ],
+ "worst_problem": "In b009 (s03 48.7 and s03 53.1), Zoubida's dish cloth is an un-deformed, completely rigid flat rectangle that looks like a piece of cardboard stuck to her hand while her left arm remains in a stiff mannequin A-pose."
+}

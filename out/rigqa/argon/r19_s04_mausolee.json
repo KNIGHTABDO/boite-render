@@ -1,0 +1,123 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s04 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Center-left boy (Mohammed) has his head and neck craned steeply backward and upward toward the ceiling while holding his slate pressed right beside his cheek/ear."
+   ],
+   "fix": "Relax Mohammed's neck tilt forward slightly so his head leans wearily rather than snapping backward, and keep a slight gap between the fanning slate and his face."
+  },
+  {
+   "tile": "s04 2.8",
+   "verdict": "minor",
+   "defects": [
+    "Fqih's right hand is positioned high against the upper brim of his turban rather than wiping his brow/forehead.",
+    "Mohammed's head remains awkwardly tilted far back while fanning."
+   ],
+   "fix": "Lower the fqih's right hand onto his forehead/eyebrow line and ease Mohammed's backward neck tilt."
+  },
+  {
+   "tile": "s04 6.1",
+   "verdict": "minor",
+   "defects": [
+    "Fqih's right hand is raised high against the side of his white turban well above his brow, reading like a salute or turban adjustment rather than wiping sweat from his brow.",
+    "Mohammed's head stays steeply craned backward."
+   ],
+   "fix": "Bring the fqih's right hand down across his forehead/brow and soften Mohammed's neck extension."
+  },
+  {
+   "tile": "s04 9.8",
+   "verdict": "minor",
+   "defects": [
+    "Red-fez boy is stacked directly behind Mohammed in the doorway, occluding almost all of his torso, arms, and slate.",
+    "Fqih walks forward with both arms hanging stiffly straight down at his sides.",
+    "The fourth boy (shaved head, dark blue tunic seen in b010 and b015) is missing from the procession."
+   ],
+   "fix": "Stagger the boys diagonally entering the doorway so the red-fez boy and his chest-held slate remain clearly readable, add natural arm swing to the fqih's walk, and include the fourth boy behind them."
+  },
+  {
+   "tile": "s04 13.7",
+   "verdict": "fail",
+   "defects": [
+    "Stray semi-transparent dark text 'un mausolée : la tombe d'un saint' appears over the floor mat and wall below the left fountain beside the fqih's legs.",
+    "Instead of coming in through the sanctuary door as a procession, all three boys have stopped in a flat horizontal lineup facing the camera in stiff, symmetrical poses while the fqih stands woodenly with arms hanging straight down staring off to the far left.",
+    "The fourth boy (shaved head, dark blue tunic) is absent despite the empty doorway behind them.",
+    "Characters lack clear contact shadows on the floor mat and tiles."
+   ],
+   "fix": "Remove the stray 'un mausolée : la tombe d'un saint' overlay, keep the four boys staggered in a walking procession from the doorway holding slates to their chests with natural varied postures, have the fqih gesture toward the room while looking back at them, and ground their feet with contact shadows."
+  },
+  {
+   "tile": "s04 17.7",
+   "verdict": "fail",
+   "defects": [
+    "Woman in yellow on the left is rendered in front of the tomb railing and faces/walks right toward the woman in red on the right who faces front-left, making them appear to walk into each other rather than circling in one direction (or missing the tomb holdout mask if the yellow woman is meant to be hidden behind the tomb on the far half of the lap).",
+    "Neither woman clearly shows counting on her fingers: the yellow woman's hands are tucked unclearly at her chest in profile, and the red woman holds her right arm stiffly out to the side with palm open and left hand by her hip while looking away."
+   ],
+   "fix": "Apply the tomb holdout mask so characters on the far half of the clockwise loop pass behind the railed tomb, align both visible women in the same circling direction, and pose the red woman with both hands brought together in front of her chest while looking down at the fingers she counts."
+  },
+  {
+   "tile": "s04 23.9",
+   "verdict": "minor",
+   "defects": [
+    "Woman in red on the left has her back turned toward the camera facing away, completely hiding her hands/finger-counting gesture, and her unseen feet sit beneath a stiff flat hem over a shadow blob.",
+    "Woman in the green vest on the right is counting on her fingers but looks forward-left toward the camera/room instead of down at her hands."
+   ],
+   "fix": "Aim the green-vest woman's head and eye-line down at her counting fingers, and angle the red woman slightly more in three-quarter profile with subtle footstep visibility below her hem so her hands remain readable."
+  },
+  {
+   "tile": "s04 29.4",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed stands dead-center facing straight into the camera in a rigid, symmetrical stance (parallel feet, identically locked elbows on the slate) with little visual cue of taking a deep breath."
+   ],
+   "fix": "Give Mohammed a slightly asymmetric relaxed stance and visible chest/shoulder expansion or parted mouth inhalation so the deep breath reads clearly even in a still."
+  },
+  {
+   "tile": "s04 31.6",
+   "verdict": "minor",
+   "defects": [
+    "Although Mohammed's chin tilts slightly upward, his body remains in the same stiff, front-facing symmetrical stance with parallel feet and rigidly locked arms."
+   ],
+   "fix": "Soften Mohammed's shoulder and foot symmetry and add clearer chest rise/inhale posture so the calm deep breath reads organically."
+  },
+  {
+   "tile": "s04 34.4",
+   "verdict": "minor",
+   "defects": [
+    "Only two boys are present; the red-fez boy and white-skullcap boy from b011 and b015 have disappeared from the room.",
+    "Both boys stand rigidly facing the fqih with arms hanging straight down at their sides in mannequin-like postures, and the fqih's left arm hangs stiffly straight down while his right index finger sits slightly to the side of his cheek/mustache rather than centered against his lips."
+   ],
+   "fix": "Include all four boys in the room with relaxed, varied listening poses, relax the fqih's left arm, and bring his right index finger squarely against the center of his lips."
+  },
+  {
+   "tile": "s04 39.4",
+   "verdict": "fail",
+   "defects": [
+    "Both boys at the little fountain on the left stand motionless with their arms hanging straight down at their sides instead of reaching into the basin or washing their hands.",
+    "Fqih stands in a stiff three-quarter back stance with both arms hanging straight down by his sides.",
+    "Only two boys are present in the room while the red-fez boy and white-skullcap boy are missing."
+   ],
+   "fix": "Animate the lead boy leaning slightly forward with both hands raised over/into the fountain basin to wash them and Mohammed waiting with hands partially lifted/watching, relax the fqih's arms into a natural supervisory pose, and include the remaining two boys waiting in line behind them."
+  },
+  {
+   "tile": "s04 44.1",
+   "verdict": "minor",
+   "defects": [
+    "In the standing qiyam prayer row, the shaved-head blue-tunic boy (second from left) and red-fez boy (far left) hold their arms angled outward away from their hips in a stiff A-pose rather than resting naturally at their sides or folded over the torso; the fqih's elbows also flare slightly stiffly."
+   ],
+   "fix": "Bring the boys' and fqih's arms naturally against their sides (or folded in qiyam) to eliminate the rigid A-pose gap between arms and hips."
+  },
+  {
+   "tile": "s04 48.7",
+   "verdict": "minor",
+   "defects": [
+    "In the bowing ruku pose, the rightmost boy (white skullcap, brown tunic) hunches his back awkwardly high while dropping his head far below shoulder level with lumpy waist creasing and an unclear dark shadow mass below his chest.",
+    "Leftmost boy's (red fez) collar pinches sharply around his bent neck, and Mohammed's cream tunic forms a smooth rounded shape hiding his arms instead of showing arms reaching down onto knees."
+   ],
+   "fix": "Flatten the rightmost boy's ruku spine angle to match the fqih's horizontal bow cleanly, clear the neck/collar pinch on the red-fez boy, and keep the boys' forearms/hands visibly resting on their knees."
+  }
+ ],
+ "worst_problem": "In s04 39.4 the boys stand motionless facing the wall with both arms hanging straight down at their sides instead of washing their hands at the fountain, while half the boys are missing in b014 and s04 17.7/13.7 suffer from broken tomb occlusion/direction and stray floor text."
+}

@@ -1,0 +1,168 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s11 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (center-left) stands completely back-to-camera with both arms hanging straight and stiffly at his sides in a mannequin rest pose.",
+    "Zoubida (center) holds her right arm stiffly bent across her waist.",
+    "Ground contact shadows are missing beneath Mohammed's and Zoubida's feet on the courtyard tiles."
+   ],
+   "fix": "Angle Mohammed three-quarter toward Zoubida with relaxed arms and add soft ground contact shadows beneath both actors."
+  },
+  {
+   "tile": "s11 1.8",
+   "verdict": "fail",
+   "defects": [
+    "For b066 ('Mohammed lifts his face to the sky'), Mohammed (center-left) is turned completely back-to-camera so his face is hidden.",
+    "Mohammed's head barely tilts upward from neutral and his arms remain pinned straight down at his sides, failing to read as looking up at the sky."
+   ],
+   "fix": "Rotate Mohammed toward a three-quarter front view and tilt his chin and chest clearly upward so his face lifted toward the sky is visible."
+  },
+  {
+   "tile": "s11 3.6",
+   "verdict": "fail",
+   "defects": [
+    "For b066 ('Mohammed lifts his face to the sky'), Mohammed (center-left) remains back-to-camera with his face completely hidden.",
+    "His upward head tilt is minimal and his arms hang rigidly straight at his sides, reading as a static rear stance rather than looking at the sky."
+   ],
+   "fix": "Turn Mohammed three-quarter toward camera and lift his face and eyes unmistakably upward toward the open sky above the patio."
+  },
+  {
+   "tile": "s11 6.2",
+   "verdict": "fail",
+   "defects": [
+    "Bottom framing of the medium crop cuts off Zoubida's feet at her skirt hem (lower right) and leaves Mohammed's feet grazing the bottom frame edge.",
+    "For b067 ('he looks at his mother and asks'), Mohammed (left) stays largely back-to-camera so his face and mouth are mostly hidden while speaking, showing only a sliver of his right cheek.",
+    "Mohammed's beige djellaba appears completely spotless despite the beat sequence focusing on its stains, and Zoubida's right hand presses tightly/flattens against her chest trim."
+   ],
+   "fix": "Shift the crop down/wider to include both actors' feet, turn Mohammed to a clear three-quarter profile toward Zoubida and camera, and add visible stains to his djellaba."
+  },
+  {
+   "tile": "s11 7.0",
+   "verdict": "fail",
+   "defects": [
+    "Bottom framing cuts off Zoubida's feet along the lower edge and leaves Mohammed's feet pressed against the bottom border.",
+    "Mohammed's head rotates further back toward the wall away from Zoubida, hiding his face completely and weakening his eye line toward his mother during b067.",
+    "Mohammed's djellaba still shows no visible stains."
+   ],
+   "fix": "Reframe lower to restore full feet clearance and turn Mohammed's head and upper body to face Zoubida clearly in three-quarter profile while speaking."
+  },
+  {
+   "tile": "s11 9.0",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (center-left) remains stiffly back-to-camera with both arms pinned straight down at his sides, hiding his face.",
+    "His beige djellaba has no visible stains."
+   ],
+   "fix": "Turn Mohammed slightly toward camera-right with a relaxed listening pose and visible stains on his djellaba."
+  },
+  {
+   "tile": "s11 11.1",
+   "verdict": "minor",
+   "defects": [
+    "For b068 ('points down at the stains'), Mohammed's djellaba is spotless cream/beige with no visible stains where Zoubida points.",
+    "Mohammed (center-left) stays frozen back-to-camera with stiff arms straight at his sides and fails to look down or react to his mother pointing."
+   ],
+   "fix": "Add noticeable stains to Mohammed's djellaba where Zoubida points and animate him looking down at the garment with a reactive posture."
+  },
+  {
+   "tile": "s11 14.0",
+   "verdict": "fail",
+   "defects": [
+    "For b069 ('Fatma Bziouya leans out of the right-hand doorway with her little broom'), Fatma (far right behind the potted plant) stands completely outside the doorway on the patio floor in a stiff upright posture rather than leaning out from the doorway threshold.",
+    "Mohammed (center-left) stays frozen back-to-camera with rigid arms at his sides, and Zoubida (center) still looks down at Mohammed rather than turning toward the doorway."
+   ],
+   "fix": "Reposition Fatma inside the right-hand doorway jamb leaning her head and upper torso out into the courtyard with her broom."
+  },
+  {
+   "tile": "s11 18.9",
+   "verdict": "fail",
+   "defects": [
+    "Fatma (far right) remains standing completely outside the right-hand doorway on the courtyard tiles, upright and rigid with her broom hanging straight down instead of leaning out of the doorway.",
+    "Nearly five seconds into b069, neither Zoubida (still staring down at Mohammed) nor Mohammed (frozen back-to-camera) has turned toward Fatma's doorway."
+   ],
+   "fix": "Stage Fatma leaning out from inside the right doorway threshold and turn Zoubida's and Mohammed's gaze toward the doorway."
+  },
+  {
+   "tile": "s11 23.5",
+   "verdict": "fail",
+   "defects": [
+    "Bottom framing of the medium crop cuts off Zoubida's feet at her ankles/skirt hem (lower left).",
+    "Fatma (right) stands completely outside the doorway on the courtyard floor instead of leaning out, and her rigid upright pose with hanging arms fails to convey b070 ('eager question').",
+    "Fatma's broom handle sits tightly against her right forearm sleeve with a stiff hand grip.",
+    "Zoubida's hips and torso stay angled left while her neck twists sharply ~90 degrees right toward Fatma, with her clasped fingers overlapping slightly at her waist."
+   ],
+   "fix": "Reframe to show Zoubida's feet, rotate Zoubida's shoulders partially toward Fatma with relaxed hands, and pose Fatma leaning eagerly forward out of the doorway with a raised questioning gesture."
+  },
+  {
+   "tile": "s11 24.0",
+   "verdict": "fail",
+   "defects": [
+    "Bottom framing cuts off Zoubida's feet along the lower border (lower left).",
+    "Fatma (right) remains completely outside the doorway standing straight upright with arms down, showing neither a doorway lean nor an eager questioning gesture for b070.",
+    "Zoubida's lower body stays facing left while only her neck cranks ~90 degrees right, with hands tightly overlapped at her waist."
+   ],
+   "fix": "Include Zoubida's feet in the crop, angle her chest slightly right toward Fatma, and animate Fatma leaning eagerly from the doorway with an expressive hand/head gesture."
+  },
+  {
+   "tile": "s11 25.7",
+   "verdict": "minor",
+   "defects": [
+    "Fatma (far right) is still staged completely outside the right-hand doorway standing flat-footed on the courtyard floor instead of leaning out of the doorway.",
+    "Zoubida (center) keeps her torso angled left while twisting only her head ~90 degrees right to watch Fatma.",
+    "Mohammed (center-left) remains rigid back-to-camera with both arms pinned straight down at his sides."
+   ],
+   "fix": "Place Fatma leaning from inside the right doorway jamb, soften Zoubida's shoulder twist toward Fatma, and give Mohammed a relaxed stance."
+  },
+  {
+   "tile": "s11 28.2",
+   "verdict": "fail",
+   "defects": [
+    "On b071 ('Ma mère fit oui de la tête. Un couvercle de coffre claqua.'), Fatma (far right) is still standing completely outside on the courtyard patio holding her broom instead of leaning from the doorway or retreating inside her room as the trunk lid slams.",
+    "Zoubida's torso stays facing left with her neck twisted right during her nod, and Mohammed (center-left) remains frozen back-to-camera with stiff arms down."
+   ],
+   "fix": "Have Fatma step back inside the right-hand doorway on the trunk-lid beat while turning Zoubida's upper body slightly toward the doorway and loosening Mohammed's pose."
+  },
+  {
+   "tile": "s11 31.2",
+   "verdict": "minor",
+   "defects": [
+    "For b072 ('Maâlem Abdeslem calls from the left street door'), Maâlem Abdeslem (left) is already standing out on the courtyard floor past the dark doorway threshold with low passive arms instead of calling from at/inside the street door before entering.",
+    "Mohammed (center-right) stands rigidly back-to-camera with arms pinned down at his sides and barely turns his head left toward Maâlem Abdeslem.",
+    "Zoubida (far right) stands stiffly with both arms glued down along her sides and her back nearly to the camera."
+   ],
+   "fix": "Hold Maâlem Abdeslem inside/at the left street-door threshold leaning slightly in with a calling gesture until 'Passe', and turn Mohammed toward him."
+  },
+  {
+   "tile": "s11 32.4",
+   "verdict": "minor",
+   "defects": [
+    "Maâlem Abdeslem (left) remains staged past the dark street-door threshold on the patio tiles without an active calling posture or gesture.",
+    "Mohammed (center-right) remains frozen back-to-camera with stiff arms down at his sides instead of turning toward his father.",
+    "Zoubida (far right) stands rigidly with arms pinned at her sides and her face hidden."
+   ],
+   "fix": "Keep Maâlem Abdeslem behind/at the left doorway jamb with a calling gesture before walking in, and turn Mohammed toward the left doorway."
+  },
+  {
+   "tile": "s11 34.6",
+   "verdict": "minor",
+   "defects": [
+    "On b073 ('Passe': only then does he walk in), Zoubida (far right) speaks 'Passe, maâlem Abdeslem' standing completely stiff with both arms pinned straight down at her sides (no welcoming gesture) and her back nearly to the camera.",
+    "Mohammed (center-right) stays frozen facing the back wall with his back to camera and arms rigidly at his sides rather than turning to greet or watch his father walk in."
+   ],
+   "fix": "Give Zoubida a welcoming arm/hand gesture as she invites Maâlem Abdeslem in and turn Mohammed left toward his approaching father."
+  },
+  {
+   "tile": "s11 35.6",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida (far right) remains static with arms hanging lifelessly straight down at her sides and her back nearly to camera while delivering 'Passe, maâlem Abdeslem'.",
+    "Mohammed (center-right) remains frozen back-to-camera staring at the wall with stiff arms at his sides instead of turning to look at his father entering the patio."
+   ],
+   "fix": "Animate Zoubida with an inviting gesture toward Maâlem Abdeslem and turn Mohammed's head and shoulders left to watch his father enter."
+  }
+ ],
+ "worst_problem": "Mohammed remains frozen with his back completely to the camera and stiff arms pinned at his sides across the entire scene (hiding his face during b066–b067 and ignoring every action around him), while Fatma Bziouya stands rigidly outside the right-hand doorway instead of leaning out with an eager question in b069–b070."
+}
