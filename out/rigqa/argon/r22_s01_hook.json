@@ -1,0 +1,50 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s01 0.2",
+   "verdict": "minor",
+   "defects": [
+    "Father (left): extended right arm and sleeve are stiff and plank-like, and the bracelets on his open palm read as a small grey-and-yellow saucer rather than distinct gold and silver bracelets.",
+    "Zoubida (right): both forearms and open hands hover in front of her waist in a stiff, slightly mannequin-like pose."
+   ],
+   "fix": "Add a slight natural elbow bend and sleeve drape to the father's extended arm, separate the bracelets into recognizable rings, and relax Zoubida's wrists and fingers."
+  },
+  {
+   "tile": "s01 1.9",
+   "verdict": "minor",
+   "defects": [
+    "Father (left): extended arm remains completely rigid with no subtle weight shift from 0.2s, and the bracelets on his palm still read like a small flat dish.",
+    "Zoubida (right): hands remain frozen in the same stiff, paddle-like waist pose."
+   ],
+   "fix": "Introduce subtle anticipation in Zoubida's hands and soften the father's elbow, wrist, and bracelet silhouettes."
+  },
+  {
+   "tile": "s01 5.5",
+   "verdict": "minor",
+   "defects": [
+    "Father (left): outstretched arm and torso remain completely locked in the exact same rigid horizontal pose as at 0.2s, and the bracelets still read like a flat saucer."
+   ],
+   "fix": "Give the father's extended arm a relaxed elbow bend and subtle follow-through tilt as Zoubida reacts."
+  },
+  {
+   "tile": "s01 9.3",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (center foreground): hands are held low near her chin/mouth instead of covering her face ('face in her hands'), and her exposed upper face/eye area is rendered nearly pitch black.",
+    "Mohammed (background right divan): body reads as an amorphous cylindrical lump without clear shoulder/arm articulation, and the reddish-brown lower end/feet jut out off the right edge of the mattress."
+   ],
+   "fix": "Raise Zoubida's hands to genuinely cover her eyes and cheeks while fixing the dark shading on her face, and articulate Mohammed's arms and legs so his feet rest squarely on the divan mattress."
+  },
+  {
+   "tile": "s01 12.4",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (center foreground): hands remain too low near her chin rather than burying her face in her hands, leaving her upper face/eyes exposed and blackened.",
+    "Mohammed (background right divan): torso and limbs still read as an unarticulated lump with the reddish-brown lower end sticking off the right edge of the mattress."
+   ],
+   "fix": "Reposition Zoubida's hands over her face and fix the face shadow/shader defect, and pull Mohammed's legs and garment fully onto the mattress with clear shoulder and arm silhouettes."
+  }
+ ],
+ "worst_problem": "In b002 (s01 9.3 and s01 12.4), Zoubida's hands sit too low to cover her face, leaving her upper face blackened, while Mohammed looks like an unarticulated lump with his lower end sticking off the divan mattress."
+}
