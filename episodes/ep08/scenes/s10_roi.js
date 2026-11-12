@@ -44,7 +44,7 @@ const chat = (a, w, t, seed = 0) => {
   a.B.spine.rotation.z += .03 * s2 * w; a.B.head.rotation.z += .03 * s1 * w;
 };
 const esc = staged('escalier', {
-  mohammed: { ...SEAT, o: { ...SEAT.o, crouch: true }, talk: 0, lookMax: .75,
+  mohammed: { ...SEAT, o: { ...SEAT.o, crouch: true, lean: .42, fz: .1 }, talk: 0, lookMax: .75,
     look: (t, st) => {
       if (t >= B(7)[0]) return front(st.A.mohammed, 'head', .5, .48, -.04);
       if (t < B(5)[0] && st.A.zoubida.group.visible) {
@@ -53,7 +53,8 @@ const esc = staged('escalier', {
       }
       return null;
     } },
-  zoubida: { tread: 1, off: .28, face: 'down', seed: 7, look: 'mohammed', lookMax: .7 },
+  zoubida: { tread: 0, off: -.3, face: 'down', seed: 7, lookMax: .85,
+    look: (t, st) => { if (!st.A.zoubida.group.visible) return null; const p = st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)); return p.add(V(0, .55, 0)).addScaledVector(st.ST.up, -.3); } },
 }, {
   stairs: ESCALIER,
   light: { shadow: .07, soft: 14, dir: [.4, 7, .6] },
@@ -63,6 +64,7 @@ const esc = staged('escalier', {
     yawToward(zo, S3.cam, .3);
     open34(zo, S3.cam, .55);
     castScale(mo);
+    zo.group.scale.setScalar(.9); zo.group.updateMatrixWorld(true);
     sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
@@ -90,7 +92,12 @@ const esc = staged('escalier', {
         };
       }
     }
+    // Unmistakable crouch: pelvis on the tread, torso hunched forward over the knees, forearms resting on them.
+    const hunch = sm(0, .5, t) * (1 - sm(B(7)[0] - .1, B(7)[0] + .4, t));
+    mo.B.spine.rotation.x += .2 * hunch; mo.B.chest.rotation.x += .22 * hunch; mo.B.neck.rotation.x -= .12 * hunch;
+    mo.B.spine.updateWorldMatrix(false, true);
     pinKnees(mo, 0);
+    onKnees(mo);
   },
 });
 
@@ -145,8 +152,9 @@ const pa = staged('patio_matin', {
     const hand = sm(B(10)[0] - .05, B(10)[0] + .28, t) * (1 - sm(B(10)[1] - .1, B(10)[1], t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
-      handTo(zo, 'R', { fwd: .3, out: .2, drop: -.12, curl: .12, spread: .25 });
-      PO.palmTo(zo, 'R', hand, V(0, .3, 1));
+      handTo(zo, 'R', { fwd: .4, out: .3, drop: .1, curl: .1, spread: .3 });
+      const toR = ra.group.position.clone().sub(zo.group.position); toR.y = 0; toR.normalize(); toR.y = .15;
+      PO.palmTo(zo, 'R', hand, toR);
       handTo(zo, 'L', { fwd: .02, out: .13, drop: .3, curl: .3, spread: .1 });
       fa.B.chest.rotation.y -= .06 * hand;
     }
@@ -169,14 +177,15 @@ const pa = staged('patio_matin', {
     }
     if (fun < .2 && tease <= 0 && envy <= 0 && amen <= 0) {
       fa.B.spine.rotation.z += .05 * Math.sin(t * .8);
-      handTo(fa, 'L', { fwd: .06, out: .16, drop: .22, curl: .3 });
+      handTo(fa, 'L', { fwd: -.01, out: .2, drop: .33, curl: .4 });
+      fa.B.chest.rotation.z += .04; fa.B.head.rotation.z -= .04;
       handTo(fa, 'R', { fwd: .1, out: .14, drop: .16, curl: .25 });
     }
     if (palms > 0) {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
       for (const s of ['L', 'R']) {
-        for (let r = 0; r < 2; r++) handTo(ra, s, { fwd: .3, out: .3, drop: -.08, curl: .05, spread: .4 });
-        PO.palmTo(ra, s, palms, V(0, 1, .15));
+        for (let r = 0; r < 2; r++) handTo(ra, s, { fwd: .32, out: .3, drop: .1, curl: .05, spread: .4 });
+        PO.palmTo(ra, s, palms, V(0, 1, .05));
       }
     }
   },
@@ -187,9 +196,9 @@ export default beatScene(ID, {
   plan: {
     b054: { shot: 'esc', size: 'W', on: 'zoubida' },
     b055: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.1, dy: 40 },
-    b056: { shot: 'esc', size: 'CU', on: 'zoubida', z: 2.05, dy: -32 },
+    b056: { shot: 'esc', size: 'M', on: 'mohammed', z: .95, dx: -70, dy: 10 },
     b057: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.1, dy: 40 },
-    b058: { shot: 'esc', size: 'M', on: 'zoubida', z: 1.1, dy: 30 },
+    b058: { shot: 'esc', size: 'M', on: 'mohammed', z: .95, dx: -70, dy: 10 },
     b059: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dy: 50 },
     b060: { shot: 'pa', size: 'M', on: 'rahma', z: 1.8, dx: -90, dy: 75 },
     b061: { shot: 'esc', size: 'CU', on: 'mohammed', z: 2.15, dy: -36 },
