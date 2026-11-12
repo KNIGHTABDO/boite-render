@@ -39,8 +39,8 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // Local blocking: retain SOUK's exported marks for the following scenes. Two depth pairs, not a row across the lane.
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
-const LEAD = { father: [900, 870], mohammed: [740, 890], zoubida: [770, 755], fatma: [1010, 725] };
-const DELLAL = [1180, 830], EXIT = [950, 620];
+const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [990, 725] };
+const DELLAL = [1115, 895], EXIT = [950, 620];
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [740, 690], 0, 1],
   ['woman2', [1250, 790], [1060, 680], .25, 1],
@@ -74,7 +74,7 @@ function overhead(a, t) {
 const la = checkedStage('souk_bijoux', {
   father: { ...WALK([900, 800], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
     look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= B(8)[0] ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
-  mohammed: { ...WALK([740, 810], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
+  mohammed: { ...WALK([740, 800], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
     look: (t, st) => t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
   zoubida: { ...WALK([780, 705], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
@@ -117,7 +117,8 @@ const la = checkedStage('souk_bijoux', {
     move(fa, [800, 790], LEAD.father, B(8)[0] + .65, B(8)[0] + 1.5);
     move(ma, [1180, 720], DELLAL, B(8)[0] - .6, B(8)[0] + .3);
     if(t<B(8)[0]+.05)move(zo,[900,850],[1000,790],f(7,.94),B(8)[0]+.05);
-    else move(zo,[1000,790],LEAD.zoubida,B(8)[0]+.05,B(8)[0]+.6);
+    else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(1000, 790); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
+    else move(zo,[1000,790],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
     move(ft, [1120, 900], LEAD.fatma, B(8)[0], B(8)[0] + .6);
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
@@ -215,7 +216,7 @@ const la = checkedStage('souk_bijoux', {
     const tryOn = (a, w) => {
       if (w <= 0) return 0;
       const ka = k(a), p = ((t - B(7)[0]) * .95) % 1, sl = Math.sin(p * Math.PI);
-      const wrist = front(a, 'chest', .52 * ka, -.11 * ka, .12 * ka);   // R19J: wrist raised clear of the haik opening   // r16: well out in front of the haik cone so wrist + bracelets show
+      const wrist = front(a, 'chest', .5 * ka, -.11 * ka, .05 * ka);   // R19J: wrist raised clear of the haik opening   // r16: well out in front of the haik cone so wrist + bracelets show
       PO.reach(a, 'L', front(a, 'root', .1 * ka, -.12 * ka, .1 * ka).lerp(wrist, w), { grip: .01 });
       const lw = at(a, 'handL'), fwd = lw.clone().sub(at(a, 'foreArmL')).normalize();
       PO.reach(a, 'R', PO.hipToWorld(a, -.26 * ka, .06 * ka, .03 * ka).lerp(lw.clone().addScaledVector(fwd, (.07 - .1 * sl) * ka).add(V(0, .025 * ka, 0)), Math.min(1, w * 2.5)), { grip: .01, pole: [-.7, .05, 0] });
