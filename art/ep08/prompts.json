@@ -407,5 +407,15 @@
    "art/ep05/p11b_escalier.png"
   ],
   "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no letters, no modern objects. MACRO INSERT: an extreme close-up of a dried-fruit stall: neat untouched pyramids of dates, dried figs and almonds in baskets, a brass scoop, warm lantern light. No hands, no people. All figures painted in the same semi-realistic gouache style, natural human proportions; no cartoon, chibi or toddler figures anywhere."
+ },
+ "p41_pleurs_nuit": {
+  "beat": "b002",
+  "kind": "P",
+  "refs": [
+   "art/ep05/p11b_escalier.png",
+   "art/src/zoubida.png",
+   "art/src/mohammed.png"
+  ],
+  "prompt": "Create an image. Wide 16:9 painting for a hand-painted 2D animated feature film, in EXACTLY the same painting style as the first attached image (gouache and watercolour on textured paper, delicate ink linework, rich luminous colour, torn paper border). Fes, Morocco, 1920s, historically accurate, modest worn objects and architecture, no text, no letters, no modern objects. Night interior of a poor one-room Fassi home, deep indigo palette lit only by a small oil lamp's warm glow. On the left, Zoubida, a young Fassi mother (match the woman in the second attached reference: headscarf, simple caftan) sits on a low mattress, bent forward, weeping silently with both hands covering her face, shoulders shaking. On the right, further back, Mohammed, a 6-year-old Fassi boy with a shaved head and a small tuft in a plain off-white djellaba (match the boy in the third attached reference), lies on a mattress under a blanket, eyes wide open, awake, watching her in the dark. On the floor between them, two thin silver bracelets glint in the lamplight. Quiet, tender, sad mood, never melodramatic. Generous dark negative space."
  }
 }
