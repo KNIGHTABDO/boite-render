@@ -53,8 +53,8 @@ const esc = staged('escalier', {
       }
       return null;
     } },
-  zoubida: { tread: 0, off: -.3, face: 'down', seed: 7, lookMax: .85,
-    look: (t, st) => { if (!st.A.zoubida.group.visible) return null; const p = st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)); return p.add(V(0, .55, 0)).addScaledVector(st.ST.up, -.3); } },
+  zoubida: { tread: 0, off: -.18, face: 'down', seed: 7, lookMax: .6,
+    look: (t, st) => { if (!st.A.zoubida.group.visible) return null; const p = st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)); return p.add(V(0, .2, 0)); } },
 }, {
   stairs: ESCALIER,
   light: { shadow: .07, soft: 14, dir: [.4, 7, .6] },
@@ -64,7 +64,6 @@ const esc = staged('escalier', {
     yawToward(zo, S3.cam, .3);
     open34(zo, S3.cam, .55);
     castScale(mo);
-    zo.group.scale.setScalar(.9); zo.group.updateMatrixWorld(true);
     sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
