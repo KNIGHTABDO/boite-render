@@ -36,7 +36,7 @@ const cl = staged('mausolee', {
   mohammed: { ...CLASS.mohammed, lids: t => .3 + .25 * drift(t),
     mutter: t => (t > B(0)[0] - .3 ? 1 : 0) * (1 - drift(t)),
     lookMax: t => .28 + .35 * drift(t),
-    look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); return drift(t) > .35 ? [420, 620, 2.8] : st.slate; } },
+    look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return drift(t) > .35 ? [420, 620, 2.8] : st.slate; } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A, d = drift(t), kf = fq.group.scale.y / 1.6;
@@ -63,9 +63,9 @@ const scene = beatScene(ID, {
   shots: { cl, p06, p07, matin, apres },
   plan: {
     b022: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.38, dy: -28 },
-    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.2, dx: -40, dy: 40, noIns: true,
+    b023: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.9, dx: 0, dy: -25, noIns: true,
       segs: [[.177, 'matin'], [.463, 'apres'], [.9, 'cl']] },
-    b024: { shot: 'p06' },
+    b024: { shot: 'p06', segs: [[.42, 'p07']] },
     b025: { shot: 'p07' },
   },
 });

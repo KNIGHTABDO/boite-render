@@ -180,9 +180,10 @@ export function shot({ plate: name, light = {}, build, frame, view, cover, move,
     st.actors.forEach((a, i) => {   // a cast() actor may be shared with another shot: re-parent and put it back where this build placed it
       if (a.group.parent !== S3.scene) S3.scene.add(a.group);
       const pl = sh.place[i]; a.group.position.copy(pl[0]); a.group.rotation.copy(pl[1]); a.group.scale.copy(pl[2]); a.group.visible = true;
-      if (!pl[4]) pl[4] = new Set(pl[3].map(m => m[0]));
-      const extra = []; a.group.traverse(o => { if (!pl[4].has(o)) extra.push(o); });   // props another scene's frames attached (s05 slate…)
-      for (const o of extra) if (pl[4].has(o.parent)) o.parent.remove(o);
+      if (!pl[4]) { pl[4] = new Set(pl[3].map(m => m[0])); pl[5] = new Map(); }   // pl[5]: extras this shot's own frames attached (haik mantle, blood…)
+      const extra = []; a.group.traverse(o => { if (!pl[4].has(o) && !pl[5].has(o)) extra.push(o); });   // props another shot attached (s05 slate…)
+      for (const o of extra) if (o.parent && (pl[4].has(o.parent) || pl[5].has(o.parent))) o.parent.remove(o);
+      for (const [o, par] of pl[5]) if (o.parent !== par) par.add(o);
       for (const [o, vis, geo, sc, ps, q] of pl[3]) { if (o === a.group) continue; o.visible = vis; if (geo && o.geometry !== geo) o.geometry = geo; o.scale.copy(sc); o.position.copy(ps); o.quaternion.copy(q); } a.group.updateMatrixWorld(true);
     });
     frame?.(lt, u, t, S, st, S3);
@@ -195,6 +196,7 @@ export function shot({ plate: name, light = {}, build, frame, view, cover, move,
       faceFX(an.face, { blink: autoBlink(t, seed ?? 1), open: who ? mouth(S, who, t) : 0, ...(typeof o === 'function' ? o(lt, t) : o), ...(sh.projected && an.face?.mouthVis === false ? { open: 0 } : {}) });
     }
     over?.(lt, u, t, S, st, S3);
+    st.actors.forEach((a, i) => { const pl = sh.place[i]; a.group.traverse(o => { if (!pl[4].has(o) && !pl[5].has(o)) pl[5].set(o, o.parent); }); });
     c.restore();
     return { vignette: .5, paper: .24, ...fx };
   };

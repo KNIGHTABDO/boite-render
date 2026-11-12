@@ -7,6 +7,7 @@ import * as PR from '../../../engine/props3d.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { bracelets } from './s17_retour.js';
+import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
 
 // G1: both palms flat in front of the face (fingers over the eyes), wrists clear of the cheeks; palmsOnFace put them on the ears/jaw
 function palmsCover(a) {
@@ -45,8 +46,8 @@ const pa = staged('patio_matin', {
     const kz = zo.group.scale.y / 1.6, see = sm(B(0)[0] + .2 * (B(0)[1] - B(0)[0]), B(0)[0] + .45 * (B(0)[1] - B(0)[0]), t);
     for (const s of ['L', 'R']) {
       const early = sm(.3, B(0)[0] + .65, t) * (1 - see);   // b001: a small response before the laugh, preserving the opening offer
-      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.06 : .06) * kz, (.08 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.045 : .045) * kz, -.17 * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
-      if (early > 0) PO.fingers(zo, s, .16 * early, { spread: .25 });
+      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.09 : .09) * kz, (.08 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.045 : .045) * kz, -.17 * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
+      if (early > 0) PO.fingers(zo, s, .08 * early, { spread: .3 });
     }
   },
 });
@@ -58,20 +59,17 @@ const CHEST = [[1418, 585], [1830, 585], [1830, 890], [1418, 890]];
 const nu = staged('chambre_nuit', {
   zoubida: { at: [820, 880], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .22, hip: .30, spread: .065, hands: false },
     seed: 7, hands: false, talk: 0, lids: .95 },
-  mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly', mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
+  mohammed: { at: [1301, 764], face: [1384, 841], pose: 'lie', o: { top: .35, turn: .12, headTurn: -.22, hands: 'belly', pillow: .1, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
 }, {
   act(lt, t, S, st, S3) {
     const { zoubida: zo, mohammed: mo } = st.A;
     st.G.apply = () => {};   // contact hands and the boy's pillow turn must survive the automatic gaze pass
-    if (!st.pillow) {
-      st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x586b8c });
-      const p = at(mo, 'head', [0, .1, 0]).setY(.35);   // the same point returned as lie().pillowAt
-      S3.prop(st.pillow, p.x, p.y, p.z, mo.group.rotation.y);
-    }
+    lieOnBed(mo, { top: .35, feet: [.5, .87], hands: 'belly', pillow: .1, tuck: .22, headTurn: -.1 });   // r15: flat on the cloth at cast scale
+    pillowUnder(S3, st, mo, { top: .35, h: .1, col: 0x586b8c });
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
     mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);
-    palmsCover(zo);
+    palmsOverEyes(zo, { bow: .14 });
   },
 });
 

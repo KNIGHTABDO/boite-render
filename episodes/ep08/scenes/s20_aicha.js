@@ -5,6 +5,7 @@
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged, palmsOnFace } from '../lib/autostage.js';
+import { handOnFace, armToward } from '../lib/fix8_R15E.js';
 import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
 
 const ID = 's20_aicha', L = lines(ID), B = i => L[i] || [0, 0];
@@ -24,6 +25,13 @@ const ch = staged('chambre_jour', {
     st.A.mohammed.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     const { zoubida: zo, aicha: ai } = st.A, kz = zo.group.scale.y / 1.6, ka = ai.group.scale.y / 1.6;
     if (!st.gaze) st.gaze = st.G.apply;
+    // the women shuffle toward each other: touching hands at b148, in each other's arms at b151
+    const base = st.base ||= [zo, ai].map(a => a.group.position.clone());
+    const dir = base[1].clone().sub(base[0]).setY(0).normalize();
+    const close = .1 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .09 * sm(B(8)[0] - .3, B(8)[0] + 1, t);
+    const closeT = close * (1 - sm(B(8)[1] + .1, B(8)[1] + .4, t));
+    zo.group.position.copy(base[0]).addScaledVector(dir, closeT); ai.group.position.copy(base[1]).addScaledVector(dir, -closeT);
+    zo.group.updateMatrixWorld(true); ai.group.updateMatrixWorld(true);
     const cover = IN(2, t) || IN(4, t) || IN(7, t);
     st.G.apply = cover ? () => {} : st.gaze;
     const lap = (a, s, k) => PO.reach(a, s, PO.hipToWorld(a, (s === 'L' ? .14 : -.14) * k, .05 * k, .2 * k), { grip: .03, pole: s === 'L' ? [.3, .05, .1] : [-.3, .05, .1] });
@@ -41,48 +49,40 @@ const ch = staged('chambre_jour', {
       PO.fingers(zo, 'R', .3, { spread: .2 });
     }
     if (IN(2, t)) {
-      palmsOnFace(ai, 'cheek', { sides: ['R'], bow: .02 }); lap(ai, 'L', ka);
-      const tap = Math.max(0, Math.sin((t - B(2)[0]) * 9)) * .22;   // three taps: the forearm pats the cheek
-      ai.B.foreArmR.rotation.x += tap; ai.B.foreArmR.updateWorldMatrix(false, true);
+      // three pats of the palm on the cheek: the whole hand taps, the head leans into it
+      const tap = Math.max(0, Math.sin((t - B(2)[0]) * 9));
+      handOnFace(ai, 'R', 'cheek', { pitch: .03 + .03 * tap }); lap(ai, 'L', ka);
     }
     if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); palmsOnFace(ai, 'face', { bow: .12, hover: true }); }
-    if (IN(5, t)) {
-      // One offered hand, Aïcha's hands a palm-width apart around it. Not the same point twice.
-      const offered = front(zo, 'chest', .32 * kz, .06 * kz, .06 * kz);
-      reach(zo, 'L', offered, { grip: 0, pole: [.36, .1, .18] });
-      PO.fingers(zo, 'L', .06, { spread: .25 });
-      lap(zo, 'R', kz);
-      reach(ai, 'R', offered.clone().add(V(.02, .08, .03)), { grip: .02, pole: [-.38, .12, .2] });
-      reach(ai, 'L', offered.clone().add(V(-.06, -.02, .08)), { grip: .02, pole: [.32, .1, .18] });
+    if (IN(5, t) || IN(6, t)) {
+      // Zoubida holds one hand out between them; Aicha closes her palm over it (hand-to-hand contact at the midpoint)
+      const zs = armToward(zo, ai), as = armToward(ai, zo), os = as === 'L' ? 'R' : 'L';
+      const mid = at(zo, 'chest').lerp(at(ai, 'chest'), .5); mid.y -= .08 * kz; mid.z += .08 * kz;
+      reach(zo, zs, mid, { grip: 0, pole: [(zs === 'L' ? 1 : -1) * .36, .1, .18] });
+      PO.fingers(zo, zs, .06, { spread: .25 });
+      lap(zo, zs === 'L' ? 'R' : 'L', kz);
+      reach(ai, as, mid.clone().add(V(0, .075 * ka, 0)), { grip: .01, pole: [(as === 'L' ? 1 : -1) * .38, .12, .2] });
+      PO.fingers(ai, as, .5, { thumb: .4 });
+      if (IN(6, t)) { reach(ai, os, front(ai, 'head', .14 * ka, (os === 'L' ? -1 : 1) * .16 * ka, .05 * ka), { grip: 0, pole: [(os === 'L' ? 1 : -1) * .4, .14, .16] }); ai.B.chest.rotation.x += .02 * Math.sin(t * 8); }
+      else lap(ai, os, ka);
     }
-    if (IN(6, t)) {
-      const offered = front(zo, 'chest', .32 * kz, .06 * kz, .06 * kz);
-      reach(zo, 'L', offered, { grip: 0, pole: [.36, .1, .18] });
-      lap(zo, 'R', kz);
-      reach(ai, 'R', offered.clone().add(V(.02, .08, .03)), { grip: .02, pole: [-.38, .12, .2] });
-      reach(ai, 'L', front(ai, 'head', .14 * ka, .16 * ka, .05 * ka), { grip: 0, pole: [.4, .14, .16] });
-      ai.B.chest.rotation.x += .02 * Math.sin(t * 8);
-    }
-    if (IN(7, t)) palmsOnFace(zo, 'cheeks');
+    if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); palmsOnFace(zo, 'cheeks'); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
-      const apart = at(ai, 'root').clone().sub(at(zo, 'root')); apart.y = 0;
-      const gap = apart.length();
-      if (gap > .7 && gap < 4) {
-        const pull = Math.min(.12, (gap - .68) / 2) * u, dir = apart.multiplyScalar(1 / gap);
-        zo.group.position.addScaledVector(dir, pull); ai.group.position.addScaledVector(dir, -pull);
-        zo.group.updateMatrixWorld(true); ai.group.updateMatrixWorld(true);
-      }
-      zo.B.chest.rotation.z += .1 * u; ai.B.chest.rotation.z -= .1 * u;
+      zo.B.chest.rotation.z += .16 * u; ai.B.chest.rotation.z -= .16 * u;
       zo.B.chest.updateWorldMatrix(false, true); ai.B.chest.updateWorldMatrix(false, true);
-      const hug = (a, other, lift) => {
-        const side = at(other, 'chest').x > at(a, 'chest').x ? 'R' : 'L';
-        const shoulder = at(other, 'upperArm' + side).add(V(0, lift, .08));
-        reach(a, side, shoulder, { grip: .02, pole: side === 'L' ? [.3, .16, .22] : [-.3, .16, .22] });
+      const hug = (a, other, lift, dz) => {
+        const ka2 = a.group.scale.y / 1.6, side = armToward(a, other), oside = armToward(other, a);
+        const shoulder = at(other, 'upperArm' + oside).add(V(0, lift * ka2, dz * ka2));
+        reach(a, side, shoulder, { grip: .02, pole: [(side === 'L' ? 1 : -1) * .3, .16, .22] });
+        PO.fingers(a, side, .35);
+        lap(a, side === 'L' ? 'R' : 'L', ka2);
       };
-      hug(zo, ai, .1); hug(ai, zo, -.02);
+      hug(zo, ai, .08, .08); hug(ai, zo, -.04, -.05);
     }
     for (const a of [zo, ai]) a.B.chest.updateWorldMatrix(false, true);
+    if (globalThis.process?.env?.DBG8&&t>38&&t<38.5) console.log('ELB',['foreArmR','upperArmR','handR','chest','root','neck'].map(n=>n+JSON.stringify(at(ai,n).toArray().map(v=>+v.toFixed(2)))).join(' '));
+    if (globalThis.process?.env?.DBG8) { const d=(x,y)=>+x.distanceTo(y).toFixed(2), P=(a,s)=>PO.handPts(a,s).palm, zs=armToward(zo,ai), as=armToward(ai,zo); console.log('DBG',t.toFixed(1),'aiRpalm-headbone',d(P(ai,'R'),at(ai,'head')),'aiL',d(P(ai,'L'),at(ai,'head')),'zoArm-aiArm',d(P(zo,zs),P(ai,as)),'zoPalm-aiShoulder',d(P(zo,zs),at(ai,'upperArm'+armToward(ai,zo))),'aiPalm-zoSh',d(P(ai,as),at(zo,'upperArm'+armToward(zo,ai))),'roots',d(at(zo,'root'),at(ai,'root')),'zoPalmHead',d(P(zo,'L'),at(zo,'head')),d(P(zo,'R'),at(zo,'head'))); }
   },
 });
 

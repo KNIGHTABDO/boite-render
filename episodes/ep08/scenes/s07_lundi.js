@@ -43,9 +43,9 @@ const pa = staged('patio_matin', {
 /** louha on the knees, tilted back so its top stays under the chin, palms on the lower side edges */
 function holdLouha(a, lh) {
   const kk = a.group.scale.y / 1.6;
-  holdBoard(a, lh, front(a, 'root', .16 * kk, 0, .03 * kk), -1.15, Math.min(.48, kk * .65));
-  reachSafe(a, 'L', lh.localToWorld(V(.08, .12, .01)), { grip: .03, pole: [.3, -.12, .1] });
-  reachSafe(a, 'R', lh.localToWorld(V(-.08, .12, .01)), { grip: .03, pole: [-.3, -.12, .1] });
+  holdBoard(a, lh, front(a, 'root', .18 * kk, 0, .04 * kk), -1.1, Math.min(.85, kk * 1.15));
+  reachSafe(a, 'L', lh.localToWorld(V(.125, .1, .01)), { grip: .03, pole: [.3, -.12, .1] });
+  reachSafe(a, 'R', lh.localToWorld(V(-.125, .1, .01)), { grip: .03, pole: [-.3, -.12, .1] });
 }
 
 // looks run after the gaze net: b032 the father lowers his eyes (his worker's mother), b036–b037 he looks down at his son;
@@ -56,7 +56,7 @@ const ch = staged('chambre_jour', {
   father: { ...LUNCH.father, height: 1.76, lookMax: 1.15, look: (t, st) => win(5, .05, .95, t) > .5 ? front(st.A.father, 'chest', .9, 0, -.5) : t >= B(10)[0] - .2 ? [1020, 960, .75] : t >= B(9)[0] - .2 ? 'mohammed' : t >= B(6)[0] - .2 ? 'zoubida' : null },   // b037 (Argon r5): screen-right, to them both, not down into his collar
   // Argon r5: he drifted to the lens → he follows the talk: his mother on her reaction (b030) and her question (b033), else his father.
   // b035 the head-shake stays toward the lens: a look at his father on top of the body yaw turned the face past the camera.
-  mohammed: { ...LUNCH.mohammed, yaw: .3, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 1.2 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
+  mohammed: { ...LUNCH.mohammed, at: [930, 1000], yaw: .3, lookMax: t => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? 1.2 : .95, look: (t, st, S3) => win(8, 0, .95, t) > .15 || (t > B(8)[0] - .4 && t < B(8)[0] + .4) ? S3.cam.position.clone() : win(3, .3, 1, t) > .3 || zwin(t) > .3 ? 'zoubida' : t >= B(1)[0] - .3 ? 'father' : null },
 }, {
   // the father talks to Zoubida until b036, then to his son (b036 "Ne te tourmente pas", b037 the jewels question)
   addressee: { father: l => l.t0 >= B(9)[0] - .2 ? 'mohammed' : 'zoubida', zoubida: 'father', mohammed: 'father' },
@@ -83,13 +83,18 @@ const ch = staged('chambre_jour', {
     for (const a of [fa, zo, mo]) for (const s of ['L', 'R']) lapRest(a, s, t);
     // b030: right hand to her chest from "bracelets", palm turned onto the breastbone
     if (chest > 0) {
-      reachSafe(zo, 'R', front(zo, 'chest', .2 * kz, .04 * kz, .04 * kz).lerp(front(zo, 'root', .18 * kz, .14 * kz, .05 * kz), 1 - chest), { grip: .03, pole: [-.35, -.1, .15] });
+      reachSafe(zo, 'R', front(zo, 'chest', .12 * kz, .03 * kz, -.1 * kz).lerp(front(zo, 'root', .18 * kz, .14 * kz, .05 * kz), 1 - chest), { grip: .03, pole: [-.35, -.1, .15] });
       PO.palmTo(zo, 'R', chest, dirW(zo, 0, 0, -1));
+    }
+    // b033: an open questioning hand toward the father, clear of her face
+    if (ask > 0) {
+      reachSafe(zo, 'R', front(zo, 'root', .18 * kz, .14 * kz, .05 * kz).lerp(front(zo, 'root', .3 * kz, .1 * kz, .2 * kz), ask), { grip: 0, pole: [-.35, -.1, .15] });
+      PO.palmTo(zo, 'R', ask); PO.fingers(zo, 'R', .1, { spread: .3 });
     }
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .26 * kf, sign * .2 * kf, .02 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .4, -.1, .12] });
+      reachSafe(fa, s, front(fa, 'chest', .3 * kf, sign * .17 * kf, -.14 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .4, -.1, .12] });
       PO.palmTo(fa, s, palms); PO.fingers(fa, s, .15, { spread: .3 });
     }
     // b035: left fist at his chest, right hand open toward his father
@@ -102,7 +107,7 @@ const ch = staged('chambre_jour', {
     }
     // b028–b029: a small open-handed welcome as he announces the outing
     if (wel > 0) {
-      reachSafe(fa, 'R', front(fa, 'chest', (.24 + .02 * Math.sin(t * 2.2)) * kf, -.16 * kf, .02 * kf), { grip: 0, pole: [-.35, -.1, .12] });
+      reachSafe(fa, 'R', front(fa, 'chest', (.24 + .02 * Math.sin(t * 2.2)) * kf, -.16 * kf, -.1 * kf), { grip: 0, pole: [-.35, -.1, .12] });
       PO.palmTo(fa, 'R', wel); PO.fingers(fa, 'R', .1, { spread: .25 });
     }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.

@@ -89,7 +89,7 @@ const ms = checkedStage('ep03/msid_estrade', {
   fqih: { at: [1000, 795], face: 'cam', pose: 'cross', o: { seat: .34, floor: .34 }, seed: 9, lids: .35, talk: 0 },
   kid1: { at: [500, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 2, look: 'fqih', lids: .3 },
   kid2: { at: [1460, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 4, look: 'fqih', lids: .25 },
-  mohammed: { at: [700, 830], face: 'fqih', yaw: .5, pose: 'cross', hands:false, seed: 3, look: 'fqih', lookMax: .75, lids: .45 },   // beside the master, 3/4 to the lens: he can look at him without turning his back to us
+  mohammed: { at: [700, 830], face: [1000, 1060], pose: 'cross', hands:false, seed: 3, look: 'fqih', lookMax: .75, lids: .45 },   // beside the master, 3/4 to the lens: he can look at him without turning his back to us
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo } = st.A, kf = k(fq);
@@ -128,8 +128,8 @@ const pr = sized(checkedStage('mausolee_rev', {
     // he looks back at the boys only once he has turned to them (a leader walking away cannot face the file behind him)
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   kid1: { at: [1030, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [860, 875], ...T11(2, 3.4) } },
-  mohammed: { at: DOOR, face: 'cam', seed: 3, talk: 0, walk: { to: [1100, 900], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid3: { at: DOOR, face: 'cam', seed: 6, talk: 0, walk: { to: [1330, 860], ...T11(3, 3.4) } },
+  mohammed: { at: [925, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [1100, 900], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
+  kid3: { at: [1120, 754], face: 'cam', seed: 6, talk: 0, walk: { to: [1330, 860], ...T11(3, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, mohammed: mo, kid3 } = st.A;
@@ -142,9 +142,6 @@ const pr = sized(checkedStage('mausolee_rev', {
     const turn = yawTo(fq.group.position, kid1.group.position);
     fq.group.rotation.y += Math.atan2(Math.sin(turn - fq.group.rotation.y), Math.cos(turn - fq.group.rotation.y)) * lead;
     fq.group.updateMatrixWorld(true);
-    PO.reach(fq, 'R', front(fq, 'chest', (.23 + .04 * Math.sin(t * 3)) * k(fq), .23 * k(fq), -.12 * k(fq)), { grip: 0 });
-    PO.fingers(fq, 'R', .12, { thumb: .15, spread: .3 });
-    PO.palmTo(fq, 'R', .8, V(0, 1, 0));
     st.lh ||= [kid1, mo, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     [kid1, mo, kid3].forEach((a, i) => { st.lh[i].visible = a.group.visible; chestLouha(a, st.lh[i]); });
   },
@@ -266,10 +263,10 @@ const ab = sized(checkedStage('mausolee_rev', {
 // ---------------------------------------------------------------- b015 prayer rows behind the master
 const ROW = [['kid1', 820, 2], ['kid2', 1060, 4], ['mohammed', 1300, 3], ['kid3', 1540, 6]];
 // The qibla is the left-hand wall: rows seen from behind and three-quarters, so every face stays within reach of the lens.
-const QIBLA = Math.PI + 1.2;
+const QIBLA = Math.PI + .75;   // straight away from the lens: a row of backs behind the leading fqih
 const pray = sized(checkedStage('mausolee', {
-  fqih: { at: [1180, 790], face: QIBLA, seed: 9, talk: 0 },
-  ...Object.fromEntries(ROW.map(([n, x, seed]) => [n, { at: [x, 905], face: QIBLA, seed, talk: 0 }])),
+  fqih: { at: [1180, 730], face: QIBLA, seed: 9, talk: 0 },
+  ...Object.fromEntries(ROW.map(([n, x, seed]) => [n, { at: [x, 915], face: QIBLA, seed, talk: 0 }])),
 }, {
   act(lt, t, S, st) {
     const [t0, t1] = B(5), D = t1 - t0;
@@ -283,7 +280,7 @@ const pray = sized(checkedStage('mausolee', {
       const hinge = Math.PI / 2 * r;
       a.B.spine.rotation.set(hinge, 0, 0); a.B.chest.rotation.set(0, 0, 0);
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hinge);
-      a.B.neck.rotation.set(0, 0, 0); a.B.head.rotation.set(0, .3, 0); upd(a, 'spine');   // head a little toward the lens
+      a.B.neck.rotation.set(0, 0, 0); a.B.head.rotation.set(0, .55, 0); upd(a, 'spine');   // head a little toward the lens
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
       const fw = dirW(a, 0, 0, 1); let settle = 0;
@@ -315,7 +312,7 @@ export default beatScene(ID, {
     b011: { shot: 'pr', size: 'W', on: 'mohammed' },   // walkers: covers frame build positions → wide only
     b012: { shot: 'fl', size: 'W', on: 'woman2', cover: [{ f: .06, size: 'W', on: 'fatma' }, { f: .41, size: 'W', on: 'woman2' }, { f: .47, size: 'W', on: 'fatma' }] },   // whoever is on the near half of the lap leads the frame
     b013: { shot: 'br', size: 'M', on: 'mohammed', z: 1.6, dx: 0, dy: 0, cover: [{ f: .35, size: 'M', on: 'mohammed', z: 2.05, dx: 0, dy: -10 }] },
-    b014: { shot: 'ab', size: 'M', on: 'fqih', z: 1.7, dx: 90, dy: -35, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
+    b014: { shot: 'ab', size: 'M', on: 'fqih', z: 1.4, dx: 70, dy: -90, cover: [{ f: .38, size: 'W', on: 'mohammed' }] },
     b015: { shot: 'pray', size: 'W', on: 'mohammed' },
   },
 });

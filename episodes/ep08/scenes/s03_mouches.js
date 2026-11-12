@@ -16,7 +16,7 @@ const beams = [980, 700, 2.55];   // Argon r6: a near, high target cranked the h
 // walks toward the right window before three broad overhand swats and a held cloth follow-through.
 const ch = staged('chambre_jour', {
   zoubida: { at: [960, 985], face: [640, 1080], seed: 7, lookMax: t => IN(1, t) || IN(4, t) ? .32 : .7,   // up-looks: eyes + head, a chest arch does the rest
-    lids: t => IN(1, t) || IN(4, t) ? .5 : 0,   // Argon r5: squint up at the beams (r7: this sat inside a comment → never ran)
+    lids: t => IN(1, t) || IN(4, t) ? .7 : 0,   // Argon r5: squint up at the beams (r7: this sat inside a comment → never ran)
     walk: { to: [280, 960], t0: B(3)[0] - 2.4, t1: B(3)[0] - .2 }, // on the doorway threshold before the talisman
     look: t => IN(1, t) ? beams : IN(4, t) ? beams : IN(3, t) && t < B(3)[0] + .5 * (B(3)[1] - B(3)[0]) ? [280, 960, 1.72] : IN(5, t) ? [1450, 760, 1.5] : null },
 }, {
@@ -59,9 +59,9 @@ const ch = staged('chambre_jour', {
       const D = B(3)[1] - B(3)[0], up = sm(B(3)[0] - .1, B(3)[0] + .5, t)
         * (1 - sm(B(3)[0] + .68 * D, B(3)[0] + .68 * D + .5, t));
       const blow = sm(B(3)[0] + .68 * D, B(3)[0] + .68 * D + .5, t);
-      const lintel = S3.floorAt(280, 960).setY(heightAt(S3, 280, 960, 110));
+      const lintel = S3.floorAt(280, 960).setY(heightAt(S3, 280, 960, 125));
       const sh = at(zo, 'upperArmR'), len = sh.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
-      lintel.y = Math.min(lintel.y, sh.y + len * .92);
+      lintel.y = Math.min(lintel.y, sh.y + len * .97);
       // 3/4 to the lens: blend from the lens toward the doorway (back to camera failed the acting gate)
       const yd = yawTo(zo.group.position, S3.floorAt(330, 880)), yc = yawTo(zo.group.position, S3.cam.position);
       const yaw = yc + Math.atan2(Math.sin(yd - yc), Math.cos(yd - yc)) * .5;
@@ -102,7 +102,8 @@ const ch = staged('chambre_jour', {
       const p = path(phase), prev = path(Math.max(0, phase - .025));
       const target = q => front(zo, 'chest', q.x * k, q.y * k, q.z * k);
       PO.reach(zo, 'R', target(p), { grip: .015, pole: [-.5, .1, -.15] });
-      PO.reach(zo, 'L', front(zo, 'root', .18 * k, -.32 * k, .04 * k), { grip: .015, pole: [.5, -.1, -.1] });
+      PO.reach(zo, 'L', front(zo, 'root', .07 * k, -.2 * k, .1 * k + .03 * k * Math.sin(t * 2)), { grip: .015, pole: [.7, 0, -.3] });   // fist near the hip, elbow bent: no A-pose
+      PO.fingers(zo, 'L', .7, { thumb: .5 });
       PO.fingers(zo, 'R', .9, { thumb: .85 });
       const h = PO.handPts(zo, 'R'); cloth.position.copy(h.palm);
       const outward = front(zo, 'chest', 0, 1, 0).sub(at(zo, 'chest'));
@@ -127,7 +128,7 @@ const ch = staged('chambre_jour', {
 
 /** a striped cotton dish cloth hanging from the grip point (local −y): one subdivided sheet bent each frame by wave() */
 function dishCloth() {
-  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.26, .44, 6, 16); geo.translate(0, -.22, 0);
+  const g = new THREE.Group(), geo = new THREE.PlaneGeometry(.22, .36, 6, 16); geo.translate(0, -.18, 0);
   geo.userData.rest = geo.attributes.position.array.slice();
   const N = 32, px = new Uint8Array(4 * N * N);   // cream cotton with two indigo bands (a Moroccan kitchen towel)
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const band = (y > 4 && y < 7) || (y > 24 && y < 27), o = 4 * (y * N + x); px.set(band ? [52, 74, 130, 255] : [226, 214, 186, 255], o); }
@@ -137,15 +138,15 @@ function dishCloth() {
 }
 /** travelling wave down the cloth: the free end lags and flaps (amplitude grows with the distance from the grip and the whip speed) */
 function wave(m, t, e = 1) {
-  const p = m.geometry.attributes.position, r = m.geometry.userData.rest, A = .5 + e;
-  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .44;
-    p.setXYZ(i, x * (1 - .3 * d) + .06 * d * d * Math.sin(t * 9 - 3 * d) * A, r[i * 3 + 1] * (1 - .15 * d), .065 * A * d * d * Math.sin(t * 9 - 4 * d + 1) + .3 * x * d * Math.sin(t * 4)); }
+  const p = m.geometry.attributes.position, r = m.geometry.userData.rest, A = .9 + .9 * e;
+  for (let i = 0; i < p.count; i++) { const x = r[i * 3], d = -r[i * 3 + 1] / .36;
+    p.setXYZ(i, x * (1 - .3 * d) + .06 * d * d * Math.sin(t * 9 - 3 * d) * A, r[i * 3 + 1] * (1 - .22 * d) - .03 * d * d, .065 * A * d * d * Math.sin(t * 9 - 4 * d + 1) + .5 * x * d * Math.sin(t * 4 + d * 3)); }
   p.needsUpdate = true; m.geometry.computeVertexNormals();
 }
 /** eighteen house flies: tiny dark bodies with a pale wing blur */
 function swarm() {
   const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: 0x14100c }), wm = new THREE.MeshBasicMaterial({ color: 0xcfd6dc, transparent: true, opacity: .45 });
-  for (let i = 0; i < 18; i++) { const f = new THREE.Mesh(new THREE.SphereGeometry(.006, 6, 4), m); f.scale.set(1.5, 1, 1); f.add(new THREE.Mesh(new THREE.CircleGeometry(.008, 8), wm)); g.add(f); }
+  for (let i = 0; i < 18; i++) { const f = new THREE.Mesh(new THREE.SphereGeometry(.011, 6, 4), m); f.scale.set(1.5, 1, 1); f.add(new THREE.Mesh(new THREE.CircleGeometry(.016, 8), wm)); g.add(f); }
   return g;
 }
 

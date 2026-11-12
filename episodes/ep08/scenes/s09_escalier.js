@@ -2,7 +2,8 @@
 // hands on his knees. b044 settles, b045 chin up (the idea deserved silence), b046–b049 paintings (flowers, genies),
 // b050 shoulders drop, b051 fists tighten on his knees "à mort", b052 enumeration (pieds / prière / bruit, feet and hush
 // inserts), b053 he repeats his sentence to himself, eyes up the flight, lips moving.
-import { castScale, pinKnees, sitStep } from '../lib/fix8c.js';
+import { castScale, pinKnees } from '../lib/fix8c.js';
+import { sitStepDrop as sitStep } from '../lib/fix8_R15C.js';
 import { staged } from '../lib/autostage.js';
 import { c } from '../../../engine/core.js';
 import { ESCALIER } from '../lib/stairs.js';
@@ -45,6 +46,8 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     // Turn left through the upper body as well as the head, toward the upper railing/landing.
     b.spine.rotation.y -= .16 * dream; b.chest.rotation.y -= .14 * dream;
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
+    const up53 = sm(B(9)[0] - .1, B(9)[0] + .5, t);
+    b.neck.rotation.x -= .06 * up53; b.head.rotation.x -= .05 * up53;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
     // After the lean, put the palms back on the kneecaps. Fists close on "à mort".
     pinKnees(mo, fist);
@@ -97,6 +100,6 @@ export default beatScene(ID, {
       [(3.22 + .92) / (B(8)[1] - B(8)[0]), 'esc'],
       [(10.01 - .08) / (B(8)[1] - B(8)[0]), 'i_doigt_levres'],
     ] },
-    b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 70 },
+    b053: { shot: 'esc', size: 'M', on: 'mohammed', z: 1.5, dy: 90 },
   },
 });

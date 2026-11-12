@@ -6,7 +6,8 @@ import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { shot } from './_3d.js';
-import { staged, palmsOnFace } from '../lib/autostage.js';
+import { staged } from '../lib/autostage.js';
+import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import * as K from '../../../engine/core.js';
 
@@ -15,13 +16,13 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
-const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 };
-const ZO = { at: [1011, 679], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: TOP, lean: .28, spread: .07, hands: false, avoid: CHEST },
+const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 };
+const ZO = { at: [1050, 748], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: 0, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
   const sob = .5 + .5 * Math.sin(t * 1.7);
   zo.B.chest.rotation.x += .1 + .015 * sob;   // bowed forward, face down into both palms
-  palmsOnFace(zo, 'face', { bow: .5 });
+  palmsOverEyes(zo, { bow: .14 });
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
@@ -41,12 +42,9 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
     const mo = st.A.mohammed, lieT = B(2)[0] + .32 * (B(2)[1] - B(2)[0]), here = t >= lieT - .05;
     mo.group.visible = here;
     if (st.pillow) st.pillow.visible = here;
-    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.6);
-    if (!st.pillow) {
-      st.pillow = PR.cushion({ w: .38, d: .3, h: .08, col: 0x647c7c });
-      const p = at(st.A.mohammed, 'head', [0, .1, 0]).setY(TOP);   // lie().pillowAt
-      S3.prop(st.pillow, p.x, p.y, p.z, st.A.mohammed.group.rotation.y);
-    }
+    lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .12, tuck: .22, headTurn: .08 });   // r15: flat on the cloth, full cast scale
+    pillowUnder(S3, st, mo, { top: TOP, h: .12 }); st.pillow.visible = here;
+    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.6); mo.B.chest.updateWorldMatrix(false, true);
   },
 });
 // b105 begins with him upright, curled over his knees crying. Cut on "Puis je m'étendis" to the settled bed pose;
@@ -61,7 +59,7 @@ const cry = staged('chambre_jour', {
     st.G.apply = () => {}; mourn(st.A.zoubida, t);
     const mo = st.A.mohammed;
     mo.B.chest.rotation.x += .06 + .02 * Math.sin(t * 9);   // hunched, shoulders heaving
-    palmsOnFace(mo, 'face', { bow: .32 });
+    palmsOverEyes(mo, { bow: .3 });
   },
 });
 
@@ -71,8 +69,8 @@ const win = shot({ plate: 'patio_nuit', async build() { return {}; },
 export default beatScene(ID, {
   shots: { ch, cry, win },
   plan: {
-    b103: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.15, dy: -70 },
-    b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dy: -35 },
+    b103: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.15, dy: -30 },
+    b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.0, dy: 10 },
     b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 2.3, dy: -55,
       segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: 10, dy: -80 }] },
     b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.28, dx: 70, dy: -30 },

@@ -32,7 +32,7 @@ const pa = staged('patio_matin', {
   fatma: { at: [1612, 882], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
     look: t => t >= B(6)[0] + .4 ? 'father' : 'zoubida' },
   // Left street door. He is outside the court until "Passe", then walks in.
-  father: { at: [270, 902], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
+  father: { at: [215, 902], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
     look: 'zoubida',
     walk: { to: [680, 1005], t0: WALK0(), t1: B(7)[0] + 2.1 } },
 }, {
@@ -66,12 +66,15 @@ const pa = staged('patio_matin', {
       const sh = at(zo, 'upperArmR'), dir = stain.clone().sub(sh);
       const arm = sh.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > arm * .72) dir.setLength(arm * .72);
-      const target = sh.clone().add(dir); target.y = Math.min(target.y, at(zo, 'chest').y - .08);
+      const target = sh.clone().add(dir); target.y = Math.min(target.y, at(zo, 'chest').y - .3);
       PO.reach(zo, 'R', target, { grip: .01, pole: [-.3, -.05, .15] });
       PO.fingers(zo, 'R', .75, { each: [.7, 0, 1, 1, 1] });
     }
-    fa.group.visible = t >= B(3)[0];
+    fa.group.visible = t >= B(3)[0] && t < B(7)[0] + .9;
     const lean = sm(B(3)[0], B(3)[0] + .55, t) * (1 - sm(B(7)[0], B(7)[0] + .45, t) * .65);
+    const sway = Math.sin((t - B(3)[0]) * 1.6);
+    fa.B.spine.rotation.x += .1 * lean * (1 + sway * .5); fa.B.spine.rotation.z += .07 * lean * sway;
+    fa.B.neck.rotation.z += .08 * lean * Math.sin((t - B(3)[0]) * 2.1);
     fa.B.spine.rotation.x += .22 * lean; fa.B.chest.rotation.x += .08 * lean;
     fa.B.spine.updateWorldMatrix(false, true);
     const eager = sm(B(4)[0] - .12, B(4)[0] + .18, t) * (1 - sm(B(4)[1], B(4)[1] + .25, t));
@@ -80,7 +83,7 @@ const pa = staged('patio_matin', {
       handTo(fa, 'L', { fwd: .12, out: .12, drop: .02, curl: .12, spread: .2 });
       PO.palmTo(fa, 'L', eager, dirW(fa, 0, .2, 1));
     }
-    if (t >= B(7)[0]) fa.group.position.addScaledVector(dirW(fa, 0, 0, -1), .22 * sm(B(7)[0], B(7)[0] + .5, t));
+    if (t >= B(7)[0]) fa.group.position.addScaledVector(dirW(fa, 0, 0, -1), .5 * sm(B(7)[0] - .6, B(7)[0] + .6, t));
     const nod = sm(B(5)[0], B(5)[0] + .2, t) * (1 - sm(B(5)[1] - .2, B(5)[1], t));
     if (nod > 0) zo.B.chest.rotation.x += .05 * nod;
     const call = t >= B(6)[0] && t < WALK0();
@@ -126,10 +129,10 @@ const pa = staged('patio_matin', {
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
-      yawBody(mo, S3.cam, .5);
+      yawBody(mo, S3.cam, .22);
     }
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
-    if (fa.group.visible) yawToward(fa, S3.cam, 1.25);
+    if (fa.group.visible) yawToward(fa, S3.cam, .75);
     if (fa.group.visible) holdBroom(fa, broom, 'R'); else broom.visible = false;
     // Nod rides on top of the eyeline, after the camera yaw, so it is not pulled back to the lens.
     if (nod > 0) {

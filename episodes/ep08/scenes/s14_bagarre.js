@@ -18,6 +18,7 @@ import { toon } from '../../../engine/props3d.js';
 import { role } from './_3d.js';
 import { apart, castScale, faceCam, reachClamp, sealHaik, stride } from '../lib/fix8c.js';
 import { haikTuck, haikOut, behind } from '../lib/fix8_G4.js';
+import { bareHead } from '../lib/fix8_g5.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
 
 const ID = 's14_bagarre', L = lines(ID), B = i => L[i] || [0, 0];
@@ -53,7 +54,7 @@ function soukCast(sh, copy, fighters = false) {
 }
 
 const mu = soukCast(checkedStage('souk_mur', {
-  father: { at: [800, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [880, 760], t0: B(0)[0] + .2, t1: B(0)[1] - .15 } },
+  father: { at: [800, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [770, 630], t0: B(0)[0] + .2, t1: B(0)[1] - .15 } },
   mohammed: { at: [700, 900], face: [680, 850], seed: 3, talk: 0, lookMax: .15, look: () => null },
   zoubida: { at: [520, 860], face: [800, 1000], costume: 'haik', seed: 7, talk: 0, lookMax: .9, lids: t => .35 * win(3, 0, 1, t),
     look: t => t > B(3)[0] && t < B(4)[0] ? [560, 980, 0] : t < B(1)[0] ? 'father' : null },
@@ -119,6 +120,7 @@ const mu = soukCast(checkedStage('souk_mur', {
     // b094 the haik tugged from behind: chest twists after it, both fists at the breastbone
     const tug = win(4, 0, 1, t), jerk = Math.max(0, Math.sin((t - B(4)[0]) * 5.5)) ** 3;
     if (tug > 0) {
+      ft.group.rotation.y = yawTo(ft.group.position, S3.cam.position) - .3; ft.group.updateMatrixWorld(true);
       ft.B.spine.rotation.y += (.45 + .1 * jerk) * tug; ft.B.chest.rotation.y += .3 * tug; ft.B.neck.rotation.y += .25 * tug;
       ft.B.spine.rotation.x -= .08 * jerk * tug; ft.group.position.add(V(.03 * jerk * kt, 0, -.04 * jerk * kt));
       ft.group.updateMatrixWorld(true); ft.B.spine.updateWorldMatrix(false, true);
@@ -138,10 +140,10 @@ const mu = soukCast(checkedStage('souk_mur', {
 }), ':s14:mu:fatma');
 
 // the fight: the pair grips collars and shoves along a path (the walk gives the legs; the bodies face each other)
-const PATH = [[1120, 640], [770, 760], [860, 720]];   // across lens-left → held close → still in front of the crowd
+const PATH = [[1120, 640], [770, 760], [800, 610]];   // across lens-left → held close → still in front of the crowd
 const FOLLOW = [
-  ['man1', [560, 700]], ['woman1', [1120, 700]], ['woman2', [1220, 680]],
-  ['kid2', [640, 660]], ['kid3', [1040, 660]],
+  ['man1', [600, 800]], ['woman1', [1000, 780]], ['woman2', [1120, 770]],
+  ['kid2', [700, 830]], ['kid3', [900, 810]],
 ];
 const dropAt = f(5, .9), turbanAt = B(6)[0] + 5.05, bloodAt = B(6)[0] + 7.5;
 const fi = soukCast(checkedStage('souk_bijoux', {
@@ -164,15 +166,18 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     for (const a of Object.values(st.A)) { castScale(a); if (a.actMark?.costume === 'haik' || a.haikClosed) sealHaik(a); }
     // the pair's centre point along the path
     const a0 = B(5)[0] - .4, a1 = B(5)[1], c0 = B(7)[0] - .2, c1 = B(7)[1] + .6;
-    const C = t < a1 ? F(PATH[0]).lerp(F(PATH[1]), sm(a0, a1, t)) : F(PATH[1]).lerp(F(PATH[2]), sm(c0, c1, t));
+    const rec = sm(c0, c1, t);
+    const C = t < a1 ? F(PATH[0]).lerp(F(PATH[1]), sm(a0, a1, t)) : F(PATH[1]).lerp(F(PATH[2]), rec);
     const moving = (t > a0 && t < a1) || (t > c0 && t < c1);
-    const axis = (st.ax ||= F([700, 760]).sub(F([840, 760])).setY(0).normalize());   // the line between them: across the lens
+    const axis0 = (st.ax ||= F([700, 760]).sub(F([840, 760])).setY(0).normalize());   // the line between them: across the lens
+    // b097: the pair turns to a line along the lane (father nearer the lens, back to us) as they shove up the souk
+    const axis = axis0.clone().lerp(F([800, 880]).sub(F([800, 640])).setY(0).normalize(), rec * .45).normalize();
     const UP = false;
     const upDir = F([800, 640]).sub(F([800, 880])).setY(0).normalize();
     const knock = Math.exp(-(((t - dropAt) / .18) ** 2));
     const sh = .045 * Math.sin(t * 2.3) + .025 * Math.sin(t * 5.1) - .07 * knock;
     for (const [a, s] of [[fa, 1], [ma, -1]]) {
-      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .35 + sh);
+      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .32 + sh);
       rest(a.B);
       if (moving) walkPose(a.B, (t - a0) * 1.2 + (s < 0 ? .5 : 0), .55);
       a.group.position.set(p.x, 0, p.z);
@@ -184,12 +189,14 @@ const fi = soukCast(checkedStage('souk_bijoux', {
       a.B.spine.rotation.x += .24 + .07 * heave + .12 * knock;
       a.B.chest.rotation.x -= .055 * heave; a.B.chest.position.z += .012 * heave;
       a.B.neck.rotation.x -= .04; a.group.updateMatrixWorld(true);
-      if (!UP) faceCam(a, S3.cam, 1.55);
+      if (!UP) faceCam(a, S3.cam, a === fa && rec > .25 ? 1.68 : 1.55);
     }
     if (st.G && !st.G._wrapped) {
       const inner = st.G;
-      st.G = { _wrapped: true, apply(tt) { inner.apply(tt); { faceCam(fa, S3.cam, 1.55); faceCam(ma, S3.cam, 1.55); } } };
+      st.G = { _wrapped: true, apply(tt) { inner.apply(tt); { faceCam(fa, S3.cam, sm(c0, c1, tt) > .25 ? 1.68 : 1.55); faceCam(ma, S3.cam, 1.55); } } };
     }
+    // the turban is lost on b096's phrase: from then on he is bareheaded (baked into the mesh, so swap the geometry)
+    { const m = fa.mesh; if (m) { if (!m.userData.r15Orig && m.geometry !== m.userData.bareGeo) m.userData.r15Orig = m.geometry; if (t >= turbanAt) bareHead(fa); else if (m.userData.r15Orig) m.geometry = m.userData.r15Orig; } }
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
       if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
@@ -229,7 +236,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     st.bl.visible = t >= B(6)[0];
     for (const g of st.strain) g.visible = t >= B(6)[0];
     // the procession: hidden until b097, then they walk away up the lane behind the pair
-    const travel = F(PATH[2]).sub(F(PATH[1])).multiplyScalar(.35);
+    const travel = F(PATH[2]).sub(F(PATH[1])).multiplyScalar(.7);
     for (const [n, m] of FOLLOW) {
       const a = st.A[n], start = F(m);
       a.group.visible = t > c0 - .2;

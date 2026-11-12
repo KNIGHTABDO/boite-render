@@ -16,7 +16,7 @@ import { rest } from '../../../engine/rig3d.js';
 import { role } from './_3d.js';
 import { castScale } from '../lib/fix8c.js';
 import { bracelets } from './s17_retour.js';
-import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
+import { beatScene, lines, sm, front, at, V, yawTo, dirW } from '../lib/beatscene.js';
 
 // Shared only by the repaired ep08 scenes. Keep floor fitting, cloak repair and contact declarations together.
 // The scan welded sleeve/hood triangles to several unrelated arm/spine bones. Large bends stretched those
@@ -42,6 +42,9 @@ export function haikCloth(a) {
     const cloth=new THREE.Mesh(g,new THREE.MeshToonMaterial({color:0xeee8db,side:THREE.DoubleSide}));cloth.castShadow=true;cloth.receiveShadow=true;cloth.frustumCulled=false;
     a.group.add(cloth);delete a.floorSamples;a.haikMantle={cloth,rings,sides};
   }
+  // per-frame restores (_3d.js) and resetCast drop children added after placement and re-show hidden parts: re-assert both every call
+  if(a.haikMantle.cloth.parent!==a.group)a.group.add(a.haikMantle.cloth);
+  a.group.traverse(o=>{if(o.isSkinnedMesh && o.geometry!==a.mesh.geometry) o.visible=false;});
   const {cloth,rings,sides}=a.haikMantle, p=cloth.geometry.attributes.position;
   const root=a.group.worldToLocal(at(a,'root')), chest=a.group.worldToLocal(at(a,'chest')), neck=a.group.worldToLocal(at(a,'neck'));
   const bottom=.012, top=neck.y+.018;
@@ -191,11 +194,11 @@ const mu = checkedStage('souk_mur', {
     // b086: five staggered foreground crossings. At most two cross the family together;
     // the family spans 580px, so one passing body cannot erase all three silhouettes.
     const rush = [
-      ['man1', [1330, 930], [120, 905], .00],
-      ['fqih', [1330, 980], [200, 930], .16],
-      ['guerrab', [1250, 940], [120, 905], .27],
-      ['driss', [1330, 930], [200, 930], .48],
-      ['woman1', [1250, 940], [120, 905], .64],
+      ['man1', [1330, 950], [120, 950], .00],
+      ['fqih', [1330, 985], [200, 950], .16],
+      ['guerrab', [1250, 985], [120, 950], .27],
+      ['driss', [1330, 950], [200, 950], .48],
+      ['woman1', [1250, 985], [120, 950], .64],
     ];
     for (const [n, p0, p1, delay] of rush) {
       const a = st.A[n], t0 = f(3, delay), t1 = t0 + 1.9;
@@ -275,6 +278,8 @@ const ca = checkedStage('souk_mur', {
     const delta = shoulder.sub(cheek);
     mo.group.position.x += delta.x; mo.group.position.z += delta.z;
     mo.group.position.y += delta.y * lift;
+    // keep the boy's torso outside the father's chest/djellaba: the cheek rests on the shoulder, not inside the neck
+    mo.group.position.addScaledVector(dirW(fa, 0, 0, 1), .0 * lift);
     sync(mo);
     // Low supporting forearm under the pelvis; the other arm wraps the outside of his back.
     const seat = front(mo, 'root', .14 * km, .02 * km, 0).add(V(0, -.075 * km, 0));
@@ -378,8 +383,8 @@ const la = checkedStage('souk_bijoux', {
         ['man1', [1080, 690], [1250, 790]],
         ['woman1', [1000, 690], [950, 640]],
         ['kid2', [1180, 720], [1100, 830]],
-        ['kid3', [880, 830], [1080, 690]],
-        ['fqih', [700, 930], [950, 790]],
+        ['kid3', [1080, 830], [1250, 690]],
+        ['fqih', [900, 930], [1100, 790]],
         ['woman2', [1250, 940], [1330, 720]],
       ]) {
         const a = st.A[n]; rest(a.B);
@@ -394,7 +399,7 @@ const la = checkedStage('souk_bijoux', {
       const hand=ma.B['hand'+side];hand.updateWorldMatrix(true, false);
       br.position.copy(hand.localToWorld(V(0, .06, .025)));
       br.quaternion.copy(hand.getWorldQuaternion(br.quaternion));
-      br.scale.setScalar(1.15); br.updateMatrixWorld(true);
+      br.scale.setScalar(1.3); br.updateMatrixWorld(true);
     }
     sync(fa, zo, mo, ma, client);
   },

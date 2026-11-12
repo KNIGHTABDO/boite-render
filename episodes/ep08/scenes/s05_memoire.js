@@ -7,6 +7,7 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { hideHem, holdBoard, lapRest, plantKneel, reachSafe, staged, syncSeat } from '../lib/fix8a.js';
 import { LUNCH } from '../lib/lunch.js';
+import { still, loadStill } from '../lib/stage.js';
 import { beatScene, lines, sm, front, at, V, dirW } from '../lib/beatscene.js';
 
 const ID = 's05_memoire', L = lines(ID), B = i => L[i] || [0, 0];
@@ -22,8 +23,8 @@ export const CLASS = {
 /** the slate flat on the crossed shins, a hand on each side edge (clear of the thighs) */
 export function lapLouha(a, lh) {
   const kk = k(a);
-  const sc = Math.min(.78, Math.max(.58, kk * 1.05));
-  holdBoard(a, lh, front(a, 'root', .25 * kk, 0, .1 * kk), -.9, sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
+  const sc = Math.min(1, Math.max(.8, kk * 1.3));
+  holdBoard(a, lh, front(a, 'root', .3 * kk, 0, .06 * kk), -1.05, sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
   reachSafe(a, 'L', lh.localToWorld(V(.125, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
   reachSafe(a, 'R', lh.localToWorld(V(-.125, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });
   PO.fingers(a, 'L', .32, { thumb: .35, spread: .15 });
@@ -45,7 +46,7 @@ function life(a, t, seed = 0) {
 const cl = staged('mausolee', {
   fqih: { ...CLASS.fqih, lids: .22, talk: .4 },
   mohammed: { ...CLASS.mohammed, lids: .35, mutter: t => win(1, 0, 1, t), lookMax: .28,
-    look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); return st.slate; } },
+    look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return st.slate; } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A;
@@ -76,10 +77,10 @@ const ch = staged('chambre_jour', {
       return t < B(5)[0] ? 'zoubida' : 'mohammed';
     } },
   // floor in front of the right divan, deep enough that she is not between the lens and the boy
-  zoubida: { ...LUNCH.zoubida, at: [1340, 860], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true },
+  zoubida: { ...LUNCH.zoubida, at: [1300, 925], face: [800, 940], o: { ...LUNCH.zoubida.o, skipFit: true },
     look: (t, st) => st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father', lookMax: 1.2 },   // G1: she looked at the floor
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
-  mohammed: { ...LUNCH.mohammed, at: [900, 940], face: 'cam', yaw: .5, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
+  mohammed: { ...LUNCH.mohammed, at: [900, 1010], face: 'cam', yaw: .5, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
     look: (t, st, S3) => t >= B(5)[0] - .2 ? S3.cam.position.clone() : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, -.14, 0)) : 'father' },   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
@@ -136,15 +137,17 @@ ch.load = async () => {
   });
 };
 
+const p05 = { async load() { await loadStill('p05_savant'); }, fn(lt, u) { still('p05_savant', u, [.5, .46, 1, .5, .46, 1.03]); return { vignette: .5, paper: .2 }; } };
 const scene = beatScene(ID, {
-  shots: { cl, ch },
+  shots: { cl, ch, p05 },
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.7, dy: 40 },
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.55, dy: 0 },
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
     b019: { shot: 'ch', size: 'CU', on: 'father', z: 1.9, dx: -20, dy: 6 },
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.6, dx: 28, dy: 4 },
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.2, dx: 0, dy: -20 },
+    b020: { shot: 'p05' },
   },
 });
 const draw = scene.draw;

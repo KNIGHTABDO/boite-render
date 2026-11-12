@@ -27,7 +27,7 @@ const arms = (a, t, kind, u) => {   // asymmetric: one arm leads, the other stay
 const agitate = (a, t, u = 1) => {
   const cl = (side, tg) => { const sh = at(a, 'upperArm' + side), len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side)), d = tg.clone().sub(sh); return d.length() > len * .8 ? sh.clone().addScaledVector(d.normalize(), len * .8) : tg; };
   const k = a.group.scale.y / 1.6, w = Math.sin(t * 4.2), v = Math.sin(t * 3.1 + 1.4);
-  const L = front(a, 'chest', (.30 + .08 * w) * k, -.40 * k, (.12 + .22 * (.5 + .5 * v)) * k), R = front(a, 'chest', (.26 - .06 * w) * k, .42 * k, (.30 + .20 * (.5 + .5 * w)) * k);
+  const L = front(a, 'chest', (.30 + .08 * w) * k, -.34 * k, (.14 + .26 * (.5 + .5 * v)) * k), R = front(a, 'chest', (.26 - .06 * w) * k, .26 * k, (.02 + .10 * (.5 + .5 * w)) * k);
   PO.reach(a, 'L', cl('L', L.lerp(front(a, 'root', .14 * k, -.16 * k, 0), 1 - u)), { grip: 0, pole: [.5, .1, .1] });
   PO.reach(a, 'R', cl('R', R.lerp(front(a, 'root', .12 * k, .16 * k, 0), 1 - u)), { grip: 0, pole: [-.5, .1, .1] });
   PO.fingers(a, 'L', .02, { spread: .6 }); PO.fingers(a, 'R', .02, { spread: .6 });
@@ -36,14 +36,14 @@ const ch1 = staged('chambre_jour', {
   mohammed: BED,
   // Beside the divan. The look target stays near his own eye height: aiming at the boy's low
   // skull spent the whole head turn on pitching down, so the face never came around.
-  father: { height: 1.76, at: [1190, 655], face: 'cam', yaw: .7, pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
+  father: { height: 1.76, at: [1165, 655], face: 'cam', yaw: .7, pose: 'kneel', o: { grounded: true, lean: .1 }, seed: 5,
     look: (t, st) => {
       const who = (IN(0, t) || IN(1, t)) ? st.A.mohammed : st.A.zoubida;
       const p = at(who, 'head').clone(), eye = at(st.A.father, 'head').y;
       p.y = Math.max(p.y, eye - .2);
       return p;
     }, lookMax: 1.15 },
-  zoubida: { at: [860, 760], face: 'cam', yaw: .3, seed: 7 },
+  zoubida: { at: [860, 760], face: [1130, 1010], seed: 7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -73,7 +73,7 @@ const ch1 = staged('chambre_jour', {
 const ch2 = staged('chambre_jour', {
   mohammed: BED,
   father: { height: 1.76, at: [560, 900], face: 'zoubida', yaw: .25, seed: 5, look: 'zoubida', lookMax: .7 },
-  zoubida: { at: [930, 880], face: 'cam', yaw: .45, seed: 7, look: 'father', lookMax: .7 },
+  zoubida: { at: [930, 880], face: [720, 980], seed: 7, look: 'father', lookMax: .7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -101,8 +101,8 @@ export default beatScene(ID, {
     b136: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.18, dx: -10, dy: -105 },
     b137: { shot: 'ch1', size: 'CU', on: 'father', z: 1.9, dy: -85 },
     b138: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.18, dy: -105 },
-    b139: { shot: 'ch2', size: 'M', on: 'father', z: 1.15, dy: -100 },
-    b140: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.12, dy: -110 },
+    b139: { shot: 'ch2', size: 'W', on: 'father' },
+    b140: { shot: 'ch2', size: 'W', on: 'zoubida' },
     b141: { shot: 'pa', size: 'W', on: 'father' },
     b142: { shot: 'ch2', size: 'W', on: 'zoubida' },
   },
