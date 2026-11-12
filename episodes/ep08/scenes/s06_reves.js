@@ -36,7 +36,7 @@ const cl = staged('mausolee', {
   fqih: { ...CLASS.fqih, lids: .3, talk: 0, look: 'mohammed', lookMax: .5 },
   mohammed: { ...CLASS.mohammed, lids: t => .3 + .25 * drift(t),
     mutter: t => (t > B(0)[0] - .3 ? 1 : 0) * (1 - drift(t)),
-    lookMax: t => .28 + .35 * drift(t),
+    lookMax: t => .5 + .15 * drift(t),
     look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return drift(t) > .35 ? [420, 620, 2.8] : st.slate.clone().add(V(0, .1, 0)); } },
 }, {
   act(lt, t, S, st, S3) {
@@ -46,8 +46,8 @@ const cl = staged('mausolee', {
     rock(mo, t, ra, rr);
     // r18: recitation. The trunk rocks from the hips, the head counter-rotates so the chin stays up (head near level, eyes
     // do the looking down), a small nod rides on top, plus side sway + twist so the torso is never the same twice.
-    mo.B.head.rotation.x += -.55 * ra * rp - .1 + (.05 * Math.sin(t * rr * 2 + .5)) * w;
-    mo.B.neck.rotation.x += -.25 * ra * rp + .04 * Math.sin(t * rr + .6) * w;
+    mo.B.head.rotation.x += -.55 * ra * rp + .2 * w - .1 * d + (.05 * Math.sin(t * rr * 2 + .5)) * w;
+    mo.B.neck.rotation.x += -.25 * ra * rp + .12 * w + .04 * Math.sin(t * rr + .6) * w;
     mo.B.spine.rotation.z += .07 * Math.sin(t * rr * .5 + 1) * w + .02 * Math.sin(t * .8);
     mo.B.spine.rotation.y += .08 * Math.sin(t * rr * .5 + .3) * w;
     mo.B.chest.rotation.z += .05 * Math.sin(t * rr * .5 + 2) * w;
@@ -56,6 +56,7 @@ const cl = staged('mausolee', {
     mo.B.neck.updateWorldMatrix(false, true);
     mo.B.head.rotation.z += .05 * Math.sin(t * .9 + 1);
     fq.B.head.rotation.z += .05 * Math.sin(t * .6);
+    fq.B.head.rotation.x += .07 * Math.max(0, Math.sin(t * .9 + 1)) ** 3;   // r21: slow approving nod
     fq.B.spine.rotation.x += .03 * Math.sin(t * .45) + .012 * Math.sin(t * 1.7);
     fq.B.head.rotation.y += .06 * Math.sin(t * .35 + 2);
     if (!st.lh) {

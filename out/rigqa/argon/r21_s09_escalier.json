@@ -1,0 +1,139 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s09 0.3",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 2.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 8.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 14.1",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 17.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 20.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 28.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 35.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 39.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 44.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 51.5",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None required."
+  },
+  {
+   "tile": "s09 57.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 64.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 71.0",
+   "verdict": "minor",
+   "defects": [
+    "Hands are tucked together in the center of Mohammed's lap with the fingers of his left hand slightly clipping into his right hand and the robe fold, rather than resting cleanly on his knees."
+   ],
+   "fix": "Unclasp and separate his hands slightly so they rest clearly on his knees/thighs without finger-to-robe clipping."
+  },
+  {
+   "tile": "s09 73.2",
+   "verdict": "minor",
+   "defects": [
+    "Hands remain tucked in the center of his lap with minor finger clipping into the white robe fold between his knees."
+   ],
+   "fix": "Offset the fingers slightly outward onto the tops of his thighs/knees so they do not intersect the central robe fold."
+  },
+  {
+   "tile": "s09 76.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 80.7",
+   "verdict": "fail",
+   "defects": [
+    "Missing beat action for b051 ('fists tighten on his knees \"à mort\"'): both hands remain open and loosely relaxed on his thighs rather than clenched into tight fists on his knees.",
+    "Posture and brow show almost no physical tension matching the line 'à mort'."
+   ],
+   "fix": "Curl both hands into tight clenched fists pressed firmly onto his knees and add subtle shoulder/brow tension for the 'à mort' beat."
+  },
+  {
+   "tile": "s09 85.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 91.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 96.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s09 101.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  }
+ ],
+ "worst_problem": "No defects found across these 11 tiles; staging, poses, contact, chin-up beat, paintings, and enumeration box positions all match the brief. | In s09 80.7, Mohammed's hands remain open and relaxed on his thighs instead of tightening into clenched fists on his knees as required by b051 ('à mort')."
+}
