@@ -23,6 +23,7 @@ const ch = staged('chambre_jour', {
   addressee: { father: 'mohammed', mohammed: 'father' },
   act(lt, t, S, st) {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A;
+    ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
     st.G.apply = () => { for (const a of [fa, zo, mo]) settleRobe(a); };
@@ -42,7 +43,7 @@ const ch = staged('chambre_jour', {
 
     sway(fa, t, 5, 0.05);
     sway(zo, t, 8.2, 0.046);
-    sway(mo, t, 2.4, 0.028);
+    sway(mo, t, 2.4, 0.028 * (1 - sm(B(5)[0] - 0.1, B(5)[0] + 0.3, t)));
     // Listening lean grows through the search, the question leans further, the laugh rocks the torso back ~22°.
     fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.3 * lean - 0.09 * laugh - 0.04 * residue + 0.03 * Math.sin(t * 11.5) * laugh;
     fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.07 * laugh;
@@ -65,7 +66,7 @@ const ch = staged('chambre_jour', {
 
     const eye = at(mo, 'head').clone().add(V(0, 0.03 * km, 0));
     if (sceptical < 0.5) {
-      const upLeft = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.5).addScaledVector(dirW(mo, -1, 0, 0), 0.46).add(V(0, 0.36 * km, 0));
+      const upLeft = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.5).addScaledVector(dirW(mo, 1, 0, 0), 0.46).add(V(0, 0.36 * km, 0));
       const lowered = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.4).add(V(0, -0.03 * km, 0));
       const parents = at(fa, 'head').lerp(at(zo, 'head'), 0.45).add(V(0, 0.42 * km, 0));
       const level = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.6);
@@ -74,8 +75,9 @@ const ch = staged('chambre_jour', {
     } else {
       // Eyes only: a small yaw, pitch and roll pinned so the head stays level and the lids do the scepticism.
       const yaw = (0.5 - side) * 0.6;
-      mo.B.neck.rotation.set(-0.05, yaw * 0.1, 0);
-      mo.B.head.rotation.set(-0.12, yaw * 0.5, 0);
+      mo.B.neck.rotation.set(-0.05, 0, 0);
+      mo.B.head.rotation.set(-0.12, yaw * 0.15, 0);
+      mo.B.chest.rotation.z = 0; mo.B.spine.rotation.z = 0;
       mo.B.head.updateWorldMatrix(false, true);
     }
     const boy = at(mo, 'head');
@@ -108,6 +110,7 @@ const ch = staged('chambre_jour', {
   },
 });
 
+let ZO = null;
 function sway(a, t, seed, amp) {
   a.B.spine.rotation.y += Math.sin(t * 0.52 + seed) * amp;
   a.B.spine.rotation.z += Math.sin(t * 0.4 + seed * 1.2) * amp * 0.85;
@@ -137,8 +140,9 @@ function kneeHand(a, s, t, seed, k) {
 function thighHand(a, s, t, seed, k) {
   const sign = s === 'L' ? 1 : -1;
   const w = Math.sin(t * 1.35 + seed);
+  const lift = a === ZO ? 0.07 : 0;   // mother: hands up on the skirt, in front of the orange flap
   return at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.34)
-    .add(V(0, (0.13 + 0.01 * w) * k, 0))
+    .add(V(0, (0.13 + lift + 0.01 * w) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), lift * 0.7 * k)
     .addScaledVector(dirW(a, -sign, 0, 0), 0.03 * k);
 }
 
@@ -173,7 +177,7 @@ export default beatScene(ID, {
     // Plate heads sit near y 490–750. A wide M is clamped to the bottom of the plate, so the turban and the hands share the frame.
     b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -110, dy: 100 },
     // Father-son two-shot: far enough right to drop the empty door, tight enough that the mother's skirt stays outside.
-    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.7, dx: -40, dy: 40 },
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.7, dx: -20, dy: 44 },
     b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.14, dx: -100, dy: 110 },
     b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.16, dx: -100, dy: 110 },
     b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.04, dx: -20, dy: 180 },
