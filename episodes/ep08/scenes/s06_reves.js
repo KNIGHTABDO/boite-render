@@ -82,7 +82,7 @@ const cl = staged('mausolee', {
     PO.fingers(fq, 'L', .3, { thumb: .25, spread: .15 });
     fq.group.updateMatrixWorld(true);
     const palm = PO.handPts(fq, 'R').palm;
-    const rd = dirW(fq, -1, -.04, .12).normalize();   // r20: rod lies horizontally across the lap, from the right knee toward the left
+    const rd = dirW(fq, 1, -.04, .12).normalize();   // r20: rod lies horizontally across the lap, from the right knee toward the left
     st.rod.position.copy(palm);   // ~12 cm of rod above the fist, the rest below it
     st.rod.quaternion.setFromUnitVectors(V(0, 1, 0), rd.clone().negate());
     st.rod.scale.setScalar(kf);
