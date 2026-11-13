@@ -141,7 +141,7 @@ const closeHaik = a => {
 };
 
 const mu = checkedStage('souk_mur', {
-  zoubida: { at: WALL.zoubida, face: 'cam', yaw: .28, costume: 'haik', pose: 'kneel', hands: false, o: { grounded: true, seat: 0, lean: .12, spread: .07, hands: false },
+  zoubida: { at: WALL.zoubida, face: 'cam', yaw: .28, costume: 'haik', pose: 'cross', hands: false, o: { seat: 0, lean: .08, hands: false },
     seed: 7, talk: 0, lookMax: .25,
     look: t => t < B(1)[0] ? 'mohammed' : [1000, 790, 1.5] },
   mohammed: { at: [520, 800], face: 'cam', yaw: .2, pose: 'cross', o: { seat: 0, lean: .3, hands: false }, hands: false, seed: 3, talk: 0, lookMax: 0,
@@ -191,7 +191,7 @@ const mu = checkedStage('souk_mur', {
     ];
     for (const [n, p0, p1, delay] of rush) {
       if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
-      const a = st.A[n], w0 = B(3)[0] + delay, w1 = w0 + 3.5 + (n === 'man1' ? .3 : 0);
+      const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 3.5 + (n === 'man1' ? .3 : 0);
       let t0 = w0, t1 = t0 + 1.9;
       if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.9; }
       a.group.visible = t >= t0 && t <= t1;
@@ -385,7 +385,7 @@ const la = checkedStage('souk_bijoux', {
     }
     const sl = st.slip ||= (() => { const g = new THREE.Group(); for (const dx of [-1, 1]) { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 8), new THREE.MeshToonMaterial({ color: 0xe3b11c })); m.scale.set(.15, .035, .06); m.position.set(dx * .05, dx * .02, 0); m.rotation.z = dx * .25; g.add(m); const tip = new THREE.Mesh(new THREE.ConeGeometry(.03, .08, 8), new THREE.MeshToonMaterial({ color: 0xc89418 })); tip.rotation.z = Math.PI / 2; tip.position.set(dx * .05 + .17, dx * .02, 0); g.add(tip); } S3.scene.add(g); return g; })();
     sl.visible = ma.group.visible && !boil;
-    if (sl.visible) { const hd = ma.B.handR; hd.updateWorldMatrix(true, false); sl.position.copy(hd.localToWorld(V(0, .13, .02))); sl.rotation.set(0, S3.cam.rotation.y, 0); sl.scale.setScalar(k(ma) * 1.5); sl.updateMatrixWorld(true); }
+    if (sl.visible) { const hd = ma.B.handR; hd.updateWorldMatrix(true, false); sl.position.copy(hd.localToWorld(V(0, .13, .02))); sl.rotation.set(0, S3.cam.rotation.y, 0); sl.scale.setScalar(k(ma) * .8); sl.updateMatrixWorld(true); }
     const br = st.br ||= bracelets(S3);
     br.visible = ma.group.visible;
     if (br.visible) {

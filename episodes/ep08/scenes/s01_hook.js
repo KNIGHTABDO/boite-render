@@ -101,8 +101,8 @@ const pa = staged('patio_matin', {
     {   // R28: relaxed arms: the left hand rests low at her belly, the right reaches gently toward the rings (soft wrists, small drift)
       const reachU = sm(.3, 3.2, t) * (1 - .3 * laugh), dr = (ph) => Math.sin(t * 1.2 + ph);
       PO.reach(zo, 'L', front(zo, 'root', (.2 + .01 * dr(0)) * kz, -.1 * kz, (.02 + .01 * dr(1)) * kz), { grip: .3 });
-      const base = front(zo, 'root', .26 * kz, .1 * kz, .05 * kz).lerp(front(zo, 'neck', .22 * kz, .07 * kz, -.2 * kz), .8 * see + .2 * laugh);
-      const tgt = base.lerp(st.offer.clone().add(V(0, -.07 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .5 * reachU * (1 - see));
+      const base = front(zo, 'root', .26 * kz, .1 * kz, .05 * kz).lerp(front(zo, 'neck', .22 * kz, .07 * kz, -.2 * kz), .3 * see + .1 * laugh);
+      const tgt = base.lerp(st.offer.clone().add(V(0, -.07 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .65 * reachU);
       tgt.add(V(0, .012 * kz * dr(2), 0));
       PO.reach(zo, 'R', tgt, { grip: .1 });
       PO.fingers(zo, 'L', .3, { thumb: .2, spread: .2 }); PO.fingers(zo, 'R', .12 + .1 * reachU, { thumb: .05, spread: .35 });

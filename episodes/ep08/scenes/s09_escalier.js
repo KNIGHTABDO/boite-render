@@ -19,7 +19,7 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 // Absolute support heights: autostage places the group on tread 2, but PO.stool solves in WORLD metres.
 // Shorten the ankle reach for this child's legs: .24 gives ~90° knees and level thighs; .087 puts the soles on .40.
 export const SEAT = { tread: 3, back: .28, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
-  o: { seat: .6, floor: .375, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
+  o: { seat: .6, floor: .384, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
 const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: .8,
   mutter: t => 3.5 * sm(B(9)[0], B(9)[0] + .25, t),   // R29: the face driver scales by .25-.5, so ~3.5 for a visibly open mouth
   look: (t, st) => t >= B(9)[0]
