@@ -24,7 +24,7 @@ export const CLASS = {
 /** the slate flat on the crossed shins, a hand on each side edge (clear of the thighs) */
 export function lapLouha(a, lh, off = null) {   // off: optional {f,x,y} slate bob in metres (s06 recitation)
   const kk = k(a);
-  const sc = Math.min(1.15, Math.max(.95, kk * 1.5));   // r16: bigger so it reads as a board
+  const sc = (off && off.sc) || Math.min(1.15, Math.max(.95, kk * 1.5));   // r16: bigger so it reads as a board
   holdBoard(a, lh, front(a, 'root', .36 * kk + (off ? off.f * kk : 0), off ? off.x * kk : 0, .13 * kk + (off ? off.y * kk : 0)), -1.05 + (off && off.tilt || 0), sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
   reachSafe(a, 'L', lh.localToWorld(V(.125, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
   reachSafe(a, 'R', lh.localToWorld(V(-.125, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });

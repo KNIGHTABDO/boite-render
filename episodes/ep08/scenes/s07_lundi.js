@@ -24,7 +24,7 @@ const pa = staged('patio_matin', {
   father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: 0, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
   mohammed: { at: [1230, 992], face: 'cam', yaw: .4, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
-    look: t => t > 1.0 ? 'father' : [1000, 985, .2], lookMax: t => t > 1.0 ? 1.1 : .5 },
+    look: () => 'father', lookMax: () => 1.3 },   // R25B: eyes on the father from the first frame
 }, {
   addressee: { narrator: 'mohammed' },
   act(lt, t, S, st, S3) {
@@ -35,7 +35,7 @@ const pa = staged('patio_matin', {
         bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
       }
     }
-    lapLouha(st.A.mohammed, st.lh);
+    lapLouha(st.A.mohammed, st.lh, { sc: 1.6, tilt: .35 });   // R25B: bigger, flatter slate on the knees
     // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
@@ -43,7 +43,8 @@ const pa = staged('patio_matin', {
     { const a = t * 5.6, k = go * .9, B = fa.B;
       B.thighL.rotation.x = -Math.sin(a) * .42 * k; B.thighR.rotation.x = Math.sin(a) * .42 * k;
       B.shinL.rotation.x = Math.max(0, Math.sin(a - 1.4)) * .7 * k; B.shinR.rotation.x = Math.max(0, -Math.sin(a - 1.4)) * .7 * k; }
-    { const mo = st.A.mohammed; mo.B.neck.rotation.x -= .12; mo.B.head.rotation.x -= .08; }   // r17: head not so far down by the well
+    { const mo = st.A.mohammed; mo.B.neck.rotation.x -= .12; mo.B.head.rotation.x -= .08;
+      const up = .5 + .5 * Math.sin(t * 1.3); mo.B.neck.rotation.x -= .14; mo.B.head.rotation.x -= .26 + .03 * up; mo.B.head.rotation.y += .12; }   // R25B: chin up toward the father, slight turn + idle   // r17: head not so far down by the well
     for (const [s, ph] of [['L', 0], ['R', Math.PI]]) {
       const w = Math.sin(t * 5.6 + ph) * go, outZ = s === 'L' ? 1 : -1;
       const ua = fa.B['upperArm' + s], eb = fa.B['foreArm' + s], ha = fa.B['hand' + s];
