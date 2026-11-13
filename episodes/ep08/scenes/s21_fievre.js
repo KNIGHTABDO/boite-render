@@ -14,8 +14,8 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Same right-bed axis as s16: head on the back cushions, hands on the chest, clear of the wooden chest.
-const MO = { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: TOP, turn: .12, headTurn: -.16, hands: 'chest', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0,
-  lids: t => .45 + .12 * (.5 + .5 * Math.sin(t * .6)) };
+const MO = { at: [1350, 694], face: [1336, 754], pose: 'lie', o: { top: TOP, turn: .12, headTurn: -.16, hands: 'chest', pillow: .2, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0,
+  lids: t => .78 + .08 * (.5 + .5 * Math.sin(t * .6)) };
 // r25: both hands resting ON the chest (above the robe, never in it), fingers loosely curled, one a little lower than the other
 function handsOnChest(mo, t) {
   const B = mo.B, k = mo.group.scale.y / 1.6;
@@ -23,15 +23,15 @@ function handsOnChest(mo, t) {
   const c = at(mo, 'chest'), ax = at(mo, 'upperArmL').sub(at(mo, 'upperArmR')).setY(0).normalize(), fw = V(-ax.z, 0, ax.x);   // shoulder axis, and the horizontal axis across it
   if (fw.dot(at(mo, 'root').sub(c).setY(0)) < 0) fw.negate();                                                                    // fw points toward the feet
   const br = .004 * Math.sin(t * 5);
-  for (const [s, sg, along] of [['L', 1, .17], ['R', -1, .25]]) {
-    const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .12 * k + br;
+  for (const [s, sg, along] of [['L', 1, .12], ['R', -1, .2]]) {
+    const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .24 * k + br;
     PO.reach(mo, s, tg, { grip: 0, pole: [sg * .5, .5, 0] });
     PO.fingers(mo, s, .25, { thumb: .2, spread: .1 });
   }
 }
 function fever(mo, t, st, S3) {
-  lieOnBed(mo, { top: TOP, feet: [.5, .87], hands: 'chest', pillow: .12, tuck: .25, headTurn: -.12 });   // r15: flat on the cloth, straight legs, diagonal so the length reads
-  pillowUnder(S3, st, mo, { top: TOP, h: .12 });
+  lieOnBed(mo, { top: TOP, feet: [.5, .87], hands: 'chest', pillow: .2, tuck: -.12, headTurn: -.12 });   // r15: flat on the cloth, straight legs, diagonal so the length reads
+  pillowUnder(S3, st, mo, { top: TOP, h: .2 });
   mo.B.chest.rotation.x += .012 * Math.sin(t * 5); mo.B.chest.updateWorldMatrix(false, true);
   handsOnChest(mo, t);
 }
@@ -72,7 +72,7 @@ export default beatScene(ID, {
   shots: { ch1, ch2 },
   plan: {
     b152: { shot: 'ch1', size: 'M', on: 'mohammed', z: 3.6, zTo: 6.8, dx: 20, dy: -95, push: B(0)[1] - B(0)[0] + 1.5 },
-    b153: { move: 'faceL' },   // r25: crop clear of the unpainted left strip
+    b153: { move: 'faceLm' },   // r25: crop clear of the unpainted left strip
     b154: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.65, dx: 170, dy: -30 },
     b155: { shot: 'p40_tambour', move: 'pushL', segs: [[.5, 'p40_tambour', { move: 'rise' }]] },   // keep the drum painting, move down so the late crop retains his chin
   },
