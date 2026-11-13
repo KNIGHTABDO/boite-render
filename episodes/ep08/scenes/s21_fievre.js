@@ -37,13 +37,13 @@ function fever(mo, t, st, S3) {
 }
 // r25: palms flat on the temples, fingers up the side of the scarf; spot raised well above the jaw
 function temples(a, { bow = .06 } = {}) {
-  const B = a.B; a.B.chest.rotation.x += 0; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
+  const B = a.B; a.B.chest.rotation.x -= .05; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .106, .085, .02));
+    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .085, .08, .08));
     let wrist = skin();
     for (let i = 0; i < 4; i++) {
       const p = skin();
-      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 2.2, sg < 0 ? .9 : .2, sg < 0 ? .35 : -.1] });
+      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 2.8, sg < 0 ? 1.4 : 1.1, sg < 0 ? .35 : -.1] });
       IK.aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(V(sg * .05, .22, .0)));
       wrist.add(p.clone().sub(PO.handPts(a, s).palm));
     }
@@ -64,7 +64,7 @@ const ch2 = staged('chambre_jour', {
     fever(mo, t, st, S3);
     const u = sm(B(2)[0] - .6, B(2)[0] + .3, t), r = Math.sin((t - B(2)[0]) * 2.2);
     zo.B.chest.rotation.z += .05 * r * u; zo.B.chest.rotation.x += .03 * r * u;
-    temples(zo, { bow: .06 + .025 * r * u });
+    temples(zo, { bow: .17 + .03 * r * u });
   },
 });
 
