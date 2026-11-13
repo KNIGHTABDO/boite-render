@@ -64,7 +64,7 @@ const esc = staged('escalier', {
     yawToward(zo, S3.cam, .3);
     open34(zo, S3.cam, .55);
     castScale(mo);
-    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor);
+    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor, .5);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;
@@ -75,7 +75,15 @@ const esc = staged('escalier', {
     const scold = zo.group.visible ? hips : 0;
     // Before "À quoi tu joues ?": both hands low and loose, away from her face. From there on to the end of her speech: both hands on the hips.
     if (zo.group.visible) {
-      if (t >= B(2)[0] - .05) { hipsOn(zo, 1); }
+      if (t >= B(2)[0] - .05) {
+        // R24A: R hand rests on top of the hip (outside the sash); L hand gestures toward the stairs, phrased per beat, settling back on the hip between.
+        const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2);
+        const sv = Math.sin(t * 2.1);
+        handTo(zo, 'R', { fwd: -.02, out: .26, drop: .31, curl: .4, spread: .1 });
+        handTo(zo, 'L', { fwd: -.02 + g * (.4 + .05 * sv), out: .26 + g * .1, drop: .31 - g * (.3 - .04 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
+        if (g > .05) PO.palmTo(zo, 'L', .6 * g, V(.3, .8, .4));
+        zo.B.spine.rotation.z += .03; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
+      }
       else for (const sd of ['L', 'R']) handTo(zo, sd, { fwd: .03, out: .15, drop: .31, curl: .3, spread: .1 });
     }
     laugh(zo, win(4, .35, 1.05, t), t);

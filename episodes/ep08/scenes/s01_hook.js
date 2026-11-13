@@ -47,14 +47,28 @@ const pa = staged('patio_matin', {
       fa.B.chest.rotation.y += .3 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
       fa.B.head.rotation.x += .03 * n; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
       PO.reach(fa, 'L', front(fa, 'chest', .24 * k, -.25 * k, -.16 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.55, -1, .3] });
-      PO.reach(fa, 'R', p.clone(), { grip: 0, pole: [-.95, -.25, -.1] });
-      fa.B.foreArmR.rotation.y -= 1.2 * u; fa.B.foreArmR.updateWorldMatrix(false, true); PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });
-      st.offer = p.clone().add(V(0, .03, 0));
+      // R23D: life motion over the beat: lean + head tilt toward Zoubida, the hand drifts forward as she laughs
+      const ramp = sm(B(0)[0], B(0)[1], t), lg = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
+      fa.B.chest.rotation.x += .07 * ramp; fa.B.chest.rotation.y += .06 * ramp; fa.B.head.rotation.z += .10 * ramp; fa.B.head.rotation.x += .03 * lg; fa.B.chest.updateWorldMatrix(false, true);
+      const p2 = p.clone().add(front(fa, 'chest', .05 * k * ramp + .035 * k * lg, 0, 0).sub(front(fa, 'chest', 0, 0, 0)));
+      PO.reach(fa, 'R', p2, { grip: 0, pole: [-.95, -.25, -.1] });
+      // R23D: true supination: turn the forearm about its own axis until the palm normal points up (sign-checked), palm open
+      const Bn = fa.B, W = n => Bn[n].getWorldPosition(V(0, 0, 0));
+      const palmN = () => { fa.group.updateMatrixWorld(true); const hp = W('RightHand'), al = W('RightIndex1').sub(hp).normalize(), tt = W('RightThumb1').sub(hp); tt.addScaledVector(al, -tt.dot(al)); return V(0, 0, 0).crossVectors(tt, al).normalize(); };
+      if (Bn.RightHand && Bn.RightIndex1) for (let i = 0; i < 3; i++) {
+        const ax = W('RightHand').sub(Bn.foreArmR.getWorldPosition(V(0, 0, 0))).normalize(), n = palmN();
+        const a1 = n.clone().addScaledVector(ax, -n.dot(ax)).normalize(), up = V(0, 1, 0).addScaledVector(ax, -ax.y).normalize();
+        const ang = Math.atan2(V(0, 0, 0).crossVectors(a1, up).dot(ax), a1.dot(up)), b = Bn.foreArmR, q0 = b.quaternion.clone();
+        const turn = g => { const pq = new THREE.Quaternion(), bq = new THREE.Quaternion(); b.getWorldQuaternion(bq); b.parent.getWorldQuaternion(pq); b.quaternion.copy(pq.invert().multiply(new THREE.Quaternion().setFromAxisAngle(ax, g).multiply(bq))); b.updateWorldMatrix(false, true); };
+        const before = n.y; turn(ang); if (palmN().y < before) { b.quaternion.copy(q0); turn(-ang); }
+      }
+      PO.fingers(fa, 'R', .18, { thumb: .1, spread: .15 });   // open, fingers slightly curled
+      st.offer = p2.clone().add(V(0, .03, 0)); st.palmN = palmN();
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
       const br = st.br ||= bangles(S3);
       fa.group.updateMatrixWorld(true); br.visible = true;
-      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .03 * k, 0))); br.scale.setScalar(1.2 * Math.max(.9, k)); br.updateMatrixWorld(true);
+      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .022 * k, 0)));   // R23D: on the upturned palm surface br.scale.setScalar(1.2 * Math.max(.9, k)); br.updateMatrixWorld(true);
       st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
