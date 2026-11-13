@@ -155,7 +155,7 @@ const la = checkedStage('souk_bijoux', {
     st.exitLook ||= S3.floorAt(...EXIT).setY(1.7);
     if (t >= f(8, .28)) turn(ma, st.exitLook, sm(f(8, .28), f(8, .35), t));
     if (t > f(8, .35)) {
-      rest(ma.B);const via=S3.floorAt(900,700);
+      rest(ma.B);const via=S3.floorAt(1290,700);
       if(t<f(8,.5))walk(ma,S3.floorAt(...DELLAL),via,f(8,.35),f(8,.5),t,{cps:2.6,ease:false});
       else walk(ma,via,S3.floorAt(...EXIT),f(8,.5),f(8,.88),t,{cps:2.6,ease:false});
       swing(ma, t, f(8, .35), 2.6, ['L']);

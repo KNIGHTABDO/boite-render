@@ -98,7 +98,7 @@ const fr = checkedStage('souk_mur', {
   // Foreground floor marks put the painted counter at waist height, rather than under their chins.
   man1: { at: [1420, 900], face: 'woman1', seed: 21, talk: 0, look: 'woman1', lookMax: .25 },
   woman1: { at: [1220, 1040], face: 'man1', seed: 25, talk: 0, look: 'man1', lookMax: .3 },
-  kid2: { at: [540, 745], seed: 27, talk: 0, walk: { to: [170, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
+  kid2: { at: [540, 745], seed: 27, talk: 0, walk: { to: [140, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
   kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [280, 1070], t0: B(2)[0], t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
 }, {
   light: { shadow: .4, area: 6 },

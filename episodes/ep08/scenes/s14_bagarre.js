@@ -281,7 +281,7 @@ const scene = beatScene(ID, {
   shots: { mu, fi },
   plan: {
     b090: { shot: 'mu', size: 'W', on: 'mohammed' },   // the boy in frame, the father striding off up the passage
-    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.7, dx: -20, dy: 260 },
+    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.5, dx: -20, dy: 0 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 3.2, dx: 0, dy: 20 },
     b095: { shot: 'fi', size: 'M', on: 'father', z: 1.7, pt: [950, 790] },
     b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 3.4, dx: -70, dy: 0, pt: [830, 760] },
