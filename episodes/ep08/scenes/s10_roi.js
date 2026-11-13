@@ -245,6 +245,6 @@ export default beatScene(ID, {
     b062: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dx: -75, dy: 50 },
     b063: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dx: -75, dy: 50 },
     b064: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dx: -75, dy: 50 },
-    b065: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dx: -75, dy: 50 },
+    b065: { shot: 'pa', size: 'M', on: 'fatma', z: 1.3, dx: 20, dy: 40 },
   },
 });
