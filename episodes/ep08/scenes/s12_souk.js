@@ -39,8 +39,8 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // Local blocking: retain SOUK's exported marks for the following scenes. Two depth pairs, not a row across the lane.
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
-const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1040, 725] };
-const DELLAL = [1250, 880], EXIT = [1010, 690];
+const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1100, 735] };
+const DELLAL = [1185, 878], EXIT = [960, 690];
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [690, 720], 0, 1],
   ['woman2', [1250, 790], [1170, 700], .25, 1],
@@ -85,7 +85,7 @@ function overhead(a, t) {
 
 const la = checkedStage('souk_bijoux', {
   father: { ...WALK([900, 800], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
-    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
+    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
   mohammed: { ...WALK([740, 800], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
     look: (t, st) => t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
   zoubida: { ...WALK([780, 705], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
@@ -93,7 +93,7 @@ const la = checkedStage('souk_bijoux', {
   fatma: { costume:'haik', ...WALK([1010, 690], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
     look: (t, st, S3) => t >= f(7, .48) && t < B(8)[0] ? (S3?.cam?.position || null) : t > f(7, .4) && t < f(7, .8) ? st?.br?.position : t > B(7)[0] ? 'zoubida' : t > B(5)[0] ? 'marchand' : null },
   marchand: { at: DELLAL, face: LEAD.father, seed: 13, talk: 0, lookMax: .8,
-    look: (t, st) => t > f(8, .28) ? st.exitLook : t > B(7)[0] && t < B(8)[0] ? 'zoubida' : t > B(6)[0] ? st.br?.position : [905, 900, 2.6],
+    look: (t, st, S3) => t > f(8, .4) ? S3.cam.position : t > f(8, .28) ? st.exitLook : t > B(7)[0] && t < B(8)[0] ? 'zoubida' : t > B(6)[0] ? st.br?.position : [905, 900, 2.6],
     mutter: t => Math.max(win(5, .05, .9, t) * (.75 + .25 * Math.sin(t * 9)), win(8, .3, .85, t) * .6) },
   // b077: two extras by the left stalls, turned toward each other and a little to the lens, heads bowed over the jewel
   man1: { at: [610, 800], face: [700, 830], seed: 21, lids: .55, look: jewelGaze, lookMax: .65, talk: 0 },
@@ -123,17 +123,17 @@ const la = checkedStage('souk_bijoux', {
       if (t < t0) return;
       rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 1.8 });
     };
-    move(fa, LEAD.father, [800, 790], B(7)[0] - 1.6, B(7)[0] - .5);
+    move(fa, LEAD.father, [860, 740], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1180, 720], B(7)[0] - .7, B(7)[0] + .8);
-    move(zo, LEAD.zoubida, [915, 850], B(7)[0] - .3, B(7)[0] + .3);
-    move(ft, LEAD.fatma, [1110, 830], f(7, .36), f(7, .49));
-    move(fa, [800, 790], [800, 880], B(8)[0] + .2, B(8)[0] + 1.0);
+    move(zo, LEAD.zoubida, [900, 815], B(7)[0] - .5, B(7)[0] + .25);
+    move(ft, LEAD.fatma, [1090, 800], f(7, .36), f(7, .49));
+    move(fa, [860, 740], [800, 880], B(8)[0] + .2, B(8)[0] + 1.0);
     move(ma, [1180, 720], DELLAL, B(8)[0] - 1.6, B(8)[0] - .4);
     if(t<B(8)[0]+.05)move(zo,[915,850],[930,800],f(7,.94),B(8)[0]+.05);
     else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
     else move(zo,[930,800],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
-    if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1110, 830); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
-    else move(ft, [1110, 830], LEAD.fatma, B(8)[0] + 1.9, B(8)[0] + 2.6);
+    if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1090, 800); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
+    else move(ft, [1090, 800], LEAD.fatma, B(8)[0] + 1.9, B(8)[0] + 2.6);
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
     // Full body turn every frame: the original walk heading must never leave the boy looking into the left wall.
@@ -317,8 +317,8 @@ export default beatScene(ID, {
     b077: { shot: 'la', size: 'M', on: 'man1', z: 2.2, dx: 35, dy: 25 },
     b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -110 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
-    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [915, 850], z: 1.65, dx: 0, dy: 30,
-      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1110, 830], z: 1.85, dx: 0, dy: 40 }] },
+    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [900, 815], z: 1.65, dx: 0, dy: 30,
+      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1090, 800], z: 1.85, dx: 0, dy: 40 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
     cover: [{ f: .3, size: 'W', on: 'father' }, { f: .52, size: 'M', on: 'marchand', z: 1.3, dy: -80 }], insAt: .6 },
   },
