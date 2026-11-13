@@ -16,7 +16,7 @@ export function examEvents(beats, timing, enums = {}) {
     bs.forEach((b, j) => {
       const l = sc.lines[j], t0 = l ? l.start : sc.start;
       if (b.card) ev.push({ kind: 'card', text: b.card, a: t0, b: t0 + 3.2 });
-      if (b.label) ev.push({ kind: 'label', text: b.label, a: t0 + .4, b: t0 + 4.0 });   // R23A: ends before the shot-end so no half-faded ghost rect on the next cut
+      if (b.label) ev.push({ kind: 'label', text: b.label, a: t0 + .4, b: t0 + 4.4 });
       if (enums[b.id]?.length && l && !/fiche/.test(sc.id)) ev.push({ kind: 'enum', items: enums[b.id].map(([x, txt]) => [t0 + x, txt]), a: t0 + enums[b.id][0][0] - .1, b: t0 + l.dur + .8, side: b.enumSide });
       if (b.tag) ev.push({ kind: 'tag', text: b.tag, a: t0 + .3, b: t0 + 6.3 });
       if (b.badge) { const [txt, at] = b.badge.split('@'), [m, s] = (at || '0:00').trim().split(':').map(Number); ev.push({ kind: 'badge', text: txt.trim(), a: sc.start + m * 60 + s, b: sc.start + m * 60 + s + 8 }); }
@@ -102,7 +102,7 @@ function enumList(items, k, t, side) {   // side 'left': mirrored to the left ed
 export function drawExam(ev, t) {
   for (const e of ev) {
     if (t < e.a || t > e.b) continue;
-    const k = e.kind === 'label' ? env(t, e.a, e.b, .3, .25) : env(t, e.a, e.b);
+    const k = env(t, e.a, e.b);
     c.save(); c.setTransform(1, 0, 0, 1, 0, 0); const s = c.canvas.width / W; c.scale(s, s);
     if (e.kind === 'card') card(e.text, k, t, e.a); else if (e.kind === 'label') label(e.text, k, t, e.a); else if (e.kind === 'tag') tag(e.text, k); else if (e.kind === 'enum') enumList(e.items, k, t, e.side); else badge(e.text, k);
     c.restore();
