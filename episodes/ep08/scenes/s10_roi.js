@@ -80,8 +80,9 @@ const esc = staged('escalier', {
         const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2);
         const sv = Math.sin(t * 2.1);
         handTo(zo, 'R', { fwd: -.02, out: .26, drop: .31, curl: .4, spread: .1 });
-        handTo(zo, 'L', { fwd: -.02 + g * (.08 + .03 * sv), out: .26 + g * .06, drop: .31 - g * (.1 + .03 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
-        if (g > .05) PO.palmTo(zo, 'L', .6 * g, V(.5, .7, .1));
+        // R25: the L arm is on Mohammed's side; keep it low by her side (hip height) so it never crosses his face.
+        handTo(zo, 'L', { fwd: .02 + g * (.04 + .02 * sv), out: .1 + g * .03, drop: .4 - g * (.04 + .02 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
+        if (g > .05) PO.palmTo(zo, 'L', .4 * g, V(.5, .7, .1));
         zo.B.spine.rotation.z += .03; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
       }
       else for (const sd of ['L', 'R']) handTo(zo, sd, { fwd: .03, out: .15, drop: .31, curl: .3, spread: .1 });
