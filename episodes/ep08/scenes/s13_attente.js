@@ -191,9 +191,9 @@ const mu = checkedStage('souk_mur', {
     ];
     for (const [n, p0, p1, delay] of rush) {
       if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
-      const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 3.7;   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
+      const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 2.9;   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
       let t0 = w0, t1 = t0 + 1.9;
-      if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.4; }   // R31C: faster second surge, clear of the father by b086 30.96
+      if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.2; }   // R31C: faster second surge, clear of the father by b086 30.96
       a.group.visible = t >= t0 && t <= t1;
       if (a.group.visible) {
         rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 3.8, ease: false });
@@ -276,8 +276,8 @@ const ca = checkedStage('souk_mur', {
     mo.group.position.addScaledVector(dirW(fa, 0, 0, 1), .0 * lift);
     sync(mo);
     // Low supporting forearm under the pelvis; the other arm wraps the outside of his back.
-    const seat = front(mo, 'root', .12 * km, .02 * km, 0).add(V(0, -.02 * km, 0));
-    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.12*km,.02*km,0).add(V(0,-.02*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>front(mo,'chest',-.19*km,.05*km,-.06*km),purpose:'arm around boy back'}];
+    const seat = front(mo, 'root', .10 * km, .02 * km, 0).add(V(0, .03 * km, 0));
+    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.10*km,.02*km,0).add(V(0,.03*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>front(mo,'chest',-.19*km,.05*km,-.06*km),purpose:'arm around boy back'}];
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.48, -.12, .34] });
     PO.reach(fa, 'L', front(mo, 'chest', -.19 * km, .05 * km, -.06 * km), { grip: .015, pole: [.4, .2, .35] });
     PO.reach(mo, 'R', front(fa, 'neck', .13, .09 * kf, -.08), { grip: .01 });
@@ -355,10 +355,10 @@ const la = checkedStage('souk_bijoux', {
       sync(ma, client);
       const nearest=(a,b)=>a.group.worldToLocal(b.group.position.clone()).x>0?'L':'R';
       const drag=st.dragSide=nearest(ma,client), receive=nearest(client,ma);
-      const clasp = at(ma, 'upperArm'+drag).lerp(at(client, 'upperArm'+receive), .3);   // R31C: nearer the dragger so the client's forearm leaves his torso
+      const clasp = at(ma, 'upperArm'+drag).lerp(at(client, 'upperArm'+receive), .5);   // R31C: nearer the dragger so the client's forearm leaves his torso
       clasp.y -= .32;
       PO.reach(ma, drag, clasp, { grip: 0, pole: [.3, .05, -.25] });
-      PO.reach(client, receive, clasp, { grip: 0, pole: [-.3, .05, .25] });
+      PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
         ['woman1', [1250, 690], [700, 930], 0],
