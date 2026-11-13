@@ -19,11 +19,11 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 // Absolute support heights: autostage places the group on tread 2, but PO.stool solves in WORLD metres.
 // Shorten the ankle reach for this child's legs: .24 gives ~90° knees and level thighs; .087 puts the soles on .40.
 export const SEAT = { tread: 3, back: .28, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
-  o: { seat: .6, floor: .4, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
+  o: { seat: .6, floor: .375, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
 const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: .8,
-  mutter: t => sm(B(9)[0], B(9)[0] + .25, t),
+  mutter: t => 3.5 * sm(B(9)[0], B(9)[0] + .25, t),   // R29: the face driver scales by .25-.5, so ~3.5 for a visibly open mouth
   look: (t, st) => t >= B(9)[0]
-    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, .35).addScaledVector(st.ST.side, .6).add(V(0, 1.2, 0))
+    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, .35).addScaledVector(st.ST.side, -.6).add(V(0, 1.2, 0))
     : win(0, .4, 1.1, t) > .2 ? front(st.A.mohammed, 'head', .55, 0, -.4) : null,
 } }, {
   stairs: ESCALIER,
@@ -121,9 +121,9 @@ function pinKneesOut(a, curl) {
   for (const [side, sign] of [['L', 1], ['R', -1]]) {
     const kn = IK.wpos(B['shin' + side]), hip = IK.wpos(B.root);
     const tgt = kn.clone();
-    tgt.y = Math.min(hip.y - .03, kn.y + .035 * k) - .012 * k * curl;
-    tgt.addScaledVector(fwd, .05 * k).addScaledVector(lat, sign * (.035 + .06 * curl) * k);   // R27: fists sit clearly on each knee, apart
-    reachClamp(a, side, tgt, { grip: .015, pole: [sign * .45, .08, .15] });
+    tgt.y = kn.y + (.09 + .01 * curl) * k;   // R29: clearly above the robe surface
+    tgt.addScaledVector(fwd, .07 * k).addScaledVector(lat, sign * (.035 + .06 * curl) * k);   // R27: fists sit clearly on each knee, apart
+    reachClamp(a, side, tgt, { grip: 0, pole: [sign * .45, .08, .15] });
     PO.fingers(a, side, .12 + .88 * Math.min(1, curl * 1.15), { thumb: .15 + .85 * curl });
     for (const n of ['shoulder', 'clavicle']) if (B[n + side]) B[n + side].rotation.z += sign * .05 * curl;
   }

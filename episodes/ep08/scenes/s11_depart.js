@@ -54,7 +54,7 @@ const WALK0 = () => B(7)[0] - .1;
 const pa = staged('patio_matin', {
   mohammed: { at: [960, 1035], face: 'cam', yaw: 0, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : t >= B(1)[0] - .15 ? .4 : .3,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : t >= B(2)[0] + .8 && t < B(3)[0] ? at(st.A.mohammed, 'root').add(V(.1, .3, .25)) : 'zoubida' },
-  zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
+  zoubida: { at: [1140, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
     look: (t, st) => {
       if (t >= B(6)[0]) return 'father';
@@ -161,7 +161,8 @@ const pa = staged('patio_matin', {
     const restArm = (a, side, tag) => {
       if (posed.has(tag) || !a.group.visible) return;
       const ph = side === 'L' ? 0 : 1.4, sway = .03 * Math.sin(t * .8 + ph);
-      if (a === mo) handTo(a, side, side === 'L' ? { fwd: .2 + .03 * Math.sin(t * 1.7), out: .06, drop: .16 + sway, curl: .35, spread: .1 } : { fwd: .12 + .04 * Math.sin(t * 2.1 + ph), out: .1 + .03 * Math.sin(t * 1.3 + ph), drop: .24 + sway + .04 * Math.sin(t * .6 + ph), curl: .3 + .1 * Math.sin(t * 2.7 + ph), spread: .12 });   // fiddling with the robe
+      if (a === mo) handTo(a, side, side === 'L' ? { fwd: .18 + .03 * Math.sin(t * 1.7), out: .0, drop: .22 + sway, curl: .5, spread: .05 } : { fwd: .12 + .04 * Math.sin(t * 2.1 + ph), out: .1 + .03 * Math.sin(t * 1.3 + ph), drop: .24 + sway + .04 * Math.sin(t * .6 + ph), curl: .3 + .1 * Math.sin(t * 2.7 + ph), spread: .12 });   // fiddling with the robe
+      else if (a === zo) handTo(a, side, side === 'L' ? { fwd: .14, out: .02, drop: .1, curl: .35, spread: .1 } : { fwd: .04, out: .1, drop: .4 + sway * 2, curl: .3, spread: .1 });
       else handTo(a, side, { fwd: .08 + .02 * Math.sin(t * .7 + ph), out: a === zo ? .1 : .06, drop: .26 + sway * 2 + .04 * Math.sin(t * .5 + ph), curl: .3, spread: .1 });
     };
     restArm(mo, 'L', 'moL'); restArm(mo, 'R', 'moR');
@@ -170,7 +171,7 @@ const pa = staged('patio_matin', {
     if (fa.group.visible && eager <= 0) restArm(fa, 'L', 'faL');
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
-      yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
+      yawBody(zo, S3.cam, t >= B(3)[0] ? .6 : .6);
       if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
         if (t < B(3)[0]) yawBody(mo, S3.cam, .05);
         else { const yc = yawTo(mo.group.position, S3.cam.position); mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true); }   // same proven camera-facing clamp as Zoubida: face stays readable
@@ -198,12 +199,12 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { pa },
   plan: {
-    b066: { shot: 'pa', size: 'W', on: 'mohammed', dy: 55 },
-    b067: { shot: 'pa', size: 'CU', on: 'mohammed', z: 1.6, dy: 140, dx: 40 },
-    b068: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.25, dx: -20, dy: 60 },
+    b066: { shot: 'pa', size: 'W', on: 'mohammed', dy: 55, dx: 120 },
+    b067: { shot: 'pa', size: 'CU', on: 'mohammed', z: 1.45, dy: 190, dx: 40 },
+    b068: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.2, dx: -20, dy: 100 },
     b069: { shot: 'pa', size: 'M', on: 'fatma', z: 1.5, dy: 12 },
     b070: { shot: 'pa', size: 'CU', on: 'fatma', z: 1.75, dy: 62, dx: -200 },
-    b071: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.6, dx: 40, dy: 30 },
+    b071: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.5, dx: 40, dy: 70 },
     b072: { shot: 'pa', size: 'M', on: 'father', z: 1.5, dy: 8 },
     b073: { shot: 'pa', size: 'W', on: 'father' },
   },

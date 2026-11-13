@@ -10,7 +10,7 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .04 * 1.5, .0085 * 1.5); mk(0xc9d3de, .038 * 1.5, .008 * 1.5); S3.scene.add(g); return g;
+  mk(0xe0a820, .03 * 1.4, .0075 * 1.4); mk(0xc9d3de, .029 * 1.4, .007 * 1.4); S3.scene.add(g); return g;
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -67,14 +67,14 @@ const pa = staged('patio_matin', {
       // R23D: true supination: turn the forearm about its own axis until the palm normal points up (sign-checked), palm open
       const Bn = fa.B, W = n => Bn[n].getWorldPosition(V(0, 0, 0));
       const palmN = () => { fa.group.updateMatrixWorld(true); const hp = W('RightHand'), al = W('RightHandIndex1').sub(hp).normalize(), tt = W('RightHandThumb1').sub(hp); tt.addScaledVector(al, -tt.dot(al)); return V(0, 0, 0).crossVectors(tt, al).normalize(); };
-      if (Bn.RightHand && Bn.RightHandIndex1) for (let i = 0; i < 3; i++) {
+      if (Bn.RightHand && Bn.RightHandIndex1) for (let i = 0; i < 6; i++) {
         const ax = W('RightHand').sub(Bn.foreArmR.getWorldPosition(V(0, 0, 0))).normalize(), n = palmN();
-        const a1 = n.clone().addScaledVector(ax, -n.dot(ax)).normalize(), up = V(0, 1, 0).addScaledVector(ax, -ax.y).normalize();
+        const a1 = n.clone().addScaledVector(ax, -n.dot(ax)).normalize(), up = (u0 => u0.addScaledVector(ax, -u0.dot(ax)).normalize())(V(0, 1, 0).addScaledVector(fa.camDir ||= S3.cam.position.clone().sub(fa.group.position).setY(0).normalize(), .45));
         const ang = Math.atan2(V(0, 0, 0).crossVectors(a1, up).dot(ax), a1.dot(up)), b = Bn.foreArmR, q0 = b.quaternion.clone();
         const turn = g => { const pq = new THREE.Quaternion(), bq = new THREE.Quaternion(); b.getWorldQuaternion(bq); b.parent.getWorldQuaternion(pq); b.quaternion.copy(pq.invert().multiply(new THREE.Quaternion().setFromAxisAngle(ax, g).multiply(bq))); b.updateWorldMatrix(false, true); };
         const before = n.y; turn(ang); if (palmN().y < before) { b.quaternion.copy(q0); turn(-ang); }
       }
-      PO.fingers(fa, 'R', .04, { thumb: 0, spread: .2 });   // R25A r26: open flat palm, fingers extended, slight cup
+      PO.fingers(fa, 'R', 0, { thumb: 0, spread: .2 });   // R25A r26: open flat palm, fingers extended, slight cup
       st.offer = p2.clone().add(V(0, .03, 0)); if (Bn.RightHandIndex1) st.palmN = palmN();
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.058 * k, .022 * k, .75 + .03 * w, w);
-      place(br.children[1], .05 * k, .022 * k, .75 - .03 * w, -w);
+      place(br.children[0], -.004 * k, .016 * k, .5 + .03 * w, w);
+      place(br.children[1], .05 * k, .016 * k, .5 - .03 * w, -w);
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
@@ -98,10 +98,15 @@ const pa = staged('patio_matin', {
     // Argon r5: she stood in a stiff A-pose → her hands meet in front of her waist, then rise to her breastbone as she laughs
     const kz = zo.group.scale.y / 1.6, see = sm(B(0)[0] + .2 * (B(0)[1] - B(0)[0]), B(0)[0] + .45 * (B(0)[1] - B(0)[0]), t);
     zo.B.chest.rotation.z += .02 * Math.sin(t * 1.1); zo.B.head.rotation.z += .05 * (.4 + laugh); zo.B.head.rotation.y += .06 * Math.sin(t * .8); zo.B.chest.updateWorldMatrix(false, true);
-    for (const s of ['L', 'R']) {
-      const early = sm(.3, B(0)[0] + .65, t) * (1 - see);   // b001: a small response before the laugh, preserving the opening offer
-      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz + .01 * kz * Math.sin(t * 1.1), (s === 'L' ? -.11 : .11) * kz + .012 * kz * Math.sin(t * 1.3 + (s === 'L' ? 0 : 2)), (s === 'L' ? .1 : .06 + .035 * early) * kz + .014 * kz * Math.sin(t * 1.7 + (s === 'L' ? 1 : 3))).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.07 : .07) * kz, (s === 'L' ? -.15 : -.2) * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
-      if (early > 0) PO.fingers(zo, s, .08 * early, { spread: .3 });
+    {   // R28: relaxed arms: the left hand rests low at her belly, the right reaches gently toward the rings (soft wrists, small drift)
+      const reachU = sm(.3, 3.2, t) * (1 - .3 * laugh), dr = (ph) => Math.sin(t * 1.2 + ph);
+      PO.reach(zo, 'L', front(zo, 'root', (.2 + .01 * dr(0)) * kz, -.1 * kz, (.02 + .01 * dr(1)) * kz), { grip: .3 });
+      const base = front(zo, 'root', .26 * kz, .1 * kz, .05 * kz).lerp(front(zo, 'neck', .22 * kz, .07 * kz, -.2 * kz), .8 * see + .2 * laugh);
+      const tgt = base.lerp(st.offer.clone().add(V(0, -.07 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .5 * reachU * (1 - see));
+      tgt.add(V(0, .012 * kz * dr(2), 0));
+      PO.reach(zo, 'R', tgt, { grip: .1 });
+      PO.fingers(zo, 'L', .3, { thumb: .2, spread: .2 }); PO.fingers(zo, 'R', .12 + .1 * reachU, { thumb: .05, spread: .35 });
+      const fz = st.faces.find(x => x[0] === zo); if (fz) fz[3] = { smile: .55 + .3 * reachU };   // warm expression
     }
   },
 });

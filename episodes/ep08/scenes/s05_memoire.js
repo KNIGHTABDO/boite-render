@@ -113,7 +113,7 @@ const ch = staged('chambre_jour', {
     life(fa, t, 1); life(zo, t, 4); life(mo, t, 6);
     // b018–b019 pride: the chest swells, the chin is carried by the look (above her head on the quote)
     const proud = Math.max(t >= B(2)[0] - .2 && t < B(3)[0] ? 1 : 0, win(2, .05, 1, t), t >= B(3)[0] && t < B(4)[0] ? 1 : 0);
-    fa.B.spine.rotation.x -= .2 * proud; fa.B.chest.rotation.x -= .4 * proud; fa.B.upperArmL.rotation.z += .12 * proud; fa.B.upperArmR.rotation.z -= .12 * proud;   // R26A: chest out, proud
+    fa.B.spine.rotation.x -= .3 * proud; fa.B.chest.rotation.x -= .5 * proud; fa.B.upperArmL.rotation.z += .12 * proud; fa.B.upperArmR.rotation.z -= .12 * proud;   // R26A: chest out, proud
     zo.B.neck.rotation.x += .05 * Math.sin(t * 1.3);
     zo.B.head.rotation.z += .045 * Math.sin(t * .85);
     zo.B.spine.updateWorldMatrix(false, true);
@@ -183,9 +183,9 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 110 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.3, dx: -90, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.95, dx: -40, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 3.0, dx: -70, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.7, dx: 60, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
     b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },

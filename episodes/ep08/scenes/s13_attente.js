@@ -141,12 +141,13 @@ const closeHaik = a => {
 };
 
 const mu = checkedStage('souk_mur', {
-  zoubida: { at: WALL.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, lookMax: .25,
+  zoubida: { at: WALL.zoubida, face: 'cam', yaw: .28, costume: 'haik', pose: 'kneel', hands: false, o: { grounded: true, seat: 0, lean: .12, spread: .07, hands: false },
+    seed: 7, talk: 0, lookMax: .25,
     look: t => t < B(1)[0] ? 'mohammed' : [1000, 790, 1.5] },
-  mohammed: { at: WALL.mohammed, face: 'cam', yaw: -.12, seed: 3, talk: 0, lookMax: 0,
+  mohammed: { at: [520, 800], face: 'cam', yaw: .2, pose: 'cross', o: { seat: 0, lean: .3, hands: false }, hands: false, seed: 3, talk: 0, lookMax: 0,
     lids: t => .35 + .65 * win(0, .46, .88, t),
     // mutter's face driver multiplies by .25.. .5: four keeps the yawn wide throughout its hold.
-    mutter: t => 8 * win(0, .46, .88, t) },
+    mutter: t => 14 * win(0, .46, .88, t) },
   father: { at: WALL.father, face: 'cam', yaw: -.35, seed: 5, talk: 0, lookMax: .35, look: [1100, 700, 1.5] },
   fatma: { at: [900, 770], face: 'cam', yaw: -.2, costume: 'haik', seed: 9, talk: 0, lookMax: .7, look: 'father' },
   man1: { at: [1330, 930], face: [120, 905], seed: 21, talk: 0 },
@@ -165,33 +166,17 @@ const mu = checkedStage('souk_mur', {
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[0] + 4.5; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
     st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .04},haikFwd:{zoubida:.08},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
-    // b083: a planted-foot buckle, already tired during pre-roll, then a deeper collapse.
+    // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
       fa.group.position.copy(S3.floorAt(1250, 790));
-      const sag = .30 + .70 * sm(B(0)[0] - 1.6, f(0, .18), t);
-      const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t);
-      const feet = ['L', 'R'].map(s => at(mo, 'foot' + s));
-      const soles = ['L', 'R'].map(s => mo.B['foot' + s].getWorldQuaternion(mo.B['foot' + s].quaternion.clone()));
-      PO.setHipY(mo, at(mo, 'root').y - .14 * sag);
-      for (const [i, s] of ['L', 'R'].entries()) {
-        IK.leg(mo, s, feet[i], front(mo, 'root', .48 * km, (s === 'R' ? .14 : -.14) * km, .04));
-        const foot = mo.B['foot' + s], parent = foot.parent.getWorldQuaternion(foot.quaternion.clone());
-        foot.quaternion.copy(parent.invert().multiply(soles[i]));
-      }
-      mo.B.spine.rotation.x += .42 * sag;
-      mo.B.chest.rotation.x += .12 * sag;
-      mo.B.neck.rotation.x -= .75 * yawn;
-      mo.B.head.rotation.x -= .18 * yawn;
-      // Only the upper body leans: the shoulder/sleeve retains its clearance from the haik.
-      mo.B.spine.rotation.z += .22 * lean;
-      mo.B.head.rotation.z += .26 * lean;
+      const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t), sag = sm(B(0)[0] - 1.6, f(0, .18), t);
+      mo.B.spine.rotation.x += .10 * sag; mo.B.chest.rotation.x += .10 * sag;
+      mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
+      mo.B.spine.rotation.z += .30 * (.4 * sag + lean); mo.B.head.rotation.z += .30 * lean;
       sync(mo);
-      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .10, s === 'R' ? .09 : -.09, .06), { grip: .01 });
-      if (lean > 0) {
-        // His near palm rests on the OUTSIDE of the cloth; neither shoulder moves into it.
-        const cloth = front(zo, 'root', .18 * kz, -.29 * kz, .12);
-        PO.reach(mo, 'R', front(mo, 'root', .1, .09, .06).lerp(cloth, lean), { grip: .01 });
-      }
+      const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
+      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .24 * km, s === 'R' ? .15 : -.15, .06 * km), { grip: .01 });
+      PO.reach(mo, 'R', front(mo, 'root', .24 * km, .15, .06).lerp(cloth, lean), { grip: .01 });
     }
 
     // b086: five staggered foreground crossings. At most two cross the family together;
@@ -223,7 +208,7 @@ const mu = checkedStage('souk_mur', {
       const back = a.group.position.clone().sub(S3.cam.position).setY(0).normalize();
       a.group.position.addScaledVector(back, .2 * jolt);
       a.B.spine.rotation.x -= .30 * jolt; a.B.neck.rotation.x += .12 * jolt;
-      a.B.thighR.rotation.x += .18 * jolt; a.B.shinR.rotation.x += .25 * jolt;
+      if (a === fa) { a.B.thighR.rotation.x += .18 * jolt; a.B.shinR.rotation.x += .25 * jolt; }
     }
     sync(zo, mo, fa);
     if (shove > 0) {
@@ -304,7 +289,7 @@ const la = checkedStage('souk_bijoux', {
     look: (t, st) => t >= B(6)[0] ? front(st.A.father, 'head', 1.8, 2.2 * Math.sin((t - B(6)[0]) * .9 - 1.2), 0) : 'marchand' },
   zoubida: { at: LANE.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, lookMax: .8,
     look: (t, st) => t >= B(6)[0] ? front(st.A.zoubida, 'head', 1.8, 2.0 * Math.sin(1.2 - (t - B(6)[0]) * .9), 0) : [1180, 720, 1.5] },
-  mohammed: { at: LANE.mohammed, face: 'cam', seed: 3, lids: .4, talk: 0, look: 'father', lookMax: .8 },
+  mohammed: { at: LANE.mohammed, face: 'marchand', yaw: .25, seed: 3, lids: .6, talk: 0, look: 'marchand', lookMax: .9 },
   marchand: { at: [1080, 690], face: [700, 790], seed: 13, talk: 1,
     mutter: t => t < B(2)[0] ? 3 * win(1, 0, .66, t) : 2 * win(2, 0, 1.1, t) },
   man1: { at: [880, 830], face: [1180, 720], seed: 21, talk: 0 },
@@ -325,7 +310,7 @@ const la = checkedStage('souk_bijoux', {
       const y0 = yawTo(p, S3.cam.position), y1 = yawTo(p, fa.group.position);
       return y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * .55;
     };
-    const ta = B(1)[0], tb = f(1, .23), tc = f(1, .40), td = B(1)[1] + .15;
+    const ta = B(1)[0], tb = f(1, .23), tc = B(1)[0] + 3.7, td = B(1)[1] + .15;
     ma.group.visible = t >= ta - .4 && t <= td;
     rest(ma.B);
     if (t < tb) walk(ma, F(1080, 690), F(1180, 720), ta - .4, tb, t, { cps: 2.5 });
@@ -342,7 +327,8 @@ const la = checkedStage('souk_bijoux', {
     sync(ma);
     if (ma.group.visible) {
       // Above the head, within the measured arm length, pair in the raised right hand.
-      PO.reach(ma, 'R', front(ma, 'upperArmR', .12 * km, .06 * km, .48 * km), { grip: .01 });
+      const up = 1 - sm(tc, tc + .35, t);   // pair held UP until the turn, then lowered as he leaves
+      PO.reach(ma, 'R', front(ma, 'upperArmR', .14 * km, .34 * km, .30 * km * up - .30 * km * (1 - up)), { grip: .01, pole: [.5, 0, 0] });
       PO.fingers(ma, 'R', .65);
     }
     const nod = win(1, .22, .46, t), phase = sm(f(1, .22), f(1, .44), t);
@@ -358,11 +344,11 @@ const la = checkedStage('souk_bijoux', {
       const t0 = B(2)[0] - .2, t1 = B(3)[0];
       // Common travel vector keeps the clasp within both men's reach for the entire run.
       rest(ma.B); rest(client.B); ma.group.visible = true;
-      walk(ma, F(1180, 720), F(960, 830), t0, t1, t, { cps: 3.7, ease: false });
-      const off = F(960, 830).sub(F(880, 830)).setLength(.65);
+      walk(ma, F(960, 860), F(1200, 700), t0, t1, t, { cps: 4.2, ease: false });
+      const off = F(960, 830).sub(F(880, 830)).setLength(.7);
       off.add(V(off.z, 0, -off.x).setLength(.3));
-      walk(client, F(1180, 720).add(off), F(960, 830).add(off), t0, t1, t, { cps: 3.5, ease: false });
-      ma.B.spine.rotation.x += .25; client.B.spine.rotation.x += .18;
+      walk(client, F(960, 860).add(off), F(1200, 700).add(off), t0, t1, t, { cps: 4.0, ease: false });
+      ma.B.spine.rotation.x += .32; client.B.spine.rotation.x += .25;
       sync(ma, client);
       const nearest=(a,b)=>a.group.worldToLocal(b.group.position.clone()).x>0?'L':'R';
       const drag=st.dragSide=nearest(ma,client), receive=nearest(client,ma);
@@ -379,8 +365,8 @@ const la = checkedStage('souk_bijoux', {
         ['woman2', [1080, 640], [1180, 720], .18],
       ]) {
         const a = st.A[n]; rest(a.B);
-        walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 4.1 : 3.3, ease: false });
-        a.B.spine.rotation.x += .18; sync(a);
+        walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 4.4 : 3.8, ease: false });
+        a.B.spine.rotation.x += .25; sync(a);
       }
     } else if (scan) {
       // Ordinary shoppers only: the missing dellal never reappears during the search.
@@ -397,6 +383,9 @@ const la = checkedStage('souk_bijoux', {
         walk(a, F(...p0), F(...p1), B(6)[0] - .3, B(6)[1] + 2.5, t, { cps: 2, ease: false });
       }
     }
+    const sl = st.slip ||= (() => { const g = new THREE.Group(); for (const dx of [-1, 1]) { const m = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 8), new THREE.MeshToonMaterial({ color: 0xe3b11c })); m.scale.set(.15, .035, .06); m.position.set(dx * .05, dx * .02, 0); m.rotation.z = dx * .25; g.add(m); const tip = new THREE.Mesh(new THREE.ConeGeometry(.03, .08, 8), new THREE.MeshToonMaterial({ color: 0xc89418 })); tip.rotation.z = Math.PI / 2; tip.position.set(dx * .05 + .17, dx * .02, 0); g.add(tip); } S3.scene.add(g); return g; })();
+    sl.visible = ma.group.visible && !boil;
+    if (sl.visible) { const hd = ma.B.handR; hd.updateWorldMatrix(true, false); sl.position.copy(hd.localToWorld(V(0, .13, .02))); sl.rotation.set(0, S3.cam.rotation.y, 0); sl.scale.setScalar(k(ma) * 1.5); sl.updateMatrixWorld(true); }
     const br = st.br ||= bracelets(S3);
     br.visible = ma.group.visible;
     if (br.visible) {
@@ -415,7 +404,7 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.4, dx: 20, dy: 130 },
+    b083: { shot: 'mu', size: 'M', on: 'mohammed', z: 1.8, dx: -40, dy: 90 },
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },

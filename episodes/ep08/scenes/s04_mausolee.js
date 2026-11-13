@@ -89,7 +89,7 @@ function chestLouha(a, lh) {
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
   const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .20 * kk, .35 * kk, -.34 * kk);
   lh.scale.setScalar(Math.min(.72, kk * .8));
-  lh.position.copy(g); lh.rotation.order = 'YXZ'; lh.rotation.set(-.2 + .08 * wave, a.group.rotation.y - .25 + amp * .4 * wave, -.08); lh.updateMatrixWorld(true);
+  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .16 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .2 * wave, a.group.rotation.y - .25 + amp * .6 * wave, -.08 + .45 * wave);   // R28: raised near the face, wide wave lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
   IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(-.08, .11, .025)));
   PO.fingers(a, 'R', .35, { thumb: .25 });
@@ -119,11 +119,11 @@ const ms = checkedStage('ep03/msid_estrade', {
     st.lh ||= [kid1, kid2, mo].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     fanLouha(kid1, st.lh[0], t, 0, 7); fanLouha(kid2, st.lh[1], t, 1.9, 6); fanLouha(mo, st.lh[2], t, .7, 4.2, .4);   // Mohammed fans slower, wearily
     // Start wiping during the pre-roll too; sweep across the brow, then briefly lower the open hand.
-    const phase = (t % 3.6) / 3.6, w = 1 - sm(.82, 1, phase);
+    const phase = ((t + 1.2) % 3.6) / 3.6, w = 1 - sm(.88, 1, phase);   // R28: already wiping at t=0
     if (w > 0) {
       fq.B.neck.rotation.x -= .12 * w; upd(fq, 'neck');
       const sweep = .19 + .025 * Math.sin(phase * Math.PI * 2 - Math.PI / 2);
-      PO.reach(fq, 'R', front(fq, 'head', .15 * kf, (sweep - .12) * kf, .10 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
+      PO.reach(fq, 'R', front(fq, 'head', .17 * kf, (sweep - .12) * kf, .16 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
       PO.fingers(fq, 'R', .08, { thumb: .1, spread: .25 });
       PO.palmTo(fq, 'R', .8, dirW(fq, 0, 0, -1));
     }
@@ -150,6 +150,9 @@ const pr = sized(checkedStage('mausolee_rev', {
     [[fq, 0], [kid1, 2.0], [mo, 1], [kid2, 3.0], [kid3, 3.95]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
     // Keep Mohammed's torso and slate toward the room/camera even as he steps diagonally out of the doorway.
     mo.group.rotation.y = -.18; mo.group.updateMatrixWorld(true);
+    { const sh = sm(T11(1, 3.4).t1 - .2, T11(1, 3.4).t1 + .8, t); mo.B.spine.rotation.z += .045 * sh; mo.B.chest.rotation.z -= .06 * sh; mo.B.spine.updateWorldMatrix(false, true);
+      const km = k(mo), fR = at(mo, 'footR').addScaledVector(dirW(mo, 0, 0, 1), .07 * km * sh).addScaledVector(dirW(mo, 1, 0, 0), .025 * km * sh);   // R28: weight on the left leg, right foot a step forward
+      IK.leg(mo, 'R', fR, at(mo, 'shinR')); }
     const t1f = T11(0, 3.6).t1;
     hangArms(fq, t, ['L', 'R'], .13 * (1 - sm(t1f - .5, t1f + .1, t)));   // only the students carry slates; the leader's arms swing while he walks
     const lead = sm(T11(0, 3.6).t1 - .6, T11(0, 3.6).t1 + .3, t);
@@ -157,11 +160,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     fq.group.rotation.y += Math.atan2(Math.sin(turn - fq.group.rotation.y), Math.cos(turn - fq.group.rotation.y)) * lead;
     fq.group.updateMatrixWorld(true);
     // once he has turned he gestures to the boys, then the room: open right hand, left hand relaxed
-    if (lead > 0) {
-      const kf = k(fq), g = front(fq, 'chest', (.3 + .02 * Math.sin(t * 1.7)) * kf, -.34 * kf, -.3 * kf);   // R25C: hand resting at the belt, no raised arm
-      PO.reach(fq, 'R', at(fq, 'handR').lerp(g, lead), { grip: 0, pole: [-.55, -.6, -.1] });
-      PO.fingers(fq, 'R', .4, { thumb: .3, spread: .1 });
-    }
+    // R28: arms stay relaxed (hangArms above); the raised gesture arm reached the red-cap boy's chin
     // after stopping, each boy settles into his own stance (varied yaw)
     [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 3.95, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
     st.lh ||= [kid1, mo, kid2, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
@@ -209,7 +208,7 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
       walkPose(a.B, d / 1.05, 1, { stride: .32, arms: .2 }); a.group.updateMatrixWorld(true);
       // counting the turns on the fingers of the right hand held before her chest; head a little bowed, lips moving
       const ka = k(a), cnt = 1 + (Math.floor((start + v * (t - B(2)[0]) - off) / period + 10) % 5);
-      a.B.neck.rotation.set(.3, 0, 0); a.B.head.rotation.set(0, 0, 0);
+      a.B.neck.rotation.set(.5, 0, 0); a.B.head.rotation.set(.2, 0, 0);
       { // R25C: on the stretch walking away from the lens she looks back over her shoulder (twist torso + neck)
         const fw = dirW(a, 0, 0, 1), tc = S3.cam.position.clone().sub(a.group.position); fw.y = tc.y = 0; fw.normalize(); tc.normalize();
         const ang = Math.acos(Math.max(-1, Math.min(1, fw.dot(tc)))), w = sm(1.3, 2.3, ang), sg = Math.sign(fw.z * tc.x - fw.x * tc.z) || 1;
@@ -299,7 +298,7 @@ const ab = sized(checkedStage('mausolee_rev', {
         PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015, pole: [s === 'L' ? .5 : -.5, 0, .1] });   // R23A elbows out of the torso   // lower the torso before extending to the water
       }
     };
-    wash(kid2, 1.9, 0, st.water[0], 4.9); wash(mo, 2.6, 1.3, st.water[1], 4.5);   // both are at the basin through the middle of the beat (39.4 s)
+    wash(kid2, 1.9, 0, st.water[0], 5.2); wash(mo, 8.2, 1.3, st.water[1], 4.8);   // R28: one boy at the basin at a time (they clipped)   // both are at the basin through the middle of the beat (39.4 s)
   },
 }), STANDING);
 
@@ -322,10 +321,10 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = Math.PI / 2 * r;
+      const hinge = 1.42 * r;
       a.B.spine.rotation.set(hinge, 0, 0); a.B.chest.rotation.set(0, 0, 0);
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hinge);
-      a.B.neck.rotation.set(-.08 * r, 0, 0); a.B.head.rotation.set(-.2 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
+      a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
       const fw = dirW(a, 0, 0, 1); let settle = 0;

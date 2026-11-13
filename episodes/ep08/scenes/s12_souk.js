@@ -52,12 +52,12 @@ const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera 
   ['rahma', [560, 740], [700, 680], .15, 0],
 ];
 /** relaxed standing arms: elbows soft, hands a little forward of the thigh, never splayed (A-pose) */
-function loose(a, sides, t, seed = 0) {
+function loose(a, sides, t, seed = 0, out = .05) {
   const k = a.group.scale.y / 1.6; a.group.updateMatrixWorld(true);
   for (const s of sides) {
     const sh = at(a, 'upperArm' + s), len = sh.distanceTo(at(a, 'foreArm' + s)) + at(a, 'foreArm' + s).distanceTo(at(a, 'hand' + s));
     const sw = .015 * Math.sin(t * .9 + seed + (s === 'L' ? 0 : 1.7));
-    const tg = sh.clone().addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), .05 * k).addScaledVector(dirW(a, 0, 0, 1), (.16 + sw) * k).add(V(0, -.8 * len, 0));
+    const tg = sh.clone().addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), out * k).addScaledVector(dirW(a, 0, 0, 1), (.16 + sw) * k).add(V(0, -.8 * len, 0));
     PO.reach(a, s, tg, { grip: 0, pole: s === 'L' ? [.15, .1, -.5] : [-.15, .1, -.5] });
     PO.fingers(a, s, .2, { thumb: .15 });
   }
@@ -79,18 +79,18 @@ const jewelGaze = (t, st) => t < B(8)[0] ? st.jw?.position.clone().add(V(0, -.14
 // Measure the arm so the raised wrist stays within reach and above the crown.
 function overhead(a, t) {
   const sh = at(a, 'upperArmR'), len = sh.distanceTo(at(a, 'foreArmR')) + at(a, 'foreArmR').distanceTo(at(a, 'handR'));
-  const dir = front(a, 'upperArmR', .12, .1, 1).sub(sh).normalize();
+  const dir = front(a, 'upperArmR', .38, .1, .7).sub(sh).normalize();
   return sh.addScaledVector(dir, len * (.97 + .01 * Math.sin(t * 2)));
 }
 
 const la = checkedStage('souk_bijoux', {
-  father: { ...WALK([900, 800], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
+  father: { ...WALK([880, 640], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
     look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
-  mohammed: { ...WALK([740, 800], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
+  mohammed: { ...WALK([790, 650], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
     look: (t, st) => t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
-  zoubida: { ...WALK([780, 705], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
+  zoubida: { ...WALK([800, 610], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
-  fatma: { costume:'haik', ...WALK([1010, 690], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
+  fatma: { costume:'haik', ...WALK([960, 610], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
     look: (t, st, S3) => t >= f(7, .48) && t < B(8)[0] ? (S3?.cam?.position || null) : t > f(7, .4) && t < f(7, .8) ? st?.br?.position : t > B(7)[0] ? 'zoubida' : t > B(5)[0] ? 'marchand' : null },
   marchand: { at: DELLAL, face: LEAD.father, seed: 13, talk: 0, lookMax: .8,
     look: (t, st, S3) => t > f(8, .4) ? S3.cam.position : t > f(8, .28) ? st.exitLook : t > B(7)[0] && t < B(8)[0] ? 'zoubida' : t > B(6)[0] ? st.br?.position : [905, 900, 2.6],
@@ -123,17 +123,17 @@ const la = checkedStage('souk_bijoux', {
       if (t < t0) return;
       rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 1.8 });
     };
-    move(fa, LEAD.father, [860, 740], B(7)[0] - 1.6, B(7)[0] - .5);
+    move(fa, LEAD.father, [780, 800], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1270, 700], B(7)[0] - .7, B(7)[0] + .8);
-    move(zo, LEAD.zoubida, [900, 815], B(7)[0] - .1, B(7)[0] + .35);
+    move(zo, LEAD.zoubida, [950, 815], B(7)[0] - .1, B(7)[0] + .35);
     move(ft, LEAD.fatma, [1090, 800], f(7, .36), f(7, .49));
-    move(fa, [860, 740], [800, 880], B(8)[0] + .2, B(8)[0] + 1.0);
     move(ma, [1270, 700], DELLAL, B(8)[0] - 1.6, B(8)[0] - .4);
     if(t<B(8)[0]+.05)move(zo,[915,850],[930,800],f(7,.94),B(8)[0]+.05);
     else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
-    else move(zo,[930,800],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
+    else { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }
     if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1090, 800); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
-    else move(ft, [1090, 800], LEAD.fatma, B(8)[0] + 1.9, B(8)[0] + 2.6);
+    else { const hp = S3.floorAt(1090, 800); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); }
+    if (t >= B(7)[0] - .5) { const hp = S3.floorAt(780, 800); fa.group.position.set(hp.x, fa.group.position.y, hp.z); fa.group.updateMatrixWorld(true); }
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
     // Full body turn every frame: the original walk heading must never leave the boy looking into the left wall.
@@ -147,7 +147,7 @@ const la = checkedStage('souk_bijoux', {
       const walking = t > B(1)[0] + .1 && t < B(1)[1] + .5;
       if (!walking) loose(mo, ['L', 'R'], t, 3);
       if (t > B(1)[1] - .3 && (t < B(6)[0] - .05 || (t >= B(7)[0] && t < f(7, .92)))) loose(fa, ['L', 'R'], t, 5);
-      if (ma.group.visible && t < f(8, .35)) loose(ma, ['L'], t, 13);
+      if (ma.group.visible && t < f(8, .35)) loose(ma, ['L'], t, 13, .13);
       if (ma.group.visible && t > f(6, .52) && t < f(8, .1)) loose(ma, ['R'], t, 13);
     }
     for (const a of [fa, mo, zo, ft]) a.group.visible = !(t > B(3)[0] - .1 && t < B(3)[1] + .2);
@@ -180,8 +180,8 @@ const la = checkedStage('souk_bijoux', {
 
     // b077: one jewel, not a second pair of bracelets. The auction pair is st.br and is the only pair in a shot.
     if (!st.jw) {
-      st.jw = jewel(S3); st.jw.scale.setScalar(2.6);   // a small gold piece (3.4 cm), unlit gold so it reads in the wide shot
-      st.jw.material = new THREE.MeshBasicMaterial({ color: 0xffd24a });
+      st.jw = jewel(S3); st.jw.scale.setScalar(2.2);   // a small gold piece (3.4 cm), unlit gold so it reads in the wide shot
+      st.jw.material = new THREE.MeshStandardMaterial({ color: 0xd9a520, metalness: .85, roughness: .3, emissive: 0x4a3200, emissiveIntensity: .6 });
     }
     st.jw.visible = m1.group.visible && t >= B(3)[0] - .1 && t < B(3)[1] + .2;
     if (t < B(8)[0] && m1.group.visible && w2.group.visible) {
@@ -194,7 +194,7 @@ const la = checkedStage('souk_bijoux', {
       for (const [a, ph] of [[m1, 0], [w2, 2.1]]) {
         const sn = Math.max(0, Math.sin(t * 1.3 + ph)) ** 8;
         a.B.spine.rotation.x += .1; a.B.chest.rotation.x -= .045 * sn; a.B.neck.rotation.x += .2 + .04 * sn;
-        a.B.upperArmL.position.y += .008 * sn; a.B.upperArmR.position.y += .008 * sn;
+        a.B.upperArmL.position.y += .02 * sn; a.B.upperArmR.position.y += .02 * sn; a.B.head.rotation.x += .06 * sn;
         a.B.spine.updateWorldMatrix(false, true);
       }
       for (const s of ['L', 'R']) {
@@ -265,7 +265,7 @@ const la = checkedStage('souk_bijoux', {
       st.br.position.copy(PO.handPts(a, side).palm); st.br.rotation.set(0, 0, 0);
       for (const [i, ring] of st.br.children.entries()) {
         ring.rotation.set(0, fitting ? 0 : (i ? -.12 : .12), fitting ? 0 : (i ? -.15 : .15));
-        ring.position.set(fitting ? 0 : (i ? .03 : -.03), fitting ? 0 : -.1, fitting ? (i ? -.014 : .014) : 0);
+        ring.position.set(fitting ? 0 : (i ? .03 : -.03), fitting ? 0 : -.08, fitting ? (i ? -.014 : .014) : 0);
       }
       if (fitting) {
         const axis = at(a, 'handL').sub(at(a, 'foreArmL')).normalize(), sl = a === zo ? zSlide : fSlide;
@@ -284,7 +284,7 @@ const la = checkedStage('souk_bijoux', {
       const inner = st.G;
       st.G = { _wrapped: true, apply(tt) { inner.apply(tt);
         const bow = (a, n, h) => { a.B.neck.rotation.x += n; a.B.head.rotation.x += h; a.B.neck.updateWorldMatrix(false, true); };
-        if (tt >= B(6)[0] - .5 && tt < B(7)[0]) { const w = sm(B(6)[0] - .5, B(6)[0] + .2, tt); bow(fa, .62 * w, .3 * w); }   // R19J: the father looks DOWN at the bracelets in his hands
+        if (tt >= B(6)[0] - .5 && tt < B(7)[0]) { const w = sm(B(6)[0] - .5, B(6)[0] + .2, tt); bow(fa, .8 * w, .35 * w); }   // R19J: the father looks DOWN at the bracelets in his hands
         if (tt < B(8)[0] && m1.group.visible) { bow(m1, .35, .15); bow(w2, .15, .05); } if (tt >= B(5)[0] && tt < B(7)[0]) { faceCam(zo, S3.cam, .85); faceCam(ft, S3.cam, .85); } if (tt >= f(7, .48) && tt < B(8)[0]) faceCam(ft, S3.cam, 1.05); if (tt < B(8)[0] && m1.group.visible) { faceCam(m1, S3.cam, .9); faceCam(w2, S3.cam, .9); } } };
     }
     for (const a of [fa, mo, zo, ft, ma, m1, w2]) a.B.chest.updateWorldMatrix(false, true);
@@ -316,9 +316,9 @@ export default beatScene(ID, {
     b075: { shot: 'la', size: 'W', on: 'father' },
     b076: { shot: 're', size: 'M', on: 'mohammed', z: 1.35, dy: 150, insAt: .5 },
     b077: { shot: 'la', size: 'M', on: 'man1', z: 2.2, dx: 35, dy: 25 },
-    b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -110 },   // raised hand and the one pair, family still in the lane
+    b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -50 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
-    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [900, 815], z: 1.65, dx: 0, dy: 30,
+    b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [950, 815], z: 1.65, dx: 0, dy: 30,
       cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1090, 800], z: 1.85, dx: 0, dy: 40 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
     cover: [{ f: .3, size: 'W', on: 'father' }, { f: .52, size: 'M', on: 'marchand', z: 1.3, dy: -80 }], insAt: .6 },
