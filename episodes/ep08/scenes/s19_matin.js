@@ -32,7 +32,8 @@ function kindPS(kind, sd, t) {
   const w = Math.sin(t * 4.2), v = Math.sin(t * 3.1 + 1.4), i1 = Math.sin(t * .8 + (sd === 'L' ? 0 : 2)), i2 = Math.sin(t * .6 + 1.7 + (sd === 'L' ? 1 : 0));
   const alt = Math.sin(t * 1.3 + (sd === 'L' ? 0 : Math.PI)) * .5 + .5;   // the two hands take turns leading
   switch (kind) {
-    case 'chop': return sd === 'R' ? { fwd: .3 + .07 * w, out: .06, drop: .06 + .1 * (.5 + .5 * v), curl: .1, spread: .35, palm: .7 } : { fwd: .14, out: .1, drop: .32 + .03 * v, curl: .45, spread: .2, palm: .3 };
+    case 'chop': { const q = Math.sin(t * 3.4) * .5 + .5, q2 = 1 - q;   // R31P: both palms up, forearms rise and drop in alternating beats
+      return sd === 'R' ? { fwd: .27 + .04 * q, out: .12, drop: .02 + .2 * q2, curl: .12, spread: .4, palm: .9 } : { fwd: .25 + .04 * q2, out: .16, drop: .02 + .2 * q, curl: .12, spread: .4, palm: .9 }; }
     case 'palms': return sd === 'R' ? { fwd: .26 + .04 * alt, out: .1 + .04 * w, drop: .08 + .1 * (1 - alt), curl: .1, spread: .4, palm: .8 } : { fwd: .2, out: .16 + .03 * v, drop: .2 + .08 * alt, curl: .15, spread: .4, palm: .7 };
     case 'chest': return sd === 'R' ? { fwd: .12, out: -.02, drop: .1 + .01 * i1, curl: .35, spread: .15, palm: .1 } : { fwd: .1, out: .1, drop: .27 + .02 * i2, curl: .4, spread: .1, palm: 0 };
     case 'wide': return sd === 'R' ? { fwd: .24 + .04 * alt, out: .32 + .04 * w, drop: .0 + .1 * alt, curl: .1, spread: .45, palm: .8 } : { fwd: .18, out: .14 + .03 * v, drop: .16 + .08 * alt, curl: .2, spread: .3, palm: .6 };
@@ -70,7 +71,7 @@ const ch1 = staged('chambre_jour', {
     bed(S3, st, t);
     const { father: fa, zoubida: zo, mohammed: mo } = st.A, kf = fa.group.scale.y / 1.6;
     const km = mo.group.scale.y / 1.6;
-    const side = at(mo, 'chest').x > at(fa, 'chest').x ? 'L' : 'R', other = side === 'L' ? 'R' : 'L', pole = side === 'L' ? [.45, .05, .35] : [-.45, .05, .35];
+    const side = at(mo, 'chest').x > at(fa, 'chest').x ? 'L' : 'R', other = side === 'L' ? 'R' : 'L', pole = side === 'L' ? [.5, .3, .6] : [-.5, .3, .6];
     const near = ['L', 'R'].sort((a, b) => at(mo, 'upperArm' + a).distanceTo(at(fa, 'chest')) - at(mo, 'upperArm' + b).distanceTo(at(fa, 'chest')))[0];
     const reach = (target, o) => {
       const sh = at(fa, 'upperArm' + side), len = sh.distanceTo(at(fa, 'foreArm' + side)) + at(fa, 'foreArm' + side).distanceTo(at(fa, 'hand' + side));
@@ -78,6 +79,10 @@ const ch1 = staged('chambre_jour', {
       return PO.reach(fa, side, target, o);
     };
     for (const n of ['SkirtBack1', 'SkirtBack2']) { const b = fa.B[n]; if (b) b.scale.y *= .72; }   // idle sway was dropping the hem through the tiles
+    const fwdv = front(fa, 'root', 1).sub(at(fa, 'root')).setY(0).normalize();
+    const hold = IN(0, t) || (IN(1, t) && t > B(1)[0] + .4 && t < B(2)[0] + .2);
+    const pts = []; for (const h of ['handL', 'handR', 'foreArmL', 'foreArmR']) for (const m of ['torso', 'head', 'upperArmL', 'upperArmR', 'foreArmL', 'foreArmR']) pts.push(h + ':' + m);
+    st.actcheck = { contacts: hold ? [{ actors: ['father', 'mohammed'], parts: pts }] : [] };
     const touching = IN(0, t) || IN(1, t);
     if (touching) { fa.B.chest.rotation.x += .1 * sm(B(0)[0] - .2, B(0)[0] + .5, t); fa.group.updateMatrixWorld(true); }
     // forehead: head-local spot between the brows and the hairline, palm flat on it
@@ -87,21 +92,23 @@ const ch1 = staged('chambre_jour', {
     const lap = () => { const p = at(fa, 'thigh' + other).add(V(0, .1 * kf, .05 + .01 * Math.sin(t * .9))).addScaledVector(at(fa, 'upperArm' + other).sub(at(fa, 'chest')).setY(0).normalize(), .14 * kf); PO.reach(fa, other, p, { grip: .02, pole: other === 'L' ? [.4, .05, .2] : [-.4, .05, .2] }); PO.fingers(fa, other, .3, { spread: .12 }); };
     if (IN(0, t)) {   // hand ON the shoulder, shaking him awake
       const shk = .03 * Math.sin(t * 16) * sm(B(0)[0], B(0)[0] + .3, t);
-      reach(at(mo, 'upperArm' + near).add(V(shk, .045 * km, .02)), { grip: .02, pole }); PO.fingers(fa, side, .35); lap();
+      reach(at(mo, 'upperArm' + near).add(V(shk, .045 * km, .02)).add(fwdv.clone().multiplyScalar(.05)), { grip: .02, pole }); PO.fingers(fa, side, .35); lap();
     } else if (IN(1, t)) {   // feels the forehead (the line he tells it on), then draws back
-      const u = sm(B(1)[0] + .6, B(1)[0] + 1.6, t) * (1 - sm(B(2)[0] - .2, B(2)[0] + .4, t));
-      reach(at(mo, 'head').add(V(0, .12 * km, .1)).lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .2); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
+      const u = sm(B(1)[0] + 3.2, B(1)[0] + 4.2, t) * (1 - sm(B(2)[0] - .6, B(2)[0] - .1, t));
+      reach(at(mo, 'upperArm' + near).add(V(0, .045 * km, .02)).add(fwdv.clone().multiplyScalar(.05)).lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .2); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
     } else if (IN(2, t)) {
       const u = 1 - sm(B(2)[0] - .2, B(2)[0] + .5, t);
       reach(rest.clone().lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .3); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
     } else {
-      const gp = .5 + .5 * Math.sin(t * 1.1);   // R31G: calm open hand, withdrawn from the boy and moving with his reassurance
-      handTo(fa, side, { fwd: .2 + .05 * gp, out: .2, drop: .02 + .14 * gp, curl: .15, spread: .35 }); PO.palmTo(fa, side, .5, V(0, 1, .3));
-      if (IN(4, t)) { handTo(fa, other, { fwd: .2, out: .26, drop: .2 + .04 * Math.sin(t * 2), curl: .05, spread: .4 }); PO.palmTo(fa, other, .6, V(0, 1, .3)); }
-      else lap();
+      // R31P: relaxed rest on the thigh/knee, a small lift on his own lines (b137), so no arm is frozen out horizontally
+      const gi = IN(4, t) ? .5 + .5 * Math.sin(t * 2.2) : .2 * (.5 + .5 * Math.sin(t * 1.1));
+      reach(rest.clone().add(V(0, .09 * kf * gi, 0)).addScaledVector(fwdv, .1 * kf * gi), { grip: .02, pole }); PO.fingers(fa, side, .3 + .3 * (1 - gi), { spread: .15 });
+      lap();
       fa.B.chest.rotation.y += .05 * Math.sin(t * .6); fa.B.chest.rotation.x += .03 * Math.sin(t * .45 + 1);
     }
-    gestSched(zo, t, [[0, 'idle'], [B(0)[0] + 3.5, 'sash'], [B(1)[0] + 1, 'idle'], [B(3)[0] - .2, 'chop'], [B(3)[0] + 3.2, 'palms'], [B(4)[0], 'idle'], [B(4)[0] + 2.6, 'chest'], [B(5)[0] - .2, 'palms'], [B(5)[0] + 3.5, 'chop']]);
+    fa.B.chest.rotation.x += .012 * Math.sin(t * 1.6); fa.B.chest.rotation.z += .02 * Math.sin(t * .7); fa.B.chest.updateWorldMatrix(false, true);
+    zo.B.chest.rotation.z += .035 * Math.sin(t * .55 + .5); zo.B.chest.rotation.y += .03 * Math.sin(t * .4); zo.B.chest.updateWorldMatrix(false, true);
+    gestSched(zo, t, [[0, 'idle'], [B(0)[0] + 3.5, 'sash'], [B(1)[0] + 1, 'idle'], [B(3)[0] - 3, 'chop'], [B(3)[0] + 6, 'palms'], [B(4)[0], 'idle'], [B(4)[0] + 2.6, 'chest'], [B(5)[0] - .2, 'palms'], [B(5)[0] + 3.5, 'chop']]);
   },
 });
 
