@@ -26,7 +26,7 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { for (const a of [fa, zo, mo]) settleRobe(a); };
+    st.G.apply = () => { for (const a of [fa, mo]) settleRobe(a); settleRobe(zo, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.42 } }); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
@@ -47,9 +47,19 @@ const ch = staged('chambre_jour', {
     // Listening lean grows through the search, the question leans further, the laugh rocks the torso back ~22°.
     // Father's laugh: the lean back is mostly head/neck/chest so the robe front stays settled on the floor (a big spine swing retracted the hem off the floor).
     fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.3 * lean - 0.04 * laugh - 0.015 * residue + 0.025 * Math.sin(t * 11.5) * laugh;
-    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.05 * laugh;
+    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.035 * laugh;
     zo.B.spine.rotation.x += 0.07 * listen * (1 - laugh) - 0.09 * laugh - 0.04 * residue + 0.03 * Math.sin(t * 10.5 + 1) * laugh;
     zo.B.chest.rotation.x += 0.045 * Math.sin(t * 1.1 + 0.7) * listen - 0.07 * laugh;
+    // Idles: breath, small head turns, the mother glancing at the boy and away; the boy shifts weight and leans back when the father leans in.
+    const breath = Math.sin(t * 2.1);
+    fa.B.chest.rotation.x += 0.012 * breath; zo.B.chest.rotation.x += 0.014 * Math.sin(t * 2.3 + 1);
+    fa.B.head.rotation.y += 0.07 * Math.sin(t * 0.63 + 0.4) * (1 - laugh);
+    zo.B.head.rotation.y += 0.09 * Math.sin(t * 0.47 + 2.0) * (1 - laugh);
+    const reactB = sm(B(1)[0] + 0.2, B(1)[0] + 0.55, t) * (1 - sm(B(1)[1] - 0.2, B(1)[1] + 0.3, t));
+    mo.B.spine.rotation.x -= 0.07 * reactB;
+    mo.B.chest.rotation.x += 0.012 * breath * (1 - reactB);
+    mo.B.spine.rotation.z += 0.05 * Math.sin(t * 0.8) * search;
+    mo.B.chest.rotation.z += 0.04 * Math.sin(t * 1.3 + 1) * search;
     shrug(fa, t, 0, laugh);
     shrug(zo, t, 1.5, laugh);
     for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); fitKneel(a); }
@@ -62,9 +72,13 @@ const ch = staged('chambre_jour', {
     for (const [s, ph] of [['L', 0], ['R', 1.6]]) {
       // Resting hand: flat on the thigh, elbow clearly bent and pushed out (pole), not a straight arm hanging from the shoulder.
       const sg = s === 'L' ? 1 : -1;
-      const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), fidget);
-      palm(mo, s, p, { grip: 0.025, pole: [sg * (0.95 - 0.5 * fidget), -0.15 + 0.35 * fidget, -0.25 + 0.55 * fidget], gap: 0.16 });
-      if (fidget > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
+      // Searching: the right hand drifts up, fingers working, as if pulling the word out; the left stays on the thigh.
+      const gest = s === 'R' ? search * (0.55 + 0.45 * Math.sin(t * 1.9)) * 0.8 : 0;
+      // Chest hands sit lower and wider so the forearms do not cross into the torso or past the shoulder line.
+      const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fidget, gest))
+        .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fidget).add(V(0, -0.03 * km * fidget, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fidget);
+      palm(mo, s, p, { grip: 0.025, pole: [sg * (0.95 - 0.3 * Math.max(fidget, gest)), -0.15 + 0.35 * Math.max(fidget, gest), -0.25 + 0.55 * Math.max(fidget, gest)], gap: 0.16 });
+      if (Math.max(fidget, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
 
     const eye = at(mo, 'head').clone().add(V(0, 0.03 * km, 0));
@@ -88,22 +102,22 @@ const ch = staged('chambre_jour', {
       mo.B.head.updateWorldMatrix(false, true);
     }
     const boy = at(mo, 'head');
-    const faUp = at(fa, 'head').add(V(0, 0.03 * kf, 0)).add(V(0, 0.16 * kf, 0)).addScaledVector(dirW(fa, 0, 0, 1), 0.3);
+    const faUp = at(fa, 'head').add(V(0, 0.03 * kf, 0)).add(V(0, 0.07 * kf, 0)).addScaledVector(dirW(fa, 0, 0, 1), 0.3);
     const zoUp = at(zo, 'head').add(V(0, 0.03 * kz, 0)).add(V(0, 0.16 * kz, 0)).addScaledVector(dirW(zo, 0, 0, 1), 0.28);
     look(fa, boy.clone().lerp(faUp, laugh), 0.85, { max: 0.4 });
     look(zo, boy.clone().lerp(zoUp, laugh), 0.85, { max: 0.38 });
     fa.B.head.rotation.z += 0.16 * lean + 0.08 * listen * (1 - lean);
-    fa.B.head.rotation.x -= 0.12 * laugh;
+    fa.B.head.rotation.x -= 0.04 * laugh;
     zo.B.head.rotation.z += 0.12 * Math.sin(t * 0.85 + 0.6) * listen + 0.08 * laugh;
     zo.B.head.rotation.x -= 0.04 * laugh;
-    fa.B.neck.rotation.x -= 0.06 * laugh;
+    fa.B.neck.rotation.x -= 0.015 * laugh;
     zo.B.neck.rotation.x -= 0.02 * laugh;
 
     const row = name => st.faces.find(r => r[1] === name);
     const said = mouth(S, 'mohammed', t);
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
-      open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.26 + 0.34 * Math.abs(Math.sin(t * 12.2)))),
+      open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.3 + 0.4 * Math.abs(Math.sin(t * 12.2)))),
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
@@ -159,7 +173,7 @@ function lapHand(a, s, t, seed, k) {
 function thighHand(a, s, t, seed, k) {
   const sign = s === 'L' ? 1 : -1;
   const w = Math.sin(t * 1.35 + seed);
-  const lift = a === ZO ? 0.07 : 0;   // mother: hands up on the skirt, in front of the orange flap
+  const lift = a === ZO ? 0.07 : 0.06;   // mother: hands up on the skirt, in front of the orange flap
   return at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.34)
     .add(V(0, (0.13 + lift + 0.01 * w) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), lift * 0.7 * k)
     .addScaledVector(dirW(a, -sign, 0, 0), 0.03 * k);
