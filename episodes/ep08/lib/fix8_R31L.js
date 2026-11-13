@@ -32,7 +32,9 @@ export function handOnArm(a, b, w) {
   const sa = near(a, 'L') < near(a, 'R') ? 'L' : 'R';
   const ap = at(a, 'upperArm' + sa);
   const sb = at(b, 'upperArmL').distanceTo(ap) < at(b, 'upperArmR').distanceTo(ap) ? 'L' : 'R';
-  const tp = at(b, 'upperArm' + sb).addScaledVector(dirW(b, 0, 0, 1), .07 * k).add(V(0, -.07 * k, 0));
+  const sh = ap.clone();
+  const tp = at(b, 'upperArm' + sb).addScaledVector(dirW(b, 0, 0, 1), .15 * k).add(V(0, -.12 * k, 0));
+  const d = tp.clone().sub(sh), cap = .34 * k; if (d.length() > cap) tp.copy(sh).addScaledVector(d.normalize(), cap);   // never out of reach
   const o = lat(a, sa), s = sgnOf(a, o);
   PO.reach(a, sa, tp, { grip: .02, pole: [s * .5, -.5, -.25] });
   PO.fingers(a, sa, .25, { spread: .1 });
