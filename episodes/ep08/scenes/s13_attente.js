@@ -150,7 +150,7 @@ const mu = checkedStage('souk_mur', {
     // mutter's face driver multiplies by .25.. .5: four keeps the yawn wide throughout its hold.
     mutter: t => 14 * win(0, .46, .88, t) },
   father: { at: WALL.father, face: 'cam', yaw: -.35, seed: 5, talk: 0, lookMax: .35, look: [1100, 700, 1.5] },
-  fatma: { at: [900, 770], face: 'cam', yaw: -.2, costume: 'haik', seed: 9, talk: 0, lookMax: .7, look: 'father' },
+  fatma: { at: [900, 770], face: 'cam', yaw: -.2, seed: 9, talk: 0, lookMax: .7, look: 'father' },
   man1: { at: [1330, 930], face: [120, 905], seed: 21, talk: 0 },
   fqih: { at: [1330, 980], face: [120, 905], seed: 23, talk: 0 },
   guerrab: { at: [1250, 940], face: [200, 880], seed: 24, talk: 0 },
@@ -164,16 +164,16 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    if (fm) { fm.group.visible = false; if (false) { if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } } }   // R31S: Fatma used Zoubida's model: read as a duplicate Zoubida; removed. R25I: far right, behind the crowd, never beside Zoubida
+    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
     st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
       fa.group.position.copy(S3.floorAt(1250, 790));
       const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t), sag = sm(B(0)[0] - 1.6, f(0, .18), t);
-      mo.B.spine.rotation.x += .26 * sag; mo.B.chest.rotation.x += .16 * sag;   // R31S: sag harder
+      mo.B.spine.rotation.x += .18 * sag; mo.B.chest.rotation.x += .12 * sag;   // R31S: sag harder
       mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
-      mo.B.spine.rotation.z += .42 * (.4 * sag + lean); mo.B.head.rotation.z += .42 * lean;
+      mo.B.spine.rotation.z += .36 * (.4 * sag + lean); mo.B.head.rotation.z += .36 * lean;
       sync(mo);
       if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
       sync(mo);
@@ -342,7 +342,7 @@ const la = checkedStage('souk_bijoux', {
     if (ma.group.visible) {
       // Above the head, within the measured arm length, pair in the raised right hand.
       const up = 1 - sm(tc, tc + .35, t);   // pair held UP until the turn, then lowered as he leaves
-      PO.reach(ma, 'R', front(ma, 'upperArmR', .10 * km, .52 * km, .22 * km * up - .30 * km * (1 - up)), { grip: .01, pole: [.5, 0, 0] });
+      PO.reach(ma, 'R', front(ma, 'upperArmR', .12 * km, .42 * km, .26 * km * up - .30 * km * (1 - up)), { grip: .01, pole: [.5, 0, 0] });
       PO.fingers(ma, 'R', .65);
     }
     const nod = win(1, .22, .46, t), phase = sm(f(1, .22), f(1, .44), t);
@@ -419,7 +419,7 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 3.0, dx: -30, dy: 60 },
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.3, dx: -30, dy: 15 },
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
