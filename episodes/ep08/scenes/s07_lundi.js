@@ -122,7 +122,7 @@ const ch = staged('chambre_jour', {
     { const rl = sm(B(9)[0] - .3, B(9)[0] + .2, t) * (1 - up);
       if (rl > 0) for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        reachSafe(mo, s, front(mo, 'root', .26 * km, sg * .19 * km, .03 * km), { grip: .02, pole: [sg * .6, -.1, .2] });
+        reachSafe(mo, s, front(mo, 'root', .3 * km, sg * .25 * km, .03 * km), { grip: .02, pole: [sg * 1, -.2, .3] });
         PO.fingers(mo, s, .3, { thumb: .3 });
       }
       const bz = win(10, .1, .9, t); if (bz > 0) { fa.B.head.rotation.x -= .08 * bz; fa.B.neck.rotation.x -= .04 * bz; } }

@@ -133,7 +133,7 @@ const fr = checkedStage('souk_mur', {
     // Weighing: the right hand rides the brass pan (behind his right shoulder, screen right), the pan bobbing.
     const pan0 = S3?.floorAt ? S3.floorAt(1600, 420, 1.2) : null;
     if (pan0) {
-      m1.group.position.set(pan0.x - .05 * k1, 0, pan0.z + .5 * k1); m1.group.rotation.y = yawTo(m1.group.position, pan0) * .8 + .15 * Math.sin(t * 1.7); sync(m1);
+      m1.group.position.set(pan0.x - .05 * k1, 0, pan0.z + .5 * k1); m1.group.rotation.y = yawTo(m1.group.position, pan0) * .3 + yawTo(m1.group.position, w1.group.position) * .7 + .15 * Math.sin(t * 1.7); sync(m1);
     }
     const pan = (pan0 || at(m1, 'root').add(V(.5 * k1, .62 * k1, -.3 * k1))).clone().add(V(0, .03 * Math.sin(t * 2.6) * k1, 0));
     { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .96, Math.max(len * .72, d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
