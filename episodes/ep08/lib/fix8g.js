@@ -130,6 +130,7 @@ export function settleRobe(a, floor = 0, opt = {}) {
   if (opt.front && B.SkirtFront2) { B.SkirtFront2.scale.multiplyScalar(opt.front.scale); B.SkirtFront2.updateWorldMatrix(false, true); }
   seatHem(a, B.LeftRobe2, 'LeftRobe2', floor);
   seatHem(a, B.RightRobe2, 'RightRobe2', floor);
+  if (opt.flank) for (const n of ['LeftRobe2', 'RightRobe2']) if (B[n]) { B[n].scale.multiplyScalar(opt.flank); B[n].updateWorldMatrix(false, true); }
 }
 
 /** Push a palm target forward until it clears the head, so a raised hand stops short of the cheek. */

@@ -26,7 +26,7 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { for (const a of [fa, mo]) settleRobe(a); settleRobe(zo, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.42 } }); };
+    st.G.apply = () => { for (const a of [fa, mo]) settleRobe(a); settleRobe(zo, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.22 }, flank: 0.6 }); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
