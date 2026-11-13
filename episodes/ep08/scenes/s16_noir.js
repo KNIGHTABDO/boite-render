@@ -27,7 +27,14 @@ function mourn(zo, t) {
   zo.B.chest.rotation.x += .06 + .015 * sob;   // bowed forward, face down into both palms
   zo.B.neck.rotation.z += .035 * Math.sin(t * .55) + .02 * sh; zo.B.head.rotation.y += .05 * Math.sin(t * .37 + 1);   // slow small head shake
   for (const s of ['L', 'R']) zo.B['clavicle' + s] && (zo.B['clavicle' + s].rotation.z += (s === 'L' ? 1 : -1) * .05 * sh);
-  cradleFace(zo, { mode: 'cradle', bow: .1 + .02 * sob, u: sob });
+  zo.B.chest.rotation.x -= .035;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
+  cradleFace(zo, { mode: 'cradle', bow: .08 + .02 * sob, u: sob });
+  {   // r30: cradleFace's left palm sits ~.12 m from the head bone; re-seat it a little closer on the cheek (b103 8.19)
+    const B = zo.B, skin = () => B.head.localToWorld(V(.04, .06, .072)), wrist = skin();
+    for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, 'L', wrist, { grip: 0, pole: [.4, -.1, .25] }); wrist.add(p.sub(PO.handPts(zo, 'L').palm)); }
+    aim(B.handL, PO.handPts(zo, 'L').end, B.head.localToWorld(V(.025, .2, .1)));
+    PO.fingers(zo, 'L', .1, { thumb: .04, spread: .1 });
+  }
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
@@ -65,7 +72,7 @@ const cry = staged('chambre_jour', {
     const mo = st.A.mohammed;
     // r28: lift him so the hem rests ON the mattress top (it cut flat into it), with a soft contact blob under him.
     if (st.y0 == null) st.y0 = mo.group.position.y;
-    mo.group.position.y = st.y0 + .014;
+    mo.group.position.y = st.y0 + .004;   // r30: was .014; the L knee floated 3.9 cm over the mattress at b105 30.0 (limit 3)
     if (!st.blob) {
       const N = 64, d = new Uint8Array(N * N * 4);
       for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const r = Math.hypot(x - 31.5, y - 31.5) / 32, v = Math.max(0, 1 - r); const i = (y * N + x) * 4; d[i] = 40; d[i + 1] = 18; d[i + 2] = 10; d[i + 3] = Math.round(255 * .6 * v * v * (3 - 2 * v)); }
