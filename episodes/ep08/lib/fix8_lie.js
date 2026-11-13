@@ -86,7 +86,7 @@ export function cradleFace(a, { mode = 'cradle', bow = .12, u = 0, out = .02 } =
   const spec = s => {
     const e = eye[s], sg = s === 'L' ? 1 : -1, ex = Math.abs(e[0]) * sg, ey = e[1] - hy, ez = e[2];
     if (mode === 'eyes') return { spot: [ex * .9, ey - .005, ez + out], tip: [ex * .8, ey + .1, ez + out * .6], pole: [sg * .35, -.05, .3], fing: [.04, .05] };
-    if (s === 'L') return { spot: [ex * 1.0, .082 + .004 * u, .055 + out * .5], tip: [ex * .6, .2, ez * .9 + .03], pole: [sg * .4, -.1, .25], fing: [.1, .04] };   // cheek cupped, fingers up the cheekbone toward the eye
+    if (s === 'L') return { spot: [ex * 1.0, .082 + .004 * u, .055 + out * .5], tip: [ex * .6, .2, ez * .9 + .03], pole: [sg * .2, .2, 1], fing: [.1, .04] };   // cheek cupped, fingers up the cheekbone toward the eye
     return { spot: [ex * .9, .075 - .004 * u, .09 + out * .5], tip: [ex * .9, .17, ez * .8], pole: [sg * .45, -.1, .2], fing: [.18, .08] };   // chin/jaw cupped, lower than the other hand
   };
   for (const s of ['L', 'R']) {

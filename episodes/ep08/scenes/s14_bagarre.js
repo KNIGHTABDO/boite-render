@@ -144,7 +144,7 @@ const mu = soukCast(checkedStage('souk_mur', {
       const cx = rt.x + (ch.x - rt.x) * .75, cz = rt.z + (ch.z - rt.z) * .75;
       const rr = 1 / Math.sqrt((dl.x / R) ** 2 + (dl.z / (.86 * R)) ** 2);
       for (const s of ['L', 'R']) {
-        const off = (s === 'L' ? 1 : -1) * .05 / sc, o = ft.group.localToWorld(V(cx + dl.x * (rr + .012) + sd.x * off, yy, cz + dl.z * (rr + .012) + sd.z * off));
+        const off = (s === 'L' ? 1 : -1) * .035 / sc, o = ft.group.localToWorld(V(cx + dl.x * (rr * .9 + .012) + sd.x * off, yy, cz + dl.z * (rr * .9 + .012) + sd.z * off));
         PO.grip(ft, s, o, at(ft, 'chest'), { pole: [s === 'L' ? .6 : -.6, -.2, .2] });
         PO.fingers(ft, s, .95, { thumb: .85 });
       }
@@ -160,7 +160,7 @@ const mu = soukCast(checkedStage('souk_mur', {
 }), ':s14:mu:fatma');
 
 // the fight: the pair grips collars and shoves along a path (the walk gives the legs; the bodies face each other)
-const PATH = [[1120, 640], [770, 760], [800, 690]];   // across lens-left → held close → still in front of the crowd
+const PATH = [[1120, 640], [770, 760], [800, 650]];   // across lens-left → held close → still in front of the crowd
 const FOLLOW = [
   ['man1', [600, 800]], ['woman1', [1000, 780]], ['woman2', [1120, 770]],
   ['kid2', [700, 830]], ['kid3', [900, 810]], ['kid1', [850, 860]],
@@ -195,9 +195,9 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     const UP = false;
     const upDir = F([800, 640]).sub(F([800, 880])).setY(0).normalize();
     const knock = Math.exp(-(((t - dropAt) / .18) ** 2));
-    const sh = .09 * Math.sin(t * 2.6) + .04 * Math.sin(t * 5.1) - .07 * knock;
+    const sh = .06 * Math.sin(t * 2.6) + .03 * Math.sin(t * 5.1) - .07 * knock;
     for (const [a, s] of [[fa, 1], [ma, -1]]) {
-      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .27 + sh);
+      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .32 + sh);
       rest(a.B);
       if (moving) walkPose(a.B, (t - a0) * 1.2 + (s < 0 ? .5 : 0), .55);
       a.group.position.set(p.x, 0, p.z);
@@ -206,7 +206,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     for (const [a, o] of [[fa, ma], [ma, fa]]) {
       a.group.rotation.y = UP ? Math.atan2(upDir.x, upDir.z) : yawTo(a.group.position, o.group.position);
       const heave = Math.sin(t * 3.6 + (a === fa ? 0 : 1.4));
-      a.B.spine.rotation.x += .3 + .08 * heave + .12 * knock; a.B.chest.rotation.y += (a === fa ? .18 : -.18) * Math.sin(t * 2.6);
+      a.B.spine.rotation.x += .27 + .07 * heave + .12 * knock; a.B.chest.rotation.y += (a === fa ? .08 : -.08) * Math.sin(t * 2.6);
       a.B.chest.rotation.x -= .055 * heave; a.B.chest.position.z += .012 * heave;
       a.B.neck.rotation.x -= .04; a.group.updateMatrixWorld(true);
       if (!UP) faceCam(a, S3.cam, a === fa && rec > .25 ? 1.68 : 1.55);
