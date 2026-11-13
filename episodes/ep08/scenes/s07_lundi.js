@@ -134,7 +134,8 @@ const ch = staged('chambre_jour', {
         const sg = s === 'L' ? 1 : -1, g = s === 'R' ? up : 0;
         const tg = at(mo, 'root').clone().addScaledVector(dirW(mo, 0, 0, 1), (.22 + .07 * g) * km).addScaledVector(dirW(mo, -sg, 0, 0), .17 * km)
           .add(V(0, (-.01 + .13 * g + .008 * Math.sin(t * 1.9 + sg) + .03 * g * Math.sin(t * 6)) * km, 0));
-        reachSafe(mo, s, at(mo, 'hand' + s).clone().lerp(tg, w43 * (s === 'L' ? 1 - .85 * zw : 1 - .9 * sm(B(9)[0] + .1, B(9)[0] + .8, t))), { grip: .02, pole: [sg * .9, .15, .4] });
+        { const wr = w43 * (s === 'L' ? 1 - .85 * zw : 1 - sm(B(9)[0] - .5, B(9)[0] + .1, t));   // R31Z: fade fully to lapRest by b036 and skip the IK (a residual reachSafe re-solved the elbow into the torso at 60.9)
+          if (wr > .01) reachSafe(mo, s, at(mo, 'hand' + s).clone().lerp(tg, wr), { grip: .02, pole: [sg * .9, .15, .4] }); }
         PO.fingers(mo, s, .3, { thumb: .3 });
       }
       mo.B.chest.rotation.z += .03 * w43 * Math.sin(t * .9);
