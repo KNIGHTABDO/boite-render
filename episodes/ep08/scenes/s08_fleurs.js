@@ -104,7 +104,7 @@ const ch = staged('chambre_jour', {
       const base = lapHand(mo, s, t, 3, km).addScaledVector(dirW(mo, sg, 0, 0), 0.045 * km);
       const w12 = sm(11.9, 12.0, t);
       // R31S6 (t>=12): hands forward and out on the thighs, asymmetric (right higher and further out, left lower and a touch back).
-      base.addScaledVector(dirW(mo, 0, 0, 1), (s === 'R' ? 0.06 : 0.035) * km * w12).addScaledVector(dirW(mo, sg, 0, 0), (s === 'R' ? 0.04 : 0.02) * km * w12).add(V(0, (s === 'R' ? 0.03 : -0.015) * km * w12, 0));
+      base.addScaledVector(dirW(mo, 0, 0, 1), (s === 'R' ? 0.16 : 0.12) * km * w12).addScaledVector(dirW(mo, sg, 0, 0), (s === 'R' ? 0.09 : 0.05) * km * w12).add(V(0, (s === 'R' ? 0.05 : 0.02) * km * w12, 0));
       let p = base.clone();
       if (s === 'R') {
         const gp = base.clone().add(V(0, 0.13 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), 0.1 * km).addScaledVector(dirW(mo, sg, 0, 0), 0.04 * km);
@@ -129,7 +129,7 @@ const ch = staged('chambre_jour', {
       const toCam = cam.position.clone().sub(eye).normalize();
       const scr = (r, u, d = 0.5) => eye.clone().addScaledVector(toCam, d).addScaledVector(camR, r).addScaledVector(camU, u);
       const upLeft = scr(-0.4 * km, 0.2 * km);                // searching: up and to screen-LEFT, away from the mother
-      const lowered = scr(0.03 * km, -0.26 * km, 0.4);        // eyes dropped to the floor in front of him
+      const lowered = scr(0.03 * km, -0.13 * km, 0.4);        // eyes dropped to the floor in front of him
       const parents = at(fa, 'head').lerp(at(zo, 'head'), 0.45).add(V(0, 0.42 * km, 0));
       const level = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.6);
       // R31F: end of the whisper the eyes go clearly UP (toward the end of the line); in b039 he looks at his father instead of the lens.
@@ -179,7 +179,7 @@ const ch = staged('chambre_jour', {
     const said = mouth(S, 'mohammed', t);
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
-      open: Math.max(search * (0.9 + 0.1 * Math.abs(Math.sin(t * 6.4))), search * said, whisper * (0.65 + 0.3 * Math.abs(Math.sin(t * 12.2))), whisper * said),
+      open: Math.max(search * (0.9 + 0.1 * Math.abs(Math.sin(t * 6.4))), search * said, whisper * (0.85 + 0.15 * Math.abs(Math.sin(t * 12.2))), whisper * said),
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
