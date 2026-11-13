@@ -68,7 +68,7 @@ const esc = staged('escalier', {
     castScale(mo);
     sitStep(mo, SEAT.o.seat - .075, SEAT.o.floor, .62);   // R31O: feet pulled in under the knees so the knees rise high
        // R31L: pelvis on tread 3, soles on tread 2 (as s09)
-    if (t >= 21.5) { plantFoot(mo, 'R', SEAT.o.floor); plantFoot(mo, 'L', SEAT.o.floor); }   // R31AB: soles really on tread 2 (only from b061)
+    if (t >= 21.5) { plantFoot(mo, 'R', SEAT.o.floor, .004); }   // R31AB: soles really on tread 2 (only from b061)
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;

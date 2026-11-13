@@ -28,6 +28,8 @@ export function scornArms(a, w, t) {
   if (w <= 0) return;
   const k = a.group.scale.y / 1.6;
   const kL = at(a, 'shinL').add(V(.0, .075 * k, 0)).addScaledVector(dirW(a, 0, 0, 1), .02 * k);
+  const shL = at(a, 'upperArmL'), lenL = (shL.distanceTo(at(a, 'foreArmL')) + at(a, 'foreArmL').distanceTo(at(a, 'handL'))) * .93;
+  const dL = kL.clone().sub(shL); if (dL.length() > lenL) kL.copy(shL).addScaledVector(dL.normalize(), lenL);   // never beyond reach
   const hL = at(a, 'handL'), pL = hL.clone().lerp(kL, w);
   PO.reach(a, 'L', pL, { grip: .03, pole: [1.1, .05, -.1] }); PO.fingers(a, 'L', .5, { thumb: .35 });
   const o = lat(a, 'R'), sh = at(a, 'upperArmR'), hR = at(a, 'handR');
