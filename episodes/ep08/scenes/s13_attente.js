@@ -159,8 +159,9 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(4)[0]; if (fm.group.visible) { closeHaik(fm); sync(fm); } }
-    st.actcheck={haikLat:{zoubida:.095},haikFwd:{zoubida:.30},exposed:{zoubida:t>=B(5)[0]?['handR','foreArmR']:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    if (fm) fm.group.visible = false;   // R25I: a second haik woman read as a duplicate Zoubida (four family members)
+    st.actcheck={haikLat:{zoubida:.095},haikFwd:{zoubida:.30},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    if (t >= B(5)[0]) { const g = Math.max(0, Math.sin((t - B(5)[0]) * 1.65 * Math.PI * 2)) ** 3; st.actcheck.haikFwd.zoubida = .30 + .07 * g; }
     const km = k(mo), kz = k(zo);
     // b083: a planted-foot buckle, already tired during pre-roll, then a deeper collapse.
     if (t < B(1)[0]) {
@@ -177,7 +178,7 @@ const mu = checkedStage('souk_mur', {
       }
       mo.B.spine.rotation.x += .42 * sag;
       mo.B.chest.rotation.x += .12 * sag;
-      mo.B.neck.rotation.x -= .95 * yawn;
+      mo.B.neck.rotation.x -= .6 * yawn;
       mo.B.head.rotation.x -= .18 * yawn;
       // Only the upper body leans: the shoulder/sleeve retains its clearance from the haik.
       mo.B.spine.rotation.z += .22 * lean;
@@ -193,15 +194,18 @@ const mu = checkedStage('souk_mur', {
 
     // b086: five staggered foreground crossings. At most two cross the family together;
     // the family spans 580px, so one passing body cannot erase all three silhouettes.
+    // R25I: a real wave: all five within ~1 s, and a second surge so b086's later stills still show crowd.
     const rush = [
-      ['man1', [1330, 950], [120, 950], .00],
-      ['fqih', [1330, 985], [200, 950], .16],
-      ['guerrab', [1250, 985], [120, 950], .27],
-      ['driss', [1330, 950], [200, 950], .48],
-      ['woman1', [1250, 985], [120, 950], .64],
+      ['man1', [1330, 950], [120, 950], -.35],
+      ['fqih', [1330, 985], [200, 950], -.15],
+      ['guerrab', [1250, 985], [120, 950], 0],
+      ['driss', [1330, 950], [200, 950], .20],
+      ['woman1', [1250, 985], [120, 950], .35],
     ];
     for (const [n, p0, p1, delay] of rush) {
-      const a = st.A[n], t0 = f(3, delay), t1 = t0 + 1.9;
+      const a = st.A[n], w0 = B(3)[0] + delay, w1 = w0 + 3.5 + (n === 'man1' ? .3 : 0);
+      let t0 = w0, t1 = t0 + 1.9;
+      if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.9; }
       a.group.visible = t >= t0 && t <= t1;
       if (a.group.visible) {
         rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 3.8, ease: false });
@@ -214,7 +218,7 @@ const mu = checkedStage('souk_mur', {
     const jolt = shove * (.75 + .25 * Math.max(0, Math.sin((t - B(3)[0]) * 9)));
     for (const a of [zo, mo, fa]) {
       const back = a.group.position.clone().sub(S3.cam.position).setY(0).normalize();
-      a.group.position.addScaledVector(back, .12 * jolt);
+      a.group.position.addScaledVector(back, .2 * jolt);
       a.B.spine.rotation.x -= .30 * jolt; a.B.neck.rotation.x += .12 * jolt;
       a.B.thighR.rotation.x += .18 * jolt; a.B.shinR.rotation.x += .25 * jolt;
     }
@@ -227,6 +231,7 @@ const mu = checkedStage('souk_mur', {
       if(sh.distanceTo(wrap)>len*.95){const d=wrap.clone().sub(sh).setY(0).normalize();zo.group.position.addScaledVector(d,sh.distanceTo(wrap)-len*.95);sync(zo);}
       PO.reach(zo, 'L', wrap, { grip: .01, pole: [.45, .12, .2] });
       PO.reach(mo, 'L', front(mo, 'chest', .16, -.12, -.08), { grip: .01 });
+      PO.reach(mo, 'R', front(mo, 'chest', .14, .12, -.1), { grip: .01 });
     }
 
     // b088: shoulder-high cuts, clear of the veil; keep the other palm in front of the cloth.
@@ -238,11 +243,9 @@ const mu = checkedStage('souk_mur', {
       zo.B.head.rotation.y += .30 * Math.sin(ph * 4.2) ** 3;
       zo.B.neck.rotation.x += .17 * Math.max(0, Math.sin(ph * 5.1)) ** 4;
       sync(zo);
-      PO.reach(zo, 'R', front(zo, 'upperArmR', .34 * kz, (.22 + .12 * cut) * kz, (.05 - .10 * cut) * kz),
-        { grip: .01, pole: [-.45, .35, .12] });
-      PO.fingers(zo, 'R', .05, { spread: .35 });
-      PO.palmTo(zo, 'R', 1, V(0, -1, 0));
-      PO.reach(zo, 'L', front(zo, 'chest', .14*kz, -.07*kz, -.12*kz), {grip:.015});
+      // R25I: the raised hand tore the haik (spikes behind the head, forearm through the chest). The hands now stay in
+      // front of the cloth (haikFwd pulses with each cut); the sharp head jerks carry the beat.
+      zo.B.head.rotation.y += .18 * Math.sin(ph * 6.3) ** 3;
     }
     sync(zo, mo, fa);
   },
@@ -274,7 +277,7 @@ const ca = checkedStage('souk_mur', {
     sync(fa, mo);
     // Head outside the neck, cheek against the outer shoulder, torso in front of the chest.
     const cheek = at(mo, 'head', [.10, .02, .06]);
-    const shoulder = front(fa, 'upperArmR', .12 * kf, .15 * kf, .04 * kf);
+    const shoulder = front(fa, 'upperArmR', -.07 * kf, .19 * kf, -.07 * kf);
     const delta = shoulder.sub(cheek);
     mo.group.position.x += delta.x; mo.group.position.z += delta.z;
     mo.group.position.y += delta.y * lift;
@@ -294,10 +297,10 @@ const ca = checkedStage('souk_mur', {
 
 // b084/b085/b089: a readable mid-depth lane, with the whole family kept beside it.
 const la = checkedStage('souk_bijoux', {
-  father: { at: LANE.father, face: 'cam', yaw: 0, seed: 5, talk: 0, lookMax: .7,
-    look: (t, st) => t >= B(6)[0] ? front(st.A.father, 'head', 1.8, 1.3 * Math.sin((t - B(6)[0]) * .7 - .9), 0) : 'marchand' },
-  zoubida: { at: LANE.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, lookMax: .32,
-    look: (t, st) => t >= B(6)[0] ? front(st.A.zoubida, 'head', 1.8, 1.1 * Math.sin(.9 - (t - B(6)[0]) * .75), 0) : [1180, 720, 1.5] },
+  father: { at: LANE.father, face: 'cam', yaw: 0, seed: 5, talk: 0, lookMax: .95,
+    look: (t, st) => t >= B(6)[0] ? front(st.A.father, 'head', 1.8, 2.2 * Math.sin((t - B(6)[0]) * .9 - 1.2), 0) : 'marchand' },
+  zoubida: { at: LANE.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, lookMax: .8,
+    look: (t, st) => t >= B(6)[0] ? front(st.A.zoubida, 'head', 1.8, 2.0 * Math.sin(1.2 - (t - B(6)[0]) * .9), 0) : [1180, 720, 1.5] },
   mohammed: { at: LANE.mohammed, face: 'cam', seed: 3, lids: .4, talk: 0, look: 'father', lookMax: .8 },
   marchand: { at: [1080, 690], face: [700, 790], seed: 13, talk: 1,
     mutter: t => t < B(2)[0] ? 3 * win(1, 0, .66, t) : 2 * win(2, 0, 1.1, t) },
@@ -319,7 +322,7 @@ const la = checkedStage('souk_bijoux', {
       const y0 = yawTo(p, S3.cam.position), y1 = yawTo(p, fa.group.position);
       return y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * .55;
     };
-    const ta = B(1)[0], tb = f(1, .23), tc = f(1, .58), td = B(1)[1] + .15;
+    const ta = B(1)[0], tb = f(1, .23), tc = f(1, .40), td = B(1)[1] + .15;
     ma.group.visible = t >= ta - .4 && t <= td;
     rest(ma.B);
     if (t < tb) walk(ma, F(1080, 690), F(1180, 720), ta - .4, tb, t, { cps: 2.5 });
@@ -328,7 +331,7 @@ const la = checkedStage('souk_bijoux', {
       ma.group.rotation.y = addressYaw(ma.group.position);
     } else {
       walk(ma, F(1180, 720), F(960, 860), tc, td, t, { cps: 2.9 });
-      const turn = sm(tc, tc + .4, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(960, 860));
+      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(960, 860));
       ma.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn;
     }
     const shout = win(1, 0, .66, t);
@@ -339,13 +342,13 @@ const la = checkedStage('souk_bijoux', {
       PO.reach(ma, 'R', front(ma, 'upperArmR', .12 * km, .06 * km, .48 * km), { grip: .01 });
       PO.fingers(ma, 'R', .65);
     }
-    const nod = win(1, .40, .68, t), phase = sm(f(1, .40), f(1, .64), t);
+    const nod = win(1, .22, .46, t), phase = sm(f(1, .22), f(1, .44), t);
     fa.B.neck.rotation.x += .26 * nod * Math.sin(Math.PI * phase);
     sync(fa);
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.30},haikLat:{zoubida:.095},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
@@ -367,8 +370,8 @@ const la = checkedStage('souk_bijoux', {
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
         ['woman1', [1250, 690], [700, 930], 0],
-        ['kid2', [1180, 720], [1000, 790], .35],
-        ['kid3', [1330, 690], [1250, 940], .25],
+        ['kid2', [1180, 720], [820, 920], .35],
+        ['kid3', [1330, 690], [800, 930], .25],
         ['fqih', [700, 930], [560, 900], .05],
         ['woman2', [1080, 640], [1180, 720], .18],
       ]) {
@@ -384,7 +387,7 @@ const la = checkedStage('souk_bijoux', {
         ['woman1', [1000, 690], [950, 640]],
         ['kid2', [1180, 720], [1100, 830]],
         ['kid3', [1080, 830], [1250, 690]],
-        ['fqih', [900, 930], [1100, 790]],
+        ['fqih', [1250, 860], [1330, 740]],
         ['woman2', [1250, 940], [1330, 720]],
       ]) {
         const a = st.A[n]; rest(a.B);
@@ -397,9 +400,9 @@ const la = checkedStage('souk_bijoux', {
       const side=boil&&st.dragSide==='R'?'L':'R';
       if (boil) PO.reach(ma, side, front(ma, 'chest', .25 * km, .17 * km, .15 * km), { grip: .01 });
       const hand=ma.B['hand'+side];hand.updateWorldMatrix(true, false);
-      br.position.copy(hand.localToWorld(V(0, .06, .025)));
+      br.position.copy(hand.localToWorld(V(0, .10, .025)));
       br.quaternion.copy(hand.getWorldQuaternion(br.quaternion));
-      br.scale.setScalar(1.3); br.updateMatrixWorld(true);
+      br.scale.setScalar(2.4); br.updateMatrixWorld(true);
     }
     sync(fa, zo, mo, ma, client);
   },
@@ -409,11 +412,11 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 3.7, dx: 20, dy: 80 },
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.4, dx: 20, dy: 130 },
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
-    b085: { shot: 'la', size: 'W', on: 'marchand' },
+    b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
-    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.6, dx: -65, dy: 40 },
+    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.9, dx: -65, dy: 70 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.4, dx: -55, dy: 25 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.3, dx: 120, dy: 95 },
   },
