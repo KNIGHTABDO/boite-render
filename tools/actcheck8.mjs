@@ -166,7 +166,7 @@ function evaluate(S) {
   if(wantsFace && mark.pose!=='lie') {
     const cast=activeBeat?.cast||[];
     const named=cast.length===1?cast[0]===a.name:plain.includes(String(a.name).toLowerCase());
-    if(named) for(const s of ['L','R']){const d=globalThis.__PO.handPts(a,s).palm.distanceTo(pos(a,'head')); if(d>.12)fail('hands-face',a.name+' '+s,d,.12,'palm to head');}
+    if(named) for(const s of ['L','R']){const d=globalThis.__PO.handPts(a,s).palm.distanceTo(pos(a,'head')); if(process.env.DBGH)console.error('HF',activeBeat?.id,s,d.toFixed(3));if(d>.12)fail('hands-face',a.name+' '+s,d,.12,'palm to head');}
   }
   let gaze=mark.look;
   if(typeof gaze==='function'){try{gaze=gaze(current.t);}catch{gaze=null;}}
