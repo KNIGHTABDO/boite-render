@@ -123,7 +123,7 @@ const ch = staged('chambre_jour', {
       PO.palmTo(fa, 'R', wel); PO.fingers(fa, 'R', .1, { spread: .25 });
     }
     // R25B: the boy's hands rest on his thighs after b035 (no stiff pinned arms) and the father's brows lift on b037
-    { const rl = sm(B(8)[0] - .3, B(8)[0] + .3, t);   // R31R: relaxed asymmetric arms from b035 on (left hand on the knee, right resting in the lap)
+    { const rl = sm(B(8)[0] + .2, B(8)[0] + 1.0, t);   // R31R: relaxed asymmetric arms from b035 on (left hand on the knee, right resting in the lap)
       if (rl > 0) for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
         reachSafe(mo, s, at(mo, 'root').clone().addScaledVector(dirW(mo, 0, 0, 1), (s === 'L' ? .2 : .17) * km).addScaledVector(dirW(mo, -sg, 0, 0), (s === 'L' ? .18 : -.04) * km).add(V(0, ((s === 'L' ? -.03 : .0) + .012 * Math.sin(t * 1.9 + sg)) * km, 0)), { grip: .02, pole: [sg * .55, .15, .4] });
