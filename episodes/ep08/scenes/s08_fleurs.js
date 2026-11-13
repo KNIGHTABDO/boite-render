@@ -4,7 +4,7 @@
 // off the knees, the boy still between them; b043 slow side-eye left, then right, head level, lids lowered.
 import { fitKneel, staged } from '../lib/fix8a.js';
 import { palm, settleRobe } from '../lib/fix8g.js';
-import { hangSash } from '../lib/fix8_R31F.js';
+import { hangSash, tuckMother } from '../lib/fix8_R31F.js';
 import { LUNCH } from '../lib/lunch.js';
 import { at, beatScene, dirW, lines, sm, V } from '../lib/beatscene.js';
 import { mouth } from './_3d.js';
@@ -27,7 +27,7 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 0.06, s1: 0.8 }, flank: 1.0 }); hangSash(zo); };
+    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 0.06, s1: 0.8 }, flank: 1.0 }); hangSash(zo); tuckMother(zo); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
@@ -100,7 +100,7 @@ const ch = staged('chambre_jour', {
       const fid = fidget * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 0.9 + (s === 'L' ? 0 : 3.1))));
       const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fid, gest))
         .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fid).add(V(0, -0.03 * km * fid, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fid).addScaledVector(dirW(mo, -sg, 0, 0), -0.07 * km * lean * (1 - fid)).add(V(0, 0.03 * km * lean * (1 - fid) * Math.sin(t * 1.1 + ph), 0));
-      palm(mo, s, p, { grip: 0.025, pole: [sg * (0.95 - 0.3 * Math.max(fid, gest)), -0.15 + 0.35 * Math.max(fid, gest), -0.25 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
+      palm(mo, s, p, { grip: 0.025, pole: [sg * (1.15 - 0.3 * Math.max(fid, gest)), -0.05 + 0.35 * Math.max(fid, gest), -0.5 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
       if (Math.max(fid, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
 
@@ -150,7 +150,7 @@ const ch = staged('chambre_jour', {
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
-      open: Math.max(sm(B(1)[0] - 0.05, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.15, t)) * (0.4 + 0.3 * Math.abs(Math.sin(t * 13))), 0.4 * lean, lean * (0.45 + 0.3 * Math.abs(Math.sin(t * 15.5))), lean * asked) + laugh * (0.85 + 0.15 * Math.abs(Math.sin(t * 9.2))) + residue * 0.3,
+      open: Math.max(sm(B(1)[0] - 0.05, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.15, t)) * (0.4 + 0.3 * Math.abs(Math.sin(t * 13))), 0.4 * lean, lean * (0.45 + 0.3 * Math.abs(Math.sin(t * 15.5))), lean * asked, asked * 0.85) + laugh * (0.85 + 0.15 * Math.abs(Math.sin(t * 9.2))) + residue * 0.3,
       lid: 0.04 * lean + 0.32 * laugh,
     });
     row('zoubida')[3] = () => ({
