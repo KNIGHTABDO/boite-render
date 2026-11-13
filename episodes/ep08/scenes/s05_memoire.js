@@ -86,7 +86,7 @@ const cl = staged('mausolee', {
         }
       }
     }
-    st.slate = lapLouha(mo, st.lh, { f: -.02, y: -.04, sc: .9 });   // R26A: smaller, lower board, hands on its edges
+    st.slate = lapLouha(mo, st.lh, { f: -.02, x: 0, y: -.04, sc: .9 });   // R26A: smaller, lower board, hands on its edges
   },
 });
 

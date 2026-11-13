@@ -19,8 +19,8 @@ const TOP = .26;
 // r25N: the boy is re-solved flat on the cloth every frame (s16 recipe) with a pillow and a blanket over legs and hips, so the head, chest and covered body read as a child in bed in every shot
 function bed(S3, st, t) {
   const mo = st.A.mohammed;
-  lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .12, tuck: .22, headTurn: .06 });
-  pillowUnder(S3, st, mo, { top: TOP, h: .12 });
+  lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .14, tuck: .22, headTurn: .06 });
+  pillowUnder(S3, st, mo, { top: TOP, h: .14 });
   st.cover ||= PR.blanket({ w: .4, l: .56, h: .06, col: 0x9a4a38 });
   const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
   S3.prop(st.cover, hp.x + Math.sin(ry) * .3, TOP + .03 - .004, hp.z + Math.cos(ry) * .3, ry); st.cover.visible = true;
@@ -35,7 +35,7 @@ function gest(a, t, kind, u, near = null) {
     const lead = sd === (kind === 'chop' ? 'R' : 'L'), low = sd === near;
     const rest = { fwd: .03 + .03 * (sd === 'L' ? i1 : i2), out: .15 + .02 * i2, drop: .3 - .03 * (sd === 'L' ? i2 : i1), curl: .3, spread: .12 };
     let g;
-    if (kind === 'wide') g = lead || !low ? { fwd: .2, out: .3 + .06 * w, drop: .02 + .1 * (.5 + .5 * v), curl: .08, spread: .5 } : { fwd: .12, out: .24, drop: .22 + .05 * w, curl: .12, spread: .45 };
+    if (kind === 'wide') g = lead || !low ? { fwd: .2, out: .3 + .06 * w, drop: .02 + .1 * (.5 + .5 * v), curl: .08, spread: .5 } : { fwd: .0, out: .22, drop: .3 + .03 * w, curl: .2, spread: .3 };
     else if (kind === 'chop') g = lead ? { fwd: .26 + .07 * w, out: .12, drop: .16 + .1 * Math.max(0, v), curl: .1, spread: .35 } : { fwd: .1, out: .2, drop: .27 + .04 * v, curl: .25, spread: .2 };
     else g = lead ? { fwd: .24, out: .17 + .03 * w, drop: .15 + .05 * v, curl: .1, spread: .4 } : { fwd: .2, out: .22, drop: .2 + .04 * w, curl: .12, spread: .4 };
     const o = {}; for (const k of Object.keys(rest)) o[k] = lerp(rest[k], g[k]);
@@ -74,7 +74,7 @@ const ch1 = staged('chambre_jour', {
     if (touching) { fa.B.chest.rotation.x += .1 * sm(B(0)[0] - .2, B(0)[0] + .5, t); fa.group.updateMatrixWorld(true); }
     // forehead: head-local spot between the brows and the hairline, palm flat on it
     const fh = () => { const F = mo.S.face, ey = (F.eyeL[1] - mo.S.head), ez = F.eyeL[2]; return mo.B.head.localToWorld(V(0, ey + .075, ez * .55 + .01)); };
-    const rest = at(fa, 'thigh' + side).add(V(0, .1 * kf, .03));
+    const outw = at(fa, 'upperArm' + side).sub(at(fa, 'chest')).setY(0).normalize(), rest = at(fa, 'thigh' + side).add(V(0, .1 * kf, .03)).addScaledVector(outw, .12 * kf).add(front(fa, 'root', .12 * kf).sub(at(fa, 'root')));
     // the other hand rests on its own thigh, with a little drift, so no arm ever sticks out stiff
     const lap = () => { const p = at(fa, 'thigh' + other).add(V(0, .1 * kf, .02 + .01 * Math.sin(t * .9))); PO.reach(fa, other, p, { grip: .02, pole: other === 'L' ? [.4, .05, .2] : [-.4, .05, .2] }); PO.fingers(fa, other, .3, { spread: .12 }); };
     if (IN(0, t)) {   // hand ON the shoulder, shaking him awake
@@ -100,7 +100,7 @@ const ch1 = staged('chambre_jour', {
 const ch2 = staged('chambre_jour', {
   mohammed: BED,
   father: { height: 1.76, at: [560, 900], face: 'zoubida', yaw: .25, seed: 5, look: 'zoubida', lookMax: .7 },
-  zoubida: { at: [960, 880], face: [720, 980], seed: 7, look: 'father', lookMax: .7 },
+  zoubida: { at: [990, 880], face: [720, 980], seed: 7, look: 'father', lookMax: .7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -108,10 +108,10 @@ const ch2 = staged('chambre_jour', {
     bed(S3, st, t);
     const zo = st.A.zoubida, fa = st.A.father, k = fa.group.scale.y / 1.6;
     const talk = IN(6, t) ? 1 : 0;   // his own line (b139): the raised hand is up; while she talks it drops to a loose half-open hand
-    const up = (talk ? .06 : -.2) + .08 * Math.sin(t * .7), fw = .24 + .05 * Math.sin(t * 1.1);
+    const ph = .5 + .5 * Math.sin(t * 1.25), up = (talk ? .06 : -.22 + .3 * ph) + .04 * Math.sin(t * .7), fw = (.2 + .06 * ph);
     PO.reach(fa, 'R', front(fa, 'chest', fw * k, (.18 + .04 * Math.sin(t * .8 + 1)) * k, up * k), { grip: 0, pole: [-.35, .08, .2] }); PO.fingers(fa, 'R', talk ? 0 : .25, { spread: .45 });
     handTo(fa, 'L', { fwd: .08 + .03 * Math.sin(t * .9), out: .17, drop: .27 + .03 * Math.sin(t * .6), curl: .35, spread: .1 });
-    fa.B.chest.rotation.y += .06 * Math.sin(t * .55); fa.B.chest.rotation.x += .025 * Math.sin(t * .4 + 1); fa.B.head.rotation.z += .03 * Math.sin(t * .5);
+    fa.B.chest.rotation.y += .06 * Math.sin(t * .55); fa.B.chest.rotation.x += .025 * Math.sin(t * .4 + 1); fa.B.neck.rotation.y += .22 * (ph - .5) * (talk ? 0 : 1); fa.B.head.rotation.z += .03 * Math.sin(t * .5);
     const near = ['L', 'R'].sort((a, b) => at(zo, 'upperArm' + a).distanceTo(at(fa, 'chest')) - at(zo, 'upperArm' + b).distanceTo(at(fa, 'chest')))[0];
     const gu = (IN(6, t) || IN(7, t) || IN(9, t)) ? sm(B(6)[0], B(6)[0] + .5, t) : 0.25;
     gest(zo, t, 'wide', gu, near);

@@ -154,7 +154,7 @@ const pa = staged('patio_matin', {
     if (reply > 0) posed.add('zoL');
     if (point > 0) posed.add('zoR');
     if (eager > 0) posed.add('faL');
-    if (fa.group.visible) { posed.add('faR'); posed.add('faL'); }
+    if (fa.group.visible) posed.add('faR');
     if (call) { posed.add('paR'); posed.add('paL'); }
     if (t >= B(7)[0]) posed.add('zoR');
     const restArm = (a, side, tag) => {
@@ -166,6 +166,7 @@ const pa = staged('patio_matin', {
     restArm(mo, 'L', 'moL'); restArm(mo, 'R', 'moR');
     restArm(zo, 'L', 'zoL'); restArm(zo, 'R', 'zoR');
     
+    if (fa.group.visible && eager <= 0) restArm(fa, 'L', 'faL');
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
@@ -180,8 +181,6 @@ const pa = staged('patio_matin', {
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
     if (fa.group.visible) {
       holdBroomFwd(fa, broom, S3.scene, 'R');
-      // left hand on the door jamb (right of her), leaning out of the doorway
-      const shL = at(fa, 'upperArmL'), jamb = shL.clone().add(dirW(fa, -.34, -.04, -.02)); PO.reach(fa, 'L', jamb, { grip: .02, pole: [.4, .05, -.3] }); PO.fingers(fa, 'L', .3);
       broom.updateMatrixWorld(true);
       const bb = new THREE.Box3().setFromObject(broom), fy = fa.group.position.y, dlt = bb.min.y - fy;
       if (globalThis.DBG8) console.error('DBGBROOM', dlt.toFixed(3));

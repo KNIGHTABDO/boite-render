@@ -64,7 +64,7 @@ const esc = staged('escalier', {
     yawToward(zo, S3.cam, .3);
     open34(zo, S3.cam, .55);
     castScale(mo);
-    sitStep(mo, SEAT.o.seat - .045 - .2, SEAT.o.floor - .2, .5);   // R26A: pelvis on tread 3, soles on tread 2 (was one tread high)
+    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor, .5);
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;

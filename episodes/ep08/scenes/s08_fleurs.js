@@ -26,7 +26,7 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7 }); settleRobe(zo, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.22, s1: 0.62 }, flank: 0.6 }); };
+    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.08, s1: 0.45 }, flank: 0.6 }); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
@@ -46,15 +46,15 @@ const ch = staged('chambre_jour', {
     sway(mo, t, 2.4, 0.028 * (1 - sm(B(5)[0] - 0.1, B(5)[0] + 0.3, t)));
     // Listening lean grows through the search, the question leans further, the laugh rocks the torso back ~22°.
     // Father's laugh: the lean back is mostly head/neck/chest so the robe front stays settled on the floor (a big spine swing retracted the hem off the floor).
-    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.3 * lean - 0.04 * laugh - 0.015 * residue + 0.025 * Math.sin(t * 11.5) * laugh;
-    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.16 * lean - 0.035 * laugh;
+    fa.B.spine.rotation.x += 0.1 * listen * (1 - lean) + 0.4 * lean - 0.04 * laugh - 0.015 * residue + 0.025 * Math.sin(t * 11.5) * laugh;
+    fa.B.chest.rotation.x += 0.06 * listen * (1 - lean) + 0.22 * lean - 0.035 * laugh;
     zo.B.spine.rotation.x += 0.07 * listen * (1 - laugh) - 0.09 * laugh - 0.04 * residue + 0.03 * Math.sin(t * 10.5 + 1) * laugh;
     zo.B.chest.rotation.x += 0.045 * Math.sin(t * 1.1 + 0.7) * listen - 0.07 * laugh;
     // Idles: breath, small head turns, the mother glancing at the boy and away; the boy shifts weight and leans back when the father leans in.
     const breath = Math.sin(t * 2.1);
     fa.B.chest.rotation.x += 0.012 * breath; zo.B.chest.rotation.x += 0.014 * Math.sin(t * 2.3 + 1);
-    fa.B.head.rotation.y += 0.07 * Math.sin(t * 0.63 + 0.4) * (1 - laugh);
-    zo.B.head.rotation.y += 0.09 * Math.sin(t * 0.47 + 2.0) * (1 - laugh) * (1 - sceptical);
+    fa.B.head.rotation.y += 0.09 * Math.sin(t * 0.63 + 0.4) * (1 - laugh);
+    zo.B.head.rotation.y += 0.09 * Math.sin(t * 0.47 + 2.0) * (1 - laugh) * (1 - 0.4 * sceptical);
     const reactB = sm(B(1)[0] + 0.2, B(1)[0] + 0.55, t) * (1 - sm(B(1)[1] - 0.2, B(1)[1] + 0.3, t));
     mo.B.spine.rotation.x -= 0.07 * reactB;
     mo.B.chest.rotation.x += 0.012 * breath * (1 - reactB);
@@ -76,10 +76,11 @@ const ch = staged('chambre_jour', {
       // Searching: the right hand drifts up, fingers working, as if pulling the word out; the left stays on the thigh.
       const gest = s === 'R' ? Math.max(search * (0.55 + 0.45 * Math.sin(t * 1.9)) * 0.8, sceptical * 0.6 * (0.5 + 0.5 * Math.sin(t * 0.8))) : 0;
       // Chest hands sit lower and wider so the forearms do not cross into the torso or past the shoulder line.
-      const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fidget, gest))
-        .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fidget).add(V(0, -0.03 * km * fidget, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fidget);
-      palm(mo, s, p, { grip: 0.025, pole: [sg * (0.95 - 0.3 * Math.max(fidget, gest)), -0.15 + 0.35 * Math.max(fidget, gest), -0.25 + 0.55 * Math.max(fidget, gest)], gap: 0.16 });
-      if (Math.max(fidget, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
+      const fid = fidget * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 0.9 + (s === 'L' ? 0 : 3.1))));
+      const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fid, gest))
+        .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fid).add(V(0, -0.03 * km * fid, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fid);
+      palm(mo, s, p, { grip: 0.025, pole: [sg * (0.95 - 0.3 * Math.max(fid, gest)), -0.15 + 0.35 * Math.max(fid, gest), -0.25 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
+      if (Math.max(fid, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
 
     const eye = at(mo, 'head').clone().add(V(0, 0.03 * km, 0));
@@ -120,7 +121,7 @@ const ch = staged('chambre_jour', {
     const said = mouth(S, 'mohammed', t);
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
-      open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.3 + 0.4 * Math.abs(Math.sin(t * 12.2))), whisper * said),
+      open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.42 + 0.4 * Math.abs(Math.sin(t * 12.2))), whisper * said),
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
@@ -177,7 +178,7 @@ function lapHand(a, s, t, seed, k) {
 function thighHand(a, s, t, seed, k) {
   const sign = s === 'L' ? 1 : -1;
   const w = Math.sin(t * 1.35 + seed);
-  const lift = a === ZO ? 0.07 : 0.11;   // mother: hands up on the skirt, in front of the orange flap
+  const lift = a === ZO ? 0.095 : 0.11;   // mother: hands up on the skirt, in front of the orange flap
   return at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.34)
     .add(V(0, (0.13 + lift + 0.01 * w) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), lift * 0.7 * k)
     .addScaledVector(dirW(a, -sign, 0, 0), 0.03 * k);
@@ -199,7 +200,7 @@ const high = at(a, 'chest').clone()
   const swap = PH();
   const belly = lap.clone().add(V(0, (0.06 + 0.03 * Math.max(0, -bob)) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.05 * k).addScaledVector(dirW(a, sign, 0, 0), 0.07 * k);
   const slapL = lap.clone().add(V(0, (0.05 + 0.07 * Math.max(0, -bob)) * k, 0));
-  const lo = s === 'R' ? lap.lerp(slap, Math.min(1, up)) : lap.lerp(swap > 0.5 ? slapL : belly, Math.min(1, up));
+  const lo = s === 'R' ? lap.lerp(slap, Math.min(1, up)) : lap.lerp(swap > 0.5 ? slapL : belly, Math.min(1, up) * 0.5);
   if (s === 'R' && swap > 0.5) return lap.lerp(belly.clone().addScaledVector(dirW(a, -sign, 0, 0), -0.14 * k), Math.min(1, up));
   return lo;
 }
