@@ -165,7 +165,7 @@ const mu = checkedStage('souk_mur', {
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
-    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .04},haikFwd:{zoubida:.18},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .04},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
@@ -175,9 +175,11 @@ const mu = checkedStage('souk_mur', {
       mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
       mo.B.spine.rotation.z += .30 * (.4 * sag + lean); mo.B.head.rotation.z += .30 * lean;
       sync(mo);
+      if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
+      sync(mo);
       const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
-      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .24 * km, s === 'R' ? .15 : -.15, .06 * km), { grip: .01 });
-      PO.reach(mo, 'R', front(mo, 'root', .24 * km, .15, .06).lerp(cloth, lean), { grip: .01 });
+      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .17 * km, s === 'R' ? .13 : -.13, .06 * km), { grip: .01 });
+      PO.reach(mo, 'R', front(mo, 'root', .17 * km, .13, .06).lerp(cloth, lean), { grip: .01 });
     }
 
     // b086: five staggered foreground crossings. At most two cross the family together;
@@ -240,7 +242,7 @@ const mu = checkedStage('souk_mur', {
     }
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
-      zo.group.position.y = by.zo - .01; mo.group.position.y = by.mo; }
+      zo.group.position.y = by.zo - .01; mo.group.position.y = by.mo + .01; }
     sync(zo, mo); liftCloth(zo); liftCloth(mo);   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },
@@ -280,10 +282,10 @@ const ca = checkedStage('souk_mur', {
     mo.group.position.addScaledVector(dirW(fa, 0, 0, 1), .0 * lift);
     sync(mo);
     // Low supporting forearm under the pelvis; the other arm wraps the outside of his back.
-    const seat = front(mo, 'root', .10 * km, .02 * km, 0).add(V(0, 0, 0));
-    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.10*km,.02*km,0).add(V(0,.0,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>front(mo,'chest',-.10*km,.05*km,-.06*km),purpose:'arm around boy back'}];
+    const seat = front(mo, 'root', .10 * km, .02 * km, 0).add(V(0, .03 * km, 0));
+    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.10*km,.02*km,0).add(V(0,.03*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>front(mo,'chest',-.15*km,.05*km,-.06*km),purpose:'arm around boy back'}];
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.48, -.12, .34] });
-    PO.reach(fa, 'L', front(mo, 'chest', -.10 * km, .05 * km, -.06 * km), { grip: .015, pole: [.9, .1, -.3] });
+    PO.reach(fa, 'L', front(mo, 'chest', -.15 * km, .05 * km, -.06 * km), { grip: .015, pole: [.5, .6, .3] });
     PO.reach(mo, 'R', front(fa, 'neck', .13, .14 * kf, -.08), { grip: .01 });
     PO.reach(mo, 'L', front(fa, 'upperArmR', .24 * kf, .16 * kf, .05), { grip: .01 });
     sync(fa, mo, zo);
