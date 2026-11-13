@@ -322,7 +322,7 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = 1.42 * r, hs = .6 * hinge;
+      const hinge = 1.42 * r, hs = hinge;
       a.B.spine.rotation.set(hs, 0, 0); a.B.chest.rotation.set(hinge - hs, 0, 0);   // R31I: bend shared by spine and chest, so the skin stretches over two joints
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hs);
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
