@@ -192,11 +192,11 @@ const mu = checkedStage('souk_mur', {
     for (const [n, p0, p1, delay] of rush) {
       if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
       const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 2.9;   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
-      let t0 = w0, t1 = t0 + 1.9;
-      if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.2; }   // R31C: faster second surge, clear of the father by b086 30.96
+      let t0 = w0, t1 = t0 + 1.9, q0 = p0, q1 = p1;
+      if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.2; q0 = [p0[0], 715]; q1 = [p1[0], 715]; }   // R31C: second surge passes BEHIND the family (lane y715), never over the father   // R31C: faster second surge, clear of the father by b086 30.96
       a.group.visible = t >= t0 && t <= t1;
       if (a.group.visible) {
-        rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 3.8, ease: false });
+        rest(a.B); walk(a, S3.floorAt(...q0), S3.floorAt(...q1), t0, t1, t, { cps: 3.8, ease: false });
         a.B.spine.rotation.x += .22;
         if(n==='guerrab')for(const side of ['L','R'])a.B['foot'+side].rotation.x-=.45;
         sync(a);
