@@ -55,7 +55,7 @@ const cl = staged('mausolee', {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A;
     life(fq, t, 2); life(mo, t, 5);
-    mo.group.visible = t >= B(1)[0] + .02;   // R25D b016: solo CU of the fqih
+    mo.group.visible = t >= B(1)[0] - .05;   // R25D b016: solo CU of the fqih
     if (st.lh) st.lh.visible = mo.group.visible;
     // b016 the kind master, including the pre-roll: head tilted, a slow nod, shoulders uneven, a forward lean
     const kind = t < B(1)[0] ? 1 : 0;
@@ -138,7 +138,7 @@ const ch = staged('chambre_jour', {
       fa.B.spine.updateWorldMatrix(false, true);
       reachSafe(fa, 'R', front(fa, 'chest', (.36 + .09 * q) * kf, (.12 + .2 * q) * kf, (-.08 + .3 * q) * kf), { grip: 0, pole: [-.5, -.02, .3] });
       PO.palmTo(fa, 'R', quote, dirW(fa, .5 * q, .2 + 1.1 * q, .6));
-      PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });   // R26A: open but relaxed palm, not a flat paddle
+      PO.fingers(fa, 'R', -.35, { thumb: -.25, spread: .6 });   // R26A: open but relaxed palm, not a flat paddle
       reachSafe(fa, 'L', front(fa, 'chest', .26 * kf, -.24 * kf, -.24 * kf), { grip: .04, pole: [.4, -.4, .2] });   // G1: off the beard, down by the thigh
       PO.fingers(fa, 'L', .04, { spread: .3 });
     } else if (tell > .05) {
@@ -183,9 +183,9 @@ const scene = beatScene(ID, {
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 110 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.95, dx: -40, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.85, dx: -40, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.7, dx: 60, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.9, dx: -20, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
     b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },
