@@ -74,22 +74,22 @@ const mu = soukCast(checkedStage('souk_mur', {
     for (const a of Object.values(st.A)) { castScale(a); if (a.actMark?.costume === 'haik' || a.haikClosed) sealHaik(a); }
     apart(mo, zo, .42); apart(mo, ft, .42);
     // b090: the father is bigger at depth than the plain perspective read (stall counters beside him)
-    fa.group.scale.multiplyScalar(1.1); fa.group.updateMatrixWorld(true);
+    fa.group.scale.multiplyScalar(1.04); fa.group.updateMatrixWorld(true);
     // Closed haik, elbows outside the ribs. The hop and the tug replace this below.
     // runners deep in the passage during the trampling (b093–b094)
     const r0 = B(3)[0] - .3;
     for (const [n, p0, p1, dt] of [
-      ['man1', [1150, 700], [900, 760], 0], ['kid2', [1220, 640], [1000, 720], .4],
-      ['woman1', [1300, 690], [900, 690], 3.3], ['kid3', [1350, 700], [900, 710], 4.3], ['woman2', [650, 700], [1300, 700], 3.6],
+      ['woman1', [1300, 690], [900, 690], 3.5], ['kid3', [1350, 700], [900, 710], 4.4], ['woman2', [420, 700], [1300, 700], 3.9],
     ]) {
       const a = st.A[n], t0 = r0 + dt, t1 = t0 + 2.9;
-      a.group.visible = t > t0 && t < t1 && t >= B(2)[0];
+      a.group.visible = t > t0 && t < t1;
       if (a.group.visible) { rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 3.2, ease: false }); stride(a, t, t0, 3.2, 1, true); }
     }
     // b090: a crowd up the passage that he walks into (heads-down shoppers crossing, slowly)
-    for (const [n, p0, p1] of [['man1', [930, 650], [690, 640]], ['woman2', [640, 630], [900, 665]], ['kid1', [880, 705], [690, 695]], ['woman1', [740, 600], [840, 610]], ['kid3', [980, 625], [800, 620]]]) {
+    for (const [n, p0, p1] of [['man1', [960, 700], [650, 690]], ['woman2', [600, 690], [950, 720]], ['kid1', [900, 760], [660, 750]], ['woman1', [720, 640], [860, 650]], ['kid3', [1000, 680], [780, 670]], ['kid2', [800, 650], [700, 640]]]) {
       const a = st.A[n], u0 = 0, u1 = B(1)[0] + .2;
-      if (t < u1) { a.group.visible = true; rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), u0, u1, t, { cps: 1.4, ease: false }); stride(a, t, u0, 1.4, .8, false); }
+      if (t >= u1) { if (['man1', 'kid1', 'kid2'].includes(n)) a.group.visible = false; }
+      else { a.group.visible = true; rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), u0, u1, t, { cps: 1.4, ease: false }); stride(a, t, u0, 1.4, .8, false); }
     }
     // b090 he rises from setting the boy down (bent at first), then strides away and is swallowed by the passage
     const up = sm(0, B(0)[0] + .2, t);
@@ -137,10 +137,10 @@ const mu = soukCast(checkedStage('souk_mur', {
       ft.group.updateMatrixWorld(true); ft.B.spine.updateWorldMatrix(false, true);
       // fists ON the cloth surface at the breastbone, where the chest points (not inside the cylinder)
       const cq = ft.B.chest.getWorldQuaternion(new THREE.Quaternion()), gq = ft.group.getWorldQuaternion(new THREE.Quaternion()).invert();
-      const dl = V(0, 0, 1).applyQuaternion(cq).applyQuaternion(gq); dl.y = 0; dl.normalize();
-      const sd = V(1, 0, 0).applyQuaternion(cq).applyQuaternion(gq); sd.y = 0; sd.normalize();
+      const dl = S3.cam.position.clone().sub(ft.group.position); dl.y = 0; dl.normalize().applyQuaternion(gq); dl.y = 0; dl.normalize();
+      const sd = V(dl.z, 0, -dl.x);
       const sc = ft.group.scale.y, ch = ft.group.worldToLocal(at(ft, 'chest')), rt = ft.group.worldToLocal(at(ft, 'root'));
-      const nk = ft.group.worldToLocal(at(ft, 'neck')), yy = ch.y - .05, uu = Math.min(.85, Math.max(.1, (yy - .012) / (nk.y + .006))), R = .235 - .035 * uu;
+      const nk = ft.group.worldToLocal(at(ft, 'neck')), yy = ch.y - .2 / ft.group.scale.y, uu = Math.min(.85, Math.max(.1, (yy - .012) / (nk.y + .006))), R = .235 - .035 * uu;
       const cx = rt.x + (ch.x - rt.x) * .75, cz = rt.z + (ch.z - rt.z) * .75;
       const rr = 1 / Math.sqrt((dl.x / R) ** 2 + (dl.z / (.86 * R)) ** 2);
       for (const s of ['L', 'R']) {
@@ -153,6 +153,7 @@ const mu = soukCast(checkedStage('souk_mur', {
     if (tug <= 0) haikTuck(ft);
     if (t < B(1)[0] && fa.group.visible) { ft.group.rotation.y = yawTo(ft.group.position, fa.group.position); ft.group.updateMatrixWorld(true); }
     // The close-up is Fatma alone; a neighbour's head must not sit cut on the frame edge.
+    if (t >= B(3)[0] && t < B(4)[0] - .1) ft.group.visible = false; else ft.group.visible = true;
     if (t >= B(4)[0] && t < B(4)[1]) { mo.group.visible = false; zo.group.visible = false; }
     for (const a of [fa, zo, ft]) a.B.chest.updateWorldMatrix(false, true);
   },
@@ -205,7 +206,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     for (const [a, o] of [[fa, ma], [ma, fa]]) {
       a.group.rotation.y = UP ? Math.atan2(upDir.x, upDir.z) : yawTo(a.group.position, o.group.position);
       const heave = Math.sin(t * 3.6 + (a === fa ? 0 : 1.4));
-      a.B.spine.rotation.x += .4 + .1 * heave + .12 * knock; a.B.chest.rotation.y += (a === fa ? .18 : -.18) * Math.sin(t * 2.6);
+      a.B.spine.rotation.x += .3 + .08 * heave + .12 * knock; a.B.chest.rotation.y += (a === fa ? .18 : -.18) * Math.sin(t * 2.6);
       a.B.chest.rotation.x -= .055 * heave; a.B.chest.position.z += .012 * heave;
       a.B.neck.rotation.x -= .04; a.group.updateMatrixWorld(true);
       if (!UP) faceCam(a, S3.cam, a === fa && rec > .25 ? 1.68 : 1.55);
@@ -219,14 +220,14 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
       if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
-      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .12 * k(o), (s === 'L' ? .08 : -.08) * k(o), -.15 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .55 : -.55, -.3, .25] });
+      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .12 * k(o), (s === 'L' ? .08 : -.08) * k(o), -.09 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .0, .3] });
       PO.fingers(a, s, .95, { thumb: .85 });
     }
     st.actcheck.exposed = { ...(st.actcheck.exposed || {}), zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'], fatma: ['handL', 'handR', 'foreArmL', 'foreArmR'] };
     if (zo.group.visible) haikTuck(zo);
     if (ft.group.visible) haikTuck(ft);
     apart(zo, ft, 1.2);
-    for (const [a, c, sc] of [[zo, 0xd9a21b, 1], [ft, 0x9b4a2a, .94]]) {
+    for (const [a, c, sc] of [[zo, 0xd9a21b, 1], [ft, 0x9b4a2a, .98]]) {
       if (!a.shoeM || a.shoeM.parent !== a.group) { for (const sx of [-.075, .075]) { const m = new THREE.Mesh(new THREE.SphereGeometry(.05, 10, 8), toon(c)); m.scale.set(.8, .4, 1.4); m.position.set(sx, .02, .17); a.group.add(m); a.shoeM = m; } }
       a.group.scale.multiplyScalar(sc); a.group.updateMatrixWorld(true);
     }
@@ -277,7 +278,7 @@ const scene = beatScene(ID, {
   shots: { mu, fi },
   plan: {
     b090: { shot: 'mu', size: 'W', on: 'mohammed' },   // the boy in frame, the father striding off up the passage
-    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.5, dx: 0, dy: 190 },
+    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.3, dx: -40, dy: 260 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 3.2, dx: 0, dy: 20 },
     b095: { shot: 'fi', size: 'M', on: 'father', z: 1.4, pt: [930, 710] },
     b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 3.4, dx: -70, dy: 0, pt: [830, 760] },

@@ -205,7 +205,7 @@ const mu = checkedStage('souk_mur', {
       ['woman1', [1250, 985], [120, 950], .35],
     ];
     for (const [n, p0, p1, delay] of rush) {
-      if (n === 'guerrab' && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
+      if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
       const a = st.A[n], w0 = B(3)[0] + delay, w1 = w0 + 3.5 + (n === 'man1' ? .3 : 0);
       let t0 = w0, t1 = t0 + 1.9;
       if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.9; }
@@ -280,7 +280,7 @@ const ca = checkedStage('souk_mur', {
     sync(fa, mo);
     // Head outside the neck, cheek against the outer shoulder, torso in front of the chest.
     const cheek = at(mo, 'head', [.10, .02, .06]);
-    const shoulder = front(fa, 'upperArmR', .03 * kf, .15 * kf, -.04 * kf);
+    const shoulder = front(fa, 'upperArmR', .08 * kf, .25 * kf, -.08 * kf);
     const delta = shoulder.sub(cheek);
     mo.group.position.x += delta.x; mo.group.position.z += delta.z;
     mo.group.position.y += delta.y * lift;
