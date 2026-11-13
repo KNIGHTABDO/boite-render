@@ -104,7 +104,7 @@ const pa = staged('patio_matin', {
       const base = front(zo, 'root', .26 * kz, .1 * kz, .05 * kz).lerp(front(zo, 'neck', .22 * kz, .07 * kz, -.2 * kz), .3 * see + .1 * laugh);
       const tgt = base.lerp(st.offer.clone().add(V(0, .09 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .5 * reachU);
       tgt.add(V(0, .012 * kz * dr(2), 0));
-      PO.reach(zo, 'R', tgt, { grip: .1, pole: [.4, -1, .3] });
+      PO.reach(zo, 'R', tgt, { grip: .1, pole: [-.5, -1, .3] });
       PO.fingers(zo, 'L', .3, { thumb: .2, spread: .1 }); PO.fingers(zo, 'R', .25 + .1 * reachU, { thumb: .15, spread: .12 });
       const fz = st.faces.find(x => x[0] === zo); if (fz) fz[3] = { smile: .55 + .3 * reachU };   // warm expression
     }

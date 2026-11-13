@@ -60,7 +60,7 @@ const ch = staged('chambre_jour', {
     const turn = .18 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .3 * sm(B(8)[0] - .3, B(8)[0] + .9, t);
     zo.group.rotation.y = yaw0[0] + turn; ai.group.rotation.y = yaw0[1] - turn;
     const dir = base[1].clone().sub(base[0]).setY(0).normalize();
-    const close = .1 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .15 * sm(B(8)[0] - .3, B(8)[0] + 1, t);
+    const close = .1 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .06 * sm(B(8)[0] - .3, B(8)[0] + 1, t);
     const closeT = close * (1 - sm(B(8)[1] + .1, B(8)[1] + .4, t));
     zo.group.position.copy(base[0]).addScaledVector(dir, closeT); ai.group.position.copy(base[1]).addScaledVector(dir, -closeT);
     zo.group.updateMatrixWorld(true); ai.group.updateMatrixWorld(true);
@@ -135,9 +135,9 @@ const ch = staged('chambre_jour', {
         const dirTo = at(other, 'chest').sub(at(a, 'chest')).setY(0).normalize();
         // r30: hands on her near shoulder and upper arm from the front/side (never through either torso)
         const fo = dirW(other, 0, 0, 1), sh = at(other, 'upperArm' + oside);
-        reach(a, side, sh.clone().addScaledVector(fo, .05 * k2).addScaledVector(dirTo, -.03 * k2).add(V(0, (lift + .15) * k2, 0)), { grip: .02, pole: [(side === 'L' ? 1 : -1) * .3, -.3, .3] });
+        reach(a, side, sh.clone().addScaledVector(fo, .1 * k2).addScaledVector(dirTo, -.03 * k2).add(V(0, (lift + .15) * k2, 0)), { grip: .02, pole: [(side === 'L' ? 1 : -1) * .7, -.3, .0] });
         PO.fingers(a, side, .3);
-        reach(a, osd, sh.clone().addScaledVector(fo, .07 * k2).addScaledVector(dirTo, -.05 * k2).add(V(0, (lift + .03) * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .3, -.5, .3] });
+        reach(a, osd, sh.clone().addScaledVector(fo, .12 * k2).addScaledVector(dirTo, -.05 * k2).add(V(0, (lift + .03) * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .7, -.5, .0] });
         PO.fingers(a, osd, .3);
       };
       hug(zo, ai, -.13); hug(ai, zo, -.13);

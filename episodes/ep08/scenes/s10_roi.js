@@ -203,8 +203,8 @@ const pa = staged('patio_matin', {
       for (const a of [zo, ra, fa]) {
         const w = sm(B(11)[0] + .1 * k, B(11)[0] + .1 * k + .5, t); k++;
         a.B.spine.rotation.x += .05 * w; a.B.neck.rotation.x += .14 * w;
-        handTo(a, 'R', { fwd: .26, out: .12, drop: -.02, curl: .1, spread: .3 });
-        handTo(a, 'L', { fwd: .26, out: .12, drop: -.02, curl: .1, spread: .3 });
+        handTo(a, 'R', { fwd: .26, out: a === ra ? .0 : .12, drop: -.02, curl: .1, spread: .3 });   // R31B: Rahma's right forearm crossed Fatma's left arm
+        handTo(a, 'L', { fwd: .26, out: a === fa ? .0 : .12, drop: -.02, curl: .1, spread: .3 });
         PO.palmTo(a, 'R', w, V(0, 1, .15)); PO.palmTo(a, 'L', w, V(0, 1, .15));
         a.B.head.rotation.z += .05 * w * (k % 2 ? 1 : -1);
         laugh(a, .5 * w, t, 8 + k); a.B.chest.rotation.y += .12 * w * (k === 2 ? 1 : -1); a.B.spine.rotation.z += .05 * w * (k === 1 ? 1 : -1);
