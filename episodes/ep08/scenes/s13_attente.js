@@ -16,6 +16,7 @@ import { rest } from '../../../engine/rig3d.js';
 import { role } from './_3d.js';
 import { castScale } from '../lib/fix8c.js';
 import { liftCloth } from '../lib/fix8_R31J.js';
+import { trimShoes } from '../lib/fix8_R31AA.js';
 import { bracelets } from './s17_retour.js';
 import { beatScene, lines, sm, front, at, V, yawTo, dirW } from '../lib/beatscene.js';
 
@@ -164,6 +165,7 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
+    haikCloth(zo); trimShoes(zo);   // R31AA: build the mantle now, then drop the shoe triangles that poke out of the hem
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
     st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
@@ -173,7 +175,7 @@ const mu = checkedStage('souk_mur', {
       const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t), sag = sm(B(0)[0] - 1.6, f(0, .18), t);
       mo.B.spine.rotation.x += .18 * sag; mo.B.chest.rotation.x += .12 * sag;   // R31S: sag harder
       mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
-      mo.B.spine.rotation.z += .36 * (.4 * sag + lean); mo.B.head.rotation.z += .36 * lean;
+      mo.B.spine.rotation.z += .36 * (1.05 * sag + 1.0 * lean);   // R31AA: trunk visibly leans onto her side (>=20 deg) from the first seconds mo.B.head.rotation.z += .36 * (.5 * sag + lean);
       sync(mo);
       if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
       sync(mo);
@@ -206,12 +208,14 @@ const mu = checkedStage('souk_mur', {
       }
     }
     const shove = win(3, -.02, .9, t);
+    if (t >= B(3)[0] - .3 && t < B(5)[0]) { fa.group.position.copy(S3.floorAt(650, 850)); sync(fa); }   // R31AA: father close in front of them for the shove
     const jolt = shove * (.75 + .25 * Math.max(0, Math.sin((t - B(3)[0]) * 9)));
     for (const a of [zo, mo, fa]) {
       const back = a.group.position.clone().sub(S3.cam.position).setY(0).normalize();
       a.group.position.addScaledVector(back, .2 * jolt);
       a.B.spine.rotation.x -= .30 * jolt; a.B.neck.rotation.x += .12 * jolt;
       if (a === fa) { a.B.thighR.rotation.x += .18 * jolt; a.B.shinR.rotation.x += .25 * jolt; }
+      if (a === fa) { const c = shove; for (const s of ['L', 'R']) { a.B['thigh' + s].rotation.x -= .85 * c; a.B['shin' + s].rotation.x += 1.25 * c; a.B['foot' + s].rotation.x -= .4 * c; } a.B.spine.rotation.x += .25 * c; }   // R31AA: father crouches in front of them, shielding
     }
     sync(zo, mo, fa);
     if (shove > 0) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .08 * shove);
@@ -327,13 +331,13 @@ const la = checkedStage('souk_bijoux', {
     const ta = B(1)[0], tb = f(1, .23), tc = B(1)[0] + 3.1, td = B(1)[1] + .15;
     ma.group.visible = t >= ta - .4 && t <= td;
     rest(ma.B);
-    if (t < tb) walk(ma, F(1080, 690), F(1180, 720), ta - .4, tb, t, { cps: 2.5 });
+    if (t < tb) walk(ma, F(1300, 700), F(1180, 720), ta - .4, tb, t, { cps: 3.2 });   // R31AA: longer stride back down the lane
     else if (t < tc) {
       ma.group.position.copy(F(1180, 720));
       ma.group.rotation.y = addressYaw(ma.group.position);
     } else {
-      walk(ma, F(1180, 720), F(960, 860), tc, td, t, { cps: 2.9 });
-      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(960, 860));
+      walk(ma, F(1180, 720), F(1090, 625), tc, td, t, { cps: 2.9 });   // R31AA: he turns and leaves up the lane
+      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(1090, 625));
       ma.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn;
     }
     const shout = win(1, 0, .66, t);
@@ -345,13 +349,14 @@ const la = checkedStage('souk_bijoux', {
       PO.reach(ma, 'R', front(ma, 'upperArmR', .12 * km, .42 * km, .26 * km * up - .30 * km * (1 - up)), { grip: .01, pole: [.5, 0, 0] });
       PO.fingers(ma, 'R', .65);
     }
+    if (ma.group.visible && !(t >= B(2)[0] - .2)) PO.reach(ma, 'L', front(ma, 'upperArmL', .05 * km, -.10 * km, -.42 * km), { grip: .01 });   // R31AA: relaxed left arm
     const nod = win(1, .22, .46, t), phase = sm(f(1, .22), f(1, .44), t);
     fa.B.neck.rotation.x += .26 * nod * Math.sin(Math.PI * phase);
     sync(fa);
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={haikFwd:{zoubida:.18},haikLat:{zoubida:.17},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.18+.05*Math.sin(t*1.7)},haikLat:{zoubida:.17+.04*Math.sin(t*1.1+1)},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
@@ -373,11 +378,11 @@ const la = checkedStage('souk_bijoux', {
       PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
-        ['woman1', [1250, 690], [700, 930], 0],
-        ['kid2', [1180, 720], [820, 920], .35],
-        ['kid3', [1330, 690], [900, 1000], .6],
+        ['woman1', [1400, 690], [1230, 990], 0],   // R31AA: everyone hurries down the right-hand side, clear of the clasp
+        ['kid2', [1370, 700], [1170, 1000], .5],
+        ['kid3', [1420, 700], [1290, 1010], 1.0],
         ['fqih', [700, 930], [560, 900], .05],
-        ['woman2', [1080, 640], [1180, 720], .18],
+        ['woman2', [1440, 700], [1300, 1000], 1.6],
       ]) {
         const a = st.A[n]; rest(a.B);
         walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 5.4 : 4.6, ease: false });
@@ -405,7 +410,7 @@ const la = checkedStage('souk_bijoux', {
     br.visible = ma.group.visible;
     if (br.visible) {
       const side=boil&&st.dragSide==='R'?'L':'R';
-      if (boil) PO.reach(ma, side, front(ma, 'chest', .25 * km, .17 * km, .15 * km), { grip: .01 });
+      if (boil) PO.reach(ma, side, front(ma, 'chest', .12 * km, (side === 'R' ? 1 : -1) * .26 * km, -.34 * km), { grip: .01, pole: [(side === 'R' ? -1 : 1) * .6, -.1, .1] });   // R31AA: pair in the OTHER hand, low at his side, never up by his head
       const hand=ma.B['hand'+side];hand.updateWorldMatrix(true, false);
       br.position.copy(hand.localToWorld(V(0, .10, .025)));
       br.quaternion.copy(hand.getWorldQuaternion(br.quaternion));
@@ -419,7 +424,7 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.3, dx: -30, dy: 15 },
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 3.1, dx: -35, dy: 60 },   // R31AA: tighter low CU on the boy,
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
