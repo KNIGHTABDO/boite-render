@@ -181,7 +181,7 @@ const mu = checkedStage('souk_mur', {
       sync(mo);
       const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
       for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .09 * km, s === 'R' ? .17 : -.07, .12 * km), { grip: .01 });   // R31Q: L target closer to the shoulder (IK reach)
-      PO.reach(mo, 'R', front(mo, 'root', .09 * km, .17, .12 * km).lerp(cloth, lean), { grip: .01 });
+      PO.reach(mo, 'R', front(mo, 'root', .09 * km, .17, .12 * km).lerp(cloth, lean * .65), { grip: .01 });
     }
 
     // b086: five staggered foreground crossings. At most two cross the family together;
