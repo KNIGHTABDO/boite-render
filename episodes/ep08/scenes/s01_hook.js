@@ -10,7 +10,7 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .046 * 1.5, .0085 * 1.5); mk(0xc9d3de, .042 * 1.5, .0075 * 1.5); S3.scene.add(g); return g;
+  mk(0xe0a820, .046 * 1.6, .0085 * 1.6); mk(0xc9d3de, .042 * 1.6, .0075 * 1.6); S3.scene.add(g); return g;
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -43,7 +43,7 @@ const pa = staged('patio_matin', {
   view: (lt, u, t) => {
     if (t < INS[0] || t >= INS[1] || !pa.hp) return null;
     const e = sm(INS[0], INS[1], t);
-    return [pa.hp[0], pa.hp[1] + 10 + 4 * e, 6.6 + .5 * e];   // tight: the characters are small in the plate, so the palm needs a high zoom
+    return [pa.hp[0], pa.hp[1] + 4 * e, 8.4 + .6 * e];   // tight: the characters are small in the plate, so the palm needs a high zoom
   },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
@@ -54,7 +54,7 @@ const pa = staged('patio_matin', {
     PO.fingers(fa, 'R', 0, { thumb: 0, spread: .15 });   // Argon r6: bracelets clipped the curled thumb/fingers → flat open palm
     // r17: the father is alive: weight shift, a slight torso turn toward the lens, head nods, far arm gesturing/resting at his belt
     {
-      const w = Math.sin(t * .9), n = Math.sin(t * 1.5 + 1);
+      const w = Math.sin(t * .9), n = Math.sin(t * 1.6 + 1);
       fa.B.chest.rotation.y += .3 + .05 * w; fa.B.chest.rotation.z += .025 * w; fa.B.spine.rotation.z -= .02 * w;
       fa.B.head.rotation.x += .03 * n; fa.B.head.rotation.z += .03 * w; fa.B.chest.updateWorldMatrix(false, true);
       PO.reach(fa, 'L', front(fa, 'chest', .24 * k, -.25 * k, -.16 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.55, -1, .3] });
@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.03 * k, .016 * k, .34 + .04 * w, w);
-      place(br.children[1], .025 * k, .034 * k, .2 - .04 * w, -w);
+      place(br.children[0], -.03 * k, .016 * k, .5 + .04 * w, w);
+      place(br.children[1], .025 * k, .034 * k, .35 - .04 * w, -w);
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
@@ -141,7 +141,7 @@ const nu = staged('chambre_nuit', {
       S3.prop(st.cover, hp.x + fx * .27, .35 + .03 - .004, hp.z + fz * .27, ry); st.cover.visible = true; }
     const sob = .02 * Math.max(0, Math.sin(t * 9)) * (Math.sin(t * 1.3) > -.3 ? 1 : 0);
     zo.B.chest.rotation.x += sob; zo.B.chest.rotation.z += .012 * Math.sin(t * 1.3);
-    mo.B.chest.rotation.x += .012 * Math.sin(t * 1.5);
+    mo.B.chest.rotation.x += .012 * Math.sin(t * 1.6);
     palmsCover(zo);   // r16: both palms over the face, head bowed into them
     zo.B.spine.rotation.x += .05; zo.B.chest.rotation.z += .03; zo.group.updateMatrixWorld(true); palmsCover(zo);
   },
