@@ -14,7 +14,7 @@ const ID = 's19_matin', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
-const BED = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: .06, mattress: MATTRESS, avoid: CHEST }, seed: 3, height: 1.2 };   // right divan, head on the back cushions; cast scale like s16
+const BED = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: .26, turn: .12, hands: 'belly', headTurn: .06, mattress: MATTRESS, avoid: CHEST }, seed: 3, height: 1.1 };   // right divan, head on the back cushions; cast scale like s16
 const TOP = .26;
 // r25N: the boy is re-solved flat on the cloth every frame (s16 recipe) with a pillow and a blanket over legs and hips, so the head, chest and covered body read as a child in bed in every shot
 function bed(S3, st, t) {
@@ -88,7 +88,7 @@ const ch1 = staged('chambre_jour', {
       reach(rest.clone().lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .3); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
     } else {
       reach(rest.clone().add(V(0, .015 * Math.sin(t * .7), 0)), { grip: .02, pole }); PO.fingers(fa, side, .3, { spread: .1 });
-      if (IN(4, t)) { PO.reach(fa, other, front(fa, 'chest', .26 * kf, other === 'L' ? -.12 * kf : .12 * kf, .1 * kf + .04 * kf * Math.sin(t * 2)), { grip: 0, pole: other === 'L' ? [.4, .08, .2] : [-.4, .08, .2] }); PO.fingers(fa, other, 0, { spread: .4 }); }
+      if (IN(4, t)) { handTo(fa, other, { fwd: .2, out: .26, drop: .2 + .04 * Math.sin(t * 2), curl: .05, spread: .4 }); PO.palmTo(fa, other, .6, V(0, 1, .3)); }
       else lap();
       fa.B.chest.rotation.y += .05 * Math.sin(t * .6); fa.B.chest.rotation.x += .03 * Math.sin(t * .45 + 1);
     }

@@ -52,9 +52,6 @@ const ch = staged('chambre_jour', {
     const closeT = close * (1 - sm(B(8)[1] + .1, B(8)[1] + .4, t));
     zo.group.position.copy(base[0]).addScaledVector(dir, closeT); ai.group.position.copy(base[1]).addScaledVector(dir, -closeT);
     zo.group.updateMatrixWorld(true); ai.group.updateMatrixWorld(true);
-    // default arms (never hanging stiff): hands resting in the lap with a slow breath; the beats below override them
-    for (const [a, k, sd] of [[zo, kz, 0], [ai, ka, 2]]) for (const s of ['L', 'R']) lap(a, s, k * (1 + .06 * Math.sin(t * .8 + sd + (s === 'L' ? 0 : 1.5))));
-    zo.B.chest.rotation.z += .018 * Math.sin(t * .7); ai.B.chest.rotation.z -= .018 * Math.sin(t * .6 + 1);
     const cover = IN(2, t) || IN(4, t) || IN(7, t);
     st.G.apply = cover ? () => {} : st.gaze;
     const lap = (a, s, k) => PO.reach(a, s, PO.hipToWorld(a, (s === 'L' ? .14 : -.14) * k, .05 * k, .2 * k), { grip: .03, pole: s === 'L' ? [.3, .05, .1] : [-.3, .05, .1] });
@@ -63,6 +60,9 @@ const ch = staged('chambre_jour', {
       const d = target.clone().sub(sh); if (d.length() > len * .88) target = sh.clone().addScaledVector(d.normalize(), len * .88);
       return PO.reach(a, side, target, o);
     };
+    // default arms (never hanging stiff): hands resting in the lap with a slow breath; the beats below override them
+    for (const [a, k, sd] of [[zo, kz, 0], [ai, ka, 2]]) for (const s of ['L', 'R']) lap(a, s, k * (1 + .06 * Math.sin(t * .8 + sd + (s === 'L' ? 0 : 1.5))));
+    zo.B.chest.rotation.z += .018 * Math.sin(t * .7); ai.B.chest.rotation.z -= .018 * Math.sin(t * .6 + 1);
     if (IN(1, t)) {
       const n = Math.min(3, Math.floor(Math.max(0, t - B(1)[0]) / 1.1));
       const palm = front(zo, 'chest', .26 * kz, -.1 * kz, .04 * kz);

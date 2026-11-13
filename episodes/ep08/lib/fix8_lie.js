@@ -87,7 +87,7 @@ export function cradleFace(a, { mode = 'cradle', bow = .12, u = 0, out = .02 } =
     const e = eye[s], sg = s === 'L' ? 1 : -1, ex = Math.abs(e[0]) * sg, ey = e[1] - hy, ez = e[2];
     if (mode === 'eyes') return { spot: [ex * .9, ey - .005, ez + out], tip: [ex * .8, ey + .1, ez + out * .6], pole: [sg * .35, -.05, .3], fing: [.04, .05] };
     if (s === 'L') return { spot: [ex * 1.05, .072 + .004 * u, .07 + out * .5], tip: [ex * .6, .2, ez * .9 + .03], pole: [sg * .3, -.1, .3], fing: [.1, .04] };   // cheek cupped, fingers up the cheekbone toward the eye
-    return { spot: [ex * .8, .055 - .004 * u, .085 + out * .5], tip: [ex * .9, .17, ez * .8], pole: [sg * .7, -.05, .35], fing: [.18, .08] };   // chin/jaw cupped, lower than the other hand
+    return { spot: [ex * .9, .075 - .004 * u, .09 + out * .5], tip: [ex * .9, .17, ez * .8], pole: [sg * .45, -.1, .2], fing: [.18, .08] };   // chin/jaw cupped, lower than the other hand
   };
   for (const s of ['L', 'R']) {
     const sign = s === 'L' ? 1 : -1, sp = spec(s), skin = () => B.head.localToWorld(V(sp.spot[0], sp.spot[1], sp.spot[2]));

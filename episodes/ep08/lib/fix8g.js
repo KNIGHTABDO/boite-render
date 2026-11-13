@@ -127,6 +127,7 @@ export function settleRobe(a, floor = 0, opt = {}) {
   seatHem(a, B.SkirtBack2, 'SkirtBack2', floor);
   seatHem(a, B.SkirtFront2, 'SkirtFront2', floor);
   // opt-in (s08 mother): shrink the front panel so its fringed hem tucks against the knees instead of poking out onto the floor.
+  if (opt.front?.s1 && B.SkirtFront1) { B.SkirtFront1.scale.multiplyScalar(opt.front.s1); B.SkirtFront1.updateWorldMatrix(false, true); }
   if (opt.front && B.SkirtFront2) { B.SkirtFront2.scale.multiplyScalar(opt.front.scale); B.SkirtFront2.updateWorldMatrix(false, true); }
   seatHem(a, B.LeftRobe2, 'LeftRobe2', floor);
   seatHem(a, B.RightRobe2, 'RightRobe2', floor);
