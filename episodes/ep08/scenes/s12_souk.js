@@ -126,14 +126,14 @@ const la = checkedStage('souk_bijoux', {
     move(fa, LEAD.father, [800, 790], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1180, 720], B(7)[0] - .7, B(7)[0] + .8);
     move(zo, LEAD.zoubida, [915, 850], B(7)[0] - .7, B(7)[0] + .15);
-    move(ft, LEAD.fatma, [1060, 810], f(7, .36), f(7, .49));
+    move(ft, LEAD.fatma, [1110, 830], f(7, .36), f(7, .49));
     move(fa, [800, 790], LEAD.father, B(8)[0] + .2, B(8)[0] + 1.0);
     move(ma, [1180, 720], DELLAL, B(8)[0] - .6, B(8)[0] + .3);
-    if(t<B(8)[0]+.05)move(zo,[915,850],[1000,790],f(7,.94),B(8)[0]+.05);
-    else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(1000, 790); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
-    else move(zo,[1000,790],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
-    if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1060, 810); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
-    else move(ft, [1060, 810], LEAD.fatma, B(8)[0] + 1.9, B(8)[0] + 2.6);
+    if(t<B(8)[0]+.05)move(zo,[915,850],[930,800],f(7,.94),B(8)[0]+.05);
+    else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
+    else move(zo,[930,800],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
+    if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1110, 830); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
+    else move(ft, [1110, 830], LEAD.fatma, B(8)[0] + 1.9, B(8)[0] + 2.6);
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
     // Full body turn every frame: the original walk heading must never leave the boy looking into the left wall.
@@ -316,7 +316,7 @@ export default beatScene(ID, {
     b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -110 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
     b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [915, 850], z: 1.65, dx: 0, dy: 30,
-      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1060, 810], z: 1.85, dx: 0, dy: 40 }] },
+      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1110, 830], z: 1.85, dx: 0, dy: 40 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
     cover: [{ f: .3, size: 'W', on: 'father' }, { f: .52, size: 'M', on: 'marchand', z: 1.3, dy: -80 }], insAt: .6 },
   },
