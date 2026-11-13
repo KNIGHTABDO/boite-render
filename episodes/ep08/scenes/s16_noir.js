@@ -67,8 +67,30 @@ const cry = staged('chambre_jour', {
   },
 });
 
+// b107: the house lights up (all but their own dark window, upper floor centre), then a slow push up to it.
+// Window spots were read off the 960-wide stills (view at the beat start: centre 1045,502, zoom 1.08) -> plate px.
+const FP = (fx, fy) => [1045 + (fx - 480) * 1.852, 502 + (fy - 270) * 1.852];
+const LIT = [[308, 105, 42, 68, 'a'], [574, 105, 42, 68, 'a'], [326, 240, 40, 62, 'r'], [553, 243, 38, 56, 'r'],
+  [193, 105, 30, 54, 'a'], [105, 148, 28, 52, 'a'], [688, 102, 30, 54, 'a'], [782, 145, 28, 50, 'a'], [160, 330, 26, 44, 'r'], [722, 330, 26, 44, 'r']];
+function houseLights(lt, u, t) {
+  const t0 = B(4)[0], c = K.c;
+  c.save(); c.globalCompositeOperation = 'lighter';
+  LIT.forEach(([fx, fy, w, h, k], i) => {
+    const on = sm(t0 + .15 + i * .22, t0 + .75 + i * .22, t); if (on <= 0) return;
+    const [x, y] = FP(fx, fy), W = w * 1.852, H = h * 1.852, fl = 1 + .04 * Math.sin(t * 7 + i * 2);
+    const g = c.createRadialGradient(x, y, 2, x, y, Math.max(W, H) * 1.5);
+    g.addColorStop(0, `rgba(255,190,90,${.55 * on * fl})`); g.addColorStop(1, 'rgba(255,150,40,0)');
+    c.fillStyle = g; c.fillRect(x - W * 2, y - H * 2, W * 4, H * 4);
+    c.fillStyle = `rgba(255,205,115,${.85 * on * fl})`; c.beginPath();
+    if (k === 'a') { c.moveTo(x - W / 2, y + H / 2); c.lineTo(x - W / 2, y - H * .1); c.quadraticCurveTo(x - W / 2, y - H / 2, x, y - H / 2); c.quadraticCurveTo(x + W / 2, y - H / 2, x + W / 2, y - H * .1); c.lineTo(x + W / 2, y + H / 2); }
+    else c.rect(x - W / 2, y - H / 2, W, H);
+    c.closePath(); c.fill();
+  });
+  c.restore();
+}
 const win = shot({ plate: 'patio_nuit', async build() { return {}; },
-  view: (lt, u, t) => [1100, 380 - 200 * sm(B(4)[0], B(4)[0] + 1.4, t), 1.08 + .4 * sm(B(4)[0], B(4)[1], t)] });
+  under: houseLights,
+  view: (lt, u, t) => { const a = sm(B(4)[0] + .4, B(4)[1] - .3, t); return [1045 + (971 - 1045) * a, 520 + (272 - 520) * a, 1.08 + 1.0 * a]; } });
 
 export default beatScene(ID, {
   shots: { ch, cry, win },

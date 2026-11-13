@@ -159,10 +159,10 @@ const mu = soukCast(checkedStage('souk_mur', {
 }), ':s14:mu:fatma');
 
 // the fight: the pair grips collars and shoves along a path (the walk gives the legs; the bodies face each other)
-const PATH = [[1120, 640], [770, 760], [800, 610]];   // across lens-left → held close → still in front of the crowd
+const PATH = [[1120, 640], [770, 760], [800, 690]];   // across lens-left → held close → still in front of the crowd
 const FOLLOW = [
   ['man1', [600, 800]], ['woman1', [1000, 780]], ['woman2', [1120, 770]],
-  ['kid2', [700, 830]], ['kid3', [900, 810]],
+  ['kid2', [700, 830]], ['kid3', [900, 810]], ['kid1', [850, 860]],
 ];
 const dropAt = f(5, .9), turbanAt = B(6)[0] + 5.05, bloodAt = B(6)[0] + 7.5;
 const fi = soukCast(checkedStage('souk_bijoux', {
@@ -174,9 +174,9 @@ const fi = soukCast(checkedStage('souk_bijoux', {
   fatma: { at: [1220, 680], face: [770, 760], costume: 'haik', seed: 11, talk: 0, look: 'father' },
   // the procession (b097): they follow from the foreground, backs to us
   man1: { at: FOLLOW[0][1], seed: 21, talk: 0 }, woman1: { at: FOLLOW[1][1], seed: 25, talk: 0 },
-  woman2: { at: FOLLOW[2][1], seed: 23, talk: 0 }, kid2: { at: FOLLOW[3][1], seed: 27, talk: 0 }, kid3: { at: FOLLOW[4][1], seed: 29, talk: 0 },
+  woman2: { at: FOLLOW[2][1], seed: 23, talk: 0 }, kid2: { at: FOLLOW[3][1], seed: 27, talk: 0 }, kid3: { at: FOLLOW[4][1], seed: 29, talk: 0 }, kid1: { at: FOLLOW[5][1], seed: 26, talk: 0 },
 }, {
-  traffic:['man1','woman1','woman2','kid2','kid3'],
+  traffic:['man1','woman1','woman2','kid2','kid3','kid1'],
   // A paving insert on the turban phrase: the baked headwear is entirely above the crop.
   view: (lt, u, t) => t >= turbanAt && t < bloodAt ? [690, 815, 3.8] : null,
   act(lt, t, S, st, S3) {
@@ -194,9 +194,9 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     const UP = false;
     const upDir = F([800, 640]).sub(F([800, 880])).setY(0).normalize();
     const knock = Math.exp(-(((t - dropAt) / .18) ** 2));
-    const sh = .045 * Math.sin(t * 2.3) + .025 * Math.sin(t * 5.1) - .07 * knock;
+    const sh = .09 * Math.sin(t * 2.6) + .04 * Math.sin(t * 5.1) - .07 * knock;
     for (const [a, s] of [[fa, 1], [ma, -1]]) {
-      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .32 + sh);
+      const p = UP ? C.clone().addScaledVector(upDir, s > 0 ? -.3 : .3) : C.clone().addScaledVector(axis, s * .27 + sh);
       rest(a.B);
       if (moving) walkPose(a.B, (t - a0) * 1.2 + (s < 0 ? .5 : 0), .55);
       a.group.position.set(p.x, 0, p.z);
@@ -205,7 +205,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     for (const [a, o] of [[fa, ma], [ma, fa]]) {
       a.group.rotation.y = UP ? Math.atan2(upDir.x, upDir.z) : yawTo(a.group.position, o.group.position);
       const heave = Math.sin(t * 3.6 + (a === fa ? 0 : 1.4));
-      a.B.spine.rotation.x += .24 + .07 * heave + .12 * knock;
+      a.B.spine.rotation.x += .4 + .1 * heave + .12 * knock; a.B.chest.rotation.y += (a === fa ? .18 : -.18) * Math.sin(t * 2.6);
       a.B.chest.rotation.x -= .055 * heave; a.B.chest.position.z += .012 * heave;
       a.B.neck.rotation.x -= .04; a.group.updateMatrixWorld(true);
       if (!UP) faceCam(a, S3.cam, a === fa && rec > .25 ? 1.68 : 1.55);
@@ -219,31 +219,38 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
       if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
-      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .12 * k(o), (s === 'L' ? .08 : -.08) * k(o), -.07 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .16, .32] });
+      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .12 * k(o), (s === 'L' ? .08 : -.08) * k(o), -.15 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .55 : -.55, -.3, .25] });
       PO.fingers(a, s, .95, { thumb: .85 });
     }
     st.actcheck.exposed = { ...(st.actcheck.exposed || {}), zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'], fatma: ['handL', 'handR', 'foreArmL', 'foreArmR'] };
     if (zo.group.visible) haikTuck(zo);
     if (ft.group.visible) haikTuck(ft);
     apart(zo, ft, 1.2);
+    for (const [a, c, sc] of [[zo, 0xd9a21b, 1], [ft, 0x9b4a2a, .94]]) {
+      if (!a.shoeM || a.shoeM.parent !== a.group) { for (const sx of [-.075, .075]) { const m = new THREE.Mesh(new THREE.SphereGeometry(.05, 10, 8), toon(c)); m.scale.set(.8, .4, 1.4); m.position.set(sx, .02, .17); a.group.add(m); a.shoeM = m; } }
+      a.group.scale.multiplyScalar(sc); a.group.updateMatrixWorld(true);
+    }
+    zo.group.rotation.y = yawTo(zo.group.position, F([770, 760])) + .35; ft.group.rotation.y = yawTo(ft.group.position, F([770, 760])) - .3; zo.group.updateMatrixWorld(true); ft.group.updateMatrixWorld(true);
     // Knock the loose cloth down late in b095; it stays on the paving through the procession.
     if (!st.tb) {
-      const cloth=new THREE.Group();
-      for(let j=0;j<5;j++){const fold=new THREE.Mesh(new THREE.TorusGeometry(.075+j*.012,.018,6,18,Math.PI*1.7),toon(0xf4efe4));fold.rotation.set(Math.PI/2+.13*Math.sin(j),.1*j,.7*j);fold.position.set(.035*Math.sin(j*2),.025+.009*j,.025*Math.cos(j));cloth.add(fold);}
+      const cloth=new THREE.Group(), rnd=(x=>()=>(x=(x*16807)%2147483647)/2147483647)(77);
+      // a crumpled heap of flattened lumps with two unwound strips trailing off it
+      for(let j=0;j<8;j++){const lump=new THREE.Mesh(new THREE.SphereGeometry(.04+.03*rnd(),10,8),toon(j%3?0xf4efe4:0xe6dfcf));lump.scale.set(1+.6*rnd(),.32+.2*rnd(),.8+.5*rnd());lump.position.set((rnd()-.5)*.17,.012+.012*rnd(),(rnd()-.5)*.12);lump.rotation.y=rnd()*3;cloth.add(lump);}
+      for(const [yaw,len] of [[.5,.34],[-.9,.26]]){const strip=new THREE.Mesh(new THREE.BoxGeometry(len,.004,.05),toon(0xf0eadc));strip.position.set(Math.cos(yaw)*(len/2+.05),.006,Math.sin(yaw)*(len/2+.05));strip.rotation.set(0,-yaw,.04*Math.sign(yaw));cloth.add(strip);}
       st.tb = S3.prop(cloth, 0, 0, 0);
       // Head-local marks follow the gaze applied after act(), including the dellal's turned cheek.
-      st.bl = new THREE.Mesh(new THREE.SphereGeometry(.045, 12, 8), toon(0x9a1a14));
+      st.bl = new THREE.Mesh(new THREE.SphereGeometry(.06, 12, 8), toon(0xb01a12));
       const face = ma.S.face;
       st.bl.position.set(face.mouth[0] + .065, face.mouth[1] - ma.S.head + .025, face.mouth[2]);
       st.bl.scale.set(.65, 1, .18); ma.B.head.add(st.bl);
       st.strain = [fa, ma].map(a => {
         const g = new THREE.Group(), face = a.S.face, local = p => V(p[0], p[1] - a.S.head, p[2] + .008);
         for (const eye of [face.eyeL, face.eyeR]) {
-          const rim = new THREE.Mesh(new THREE.TorusGeometry(face.eyeR_ * 1.05, .0045, 6, 16, Math.PI), toon(0xa1372e));
+          const rim = new THREE.Mesh(new THREE.TorusGeometry(face.eyeR_ * 1.05, .008, 6, 16, Math.PI * 2), toon(0xc9261c));
           rim.position.copy(local(eye)); rim.rotation.z = Math.PI; g.add(rim);
         }
         for (let j = 0; j < 3; j++) {
-          const foam = new THREE.Mesh(new THREE.SphereGeometry(.013 - j * .002, 8, 6), toon(0xf6f2e7));
+          const foam = new THREE.Mesh(new THREE.SphereGeometry(.021 - j * .003, 8, 6), toon(0xf6f2e7));
           foam.position.copy(local(face.mouth)).add(V(.028 + j * .007, -.005 - j * .012, .006)); g.add(foam);
         }
         a.B.head.add(g); return g;
@@ -273,7 +280,7 @@ const scene = beatScene(ID, {
     b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.5, dx: 0, dy: 190 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 3.2, dx: 0, dy: 20 },
     b095: { shot: 'fi', size: 'M', on: 'father', z: 1.4, pt: [930, 710] },
-    b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 2.4, pt: [800, 760] },
+    b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 3.4, dx: -70, dy: 0, pt: [830, 760] },
     b097: { shot: 'fi', size: 'W', on: 'father' },
   },
 });
