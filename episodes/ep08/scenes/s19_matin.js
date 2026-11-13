@@ -32,12 +32,12 @@ function kindPS(kind, sd, t) {
   const w = Math.sin(t * 4.2), v = Math.sin(t * 3.1 + 1.4), i1 = Math.sin(t * .8 + (sd === 'L' ? 0 : 2)), i2 = Math.sin(t * .6 + 1.7 + (sd === 'L' ? 1 : 0));
   const alt = Math.sin(t * 1.3 + (sd === 'L' ? 0 : Math.PI)) * .5 + .5;   // the two hands take turns leading
   switch (kind) {
-    case 'chop': return sd === 'R' ? { fwd: .26 + .07 * w, out: .12, drop: .17 + .1 * Math.max(0, v), curl: .1, spread: .35, palm: .7 } : { fwd: .12, out: .2, drop: .3 + .03 * v, curl: .4, spread: .2, palm: .3 };
-    case 'palms': return { fwd: .2 + .04 * alt, out: .2 + .04 * w, drop: .14 + .12 * (1 - alt), curl: .1, spread: .4, palm: .8 };
-    case 'chest': return sd === 'R' ? { fwd: .13, out: .0, drop: .12 + .01 * i1, curl: .35, spread: .15, palm: .1 } : { fwd: .08, out: .17, drop: .29 + .02 * i2, curl: .4, spread: .1, palm: 0 };
-    case 'wide': return sd === 'R' ? { fwd: .2 + .05 * alt, out: .28 + .05 * w, drop: .12 + .1 * alt, curl: .1, spread: .45, palm: .8 } : { fwd: .1 + .1 * (1 - alt), out: .2 + .04 * v, drop: .2 + .1 * alt, curl: .2, spread: .3, palm: .6 };
-    case 'sash': return { fwd: .12 + .02 * i1, out: .06, drop: .2, curl: .5, spread: .1, palm: 0 };
-    default: return { fwd: .07 + .03 * i1, out: .17 + .02 * i2, drop: .27 + .03 * i2, curl: .45 + .1 * i1, spread: .1, palm: 0 };   // relaxed: elbows bent, fingers curled, small drift
+    case 'chop': return sd === 'R' ? { fwd: .3 + .07 * w, out: .06, drop: .06 + .1 * (.5 + .5 * v), curl: .1, spread: .35, palm: .7 } : { fwd: .14, out: .1, drop: .32 + .03 * v, curl: .45, spread: .2, palm: .3 };
+    case 'palms': return sd === 'R' ? { fwd: .26 + .04 * alt, out: .1 + .04 * w, drop: .08 + .1 * (1 - alt), curl: .1, spread: .4, palm: .8 } : { fwd: .2, out: .16 + .03 * v, drop: .2 + .08 * alt, curl: .15, spread: .4, palm: .7 };
+    case 'chest': return sd === 'R' ? { fwd: .12, out: -.02, drop: .1 + .01 * i1, curl: .35, spread: .15, palm: .1 } : { fwd: .1, out: .1, drop: .27 + .02 * i2, curl: .4, spread: .1, palm: 0 };
+    case 'wide': return sd === 'R' ? { fwd: .24 + .04 * alt, out: .32 + .04 * w, drop: .0 + .1 * alt, curl: .1, spread: .45, palm: .8 } : { fwd: .18, out: .14 + .03 * v, drop: .16 + .08 * alt, curl: .2, spread: .3, palm: .6 };
+    case 'sash': return sd === 'R' ? { fwd: .14 + .02 * i1, out: .04, drop: .24, curl: .5, spread: .1, palm: 0 } : { fwd: .12, out: .1, drop: .3 + .02 * i2, curl: .5, spread: .1, palm: 0 };
+    default: return sd === 'R' ? { fwd: .13 + .03 * i1, out: .07, drop: .27 + .03 * i2, curl: .4 + .1 * i1, spread: .1, palm: 0 } : { fwd: .16 + .02 * i2, out: .03, drop: .34 + .02 * i1, curl: .5, spread: .1, palm: 0 };   // relaxed: hands in front of the belly, small drift
   }
 }
 // sched: [[t0, kind], ...] in scene time; each kind fades in over .45 s from the previous one
@@ -55,7 +55,7 @@ const ch1 = staged('chambre_jour', {
   mohammed: BED,
   // Beside the divan. The look target stays near his own eye height: aiming at the boy's low
   // skull spent the whole head turn on pitching down, so the face never came around.
-  father: { height: 1.76, at: [1235, 742], face: 'cam', yaw: .75, pose: 'kneel', o: { grounded: true, lean: .16 }, seed: 5,
+  father: { height: 1.76, at: [1150, 748], face: 'cam', yaw: .75, pose: 'kneel', o: { grounded: true, lean: .28 }, seed: 5,
     look: (t, st) => {
       const who = (IN(0, t) || IN(1, t)) ? st.A.mohammed : st.A.zoubida;
       const p = at(who, 'head').clone(), eye = at(st.A.father, 'head').y;
@@ -95,7 +95,8 @@ const ch1 = staged('chambre_jour', {
       const u = 1 - sm(B(2)[0] - .2, B(2)[0] + .5, t);
       reach(rest.clone().lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .3); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
     } else {
-      reach(rest.clone().add(V(0, .015 * Math.sin(t * .7), 0)), { grip: .02, pole }); PO.fingers(fa, side, .3, { spread: .1 });
+      const gp = .5 + .5 * Math.sin(t * 1.1);   // R31G: calm open hand, withdrawn from the boy and moving with his reassurance
+      handTo(fa, side, { fwd: .2 + .05 * gp, out: .2, drop: .02 + .14 * gp, curl: .15, spread: .35 }); PO.palmTo(fa, side, .5, V(0, 1, .3));
       if (IN(4, t)) { handTo(fa, other, { fwd: .2, out: .26, drop: .2 + .04 * Math.sin(t * 2), curl: .05, spread: .4 }); PO.palmTo(fa, other, .6, V(0, 1, .3)); }
       else lap();
       fa.B.chest.rotation.y += .05 * Math.sin(t * .6); fa.B.chest.rotation.x += .03 * Math.sin(t * .45 + 1);
