@@ -40,7 +40,13 @@ const pa = staged('patio_matin', {
     look: (t, st) => t < B(0)[0] + .45 * (B(0)[1] - B(0)[0]) ? st.offer : 'father' },
 }, {
   // R25A: insert close-up on the father's upturned palm with the two bangles (his hand sits near plate (690, 674); her hands enter the frame below)
-  view: (lt, u, t) => t >= INS[0] && t < INS[1] ? [715, 655 + 8 * sm(INS[0], INS[1], t), 3.1 + .3 * sm(INS[0], INS[1], t)] : null,
+  view: (lt, u, t) => {
+    if (t < INS[0] || t >= INS[1] || !pa.st) return null;
+    const fa = pa.st.A.father, k = fa.group.scale.y / 1.6, yw = fa.group.rotation.y;   // a pure function of the placement (identical in every render chunk)
+    const w = V(fa.group.position.x + Math.sin(yw) * .46 * k - Math.cos(yw) * .2 * k, fa.group.position.y + 1.0 * k, fa.group.position.z + Math.cos(yw) * .46 * k + Math.sin(yw) * .2 * k);
+    const [px, py] = pa.S3.project(w), e = sm(INS[0], INS[1], t);
+    return [px + 15, py - 10 + 8 * e, 3.1 + .3 * e];
+  },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
     const u = 1;   // Argon r6: the hand was empty at the open → he already holds the bracelets out, waist height, elbow bent and down, palm up
