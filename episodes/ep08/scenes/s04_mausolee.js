@@ -140,9 +140,9 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1140, 822], ...T11(2.0, 3.4) } },
-  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 835], ...T11(3.0, 3.4) } },
-  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 818], ...T11(3.95, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1110, 822], ...T11(2.0, 3.4) } },
+  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1350, 835], ...T11(3.0, 3.4) } },
+  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1545, 818], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
@@ -173,7 +173,7 @@ const pr = sized(checkedStage('mausolee_rev', {
 // A CLOSED lap around the left-hand tomb: right flank, near plinth, left flank, far side.
 // The return half is hidden by the tomb; it still advances along the same continuous floor path.
 const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
-const GIRLS = [['woman1', 0], ['woman2', .75], ['fatma', 1.5]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
+const GIRLS = [['woman1', 0, 0], ['woman2', .8, .7], ['fatma', 1.6, 1.4]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
 // The far half runs along the wall BEHIND the tomb: the women stay real, posed actors the whole lap, and the tomb is a depth
 // holdout (below), so the renderer hides them behind its painted body and only heads above the rail show.
 const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [120, 1000], [100, 850], [130, 722], [420, 705], [650, 712]];
@@ -197,17 +197,23 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
     }
     const { pts, len, L: period } = st.lap, v = .50, start = 2.5;   // open with two women on the near half
     st.G.apply = () => {};   // the ritual follows the path, with no sideways conversation gaze
-    for (const [n, off] of GIRLS) {
+    for (const [n, off, side] of GIRLS) {
       const a = st.A[n], d = (start + v * (t - B(2)[0]) + period * 10 - off/4.8*period) % period;
       // Stay behind the tomb only on the far side; at least one of the three phases is always near.
       // A second woman stays on the near half while the leader passes behind the tomb.
       let i = 1; while (i < len.length - 1 && len[i] < d) i++;
       const u = (d - len[i - 1]) / (len[i] - len[i - 1] || 1), p = pts[i - 1].clone().lerp(pts[i], u), dir = pts[i].clone().sub(pts[i - 1]);
+      if (side) { const o = V(dir.z, 0, -dir.x).normalize(), cen = st.tombC || (st.tombC = S3.floorAt(...[(TOMB.front[0][0] + TOMB.back[1][0]) / 2, (TOMB.front[0][1] + TOMB.back[1][1]) / 2])); if (o.dot(p.clone().sub(cen)) < 0) o.negate(); p.addScaledVector(o, side); }   // R25C: walk abreast, outside the tomb, so the three read as a group
       a.group.position.set(p.x, 0, p.z); a.group.rotation.y = Math.atan2(dir.x, dir.z);
       walkPose(a.B, d / 1.05, 1, { stride: .32, arms: .2 }); a.group.updateMatrixWorld(true);
       // counting the turns on the fingers of the right hand held before her chest; head a little bowed, lips moving
       const ka = k(a), cnt = 1 + (Math.floor((start + v * (t - B(2)[0]) - off) / period + 10) % 5);
-      a.B.neck.rotation.set(.3, 0, 0); a.B.head.rotation.set(0, 0, 0); upd(a, 'neck');
+      a.B.neck.rotation.set(.3, 0, 0); a.B.head.rotation.set(0, 0, 0);
+      { // R25C: on the stretch walking away from the lens she looks back over her shoulder (twist torso + neck)
+        const fw = dirW(a, 0, 0, 1), tc = S3.cam.position.clone().sub(a.group.position); fw.y = tc.y = 0; fw.normalize(); tc.normalize();
+        const ang = Math.acos(Math.max(-1, Math.min(1, fw.dot(tc)))), w = sm(1.3, 2.3, ang), sg = Math.sign(fw.z * tc.x - fw.x * tc.z) || 1;
+        a.B.spine.rotation.y += sg * .3 * w; a.B.chest.rotation.y += sg * .4 * w; a.B.neck.rotation.y += sg * .45 * w; a.B.head.rotation.y += sg * .45 * w; }
+      upd(a, 'spine', 'chest', 'neck');
       PO.reach(a, 'R', front(a, 'chest', .27 * ka, .08 * ka, .05 * ka), { grip: .015, pole: [-.4, -.1, -.1] });
       PO.reach(a, 'L', front(a, 'chest', (.25 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, .0 * ka, -.04 * ka), { grip: 0, pole: [.35, .05, .1] });
       PO.fingers(a, 'R', .95, { thumb: cnt === 5 ? 0 : .6, each: [1, 0, cnt >= 2 ? 0 : 1, cnt >= 3 ? 0 : 1, cnt >= 4 ? 0 : 1], spread: .6 });

@@ -163,8 +163,7 @@ const mu = checkedStage('souk_mur', {
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
     if (fm) fm.group.visible = false;   // R25I: a second haik woman read as a duplicate Zoubida (four family members)
-    st.actcheck={haikLat:{zoubida:.095},haikFwd:{zoubida:.30},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
-    if (t >= B(5)[0]) { const g = Math.max(0, Math.sin((t - B(5)[0]) * 1.65 * Math.PI * 2)) ** 3; st.actcheck.haikFwd.zoubida = .30 + .07 * g; }
+    st.actcheck={haikLat:{zoubida:.04},haikFwd:{zoubida:.08},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: a planted-foot buckle, already tired during pre-roll, then a deeper collapse.
     if (t < B(1)[0]) {
@@ -206,6 +205,7 @@ const mu = checkedStage('souk_mur', {
       ['woman1', [1250, 985], [120, 950], .35],
     ];
     for (const [n, p0, p1, delay] of rush) {
+      if (n === 'guerrab' && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
       const a = st.A[n], w0 = B(3)[0] + delay, w1 = w0 + 3.5 + (n === 'man1' ? .3 : 0);
       let t0 = w0, t1 = t0 + 1.9;
       if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.9; }
@@ -280,7 +280,7 @@ const ca = checkedStage('souk_mur', {
     sync(fa, mo);
     // Head outside the neck, cheek against the outer shoulder, torso in front of the chest.
     const cheek = at(mo, 'head', [.10, .02, .06]);
-    const shoulder = front(fa, 'upperArmR', -.07 * kf, .19 * kf, -.07 * kf);
+    const shoulder = front(fa, 'upperArmR', .03 * kf, .15 * kf, -.04 * kf);
     const delta = shoulder.sub(cheek);
     mo.group.position.x += delta.x; mo.group.position.z += delta.z;
     mo.group.position.y += delta.y * lift;
@@ -351,7 +351,7 @@ const la = checkedStage('souk_bijoux', {
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={haikFwd:{zoubida:.30},haikLat:{zoubida:.095},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.08},haikLat:{zoubida:.04},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
@@ -374,7 +374,7 @@ const la = checkedStage('souk_bijoux', {
       for (const [n, p0, p1, delay] of [
         ['woman1', [1250, 690], [700, 930], 0],
         ['kid2', [1180, 720], [820, 920], .35],
-        ['kid3', [1330, 690], [800, 930], .25],
+        ['kid3', [1330, 690], [900, 1000], .6],
         ['fqih', [700, 930], [560, 900], .05],
         ['woman2', [1080, 640], [1180, 720], .18],
       ]) {
@@ -419,7 +419,7 @@ export default beatScene(ID, {
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
-    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.9, dx: -65, dy: 70 },
+    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.6, dx: -65, dy: 50 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.4, dx: -55, dy: 25 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.3, dx: 120, dy: 95 },
   },

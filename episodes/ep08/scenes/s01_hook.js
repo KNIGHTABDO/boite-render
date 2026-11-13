@@ -10,7 +10,7 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .046, .0085); mk(0xc9d3de, .042, .0075); S3.scene.add(g); return g;
+  mk(0xe0a820, .046 * 1.7, .0085 * 1.7); mk(0xc9d3de, .042 * 1.7, .0075 * 1.7); S3.scene.add(g); return g;
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -43,7 +43,7 @@ const pa = staged('patio_matin', {
   view: (lt, u, t) => {
     if (t < INS[0] || t >= INS[1] || !pa.hp) return null;
     const e = sm(INS[0], INS[1], t);
-    return [pa.hp[0], pa.hp[1] + 8 * e, 3.1 + .3 * e];
+    return [pa.hp[0], pa.hp[1] + 4 * e, 8 + .6 * e];   // tight: the characters are small in the plate, so the palm needs a high zoom
   },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.028 * k, .014 * k, .5 + .04 * w, w);
-      place(br.children[1], .02 * k, .026 * k, .35 - .04 * w, -w);
+      place(br.children[0], -.03 * k, .016 * k, .5 + .04 * w, w);
+      place(br.children[1], .025 * k, .034 * k, .35 - .04 * w, -w);
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
@@ -111,7 +111,7 @@ const pa = staged('patio_matin', {
   pa.load = async () => { const had = !!pa.st; await ld(); if (had || pa.hp) return;
     // hand ~ .55 m in front of and .5 m below the father's head, in plate px from the load-time head projection and body span
     const h = pa.heads[0], pxm = pa.bodyPx[0] / (.83 * pa.st.A.father.group.scale.y);
-    pa.hp = [h[0] + .55 * pxm, h[1] + .5 * pxm]; if (!pa.hp.every(Number.isFinite)) pa.hp = null; };
+    pa.hp = [h[0] + .55 * pxm, h[1] + .5 * pxm - 53];   // -53: calibrated on stills run 43392907960 if (!pa.hp.every(Number.isFinite)) pa.hp = null; };
 }
 
 // Right divan top, clockwise from the back-left corner. The chest beside it is off limits.
