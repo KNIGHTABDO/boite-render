@@ -103,9 +103,9 @@ const ch = staged('chambre_jour', {
         const gp = base.clone().add(V(0, 0.13 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), 0.1 * km).addScaledVector(dirW(mo, sg, 0, 0), 0.04 * km);
         p.lerp(gp, Math.min(1, gest));
         if (fidget > 0.01) {
-          const fa0 = at(mo, 'foreArmL'), ha0 = at(mo, 'handL'), rub = 0.62 + 0.3 * Math.sin(t * 3.6);
-          const rp = fa0.clone().lerp(ha0, rub).addScaledVector(dirW(mo, 0, 0, 1), 0.08 * km).addScaledVector(dirW(mo, sg, 0, 0), -0.0 * km).add(V(0, 0.03 * km, 0));
-          p.lerp(rp, Math.min(0.85, fidget * 1.2));
+          // tug the robe at the knee (right side, away from the torso): small pinch-and-pull cycle
+          const tg = 0.5 + 0.5 * Math.sin(t * 4.2), rp = base.clone().addScaledVector(dirW(mo, sg, 0, 0), 0.03 * km).addScaledVector(dirW(mo, 0, 0, 1), (0.04 + 0.05 * tg) * km).add(V(0, (-0.02 + 0.05 * tg) * km, 0));
+          p.lerp(rp, Math.min(1, fidget * 1.2));
         }
       } else {
         p.addScaledVector(dirW(mo, 0, 0, 1), 0.11 * km * fidget).addScaledVector(dirW(mo, sg, 0, 0), 0.03 * km * fidget).add(V(0, 0.05 * km * fidget, 0));
