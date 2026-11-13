@@ -43,7 +43,7 @@ function temples(a, { bow = .06 } = {}) {
     let wrist = skin();
     for (let i = 0; i < 4; i++) {
       const p = skin();
-      PO.reach(a, s, wrist, { grip: 0, pole: [sg * .75, .1, -.1] });
+      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 1.1, .2, sg < 0 ? .35 : -.1] });
       IK.aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(V(sg * .05, .22, .0)));
       wrist.add(p.clone().sub(PO.handPts(a, s).palm));
     }
@@ -71,7 +71,7 @@ const ch2 = staged('chambre_jour', {
 export default beatScene(ID, {
   shots: { ch1, ch2 },
   plan: {
-    b152: { shot: 'ch1', size: 'M', on: 'mohammed', z: 3.6, zTo: 6.8, dx: 20, dy: -95, push: B(0)[1] - B(0)[0] + 1.5 },
+    b152: { shot: 'ch1', size: 'M', on: 'mohammed', z: 3.6, zTo: 6.8, dx: 20, dy: -135, push: B(0)[1] - B(0)[0] + 1.5 },
     b153: { move: 'faceLm' },   // r25: crop clear of the unpainted left strip
     b154: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.65, dx: 170, dy: -30 },
     b155: { shot: 'p40_tambour', move: 'pushL', segs: [[.5, 'p40_tambour', { move: 'rise' }]] },   // keep the drum painting, move down so the late crop retains his chin

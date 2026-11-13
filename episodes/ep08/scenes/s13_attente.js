@@ -191,7 +191,7 @@ const mu = checkedStage('souk_mur', {
     ];
     for (const [n, p0, p1, delay] of rush) {
       if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
-      const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 3.5 + (n === 'man1' ? .3 : 0);
+      const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 4.5 + (n === 'man1' ? .3 : 0);   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
       let t0 = w0, t1 = t0 + 1.9;
       if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.9; }
       a.group.visible = t >= t0 && t <= t1;
@@ -235,6 +235,9 @@ const mu = checkedStage('souk_mur', {
       // front of the cloth (haikFwd pulses with each cut); the sharp head jerks carry the beat.
       zo.B.head.rotation.y += .18 * Math.sin(ph * 6.3) ** 3;
     }
+    // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
+    { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
+      zo.group.position.y = by.zo + .085; mo.group.position.y = by.mo + .05; }
     sync(zo, mo, fa);
   },
 });
