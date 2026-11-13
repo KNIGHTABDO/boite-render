@@ -35,7 +35,7 @@ const pa = staged('patio_matin', {
         bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
       }
     }
-    lapLouha(st.A.mohammed, st.lh, { f: 0, x: 0, y: -.02, sc: 1.2, tilt: -.3 });   // R25B: bigger, flatter slate on the knees
+    lapLouha(st.A.mohammed, st.lh, { f: 0, x: 0, y: -.06, sc: 1.3, tilt: .2 });   // R25B: bigger, flatter slate on the knees
     // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
@@ -44,7 +44,7 @@ const pa = staged('patio_matin', {
       B.thighL.rotation.x = -Math.sin(a) * .42 * k; B.thighR.rotation.x = Math.sin(a) * .42 * k;
       B.shinL.rotation.x = Math.max(0, Math.sin(a - 1.4)) * .7 * k; B.shinR.rotation.x = Math.max(0, -Math.sin(a - 1.4)) * .7 * k; }
     { const mo = st.A.mohammed; mo.B.neck.rotation.x -= .12; mo.B.head.rotation.x -= .08;
-      const up = .5 + .5 * Math.sin(t * 1.3); mo.B.neck.rotation.x -= .14; mo.B.head.rotation.x -= .26 + .03 * up; mo.B.head.rotation.y += .12; }   // R25B: chin up toward the father, slight turn + idle   // r17: head not so far down by the well
+      const up = .5 + .5 * Math.sin(t * 1.3); mo.B.neck.rotation.x -= .22; mo.B.head.rotation.x -= .4 + .03 * up; mo.B.head.rotation.y += .06; }   // R25B: chin up toward the father, slight turn + idle   // r17: head not so far down by the well
     for (const [s, ph] of [['L', 0], ['R', Math.PI]]) {
       const w = Math.sin(t * 5.6 + ph) * go, outZ = s === 'L' ? 1 : -1;
       const ua = fa.B['upperArm' + s], eb = fa.B['foreArm' + s], ha = fa.B['hand' + s];
@@ -102,8 +102,8 @@ const ch = staged('chambre_jour', {
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .24 * kf, sign * .25 * kf, -.15 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
-      PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .15, { spread: .3 });
+      reachSafe(fa, s, front(fa, 'chest', .24 * kf, sign * .32 * kf, -.12 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
+      PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .0, { thumb: .1, spread: .4 });
     }
     // b035: left fist at his chest, right hand open toward his father
     if (up > 0) {
@@ -118,9 +118,17 @@ const ch = staged('chambre_jour', {
       reachSafe(fa, 'R', front(fa, 'chest', (.24 + .02 * Math.sin(t * 2.2)) * kf, -.16 * kf, -.1 * kf), { grip: 0, pole: [-.35, -.1, .12] });
       PO.palmTo(fa, 'R', wel); PO.fingers(fa, 'R', .1, { spread: .25 });
     }
+    // R25B: the boy's hands rest on his thighs after b035 (no stiff pinned arms) and the father's brows lift on b037
+    { const rl = sm(B(9)[0] - .3, B(9)[0] + .2, t) * (1 - up);
+      if (rl > 0) for (const s of ['L', 'R']) {
+        const sg = s === 'L' ? 1 : -1;
+        reachSafe(mo, s, front(mo, 'root', .2 * km, sg * .13 * km, .03 * km), { grip: .02, pole: [sg * .4, -.1, .2] });
+        PO.fingers(mo, s, .3, { thumb: .3 });
+      }
+      const bz = win(10, .1, .9, t); if (bz > 0) { fa.B.head.rotation.x -= .08 * bz; fa.B.neck.rotation.x -= .04 * bz; } }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .2 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);
+      const top = at(mo, 'head').add(V(0, .26 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);
       approach(fa, 'R', top, .08);
       PO.reach(fa, 'R', top, { grip: .01, pole: [-.3, .5, .05] });
       PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });

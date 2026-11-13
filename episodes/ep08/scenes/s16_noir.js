@@ -16,7 +16,7 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
-const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, height: 1.2 };
+const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, };
 const ZO = { at: [1050, 748], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: 0, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
@@ -56,7 +56,7 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
 const cry = staged('chambre_jour', {
   zoubida: ZO,
   mohammed: { at: [1350, 694], face: [1336, 754], pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false, avoid: CHEST },
-    hands: false, seed: 3, talk: 0, lids: .85, height: 1.2 },
+    hands: false, seed: 3, talk: 0, lids: .85, },
 }, {
   over: tears,
   act(lt, t, S, st) {
