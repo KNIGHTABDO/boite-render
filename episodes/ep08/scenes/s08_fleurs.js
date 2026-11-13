@@ -78,7 +78,7 @@ const ch = staged('chambre_jour', {
       if (isZ) pL.addScaledVector(dirW(a, 0, 0, 1), 0.07 * kk * (1 - laugh)).addScaledVector(dirW(a, -1, 0, 0), 0.05 * kk * (1 - laugh)).add(V(0, 0.01 * kk, 0));
       else pR.add(V(0, 0.025 * kk, 0));
       // R31F: hands wander a little (not frozen), the mother's right hand moves in and forward off the sash ends, the father's hands clearly lift in the laugh and his right arm opens out.
-      const wv = Math.sin(t * 0.6 + (isZ ? 1 : 0)), wv2 = Math.sin(t * 0.47 + 2);
+      const wv = 2.5 * Math.sin(t * 0.6 + (isZ ? 1 : 0)), wv2 = Math.sin(t * 0.47 + 2);
       for (const p of [pL, pR]) p.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * wv).add(V(0, 0.012 * kk * wv2, 0));
       if (isZ) pR.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * (1 - laugh)).addScaledVector(dirW(a, 1, 0, 0), -0.07 * kk * (1 - laugh)).add(V(0, 0.008 * kk * (1 - laugh), 0)).addScaledVector(at(zo, 'root').clone().sub(pR), 0.2 * (1 - laugh));
       else { const lf = Math.min(1, laugh * 1.4 + residue * 0.3); for (const p of [pL, pR]) p.add(V(0, 0.13 * kk * lf, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.0 * kk * lf); pR.addScaledVector(dirW(a, -1, 0, 0), 0.06 * kk); pL.addScaledVector(dirW(a, 1, 0, 0), 0.05 * kk); }
@@ -107,6 +107,8 @@ const ch = staged('chambre_jour', {
       p.add(V(0, km * (s === 'R' ? 0.035 : -0.02) * (0.6 + 0.4 * Math.sin(t * 0.7 + ph)), 0)).addScaledVector(dirW(mo, -sg, 0, 0), km * (s === 'R' ? -0.04 : 0) * (0.7 + 0.3 * Math.sin(t * 0.9 + ph)));
       // R31S: hands clear of the robe chest (5 cm forward) and a rubbing fidget that progresses over b040.
       p.addScaledVector(dirW(mo, 0, 0, 1), 0.05 * km * fidget).addScaledVector(dirW(mo, -sg, 0, 0), km * (0.02 + 0.025 * prog) * Math.sin(t * 5.1 + ph) * fidget).add(V(0, km * (0.015 * prog + 0.012 * Math.sin(t * 4.3 + ph + 1) * fidget), 0));
+      // R31S2: hands apart ~4 cm (one cupped over the other) and a further 4 cm forward.
+      p.addScaledVector(dirW(mo, sg, 0, 0), 0.02 * km * Math.min(1, fid * 1.5)).addScaledVector(dirW(mo, 0, 0, 1), 0.04 * km * Math.min(1, fid * 1.5)).add(V(0, km * (s === 'R' ? 0.02 : -0.012) * Math.min(1, fid * 1.5), 0));
       palm(mo, s, p, { grip: 0.025, pole: [sg * (1.15 - 0.3 * Math.max(fid, gest)), -0.05 + 0.35 * Math.max(fid, gest), -0.5 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
       if (Math.max(fid, gest) > 0.15 || fidget > 0.1) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
@@ -154,16 +156,20 @@ const ch = staged('chambre_jour', {
     const spk = Math.max(sm(0.3, 0.9, t) * (1 - sm(B(1)[0] - 0.2, B(1)[0], t)), 0);
     mo.B.head.rotation.y += 0.07 * Math.sin(t * 1.1 + 0.3) * search; mo.B.head.rotation.x += 0.05 * Math.sin(t * 1.7) * search;
     mo.B.head.rotation.z += 0.04 * Math.sin(t * 0.9 + 2) * (1 - laugh) * (1 - sceptical);
-    zo.B.head.rotation.z += 0.07 * spk * (1 - laugh); zo.B.head.rotation.y += 0.06 * Math.sin(t * 0.9 + 1) * spk * (1 - laugh);
-    zo.B.head.rotation.x += 0.05 * askLookW(t) * (1 - laugh);
+    zo.B.head.rotation.z += 0.2 * spk * (1 - laugh); zo.B.head.rotation.y += 0.12 * Math.sin(t * 0.9 + 1) * spk * (1 - laugh);
+    zo.B.head.rotation.x += 0.14 * askLookW(t) * (1 - laugh);
     fa.B.head.rotation.x += 0.04 * Math.sin(t * 1.9 + 0.5) * spk;
-    zo.B.chest.rotation.z += 0.03 * askLookW(t);
+    zo.B.chest.rotation.z += 0.08 * askLookW(t);
     if (mo.B.upperArmR && search > 0.2) { mo.B.upperArmR.rotation.x += 0.04 * Math.sin(t * 1.5) * search; mo.B.upperArmR.updateWorldMatrix(false, true); }
+    // R31S2: x3 bigger, clearly visible in stills: head turns ~15-20 deg, shoulder shifts.
+    fa.B.head.rotation.y += 0.22 * Math.sin(t * 0.63 + 0.4) * (1 - laugh); zo.B.head.rotation.y += 0.22 * Math.sin(t * 0.47 + 2.0) * (1 - laugh) * (1 - 0.4 * sceptical);
+    fa.B.spine.rotation.z += 0.06 * Math.sin(t * 0.5 + 2) * (1 - laugh); zo.B.spine.rotation.z += 0.06 * Math.sin(t * 0.45 + 1) * (1 - laugh);
+    for (const a of [fa, zo]) { if (a.B.LeftShoulder) a.B.LeftShoulder.rotation.z += 0.07 * Math.sin(t * 0.8 + 1) * (1 - laugh); if (a.B.RightShoulder) a.B.RightShoulder.rotation.z -= 0.07 * Math.sin(t * 0.7) * (1 - laugh); }
     const row = name => st.faces.find(r => r[1] === name);
     const said = mouth(S, 'mohammed', t);
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
-      open: Math.max(search * (0.7 + 0.3 * Math.abs(Math.sin(t * 6.4))), search * said, whisper * (0.65 + 0.3 * Math.abs(Math.sin(t * 12.2))), whisper * said),
+      open: Math.max(search * (0.9 + 0.1 * Math.abs(Math.sin(t * 6.4))), search * said, whisper * (0.65 + 0.3 * Math.abs(Math.sin(t * 12.2))), whisper * said),
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
@@ -265,7 +271,7 @@ export default beatScene(ID, {
     // Plate heads sit near y 490–750. A wide M is clamped to the bottom of the plate, so the turban and the hands share the frame.
     b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.04, dx: -110, dy: 100 },
     // Father-son two-shot: far enough right to drop the empty door, tight enough that the mother's skirt stays outside.
-    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.3, dx: 240, dy: 40 },
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.17, dx: 230, dy: 95 },
     b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.02, dx: -100, dy: 110 },
     b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.04, dx: -100, dy: 110 },
     b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 0.97, dx: -20, dy: 180 },
