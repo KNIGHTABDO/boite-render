@@ -163,7 +163,7 @@ const la = checkedStage('souk_bijoux', {
     }
     // Gaze is measured against the look string, so the body has to be turned toward that person after the walks.
     if (t >= f(8, .3) && t < f(8, .45)) faceCam(fa, S3.cam, 1.3);
-    if (t >= f(8, .45)) { const lk = sm(f(8, .45), f(8, .55), t); turn(fa, st.exitLook, lk); turn(mo, st.exitLook, lk); }   // R31C: father and boy look up the lane after the departing dellal
+    if (t >= f(8, .45)) { const lk = .5 * sm(f(8, .45), f(8, .55), t); turn(fa, st.exitLook, lk); turn(mo, st.exitLook, lk); }   // R31C: father and boy look up the lane after the departing dellal
     if (t >= B(8)[0]) turn(zo, ma.group.position, 1);
     if (t >= B(7)[0] && t < f(7, .48)) turn(ft, zo.group.position, 1);
     if (t >= f(7, .48) && t < B(8)[0]) faceCam(ft, S3.cam, 1.15);
