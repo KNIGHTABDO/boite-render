@@ -74,8 +74,8 @@ function foldHands(a, t, ph = 0, w = 1) {
 
 /** Bottom-origin board, clear of the chest; wrists stay OUTSIDE its lower corners. */
 function chestLouha(a, lh) {
-  const kk = k(a); lh.scale.setScalar(Math.min(.8, kk * .95));
-  lh.position.copy(front(a, 'chest', .20 * kk, 0, -.38 * kk));
+  const kk = k(a); lh.scale.setScalar(Math.min(.62, kk * .72));
+  lh.position.copy(front(a, 'chest', .20 * kk, 0, -.43 * kk));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.06, a.group.rotation.y, 0); lh.updateMatrixWorld(true);
   for (const [s, sign] of [['L', 1], ['R', -1]]) {
     const edge = lh.localToWorld(V(sign * .18, .055, .035));
@@ -88,7 +88,7 @@ function chestLouha(a, lh) {
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
   const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .14 * kk, .34 * kk, -.36 * kk);
-  lh.scale.setScalar(Math.min(.8, kk * .95));
+  lh.scale.setScalar(Math.min(.62, kk * .72));
   lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .25 * wave, a.group.rotation.y - .25 + amp * .8 * wave, -.08 + .6 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
   lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
@@ -141,8 +141,8 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [905, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1050, 822], ...T11(2.0, 3.4) } },
-  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1360, 852], ...T11(3.0, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1015, 822], ...T11(2.0, 3.4) } },
+  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1395, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
@@ -322,9 +322,9 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = 1.1 * r, hs = hinge;   // R31I: smaller bow, less skin stretch
-      a.B.spine.rotation.set(hs, 0, 0); a.B.chest.rotation.set(hinge - hs, 0, 0);   // R31I: bend shared by spine and chest, so the skin stretches over two joints
-      a.B.spine.position.applyAxisAngle(V(1, 0, 0), hs);
+      const hinge = 1.1 * r, hipA = .85 * hinge, hs = .08 * r, cs = hinge - hipA - hs;   // R31M: most of the bow at the hips (legs counter-rotated, feet/knees unchanged), little spine curve
+      a.B.root.rotation.set(hipA, 0, 0); for (const s of ['L', 'R']) a.B['thigh' + s].rotation.x -= hipA;
+      a.B.spine.rotation.set(hs, 0, 0); a.B.chest.rotation.set(cs, 0, 0); upd(a, 'root');
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
