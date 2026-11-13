@@ -40,7 +40,7 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
 const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1100, 735] };
-const DELLAL = [1185, 878], EXIT = [860, 600];
+const DELLAL = [1185, 878], EXIT = [1330, 590]   // R31C: exit up the right lane, not behind the haiks (b082 occlusion);
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [690, 720], 0, 1],
   ['woman2', [1250, 790], [1170, 700], .25, 1],
