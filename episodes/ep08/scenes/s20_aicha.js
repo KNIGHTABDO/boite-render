@@ -119,13 +119,13 @@ const ch = staged('chambre_jour', {
         // bitter laugh in tears: the free hand wipes a cheek, comes back to cover Zoubida's hand, shoulders shake; both sway
         const w = Math.sin((t - B(6)[0]) * 1.3), wipe = sm(.15, .5, w);
         ai.B.chest.rotation.x += .025 * Math.sin(t * 8); ai.B.chest.rotation.z += .05 * Math.sin(t * 1.4); zo.B.chest.rotation.z -= .04 * Math.sin(t * 1.1 + 1); zo.B.head.rotation.x += .05 * Math.sin(t * .9); if (t - B(6)[0] > 5.5 && t - B(6)[0] < 8) { zo.B.chest.rotation.z += .03 * Math.sin(t * 11); zo.B.chest.rotation.x += .02 * Math.sin(t * 9); }
-        if (wipe > .02) faceHand(ai, os, { x: .085, y: 0, z: .06 });
-        else reach(ai, os, mid.clone().add(V(0, -.02 * ka, .03 * ka)), { grip: .01, pole: [(os === 'L' ? 1 : -1) * .4, -.1, .2] });
-      } else reach(ai, os, mid.clone().add(V(0, -.02 * ka, .03 * ka)), { grip: .01, pole: [(os === 'L' ? 1 : -1) * .4, -.1, .2] });
+        if (wipe > .02) faceHand(ai, os, { x: .085, y: 0, z: .09, pole: [(os === 'L' ? 1 : -1) * 1, .6, .3] });
+        else lap(ai, os, ka);
+      } else lap(ai, os, ka);
     }
     if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); const sw = Math.sin(t * 1.6);
       zo.B.chest.rotation.z += .05 * sw; zo.B.chest.rotation.x += .03;
-      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * .7, -.3, .2], fingers: .1 }); }
+      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * 1, .4, .3], fingers: .1 }); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
       zo.B.chest.rotation.z += .16 * u; ai.B.chest.rotation.z -= .16 * u;
