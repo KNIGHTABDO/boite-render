@@ -140,9 +140,9 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1110, 822], ...T11(2.0, 3.4) } },
-  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1350, 835], ...T11(3.0, 3.4) } },
-  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1545, 818], ...T11(3.95, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1100, 822], ...T11(2.0, 3.4) } },
+  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1350, 852], ...T11(3.0, 3.4) } },
+  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1560, 820], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
@@ -173,7 +173,7 @@ const pr = sized(checkedStage('mausolee_rev', {
 // A CLOSED lap around the left-hand tomb: right flank, near plinth, left flank, far side.
 // The return half is hidden by the tomb; it still advances along the same continuous floor path.
 const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
-const GIRLS = [['woman1', 0, 0], ['woman2', .8, .7], ['fatma', 1.6, 1.4]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
+const GIRLS = [['woman1', 0, 0], ['woman2', 1.0, 0], ['fatma', 2.0, 0]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
 // The far half runs along the wall BEHIND the tomb: the women stay real, posed actors the whole lap, and the tomb is a depth
 // holdout (below), so the renderer hides them behind its painted body and only heads above the rail show.
 const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [120, 1000], [100, 850], [130, 722], [420, 705], [650, 712]];
