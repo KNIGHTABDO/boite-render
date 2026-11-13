@@ -21,7 +21,7 @@ function handsOnChest(mo, t) {
   const B = mo.B, k = mo.group.scale.y / 1.6;
   mo.group.updateMatrixWorld(true);
   const c = at(mo, 'chest'), ax = at(mo, 'upperArmL').sub(at(mo, 'upperArmR')).setY(0).normalize(), fw = V(-ax.z, 0, ax.x);   // shoulder axis, and the horizontal axis across it
-  if (fw.dot(at(mo, 'hip').sub(c).setY(0)) < 0) fw.negate();                                                                    // fw points toward the feet
+  if (fw.dot(at(mo, 'root').sub(c).setY(0)) < 0) fw.negate();                                                                    // fw points toward the feet
   const br = .004 * Math.sin(t * 5);
   for (const [s, sg, along] of [['L', 1, -.02], ['R', -1, .07]]) {
     const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .135 * k + br;

@@ -132,8 +132,8 @@ const fr = checkedStage('souk_mur', {
     // Weighing: the right hand rides the brass pan (behind his right shoulder, screen right), the pan bobbing.
     const pan = at(m1, 'root').add(V(.5 * k1, .62 * k1 + .03 * Math.sin(t * 2.6) * k1, -.3 * k1));
     m1.group.rotation.y = yawTo(m1.group.position, w1.group.position) * .35 + .3 + .08 * Math.sin(t * 1.7); sync(m1);
-    { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); if (d.length() > len * .9) pan.copy(sh).addScaledVector(d.normalize(), len * .9); }
-    PO.reach(m1, 'R', pan, { grip: .02, pole: [-.6, -.05, .18] });
+    { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .93, Math.max(len * .72, d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
+    PO.reach(m1, 'R', pan, { grip: .02, pole: [-1, .1, .05] });
     PO.reach(m1, 'L', front(m1, 'root', .40 * k1, -.2 * k1, (.34 + .05 * Math.sin(t * 2.6)) * k1), { grip: .015, pole: [.6, -.05, .18] });
     PO.fingers(m1, 'R', .5);
     // urchins: plain arm swing, opposite phases
