@@ -133,7 +133,7 @@ const pa = staged('patio_matin', {
     // R28: the trio closes up for b065 ("les trois femmes ensemble"); the base is captured once, so every beat shows the same positions otherwise.
     st.base ||= new Map([zo, ra, fa].map(a => [a, a.group.position.clone()]));
     { const k = sm(B(11)[0] - .8, B(11)[0] + .1, t), bs = [...st.base.values()], cx = bs.reduce((s2, b) => s2 + b.x, 0) / 3, cz = bs.reduce((s2, b) => s2 + b.z, 0) / 3;
-      for (const a of [zo, ra, fa]) { const b = st.base.get(a); a.group.position.set(b.x + (cx - b.x) * .65 * k, b.y, b.z + (cz - b.z) * .65 * k); a.group.updateMatrixWorld(true); } }
+      for (const a of [zo, ra, fa]) { const b = st.base.get(a); a.group.position.set(b.x + (cx - b.x) * .5 * k, b.y, b.z + (cz - b.z) * .5 * k); a.group.updateMatrixWorld(true); } }
     const palmsW = sm(B(9)[0] - 1.0, B(9)[0] - .5, t) * (1 - sm(B(9)[1] - .1, B(9)[1], t));
     open34(zo, S3.cam, .85 - .4 * win(8, 0, 1, t)); open34(ra, S3.cam, .75 - .4 * palmsW);
     // R28: relaxed base arms (slight elbow bend, hands clasped near the waist) for every beat that does not pose them below.
@@ -143,7 +143,7 @@ const pa = staged('patio_matin', {
     }
     const fun = hold(B(5)[0] - .1, B(5)[1], t);
     // Staggered, visible laughter: chest shakes, head tipped back, one hand to the mouth or chest, each woman on her own delay.
-    for (const [a, f, d, side, mouth] of [[w1, 12, .0, 'R', 1], [w2, 15, .35, 'L', 0], [ra, 11, .15, 'R', 1], [fa, 14, .5, 'L', 0], [zo, 10, .7, 'R', 0]]) {
+    for (const [a, f, d, side, mouth] of [[w1, 12, .0, 'R', 1], [w2, 15, .35, 'L', 1], [ra, 11, .15, 'R', 1], [fa, 14, .5, 'L', 1], [zo, 10, .7, 'R', 0]]) {
       const hw = sm(B(5)[0] - .15 + d * .4, B(5)[0] - .02 + d * .4, t) * (1 - sm(B(5)[1] - .05, B(5)[1] + .2, t));
       const w = hw;
       laugh(a, w, t, f);
@@ -167,7 +167,12 @@ const pa = staged('patio_matin', {
       w1.B.head.rotation.y += .12 * Math.sin(t * .6 + bi * 2); w2.B.head.rotation.y -= .12 * Math.sin(t * .5 + bi * 3);
       for (const a of [w1, w2]) a.B.neck.updateWorldMatrix(false, true);
     }
-    { const lw = hold(B(6)[0] - .1, B(6)[1], t) * .8 + win(8, 0, .5, t) * .4; if (lw > 0) { laugh(w2, lw, t, 13); w2.B.head.rotation.x -= .15 * lw; w2.B.chest.rotation.z += .04 * Math.sin(t * 13) * lw; w2.B.neck.updateWorldMatrix(false, true); } }
+    { const lw = hold(B(6)[0] - .1, B(6)[1], t) * .8 + win(8, 0, .5, t) * .4;   // R31L: both kneelers laugh visibly through b060: shoulders up, head back, a hand to the mouth/chest
+      if (lw > 0) for (const [a, f, ph, sd, mo2] of [[w2, 13, 0, 'L', 0], [w1, 11, 1.7, 'R', 1]]) {
+        laugh(a, lw, t, f); a.B.head.rotation.x -= .25 * lw; a.B.neck.rotation.x -= .22 * lw; a.B.chest.rotation.x -= .08 * lw; a.B.head.rotation.z += (sd === 'R' ? .12 : -.12) * lw;
+        a.B.chest.rotation.z += .05 * Math.sin(t * f + ph) * lw; a.B.neck.updateWorldMatrix(false, true);
+        handTo(a, sd, mo2 ? { fwd: .2, out: -.02, drop: -.1, curl: .3, spread: .1 } : { fwd: .16, out: .0, drop: .04 + .02 * Math.sin(t * f + ph), curl: .25, spread: .1 });
+      } }
     const tease = hold(B(6)[0] - .15, B(6)[1], t);
     if (tease > 0) {
       laugh(ra, tease * .6, t, 9);
@@ -188,7 +193,7 @@ const pa = staged('patio_matin', {
     const hand = sm(B(10)[0] - .5, B(10)[0] - .1, t) * (1 - sm(B(10)[1] + .1, B(10)[1] + .35, t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
-      handTo(zo, 'R', { fwd: .38, out: .24, drop: -.12 + .03 * Math.sin(t * 2.4), curl: .1, spread: .3 });
+      handTo(zo, 'R', { fwd: .3, out: .38, drop: .04 + .03 * Math.sin(t * 2.4), curl: .1, spread: .3 });
       const toR = ra.group.position.clone().sub(zo.group.position); toR.y = 0; toR.normalize(); toR.y = .15;
       PO.palmTo(zo, 'R', hand, toR);
       handTo(zo, 'L', { fwd: .22, out: -.02, drop: .26, curl: .35, spread: .08 });
@@ -223,15 +228,16 @@ const pa = staged('patio_matin', {
     }
     if (fun < .2 && tease <= 0 && envy <= 0 && amen <= 0) {
       fa.B.spine.rotation.z += .05 * Math.sin(t * .8);
-      handTo(fa, 'L', { fwd: .24, out: -.04, drop: .24, curl: .4 });   // R26A: hands folded in front, no arms-down idle
+      handTo(fa, 'L', { fwd: .3, out: -.04, drop: .15, curl: .4 });   // R26A: hands folded in front, no arms-down idle
       fa.B.chest.rotation.z += .04; fa.B.head.rotation.z -= .04;
-      handTo(fa, 'R', { fwd: .26, out: -.02, drop: .2, curl: .3 });
+      handTo(fa, 'R', { fwd: .32, out: -.02, drop: .1 + .02 * Math.sin(t * .8), curl: .3 });   // R31L: hands folded at the chest, not hanging
+      fa.B.chest.rotation.z += .03 * Math.sin(t * .6); fa.B.head.rotation.z += .03 * Math.sin(t * .5 + 1);
     }
     if (palms > 0) {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
       // R28: both palms up, both forearms raised in front, symmetric through handTo
       for (const sd of ['L', 'R']) {
-        handTo(ra, sd, { fwd: .34, out: .12, drop: .02 + .03 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)), curl: .12, spread: .35 });
+        handTo(ra, sd, { fwd: .3, out: .2, drop: .16 + .03 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)), curl: .12, spread: .35 });
         PO.palmTo(ra, sd, palms, V(0, 1, .05));
       }
     }
@@ -249,7 +255,7 @@ export default beatScene(ID, {
     b059: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dx: 25, dy: 50 },
     b060: { shot: 'pa', size: 'M', on: 'rahma', z: 1.8, dx: -20, dy: 75 },
     b061: { shot: 'esc', size: 'CU', on: 'mohammed', z: 1.2, dy: 70 },
-    b062: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.9, dx: 15, dy: 50 },
+    b062: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.75, dx: 15, dy: 75 },
     b063: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dx: -75, dy: 50 },
     b064: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dx: -75, dy: 50 },
     b065: { shot: 'pa', size: 'M', on: 'fatma', z: 1.3, dx: 20, dy: 40 },
