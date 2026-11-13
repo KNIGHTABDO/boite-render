@@ -10,7 +10,7 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .046 * 1.6, .0085 * 1.6); mk(0xc9d3de, .042 * 1.6, .0075 * 1.6); S3.scene.add(g); return g;
+  mk(0xe0a820, .032 * 1.3, .007 * 1.3); mk(0xc9d3de, .03 * 1.3, .0065 * 1.3); S3.scene.add(g); return g;
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -43,7 +43,7 @@ const pa = staged('patio_matin', {
   view: (lt, u, t) => {
     if (t < INS[0] || t >= INS[1] || !pa.hp) return null;
     const e = sm(INS[0], INS[1], t);
-    return [pa.hp[0], pa.hp[1] + 4 * e, 8.4 + .6 * e];   // tight: the characters are small in the plate, so the palm needs a high zoom
+    return [pa.hp[0], pa.hp[1] - 30 + 4 * e, 7.4 + .4 * e];   // tight: the characters are small in the plate, so the palm needs a high zoom
   },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
@@ -74,7 +74,7 @@ const pa = staged('patio_matin', {
         const turn = g => { const pq = new THREE.Quaternion(), bq = new THREE.Quaternion(); b.getWorldQuaternion(bq); b.parent.getWorldQuaternion(pq); b.quaternion.copy(pq.invert().multiply(new THREE.Quaternion().setFromAxisAngle(ax, g).multiply(bq))); b.updateWorldMatrix(false, true); };
         const before = n.y; turn(ang); if (palmN().y < before) { b.quaternion.copy(q0); turn(-ang); }
       }
-      PO.fingers(fa, 'R', .18, { thumb: .1, spread: .15 });   // open, fingers slightly curled
+      PO.fingers(fa, 'R', .04, { thumb: 0, spread: .2 });   // R25A r26: open flat palm, fingers extended, slight cup
       st.offer = p2.clone().add(V(0, .03, 0)); if (Bn.RightHandIndex1) st.palmN = palmN();
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.03 * k, .016 * k, .5 + .04 * w, w);
-      place(br.children[1], .025 * k, .034 * k, .35 - .04 * w, -w);
+      place(br.children[0], -.042 * k, .011 * k, .25 + .03 * w, w);
+      place(br.children[1], .042 * k, .011 * k, .25 - .03 * w, -w);
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
@@ -100,7 +100,7 @@ const pa = staged('patio_matin', {
     zo.B.chest.rotation.z += .02 * Math.sin(t * 1.1); zo.B.head.rotation.z += .05 * (.4 + laugh); zo.B.head.rotation.y += .06 * Math.sin(t * .8); zo.B.chest.updateWorldMatrix(false, true);
     for (const s of ['L', 'R']) {
       const early = sm(.3, B(0)[0] + .65, t) * (1 - see);   // b001: a small response before the laugh, preserving the opening offer
-      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz, (s === 'L' ? -.11 : .11) * kz, (s === 'L' ? .1 : .06 + .035 * early) * kz).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.07 : .07) * kz, (s === 'L' ? -.15 : -.2) * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
+      PO.reach(zo, s, front(zo, 'root', (.27 + .025 * early) * kz + .01 * kz * Math.sin(t * 1.1), (s === 'L' ? -.11 : .11) * kz + .012 * kz * Math.sin(t * 1.3 + (s === 'L' ? 0 : 2)), (s === 'L' ? .1 : .06 + .035 * early) * kz + .014 * kz * Math.sin(t * 1.7 + (s === 'L' ? 1 : 3))).lerp(front(zo, 'neck', .22 * kz, (s === 'L' ? -.07 : .07) * kz, (s === 'L' ? -.15 : -.2) * kz), Math.max(.0, see * .8 + .2 * laugh)), { grip: .1 });
       if (early > 0) PO.fingers(zo, s, .08 * early, { spread: .3 });
     }
   },

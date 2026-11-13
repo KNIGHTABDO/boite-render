@@ -146,7 +146,7 @@ const mu = checkedStage('souk_mur', {
   mohammed: { at: WALL.mohammed, face: 'cam', yaw: -.12, seed: 3, talk: 0, lookMax: 0,
     lids: t => .35 + .65 * win(0, .46, .88, t),
     // mutter's face driver multiplies by .25.. .5: four keeps the yawn wide throughout its hold.
-    mutter: t => 4 * win(0, .46, .88, t) },
+    mutter: t => 8 * win(0, .46, .88, t) },
   father: { at: WALL.father, face: 'cam', yaw: -.35, seed: 5, talk: 0, lookMax: .35, look: [1100, 700, 1.5] },
   fatma: { at: [900, 770], face: 'cam', yaw: -.2, costume: 'haik', seed: 9, talk: 0, lookMax: .7, look: 'father' },
   man1: { at: [1330, 930], face: [120, 905], seed: 21, talk: 0 },
@@ -162,8 +162,8 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    if (fm) fm.group.visible = false;   // R25I: a second haik woman read as a duplicate Zoubida (four family members)
-    st.actcheck={haikLat:{zoubida:.04},haikFwd:{zoubida:.08},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[0] + 4.5; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
+    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .04},haikFwd:{zoubida:.08},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: a planted-foot buckle, already tired during pre-roll, then a deeper collapse.
     if (t < B(1)[0]) {
@@ -180,7 +180,7 @@ const mu = checkedStage('souk_mur', {
       }
       mo.B.spine.rotation.x += .42 * sag;
       mo.B.chest.rotation.x += .12 * sag;
-      mo.B.neck.rotation.x -= .6 * yawn;
+      mo.B.neck.rotation.x -= .75 * yawn;
       mo.B.head.rotation.x -= .18 * yawn;
       // Only the upper body leans: the shoulder/sleeve retains its clearance from the haik.
       mo.B.spine.rotation.z += .22 * lean;
@@ -228,7 +228,7 @@ const mu = checkedStage('souk_mur', {
     sync(zo, mo, fa);
     if (shove > 0) {
       // Reach to the CHILD's shoulder height, with the elbow outside the haik.
-      const wrap = at(mo, 'upperArmR').add(V(0, .12, .05));
+      const wrap = at(mo, 'upperArmR').add(V(0, .03, .03));   // hand on his shoulder, not wrapped round
       wrap.addScaledVector(zo.group.position.clone().sub(mo.group.position).setY(0).normalize(), .055);
       const sh=at(zo,'upperArmL'), len=sh.distanceTo(at(zo,'foreArmL'))+at(zo,'foreArmL').distanceTo(at(zo,'handL'));
       if(sh.distanceTo(wrap)>len*.95){const d=wrap.clone().sub(sh).setY(0).normalize();zo.group.position.addScaledVector(d,sh.distanceTo(wrap)-len*.95);sync(zo);}
@@ -419,7 +419,7 @@ export default beatScene(ID, {
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
-    b087: { shot: 'ca', size: 'CU', on: 'father', z: 2.6, dx: -65, dy: 50 },
+    b087: { shot: 'ca', size: 'CU', on: 'father', z: 3.3, dx: -65, dy: 10 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.4, dx: -55, dy: 25 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.3, dx: 120, dy: 95 },
   },

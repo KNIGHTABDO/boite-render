@@ -21,7 +21,7 @@ function blotchTex() {
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
     const u = (x - 31.5) / 31.5, v = (y - 31.5) / 31.5, r = Math.hypot(u * 1.05, v) + .18 * Math.sin(u * 7.1 + v * 3.3) + .1 * Math.sin(v * 9.7 - u * 2.1);
     const a = Math.max(0, Math.min(1, (1 - r) * 2.2)), i = (y * N + x) * 4;
-    d[i] = 112; d[i + 1] = 86; d[i + 2] = 58; d[i + 3] = Math.round(a * a * (3 - 2 * a) * 215);
+    d[i] = 74; d[i + 1] = 50; d[i + 2] = 30; d[i + 3] = Math.round(Math.min(1, a * 1.6) * 255);
   }
   const t = new THREE.DataTexture(d, N, N, THREE.RGBAFormat); t.needsUpdate = true; return t;
 }
@@ -42,7 +42,7 @@ function addStains(mo, S3) {
       if (!hit) continue;
       const n = (hit.face ? hit.face.normal.clone().transformDirection(hit.object.matrixWorld) : toCam.clone());
       if (n.dot(toCam) < 0) n.negate();
-      const m = new THREE.Mesh(new THREE.PlaneGeometry(sz * u, sz * u * 1.15), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, color: '#d9c4a0' }));
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(sz * u * 1.6, sz * u * 1.8), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, color: '#ffffff' }));
       m.userData.stain = true; m.renderOrder = 5;
       m.position.copy(hit.point).addScaledVector(n, .006); m.lookAt(hit.point.clone().add(n)); m.rotateZ(rot);
       mo.group.add(m); m.updateMatrixWorld(true); mo.B.chest.attach(m);
@@ -52,7 +52,7 @@ function addStains(mo, S3) {
 const WALK0 = () => B(7)[0] - .1;
 
 const pa = staged('patio_matin', {
-  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : t >= B(1)[0] - .15 ? .3 : .4,
+  mohammed: { at: [960, 1035], face: 'cam', yaw: .12, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : t >= B(1)[0] - .15 ? .18 : .3,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : 'zoubida' },
   zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
@@ -66,10 +66,10 @@ const pa = staged('patio_matin', {
       return t < B(1)[0] - .1 ? skyOf(st.A.zoubida) : 'mohammed';
     } },
   // Right arcade doorway, facing left into the court — not the foreground bush.
-  fatma: { at: [1625, 928], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
+  fatma: { at: [1668, 912], face: [1000, 980], seed: 11, talk: 0, lookMax: .85,
     look: t => t >= B(6)[0] + .4 ? 'father' : 'zoubida' },
   // Left street door. He is outside the court until "Passe", then walks in.
-  father: { at: [205, 888], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
+  father: { at: [212, 932], face: [860, 980], seed: 5, height: 1.76, talk: 0, lookMax: .7,
     look: 'zoubida',
     walk: { to: [680, 1005], t0: WALK0(), t1: B(7)[0] + 2.1 } },
 }, {
@@ -154,32 +154,39 @@ const pa = staged('patio_matin', {
     if (reply > 0) posed.add('zoL');
     if (point > 0) posed.add('zoR');
     if (eager > 0) posed.add('faL');
-    if (fa.group.visible) posed.add('faR');
+    if (fa.group.visible) { posed.add('faR'); posed.add('faL'); }
     if (call) { posed.add('paR'); posed.add('paL'); }
     if (t >= B(7)[0]) posed.add('zoR');
     const restArm = (a, side, tag) => {
       if (posed.has(tag) || !a.group.visible) return;
       const ph = side === 'L' ? 0 : 1.4, sway = .03 * Math.sin(t * .8 + ph);
-      if (a === mo) handTo(a, side, { fwd: .06 + .03 * Math.sin(t * 2.1 + ph), out: .04 + .015 * Math.sin(t * 1.3 + ph), drop: .3 + sway, curl: .3 + .1 * Math.sin(t * 2.7 + ph), spread: .12 });   // fiddling with the robe
+      if (a === mo) handTo(a, side, side === 'L' ? { fwd: .16 + .02 * Math.sin(t * 1.7), out: .0, drop: .25 + sway, curl: .35, spread: .1 } : { fwd: .06 + .03 * Math.sin(t * 2.1 + ph), out: .04 + .015 * Math.sin(t * 1.3 + ph), drop: .3 + sway, curl: .3 + .1 * Math.sin(t * 2.7 + ph), spread: .12 });   // fiddling with the robe
       else handTo(a, side, { fwd: .08 + .02 * Math.sin(t * .7 + ph), out: a === zo ? .05 : .04, drop: .32 + sway * 1.5, curl: .3, spread: .1 });
     };
     restArm(mo, 'L', 'moL'); restArm(mo, 'R', 'moR');
     restArm(zo, 'L', 'zoL'); restArm(zo, 'R', 'zoR');
-    if (fa.group.visible && eager <= 0) restArm(fa, 'L', 'faL');
+    
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
       if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
-        if (t < B(3)[0]) yawBody(mo, S3.cam, .65);
+        if (t < B(3)[0]) yawBody(mo, S3.cam, .12);
         else { const yc = yawTo(mo.group.position, S3.cam.position); mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true); }   // same proven camera-facing clamp as Zoubida: face stays readable
       }
     }
-    yawToward(mo, S3.cam, t < B(3)[0] ? .65 : t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
-    if (Math.abs(t-6.2)<.03) for (const [n,a] of [['mo',mo],['zo',zo]]) { const hp=at(a,'head'); let mx=-9,mn=9; a.group.traverse(o=>{ if(o.isMesh&&o.geometry?.attributes?.position){ const ps=o.geometry.attributes.position; const v=V(); for(let i=0;i<ps.count;i+=3){ v.fromBufferAttribute(ps,i); if(o.isSkinnedMesh) o.applyBoneTransform(i,v); v.applyMatrix4(o.matrixWorld); if(Math.abs(v.y-hp.y)<.1&&Math.hypot(v.x-hp.x,v.z-hp.z)<.3){ const l=a.B.head.worldToLocal(v.clone()); mx=Math.max(mx,l.z); mn=Math.min(mn,l.z);} } } }); const hl=at(a,'handL'),hr=at(a,'handR'); console.error('DBGZ',n,'headLocalZ',mn.toFixed(3),mx.toFixed(3),'handL-handR x',(hl.x-hr.x).toFixed(2),'z',(hl.z-hr.z).toFixed(2),'ry',a.group.rotation.y.toFixed(2)); }
+    yawToward(mo, S3.cam, t < B(3)[0] ? .12 : t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
-    if (fa.group.visible) holdBroomFwd(fa, broom, S3.scene, 'R'); else broom.visible = false;
+    if (fa.group.visible) {
+      holdBroomFwd(fa, broom, S3.scene, 'R');
+      // left hand on the door jamb (right of her), leaning out of the doorway
+      const shL = at(fa, 'upperArmL'), jamb = shL.clone().add(dirW(fa, -.34, -.04, -.02)); PO.reach(fa, 'L', jamb, { grip: .02, pole: [.4, .05, -.3] }); PO.fingers(fa, 'L', .3);
+      broom.updateMatrixWorld(true);
+      const bb = new THREE.Box3().setFromObject(broom), fy = fa.group.position.y, dlt = bb.min.y - fy;
+      if (globalThis.DBG8) console.error('DBGBROOM', dlt.toFixed(3));
+      if (dlt > 0 && dlt < .16) broom.position.y -= dlt;
+    } else broom.visible = false;
     // Nod rides on top of the eyeline, after the camera yaw, so it is not pulled back to the lens.
     if (nod > 0) {
       zo.B.neck.rotation.x += .1 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5)) * nod;
@@ -191,9 +198,9 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { pa },
   plan: {
-    b066: { shot: 'pa', size: 'W', on: 'mohammed' },
-    b067: { shot: 'pa', size: 'CU', on: 'mohammed', z: 1.75, dy: 60, dx: 40 },
-    b068: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.28, dx: -20, dy: -28 },
+    b066: { shot: 'pa', size: 'W', on: 'mohammed', dy: 55 },
+    b067: { shot: 'pa', size: 'CU', on: 'mohammed', z: 1.6, dy: 95, dx: 40 },
+    b068: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.25, dx: -20, dy: 20 },
     b069: { shot: 'pa', size: 'M', on: 'fatma', z: 1.5, dy: 12 },
     b070: { shot: 'pa', size: 'CU', on: 'fatma', z: 1.75, dy: 62, dx: -200 },
     b071: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.6, dx: 40, dy: 30 },
