@@ -11,6 +11,7 @@ import { SEAT } from './s09_escalier.js';
 import { castScale, pinKnees } from '../lib/fix8c.js';
 import { sitStepDrop as sitStep } from '../lib/fix8_R15C.js';
 import { akimbo } from '../lib/fix8_R16F.js';
+import { hipBlend } from '../lib/fix8_R31L.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 
 const ID = 's10_roi', L = lines(ID);
@@ -64,7 +65,7 @@ const esc = staged('escalier', {
     yawToward(zo, S3.cam, .3);
     open34(zo, S3.cam, .55);
     castScale(mo);
-    sitStep(mo, SEAT.o.seat - .045, SEAT.o.floor, .5);
+    sitStep(mo, SEAT.o.seat - .075, SEAT.o.floor, 1.0);   // R31L: pelvis on tread 3, soles on tread 2 (as s09)
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;
@@ -75,17 +76,14 @@ const esc = staged('escalier', {
     const scold = zo.group.visible ? hips : 0;
     // Before "À quoi tu joues ?": both hands low and loose, away from her face. From there on to the end of her speech: both hands on the hips.
     if (zo.group.visible) {
-      if (t >= B(2)[0] - .05) {
-        // R24A: R hand rests on top of the hip (outside the sash); L hand gestures toward the stairs, phrased per beat, settling back on the hip between.
-        const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2);
-        const sv = Math.sin(t * 2.1);
-        akimbo(zo);   // R26A: right hand really on the hip (the old handTo hovered by the rail), left re-posed below
-        // R25: the L arm is on Mohammed's side; keep it low by her side (hip height) so it never crosses his face.
-        handTo(zo, 'L', { fwd: .02 + g * (.04 + .02 * sv), out: .1 + g * .03, drop: .4 - g * (.04 + .02 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
-        if (g > .05) PO.palmTo(zo, 'L', .4 * g, V(.5, .7, .1));
-        zo.B.spine.rotation.z += .03; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
-      }
-      else for (const sd of ['L', 'R']) handTo(zo, sd, { fwd: .03, out: .15, drop: .31, curl: .3, spread: .1 });
+      // R31L: loose natural arms (elbows bent, hands near the waist) until her cue "A quoi tu joues ?", then a 0.6 s blend onto the hips.
+      const hw = sm(B(2)[0] + .05, B(2)[0] + .65, t);
+      const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2) * hw;
+      const sv = Math.sin(t * 2.1), sl = Math.sin(t * .8);
+      hipBlend(zo, 'R', hw, { fwd: .2, out: .0, drop: .25 + .02 * sl, curl: .35, spread: .08 });
+      hipBlend(zo, 'L', hw, { fwd: .24, out: .02, drop: .23 - .02 * sl, curl: .35, spread: .08 }, { fwd: .09 + g * (.05 + .02 * sv), out: .2 + g * .03, drop: .3 - g * (.04 + .02 * sv) });
+      if (g > .05) PO.palmTo(zo, 'L', .4 * g, V(.5, .7, .1));
+      zo.B.spine.rotation.z += .03 * hw; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
     }
     laugh(zo, win(4, .35, 1.05, t), t);
     if (!st.scornFace) {
@@ -106,13 +104,12 @@ const esc = staged('escalier', {
     mo.B.spine.updateWorldMatrix(false, true);
     pinKnees(mo, 0);
     onKnees(mo);
-    if (!mo.pins && proud < .05 && t < B(7)[0]) for (const sd of ['L', 'R']) {   // R26A: hands rest on the knees, not in the air beside them
+    if (!mo.pins && proud < .05) for (const sd of ['L', 'R']) {   // R26A: hands rest on the knees, not in the air beside them
       const kk = mo.group.scale.y / 1.6, kn = at(mo, 'shin' + sd).add(V(0, .045 * kk, .02 * kk));
       PO.reach(mo, sd, kn, { grip: .02, pole: [sd === 'L' ? .5 : -.5, .04, -.28] }); PO.fingers(mo, sd, .3, { spread: .1 });
     }
     { const sc = win(7, .05, 1, t);   // R30H: scornful: chin up, loose folded arms, small sway
       if (sc > 0) { mo.B.head.rotation.x -= .14 * sc; mo.B.head.rotation.z += .06 * sc + .02 * Math.sin(t * 1.2) * sc; mo.B.chest.rotation.z += .02 * Math.sin(t * .9) * sc;
-        for (const sd of ['L', 'R']) handTo(mo, sd, { fwd: .2, out: -.06, drop: .1, curl: .45, spread: .05 });
         mo.B.head.updateWorldMatrix(false, true); } }
   },
 });

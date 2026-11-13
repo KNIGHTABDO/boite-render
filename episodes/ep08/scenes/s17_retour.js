@@ -53,7 +53,7 @@ function veilDown(a) {
 }
 const pe = staged('chambre_penombre', {
   father: { at: [400, 890], face: [1000, 800], seed: 5, height: 1.76, walk: { to: [450, 870], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
-    lookMax: .9, look: (t, st) => {
+    lookMax: .5, look: (t, st) => {
       if (!(t > B(4)[0])) return null;
       const p = at(st.A.mohammed, 'head').clone();
       p.y = Math.max(p.y, at(st.A.father, 'head').y - .22);
@@ -71,7 +71,7 @@ const pe = staged('chambre_penombre', {
     if (t < B(4)[0] - .05) st.fy0 = fa.group.rotation.y;
     else if (st.fy0 != null) {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
-      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .6; fa.group.updateMatrixWorld(true);
+      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .3; fa.group.updateMatrixWorld(true);
     }
     lap(zo); veilDown(zo);
     if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .35; h.rotation.y += .25; h.updateWorldMatrix(false, true); }; }
@@ -146,9 +146,9 @@ const nu = staged('chambre_nuit', {
     PO.reach(fa, 'L', PO.hipToWorld(fa, .16 * kf, -.05 * kf, .07 * kf), { grip: .1, pole: [.15, -.3, -.1] });
     if (!(offer > 0 || take > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, -.16 * kf, (-.04 + .02 * Math.sin(t * 1.5)) * kf, .08 * kf), { grip: .12, pole: [-.15, -.3, -.1] });
     if (offer > 0 && take <= 0) {
-      const sh = at(fa, 'upperArmR'), reach = .44 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
-      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .03 * win(11, 0, 1, t))); p.y = sh.y - .17 * kf;
-      PO.reach(fa, 'R', p, { grip: 0, pole: [-1.0, .2, .9] });   // R31J: shorter reach, elbow out
+      const sh = at(fa, 'upperArmR'), reach = .48 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
+      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .03 * win(11, 0, 1, t))); p.y = sh.y - .15 * kf;
+      PO.reach(fa, 'R', p, { grip: 0, pole: [-1.7, .4, .5] });   // R31J: shorter reach, elbow out
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
     if (take > 0) {
@@ -169,7 +169,7 @@ const nu = staged('chambre_nuit', {
       const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
       const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > len * .95) dir.setLength(len * .95);
-      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-1.1, .3, 2.2] });   // R31C: pole pushed further out, the forearm crossed his own torso at b121
+      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-2.0, .5, .5] });   // R31C: pole pushed further out, the forearm crossed his own torso at b121
     }
     if (heart > 0) {
       PO.reach(zo, 'R', front(zo, 'chest', .2 * kz, -.07 * kz, -.2 * kz), { grip: 0, pole: [-1.0, .1, .5] });   // R25M: flat on the heart, below the collarbone
