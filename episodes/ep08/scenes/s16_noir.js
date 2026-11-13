@@ -28,8 +28,9 @@ function mourn(zo, t) {
   zo.B.neck.rotation.z += .035 * Math.sin(t * .55) + .02 * sh; zo.B.head.rotation.y += .05 * Math.sin(t * .37 + 1);   // slow small head shake
   for (const s of ['L', 'R']) zo.B['clavicle' + s] && (zo.B['clavicle' + s].rotation.z += (s === 'L' ? 1 : -1) * .05 * sh);
   zo.B.chest.rotation.x -= .11;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
+  const t1 = B(1)[0];
   {   // R31A r7: head bows into the hands. b103 = both palms at the head, targets forward of the face, elbows high and out
-    const B = zo.B, k = zo.group.scale.y / 1.6, two = t < B(1)[0];
+    const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
     B.chest.rotation.x -= .0;   // net chest pitch already ~ -.05 above
     B.neck.rotation.x += .17 + .02 * sob; zo.group.updateMatrixWorld(true);
     const fwd = two ? .13 : .12;

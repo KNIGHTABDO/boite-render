@@ -39,7 +39,7 @@ function fever(mo, t, st, S3) {
 function temples(a, { bow = .06 } = {}) {
   const B = a.B; a.B.chest.rotation.x -= .05; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .085, .08, .08));
+    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .08, .075, .07));
     let wrist = skin();
     for (let i = 0; i < 4; i++) {
       const p = skin();
