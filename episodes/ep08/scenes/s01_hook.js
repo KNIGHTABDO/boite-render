@@ -54,8 +54,8 @@ const pa = staged('patio_matin', {
       PO.reach(fa, 'R', p2, { grip: 0, pole: [-.95, -.25, -.1] });
       // R23D: true supination: turn the forearm about its own axis until the palm normal points up (sign-checked), palm open
       const Bn = fa.B, W = n => Bn[n].getWorldPosition(V(0, 0, 0));
-      const palmN = () => { fa.group.updateMatrixWorld(true); const hp = W('RightHand'), al = W('RightIndex1').sub(hp).normalize(), tt = W('RightThumb1').sub(hp); tt.addScaledVector(al, -tt.dot(al)); return V(0, 0, 0).crossVectors(tt, al).normalize(); };
-      if (Bn.RightHand && Bn.RightIndex1) for (let i = 0; i < 3; i++) {
+      const palmN = () => { fa.group.updateMatrixWorld(true); const hp = W('RightHand'), al = W('RightHandIndex1').sub(hp).normalize(), tt = W('RightHandThumb1').sub(hp); tt.addScaledVector(al, -tt.dot(al)); return V(0, 0, 0).crossVectors(tt, al).normalize(); };
+      if (Bn.RightHand && Bn.RightHandIndex1) for (let i = 0; i < 3; i++) {
         const ax = W('RightHand').sub(Bn.foreArmR.getWorldPosition(V(0, 0, 0))).normalize(), n = palmN();
         const a1 = n.clone().addScaledVector(ax, -n.dot(ax)).normalize(), up = V(0, 1, 0).addScaledVector(ax, -ax.y).normalize();
         const ang = Math.atan2(V(0, 0, 0).crossVectors(a1, up).dot(ax), a1.dot(up)), b = Bn.foreArmR, q0 = b.quaternion.clone();
@@ -63,7 +63,7 @@ const pa = staged('patio_matin', {
         const before = n.y; turn(ang); if (palmN().y < before) { b.quaternion.copy(q0); turn(-ang); }
       }
       PO.fingers(fa, 'R', .18, { thumb: .1, spread: .15 });   // open, fingers slightly curled
-      st.offer = p2.clone().add(V(0, .03, 0)); st.palmN = palmN();
+      st.offer = p2.clone().add(V(0, .03, 0)); if (Bn.RightHandIndex1) st.palmN = palmN();
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
       const br = st.br ||= bangles(S3);
