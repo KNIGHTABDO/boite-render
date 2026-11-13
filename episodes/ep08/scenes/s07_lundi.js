@@ -87,7 +87,7 @@ const ch = staged('chambre_jour', {
     }
     // he turns his shoulders toward Zoubida when she speaks (b030, b033, b034) so head + body reach her
     const zw = zwin(t);
-    if (zw > 0) { mo.B.spine.rotation.y += ZS * .12 * zw; mo.B.chest.rotation.y += ZS * .1 * zw;   // R31K: face stays open to camera }
+    if (zw > 0) { mo.B.spine.rotation.y += ZS * .12 * zw; mo.B.chest.rotation.y += ZS * .1 * zw; }   // R31K: face stays open to camera
     if (wel > 0) fa.B.spine.rotation.x += .08 * wel;
     if (ask > 0) { zo.B.spine.rotation.x += .1 * ask; zo.B.head.rotation.z += .08 * ask; }
     if (pat > 0) { fa.B.spine.rotation.x += .22 * pat; fa.B.chest.rotation.x += .1 * pat; fa.B.neck.rotation.x += .12 * pat; }   // over the boy, still upright enough that the forearm stays outside the ribs
