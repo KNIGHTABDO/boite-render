@@ -163,7 +163,7 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[0] + 4.5; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
+    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
     st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .04},haikFwd:{zoubida:.08},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
@@ -237,7 +237,7 @@ const mu = checkedStage('souk_mur', {
     }
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
-      zo.group.position.y = by.zo + .085; mo.group.position.y = by.mo + .05; }
+      zo.group.position.y = by.zo + .01; mo.group.position.y = by.mo; }   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },
 });
@@ -279,8 +279,8 @@ const ca = checkedStage('souk_mur', {
     const seat = front(mo, 'root', .10 * km, .02 * km, 0).add(V(0, .03 * km, 0));
     st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.10*km,.02*km,0).add(V(0,.03*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>front(mo,'chest',-.19*km,.05*km,-.06*km),purpose:'arm around boy back'}];
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.48, -.12, .34] });
-    PO.reach(fa, 'L', front(mo, 'chest', -.19 * km, .05 * km, -.06 * km), { grip: .015, pole: [.4, .2, .35] });
-    PO.reach(mo, 'R', front(fa, 'neck', .13, .09 * kf, -.08), { grip: .01 });
+    PO.reach(fa, 'L', front(mo, 'chest', -.14 * km, .05 * km, -.06 * km), { grip: .015, pole: [.8, .2, .5] });
+    PO.reach(mo, 'R', front(fa, 'neck', .13, .14 * kf, -.08), { grip: .01 });
     PO.reach(mo, 'L', front(fa, 'upperArmR', .24 * kf, .16 * kf, .05), { grip: .01 });
     sync(fa, mo, zo);
   },
@@ -340,7 +340,7 @@ const la = checkedStage('souk_bijoux', {
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={haikFwd:{zoubida:.08},haikLat:{zoubida:.04},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.18},haikLat:{zoubida:.075},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
@@ -357,9 +357,10 @@ const la = checkedStage('souk_bijoux', {
       const drag=st.dragSide=nearest(ma,client), receive=nearest(client,ma);
       const clasp = at(ma, 'upperArm'+drag).lerp(at(client, 'upperArm'+receive), .5);   // R31C: nearer the dragger so the client's forearm leaves his torso
       clasp.y -= .32;
-      PO.reach(ma, drag, clasp, { grip: 0, pole: [.3, .05, -.25] });
+      { const sg = drag === 'L' ? 1 : -1; PO.reach(ma, drag, clasp, { grip: 0, pole: [sg * .7, .1, .3] }); }   // R31J: elbow outward
       PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
+      { const yc = yawTo(ma.group.position, S3.cam.position), y0 = ma.group.rotation.y; ma.group.rotation.y = y0 + Math.atan2(Math.sin(yc - y0), Math.cos(yc - y0)) * .5; sync(ma); }   // R31J: face less away from lens
       for (const [n, p0, p1, delay] of [
         ['woman1', [1250, 690], [700, 930], 0],
         ['kid2', [1180, 720], [820, 920], .35],
