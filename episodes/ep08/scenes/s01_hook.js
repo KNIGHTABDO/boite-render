@@ -10,7 +10,7 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .03 * 1.4, .0075 * 1.4); mk(0xc9d3de, .029 * 1.4, .007 * 1.4); S3.scene.add(g); return g;
+  mk(0xe0a820, .024, .0035); mk(0xc9d3de, .022, .003);   // R31H: thin small bangles seated in the palm S3.scene.add(g); return g;
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.035 * k, .034 * k, .35 + .03 * w, w);
-      place(br.children[1], .055 * k, .034 * k, .35 - .03 * w, -w);
+      place(br.children[0], -.004 * k, .016 * k, .12 + .02 * w, w);
+      place(br.children[1], .012 * k, .022 * k, .16 - .02 * w, -w);   // R31H: both on the palm centre, stacked, clear of cuff and fingertips
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
@@ -100,12 +100,12 @@ const pa = staged('patio_matin', {
     zo.B.chest.rotation.z += .02 * Math.sin(t * 1.1); zo.B.head.rotation.z += .05 * (.4 + laugh); zo.B.head.rotation.y += .06 * Math.sin(t * .8); zo.B.chest.updateWorldMatrix(false, true);
     {   // R28: relaxed arms: the left hand rests low at her belly, the right reaches gently toward the rings (soft wrists, small drift)
       const reachU = sm(.3, 3.2, t) * (1 - .3 * laugh), dr = (ph) => Math.sin(t * 1.2 + ph);
-      PO.reach(zo, 'L', front(zo, 'root', (.2 + .01 * dr(0)) * kz, -.1 * kz, (.02 + .01 * dr(1)) * kz), { grip: .3 });
+      PO.reach(zo, 'L', front(zo, 'root', (.2 + .02 * dr(0)) * kz, -.12 * kz, (.02 + .02 * dr(1)) * kz), { grip: .3, pole: [.5, -1, -.3] });
       const base = front(zo, 'root', .26 * kz, .1 * kz, .05 * kz).lerp(front(zo, 'neck', .22 * kz, .07 * kz, -.2 * kz), .3 * see + .1 * laugh);
-      const tgt = base.lerp(st.offer.clone().add(V(0, .09 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .5 * reachU);
+      const tgt = base.lerp(st.offer.clone().add(V(0, .15 * kz, 0)), .42 * reachU);   // R31H: stop ~3-4 cm short of his palm, above the rings
       tgt.add(V(0, .012 * kz * dr(2), 0));
       PO.reach(zo, 'R', tgt, { grip: .1, pole: [-.5, -1, .3] });
-      PO.fingers(zo, 'L', .3, { thumb: .2, spread: .1 }); PO.fingers(zo, 'R', .25 + .1 * reachU, { thumb: .15, spread: .12 });
+      PO.fingers(zo, 'L', .32, { thumb: .25, spread: .14 }); PO.fingers(zo, 'R', .3 + .08 * reachU, { thumb: .2, spread: .14 });
       const fz = st.faces.find(x => x[0] === zo); if (fz) fz[3] = { smile: .55 + .3 * reachU };   // warm expression
     }
   },
