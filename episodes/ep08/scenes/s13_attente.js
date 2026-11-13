@@ -244,7 +244,7 @@ const mu = checkedStage('souk_mur', {
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
       zo.group.position.y = by.zo - .01 + (t < B(1)[0] ? .008 : 0); mo.group.position.y = by.mo + .01; }
     if (t < B(1)[0]) { zo.B.thighL.rotation.x -= .03; zo.B.shinL.rotation.x += .10; }
-    if (shove > 0) { zo.B.thighL.rotation.x -= .03 * shove; zo.B.shinL.rotation.x += .10 * shove; }   // R31Q: same lift during the b086 shove   // R31Q: knee up / shin tucked, lifts the left leg off the floor in b083
+    if (shove > 0 || t >= B(3)[0]) { const w = Math.max(shove, t >= B(3)[0] ? 1 : 0); zo.B.thighL.rotation.x -= .03 * w; zo.B.shinL.rotation.x += .10 * w; }   // R31Q: same lift during the b086 shove   // R31Q: knee up / shin tucked, lifts the left leg off the floor in b083
     sync(zo, mo); liftCloth(zo, t < B(1)[0] ? .14 : t < B(3)[0] ? .09 : .22); liftCloth(mo);   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },
