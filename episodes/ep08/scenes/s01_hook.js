@@ -109,9 +109,9 @@ const pa = staged('patio_matin', {
 {   // R25A: the hand's plate point, projected ONCE at load with the stage's default view (project() depends on the current camera, so never per frame)
   const ld = pa.load;
   pa.load = async () => { const had = !!pa.st; await ld(); if (had || pa.hp) return;
-    const fa = pa.st.A.father, k = fa.group.scale.y / 1.6, yw = fa.group.rotation.y;
-    const w = V(fa.group.position.x + Math.sin(yw) * .46 * k - Math.cos(yw) * .2 * k, fa.group.position.y + 1.0 * k, fa.group.position.z + Math.cos(yw) * .46 * k + Math.sin(yw) * .2 * k);
-    const [px, py] = pa.S3.project(w); pa.hp = [px + 15, py - 10]; };
+    // hand ~ .55 m in front of and .5 m below the father's head, in plate px from the load-time head projection and body span
+    const h = pa.heads[0], pxm = pa.bodyPx[0] / (.83 * pa.st.A.father.group.scale.y);
+    pa.hp = [h[0] + .55 * pxm, h[1] + .5 * pxm]; if (!pa.hp.every(Number.isFinite)) pa.hp = null; };
 }
 
 // Right divan top, clockwise from the back-left corner. The chest beside it is off limits.
