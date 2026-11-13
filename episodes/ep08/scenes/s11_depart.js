@@ -52,7 +52,7 @@ function addStains(mo, S3) {
 const WALK0 = () => B(7)[0] - .1;
 
 const pa = staged('patio_matin', {
-  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(1)[0] - .15 ? .3 : .4,
+  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : t >= B(1)[0] - .15 ? .3 : .4,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : 'zoubida' },
   zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
