@@ -49,13 +49,13 @@ function sized(sh, factors) {
 }
 
 /** Soft elbows, hands hanging at the actor's own arm length; no below-root IK targets. */
-function hangArms(a, t, sides = ['L', 'R'], swing = 0, rate = 2.4) {
+function hangArms(a, t, sides = ['L', 'R'], swing = 0, rate = 2.4, lat = .07) {
   const ka = k(a);
   for (const s of sides) {
     const shoulder = at(a, 'upperArm' + s), elbow = at(a, 'foreArm' + s), wrist = at(a, 'hand' + s);
     const len = shoulder.distanceTo(elbow) + elbow.distanceTo(wrist);
     const hand = shoulder.clone().add(V(0, -.91 * len, 0))
-      .addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), .07 * ka)
+      .addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), lat * ka)
       .addScaledVector(dirW(a, 0, 0, 1), (.04 + .008 * Math.sin(t + (s === 'L' ? 0 : 1)) + swing * Math.sin(t * rate + (s === 'L' ? 0 : Math.PI))) * ka)
       .addScaledVector(dirW(a, 0, 1, 0), swing * .25 * Math.abs(Math.sin(t * rate + (s === 'L' ? 0 : Math.PI))) * ka);
     PO.reach(a, s, hand, { grip: 0, pole: s === 'L' ? [.3, .05, -.25] : [-.3, .05, -.25] });
@@ -87,13 +87,15 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .14 * kk, .34 * kk, -.36 * kk);
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .17 * kk, .05 * kk, -.31 * kk);   // R31U: held up at the chest / reading height, both hands on it
   lh.scale.setScalar(Math.min(.62, kk * .72));
-  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .25 * wave, a.group.rotation.y - .25 + amp * .8 * wave, -.08 + .6 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
+  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.3 + .15 * wave, a.group.rotation.y - .1 + amp * .45 * wave, -.04 + .35 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
   lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
   IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(-.08, .11, .025)));
-  PO.fingers(a, 'R', .35, { thumb: .25 });
+  PO.reach(a, 'L', lh.localToWorld(V(.175, .045, .035)), { grip: 0, pole: [.35, -.2, -.1] });
+  IK.aim(a.B.handL, PO.handPts(a, 'L').end, lh.localToWorld(V(.08, .11, .025)));
+  PO.fingers(a, 'R', .35, { thumb: .25 }); PO.fingers(a, 'L', .35, { thumb: .25 });
 }
 
 // ---------------------------------------------------------------- b010 the Msid in the heat
@@ -120,10 +122,10 @@ const ms = checkedStage('ep03/msid_estrade', {
     st.lh ||= [kid1, kid2, mo].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     fanLouha(kid1, st.lh[0], t, 0, 7); fanLouha(kid2, st.lh[1], t, 1.9, 6); fanLouha(mo, st.lh[2], t, .7, 4.2, .4);   // Mohammed fans slower, wearily
     // Start wiping during the pre-roll too; sweep across the brow, then briefly lower the open hand.
-    const phase = ((t + 1.2) % 3.6) / 3.6, w = 1 - sm(.88, 1, phase);   // R28: already wiping at t=0
+    const phase = ((t + 1.2) % 3.6) / 3.6, w = t < 8 ? 1 : 1 - sm(.88, 1, phase);   // R28: already wiping at t=0
     if (w > 0) {
       fq.B.neck.rotation.x += .1 * w; upd(fq, 'neck');
-      const sweep = .19 + .025 * Math.sin(phase * Math.PI * 2 - Math.PI / 2);
+      const sweep = .19 + .05 * Math.sin(t * 3.2);   // R31U: continuous brow wipe
       PO.reach(fq, 'R', front(fq, 'head', .15 * kf, (sweep - .19) * kf * 1.6, .055 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
       PO.fingers(fq, 'R', .08, { thumb: .1, spread: .25 });
       PO.palmTo(fq, 'R', .8, dirW(fq, 0, 0, -1));
@@ -140,7 +142,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     // he looks back at the boys only once he has turned to them (a leader walking away cannot face the file behind him)
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
-  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [905, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
+  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [870, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
   kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1015, 822], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1395, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
@@ -155,7 +157,7 @@ const pr = sized(checkedStage('mausolee_rev', {
       const km = k(mo), fR = at(mo, 'footR').addScaledVector(dirW(mo, 0, 0, 1), .07 * km * sh).addScaledVector(dirW(mo, 1, 0, 0), .025 * km * sh);   // R28: weight on the left leg, right foot a step forward
       IK.leg(mo, 'R', fR, at(mo, 'shinR')); }
     const t1f = T11(0, 3.6).t1;
-    hangArms(fq, t, ['L', 'R'], .13 * (1 - sm(t1f - .5, t1f + .1, t)));   // only the students carry slates; the leader's arms swing while he walks
+    hangArms(fq, t, ['L', 'R'], .13 * (1 - sm(t1f - .5, t1f + .1, t)), 2.4, .03);   // R31U: arms close to the sides, relaxed   // only the students carry slates; the leader's arms swing while he walks
     const lead = sm(T11(0, 3.6).t1 - .6, T11(0, 3.6).t1 + .3, t);
     const turn = yawTo(fq.group.position, kid1.group.position);
     fq.group.rotation.y += Math.atan2(Math.sin(turn - fq.group.rotation.y), Math.cos(turn - fq.group.rotation.y)) * lead;
@@ -199,7 +201,7 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
     st.G.apply = () => {};   // the ritual follows the path, with no sideways conversation gaze
     let underLeaf = false;
     for (const [n, off, side] of GIRLS) {
-      const a = st.A[n], d = (start + v * (t - B(2)[0]) + period * 10 - off/4.8*period) % period;
+      const a = st.A[n], d = (start + v * (t - B(2)[0]) + period * 10 - off/7.5*period) % period;
       // Stay behind the tomb only on the far side; at least one of the three phases is always near.
       // A second woman stays on the near half while the leader passes behind the tomb.
       let i = 1; while (i < len.length - 1 && len[i] < d) i++;
