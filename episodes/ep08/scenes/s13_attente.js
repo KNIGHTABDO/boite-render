@@ -178,8 +178,8 @@ const mu = checkedStage('souk_mur', {
       if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
       sync(mo);
       const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
-      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .12 * km, s === 'R' ? .11 : -.11, .06 * km), { grip: .01 });
-      PO.reach(mo, 'R', front(mo, 'root', .12 * km, .11, .06).lerp(cloth, lean), { grip: .01 });
+      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .09 * km, s === 'R' ? .09 : -.07, .12 * km), { grip: .01 });   // R31Q: L target closer to the shoulder (IK reach)
+      PO.reach(mo, 'R', front(mo, 'root', .09 * km, .09, .12 * km).lerp(cloth, lean), { grip: .01 });
     }
 
     // b086: five staggered foreground crossings. At most two cross the family together;
@@ -242,8 +242,8 @@ const mu = checkedStage('souk_mur', {
     }
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
-      zo.group.position.y = by.zo - .01 + .03 * shove; mo.group.position.y = by.mo + .01; }
-    sync(zo, mo); liftCloth(zo); liftCloth(mo);   // R31J: seat gap / hanging sole
+      zo.group.position.y = by.zo - .01; mo.group.position.y = by.mo + .01; }
+    sync(zo, mo); liftCloth(zo, t >= B(5)[0] ? .14 : .09); liftCloth(mo);   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },
 });
@@ -279,15 +279,15 @@ const ca = checkedStage('souk_mur', {
     mo.group.position.x += delta.x; mo.group.position.z += delta.z;
     mo.group.position.y += delta.y * lift;
     // keep the boy's torso outside the father's chest/djellaba: the cheek rests on the shoulder, not inside the neck
-    mo.group.position.addScaledVector(dirW(fa, 0, 0, 1), .0 * lift);
+    mo.group.position.addScaledVector(dirW(fa, 0, 0, 1), .07 * lift); mo.group.position.y += .06 * lift;   // R31Q: boy held higher, chest forward against father's chest, off the forearm/pelvis
     sync(mo);
     // Low supporting forearm under the pelvis; the other arm wraps the outside of his back.
     // R31J: father's L hand on the boy's side at shoulder width (the side nearer that shoulder), elbow out
     const sideL = () => { const sh = at(fa, 'upperArmL'), a = front(mo, 'chest', -.02 * km, .14 * km, -.04 * km), b = front(mo, 'chest', -.02 * km, -.14 * km, -.04 * km); return sh.distanceTo(a) < sh.distanceTo(b) ? a : b; };
-    const seat = front(mo, 'root', .10 * km, .02 * km, 0).add(V(0, .03 * km, 0));
-    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.10*km,.02*km,0).add(V(0,.03*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>sideL(),purpose:'arm around boy back'}];
+    const seat = front(mo, 'root', .06 * km, .02 * km, 0).add(V(0, -.02 * km, 0));
+    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.06*km,.02*km,0).add(V(0,-.02*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(fa, 0, 0, 1), .05),purpose:'arm around boy back'}];
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.9, -.1, .2] });
-    PO.reach(fa, 'L', sideL(), { grip: .015, pole: [1.0, .3, .1] });
+    PO.reach(fa, 'L', sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(fa, 0, 0, 1), .05), { grip: .015, pole: [1.0, .3, .1] });   // R31Q: hand out from midline
     PO.reach(mo, 'R', front(fa, 'neck', .13, .14 * kf, -.08), { grip: .01 });
     PO.reach(mo, 'L', front(fa, 'upperArmR', .24 * kf, .16 * kf, .05), { grip: .01 });
     sync(fa, mo, zo);
@@ -316,6 +316,7 @@ const la = checkedStage('souk_bijoux', {
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo, mohammed: mo, marchand: ma, man1: client } = st.A;
     child(mo); closeHaik(zo);
+    PO.reach(zo, 'R', front(zo, 'chest', .24 * k(zo), .22 * k(zo), -.12 * k(zo)), { grip: .015 });   // R31Q: R hand out .15 lateral, .1 fwd (forearm out of torso)
     const F = (x, y) => S3.floorAt(x, y), km = k(ma), kf = k(fa);
     const addressYaw = p => {
       const y0 = yawTo(p, S3.cam.position), y1 = yawTo(p, fa.group.position);
@@ -348,7 +349,7 @@ const la = checkedStage('souk_bijoux', {
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={haikFwd:{zoubida:.18},haikLat:{zoubida:.075},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.18},haikLat:{zoubida:.17},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
