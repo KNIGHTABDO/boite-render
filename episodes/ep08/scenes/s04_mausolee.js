@@ -288,11 +288,11 @@ const ab = sized(checkedStage('mausolee_rev', {
       const yaw1 = yawTo(a.group.position, fq.group.position), yaw2 = -1.15, turn = sm(B(4)[0] + d - .1, B(4)[0] + d + .6, t);
       const yawW = yaw1 + Math.atan2(Math.sin(yaw2 - yaw1), Math.cos(yaw2 - yaw1)) * turn;
       a.group.rotation.y = yaw2; a.group.updateMatrixWorld(true);
-      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .72 * ka);
+      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .62 * ka);
       a.group.rotation.y = yawW; a.group.updateMatrixWorld(true);
       if (u <= 0) { foldHands(a, t, ph); return; }
-      a.B.spine.rotation.set(.8 * u, 0, 0); a.B.chest.rotation.set(.35 * u, 0, 0);
-      a.B.spine.position.applyAxisAngle(V(1, 0, 0), .8 * u); upd(a, 'spine');
+      a.B.spine.rotation.set(.9 * u, 0, 0); a.B.chest.rotation.set(.3 * u, 0, 0);
+      a.B.spine.position.applyAxisAngle(V(1, 0, 0), .9 * u); upd(a, 'spine');
       for (const [s, q] of [['L', 0], ['R', Math.PI]]) {
         const c = Math.cos(t * 4.2 + ph + q) * .035, e = Math.sin(t * 4.2 + ph + q) * .04;
         const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e + .03, .03));
@@ -322,14 +322,12 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = 1.05 * r;
-      a.B.spine.rotation.set(hinge, 0, 0); a.B.chest.rotation.set(0, 0, 0);
-      a.B.spine.position.applyAxisAngle(V(1, 0, 0), hinge);
+      const hinge = 1.42 * r, hs = .6 * hinge;
+      a.B.spine.rotation.set(hs, 0, 0); a.B.chest.rotation.set(hinge - hs, 0, 0);   // R31I: bend shared by spine and chest, so the skin stretches over two joints
+      a.B.spine.position.applyAxisAngle(V(1, 0, 0), hs);
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
-      // R31I: the back panels follow the bowed back (torso skin tore through the robe at ruku)
-      for (const [bn, f] of [['SkirtBack1', .45], ['LeftRobe1', .25], ['RightRobe1', .25]]) { const b = a.B[bn]; if (b?.userData?.rest) { b.quaternion.copy(b.userData.rest).multiply(new THREE.Quaternion().setFromAxisAngle(V(1, 0, 0), f * hinge)); b.updateWorldMatrix(false, true); } }
       const fw = dirW(a, 0, 0, 1); let settle = 0;
       for (const s of ['L', 'R']) {
         const shoulder = at(a, 'upperArm' + s), elbow = at(a, 'foreArm' + s), wrist = at(a, 'hand' + s);
