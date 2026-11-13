@@ -328,7 +328,7 @@ const pray = sized(checkedStage('mausolee', {
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
-      for (const bn of ['SkirtBack1', 'SkirtBack2', 'LeftRobe1', 'RightRobe1']) { const b = a.B[bn]; if (b?.userData?.rest) { b.quaternion.copy(b.userData.rest).multiply(new THREE.Quaternion().setFromAxisAngle(V(1, 0, 0), -.5 * hinge)); b.updateWorldMatrix(false, true); } }   // R31I: back cloth tips with the bow
+      for (const bn of ['SkirtBack1', 'SkirtBack2', 'LeftRobe1', 'RightRobe1']) { const b = a.B[bn]; if (b?.userData?.rest) { b.quaternion.copy(b.userData.rest).multiply(new THREE.Quaternion().setFromAxisAngle(V(1, 0, 0), -hipA)); b.updateWorldMatrix(false, true); } }   // R31I: back cloth tips with the bow
       const fw = dirW(a, 0, 0, 1); let settle = 0;
       for (const s of ['L', 'R']) {
         const shoulder = at(a, 'upperArm' + s), elbow = at(a, 'foreArm' + s), wrist = at(a, 'hand' + s);
