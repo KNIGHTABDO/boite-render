@@ -169,7 +169,7 @@ const nu = staged('chambre_nuit', {
       const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
       const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > len * .95) dir.setLength(len * .95);
-      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-1.1, .3, 1.0] });   // R31C: pole pushed further out, the forearm crossed his own torso at b121
+      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-1.1, .3, 2.2] });   // R31C: pole pushed further out, the forearm crossed his own torso at b121
     }
     if (heart > 0) {
       PO.reach(zo, 'R', front(zo, 'chest', .15 * kz, -.07 * kz, -.2 * kz), { grip: 0, pole: [-.8, .05, -.1] });   // R25M: flat on the heart, below the collarbone

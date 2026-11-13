@@ -39,7 +39,7 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // Local blocking: retain SOUK's exported marks for the following scenes. Two depth pairs, not a row across the lane.
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
-const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1100, 735] };
+const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [860, 725] };   // R31C: was behind the dellal at b080 (Hydrogen: Fatma missing 44-52 s)
 const DELLAL = [1185, 878], EXIT = [1330, 590]   // R31C: exit up the right lane, not behind the haiks (b082 occlusion);
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [690, 720], 0, 1],
@@ -85,9 +85,9 @@ function overhead(a, t) {
 
 const la = checkedStage('souk_bijoux', {
   father: { ...WALK([880, 640], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
-    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
+    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .45) ? st.exitLook : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
   mohammed: { ...WALK([790, 650], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
-    look: (t, st) => t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
+    look: (t, st) => t >= f(8, .45) ? st.exitLook : t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
   zoubida: { ...WALK([800, 610], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
   fatma: { costume:'haik', ...WALK([960, 610], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
@@ -162,7 +162,8 @@ const la = checkedStage('souk_bijoux', {
       faceCam(ma, S3.cam, 1.4);
     }
     // Gaze is measured against the look string, so the body has to be turned toward that person after the walks.
-    if (t >= f(8, .3)) faceCam(fa, S3.cam, 1.3);
+    if (t >= f(8, .3) && t < f(8, .45)) faceCam(fa, S3.cam, 1.3);
+    if (t >= f(8, .45)) { const lk = sm(f(8, .45), f(8, .55), t); turn(fa, st.exitLook, lk); turn(mo, st.exitLook, lk); }   // R31C: father and boy look up the lane after the departing dellal
     if (t >= B(8)[0]) turn(zo, ma.group.position, 1);
     if (t >= B(7)[0] && t < f(7, .48)) turn(ft, zo.group.position, 1);
     if (t >= f(7, .48) && t < B(8)[0]) faceCam(ft, S3.cam, 1.15);
@@ -319,7 +320,7 @@ export default beatScene(ID, {
     b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -50 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
     b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [950, 815], z: 1.65, dx: 0, dy: 30,
-      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1090, 800], z: 1.85, dx: 0, dy: 40 }] },
+      cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1090, 800], z: 1.6, dx: 0, dy: 55 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
     cover: [{ f: .3, size: 'W', on: 'father' }, { f: .52, size: 'M', on: 'marchand', z: 1.3, dy: -80 }], insAt: .6 },
   },
