@@ -90,7 +90,7 @@ function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
   // R31Y: ONE hand (right) holds the slate at face height beside the head and waves it side to side; the left hand rests low (set by the caller)
   const kk = k(a), wave = Math.sin(t * rate + ph);
   lh.scale.setScalar(Math.min(.5, kk * .6));
-  const h = front(a, 'head', .1 * kk, .27 * kk, -.2 * kk).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .015 * kk * Math.cos(t * rate + ph), 0));
+  const h = front(a, 'head', .04 * kk, .34 * kk, -.27 * kk).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .015 * kk * Math.cos(t * rate + ph), 0));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.3, a.group.rotation.y - .1 + amp * .3 * wave, .12 + .45 * wave);
   lh.position.copy(h); lh.updateMatrixWorld(true);
   lh.position.add(h.clone().sub(lh.localToWorld(V(0, .045, .035)))); lh.updateMatrixWorld(true);
