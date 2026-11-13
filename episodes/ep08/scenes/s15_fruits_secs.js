@@ -107,7 +107,7 @@ const fr = checkedStage('souk_mur', {
     st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
     const { zoubida: zo, mohammed: mo, fatma: ft, man1: m1, woman1: w1, kid2: k2, kid3: k3 } = st.A;
     for (const a of [zo, mo, ft, m1, w1, k2, k3]) { castScale(a); if (a.actMark?.costume === 'haik') sealHaik(a); }
-    zo.group.scale.setScalar(1.6 * 1.07); sync(zo);   // haik sheet reads shorter than Fatma's rig: match visually
+    zo.group.scale.setScalar(1.6 * 1.04); sync(zo);   // haik sheet reads shorter than Fatma's rig: match visually
     const kz = k(zo), k1 = k(m1);
     // Different action from mu: quick strides and low swinging hands, with no chest/veil reaches.
     const hurry = sm(B(1)[0] - .2, B(1)[0] + .15, t) * (1 - sm(B(1)[1] - .45, B(1)[1], t));
@@ -132,12 +132,13 @@ const fr = checkedStage('souk_mur', {
     // Weighing: the right hand rides the brass pan (behind his right shoulder, screen right), the pan bobbing.
     const pan = at(m1, 'root').add(V(.5 * k1, .62 * k1 + .03 * Math.sin(t * 2.6) * k1, -.3 * k1));
     m1.group.rotation.y = yawTo(m1.group.position, w1.group.position) * .35 + .3 + .08 * Math.sin(t * 1.7); sync(m1);
+    { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); if (d.length() > len * .9) pan.copy(sh).addScaledVector(d.normalize(), len * .9); }
     PO.reach(m1, 'R', pan, { grip: .02, pole: [-.6, -.05, .18] });
     PO.reach(m1, 'L', front(m1, 'root', .40 * k1, -.2 * k1, (.34 + .05 * Math.sin(t * 2.6)) * k1), { grip: .015, pole: [.6, -.05, .18] });
     PO.fingers(m1, 'R', .5);
     // urchins: plain arm swing, opposite phases
     for (const [a, ph] of [[k2, 0], [k3, .4]]) if (a.group.visible) for (const s of ['L', 'R']) {
-      const sw = .3 * Math.sin(t * 5.5 + ph + (s === 'L' ? 0 : Math.PI));
+      const sw = .2 * Math.sin(t * 5.5 + ph + (s === 'L' ? 0 : Math.PI));
       PO.reach(a, s, hanging(a, s, sw), { grip: 0, pole: [s === 'L' ? .3 : -.3, -.1, -.25] });
     }
     PO.reach(w1, 'R', front(w1, 'root', .25 * k(w1), .12 * k(w1), .12 + .04 * scoop), { grip: .02 });
@@ -168,7 +169,7 @@ const fr = checkedStage('souk_mur', {
     zo.B.chest.rotation.z += .07 * defeat * Math.sin(t * .9);
     if (zo.B.LeftShoulder) zo.B.LeftShoulder.rotation.z -= .18 * defeat;
     if (zo.B.RightShoulder) zo.B.RightShoulder.rotation.z += .18 * defeat;
-    if (hurry > .2) for (const [a, ph, t0] of [[zo, 0, B(1)[0] - .2], [mo, .8, B(1)[0] - .2], [ft, 1.7, B(1)[0] + .1]]) stride(a, t + ph, t0, 3.4, hurry, true);
+    if (hurry > .2) for (const [a, ph, t0] of [[zo, 0, B(1)[0] - .2], [mo, .8, B(1)[0] - .2], [ft, 1.7, B(1)[0] + .1]]) stride(a, t + ph, t0, 3.4, a === zo ? hurry * .55 : hurry, true);
     haikTuck(zo); haikTuck(ft);
     sync(zo, mo, m1);
   },
@@ -182,6 +183,6 @@ export default beatScene(ID, {
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
     // pt follows their final floor marks (coverage otherwise anchors to their distant build positions).
     b101: { shot: 'fr', size: 'CU', on: 'mohammed', pt: STOP.mohammed, z: 2.9, dx: 30, dy: 60 },   // boy head-to-hip, grip in frame
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.5, dx: -20, dy: 40 },   // full hood and headroom
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.1, dx: -20, dy: 40 },   // full hood and headroom
   },
 });

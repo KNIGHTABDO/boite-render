@@ -52,7 +52,7 @@ function addStains(mo, S3) {
 const WALK0 = () => B(7)[0] - .1;
 
 const pa = staged('patio_matin', {
-  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(1)[0] - .15 ? .5 : .4,
+  mohammed: { at: [960, 1035], face: 'cam', yaw: .3, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(1)[0] - .15 ? .3 : .4,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : 'zoubida' },
   zoubida: { at: [1180, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
@@ -170,10 +170,10 @@ const pa = staged('patio_matin', {
     if (t < B(6)[0]) {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
       if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
-        yawBody(mo, S3.cam, .5);   // same proven camera-facing clamp as Zoubida: face stays readable
+        yawBody(mo, S3.cam, .65);   // same proven camera-facing clamp as Zoubida: face stays readable
       }
     }
-    yawToward(mo, S3.cam, t < B(6)[0] ? .5 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    yawToward(mo, S3.cam, t < B(6)[0] ? .65 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);

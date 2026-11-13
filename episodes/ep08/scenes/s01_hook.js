@@ -111,7 +111,7 @@ const pa = staged('patio_matin', {
   pa.load = async () => { const had = !!pa.st; await ld(); if (had || pa.hp) return;
     // hand ~ .55 m in front of and .5 m below the father's head, in plate px from the load-time head projection and body span
     const h = pa.heads[0], pxm = pa.bodyPx[0] / (.83 * pa.st.A.father.group.scale.y);
-    pa.hp = [h[0] + .55 * pxm, h[1] + .5 * pxm - 53];   // -53: calibrated on stills run 43392907960 if (!pa.hp.every(Number.isFinite)) pa.hp = null; };
+    pa.hp = [h[0] + .55 * pxm, h[1] + .5 * pxm - 53];   /* -53: calibrated on run 43392907960 */ if (!pa.hp.every(Number.isFinite)) pa.hp = null; };
 }
 
 // Right divan top, clockwise from the back-left corner. The chest beside it is off limits.
