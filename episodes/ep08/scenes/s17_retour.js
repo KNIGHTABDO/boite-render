@@ -21,7 +21,7 @@ const k = a => a.group.scale.y / 1.6;
 const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#a8b4d8', shadow: .2 };
 
 // he climbs treads 2 → 3 with his back to us while the narrator speaks; a slow push-in on the whole flight
-const es = stagedFix('escalier_nuit', { father: { tread: 2, face: 'up', seed: 5, height: 1.76, climb: { to: 4, t0: .1, t1: B(0)[1] - .3 } } },
+const es = stagedFix('escalier_nuit', { father: { tread: 2, face: 'up', seed: 5, height: 1.76, climb: { to: 3, t0: .1, t1: B(0)[1] - .3 } } },
   { stairs: ESCALIER, light: DARK, view: () => [1180, 250, 1.1],
     act(lt, t, S, st, S3) {
       const fa = st.A.father; bareHead(fa);
@@ -57,7 +57,7 @@ const pe = staged('chambre_penombre', {
     } },
   zoubida: { at: [720, 950], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .6, look: (t, st) => front(st.A.zoubida, 'head', .3, 0, -.6) },   // R25M: head stays down, never up at him
   // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
-  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null, height: 1.2 },
+  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null, height: 1.1 },
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
@@ -86,8 +86,8 @@ const pe = staged('chambre_penombre', {
     // R25M: a plain shelf (plank + tea box) on the wall at his hand height; fixed once he has stopped walking
     if (t >= B(2)[0] - .3) {
       if (!st.shelf) {
-        const c = front(fa, 'chest', .5 * kf, 0, -.1 * kf), g = new THREE.Group();
-        const plank = new THREE.Mesh(new THREE.BoxGeometry(.9, .035, .2), toon(0x5a3d26)); g.add(plank);
+        const c = front(fa, 'chest', .55 * kf, 0, -.3 * kf), g = new THREE.Group();
+        const plank = new THREE.Mesh(new THREE.BoxGeometry(.7, .025, .16), toon(0x8a6a44)); g.add(plank);
         const box = new THREE.Mesh(new THREE.BoxGeometry(.14, .12, .12), toon(0x8a6a3a)); box.position.set(.28, .08, 0); g.add(box);
         g.position.copy(c); S3.scene.add(g); st.shelf = g;
       }
@@ -109,7 +109,7 @@ const nu = staged('chambre_nuit', {
       if (t >= B(10)[0]) { const h = at(st.A.zoubida, 'head'), R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion); R.y = 0; R.normalize(); return h.clone().addScaledVector(R, 1.2).add(V(0, -.18, 0)); }   // R25M: away from him, screen right, level (not the ceiling)
       return null;
     } },
-  mohammed: { at: [1170, 665], face: [1290, 690], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0, height: 1.2 },
+  mohammed: { at: [1170, 665], face: [1290, 690], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0, height: 1.1 },
 }, {
   light: { keyI: 1.5, key: '#ffc070', fillI: .55 },
   addressee: { father: 'zoubida', zoubida: 'father' },
@@ -138,8 +138,8 @@ const nu = staged('chambre_nuit', {
     PO.reach(fa, 'L', PO.hipToWorld(fa, .2 * kf, .01 * kf, .14 * kf), { grip: .1, pole: [.4, .1, .2] });
     if (!(offer > 0 || take > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, -.2 * kf, (.02 + .02 * Math.sin(t * 1.5)) * kf, .12 * kf), { grip: .12, pole: [-.4, .1, .2] });
     if (offer > 0 && take <= 0) {
-      const sh = at(fa, 'upperArmR'), reach = .5 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
-      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .12 * win(11, 0, 1, t))); p.y = sh.y - .22 * kf;
+      const sh = at(fa, 'upperArmR'), reach = .4 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
+      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .1 * win(11, 0, 1, t))); p.y = sh.y - .22 * kf;
       PO.reach(fa, 'R', p, { grip: 0, pole: [-.3, -.1, .1] });
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
@@ -150,7 +150,7 @@ const nu = staged('chambre_nuit', {
         const d = target.clone().sub(sh); if (d.length() > len * .86) target = sh.clone().addScaledVector(d.normalize(), len * .86);
         return target;
       };
-      const shf = at(fa, 'upperArmR'), offer = shf.clone().addScaledVector(toZ().sub(shf).normalize(), .6 * kf); offer.y = shf.y - .2 * kf;
+      const shf = at(fa, 'upperArmR'), offer = shf.clone().addScaledVector(toZ().sub(shf).normalize(), .5 * kf); offer.y = shf.y - .2 * kf;
       PO.reach(fa, 'R', clamp(fa, 'R', offer), { grip: 0, pole: [-.3, -.1, .1] });
       PO.fingers(fa, 'R', 0, { spread: .25 });
       const palmF = PO.handPts(fa, 'R').palm;   // her hand goes to his hand
@@ -209,7 +209,7 @@ export default beatScene(ID, {
     b117: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.6, dx: -120, dy: -80 },
     b118: { shot: 'nu', size: 'M', on: 'father', z: 1.2, dx: 10, dy: -75 },
     b119: { shot: 'nu', size: 'CU', on: 'zoubida', z: 2.1, dx: 140, dy: -55 },
-    b120: { shot: 'nu', size: 'CU', on: 'father', z: 1.8, dx: -80, dy: -70 },
+    b120: { shot: 'nu', size: 'M', on: 'father', z: 1.4, dx: 90, dy: -60 },
     b121: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.1, dx: 120, dy: -70 },
     b122: { shot: 'nu', size: 'CU', on: 'zoubida', z: 2.1, dx: 140, dy: -55 },
   },
