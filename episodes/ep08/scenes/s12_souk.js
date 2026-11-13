@@ -85,9 +85,9 @@ function overhead(a, t) {
 
 const la = checkedStage('souk_bijoux', {
   father: { ...WALK([880, 640], LEAD.father, B(1)[0] + .1, B(1)[1] - .4), seed: 5, lookMax: .8,
-    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .45) ? st.exitLook : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
+    look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .56) ? st.exitLook : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
   mohammed: { ...WALK([790, 650], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
-    look: (t, st) => t >= f(8, .45) ? st.exitLook : t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
+    look: (t, st) => t >= f(8, .56) ? st.exitLook : t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
   zoubida: { ...WALK([800, 610], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
   fatma: { costume:'haik', ...WALK([960, 610], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
@@ -163,7 +163,7 @@ const la = checkedStage('souk_bijoux', {
     }
     // Gaze is measured against the look string, so the body has to be turned toward that person after the walks.
     if (t >= f(8, .3) && t < f(8, .45)) faceCam(fa, S3.cam, 1.3);
-    if (t >= f(8, .45)) { const lk = .5 * sm(f(8, .45), f(8, .55), t); turn(fa, st.exitLook, lk); turn(mo, st.exitLook, lk); }   // R31C: father and boy look up the lane after the departing dellal
+    if (t >= f(8, .56)) { const lk = .6 * sm(f(8, .56), f(8, .66), t); turn(fa, st.exitLook, lk); turn(mo, st.exitLook, lk); }   // R31C: father and boy look up the lane after the departing dellal
     if (t >= B(8)[0]) turn(zo, ma.group.position, 1);
     if (t >= B(7)[0] && t < f(7, .48)) turn(ft, zo.group.position, 1);
     if (t >= f(7, .48) && t < B(8)[0]) faceCam(ft, S3.cam, 1.15);
