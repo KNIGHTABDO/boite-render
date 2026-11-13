@@ -28,12 +28,15 @@ function cheekTap(a, side, { pitch = 0, u = 0 } = {}) {
   if (into.lengthSq() > 1e-6) PO.palmTo(a, side, 1, into.normalize());
   PO.fingers(a, side, .03, { thumb: .03, spread: .4 });
 }
-// r29: palm on the face from world targets off the head bone (the head-local solves left the hand hanging at the lap)
-function faceHand(a, side, { up = .09, fwd = .1, out = .08, pole = null, fingers = .05 } = {}) {
-  const k = a.group.scale.y / 1.6, sg = side === 'L' ? 1 : -1;
-  const tg = front(a, 'head', fwd * k, -sg * out * k, up * k);
-  for (let i = 0; i < 3; i++) PO.reach(a, side, tg, { grip: 0, pole: pole || [sg * .3, -1, .3] });
-  PO.palmTo(a, side, 1, at(a, 'head').add(V(0, up * k, 0)).sub(tg).normalize());
+// r30: palm on the face from HEAD-LOCAL targets (x out to that side, y up, z forward; the head bone is the gate's reference, keep |p| <= ~.1)
+// with a wrist correction so the palm itself lands on the point, even when the head is bowed.
+function faceHand(a, side, { x = .06, y = .04, z = .075, pole = null, fingers = .05 } = {}) {
+  const sg = side === 'L' ? 1 : -1, B = a.B;
+  a.group.updateMatrixWorld(true);
+  const skin = () => B.head.localToWorld(V(sg * x, y, z)), pl = pole || [sg * .3, -1, .3];
+  const wrist = skin();
+  for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(a, side, wrist, { grip: 0, pole: pl }); wrist.add(p.sub(PO.handPts(a, side).palm)); }
+  PO.palmTo(a, side, 1, B.head.localToWorld(V(0, y, 0)).sub(PO.handPts(a, side).palm).normalize());
   PO.fingers(a, side, fingers, { thumb: fingers, spread: .3 });
 }
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
@@ -100,9 +103,9 @@ const ch = staged('chambre_jour', {
       // three pats of the palm on the cheek: the whole hand taps, the head leans into it
       const c2 = t - B(2)[0], tap = c2 > .6 && c2 < 3.1 ? Math.max(0, Math.sin((c2 - .6) * 8.9)) : 0;   // three visible taps
       PO.look(ai, at(zo, 'head'), .9, { max: .55 });   // she talks to Zoubida, on her left
-      ai.B.head.rotation.z += .14; faceHand(ai, 'R', { up: .08, fwd: .1 - .03 * tap, out: .1 - .03 * tap, fingers: .15 }); lap(ai, 'L', ka);
+      ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .06, fingers: .15 }); lap(ai, 'L', ka);
     }
-    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .3; ai.B.chest.rotation.x += .05; for (const sd of ['L', 'R']) faceHand(ai, sd, { up: .1, fwd: .13, out: .045, pole: [(sd === 'L' ? 1 : -1) * .5, -.6, .2], fingers: .02 }); }
+    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .3; ai.B.chest.rotation.x += .05; for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .055, y: .035, z: .075, pole: [(sd === 'L' ? 1 : -1) * .5, -.6, .2], fingers: .02 }); }
     if (IN(5, t) || IN(6, t)) {
       // Zoubida holds one hand out between them; Aicha closes her palm over it (hand-to-hand contact at the midpoint)
       const zs = armToward(zo, ai), as = armToward(ai, zo), os = as === 'L' ? 'R' : 'L';
@@ -116,13 +119,13 @@ const ch = staged('chambre_jour', {
         // bitter laugh in tears: the free hand wipes a cheek, comes back to cover Zoubida's hand, shoulders shake; both sway
         const w = Math.sin((t - B(6)[0]) * 1.3), wipe = sm(.15, .5, w);
         ai.B.chest.rotation.x += .025 * Math.sin(t * 8); ai.B.chest.rotation.z += .05 * Math.sin(t * 1.4); zo.B.chest.rotation.z -= .04 * Math.sin(t * 1.1 + 1); zo.B.head.rotation.x += .05 * Math.sin(t * .9); if (t - B(6)[0] > 5.5 && t - B(6)[0] < 8) { zo.B.chest.rotation.z += .03 * Math.sin(t * 11); zo.B.chest.rotation.x += .02 * Math.sin(t * 9); }
-        if (wipe > .02) faceHand(ai, os, { up: .08, fwd: .1, out: .09 });
+        if (wipe > .02) faceHand(ai, os, { x: .085, y: 0, z: .06 });
         else reach(ai, os, mid.clone().add(V(0, -.02 * ka, .03 * ka)), { grip: .01, pole: [(os === 'L' ? 1 : -1) * .4, -.1, .2] });
       } else reach(ai, os, mid.clone().add(V(0, -.02 * ka, .03 * ka)), { grip: .01, pole: [(os === 'L' ? 1 : -1) * .4, -.1, .2] });
     }
     if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); const sw = Math.sin(t * 1.6);
       zo.B.chest.rotation.z += .05 * sw; zo.B.chest.rotation.x += .03;
-      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { up: .06, fwd: .1, out: .085, pole: [(sd === 'L' ? 1 : -1) * .15, -1, .4], fingers: .1 }); }
+      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * .15, -1, .4], fingers: .1 }); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
       zo.B.chest.rotation.z += .16 * u; ai.B.chest.rotation.z -= .16 * u;
