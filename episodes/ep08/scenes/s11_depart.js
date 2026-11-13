@@ -55,7 +55,7 @@ const pa = staged('patio_matin', {
   mohammed: { at: [960, 1035], face: 'cam', yaw: 0, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : t >= B(1)[0] - .15 ? .4 : .3,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : t >= B(2)[0] + .8 && t < B(3)[0] ? at(st.A.mohammed, 'root').add(V(.1, .3, .25)) : 'zoubida' },
   zoubida: { at: [1140, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
-    lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
+    lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .7 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
     look: (t, st) => {
       if (t >= B(6)[0]) return 'father';
       if (t >= B(5)[0]) return 'mohammed';
