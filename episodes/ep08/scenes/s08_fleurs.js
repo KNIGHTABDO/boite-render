@@ -17,7 +17,8 @@ const ramp = (t0, t1, t) => sm(t0 - 0.12, t0 + 0.32, t) * (1 - sm(t1 - 0.12, t1 
 const ch = staged('chambre_jour', {
   ...LUNCH,
   // Looks are aimed in act(). A marks.look would run after it and pull the head off the beat.
-  mohammed: { ...LUNCH.mohammed, look: () => null, lookMax: 0 },
+  // R31N: up-stage a little so the wide shot shows his knees/feet instead of cropping them at the bottom edge.
+  mohammed: { ...LUNCH.mohammed, at: [930, 1010], look: () => null, lookMax: 0 },
   father: { ...LUNCH.father, height: 1.76, look: () => null, lookMax: 0 },
   zoubida: { ...LUNCH.zoubida, look: () => null, lookMax: 0 },
 }, {
@@ -100,6 +101,8 @@ const ch = staged('chambre_jour', {
       const fid = fidget * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 0.9 + (s === 'L' ? 0 : 3.1))));
       const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fid, gest))
         .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fid).add(V(0, -0.03 * km * fid, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fid).addScaledVector(dirW(mo, -sg, 0, 0), -0.07 * km * lean * (1 - fid)).add(V(0, 0.03 * km * lean * (1 - fid) * Math.sin(t * 1.1 + ph), 0));
+      // R31N: asymmetric, slowly wandering hands (right a little higher and out, left lower and in).
+      p.add(V(0, km * (s === 'R' ? 0.035 : -0.02) * (0.6 + 0.4 * Math.sin(t * 0.7 + ph)), 0)).addScaledVector(dirW(mo, -sg, 0, 0), km * (s === 'R' ? -0.04 : 0.035) * (0.7 + 0.3 * Math.sin(t * 0.9 + ph)));
       palm(mo, s, p, { grip: 0.025, pole: [sg * (1.15 - 0.3 * Math.max(fid, gest)), -0.05 + 0.35 * Math.max(fid, gest), -0.5 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
       if (Math.max(fid, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
@@ -116,9 +119,10 @@ const ch = staged('chambre_jour', {
       const level = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.6);
       // R31F: end of the whisper the eyes go clearly UP (toward the end of the line); in b039 he looks at his father instead of the lens.
       const upEnd = scr(-0.05 * km, 0.42 * km, 0.5), toFa = at(fa, 'head').clone().add(V(0, -0.02 * km, 0));
-      const fatherLook = lean * (1 - sm(B(2)[0] - 0.1, B(2)[0] + 0.1, t));
+      const askLook = sm(B(1)[0] - 0.1, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.2, t));
+      const fatherLook = Math.max(lean * (1 - sm(B(2)[0] - 0.1, B(2)[0] + 0.1, t)), askLook);
       const aim = upLeft.lerp(lowered, down).lerp(toFa, fatherLook).lerp(parents.lerp(upEnd, 0.7), rise * (1 - down)).lerp(level, Math.max(laugh, residue * 0.8));
-      look(mo, aim, 0.9, { max: 0.22 + 0.5 * search * (1 - down) + 0.2 * rise });
+      look(mo, aim, 0.9, { max: 0.22 + 0.5 * search * (1 - down) + 0.2 * rise + 0.3 * askLook });
     } else {
       // Eyes only: a small yaw, pitch and roll pinned so the head stays level and the lids do the scepticism.
       const yaw = (0.5 - side) * 0.6;
