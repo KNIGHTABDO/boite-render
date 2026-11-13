@@ -128,7 +128,7 @@ const ch = staged('chambre_jour', {
       PO.palmTo(fa, 'R', wel); PO.fingers(fa, 'R', .1, { spread: .25 });
     }
     // R31R2: the boy's arms from 43 s: elbows bent and out, hands on the thighs, the right hand gestures while he protests (b035)
-    { const w43 = sm(43, 43.5, t);
+    { const w43 = sm(B(7)[0] - .3, B(7)[0] + .6, t);   // R31R2: right-arm gesture from b034 on (an earlier start clipped at 43.6)
       if (w43 > 0) for (const s of ['L', 'R']) {
         if (s === 'L') continue;   // R31R2: left arm keeps lapRest (the gesture clipped his torso)
         const sg = s === 'L' ? 1 : -1, g = s === 'R' ? up : 0;
