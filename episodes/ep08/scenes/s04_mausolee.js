@@ -74,7 +74,7 @@ function foldHands(a, t, ph = 0, w = 1) {
 
 /** Bottom-origin board, clear of the chest; wrists stay OUTSIDE its lower corners. */
 function chestLouha(a, lh) {
-  const kk = k(a); lh.scale.setScalar(Math.min(.72, kk * .8));
+  const kk = k(a); lh.scale.setScalar(Math.min(.95, kk * 1.15));
   lh.position.copy(front(a, 'chest', .20 * kk, 0, -.38 * kk));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.06, a.group.rotation.y, 0); lh.updateMatrixWorld(true);
   for (const [s, sign] of [['L', 1], ['R', -1]]) {
@@ -87,9 +87,10 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .12 * kk, .38 * kk, -.31 * kk);
-  lh.scale.setScalar(Math.min(.72, kk * .8));
-  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .035 * kk * wave).add(V(0, .02 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .2 * wave, a.group.rotation.y - .25 + amp * .6 * wave, -.08 + .45 * wave);   // R28: raised near the face, wide wave lh.updateMatrixWorld(true);
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .16 * kk, .24 * kk, -.2 * kk);
+  lh.scale.setScalar(Math.min(.95, kk * 1.15));
+  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .25 * wave, a.group.rotation.y - .25 + amp * .8 * wave, -.08 + .6 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
+  lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
   IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(-.08, .11, .025)));
   PO.fingers(a, 'R', .35, { thumb: .25 });
@@ -121,9 +122,9 @@ const ms = checkedStage('ep03/msid_estrade', {
     // Start wiping during the pre-roll too; sweep across the brow, then briefly lower the open hand.
     const phase = ((t + 1.2) % 3.6) / 3.6, w = 1 - sm(.88, 1, phase);   // R28: already wiping at t=0
     if (w > 0) {
-      fq.B.neck.rotation.x -= .12 * w; upd(fq, 'neck');
+      fq.B.neck.rotation.x += .1 * w; upd(fq, 'neck');
       const sweep = .19 + .025 * Math.sin(phase * Math.PI * 2 - Math.PI / 2);
-      PO.reach(fq, 'R', front(fq, 'head', .17 * kf, (sweep - .12) * kf, .16 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
+      PO.reach(fq, 'R', front(fq, 'head', .15 * kf, (sweep - .19) * kf * 1.6, .055 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
       PO.fingers(fq, 'R', .08, { thumb: .1, spread: .25 });
       PO.palmTo(fq, 'R', .8, dirW(fq, 0, 0, -1));
     }
@@ -140,7 +141,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1050, 822], ...T11(2.0, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1135, 822], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1360, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
 }, {
@@ -208,18 +209,18 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
       walkPose(a.B, d / 1.05, 1, { stride: .32, arms: .2 }); a.group.updateMatrixWorld(true);
       // counting the turns on the fingers of the right hand held before her chest; head a little bowed, lips moving
       const ka = k(a), cnt = 1 + (Math.floor((start + v * (t - B(2)[0]) - off) / period + 10) % 5);
-      a.B.neck.rotation.set(.5, 0, 0); a.B.head.rotation.set(.2, 0, 0);
+      a.B.neck.rotation.set(.3, 0, 0); a.B.head.rotation.set(.08, 0, 0);
       { // R25C: on the stretch walking away from the lens she looks back over her shoulder (twist torso + neck)
         const fw = dirW(a, 0, 0, 1), tc = S3.cam.position.clone().sub(a.group.position); fw.y = tc.y = 0; fw.normalize(); tc.normalize();
         const ang = Math.acos(Math.max(-1, Math.min(1, fw.dot(tc)))), w = sm(1.3, 2.3, ang), sg = Math.sign(fw.z * tc.x - fw.x * tc.z) || 1;
         a.B.spine.rotation.y += sg * .3 * w; a.B.chest.rotation.y += sg * .4 * w; a.B.neck.rotation.y += sg * .45 * w; a.B.head.rotation.y += sg * .45 * w; }
       upd(a, 'spine', 'chest', 'neck');
       if (S3.project(at(a, 'head'))[0] < 235) underLeaf = true;   // R25C: this stretch is drawn under the redrawn door leaf
-      PO.reach(a, 'R', front(a, 'chest', .27 * ka, .08 * ka, .05 * ka), { grip: .015, pole: [-.4, -.1, -.1] });
-      PO.reach(a, 'L', front(a, 'chest', (.25 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, .0 * ka, -.04 * ka), { grip: 0, pole: [.35, .05, .1] });
+      PO.reach(a, 'R', front(a, 'chest', .25 * ka, .1 * ka, -.1 * ka), { grip: .015, pole: [-.4, -.1, -.1] });
+      PO.reach(a, 'L', front(a, 'chest', (.23 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, -.1 * ka, -.17 * ka), { grip: 0, pole: [.35, .05, .1] });
       PO.fingers(a, 'R', .95, { thumb: cnt === 5 ? 0 : .6, each: [1, 0, cnt >= 2 ? 0 : 1, cnt >= 3 ? 0 : 1, cnt >= 4 ? 0 : 1], spread: .6 });
       const index = a.B.RightHandIndex3;
-      if (index) IK.aim(a.B.handR, IK.wpos(index), at(a, 'handR').add(V(0, .2 * ka, 0)));
+      if (index) IK.aim(a.B.handR, IK.wpos(index), at(a, 'handR').add(V(0, .2 * ka, 0)).addScaledVector(dirW(a, 0, 0, 1), -.05 * ka));
     }
     st.actcheck = { insert: underLeaf };   // R25C: a woman passing under the redrawn door leaf is hidden by it; the framing gates skip that instant
   },
@@ -253,7 +254,7 @@ const br = sized(checkedStage('mausolee', {
 const basinGaze = (st, i) => st?.water ? st.water[i].clone().add(V(-.3, -.12, .14)) : null;
 const ab = sized(checkedStage('mausolee_rev', {
   fqih: { at: [760, 850], face: 'cam', yaw: -.2, seed: 9, talk: 0, lookMax: .75,
-    look: (t, st) => t < B(4)[0] + .38 * (B(4)[1] - B(4)[0]) ? front(st.A.fqih, 'head', 1) : 'kid2' },
+    look: 'kid1' },
   kid2: { at: [200, 785], face: [220, 770], seed: 4, talk: 0, look: (t, st) => t < B(4)[0] + 2.2 ? 'fqih' : basinGaze(st, 0) },
   mohammed: { at: [345, 785], face: [275, 770], seed: 3, talk: 0, look: (t, st) => t < B(4)[0] + 2.5 ? 'fqih' : basinGaze(st, 1), lookMax: .55 },
   // the two other boys wait their turn behind, listening to the master (they stay in the room for the whole beat)
@@ -271,11 +272,11 @@ const ab = sized(checkedStage('mausolee_rev', {
     for (const [a, ph] of [[kid1, 1.1], [kid3, 2.3]]) { foldHands(a, t, ph); a.B.spine.rotation.z += .03 * Math.sin(t * .8 + ph); upd(a, 'spine'); }
     if (sh > 0) {
       const lips = at(fq, 'head', [-.04, .0, .17]);
-      const palm = lips.clone().add(V(0, -.09 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .025 * kf);
+      const palm = lips.clone().add(V(0, -.075 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .04 * kf);
       PO.reach(fq, 'R', at(fq, 'handR').lerp(palm, sh), { grip: 0, pole: [-.32, .05, -.12] });
       PO.fingers(fq, 'R', .95 * sh, { thumb: .6 * sh, each: [1, 0, 1, 1, 1] });
       const index = fq.B.RightHandIndex3;
-      if (index) IK.aim(fq.B.handR, IK.wpos(index), lips);
+      if (index) IK.aim(fq.B.handR, IK.wpos(index), at(fq, 'handR').add(V(0, .2 * kf, 0)));
     }
     // Fixed targets on the painted basin, not chest-relative reaches out into the empty room.
     st.water ||= [[180, 785], [320, 790]].map(p => S3.floorAt(...p).setY(.43));
@@ -287,14 +288,14 @@ const ab = sized(checkedStage('mausolee_rev', {
       const yaw1 = yawTo(a.group.position, fq.group.position), yaw2 = -1.15, turn = sm(B(4)[0] + d - .1, B(4)[0] + d + .6, t);
       const yawW = yaw1 + Math.atan2(Math.sin(yaw2 - yaw1), Math.cos(yaw2 - yaw1)) * turn;
       a.group.rotation.y = yaw2; a.group.updateMatrixWorld(true);
-      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .8 * ka);
+      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .66 * ka);
       a.group.rotation.y = yawW; a.group.updateMatrixWorld(true);
       if (u <= 0) { foldHands(a, t, ph); return; }
-      a.B.spine.rotation.set(1.15 * u, 0, 0); a.B.chest.rotation.set(0, 0, 0);
-      a.B.spine.position.applyAxisAngle(V(1, 0, 0), 1.15 * u); upd(a, 'spine');
+      a.B.spine.rotation.set(.8 * u, 0, 0); a.B.chest.rotation.set(.35 * u, 0, 0);
+      a.B.spine.position.applyAxisAngle(V(1, 0, 0), .8 * u); upd(a, 'spine');
       for (const [s, q] of [['L', 0], ['R', Math.PI]]) {
         const c = Math.cos(t * 4.2 + ph + q) * .035, e = Math.sin(t * 4.2 + ph + q) * .04;
-        const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e, 0));
+        const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e + .06, .05));
         PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015, pole: [s === 'L' ? .5 : -.5, 0, .1] });   // R23A elbows out of the torso   // lower the torso before extending to the water
       }
     };
@@ -321,7 +322,7 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = 1.42 * r;
+      const hinge = 1.2 * r;
       a.B.spine.rotation.set(hinge, 0, 0); a.B.chest.rotation.set(0, 0, 0);
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hinge);
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
