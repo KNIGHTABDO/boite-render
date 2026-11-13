@@ -36,7 +36,7 @@ const SZ = { W: 'W', M: 'M', CU: 'CU' };
 export function beatScene(id, { shots = {}, plan = {}, pre, fadeIn, fadeOut, plate, extra = [] }) {
   const bs = beatsOf(id), L = allLines(id), segs = [], covers = {};
   let cur = null;   // key of the segment on screen (a new beat on the same shot/still adds no cut: stills would restart their move)
-  const segFor = (key, at, o = {}) => key === 'black' ? ac(at, black, o) : shots[key] ? ac(at, shots[key].fn, o) : { ...st(key, at, o.move, {}, o.fx), ...(o.dissolve ? { dissolve: true } : {}) };
+  const segFor = (key, at, o = {}) => key === 'black' ? ac(at, black, o) : shots[key] ? ac(at, shots[key].fn, { ...o, at }) : { ...st(key, at, o.move, {}, o.fx), ...(o.dissolve ? { dissolve: true } : {}) };
   const cut = (key, t, size, on, o = {}) => { if (shots[key]) (covers[key] ||= []).push({ t, size: SZ[size] || 'M', on, ...(o.z != null ? { z: o.z } : {}), ...(o.dx != null ? { dx: o.dx } : {}), ...(o.dy != null ? { dy: o.dy } : {}), ...(o.pt ? { pt: o.pt } : {}), ...(o.zTo != null ? { zTo: o.zTo, push: o.push || 4 } : {}) }); };   // zTo/push: slow push-in over push seconds   // plan z/dx/dy: hand-set framing
   const who = b => { const p = plan[b.id] || {}; return p.on || (b.cast?.includes(b.speaker) && !b.speaker_off ? b.speaker : b.cast?.[0]); };
   // v2: a new beat with no plan stays on its still (paintings) or the previous beat's shot (the next one's at a scene start)
