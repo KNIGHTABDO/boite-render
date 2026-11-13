@@ -23,7 +23,7 @@ export const SEAT = { tread: 3, back: .28, face: 'down', yaw: .35, pose: 'step',
 const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
   mutter: t => sm(B(9)[0], B(9)[0] + .25, t),
   look: (t, st) => t >= B(9)[0]
-    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, 1.4).addScaledVector(st.ST.side, -.2).add(V(0, 1.1, 0))
+    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, 1.4).addScaledVector(st.ST.side, .1).add(V(0, 1.3, 0))
     : win(0, .4, 1.1, t) > .2 ? front(st.A.mohammed, 'head', .55, 0, -.4) : null,
 } }, {
   stairs: ESCALIER,
@@ -48,11 +48,14 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     b.head.rotation.x += .1 * think - .2 * chin + .12 * drop;
     b.head.rotation.z += .06 * think;
     // Turn left through the upper body as well as the head, toward the upper railing/landing.
-    b.spine.rotation.y -= .2 * dream; b.chest.rotation.y -= .17 * dream;
+    b.spine.rotation.y -= .03 * dream; b.chest.rotation.y -= .02 * dream;   // R25C: the big turn showed the back of his head; keep the face to camera
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
     // R20A: head starts rising ~1.4 s before b053 and ends clearly up the flight.
     const up53 = sm(B(9)[0] - 1.4, B(9)[0] + .3, t);
-    b.neck.rotation.x -= .08 * up53; b.head.rotation.x -= .06 * up53;
+    b.neck.rotation.x -= (.08 + .2 * dream) * up53; b.head.rotation.x -= (.06 + .22 * dream) * up53;
+    b.head.rotation.y += .12 * dream; b.spine.rotation.x -= .06 * dream; b.chest.rotation.x -= .06 * dream;
+    // R25C: "à mort" - tense shoulders (clavicles up) with the fists.
+    for (const sd of ['L', 'R']) if (b['clavicle' + sd]) b['clavicle' + sd].rotation.z += (sd === 'L' ? 1 : -1) * .06 * fist;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
     // After the lean, put the palms back on the kneecaps. Fists close on "à mort".
     pinKneesOut(mo, fist);
