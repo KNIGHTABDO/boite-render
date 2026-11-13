@@ -164,7 +164,7 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
+    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
     st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.

@@ -130,6 +130,7 @@ const ch = staged('chambre_jour', {
     // R31R2: the boy's arms from 43 s: elbows bent and out, hands on the thighs, the right hand gestures while he protests (b035)
     { const w43 = sm(43, 43.5, t);
       if (w43 > 0) for (const s of ['L', 'R']) {
+        if (s === 'L') continue;   // R31R2: left arm keeps lapRest (the gesture clipped his torso)
         const sg = s === 'L' ? 1 : -1, g = s === 'R' ? up : 0;
         const tg = at(mo, 'root').clone().addScaledVector(dirW(mo, 0, 0, 1), (.22 + .07 * g) * km).addScaledVector(dirW(mo, -sg, 0, 0), .17 * km)
           .add(V(0, (-.01 + .13 * g + .008 * Math.sin(t * 1.9 + sg) + .03 * g * Math.sin(t * 6)) * km, 0));
