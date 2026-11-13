@@ -37,13 +37,13 @@ function fever(mo, t, st, S3) {
 }
 // r25: palms flat on the temples, fingers up the side of the scarf; spot raised well above the jaw
 function temples(a, { bow = .06 } = {}) {
-  const B = a.B; a.B.chest.rotation.x += .05; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
+  const B = a.B; a.B.chest.rotation.x += .01; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .1, .08, .02));
+    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .11, .09, .02));
     let wrist = skin();
     for (let i = 0; i < 4; i++) {
       const p = skin();
-      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 1.6, sg < 0 ? .5 : .2, sg < 0 ? .35 : -.1] });
+      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 2.2, sg < 0 ? .9 : .2, sg < 0 ? .35 : -.1] });
       IK.aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(V(sg * .05, .22, .0)));
       wrist.add(p.clone().sub(PO.handPts(a, s).palm));
     }

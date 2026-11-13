@@ -27,11 +27,11 @@ function mourn(zo, t) {
   zo.B.chest.rotation.x += .06 + .015 * sob;   // bowed forward, face down into both palms
   zo.B.neck.rotation.z += .035 * Math.sin(t * .55) + .02 * sh; zo.B.head.rotation.y += .05 * Math.sin(t * .37 + 1);   // slow small head shake
   for (const s of ['L', 'R']) zo.B['clavicle' + s] && (zo.B['clavicle' + s].rotation.z += (s === 'L' ? 1 : -1) * .05 * sh);
-  zo.B.chest.rotation.x -= .035;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
+  zo.B.chest.rotation.x -= .075;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
   cradleFace(zo, { mode: 'cradle', bow: .08 + .02 * sob, u: sob });
   {   // r30: cradleFace's left palm sits ~.12 m from the head bone; re-seat it a little closer on the cheek (b103 8.19)
     const B = zo.B, skin = () => B.head.localToWorld(V(.06, .06, .072)), wrist = skin();
-    for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, 'L', wrist, { grip: 0, pole: [1.5, -.2, .2] }); wrist.add(p.sub(PO.handPts(zo, 'L').palm)); }
+    for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, 'L', wrist, { grip: 0, pole: [2, -.1, .2] }); wrist.add(p.sub(PO.handPts(zo, 'L').palm)); }
     aim(B.handL, PO.handPts(zo, 'L').end, B.head.localToWorld(V(.025, .2, .1)));
     PO.fingers(zo, 'L', .1, { thumb: .04, spread: .1 });
   }
