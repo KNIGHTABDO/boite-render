@@ -165,7 +165,7 @@ const mu = checkedStage('souk_mur', {
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
-    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .04},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
@@ -178,8 +178,8 @@ const mu = checkedStage('souk_mur', {
       if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
       sync(mo);
       const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
-      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .17 * km, s === 'R' ? .13 : -.13, .06 * km), { grip: .01 });
-      PO.reach(mo, 'R', front(mo, 'root', .17 * km, .13, .06).lerp(cloth, lean), { grip: .01 });
+      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .12 * km, s === 'R' ? .11 : -.11, .06 * km), { grip: .01 });
+      PO.reach(mo, 'R', front(mo, 'root', .12 * km, .11, .06).lerp(cloth, lean), { grip: .01 });
     }
 
     // b086: five staggered foreground crossings. At most two cross the family together;
@@ -214,7 +214,7 @@ const mu = checkedStage('souk_mur', {
       if (a === fa) { a.B.thighR.rotation.x += .18 * jolt; a.B.shinR.rotation.x += .25 * jolt; }
     }
     sync(zo, mo, fa);
-    if (shove > 0) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .05 * shove);
+    if (shove > 0) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .08 * shove);
     sync(mo);
     if (shove > 0) {
       // Reach to the CHILD's shoulder height, with the elbow outside the haik.
@@ -242,7 +242,7 @@ const mu = checkedStage('souk_mur', {
     }
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
-      zo.group.position.y = by.zo - .01; mo.group.position.y = by.mo + .01; }
+      zo.group.position.y = by.zo - .01 + .03 * shove; mo.group.position.y = by.mo + .01; }
     sync(zo, mo); liftCloth(zo); liftCloth(mo);   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },

@@ -97,7 +97,7 @@ const pe = staged('chambre_penombre', {
         g.position.copy(c); g.rotation.y = Math.atan2(S3.cam.position.x - c.x, S3.cam.position.z - c.z); S3.scene.add(g); st.shelf = g;
       }
     }
-    if (grope > 0 && st.shelf) { const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(); PO.reach(fa, 'R', st.shelf.position.clone().addScaledVector(R, .12 * Math.sin(t * 1.4)).add(V(0, .03, 0)), { grip: .08, pole: [-.35, .1, .15] }); }
+    if (grope > 0 && st.shelf) { const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(); PO.reach(fa, 'R', st.shelf.position.clone().addScaledVector(R, .12 * Math.sin(t * 1.4)).add(V(0, .03, 0)).add(PO.hipToWorld(fa, -.14 * kf, 0, .1 * kf)).sub(PO.hipToWorld(fa, 0, 0, 0)), { grip: .08, pole: [-1.0, .3, .4] }); }
     else if (grope > 0) { const sd = armToward(fa, zo) === 'L' ? 'R' : 'L', sg = sd === 'L' ? 1 : -1; PO.reach(fa, sd, front(fa, 'chest', .44 * kf, sg * (.06 + .1 * Math.sin(t * 1.6)) * kf, .12 * kf), { grip: .08, pole: [sg * .35, .1, .15] }); }
   },
 });
