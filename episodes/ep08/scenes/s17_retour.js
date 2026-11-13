@@ -23,7 +23,7 @@ const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#
 
 // he climbs treads 2 → 3 with his back to us while the narrator speaks; a slow push-in on the whole flight
 const es = stagedFix('escalier_nuit', { father: { backOk: true, tread: 2, face: 'up', seed: 5, height: 1.76, climb: { to: 3, t0: .1, t1: B(0)[1] - .3 } } },
-  { stairs: ESCALIER, light: DARK, view: () => [1180, 105, .95],
+  { stairs: ESCALIER, light: DARK, view: () => [1180, 190, .92],
     act(lt, t, S, st, S3) {
       const fa = st.A.father; bareHead(fa);
       // R25M: back to the lens, climbing UP the flight; arms swing in counter-phase with the stride
@@ -71,7 +71,7 @@ const pe = staged('chambre_penombre', {
     if (t < B(4)[0] - .05) st.fy0 = fa.group.rotation.y;
     else if (st.fy0 != null) {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
-      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * 1.25; fa.group.updateMatrixWorld(true);
+      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * 1.0; fa.group.updateMatrixWorld(true);
     }
     lap(zo); veilDown(zo);
     if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .35; h.rotation.y += .25; h.updateWorldMatrix(false, true); }; }
@@ -146,9 +146,9 @@ const nu = staged('chambre_nuit', {
     PO.reach(fa, 'L', PO.hipToWorld(fa, .16 * kf, -.05 * kf, .07 * kf), { grip: .1, pole: [.15, -.3, -.1] });
     if (!(offer > 0 || take > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, -.16 * kf, (-.04 + .02 * Math.sin(t * 1.5)) * kf, .08 * kf), { grip: .12, pole: [-.15, -.3, -.1] });
     if (offer > 0 && take <= 0) {
-      const sh = at(fa, 'upperArmR'), reach = .4 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
+      const sh = at(fa, 'upperArmR'), reach = .46 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
       const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .1 * win(11, 0, 1, t))); p.y = sh.y - .22 * kf;
-      PO.reach(fa, 'R', p, { grip: 0, pole: [-.75, -.05, .05] });
+      PO.reach(fa, 'R', p, { grip: 0, pole: [-.6, .15, .1] });
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
     if (take > 0) {
@@ -158,8 +158,8 @@ const nu = staged('chambre_nuit', {
         const d = target.clone().sub(sh); if (d.length() > len * .86) target = sh.clone().addScaledVector(d.normalize(), len * .86);
         return target;
       };
-      const shf = at(fa, 'upperArmR'), offer = shf.clone().addScaledVector(toZ().sub(shf).normalize(), .5 * kf); offer.y = shf.y - .2 * kf;
-      PO.reach(fa, 'R', clamp(fa, 'R', offer), { grip: 0, pole: [-.75, -.05, .05] });
+      const shf = at(fa, 'upperArmR'), offer = shf.clone().addScaledVector(toZ().sub(shf).normalize(), .57 * kf); offer.y = shf.y - .2 * kf;
+      PO.reach(fa, 'R', clamp(fa, 'R', offer), { grip: 0, pole: [-.6, .15, .1] });
       PO.fingers(fa, 'R', 0, { spread: .25 });
       const palmF = PO.handPts(fa, 'R').palm;   // her hand goes to his hand
       PO.reach(zo, 'R', clamp(zo, 'R', palmF.clone().add(V(0, .05, 0))), { grip: 0, pole: [-.4, .18, .16] });
@@ -169,7 +169,7 @@ const nu = staged('chambre_nuit', {
       const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
       const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > len * .95) dir.setLength(len * .95);
-      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-.3, .15, .2] });
+      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-.75, .25, .1] });
     }
     if (heart > 0) {
       PO.reach(zo, 'R', front(zo, 'chest', .15 * kz, -.07 * kz, -.2 * kz), { grip: 0, pole: [-.8, .05, -.1] });   // R25M: flat on the heart, below the collarbone

@@ -98,7 +98,7 @@ const fr = checkedStage('souk_mur', {
   // Foreground floor marks put the painted counter at waist height, rather than under their chins.
   man1: { at: [1420, 900], face: 'woman1', seed: 21, talk: 0, look: 'woman1', lookMax: .25 },
   woman1: { at: [1220, 1040], face: 'man1', seed: 25, talk: 0, look: 'man1', lookMax: .3 },
-  kid2: { at: [640, 740], seed: 27, talk: 0, walk: { to: [170, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
+  kid2: { at: [540, 745], seed: 27, talk: 0, walk: { to: [170, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
   kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [280, 1070], t0: B(2)[0], t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
 }, {
   light: { shadow: .4, area: 6 },
@@ -136,7 +136,7 @@ const fr = checkedStage('souk_mur', {
       m1.group.position.set(pan0.x - .05 * k1, 0, pan0.z + .5 * k1); m1.group.rotation.y = yawTo(m1.group.position, pan0) * .12 + yawTo(m1.group.position, w1.group.position) * .88 + .15 * Math.sin(t * 1.7); sync(m1);
     }
     const pan = ((pan0 && t > B(2)[0] - .5) ? pan0 : null) || (at(m1, 'root').add(V(.5 * k1, .62 * k1, -.3 * k1))).clone().add(V(0, .03 * Math.sin(t * 2.6) * k1, 0));
-    if (t > B(2)[0] - .5) { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .96, Math.max(len * .72, d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
+    { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .96, Math.max(len * (t > B(2)[0] - .5 ? .72 : .4), d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
     PO.reach(m1, 'R', pan, { grip: .02, pole: [-1, .1, .05] });
     PO.reach(m1, 'L', front(m1, 'root', .40 * k1, -.2 * k1, (.34 + .05 * Math.sin(t * 2.6)) * k1), { grip: .015, pole: [.6, -.05, .18] });
     PO.fingers(m1, 'R', .5);

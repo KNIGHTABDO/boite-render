@@ -23,7 +23,7 @@ const zwin = t => Math.max(win(3, .3, 1, t), sm(B(6)[0], B(6)[0] + .5, t) * (1 -
 const pa = staged('patio_matin', {
   father: { at: [400, 965], face: [800, 960], height: 1.76, walk: { to: [720, 968], t0: 0, t1: B(0)[0] + 3.2 } },   // Argon r4: the walk was never seen (stills before t0) → he is already moving as the shot opens
   // cross-legged by the well, three-quarter to the lens, the louha on his lap; he looks up as his father comes in
-  mohammed: { at: [1230, 992], face: 'cam', yaw: .4, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
+  mohammed: { at: [1230, 992], face: 'cam', yaw: .75, pose: 'cross',   // Argon r5: lost off frame right → near the father's path, 3/4 turned to him
     look: () => 'father', lookMax: () => 1.3 },   // R25B: eyes on the father from the first frame
 }, {
   addressee: { narrator: 'mohammed' },
@@ -44,7 +44,7 @@ const pa = staged('patio_matin', {
       B.thighL.rotation.x = -Math.sin(a) * .42 * k; B.thighR.rotation.x = Math.sin(a) * .42 * k;
       B.shinL.rotation.x = Math.max(0, Math.sin(a - 1.4)) * .7 * k; B.shinR.rotation.x = Math.max(0, -Math.sin(a - 1.4)) * .7 * k; }
     { const mo = st.A.mohammed; mo.B.neck.rotation.x -= .12; mo.B.head.rotation.x -= .08;
-      const up = .5 + .5 * Math.sin(t * 1.3); mo.B.neck.rotation.x -= .22; mo.B.head.rotation.x -= .4 + .03 * up; mo.B.head.rotation.y += .06; }   // R25B: chin up toward the father, slight turn + idle   // r17: head not so far down by the well
+      const up = .5 + .5 * Math.sin(t * 1.3); mo.B.neck.rotation.x -= .22; mo.B.head.rotation.x -= .4 + .03 * up; mo.B.head.rotation.y += .3 * (1 - sm(B(0)[0] + 3, B(0)[0] + 4, t)); mo.B.head.rotation.y += .1; }   // R25B: chin up toward the father, slight turn + idle   // r17: head not so far down by the well
     for (const [s, ph] of [['L', 0], ['R', Math.PI]]) {
       const w = Math.sin(t * 5.6 + ph) * go, outZ = s === 'L' ? 1 : -1;
       const ua = fa.B['upperArm' + s], eb = fa.B['foreArm' + s], ha = fa.B['hand' + s];
@@ -102,13 +102,13 @@ const ch = staged('chambre_jour', {
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .28 * kf, sign * .38 * kf, -.12 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
-      PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .0, { thumb: .1, spread: .4 });
+      reachSafe(fa, s, front(fa, 'chest', (s === 'L' ? .38 : .16) * kf, sign * .3 * kf, (s === 'L' ? -.06 : -.2) * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
+      PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, 0, { thumb: 0, spread: .5 });
     }
     // b035: left fist at his chest, right hand open toward his father
     if (up > 0) {
-      reachSafe(mo, 'L', front(mo, 'chest', .16 * km, .04 * km, .02 * km), { grip: .04, pole: [.12, -.1, .1] });
-      PO.fingers(mo, 'L', .3 + .6 * up, { thumb: .5 });
+      reachSafe(mo, 'L', front(mo, 'chest', .2 * km, .06 * km, -.07 * km), { grip: .04, pole: [.12, -.1, .1] });
+      PO.fingers(mo, 'L', .3 + .3 * up, { thumb: .3 });
       const pump = .5 + .5 * Math.sin(t * 4.5);
       reachSafe(mo, 'R', front(mo, 'chest', (.22 + .03 * pump) * km, -.07 * km, .02 * km), { grip: 0, pole: [-.12, -.05, .12] });
       PO.palmTo(mo, 'R', up); PO.fingers(mo, 'R', .12, { spread: .3 });
@@ -128,9 +128,9 @@ const ch = staged('chambre_jour', {
       const bz = win(10, .1, .9, t); if (bz > 0) { fa.B.head.rotation.x -= .08 * bz; fa.B.neck.rotation.x -= .04 * bz; } }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .26 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);
+      const top = at(mo, 'head').add(V(0, .3 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);   // R29
       approach(fa, 'R', top, .08);
-      PO.reach(fa, 'R', top, { grip: .01, pole: [-.3, .5, .05] });
+      PO.reach(fa, 'R', top, { grip: .01, pole: [-.8, .4, .05] });
       PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });
     }
   },
@@ -141,10 +141,10 @@ export default beatScene(ID, {
   plan: {
     b027: { shot: 'pa', size: 'M', on: 'mohammed', z: 1.5, dx: -230 },   // Argon r5: the boy in the foreground, the father crossing behind (hand-set: the M zoom of a seated child would lose the walk)   // recal h 1.75: actors are true size now, W shows the whole patio with tiny figures
     b028: { shot: 'ch', size: 'M', on: 'father', z: 1.6, dx: 170, dy: -25, insAt: .55 },
-    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.7, dx: 200, dy: -50 },   // r18: the view cannot pan left of the plate (x>=960/z), so push-out failed; all three heads fully IN instead (father left third, hand still in frame)
-    b030: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.6, dx: -150, dy: -40 },
+    b029: { shot: 'ch', size: 'CU', on: 'father', z: 1.55, dx: 200, dy: -5 },   // r18: the view cannot pan left of the plate (x>=960/z), so push-out failed; all three heads fully IN instead (father left third, hand still in frame)
+    b030: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.5, dx: -150, dy: 0 },
     b032: { shot: 'ch', size: 'M', on: 'father', z: 1.45, dx: 220, dy: -55 },   // both of them in the master, crown inside the frame
-    b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dx: 70, dy: -50 },   // r18: father's head fully off the left edge, boy's head fully in
+    b033: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dx: 70, dy: -20 },   // r18: father's head fully off the left edge, boy's head fully in
     b034: { shot: 'ch', size: 'M', on: 'father', z: 1.8, dx: -60, dy: -40 },   // r18: mother clear of the right edge
     b035: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.35, dy: -40 },   // r16: the W master read as a scale pop with floating actors → same M grammar as its neighbours
     b036: { shot: 'ch', size: 'M', on: 'father', z: 1.4, dx: 140, dy: -80 },
