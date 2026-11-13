@@ -138,7 +138,7 @@ const ch = staged('chambre_jour', {
           if (wr > .01) reachSafe(mo, s, at(mo, 'hand' + s).clone().lerp(tg, wr), { grip: .02, pole: [sg * .9, .15, .4] }); }
         PO.fingers(mo, s, .3, { thumb: .3 });
       }
-      mo.B.chest.rotation.z += .03 * w43 * Math.sin(t * .9);
+      mo.B.chest.rotation.z += 0 * w43;   // R31Z: chest sway removed (pushed the lapRest left forearm into the torso at 53.25)
     }
     // R31R2: the mother is no longer rigid: slow torso lean and turn, a hand that shifts on her knee (43-61)
     { const w = sm(43, 44, t) * (1 - sm(60, 62, t));
