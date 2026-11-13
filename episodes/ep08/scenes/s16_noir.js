@@ -26,7 +26,7 @@ function mourn(zo, t) {
   zo.B.chest.rotation.x += .04 + .015 * sob;   // bowed forward, face down into both palms
   zo.B.neck.rotation.z += .035 * Math.sin(t * .55) + .02 * sh; zo.B.head.rotation.y += .05 * Math.sin(t * .37 + 1);   // slow small head shake
   for (const s of ['L', 'R']) zo.B['clavicle' + s] && (zo.B['clavicle' + s].rotation.z += (s === 'L' ? 1 : -1) * .05 * sh);
-  cradleFace(zo, { mode: 'cradle', bow: .13 + .02 * sob, u: sob });
+  cradleFace(zo, { mode: 'cradle', bow: .06 + .02 * sob, u: sob });
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
