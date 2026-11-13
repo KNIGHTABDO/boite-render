@@ -181,6 +181,11 @@ const pa = staged('patio_matin', {
       }
     }
     yawToward(mo, S3.cam, t < B(3)[0] ? .05 : t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    if (t >= B(5)[0] && t < B(6)[0] - .4) {   // b071: she turns to her son to nod
+      const ym = yawTo(zo.group.position, mo.group.position), w = sm(B(5)[0] - .2, B(5)[0] + .3, t) * .75;
+      zo.group.rotation.y += wrap(ym - zo.group.rotation.y) * w; zo.group.updateMatrixWorld(true);
+      zo.B.neck.updateWorldMatrix(false, true);
+    }
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
