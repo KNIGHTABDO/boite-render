@@ -133,11 +133,11 @@ const ch = staged('chambre_jour', {
       const hug = (a, other, lift) => {
         const k2 = a.group.scale.y / 1.6, side = armToward(a, other), osd = side === 'L' ? 'R' : 'L', oside = armToward(other, a);
         const dirTo = at(other, 'chest').sub(at(a, 'chest')).setY(0).normalize();
-        // near arm round her back (past her spine), far arm over her far shoulder blade; hands on the back, not the chin
-        const back = at(other, 'chest').addScaledVector(dirTo, .13 * k2).add(V(0, lift * k2, 0));
-        reach(a, side, back, { grip: .02, pole: [(side === 'L' ? 1 : -1) * .3, -.3, .3] });
+        // r30: hands on her near shoulder and upper arm from the front/side (never through either torso)
+        const fo = dirW(other, 0, 0, 1), sh = at(other, 'upperArm' + oside);
+        reach(a, side, sh.clone().addScaledVector(fo, .05 * k2).addScaledVector(dirTo, -.03 * k2).add(V(0, (lift + .15) * k2, 0)), { grip: .02, pole: [(side === 'L' ? 1 : -1) * .3, -.3, .3] });
         PO.fingers(a, side, .3);
-        reach(a, osd, at(other, 'upperArm' + oside).addScaledVector(dirTo, .03 * k2).add(V(0, -.1 * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .3, -.3, .3] });
+        reach(a, osd, sh.clone().addScaledVector(fo, .07 * k2).addScaledVector(dirTo, -.05 * k2).add(V(0, (lift + .03) * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .3, -.5, .3] });
         PO.fingers(a, osd, .3);
       };
       hug(zo, ai, -.13); hug(ai, zo, -.13);

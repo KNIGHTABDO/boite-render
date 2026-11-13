@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.004 * k, .016 * k, .5 + .03 * w, w);
-      place(br.children[1], .05 * k, .016 * k, .5 - .03 * w, -w);
+      place(br.children[0], -.035 * k, .034 * k, .35 + .03 * w, w);
+      place(br.children[1], .055 * k, .034 * k, .35 - .03 * w, -w);
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
@@ -102,10 +102,10 @@ const pa = staged('patio_matin', {
       const reachU = sm(.3, 3.2, t) * (1 - .3 * laugh), dr = (ph) => Math.sin(t * 1.2 + ph);
       PO.reach(zo, 'L', front(zo, 'root', (.2 + .01 * dr(0)) * kz, -.1 * kz, (.02 + .01 * dr(1)) * kz), { grip: .3 });
       const base = front(zo, 'root', .26 * kz, .1 * kz, .05 * kz).lerp(front(zo, 'neck', .22 * kz, .07 * kz, -.2 * kz), .3 * see + .1 * laugh);
-      const tgt = base.lerp(st.offer.clone().add(V(0, -.07 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .65 * reachU);
+      const tgt = base.lerp(st.offer.clone().add(V(0, .09 * kz, 0).add(front(zo, 'root', 0, 0, 0).sub(front(zo, 'root', 0, 0, 0)))), .5 * reachU);
       tgt.add(V(0, .012 * kz * dr(2), 0));
-      PO.reach(zo, 'R', tgt, { grip: .1 });
-      PO.fingers(zo, 'L', .3, { thumb: .2, spread: .2 }); PO.fingers(zo, 'R', .12 + .1 * reachU, { thumb: .05, spread: .35 });
+      PO.reach(zo, 'R', tgt, { grip: .1, pole: [.4, -1, .3] });
+      PO.fingers(zo, 'L', .3, { thumb: .2, spread: .1 }); PO.fingers(zo, 'R', .25 + .1 * reachU, { thumb: .15, spread: .12 });
       const fz = st.faces.find(x => x[0] === zo); if (fz) fz[3] = { smile: .55 + .3 * reachU };   // warm expression
     }
   },
