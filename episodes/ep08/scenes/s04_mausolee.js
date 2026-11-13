@@ -127,8 +127,8 @@ const ms = sized(checkedStage('ep03/msid_estrade', {
     if (w > 0) {
       fq.B.neck.rotation.x += .1 * w; upd(fq, 'neck');
       const sweep = .19 + .05 * Math.sin(t * 3.2);   // R31Y: hand raised to the brow (was cheek)   // R31U: continuous brow wipe
-      PO.reach(fq, 'R', front(fq, 'head', .16 * kf, (sweep - .19) * kf * 1.6 + .03 * kf, .095 * kf)   // R31Y: temple/forehead, not the turban top.lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
-      PO.fingers(fq, 'R', .08, { thumb: .1, spread: .25 });
+      PO.reach(fq, 'R', front(fq, 'head', .16 * kf, (sweep - .19) * kf * 1.6 + .03 * kf, .095 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
+      PO.fingers(fq, 'R', .08, { thumb: .1, spread: .25 });   // R31Y: hand at the temple/forehead, not the turban top
       PO.palmTo(fq, 'R', .8, dirW(fq, 0, 0, -1));
     }
   },
