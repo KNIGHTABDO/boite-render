@@ -126,10 +126,10 @@ const ch = staged('chambre_jour', {
     { const rl = sm(B(8)[0] - .3, B(8)[0] + .3, t);   // R31R: relaxed asymmetric arms from b035 on (left hand on the knee, right resting in the lap)
       if (rl > 0) for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        reachSafe(mo, s, at(mo, 'shin' + s).clone().addScaledVector(dirW(mo, 0, 0, 1), (s === 'L' ? .11 : .14) * km).addScaledVector(dirW(mo, -sg, 0, 0), (s === 'L' ? .06 : -.05) * km).add(V(0, (.07 + .012 * Math.sin(t * 1.9 + sg)) * km, 0)), { grip: .02, pole: [sg * .55, .15, .4] });
+        reachSafe(mo, s, at(mo, 'root').clone().addScaledVector(dirW(mo, 0, 0, 1), (s === 'L' ? .15 : .17) * km).addScaledVector(dirW(mo, -sg, 0, 0), (s === 'L' ? .1 : -.04) * km).add(V(0, ((s === 'L' ? -.03 : .0) + .012 * Math.sin(t * 1.9 + sg)) * km, 0)), { grip: .02, pole: [sg * .55, .15, .4] });
         PO.fingers(mo, s, .3, { thumb: .3 });
       }
-      mo.B.root.position.y -= .015 * km * rl;   // R31R: seat a touch lower so knees and tunic hem meet the floor
+      mo.B.root.position.y -= .007 * km * rl;   // R31R: seat a touch lower so knees and tunic hem meet the floor
       if (rl > 0) { const lk = sm(B(9)[0] + 3.5, B(9)[0] + 4.5, t); mo.B.neck.rotation.x -= .12 * lk; mo.B.head.rotation.x -= .1 * lk; mo.B.head.rotation.y -= .12 * lk; }   // b036: he looks up toward his father
       const bz = win(10, .1, .9, t); if (bz > 0) { fa.B.head.rotation.x -= .08 * bz; fa.B.neck.rotation.x -= .04 * bz; } }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
