@@ -164,16 +164,16 @@ const mu = checkedStage('souk_mur', {
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
     child(mo); closeHaik(zo);
-    if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } }   // R25I: far right, behind the crowd, never beside Zoubida
+    if (fm) { fm.group.visible = false; if (false) { if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); closeHaik(fm); sync(fm); } } }   // R31S: Fatma used Zoubida's model: read as a duplicate Zoubida; removed. R25I: far right, behind the crowd, never beside Zoubida
     st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:.26},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
       fa.group.position.copy(S3.floorAt(1250, 790));
       const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t), sag = sm(B(0)[0] - 1.6, f(0, .18), t);
-      mo.B.spine.rotation.x += .10 * sag; mo.B.chest.rotation.x += .10 * sag;
+      mo.B.spine.rotation.x += .26 * sag; mo.B.chest.rotation.x += .16 * sag;   // R31S: sag harder
       mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
-      mo.B.spine.rotation.z += .30 * (.4 * sag + lean); mo.B.head.rotation.z += .30 * lean;
+      mo.B.spine.rotation.z += .42 * (.4 * sag + lean); mo.B.head.rotation.z += .42 * lean;
       sync(mo);
       if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
       sync(mo);
@@ -194,7 +194,7 @@ const mu = checkedStage('souk_mur', {
     ];
     for (const [n, p0, p1, delay] of rush) {
       if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
-      const a = st.A[n], w0 = B(3)[0] + .7 + delay, w1 = w0 + 2.9;   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
+      const a = st.A[n], w1 = B(3)[0] + .7 + delay + 2.9, w0 = B(3)[0] - .1 + (delay + .35) * .6;   // R31S: wave already crossing at the b086 cut   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
       let t0 = w0, t1 = t0 + 1.9, q0 = p0, q1 = p1;
       if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.2; q0 = [p0[0], 715]; q1 = [p1[0], 715]; }   // R31C: second surge passes BEHIND the family (lane y715), never over the father   // R31C: faster second surge, clear of the father by b086 30.96
       a.group.visible = t >= t0 && t <= t1;
@@ -324,7 +324,7 @@ const la = checkedStage('souk_bijoux', {
       const y0 = yawTo(p, S3.cam.position), y1 = yawTo(p, fa.group.position);
       return y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * .55;
     };
-    const ta = B(1)[0], tb = f(1, .23), tc = B(1)[0] + 3.7, td = B(1)[1] + .15;
+    const ta = B(1)[0], tb = f(1, .23), tc = B(1)[0] + 3.1, td = B(1)[1] + .15;
     ma.group.visible = t >= ta - .4 && t <= td;
     rest(ma.B);
     if (t < tb) walk(ma, F(1080, 690), F(1180, 720), ta - .4, tb, t, { cps: 2.5 });
@@ -342,7 +342,7 @@ const la = checkedStage('souk_bijoux', {
     if (ma.group.visible) {
       // Above the head, within the measured arm length, pair in the raised right hand.
       const up = 1 - sm(tc, tc + .35, t);   // pair held UP until the turn, then lowered as he leaves
-      PO.reach(ma, 'R', front(ma, 'upperArmR', .14 * km, .34 * km, .30 * km * up - .30 * km * (1 - up)), { grip: .01, pole: [.5, 0, 0] });
+      PO.reach(ma, 'R', front(ma, 'upperArmR', .10 * km, .52 * km, .22 * km * up - .30 * km * (1 - up)), { grip: .01, pole: [.5, 0, 0] });
       PO.fingers(ma, 'R', .65);
     }
     const nod = win(1, .22, .46, t), phase = sm(f(1, .22), f(1, .44), t);
@@ -364,6 +364,7 @@ const la = checkedStage('souk_bijoux', {
       walk(client, F(960, 860).add(off), F(1200, 700).add(off), t0, t1, t, { cps: 4.0, ease: false });
       ma.B.spine.rotation.x += .32; client.B.spine.rotation.x += .25;
       sync(ma, client);
+      { const yc = yawTo(ma.group.position, S3.cam.position), y0 = ma.group.rotation.y; ma.group.rotation.y = y0 + Math.atan2(Math.sin(yc - y0), Math.cos(yc - y0)) * .8; sync(ma); }   // R31S: turn BEFORE the clasp reach (it used to drag the posed arms off the target)
       const nearest=(a,b)=>a.group.worldToLocal(b.group.position.clone()).x>0?'L':'R';
       const drag=st.dragSide=nearest(ma,client), receive=nearest(client,ma);
       const clasp = at(ma, 'upperArm'+drag).lerp(at(client, 'upperArm'+receive), .5);   // R31C: nearer the dragger so the client's forearm leaves his torso
@@ -371,7 +372,6 @@ const la = checkedStage('souk_bijoux', {
       { const sg = drag === 'L' ? 1 : -1; PO.reach(ma, drag, clasp, { grip: 0, pole: [sg * .7, .1, .3] }); }   // R31J: elbow outward
       PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
-      { const yc = yawTo(ma.group.position, S3.cam.position), y0 = ma.group.rotation.y; ma.group.rotation.y = y0 + Math.atan2(Math.sin(yc - y0), Math.cos(yc - y0)) * .8; sync(ma); }   // R31J: face less away from lens
       for (const [n, p0, p1, delay] of [
         ['woman1', [1250, 690], [700, 930], 0],
         ['kid2', [1180, 720], [820, 920], .35],
@@ -380,7 +380,7 @@ const la = checkedStage('souk_bijoux', {
         ['woman2', [1080, 640], [1180, 720], .18],
       ]) {
         const a = st.A[n]; rest(a.B);
-        walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 4.4 : 3.8, ease: false });
+        walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 5.4 : 4.6, ease: false });
         a.B.spine.rotation.x += .25; sync(a);
       }
     } else if (scan) {
@@ -419,7 +419,7 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'M', on: 'mohammed', z: 1.8, dx: -40, dy: 90 },
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 3.0, dx: -30, dy: 60 },
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
