@@ -35,7 +35,7 @@ const pa = staged('patio_matin', {
         bar.position.set(0, .06 + i * .045, .0095); st.lh.add(bar);
       }
     }
-    lapLouha(st.A.mohammed, st.lh, { sc: 1.6, tilt: .35 });   // R25B: bigger, flatter slate on the knees
+    lapLouha(st.A.mohammed, st.lh, { f: 0, x: 0, y: 0, sc: 1.6, tilt: .35 });   // R25B: bigger, flatter slate on the knees
     // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);

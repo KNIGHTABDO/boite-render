@@ -45,13 +45,18 @@ function life(a, t, seed = 0) {
 }
 
 const cl = staged('mausolee', {
-  fqih: { ...CLASS.fqih, lids: .34, talk: .4 },
+  fqih: { ...CLASS.fqih, lids: .34, talk: .4, lookMax: .9,
+    // R25D b016: remembering, gaze off into the middle distance, slightly up and aside (not down at Mohammed)
+    look: (t, st, S3) => t < B(1)[0] && st?.A && S3?.cam ? (() => { const h = st.A.fqih.B.head.getWorldPosition(V()), c = S3.cam.position, d = c.clone().sub(h).normalize();
+      return h.clone().addScaledVector(d, 3).addScaledVector(V(1, 0, 0).applyQuaternion(S3.cam.quaternion), -.9).add(V(0, .55, 0)); })() : 'mohammed' },
   mohammed: { ...CLASS.mohammed, lids: .35, mutter: t => win(1, 0, 1, t), lookMax: .28,
     look: (t, st, S3) => { hideHem(S3, st.A.mohammed, st); if (st.hem) st.hem.visible = false; return st.slate; } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A;
     life(fq, t, 2); life(mo, t, 5);
+    mo.group.visible = t >= B(1)[0] - .05;   // R25D b016: solo CU of the fqih
+    if (st.lh) st.lh.visible = mo.group.visible;
     // b016 the kind master, including the pre-roll: head tilted, a slow nod, shoulders uneven, a forward lean
     const kind = t < B(1)[0] ? 1 : 0;
     fq.B.head.rotation.z += (.17 + .035 * Math.sin(t * .7)) * kind;
