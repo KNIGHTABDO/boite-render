@@ -30,10 +30,10 @@ function mourn(zo, t) {
   zo.B.chest.rotation.x -= .11;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
   const t1 = B(1)[0];
   {   // R31A r7: head bows into the hands. b103 = both palms at the head, targets forward of the face, elbows high and out
-    const B = zo.B, k = zo.group.scale.y / 1.6, two = false && t < t1;
+    const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
     B.chest.rotation.x -= .0;   // net chest pitch already ~ -.05 above
-    B.neck.rotation.x += .17 + .02 * sob; zo.group.updateMatrixWorld(true);
-    const fwd = two ? .07 : .12;
+    B.neck.rotation.x += (t < t1 ? .21 : .17) + .02 * sob; zo.group.updateMatrixWorld(true);
+    const fwd = two ? .03 : .12;
     for (const s of two ? ['L', 'R'] : ['R']) {
       const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * (two ? .055 : .055), .065, fwd)), wrist = skin();
       for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: [sg * 2.8, 1.3, .1] }); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
