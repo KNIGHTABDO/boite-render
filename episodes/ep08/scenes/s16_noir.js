@@ -33,7 +33,7 @@ function mourn(zo, t) {
     const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
     B.chest.rotation.x -= .0;   // net chest pitch already ~ -.05 above
     B.neck.rotation.x += .17 + .02 * sob; zo.group.updateMatrixWorld(true);
-    const fwd = two ? .13 : .12;
+    const fwd = two ? .07 : .12;
     for (const s of two ? ['L', 'R'] : ['R']) {
       const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * (two ? .055 : .055), .065, fwd)), wrist = skin();
       for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: [sg * 2.8, 1.3, .1] }); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
