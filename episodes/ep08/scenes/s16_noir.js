@@ -7,7 +7,7 @@ import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
 import { shot } from './_3d.js';
 import { staged } from '../lib/autostage.js';
-import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
+import { lieOnBed, pillowUnder, cradleFace } from '../lib/fix8_lie.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import * as K from '../../../engine/core.js';
 
@@ -16,13 +16,17 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
-const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 };
+const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, height: 1.2 };
 const ZO = { at: [1050, 748], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: 0, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
   const sob = .5 + .5 * Math.sin(t * 1.7);
+  zo.noDarkLid = true;   // stage3d lid sampler: never paint the lids with hair/ink (black patch on the left eye)
+  const sh = Math.max(0, Math.sin(t * 1.7 + .6)) ** 3;   // sob: a quick shoulder rise, then a slow settle
   zo.B.chest.rotation.x += .1 + .015 * sob;   // bowed forward, face down into both palms
-  palmsOverEyes(zo, { bow: .14 });
+  zo.B.neck.rotation.z += .035 * Math.sin(t * .55) + .02 * sh; zo.B.head.rotation.y += .05 * Math.sin(t * .37 + 1);   // slow small head shake
+  for (const s of ['L', 'R']) zo.B['clavicle' + s] && (zo.B['clavicle' + s].rotation.z += (s === 'L' ? 1 : -1) * .05 * sh);
+  cradleFace(zo, { mode: 'cradle', bow: .13 + .02 * sob, u: sob });
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
@@ -52,14 +56,14 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
 const cry = staged('chambre_jour', {
   zoubida: ZO,
   mohammed: { at: [1350, 694], face: [1336, 754], pose: 'kneel', o: { grounded: true, seat: TOP, lean: .22, spread: .045, hands: false, avoid: CHEST },
-    hands: false, seed: 3, talk: 0, lids: .85 },
+    hands: false, seed: 3, talk: 0, lids: .85, height: 1.2 },
 }, {
   over: tears,
   act(lt, t, S, st) {
     st.G.apply = () => {}; mourn(st.A.zoubida, t);
     const mo = st.A.mohammed;
     mo.B.chest.rotation.x += .06 + .02 * Math.sin(t * 9);   // hunched, shoulders heaving
-    palmsOverEyes(mo, { bow: .3 });
+    cradleFace(mo, { mode: 'eyes', bow: .3, u: .5 });
   },
 });
 

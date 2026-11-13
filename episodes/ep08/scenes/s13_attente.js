@@ -51,7 +51,10 @@ export function haikCloth(a) {
   for(let j=0;j<=rings;j++) {
     const u=j/rings,y=bottom+(top-bottom)*u, q=Math.max(0,Math.min(1,(y-root.y)/(neck.y-root.y))), center=root.clone().lerp(chest,Math.min(1,q*1.5)).lerp(neck,Math.max(0,(q-.65)/.35));
     const radius=u>.87 ? .205-(u-.87)/.13*.11 : .235-.035*u;
-    for(let i=0;i<=sides;i++){const angle=i/sides*Math.PI*2, fold=1+.025*Math.cos(angle*8);p.setXYZ(j*(sides+1)+i,center.x+Math.cos(angle)*radius*fold,y,center.z+Math.sin(angle)*radius*.86*fold);}
+    for(let i=0;i<=sides;i++){const angle=i/sides*Math.PI*2, fold=1+.025*Math.cos(angle*8);let X=center.x+Math.cos(angle)*radius*fold,Y=y,Z=center.z+Math.sin(angle)*radius*.86*fold;
+      const D=a.haikLift;   // opt-in (s14 b093): hem raised and knee bulge on the side facing D.dx/D.dz
+      if(D&&D.w>0){const vx=X-center.x,vz=Z-center.z,l=Math.hypot(vx,vz)||1,w=Math.max(0,(vx*D.dx+vz*D.dz)/l)**2*D.w;Y=y+w*D.lift*Math.max(0,1-u/.62);const bu=w*D.bulge*Math.exp(-(((u-.3)/.14)**2));X+=bu*D.dx;Z+=bu*D.dz;}
+      p.setXYZ(j*(sides+1)+i,X,Y,Z);}
   }
   p.needsUpdate=true;cloth.geometry.computeVertexNormals();cloth.updateMatrixWorld(true);
 }

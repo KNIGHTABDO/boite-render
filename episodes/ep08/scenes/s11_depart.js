@@ -174,6 +174,7 @@ const pa = staged('patio_matin', {
       }
     }
     yawToward(mo, S3.cam, t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    if (Math.abs(t-6.2)<.03) { const h=at(mo,'head'); const f=mo.B.head.localToWorld(V(0,0,1)).sub(h); console.error('DBGMO ry',mo.group.rotation.y.toFixed(2),'yc',yawTo(mo.group.position,S3.cam.position).toFixed(2),'face',f.x.toFixed(2),f.y.toFixed(2),f.z.toFixed(2),'cam',S3.cam.position.x.toFixed(2),S3.cam.position.y.toFixed(2),S3.cam.position.z.toFixed(2),'mo',mo.group.position.x.toFixed(2),mo.group.position.z.toFixed(2)); }
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);

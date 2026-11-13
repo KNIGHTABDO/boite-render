@@ -72,3 +72,32 @@ export function palmsAtTemples(a, { bow = .06 } = {}) {
   a.B.chest.rotation.x += .04; a.B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
   palmsAt(a, [.09, .085, .02], [.02, .15, .0], [.7, .2, -.05], [.03, .3]);
 }
+
+/**
+ * r25L: hands cradling the face, placed from the rig's own eye coordinates (the old fixed head-local spots landed beside
+ * the ears and pushed the fingers into the headscarf). mode 'cradle': L palm on the brow/temple-side of the eye, R palm
+ * under the cheek, asymmetric, elbows in; mode 'eyes': both palms over the eyes. `u` (0..1 breathing/sob phase) moves
+ * the hands a few mm; `out` is the standoff from the skin (m, head-local) so fingers stay off the scarf.
+ */
+export function cradleFace(a, { mode = 'cradle', bow = .12, u = 0, out = .02 } = {}) {
+  const B = a.B, F = a.S.face, hy = a.S.head;
+  a.B.chest.rotation.x += .05; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
+  const eye = { L: F.eyeL, R: F.eyeR };
+  const spec = s => {
+    const e = eye[s], sg = s === 'L' ? 1 : -1, ex = Math.abs(e[0]) * sg, ey = e[1] - hy, ez = e[2];
+    if (mode === 'eyes') return { spot: [ex * .9, ey - .005, ez + out], tip: [ex * .8, ey + .1, ez + out * .6], pole: [sg * .35, -.05, .3], fing: [.04, .05] };
+    if (s === 'L') return { spot: [ex * .8, ey + .035 + .004 * u, ez + out], tip: [ex * .5, ey + .13, ez + out * .5], pole: [sg * .3, -.1, .3], fing: [.1, .04] };   // brow
+    return { spot: [ex * .85, ey - .05 - .004 * u, ez + out], tip: [ex * 1.5, ey + .03, ez - .01], pole: [sg * .28, -.15, .22], fing: [.18, .08] };   // cheek, fingers toward the temple
+  };
+  for (const s of ['L', 'R']) {
+    const sign = s === 'L' ? 1 : -1, sp = spec(s), skin = () => B.head.localToWorld(V(sp.spot[0], sp.spot[1], sp.spot[2]));
+    let wrist = skin();
+    for (let i = 0; i < 4; i++) {
+      const p = skin();
+      PO.reach(a, s, wrist, { grip: 0, pole: sp.pole });
+      aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(V(sp.tip[0], sp.tip[1], sp.tip[2])));
+      wrist.add(p.clone().sub(PO.handPts(a, s).palm));
+    }
+    PO.fingers(a, s, sp.fing[0], { thumb: sp.fing[0], spread: sp.fing[1] });
+  }
+}

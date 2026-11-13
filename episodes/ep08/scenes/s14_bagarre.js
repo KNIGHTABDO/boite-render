@@ -59,18 +59,38 @@ const mu = soukCast(checkedStage('souk_mur', {
   zoubida: { at: [520, 860], face: [800, 1000], costume: 'haik', seed: 7, talk: 0, lookMax: .9, lids: t => .35 * win(3, 0, 1, t),
     look: t => t > B(3)[0] && t < B(4)[0] ? [560, 980, 0] : t < B(1)[0] ? 'father' : null },
   fatma: { at: [980, 900], face: [900, 980], costume: 'haik', seed: 11, talk: 0, lookMax: 1.7,
-    look: (t, st, S3) => t > B(4)[0] ? (st?.A ? behind(st.A.fatma, 1, .35, .5) : S3.cam.position) : t < B(1)[0] ? 'father' : null },
+    look: (t, st, S3) => t > B(4)[0] ? S3.cam.position : t < B(1)[0] ? 'father' : null },
   man1: { at: [1220, 610], face: [300, 980], seed: 21, talk: 0 },
   kid2: { at: [1300, 640], face: [300, 980], seed: 27, talk: 0 },
   woman1: { at: [1220, 610], face: [300, 980], seed: 25, talk: 0 },
   kid3: { at: [1300, 640], face: [300, 980], seed: 29, talk: 0 },
+  woman2: { at: [1220, 610], face: [300, 980], seed: 23, talk: 0 },
+  kid1: { at: [1300, 640], face: [300, 980], seed: 26, talk: 0 },
 }, {
-  traffic:['man1','kid2','woman1','kid3'],
+  traffic:['man1','kid2','woman1','kid3','woman2','kid1'],
   act(lt, t, S, st, S3) {
     st.actcheck={exposed:{zoubida:['handL','handR','foreArmL','foreArmR'],fatma:['handL','handR','foreArmL','foreArmR']},contacts:[{actors:['father','mohammed'],parts:['foreArmR:torso','foreArmR:head']}]};
     const { father: fa, mohammed: mo, zoubida: zo, fatma: ft } = st.A, kz = k(zo), kt = k(ft), kf = k(fa);
     for (const a of Object.values(st.A)) { castScale(a); if (a.actMark?.costume === 'haik' || a.haikClosed) sealHaik(a); }
     apart(mo, zo, .42); apart(mo, ft, .42);
+    // b090: the father is bigger at depth than the plain perspective read (stall counters beside him)
+    fa.group.scale.multiplyScalar(1.1); fa.group.updateMatrixWorld(true);
+    // Closed haik, elbows outside the ribs. The hop and the tug replace this below.
+    // runners deep in the passage during the trampling (b093–b094)
+    const r0 = B(3)[0] - .3;
+    for (const [n, p0, p1, dt] of [
+      ['man1', [1150, 700], [900, 760], 0], ['kid2', [1220, 640], [1000, 720], .4],
+      ['woman1', [1300, 690], [900, 690], 3.3], ['kid3', [1350, 700], [900, 710], 4.3], ['woman2', [650, 700], [1300, 700], 3.6],
+    ]) {
+      const a = st.A[n], t0 = r0 + dt, t1 = t0 + 2.9;
+      a.group.visible = t > t0 && t < t1 && t >= B(2)[0];
+      if (a.group.visible) { rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 3.2, ease: false }); stride(a, t, t0, 3.2, 1, true); }
+    }
+    // b090: a crowd up the passage that he walks into (heads-down shoppers crossing, slowly)
+    for (const [n, p0, p1] of [['man1', [930, 650], [690, 640]], ['woman2', [640, 630], [900, 665]], ['kid1', [880, 705], [690, 695]], ['woman1', [740, 600], [840, 610]], ['kid3', [980, 625], [800, 620]]]) {
+      const a = st.A[n], u0 = 0, u1 = B(1)[0] + .2;
+      if (t < u1) { a.group.visible = true; rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), u0, u1, t, { cps: 1.4, ease: false }); stride(a, t, u0, 1.4, .8, false); }
+    }
     // b090 he rises from setting the boy down (bent at first), then strides away and is swallowed by the passage
     const up = sm(0, B(0)[0] + .2, t);
     if (t >= B(0)[0] + .2 && t < B(0)[1]) stride(fa, t, B(0)[0] + .2, 2.6, 1, true);
@@ -93,19 +113,9 @@ const mu = soukCast(checkedStage('souk_mur', {
         st.G = { _wrapped: true, apply(tt) { inner.apply(tt); if (tt < B(1)[0]) faceCam(mo, S3.cam, 1.05); } };
       }
     }
-    // Closed haik, elbows outside the ribs. The hop and the tug replace this below.
-    // runners deep in the passage during the trampling (b093–b094)
-    const r0 = B(3)[0] - .3;
-    for (const [n, p0, p1, dt] of [
-      ['man1', [1150, 700], [900, 760], 0], ['kid2', [1220, 640], [1000, 720], .4],
-      ['woman1', [1120, 640], [860, 760], 2.4], ['kid3', [1220, 640], [980, 720], 2.8],
-    ]) {
-      const a = st.A[n], t0 = r0 + dt, t1 = t0 + 2.9;
-      a.group.visible = t > t0 && t < t1;
-      if (a.group.visible) { rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 3.2, ease: false }); stride(a, t, t0, 3.2, 1, true); }
-    }
     // b093 trampled: jolt, hop on the left foot, right knee up, folding toward it
     const hu = win(3, 0, .95, t), hop = Math.max(0, Math.sin((t - B(3)[0]) * 9)) * hu;
+    { const dd = Math.hypot(-.5, .86); zo.haikLift = { w: hu, dx: -.5 / dd, dz: .86 / dd, lift: .5 / zo.group.scale.y, bulge: .1 / zo.group.scale.y }; }
     if (hu > 0) {
       zo.B.thighR.rotation.x -= 1.15 * hu; zo.B.shinR.rotation.x += 1.35 * hu;
       zo.B.spine.rotation.x += .7 * hu; zo.B.chest.rotation.x += .4 * hu; zo.B.neck.rotation.x += .1 * hu; zo.B.head.rotation.x += .2 * hu;
@@ -120,13 +130,22 @@ const mu = soukCast(checkedStage('souk_mur', {
     // b094 the haik tugged from behind: chest twists after it, both fists at the breastbone
     const tug = win(4, 0, 1, t), jerk = Math.max(0, Math.sin((t - B(4)[0]) * 5.5)) ** 3;
     if (tug > 0) {
-      ft.group.rotation.y = yawTo(ft.group.position, S3.cam.position) - .3; ft.group.updateMatrixWorld(true);
-      ft.B.spine.rotation.y += (.45 + .1 * jerk) * tug; ft.B.chest.rotation.y += .3 * tug; ft.B.neck.rotation.y += .25 * tug;
+      // Back half-turned to the lens (she was walking on); the chest twists after the tug until her face and the cloth she clutches face us.
+      ft.group.rotation.y = yawTo(ft.group.position, S3.cam.position) + 2.2; ft.group.updateMatrixWorld(true);
+      ft.B.spine.rotation.y -= (.7 + .1 * jerk) * tug; ft.B.chest.rotation.y -= .6 * tug; ft.B.neck.rotation.y -= .45 * tug;
       ft.B.spine.rotation.x -= .08 * jerk * tug; ft.group.position.add(V(.03 * jerk * kt, 0, -.04 * jerk * kt));
       ft.group.updateMatrixWorld(true); ft.B.spine.updateWorldMatrix(false, true);
-      const breast = front(ft, 'chest', .2 * kt, 0, -.1 * kt);
+      // fists ON the cloth surface at the breastbone, where the chest points (not inside the cylinder)
+      const cq = ft.B.chest.getWorldQuaternion(new THREE.Quaternion()), gq = ft.group.getWorldQuaternion(new THREE.Quaternion()).invert();
+      const dl = V(0, 0, 1).applyQuaternion(cq).applyQuaternion(gq); dl.y = 0; dl.normalize();
+      const sd = V(1, 0, 0).applyQuaternion(cq).applyQuaternion(gq); sd.y = 0; sd.normalize();
+      const sc = ft.group.scale.y, ch = ft.group.worldToLocal(at(ft, 'chest')), rt = ft.group.worldToLocal(at(ft, 'root'));
+      const nk = ft.group.worldToLocal(at(ft, 'neck')), yy = ch.y - .05, uu = Math.min(.85, Math.max(.1, (yy - .012) / (nk.y + .006))), R = .235 - .035 * uu;
+      const cx = rt.x + (ch.x - rt.x) * .75, cz = rt.z + (ch.z - rt.z) * .75;
+      const rr = 1 / Math.sqrt((dl.x / R) ** 2 + (dl.z / (.86 * R)) ** 2);
       for (const s of ['L', 'R']) {
-        PO.grip(ft, s, breast.clone().addScaledVector(V(-1, 0, 0).applyQuaternion(ft.B.chest.getWorldQuaternion(new THREE.Quaternion())), (s === 'L' ? -.05 : .05) * kt), at(ft, 'chest'), { pole: [s === 'L' ? .48 : -.48, .18, .3] });
+        const off = (s === 'L' ? 1 : -1) * .05 / sc, o = ft.group.localToWorld(V(cx + dl.x * (rr + .012) + sd.x * off, yy, cz + dl.z * (rr + .012) + sd.z * off));
+        PO.grip(ft, s, o, at(ft, 'chest'), { pole: [s === 'L' ? .6 : -.6, -.2, .2] });
         PO.fingers(ft, s, .95, { thumb: .85 });
       }
     }
@@ -251,7 +270,7 @@ const scene = beatScene(ID, {
   shots: { mu, fi },
   plan: {
     b090: { shot: 'mu', size: 'W', on: 'mohammed' },   // the boy in frame, the father striding off up the passage
-    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.2, dx: 100, dy: 250 },
+    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.5, dx: 0, dy: 190 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 3.2, dx: 0, dy: 20 },
     b095: { shot: 'fi', size: 'M', on: 'father', z: 1.4, pt: [930, 710] },
     b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 2.4, pt: [800, 760] },
