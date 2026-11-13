@@ -87,7 +87,7 @@ const ch = staged('chambre_jour', {
     }
     // he turns his shoulders toward Zoubida when she speaks (b030, b033, b034) so head + body reach her
     const zw = zwin(t);
-    if (zw > 0) { mo.B.spine.rotation.y += ZS * .12 * zw; mo.B.chest.rotation.y += ZS * .1 * zw; }   // R31K: face stays open to camera
+    if (zw > 0) { mo.B.spine.rotation.y += ZS * .26 * zw; mo.B.chest.rotation.y += ZS * .22 * zw; }   // R31K: face stays open to camera
     if (wel > 0) fa.B.spine.rotation.x += .08 * wel;
     if (ask > 0) { zo.B.spine.rotation.x += .1 * ask; zo.B.head.rotation.z += .08 * ask; }
     if (pat > 0) { fa.B.spine.rotation.x += .22 * pat; fa.B.chest.rotation.x += .1 * pat; fa.B.neck.rotation.x += .12 * pat; }   // over the boy, still upright enough that the forearm stays outside the ribs
@@ -113,7 +113,7 @@ const ch = staged('chambre_jour', {
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .3 * kf, sign * .17 * kf, -.13 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .8, -.5, .1] });
+      reachSafe(fa, s, front(fa, 'chest', .22 * kf, sign * .15 * kf, -.17 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .8, -.5, .1] });
       PO.palmTo(fa, s, palms, V(0, 1, 0));   // R31K: both hands in front of the chest PO.fingers(fa, s, 0, { thumb: 0, spread: .5 });
     }
     // b035: left fist at his chest, right hand open toward his father

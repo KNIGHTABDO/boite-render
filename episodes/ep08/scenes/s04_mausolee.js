@@ -216,8 +216,8 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
         a.B.spine.rotation.y += sg * .3 * w; a.B.chest.rotation.y += sg * .4 * w; a.B.neck.rotation.y += sg * .45 * w; a.B.head.rotation.y += sg * .45 * w; }
       upd(a, 'spine', 'chest', 'neck');
       if (S3.project(at(a, 'head'))[0] < 235) underLeaf = true;   // R25C: this stretch is drawn under the redrawn door leaf
-      PO.reach(a, 'R', front(a, 'chest', .25 * ka, .1 * ka, -.1 * ka), { grip: .015, pole: [-.4, -.1, -.1] });
-      PO.reach(a, 'L', front(a, 'chest', (.23 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, -.1 * ka, -.17 * ka), { grip: 0, pole: [.35, .05, .1] });
+      PO.reach(a, 'R', front(a, 'chest', .25 * ka, .08 * ka, -.2 * ka), { grip: .015, pole: [-.4, -.1, -.1] });
+      PO.reach(a, 'L', front(a, 'chest', (.23 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, -.1 * ka, -.24 * ka), { grip: 0, pole: [.35, .05, .1] });
       PO.fingers(a, 'R', .95, { thumb: cnt === 5 ? 0 : .6, each: [1, 0, cnt >= 2 ? 0 : 1, cnt >= 3 ? 0 : 1, cnt >= 4 ? 0 : 1], spread: .6 });
       const index = a.B.RightHandIndex3;
       if (index) IK.aim(a.B.handR, IK.wpos(index), at(a, 'handR').add(V(0, .2 * ka, 0)).addScaledVector(dirW(a, 0, 0, 1), -.05 * ka));
@@ -322,7 +322,7 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = 1.42 * r, hs = hinge;
+      const hinge = 1.1 * r, hs = hinge;   // R31I: smaller bow, less skin stretch
       a.B.spine.rotation.set(hs, 0, 0); a.B.chest.rotation.set(hinge - hs, 0, 0);   // R31I: bend shared by spine and chest, so the skin stretches over two joints
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hs);
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
@@ -342,7 +342,9 @@ const pray = sized(checkedStage('mausolee', {
       for (const s of ['L', 'R']) {   // qiyam: right hand over left on the chest → ruku: palms on the knees
         const kn = front(a, 'shin' + s, .045 * ka, 0, .025 * ka);
         const fold = front(a, 'chest', .17 * ka, (s === 'L' ? -.02 : .03) * ka, (s === 'L' ? -.16 : -.13) * ka);
-        PO.reach(a, s, fold.lerp(kn, r), { grip: 0, pole: [(s === 'L' ? 1 : -1) * (.3 - .1 * (1 - r)), .05, .25] });   // qiyam: a little less flared than before
+        const want = fold.lerp(kn, r), sh0 = at(a, 'upperArm' + s), alen = sh0.distanceTo(at(a, 'foreArm' + s)) + at(a, 'foreArm' + s).distanceTo(at(a, 'hand' + s));
+        { const dv = want.clone().sub(sh0), dl = dv.length(); if (dl > alen * .95) want.copy(sh0).addScaledVector(dv, alen * .95 / dl); }   // R31I: follow the shallower bow, never beyond arm length
+        PO.reach(a, s, want, { grip: 0, pole: [(s === 'L' ? 1 : -1) * (.3 - .1 * (1 - r)), .05, .25] });   // qiyam: a little less flared than before
         if (r > .95) PO.palmTo(a, s, r, V(0, -1, 0));
         PO.fingers(a, s, .08, { thumb: .12, spread: .2 });
       }
