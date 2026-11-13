@@ -142,6 +142,7 @@ const la = checkedStage('souk_bijoux', {
     turn(ft, t >= B(7)[0] && t < B(8)[0] ? S3.floorAt(900, 1000) : ma.group.position, face);
     if (t < B(7)[0]) { faceCam(zo, S3.cam, .8); faceCam(ft, S3.cam, .8); }
     ma.group.visible = t > B(5)[0] - .3;
+    if (t >= f(7, .45) && t < B(8)[0]) ma.group.visible = false;   // R28: clean single on Fatma, the dellal re-enters on the b082 cut
     {   // relaxed arms for everyone whose hands are not working (the later reaches override these)
       const walking = t > B(1)[0] + .1 && t < B(1)[1] + .5;
       if (!walking) loose(mo, ['L', 'R'], t, 3);
