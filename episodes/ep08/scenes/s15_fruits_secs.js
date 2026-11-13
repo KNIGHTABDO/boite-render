@@ -98,8 +98,8 @@ const fr = checkedStage('souk_mur', {
   // Foreground floor marks put the painted counter at waist height, rather than under their chins.
   man1: { at: [1420, 900], face: 'woman1', seed: 21, talk: 0, look: 'woman1', lookMax: .25 },
   woman1: { at: [1220, 1040], face: 'man1', seed: 25, talk: 0, look: 'man1', lookMax: .3 },
-  kid2: { at: [640, 740], seed: 27, talk: 0, walk: { to: [30, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 11.6 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
-  kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [110, 1070], t0: B(2)[0], t1: B(2)[0] + 11.6 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
+  kid2: { at: [640, 740], seed: 27, talk: 0, walk: { to: [170, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
+  kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [280, 1070], t0: B(2)[0], t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
 }, {
   light: { shadow: .4, area: 6 },
   traffic:['kid2','kid3','man1','woman1'],
@@ -119,7 +119,7 @@ const fr = checkedStage('souk_mur', {
       a.B.head.rotation.set(.04 * hurry, .85 * sw * hurry, 0);
       sync(a);
     }
-    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[0] + 11.9;
+    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[0] + 13.6;
     for (const a of [m1, w1]) a.group.visible = t < B(3)[0];
     ft.group.visible = t < B(3)[0];   // neither CU admits a sliced-off neighbour at its edge
     mo.group.visible = t < B(4)[0];   // the mother's reaction has the boy just off screen below her eyeline
@@ -132,7 +132,7 @@ const fr = checkedStage('souk_mur', {
     w1.B.chest.rotation.x += .045 * Math.sin(t * 1.7 + 1); sync(m1, w1);
     // Weighing: the right hand rides the brass pan (behind his right shoulder, screen right), the pan bobbing.
     const pan0 = S3?.floorAt ? S3.floorAt(1600, 420, 1.2) : null;
-    if (pan0) {
+    if (pan0 && t > B(2)[0] - .5) {
       m1.group.position.set(pan0.x - .05 * k1, 0, pan0.z + .5 * k1); m1.group.rotation.y = yawTo(m1.group.position, pan0) * .3 + yawTo(m1.group.position, w1.group.position) * .7 + .15 * Math.sin(t * 1.7); sync(m1);
     }
     const pan = (pan0 || at(m1, 'root').add(V(.5 * k1, .62 * k1, -.3 * k1))).clone().add(V(0, .03 * Math.sin(t * 2.6) * k1, 0));

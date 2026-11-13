@@ -129,7 +129,16 @@ const pa = staged('patio_matin', {
     fa.group.visible = zo.group.visible = ra.group.visible = true;
     yawToward(zo, S3.cam, .45);
     for (const a of [w1, w2]) a.group.visible = true;
+    // R28: the trio closes up for b065 ("les trois femmes ensemble"); the base is captured once, so every beat shows the same positions otherwise.
+    st.base ||= new Map([zo, ra].map(a => [a, a.group.position.clone()]));
+    { const k = sm(B(11)[0] - .8, B(11)[0] + .1, t);
+      for (const a of [zo, ra]) { const b = st.base.get(a); a.group.position.set(b.x + (fa.group.position.x - b.x) * .4 * k, b.y, b.z + (fa.group.position.z - b.z) * .4 * k); a.group.updateMatrixWorld(true); } }
     open34(zo, S3.cam, .85); open34(ra, S3.cam, .75);
+    // R28: relaxed base arms (slight elbow bend, hands clasped near the waist) for every beat that does not pose them below.
+    if (t >= B(6)[0] - .2) for (const a of [zo, ra, fa]) {
+      handTo(a, 'L', { fwd: .26, out: -.02, drop: .24, curl: .4, spread: .06 });
+      handTo(a, 'R', { fwd: .24, out: -.03, drop: .22, curl: .35, spread: .06 });
+    }
     const fun = hold(B(5)[0] - .1, B(5)[1], t);
     // Staggered, visible laughter: chest shakes, head tipped back, one hand to the mouth or chest, each woman on her own delay.
     for (const [a, f, d, side, mouth] of [[w1, 12, .0, 'R', 1], [w2, 15, .35, 'L', 0], [ra, 11, .15, 'R', 1], [fa, 14, .5, 'L', 0], [zo, 10, .7, 'R', 0]]) {
@@ -146,6 +155,16 @@ const pa = staged('patio_matin', {
       }
     }
     for (const [a, ph] of [[w1, 0], [w2, 2]]) { if (fun > .5) continue; const q = Math.sin(t * 1.3 + ph); a.B.chest.rotation.z += .03 * q; a.B.head.rotation.z += .04 * Math.sin(t * .9 + ph); a.B.neck.rotation.x += .03 * (1 + q); a.B.chest.updateWorldMatrix(false, true); if (a === w1) handTo(a, 'R', { fwd: .2, out: -.02, drop: -.05 + .04 * q, curl: .3, spread: .1 }); }
+    // R28: after the laugh the neighbours wash and listen, differently per beat: hands busy low, head down or toward the talkers.
+    if (t > B(5)[1] + .2) {
+      const bi = (t >= B(6)[0]) + (t >= B(8)[0]) + (t >= B(9)[0]) + (t >= B(10)[0]) + (t >= B(11)[0]), q = Math.sin(t * 1.5 + bi);
+      handTo(w1, 'R', { fwd: .22, out: .02, drop: .06 + .05 * q, curl: .3 }); handTo(w1, 'L', { fwd: .2, out: .0, drop: .1 + .04 * Math.sin(t * 1.5 + 1.6), curl: .3 });
+      handTo(w2, 'R', { fwd: .16, out: .03, drop: .14 + .03 * q, curl: .4 }); handTo(w2, 'L', { fwd: .14, out: .03, drop: .16, curl: .4 });
+      const down = [.22, .02, .2, .05, .18, .0][bi];
+      w1.B.neck.rotation.x += down * (bi % 2 ? 1 : .3); w2.B.neck.rotation.x += down * (bi % 2 ? .3 : 1);
+      w1.B.head.rotation.y += .12 * Math.sin(t * .6 + bi * 2); w2.B.head.rotation.y -= .12 * Math.sin(t * .5 + bi * 3);
+      for (const a of [w1, w2]) a.B.neck.updateWorldMatrix(false, true);
+    }
     const tease = hold(B(6)[0] - .15, B(6)[1], t);
     if (tease > 0) {
       laugh(ra, tease * .6, t, 9);
@@ -166,10 +185,10 @@ const pa = staged('patio_matin', {
     const hand = sm(B(10)[0] - .05, B(10)[0] + .28, t) * (1 - sm(B(10)[1] - .1, B(10)[1], t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
-      handTo(zo, 'R', { fwd: .4, out: .3, drop: .1, curl: .1, spread: .3 });
+      handTo(zo, 'R', { fwd: .38, out: .24, drop: -.02 + .03 * Math.sin(t * 2.4), curl: .1, spread: .3 });
       const toR = ra.group.position.clone().sub(zo.group.position); toR.y = 0; toR.normalize(); toR.y = .15;
       PO.palmTo(zo, 'R', hand, toR);
-      handTo(zo, 'L', { fwd: .02, out: .13, drop: .3, curl: .3, spread: .1 });
+      handTo(zo, 'L', { fwd: .22, out: -.02, drop: .26, curl: .35, spread: .08 });
       fa.B.chest.rotation.y -= .06 * hand;
     }
     const amen = sm(B(11)[0] - .15, B(11)[0] + .4, t);
@@ -203,13 +222,10 @@ const pa = staged('patio_matin', {
     }
     if (palms > 0) {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
-      // R26A: both palms up, both forearms raised in front (explicit world targets; handTo left the L arm hanging)
-      const kr = ra.group.scale.y / 1.6;
-      for (const s of ['L', 'R']) {
-        const sg = s === 'R' ? 1 : -1;
-        for (let r = 0; r < 2; r++) PO.reach(ra, s, front(ra, 'chest', .34 * kr, sg * .3 * kr, -.12 * kr), { grip: .02, pole: [-sg * .5, -.1, .3] });
-        PO.fingers(ra, s, .1, { thumb: .1, spread: .35 });
-        PO.palmTo(ra, s, palms, V(0, 1, .05));
+      // R28: both palms up, both forearms raised in front, symmetric through handTo
+      for (const sd of ['L', 'R']) {
+        handTo(ra, sd, { fwd: .34, out: .12, drop: .02 + .03 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)), curl: .12, spread: .35 });
+        PO.palmTo(ra, sd, palms, V(0, 1, .05));
       }
     }
   },
@@ -226,9 +242,9 @@ export default beatScene(ID, {
     b059: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dx: 25, dy: 50 },
     b060: { shot: 'pa', size: 'M', on: 'rahma', z: 1.8, dx: -20, dy: 75 },
     b061: { shot: 'esc', size: 'CU', on: 'mohammed', z: 1.2, dy: 70 },
-    b062: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.9, dy: 60 },
-    b063: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dy: 60 },
-    b064: { shot: 'pa', size: 'M', on: 'fatma', z: 1.9, dx: 70, dy: 40 },
-    b065: { shot: 'pa', size: 'M', on: 'fatma', z: 1.3, dx: 40, dy: 40 },
+    b062: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dy: 50 },
+    b063: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dy: 50 },
+    b064: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dy: 50 },
+    b065: { shot: 'pa', size: 'M', on: 'fatma', z: 1.6, dy: 50 },
   },
 });
