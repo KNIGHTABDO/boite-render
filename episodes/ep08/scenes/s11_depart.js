@@ -174,7 +174,7 @@ const pa = staged('patio_matin', {
     if (fa.group.visible && eager <= 0) restArm(fa, 'L', 'faL');
     if (paFa.group.visible && !call && !walking) { restArm(paFa, 'L', 'paL'); restArm(paFa, 'R', 'paR'); }
     if (t < B(6)[0]) {
-      yawBody(zo, S3.cam, t >= B(3)[0] ? .6 : .6);
+      yawBody(zo, S3.cam, t >= B(5)[0] ? .85 : t >= B(3)[0] ? .6 : .6);
       if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
         if (t < B(3)[0]) yawBody(mo, S3.cam, .05);
         else { const yc = yawTo(mo.group.position, S3.cam.position); mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true); }   // same proven camera-facing clamp as Zoubida: face stays readable
