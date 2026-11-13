@@ -148,6 +148,7 @@ const nu = staged('chambre_nuit', {
     if (offer > 0 && take <= 0) {
       const sh = at(fa, 'upperArmR'), reach = .45 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
       const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .03 * win(11, 0, 1, t))); p.y = sh.y - .15 * kf;
+      p.add(PO.hipToWorld(fa, -.15 * kf, 0, .1 * kf)).sub(PO.hipToWorld(fa, 0, 0, 0));   // R31J: hand target itself out to the side and forward
       PO.reach(fa, 'R', p, { grip: 0, pole: [-1.3, .8, .7] });   // R31J: shorter reach, elbow out
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
@@ -169,7 +170,7 @@ const nu = staged('chambre_nuit', {
       const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
       const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > len * .95) dir.setLength(len * .95);
-      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-1.2, .9, 1.2] });   // R31C: pole pushed further out, the forearm crossed his own torso at b121
+      PO.reach(zo, 'R', shoulder.clone().add(dir).add(PO.hipToWorld(zo, -.15 * kz, 0, .1 * kz)).sub(PO.hipToWorld(zo, 0, 0, 0)), { grip: 0, pole: [-1.2, .9, 1.2] });   // R31C: pole pushed further out, the forearm crossed his own torso at b121
     }
     if (heart > 0) {
       PO.reach(zo, 'R', front(zo, 'chest', .2 * kz, -.07 * kz, -.2 * kz), { grip: 0, pole: [-1.0, .1, .5] });   // R25M: flat on the heart, below the collarbone
