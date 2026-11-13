@@ -26,8 +26,9 @@ export function lapLouha(a, lh, off = null) {   // off: optional {f,x,y} slate b
   const kk = k(a);
   const sc = (off && off.sc) || Math.min(1.15, Math.max(.95, kk * 1.5));   // r16: bigger so it reads as a board
   holdBoard(a, lh, front(a, 'root', .36 * kk + (off ? off.f * kk : 0), off ? off.x * kk : 0, .13 * kk + (off ? off.y * kk : 0)), -1.05 + (off && off.tilt || 0), sc);   // G1: raised and tipped toward the lens, it was hidden behind the hem puddle
-  reachSafe(a, 'L', lh.localToWorld(V(.125, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
-  reachSafe(a, 'R', lh.localToWorld(V(-.125, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });
+  const hx = (off && off.hx) || .125;
+  reachSafe(a, 'L', lh.localToWorld(V(hx, .14, .02)), { grip: .02, pole: [.42, -.05, .28] });
+  reachSafe(a, 'R', lh.localToWorld(V(-hx, .14, .02)), { grip: .02, pole: [-.42, -.05, .28] });
   PO.fingers(a, 'L', .32, { thumb: .35, spread: .15 });
   PO.fingers(a, 'R', .32, { thumb: .35, spread: .15 });
   return lh.localToWorld(V(0, .3, .02));
@@ -45,7 +46,7 @@ function life(a, t, seed = 0) {
 }
 
 const cl = staged('mausolee', {
-  fqih: { ...CLASS.fqih, lids: .34, talk: .4, lookMax: 1.2,
+  fqih: { ...CLASS.fqih, lids: .5, talk: .4, lookMax: 1.2,
     // R25D b016: remembering, gaze off into the middle distance, slightly up and aside (not down at Mohammed)
     look: (t, st, S3) => t < B(1)[0] && st?.A && S3?.cam ? (() => { const h = st.A.fqih.B.head.getWorldPosition(V()), c = S3.cam.position, d = c.clone().sub(h).normalize();
       return h.clone().addScaledVector(d, 3).addScaledVector(V(1, 0, 0).applyQuaternion(S3.cam.quaternion), -.9).add(V(0, 1.2, 0)); })() : 'mohammed' },
@@ -59,7 +60,7 @@ const cl = staged('mausolee', {
     if (st.lh) st.lh.visible = mo.group.visible;
     // b016 the kind master, including the pre-roll: head tilted, a slow nod, shoulders uneven, a forward lean
     const kind = t < B(1)[0] ? 1 : 0;
-    fq.B.head.rotation.z += (.17 + .035 * Math.sin(t * .7)) * kind;
+    fq.B.head.rotation.z += (.24 + .035 * Math.sin(t * .7)) * kind;
     fq.B.neck.rotation.z += (.1 + .02 * Math.sin(t * .55)) * kind;   // r18: clear lateral roll (~15 deg total) that survives the gaze pass
     fq.B.chest.rotation.z += (.07 + .02 * Math.sin(t * .6)) * kind;   // shoulder drop, one side lower
     fq.B.upperArmR.rotation.z -= .05 * kind;
@@ -86,7 +87,7 @@ const cl = staged('mausolee', {
         }
       }
     }
-    st.slate = lapLouha(mo, st.lh, { f: -.02, x: 0, y: -.04, sc: .9 });   // R26A: smaller, lower board, hands on its edges
+    st.slate = lapLouha(mo, st.lh, { f: -.02, x: 0, y: -.04, sc: .9, hx: .15 });   // R26A: smaller, lower board, hands on its edges
   },
 });
 
@@ -97,7 +98,7 @@ const ch = staged('chambre_jour', {
       // gaze and the robe lift run after act(); this is the last pose pass the gate samples
       if (st) for (const a of Object.values(st.A)) if (a.actMark?.pose === 'kneel') syncSeat(a);
       if (t >= B(3)[0] && t < B(4)[0] && st?.A) return st.A.zoubida.B.head.getWorldPosition(V()).add(V(0, .4, 0));
-      if (t < B(5)[0] && st?.A) return st.A.zoubida.B.head.getWorldPosition(V()).add(V(0, .1, 0));   // r30D: across at his wife, not down at the boy
+      if (t < B(5)[0] && st?.A) return st.A.zoubida.B.head.getWorldPosition(V()).add(V(0, .3, 0));   // r30D: across at his wife, not down at the boy
       return t < B(5)[0] ? 'zoubida' : 'mohammed';
     } },
   // floor in front of the right divan, deep enough that she is not between the lens and the boy
@@ -105,7 +106,7 @@ const ch = staged('chambre_jour', {
     look: (t, st) => st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father', lookMax: 1.2 },   // G1: she looked at the floor
   // foreground, left of centre, 3/4 to the lens — the wide shot can leave him out, the CU finds his face
   // r19: x 920→965 so the plate's lamp table is clear of his head and the same place holds for b018, b019 and b021
-  mohammed: { ...LUNCH.mohammed, at: [965, 965], face: 'cam', yaw: .45, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
+  mohammed: { ...LUNCH.mohammed, at: [965, 965], face: 'cam', yaw: .15, lookMax: t => t >= B(5)[0] - .2 ? 1.15 : 1.25, o: { ...LUNCH.mohammed.o, skipFit: true },
     look: (t, st, S3) => t >= B(5)[0] - .2 ? (st?.A && S3?.cam ? (() => { const h = st.A.mohammed.B.head.getWorldPosition(V()); return V(S3.cam.position.x, h.y, S3.cam.position.z); })().add(V(1, 0, 0).applyQuaternion(S3.cam.quaternion).multiplyScalar(1.3 * Math.sin(Math.max(0, t - B(5)[0]) * 5.2) * sm(B(5)[0] - .2, B(5)[0] + .2, t))) : 'father') : st?.A ? st.A.father.B.head.getWorldPosition(V()).add(V(0, .03, 0)) : 'father' },   // r18: eyes up to the father's face; on b021 the gaze goes to the lens so his face reads   // G1: eyes on his face, not the ceiling above the turban
 }, {
   addressee: { father: 'zoubida' },
@@ -114,7 +115,7 @@ const ch = staged('chambre_jour', {
     life(fa, t, 1); life(zo, t, 4); life(mo, t, 6);
     // b018–b019 pride: the chest swells, the chin is carried by the look (above her head on the quote)
     const proud = Math.max(t >= B(2)[0] - .2 && t < B(3)[0] ? 1 : 0, win(2, .05, 1, t), t >= B(3)[0] && t < B(4)[0] ? 1 : 0);
-    fa.B.spine.rotation.x -= .3 * proud; fa.B.chest.rotation.x -= .5 * proud; fa.B.upperArmL.rotation.z += .2 * proud; fa.B.upperArmR.rotation.z -= .2 * proud;   // R26A: chest out, proud
+    const qq = t >= B(3)[0] && t < B(4)[0] ? 1 : 0; fa.B.spine.rotation.x -= (.3 - .22 * qq) * proud; fa.B.chest.rotation.x -= (.5 - .2 * qq) * proud; fa.B.upperArmL.rotation.z += .2 * proud; fa.B.upperArmR.rotation.z -= .2 * proud;   // R26A: chest out, proud
     zo.B.neck.rotation.x += .05 * Math.sin(t * 1.3);
     zo.B.head.rotation.z += .045 * Math.sin(t * .85);
     zo.B.spine.updateWorldMatrix(false, true);
@@ -138,8 +139,8 @@ const ch = staged('chambre_jour', {
       fa.B.head.rotation.z += (.1 * Math.sin(q * 6.3) + .07) * quote; fa.B.neck.rotation.y += .12 * Math.sin(q * 5) * quote;
       fa.B.spine.updateWorldMatrix(false, true);
       reachSafe(fa, 'R', front(fa, 'chest', (.3 + .08 * q) * kf, (.12 + .2 * q) * kf, (-.08 + .3 * q) * kf), { grip: 0, pole: [-.5, -.02, .3] });
-      PO.palmTo(fa, 'R', quote, dirW(fa, .5 * q, .2 + 1.1 * q, .6));
-      PO.fingers(fa, 'R', 0, { thumb: 0, spread: .9 });   // R26A: open but relaxed palm, not a flat paddle
+      PO.palmTo(fa, 'R', quote, dirW(fa, .7 * q + .2, .9 + .6 * q, .9));
+      PO.fingers(fa, 'R', -.25, { thumb: -.3, spread: 1 });   // R26A: open but relaxed palm, not a flat paddle
       reachSafe(fa, 'L', front(fa, 'chest', .26 * kf, -.24 * kf, -.24 * kf), { grip: .04, pole: [.4, -.4, .2] });   // G1: off the beard, down by the thigh
       PO.fingers(fa, 'L', -.3, { thumb: -.2, spread: .5 });
     } else if (tell > .05) {
@@ -185,9 +186,9 @@ const scene = beatScene(ID, {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
     b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 110 },
     b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.9, dx: 20, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
-    b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
-    b019: { shot: 'ch', size: 'CU', on: 'father', z: 2.9, dx: -20, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
+    b018: { shot: 'ch', size: 'M', on: 'father', z: 1.3, dx: 240, dy: -20 },
+    b019: { shot: 'ch', size: 'CU', on: 'father', z: 3.3, dx: -20, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.8, dx: -33, dy: 5 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },
 });
