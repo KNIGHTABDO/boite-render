@@ -243,7 +243,7 @@ const mu = checkedStage('souk_mur', {
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
       zo.group.position.y = by.zo - .01; mo.group.position.y = by.mo + .01; }
-    sync(zo, mo); liftCloth(zo, t >= B(3)[0] ? .22 : .16); liftCloth(mo);   // R31J: seat gap / hanging sole
+    sync(zo, mo); liftCloth(zo, t < B(3)[0] ? .09 : .22); liftCloth(mo);   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },
 });
