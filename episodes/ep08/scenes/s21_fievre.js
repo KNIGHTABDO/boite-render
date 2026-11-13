@@ -24,7 +24,7 @@ function handsOnChest(mo, t) {
   if (fw.dot(at(mo, 'root').sub(c).setY(0)) < 0) fw.negate();                                                                    // fw points toward the feet
   const br = .004 * Math.sin(t * 5);
   for (const [s, sg, along] of [['L', 1, .12], ['R', -1, .2]]) {
-    const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .17 * k + br;
+    const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .13 * k + br;
     PO.reach(mo, s, tg, { grip: 0, pole: [sg * .5, .5, 0] });
     PO.fingers(mo, s, .25, { thumb: .2, spread: .1 });
   }
@@ -39,11 +39,11 @@ function fever(mo, t, st, S3) {
 function temples(a, { bow = .06 } = {}) {
   const B = a.B; a.B.chest.rotation.x += .05; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .085, .07, .02));
+    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .1, .08, .02));
     let wrist = skin();
     for (let i = 0; i < 4; i++) {
       const p = skin();
-      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 1.1, sg < 0 ? .5 : .2, sg < 0 ? .35 : -.1] });
+      PO.reach(a, s, wrist, { grip: 0, pole: [sg * 1.6, sg < 0 ? .5 : .2, sg < 0 ? .35 : -.1] });
       IK.aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(V(sg * .05, .22, .0)));
       wrist.add(p.clone().sub(PO.handPts(a, s).palm));
     }
