@@ -18,7 +18,7 @@ const ch = staged('chambre_jour', {
   ...LUNCH,
   // Looks are aimed in act(). A marks.look would run after it and pull the head off the beat.
   // R31N: up-stage a little so the wide shot shows his knees/feet instead of cropping them at the bottom edge.
-  mohammed: { ...LUNCH.mohammed, at: [930, 1010], look: () => null, lookMax: 0 },
+  mohammed: { ...LUNCH.mohammed, at: [930, 965], look: () => null, lookMax: 0 },
   father: { ...LUNCH.father, height: 1.76, look: () => null, lookMax: 0 },
   zoubida: { ...LUNCH.zoubida, look: () => null, lookMax: 0 },
 }, {
@@ -102,7 +102,7 @@ const ch = staged('chambre_jour', {
       const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fid, gest))
         .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fid).add(V(0, -0.03 * km * fid, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fid).addScaledVector(dirW(mo, -sg, 0, 0), -0.07 * km * lean * (1 - fid)).add(V(0, 0.03 * km * lean * (1 - fid) * Math.sin(t * 1.1 + ph), 0));
       // R31N: asymmetric, slowly wandering hands (right a little higher and out, left lower and in).
-      p.add(V(0, km * (s === 'R' ? 0.035 : -0.02) * (0.6 + 0.4 * Math.sin(t * 0.7 + ph)), 0)).addScaledVector(dirW(mo, -sg, 0, 0), km * (s === 'R' ? -0.04 : 0.035) * (0.7 + 0.3 * Math.sin(t * 0.9 + ph)));
+      p.add(V(0, km * (s === 'R' ? 0.035 : -0.02) * (0.6 + 0.4 * Math.sin(t * 0.7 + ph)), 0)).addScaledVector(dirW(mo, -sg, 0, 0), km * (s === 'R' ? -0.04 : 0) * (0.7 + 0.3 * Math.sin(t * 0.9 + ph)));
       palm(mo, s, p, { grip: 0.025, pole: [sg * (1.15 - 0.3 * Math.max(fid, gest)), -0.05 + 0.35 * Math.max(fid, gest), -0.5 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
       if (Math.max(fid, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
