@@ -133,9 +133,9 @@ const ch = staged('chambre_jour', {
         if (s === 'L') continue;   // R31R2: left arm keeps lapRest (the gesture clipped his torso)
         const sg = s === 'L' ? 1 : -1, g = s === 'R' ? up : 0;
         const tg = at(mo, 'root').clone().addScaledVector(dirW(mo, 0, 0, 1), (.30 + .05 * g) * km).addScaledVector(dirW(mo, -sg, 0, 0), .31 * km)
-          .add(V(0, (-.01 + .13 * g + .008 * Math.sin(t * 1.9 + sg) + .03 * g * Math.sin(t * 6)) * km, 0));
+          .add(V(0, (-.01 + .07 * g + .008 * Math.sin(t * 1.9 + sg) + .015 * g * Math.sin(t * 6)) * km, 0));
         { const wr = w43 * (s === 'L' ? 1 - .85 * zw : 1 - sm(B(9)[0] - .5, B(9)[0] + .1, t));   // R31Z: fade fully to lapRest by b036 and skip the IK (a residual reachSafe re-solved the elbow into the torso at 60.9)
-          if (wr > .01) reachSafe(mo, s, at(mo, 'hand' + s).clone().lerp(tg, wr), { grip: .02, pole: [sg * 1.4, .1, .4] }); }
+          if (wr > .01) reachSafe(mo, s, at(mo, 'hand' + s).clone().lerp(tg, wr), { grip: .02, pole: [sg * .9, .15, .4] }); }
         PO.fingers(mo, s, .3, { thumb: .3 });
       }
       mo.B.chest.rotation.z += 0 * w43;   // R31Z: chest sway removed (pushed the lapRest left forearm into the torso at 53.25)
