@@ -66,9 +66,9 @@ function hangArms(a, t, sides = ['L', 'R'], swing = 0, rate = 2.4, lat = .07) {
 function foldHands(a, t, ph = 0, w = 1) {
   const ka = k(a), br = .008 * Math.sin(t * 1.3 + ph);
   for (const [s, sg] of [['L', -1], ['R', 1]]) {
-    const hand = front(a, 'chest', (.34 + (s === 'R' ? .02 : 0)) * ka, sg * .06 * ka, (-.28 + br + (s === 'R' ? .015 : 0)) * ka);
+    const hand = front(a, 'chest', (.34 + (s === 'R' ? .05 : 0)) * ka, sg * .09 * ka, (-.28 + br + (s === 'R' ? .03 : 0)) * ka);   // R31Y: hands offset, not clasped stiff
     PO.reach(a, s, w >= 1 ? hand : at(a, 'hand' + s).lerp(hand, w), { grip: 0, pole: [-sg * .6, -.25, .05] });   // R23A: elbows OUT and forward (were pushed inward through the torso)
-    PO.fingers(a, s, .3, { thumb: .25 });
+    PO.fingers(a, s, s === 'R' ? .4 : .25, { thumb: .25 });
   }
 }
 
@@ -89,8 +89,8 @@ function chestLouha(a, lh) {
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
   // R31Y: ONE hand (right) holds the slate at face height beside the head and waves it side to side; the left hand rests low (set by the caller)
   const kk = k(a), wave = Math.sin(t * rate + ph);
-  lh.scale.setScalar(Math.min(.62, kk * .72));
-  const h = front(a, 'head', .2 * kk, .17 * kk, -.13 * kk).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .015 * kk * Math.cos(t * rate + ph), 0));
+  lh.scale.setScalar(Math.min(.5, kk * .6));
+  const h = front(a, 'head', .1 * kk, .27 * kk, -.2 * kk).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .015 * kk * Math.cos(t * rate + ph), 0));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.3, a.group.rotation.y - .1 + amp * .3 * wave, .12 + .45 * wave);
   lh.position.copy(h); lh.updateMatrixWorld(true);
   lh.position.add(h.clone().sub(lh.localToWorld(V(0, .045, .035)))); lh.updateMatrixWorld(true);
@@ -281,8 +281,8 @@ const ab = sized(checkedStage('mausolee_rev', {
     for (const [a, ph] of [[kid1, 1.1], [kid3, 2.3]]) { foldHands(a, t, ph); a.B.spine.rotation.z += .03 * Math.sin(t * .8 + ph); upd(a, 'spine'); }
     if (sh > 0) {
       const lips = at(fq, 'head', [-.04, .0, .17]);
-      const palm = lips.clone().add(V(0, -.075 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .04 * kf);
-      PO.reach(fq, 'R', at(fq, 'handR').lerp(palm, sh), { grip: 0, pole: [-.32, .05, -.12] });
+      const palm = lips.clone().add(V(0, -.085 * kf, 0)).addScaledVector(dirW(fq, 0, 0, 1), .06 * kf);
+      PO.reach(fq, 'R', at(fq, 'handR').lerp(palm, sh), { grip: 0, pole: [-.55, -.6, -.05] });   // R31Y: elbow down and out, sleeve clear of the face
       PO.fingers(fq, 'R', .95 * sh, { thumb: .6 * sh, each: [1, 0, 1, 1, 1] });
       const index = fq.B.RightHandIndex3;
       if (index) IK.aim(fq.B.handR, IK.wpos(index), at(fq, 'handR').add(V(0, .2 * kf, 0)));
@@ -304,7 +304,7 @@ const ab = sized(checkedStage('mausolee_rev', {
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), .9 * u); upd(a, 'spine');
       for (const [s, q] of [['L', 0], ['R', Math.PI]]) {
         const c = Math.cos(t * 4.2 + ph + q) * .035, e = Math.sin(t * 4.2 + ph + q) * .04;
-        const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e + .03, .03));
+        const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e + .08, -.03));   // R31Y: hands above the water, clear of the rim
         PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015, pole: [s === 'L' ? .5 : -.5, 0, .1] });   // R23A elbows out of the torso   // lower the torso before extending to the water
       }
     };
