@@ -80,7 +80,7 @@ const esc = staged('escalier', {
         const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2);
         const sv = Math.sin(t * 2.1);
         handTo(zo, 'R', { fwd: -.02, out: .26, drop: .31, curl: .4, spread: .1 });
-        handTo(zo, 'L', { fwd: -.02 + g * (.2 + .04 * sv), out: .26 + g * .18, drop: .31 - g * (.2 - .04 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
+        handTo(zo, 'L', { fwd: -.02 + g * (.12 + .04 * sv), out: .26 + g * .2, drop: .31 - g * (.07 + .03 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
         if (g > .05) PO.palmTo(zo, 'L', .6 * g, V(.5, .7, .1));
         zo.B.spine.rotation.z += .03; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
       }
