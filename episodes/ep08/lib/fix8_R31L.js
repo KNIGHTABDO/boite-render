@@ -7,12 +7,12 @@ const lat = (a, side) => { const o = at(a, 'upperArm' + side).sub(at(a, 'chest')
 const sgnOf = (a, o) => o.clone().applyQuaternion(a.group.quaternion.clone().invert()).x >= 0 ? 1 : -1;
 const tgt = (a, side, o, { fwd, out, drop }) => { const k = a.group.scale.y / 1.6; return at(a, 'upperArm' + side).addScaledVector(o, out * k).addScaledVector(dirW(a, 0, 0, 1), fwd * k).add(V(0, -drop * k, 0)); };
 
-export const HIP = { fwd: .03, out: .07, drop: .46 };
+export const HIP = { fwd: -.02, out: .08, drop: .33 };
 export function hipBlend(a, side, w, loose = { fwd: .22, out: .0, drop: .25, curl: .35, spread: .08 }, hip = HIP) {
   const o = lat(a, side), s = sgnOf(a, o);
   const p0 = tgt(a, side, o, loose), p1 = tgt(a, side, o, hip);
   const p = p0.lerp(p1, w);
   const pw = w;   // elbow pole: from loose (.5,.02,-.32) to akimbo (1,.05,-.35)
-  PO.reach(a, side, p, { grip: .02, pole: [s * (.5 + 1.2 * pw), .02 + .03 * pw, -.32 - .1 * pw] });
+  PO.reach(a, side, p, { grip: .02, pole: [s * (.5 + 1.8 * pw), .0, -.32 - .35 * pw] });
   PO.fingers(a, side, (loose.curl ?? .35) * (1 - w) + .4 * w, { spread: .1 });
 }

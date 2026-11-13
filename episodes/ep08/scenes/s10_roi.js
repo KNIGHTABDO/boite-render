@@ -82,8 +82,7 @@ const esc = staged('escalier', {
       const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2) * hw;
       const sv = Math.sin(t * 2.1), sl = Math.sin(t * .8);
       hipBlend(zo, 'R', hw, { fwd: .2, out: .0, drop: .25 + .02 * sl, curl: .35, spread: .08 });
-      hipBlend(zo, 'L', hw, { fwd: .24, out: .02, drop: .23 - .02 * sl, curl: .35, spread: .08 }, { fwd: .03 + g * .02, out: .07 + g * .02, drop: .46 - g * .01 * sv });
-      if (g > .05) PO.palmTo(zo, 'L', .4 * g, V(.5, .7, .1));
+      hipBlend(zo, 'L', hw, { fwd: .24, out: .02, drop: .23 - .02 * sl, curl: .35, spread: .08 }, { fwd: -.02, out: .08, drop: .33 });
       zo.B.spine.rotation.z += .03 * hw; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
     }
     laugh(zo, win(4, .35, 1.05, t), t);
