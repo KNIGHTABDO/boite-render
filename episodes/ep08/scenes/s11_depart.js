@@ -170,10 +170,11 @@ const pa = staged('patio_matin', {
     if (t < B(6)[0]) {
       yawBody(zo, S3.cam, t >= B(3)[0] ? .45 : .6);
       if (t < B(6)[0] - .4) {   // 3/4 toward his mother, never back to the lens
-        yawBody(mo, S3.cam, .65);   // same proven camera-facing clamp as Zoubida: face stays readable
+        if (t < B(3)[0]) yawBody(mo, S3.cam, .65);
+        else { const yc = yawTo(mo.group.position, S3.cam.position); mo.group.rotation.y = yc + wrap(yawTo(mo.group.position, zo.group.position) - yc) * .25; mo.group.updateMatrixWorld(true); }   // same proven camera-facing clamp as Zoubida: face stays readable
       }
     }
-    yawToward(mo, S3.cam, t < B(6)[0] ? .65 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    yawToward(mo, S3.cam, t < B(3)[0] ? .65 : t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);
