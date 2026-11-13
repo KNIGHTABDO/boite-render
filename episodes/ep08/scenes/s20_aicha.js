@@ -103,7 +103,7 @@ const ch = staged('chambre_jour', {
       // three pats of the palm on the cheek: the whole hand taps, the head leans into it
       const c2 = t - B(2)[0], tap = c2 > .6 && c2 < 3.1 ? Math.max(0, Math.sin((c2 - .6) * 8.9)) : 0;   // three visible taps
       PO.look(ai, at(zo, 'head'), .9, { max: .55 });   // she talks to Zoubida, on her left
-      ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .06, fingers: .15, pole: [-.8, -.4, -.1] }); lap(ai, 'L', ka);
+      ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .06, fingers: .15, pole: [-1, 0, .2] }); lap(ai, 'L', ka);
     }
     if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .3; ai.B.chest.rotation.x += .05; for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .055, y: .035, z: .075, pole: [(sd === 'L' ? 1 : -1) * .5, -.6, .2], fingers: .02 }); }
     if (IN(5, t) || IN(6, t)) {
@@ -125,7 +125,7 @@ const ch = staged('chambre_jour', {
     }
     if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); const sw = Math.sin(t * 1.6);
       zo.B.chest.rotation.z += .05 * sw; zo.B.chest.rotation.x += .03;
-      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * .15, -1, .4], fingers: .1 }); }
+      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * .7, -.3, .2], fingers: .1 }); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
       zo.B.chest.rotation.z += .16 * u; ai.B.chest.rotation.z -= .16 * u;
@@ -140,7 +140,7 @@ const ch = staged('chambre_jour', {
         reach(a, osd, sh.clone().addScaledVector(fo, .12 * k2).addScaledVector(dirTo, -.05 * k2).add(V(0, (lift + .03) * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .7, -.1, .0] });
         PO.fingers(a, osd, .3);
       };
-      hug(zo, ai, -.13); hug(ai, zo, -.13);
+      hug(zo, ai, -.13); hug(ai, zo, -.22);
       zo.B.chest.rotation.x += .05 * u; ai.B.chest.rotation.x += .05 * u;
       zo.B.head.rotation.z += .12 * u; ai.B.head.rotation.z -= .12 * u;
     }
