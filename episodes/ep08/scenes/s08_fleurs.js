@@ -26,12 +26,12 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 0.5, s1: 0.85 }, flank: 1.0 }); };
+    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 0.06, s1: 0.8 }, flank: 1.0 }); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
     const fidget = sm(B(2)[0] - 0.08, B(2)[0] + 0.2, t) * (1 - sm(B(3)[0] + 0.05, B(3)[0] + 0.5, t));
-    const whisper = ramp(B(3)[0], B(3)[1], t);
+    const whisper = ramp(B(3)[0], B(3)[1] + 0.6, t);
     // Eyes stay lowered into the start of the whisper, then come up through "fleurs" (still a little shy).
     const rise = sm(B(3)[0] + 0.05, f(3, 0.3), t);
     const down = sm(B(2)[0] - 0.05, B(2)[0] + 0.22, t) * (1 - rise);
@@ -132,11 +132,11 @@ const ch = staged('chambre_jour', {
     const said = mouth(S, 'mohammed', t);
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
-      open: Math.max(search * (0.42 + 0.2 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.42 + 0.4 * Math.abs(Math.sin(t * 12.2))), whisper * said),
+      open: Math.max(search * (0.55 + 0.25 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.55 + 0.35 * Math.abs(Math.sin(t * 12.2))), whisper * said),
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
-      open: Math.max(sm(B(1)[0] - 0.05, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.15, t)) * (0.4 + 0.3 * Math.abs(Math.sin(t * 13))), lean * (0.58 + 0.32 * Math.abs(Math.sin(t * 15.5))), lean * asked) + laugh * (0.85 + 0.15 * Math.abs(Math.sin(t * 9.2))) + residue * 0.3,
+      open: Math.max(sm(B(1)[0] - 0.05, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.15, t)) * (0.4 + 0.3 * Math.abs(Math.sin(t * 13))), 0.55 * lean, lean * (0.6 + 0.3 * Math.abs(Math.sin(t * 15.5))), lean * asked) + laugh * (0.85 + 0.15 * Math.abs(Math.sin(t * 9.2))) + residue * 0.3,
       lid: 0.16 * lean + 0.32 * laugh,
     });
     row('zoubida')[3] = () => ({
@@ -189,7 +189,7 @@ function lapHand(a, s, t, seed, k) {
 function thighHand(a, s, t, seed, k) {
   const sign = s === 'L' ? 1 : -1;
   const w = Math.sin(t * 1.35 + seed);
-  const lift = a === ZO ? 0.095 : 0.11;   // mother: hands up on the skirt, in front of the orange flap
+  const lift = a === ZO ? 0.035 : 0.04;   // r30G: hands rest on the thighs (front hem flap now collapsed)
   return at(a, 'shin' + s).clone().lerp(at(a, 'root'), 0.34)
     .add(V(0, (0.13 + lift + 0.01 * w) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), lift * 0.7 * k)
     .addScaledVector(dirW(a, -sign, 0, 0), 0.03 * k);
@@ -211,7 +211,8 @@ const high = at(a, 'chest').clone()
   const swap = PH();
   const belly = lap.clone().add(V(0, (0.06 + 0.03 * Math.max(0, -bob)) * k, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.05 * k).addScaledVector(dirW(a, sign, 0, 0), 0.07 * k);
   const slapL = lap.clone().add(V(0, (0.05 + 0.07 * Math.max(0, -bob)) * k, 0));
-  const lo = s === 'R' ? lap.lerp(slap, Math.min(1, up)) : lap.lerp(swap > 0.5 ? slapL : belly, Math.min(1, up) * 0.5);
+  const lo0 = s === 'R' ? lap.lerp(slap, Math.min(1, up)) : lap.lerp(swap > 0.5 ? slapL : belly, Math.min(1, up) * 0.5);
+  const lo = (a === ZO && s === 'L') ? lo0.lerp(high.clone().add(V(0, 0.06 * k, 0)), Math.min(1, up) * 0.5 * (1 - swap)) : lo0;
   if (s === 'R' && swap > 0.5) return lap.lerp(belly.clone().addScaledVector(dirW(a, -sign, 0, 0), -0.14 * k), Math.min(1, up));
   return lo;
 }
@@ -232,7 +233,7 @@ export default beatScene(ID, {
     // Plate heads sit near y 490–750. A wide M is clamped to the bottom of the plate, so the turban and the hands share the frame.
     b038: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.04, dx: -110, dy: 100 },
     // Father-son two-shot: far enough right to drop the empty door, tight enough that the mother's skirt stays outside.
-    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.3, dx: 240, dy: -13 },
+    b039: { shot: 'ch', size: 'M', on: 'father', z: 1.3, dx: 240, dy: 40 },
     b040: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.02, dx: -100, dy: 110 },
     b041: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.04, dx: -100, dy: 110 },
     b042: { shot: 'ch', size: 'M', on: 'mohammed', z: 0.97, dx: -20, dy: 180 },

@@ -55,7 +55,7 @@ const ch1 = staged('chambre_jour', {
   mohammed: BED,
   // Beside the divan. The look target stays near his own eye height: aiming at the boy's low
   // skull spent the whole head turn on pitching down, so the face never came around.
-  father: { height: 1.76, at: [1235, 742], face: [1330, 690], yaw: .45, pose: 'kneel', o: { grounded: true, lean: .16 }, seed: 5,
+  father: { height: 1.76, at: [1235, 742], face: 'cam', yaw: .95, pose: 'kneel', o: { grounded: true, lean: .16 }, seed: 5,
     look: (t, st) => {
       const who = (IN(0, t) || IN(1, t)) ? st.A.mohammed : st.A.zoubida;
       const p = at(who, 'head').clone(), eye = at(st.A.father, 'head').y;
