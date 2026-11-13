@@ -92,7 +92,7 @@ function seatHem(a, bone, name, floor) {
   }
 }
 
-export function settleRobe(a, floor = 0) {
+export function settleRobe(a, floor = 0, opt = {}) {
   const B = a.B;
   if (!B.SkirtBack1 || !B.SkirtBack2) return;
   restoreCloth(a);
@@ -104,9 +104,10 @@ export function settleRobe(a, floor = 0) {
   // Front and flanks rotate toward the lap. SkirtFront2 is not dragged out to the knees.
   if (B.SkirtFront1 && B.SkirtFront2) {
     const kn = IK.wpos(B.shinL).add(IK.wpos(B.shinR)).multiplyScalar(0.5);
-    const over = kn.clone().addScaledVector(fwd, 0.04 * k).add(V(0, 0.05 * k, 0));
+    const fo = opt.front ? opt.front.fwd : 0.08, fo1 = opt.front ? opt.front.over : 0.04;
+    const over = kn.clone().addScaledVector(fwd, fo1 * k).add(V(0, 0.05 * k, 0));
     IK.aim(B.SkirtFront1, B.SkirtFront2, over);
-    aimFar(B.SkirtFront2, IK.wpos(B.SkirtFront2, [0, -1, 0]), down.clone().addScaledVector(fwd, 0.08).normalize());
+    aimFar(B.SkirtFront2, IK.wpos(B.SkirtFront2, [0, -1, 0]), down.clone().addScaledVector(fwd, fo).normalize());
   }
   for (const [s, sign, shin] of [['Left', 1, 'shinL'], ['Right', -1, 'shinR']]) {
     const upper = B[s + 'Robe1'], lower = B[s + 'Robe2'];
@@ -125,6 +126,8 @@ export function settleRobe(a, floor = 0) {
   aimFar(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hang);
   seatHem(a, B.SkirtBack2, 'SkirtBack2', floor);
   seatHem(a, B.SkirtFront2, 'SkirtFront2', floor);
+  // opt-in (s08 mother): shrink the front panel so its fringed hem tucks against the knees instead of poking out onto the floor.
+  if (opt.front && B.SkirtFront2) { B.SkirtFront2.scale.multiplyScalar(opt.front.scale); B.SkirtFront2.updateWorldMatrix(false, true); }
   seatHem(a, B.LeftRobe2, 'LeftRobe2', floor);
   seatHem(a, B.RightRobe2, 'RightRobe2', floor);
 }

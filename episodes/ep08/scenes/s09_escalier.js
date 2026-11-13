@@ -20,10 +20,10 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 // Shorten the ankle reach for this child's legs: .24 gives ~90° knees and level thighs; .087 puts the soles on .40.
 export const SEAT = { tread: 3, back: .28, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
   o: { seat: .6, floor: .4, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
-const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
+const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: .8,
   mutter: t => sm(B(9)[0], B(9)[0] + .25, t),
   look: (t, st) => t >= B(9)[0]
-    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, 1.4).addScaledVector(st.ST.side, .1).add(V(0, 1.3, 0))
+    ? at(st.A.mohammed, 'head').addScaledVector(st.ST.up, .35).addScaledVector(st.ST.side, .6).add(V(0, 1.2, 0))
     : win(0, .4, 1.1, t) > .2 ? front(st.A.mohammed, 'head', .55, 0, -.4) : null,
 } }, {
   stairs: ESCALIER,
@@ -52,8 +52,8 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: 1.15,
     b.chest.rotation.z += .012 * Math.sin(t * 17) * fist;
     // R20A: head starts rising ~1.4 s before b053 and ends clearly up the flight.
     const up53 = sm(B(9)[0] - 1.4, B(9)[0] + .3, t);
-    b.neck.rotation.x -= (.08 + .2 * dream) * up53; b.head.rotation.x -= (.06 + .22 * dream) * up53;
-    b.head.rotation.y += .12 * dream; b.spine.rotation.x -= .06 * dream; b.chest.rotation.x -= .06 * dream;
+    b.neck.rotation.x -= (.08 + .08 * dream) * up53; b.head.rotation.x -= (.06 + .1 * dream) * up53;
+     b.spine.rotation.x -= .06 * dream; b.chest.rotation.x -= .06 * dream;
     // R25C: "à mort" - tense shoulders (clavicles up) with the fists.
     for (const sd of ['L', 'R']) if (b['clavicle' + sd]) b['clavicle' + sd].rotation.z += (sd === 'L' ? 1 : -1) * .06 * fist;
     for (const n of ['spine', 'chest', 'neck']) b[n].updateWorldMatrix(false, true);
