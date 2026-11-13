@@ -87,7 +87,7 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .17 * kk, .05 * kk, -.31 * kk);   // R31U: held up at the chest / reading height, both hands on it
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .17 * kk, .05 * kk, -.36 * kk);   // R31U: held up at the chest / reading height, both hands on it
   lh.scale.setScalar(Math.min(.62, kk * .72));
   lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.3 + .15 * wave, a.group.rotation.y - .1 + amp * .45 * wave, -.04 + .35 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
   lh.updateMatrixWorld(true);
@@ -157,7 +157,7 @@ const pr = sized(checkedStage('mausolee_rev', {
       const km = k(mo), fR = at(mo, 'footR').addScaledVector(dirW(mo, 0, 0, 1), .07 * km * sh).addScaledVector(dirW(mo, 1, 0, 0), .025 * km * sh);   // R28: weight on the left leg, right foot a step forward
       IK.leg(mo, 'R', fR, at(mo, 'shinR')); }
     const t1f = T11(0, 3.6).t1;
-    hangArms(fq, t, ['L', 'R'], .13 * (1 - sm(t1f - .5, t1f + .1, t)), 2.4, .03);   // R31U: arms close to the sides, relaxed   // only the students carry slates; the leader's arms swing while he walks
+    hangArms(fq, t, ['L', 'R'], .13 * (1 - sm(t1f - .5, t1f + .1, t)), 2.4, .055);   // R31U: arms close to the sides, relaxed   // only the students carry slates; the leader's arms swing while he walks
     const lead = sm(T11(0, 3.6).t1 - .6, T11(0, 3.6).t1 + .3, t);
     const turn = yawTo(fq.group.position, kid1.group.position);
     fq.group.rotation.y += Math.atan2(Math.sin(turn - fq.group.rotation.y), Math.cos(turn - fq.group.rotation.y)) * lead;
