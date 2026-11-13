@@ -87,19 +87,20 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .17 * kk, .05 * kk, -.36 * kk);   // R31U: held up at the chest / reading height, both hands on it
+  // R31Y: ONE hand (right) holds the slate at face height beside the head and waves it side to side; the left hand rests low (set by the caller)
+  const kk = k(a), wave = Math.sin(t * rate + ph);
   lh.scale.setScalar(Math.min(.62, kk * .72));
-  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.3 + .15 * wave, a.group.rotation.y - .1 + amp * .45 * wave, -.04 + .35 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
-  lh.updateMatrixWorld(true);
-  PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
-  IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(-.08, .11, .025)));
-  PO.reach(a, 'L', lh.localToWorld(V(.175, .045, .035)), { grip: 0, pole: [.35, -.2, -.1] });
-  IK.aim(a.B.handL, PO.handPts(a, 'L').end, lh.localToWorld(V(.08, .11, .025)));
-  PO.fingers(a, 'R', .35, { thumb: .25 }); PO.fingers(a, 'L', .35, { thumb: .25 });
+  const h = front(a, 'head', .2 * kk, .17 * kk, -.13 * kk).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .015 * kk * Math.cos(t * rate + ph), 0));
+  lh.rotation.order = 'YXZ'; lh.rotation.set(-.3, a.group.rotation.y - .1 + amp * .3 * wave, .12 + .45 * wave);
+  lh.position.copy(h); lh.updateMatrixWorld(true);
+  lh.position.add(h.clone().sub(lh.localToWorld(V(0, .045, .035)))); lh.updateMatrixWorld(true);
+  PO.reach(a, 'R', lh.localToWorld(V(0, .045, .035)), { grip: 0, pole: [-.4, -.25, -.1] });
+  IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(0, .12, .02)));
+  PO.fingers(a, 'R', .5, { thumb: .3 });
 }
 
 // ---------------------------------------------------------------- b010 the Msid in the heat
-const ms = checkedStage('ep03/msid_estrade', {
+const ms = sized(checkedStage('ep03/msid_estrade', {
   fqih: { at: [1000, 795], face: 'cam', pose: 'cross', o: { seat: .34, floor: .34 }, seed: 9, lids: .35, talk: 0 },
   kid1: { at: [500, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 2, look: 'fqih', lids: .3 },
   kid2: { at: [1460, 925], face: [1000, 1060], pose: 'cross', hands:false, seed: 4, look: 'fqih', lids: .25 },
@@ -125,13 +126,13 @@ const ms = checkedStage('ep03/msid_estrade', {
     const phase = ((t + 1.2) % 3.6) / 3.6, w = t < 8 ? 1 : 1 - sm(.88, 1, phase);   // R28: already wiping at t=0
     if (w > 0) {
       fq.B.neck.rotation.x += .1 * w; upd(fq, 'neck');
-      const sweep = .19 + .05 * Math.sin(t * 3.2);   // R31U: continuous brow wipe
-      PO.reach(fq, 'R', front(fq, 'head', .15 * kf, (sweep - .19) * kf * 1.6, .055 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
+      const sweep = .19 + .05 * Math.sin(t * 3.2);   // R31Y: hand raised to the brow (was cheek)   // R31U: continuous brow wipe
+      PO.reach(fq, 'R', front(fq, 'head', .16 * kf, (sweep - .19) * kf * 1.6, .15 * kf).lerp(front(fq, 'root', .25 * kf, .2 * kf, .08 * kf), 1 - w), { grip: .025, pole: [-.4, -.1, -.15] });
       PO.fingers(fq, 'R', .08, { thumb: .1, spread: .25 });
       PO.palmTo(fq, 'R', .8, dirW(fq, 0, 0, -1));
     }
   },
-});
+}), { mohammed: 1.16 });   // R31Y: the white-robed boy read as a toddler next to the others
 
 // ---------------------------------------------------------------- b011 the procession through the sanctuary door
 const DOOR = [960, 750];   // interior tiles beyond the raised threshold
@@ -142,7 +143,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     // he looks back at the boys only once he has turned to them (a leader walking away cannot face the file behind him)
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
-  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [870, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
+  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [700, 885], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
   kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1015, 822], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1395, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
@@ -157,7 +158,7 @@ const pr = sized(checkedStage('mausolee_rev', {
       const km = k(mo), fR = at(mo, 'footR').addScaledVector(dirW(mo, 0, 0, 1), .07 * km * sh).addScaledVector(dirW(mo, 1, 0, 0), .025 * km * sh);   // R28: weight on the left leg, right foot a step forward
       IK.leg(mo, 'R', fR, at(mo, 'shinR')); }
     const t1f = T11(0, 3.6).t1;
-    hangArms(fq, t, ['L', 'R'], .13 * (1 - sm(t1f - .5, t1f + .1, t)), 2.4, .055);   // R31U: arms close to the sides, relaxed   // only the students carry slates; the leader's arms swing while he walks
+    hangArms(fq, t, ['L', 'R'], .24 * (1 - sm(t1f - .5, t1f + .1, t)) + .02, 2.4, .08);   // R31Y: livelier swing, softer elbows   // R31U: arms close to the sides, relaxed   // only the students carry slates; the leader's arms swing while he walks
     const lead = sm(T11(0, 3.6).t1 - .6, T11(0, 3.6).t1 + .3, t);
     const turn = yawTo(fq.group.position, kid1.group.position);
     fq.group.rotation.y += Math.atan2(Math.sin(turn - fq.group.rotation.y), Math.cos(turn - fq.group.rotation.y)) * lead;
@@ -166,6 +167,10 @@ const pr = sized(checkedStage('mausolee_rev', {
     // R28: arms stay relaxed (hangArms above); the raised gesture arm reached the red-cap boy's chin
     // after stopping, each boy settles into his own stance (varied yaw)
     [[kid1, 2.0, -.3], [kid2, 3.0, .12], [kid3, 3.95, -.14]].forEach(([a, j, off]) => { a.group.rotation.y += off * sm(T11(j).t1 - .3, T11(j).t1 + .5, t); a.group.updateMatrixWorld(true); });
+    { const a = kid3, ka = k(a), u = sm(T11(3.95).t1 - .3, T11(3.95).t1 + .6, t);   // R31Y: feet closer together + idle weight shift
+      const fl = at(a, 'footL').addScaledVector(dirW(a, 1, 0, 0), -.06 * ka * u), fr = at(a, 'footR').addScaledVector(dirW(a, 1, 0, 0), .06 * ka * u);
+      IK.leg(a, 'L', fl, at(a, 'shinL')); IK.leg(a, 'R', fr, at(a, 'shinR'));
+      a.B.spine.rotation.z += .03 * Math.sin(t * .9) * u; a.B.spine.updateWorldMatrix(false, true); }
     st.lh ||= [kid1, mo, kid2, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     [kid1, mo, kid2, kid3].forEach((a, i) => { st.lh[i].visible = a.group.visible; chestLouha(a, st.lh[i]); });
   },
@@ -204,8 +209,10 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
       const a = st.A[n], d = (start + v * (t - B(2)[0]) + period * 10 - off/7.5*period) % period;
       // Stay behind the tomb only on the far side; at least one of the three phases is always near.
       // A second woman stays on the near half while the leader passes behind the tomb.
-      let i = 1; while (i < len.length - 1 && len[i] < d) i++;
-      const u = (d - len[i - 1]) / (len[i] - len[i - 1] || 1), p = pts[i - 1].clone().lerp(pts[i], u), dir = pts[i].clone().sub(pts[i - 1]);
+      let dd = d; const tc = B(2)[0] + .57 * (B(2)[1] - B(2)[0]) - .02;
+      if (t >= tc) dd = len[12] + (2 - GIRLS.findIndex(g => g[0] === n)) * .05 * period + v * (t - tc);   // R31Y: from the 23.5 s cut the group is on the visible near half (nobody was in frame at 23.9)
+      let i = 1; while (i < len.length - 1 && len[i] < dd) i++;
+      const u = (dd - len[i - 1]) / (len[i] - len[i - 1] || 1), p = pts[i - 1].clone().lerp(pts[i], u), dir = pts[i].clone().sub(pts[i - 1]);
       if (side) { const o = V(dir.z, 0, -dir.x).normalize(), cen = st.tombC || (st.tombC = S3.floorAt(...[(TOMB.front[0][0] + TOMB.back[1][0]) / 2, (TOMB.front[0][1] + TOMB.back[1][1]) / 2])); if (o.dot(p.clone().sub(cen)) < 0) o.negate(); p.addScaledVector(o, side); }   // R25C: walk abreast, outside the tomb, so the three read as a group
       a.group.position.set(p.x, 0, p.z); a.group.rotation.y = Math.atan2(dir.x, dir.z);
       walkPose(a.B, d / 1.05, 1, { stride: .32, arms: .2 }); a.group.updateMatrixWorld(true);
