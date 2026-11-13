@@ -49,3 +49,6 @@ export function tuckMother(a) {
     console.log('R31N tail px', n);
   } catch (e) { console.warn('R31N tuck failed', e); }
 }
+
+// R31S: collapse the father's slippers under his robe hem (they protrude and clip through it).
+export function tuckFeet(a) { for (const n of ['LeftFoot', 'RightFoot']) if (a.B[n]) { a.B[n].scale.setScalar(0.001); a.B[n].updateWorldMatrix(false, true); } }

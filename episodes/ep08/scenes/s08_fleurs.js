@@ -4,7 +4,7 @@
 // off the knees, the boy still between them; b043 slow side-eye left, then right, head level, lids lowered.
 import { fitKneel, staged } from '../lib/fix8a.js';
 import { palm, settleRobe } from '../lib/fix8g.js';
-import { hangSash, tuckMother } from '../lib/fix8_R31F.js';
+import { hangSash, tuckMother, tuckFeet } from '../lib/fix8_R31F.js';
 import { LUNCH } from '../lib/lunch.js';
 import { at, beatScene, dirW, lines, sm, V } from '../lib/beatscene.js';
 import { mouth } from './_3d.js';
@@ -28,7 +28,7 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 0.06, s1: 0.8 }, flank: 1.0 }); hangSash(zo); tuckMother(zo); };
+    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 0.06, s1: 0.8 }, flank: 1.0 }); hangSash(zo); tuckMother(zo); tuckFeet(fa); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
@@ -80,7 +80,7 @@ const ch = staged('chambre_jour', {
       // R31F: hands wander a little (not frozen), the mother's right hand moves in and forward off the sash ends, the father's hands clearly lift in the laugh and his right arm opens out.
       const wv = Math.sin(t * 0.6 + (isZ ? 1 : 0)), wv2 = Math.sin(t * 0.47 + 2);
       for (const p of [pL, pR]) p.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * wv).add(V(0, 0.012 * kk * wv2, 0));
-      if (isZ) pR.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * (1 - laugh)).addScaledVector(dirW(a, 1, 0, 0), -0.07 * kk * (1 - laugh)).add(V(0, 0.035 * kk * (1 - laugh), 0)).addScaledVector(at(zo, 'root').clone().sub(pR), 0.2 * (1 - laugh));
+      if (isZ) pR.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * (1 - laugh)).addScaledVector(dirW(a, 1, 0, 0), -0.07 * kk * (1 - laugh)).add(V(0, 0.008 * kk * (1 - laugh), 0)).addScaledVector(at(zo, 'root').clone().sub(pR), 0.2 * (1 - laugh));
       else { const lf = Math.min(1, laugh * 1.4 + residue * 0.3); for (const p of [pL, pR]) p.add(V(0, 0.13 * kk * lf, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.0 * kk * lf); pR.addScaledVector(dirW(a, -1, 0, 0), 0.06 * kk); pL.addScaledVector(dirW(a, 1, 0, 0), 0.05 * kk); }
       palm(a, 'L', pL, { grip: 0.03, pole: isZ ? [1.0, 0.1, -0.1] : [0.9, 0.2, 0.1], gap: 0.14 });
       palm(a, 'R', pR, { grip: 0.03, pole: isZ ? [-0.6, 0.3, 0.3] : [-1.1, 0.15, 0.05], gap: 0.14 });
@@ -98,13 +98,17 @@ const ch = staged('chambre_jour', {
       // Searching: the right hand drifts up, fingers working, as if pulling the word out; the left stays on the thigh.
       const gest = s === 'R' ? Math.max(search * (0.55 + 0.45 * Math.sin(t * 1.9)) * 0.8, sceptical * 0.6 * (0.5 + 0.5 * Math.sin(t * 0.8))) : 0;
       // Chest hands sit lower and wider so the forearms do not cross into the torso or past the shoulder line.
-      const fid = fidget * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 0.9 + (s === 'L' ? 0 : 3.1))));
+      const askFront = 0.75 * askLookW(t);
+      const prog = sm(B(2)[0], B(2)[1], t);
+      const fid = Math.max(fidget * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 0.9 + (s === 'L' ? 0 : 3.1)))), askFront);
       const p = lapHand(mo, s, t, 3, km).lerp(chestHand(mo, s, t, ph, km), Math.max(fid, gest))
         .addScaledVector(dirW(mo, 0, 0, 1), 0.03 * km * fid).add(V(0, -0.03 * km * fid, 0)).addScaledVector(dirW(mo, -sg, 0, 0), -0.05 * km * fid).addScaledVector(dirW(mo, -sg, 0, 0), -0.07 * km * lean * (1 - fid)).add(V(0, 0.03 * km * lean * (1 - fid) * Math.sin(t * 1.1 + ph), 0));
       // R31N: asymmetric, slowly wandering hands (right a little higher and out, left lower and in).
       p.add(V(0, km * (s === 'R' ? 0.035 : -0.02) * (0.6 + 0.4 * Math.sin(t * 0.7 + ph)), 0)).addScaledVector(dirW(mo, -sg, 0, 0), km * (s === 'R' ? -0.04 : 0) * (0.7 + 0.3 * Math.sin(t * 0.9 + ph)));
+      // R31S: hands clear of the robe chest (5 cm forward) and a rubbing fidget that progresses over b040.
+      p.addScaledVector(dirW(mo, 0, 0, 1), 0.05 * km * fidget).addScaledVector(dirW(mo, -sg, 0, 0), km * (0.02 + 0.025 * prog) * Math.sin(t * 5.1 + ph) * fidget).add(V(0, km * (0.015 * prog + 0.012 * Math.sin(t * 4.3 + ph + 1) * fidget), 0));
       palm(mo, s, p, { grip: 0.025, pole: [sg * (1.15 - 0.3 * Math.max(fid, gest)), -0.05 + 0.35 * Math.max(fid, gest), -0.5 + 0.55 * Math.max(fid, gest)], gap: 0.16 });
-      if (Math.max(fid, gest) > 0.15) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
+      if (Math.max(fid, gest) > 0.15 || fidget > 0.1) fingers(mo, s, 0.2 + 0.6 * Math.abs(Math.sin(t * 7.6 + ph)), { spread: 0.4 * Math.sin(t * 5.2 + ph) });
     }
 
     const eye = at(mo, 'head').clone().add(V(0, 0.03 * km, 0));
@@ -118,7 +122,7 @@ const ch = staged('chambre_jour', {
       const parents = at(fa, 'head').lerp(at(zo, 'head'), 0.45).add(V(0, 0.42 * km, 0));
       const level = eye.clone().addScaledVector(dirW(mo, 0, 0, 1), 0.6);
       // R31F: end of the whisper the eyes go clearly UP (toward the end of the line); in b039 he looks at his father instead of the lens.
-      const upEnd = scr(-0.05 * km, 0.42 * km, 0.5), toFa = at(fa, 'head').clone().add(V(0, -0.02 * km, 0));
+      const upEnd = scr(-0.05 * km, 0.42 * km, 0.5), toFa = at(fa, 'head').clone().add(V(0, 0.05 * km, 0));
       const askLook = sm(B(1)[0] - 0.1, B(1)[0] + 0.1, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.2, t));
       const fatherLook = Math.max(lean * (1 - sm(B(2)[0] - 0.1, B(2)[0] + 0.1, t)), askLook);
       const aim = upLeft.lerp(lowered, down).lerp(toFa, fatherLook).lerp(parents.lerp(upEnd, 0.7), rise * (1 - down)).lerp(level, Math.max(laugh, residue * 0.8));
@@ -146,11 +150,20 @@ const ch = staged('chambre_jour', {
     zo.B.head.rotation.z += 0.1 * laugh * (2 * PHV - 1);
     zo.B.neck.rotation.x -= 0.02 * laugh;
 
+    // R31S: idle life over b038 and the question: boy's head glances, mother tilts toward the speaker and looks between boy and father, father nods.
+    const spk = Math.max(sm(0.3, 0.9, t) * (1 - sm(B(1)[0] - 0.2, B(1)[0], t)), 0);
+    mo.B.head.rotation.y += 0.07 * Math.sin(t * 1.1 + 0.3) * search; mo.B.head.rotation.x += 0.05 * Math.sin(t * 1.7) * search;
+    mo.B.head.rotation.z += 0.04 * Math.sin(t * 0.9 + 2) * (1 - laugh) * (1 - sceptical);
+    zo.B.head.rotation.z += 0.07 * spk * (1 - laugh); zo.B.head.rotation.y += 0.06 * Math.sin(t * 0.9 + 1) * spk * (1 - laugh);
+    zo.B.head.rotation.x += 0.05 * askLookW(t) * (1 - laugh);
+    fa.B.head.rotation.x += 0.04 * Math.sin(t * 1.9 + 0.5) * spk;
+    zo.B.chest.rotation.z += 0.03 * askLookW(t);
+    if (mo.B.upperArmR && search > 0.2) { mo.B.upperArmR.rotation.x += 0.04 * Math.sin(t * 1.5) * search; mo.B.upperArmR.updateWorldMatrix(false, true); }
     const row = name => st.faces.find(r => r[1] === name);
     const said = mouth(S, 'mohammed', t);
     const asked = mouth(S, 'father', t);
     row('mohammed')[3] = () => ({
-      open: Math.max(search * (0.55 + 0.25 * Math.abs(Math.sin(t * 8.4))), search * said, whisper * (0.65 + 0.3 * Math.abs(Math.sin(t * 12.2))), whisper * said),
+      open: Math.max(search * (0.7 + 0.3 * Math.abs(Math.sin(t * 6.4))), search * said, whisper * (0.65 + 0.3 * Math.abs(Math.sin(t * 12.2))), whisper * said),
       lid: sceptical * 0.55 + down * 0.5,
     });
     row('father')[3] = () => ({
@@ -165,6 +178,7 @@ const ch = staged('chambre_jour', {
 });
 
 let ZO = null, PHV = 0;
+const askLookW = t => sm(B(1)[0] - 0.3, B(1)[0] - 0.05, t) * (1 - sm(B(1)[1] - 0.05, B(1)[1] + 0.3, t));
 const PH = () => PHV;
 function sway(a, t, seed, amp) {
   a.B.spine.rotation.y += Math.sin(t * 0.52 + seed) * amp;

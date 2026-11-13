@@ -143,12 +143,12 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { ch1, ch2, pa },
   plan: {
-    b133: { shot: 'ch1', size: 'M', on: 'father', z: 1.2, dx: 20, dy: -105 },
-    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.2, dx: 20, dy: -105 },
-    b135: { shot: 'ch1', size: 'M', on: 'father', z: 1.2, dx: 30, dy: -105 },
-    b136: { shot: 'ch1', size: 'M', on: 'father', z: 1.2, dx: -20, dy: -105 },
-    b137: { shot: 'ch1', size: 'M', on: 'father', z: 1.2, dx: 30, dy: -105 },
-    b138: { shot: 'ch1', size: 'M', on: 'father', z: 1.2, dx: -20, dy: -105 },
+    b133: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 70, dy: -70 },
+    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 70, dy: -70 },
+    b135: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 80, dy: -70 },
+    b136: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 30, dy: -70 },
+    b137: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 80, dy: -70 },
+    b138: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 30, dy: -70 },
     b139: { shot: 'ch2', size: 'W', on: 'father' },
     b140: { shot: 'ch2', size: 'W', on: 'zoubida' },
     b141: { shot: 'pa', size: 'W', on: 'father' },
