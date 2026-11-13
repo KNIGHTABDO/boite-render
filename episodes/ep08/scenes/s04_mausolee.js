@@ -87,7 +87,7 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .16 * kk, .3 * kk, -.3 * kk);
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .14 * kk, .34 * kk, -.36 * kk);
   lh.scale.setScalar(Math.min(.8, kk * .95));
   lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .25 * wave, a.group.rotation.y - .25 + amp * .8 * wave, -.08 + .6 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
   lh.updateMatrixWorld(true);
@@ -141,7 +141,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1135, 822], ...T11(2.0, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1095, 822], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1360, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
 }, {
