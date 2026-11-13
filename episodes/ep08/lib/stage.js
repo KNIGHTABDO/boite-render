@@ -118,7 +118,9 @@ export function still(id, u, cam = [.5, .5, 1.06, .5, .48, 1.16], o = {}) {
   const iw = im.naturalWidth, ih = im.naturalHeight, k = Math.max(W / iw, H / ih), dw = iw * k, dh = ih * k, x0 = (W - dw) / 2, y0 = (H - dh) / 2;
   let cx = x0 + lerp(cam[0], cam[3], e) * dw, cy = y0 + lerp(cam[1], cam[4], e) * dh;
   cx = clamp(cx, x0 + W / 2 / z, x0 + dw - W / 2 / z); cy = clamp(cy, y0 + H / 2 / z, y0 + dh - H / 2 / z);
+  if (o.flip) cx = 2 * x0 + dw - cx;   // o.flip: mirror the painting horizontally (camera fractions stay those of the unmirrored painting)
   c.save(); K.camera({ x: cx, y: cy, z }, o.drift ?? 1);
+  if (o.flip) { c.translate(2 * x0 + dw, 0); c.scale(-1, 1); }
   c.drawImage(o.filter ? filtered(id, im, o.filter) : im, x0, y0, dw, dh);
   if (o.fx) o.fx(c);
   c.restore();

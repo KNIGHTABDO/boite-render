@@ -18,7 +18,7 @@ const sm = (a, b, x) => { const u = clamp((x - a) / (b - a)); return u * u * (3 
 // [x0, y0, z0, x1, y1, z1] in painting fractions (z >= 1.06): all slower and longer than the default moves
 const MV = {
   monstres: [.5, .52, 1.06, .5, .45, 1.32], foule: [.36, .5, 1.2, .62, .5, 1.22], cheval: [.4, .52, 1.1, .56, .48, 1.3],
-  criniere: [.38, .45, 1.18, .62, .5, 1.2], colline: [.5, .62, 1.06, .5, .5, 1.24], offre: [.5, .5, 1.08, .5, .55, 1.4],
+  criniere: [.38, .45, 1.18, .62, .5, 1.2], colline: [.5, .62, 1.06, .5, .5, 1.24], offre: [.5, .5, 1.05, .5, .46, 1.14],
   tresor: [.5, .35, 1.1, .5, .55, 1.32], mon: [.5, .5, 1.08, .5, .46, 1.26], augure: [.5, .55, 1.08, .5, .4, 1.55],
   froid: [.5, .48, 1.34, .5, .5, 1.08],
 };
@@ -54,7 +54,7 @@ function dream(id, mv, layer = () => ({}), o = {}) {
     fn(lt, u, t) {
       c.save();
       const j = o.jitter ? o.jitter(t) : [0, 0]; c.translate(...j);
-      still(id, u, MV[mv], o.filter ? { filter: o.filter } : {});
+      still(id, u, MV[mv], { ...(o.filter ? { filter: o.filter } : {}), ...(o.flip ? { flip: true } : {}) });
       c.restore();
       return { vignette: .55, paper: .2, ...layer(lt, u, t) };
     },
@@ -78,7 +78,7 @@ const shots = {
     c.save(); c.strokeStyle = 'rgba(255,255,255,.12)'; c.lineWidth = 2;
     for (let i = 0; i < 26; i++) { const p = (t * .8 + hash(i, 61)) % 1, y = H * hash(i, 63), x = W * (1.1 - p * 1.4); c.beginPath(); c.moveTo(x, y); c.quadraticCurveTo(x - 120, y - 10 * Math.sin(t * 3 + i), x - 260, y); c.stroke(); }
     c.restore(); return {};
-  }),
+  }, { flip: true }),   // p32 gallops screen-left, p31 gallops screen-right: mirror p32 so the direction matches
   colline: dream('p33_colline', 'colline', (lt, u, t) => { glow(W * .7, H * .2, 700, '#ffd890', .18, 'screen'); return { vignette: .45, grade: '#f0c080' }; },
     { jitter: t => [1.5 * Math.sin(t * 2.1), 1.2 * Math.sin(t * 3.7)] }),
   offre: dream('p34_offre', 'offre', (lt, u, t) => { glow(W / 2, H * .55, 260 + 160 * ease(u), '#ffe0a0', .25 * ease(u), 'screen'); return { vignette: .55 }; }),
@@ -106,7 +106,7 @@ export default beatScene(ID, {
   pre: 'black',   // the pre-roll is black, the first painting dissolves in (no restart of its move)
   plan: {
     b123: { shot: 'monstres', dissolve: true },
-    b124: { shot: 'foule', dissolve: true },
+    b124: { shot: 'foule', dissolve: true, at: -.1 },   // start the p29>p30 dissolve ~.8 s early so it has landed when the line starts,
     b125: { shot: 'cheval', dissolve: true },
     b126: { shot: 'criniere', dissolve: true },
     b127: { shot: 'colline', dissolve: true },
