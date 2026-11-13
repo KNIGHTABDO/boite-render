@@ -32,13 +32,13 @@ function mourn(zo, t) {
   {   // R31A: one hand to the cheek (right), the left arm down with its hand resting on the lap, clear of the torso
     const B = zo.B, k = zo.group.scale.y / 1.6;
     zo.group.updateMatrixWorld(true);
-    const skin = () => B.head.localToWorld(V(-.06, .06, .072)), wrist = skin();
+    const skin = () => B.head.localToWorld(V(-.055, .06, .072)), wrist = skin();
     for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, 'R', wrist, { grip: 0, pole: [-2.6, .3, .2] }); wrist.add(p.sub(PO.handPts(zo, 'R').palm)); }
     aim(B.handR, PO.handPts(zo, 'R').end, B.head.localToWorld(V(-.025, .2, .1)));
     PO.fingers(zo, 'R', .1, { thumb: .04, spread: .1 });
-    {   // left hand: soft fist at the chin/mouth, elbow low and out (not a second palm on the cheek)
-      const sk2 = () => B.head.localToWorld(V(.035, -.01, .11)), w2 = sk2();
-      for (let i = 0; i < 4; i++) { const p = sk2(); PO.reach(zo, 'L', w2, { grip: 0, pole: [2.5, -.6, .1] }); w2.add(p.sub(PO.handPts(zo, 'L').palm)); }
+    {   // left hand: fingers on the forehead/hairline, elbow raised and out (clear of the torso)
+      const sk2 = () => B.head.localToWorld(V(.045, .15, .07)), w2 = sk2();
+      for (let i = 0; i < 4; i++) { const p = sk2(); PO.reach(zo, 'L', w2, { grip: 0, pole: [1.5, .8, 0] }); w2.add(p.sub(PO.handPts(zo, 'L').palm)); }
       PO.fingers(zo, 'L', .45, { thumb: .3, spread: .05 });
     }
   }
