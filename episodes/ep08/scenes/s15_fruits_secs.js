@@ -69,11 +69,12 @@ const mu = checkedStage('souk_mur', {
     haikTuck(zo); haikTuck(ft);
     // The torso capsule is a sphere around the neck: a palm on the mouth lands inside it.
     // The hand sits on the right cheek, clear of that sphere, still up at the veil.
-    const mouth = at(zo, 'head').add(V(0, -.005 * kz, 0)).addScaledVector(dirW(zo, -1, 0, 0), .04 * kz).addScaledVector(dirW(zo, 0, 0, 1), .21 * kz);
+    const mouth = at(zo, 'head').add(V(0, -.005 * kz, 0)).addScaledVector(dirW(zo, -1, 0, 0), .04 * kz).addScaledVector(dirW(zo, 0, 0, 1), .27 * kz);
     st.mouthReach = reachRatio(zo, 'R', mouth, .01);
     PO.reach(zo, 'R', mouth, { grip: .01, pole: [-.6, .0, .3] });
     PO.fingers(zo, 'R', .08, { spread: .12 }); PO.palmTo(zo, 'R', 1, dirW(zo, 0, 0, -1));
-    haikOut(ft, 'L', -.24, .05, .235, .35);
+    haikOut(ft, 'L', -.17, .03, .245, .35);
+    PO.reach(ft, 'R', hanging(ft, 'R', .01 * Math.sin(t * 6.5 + 1.9)), { grip: 0, pole: [-.3, -.1, -.25] }); PO.fingers(ft, 'R', .2);
     for (const s of ['L', 'R']) PO.reach(mo, s, hanging(mo, s, .012 * Math.sin(t * 8 + (s === 'L' ? 0 : 1.4))), { grip: 0, pole: [s === 'L' ? .3 : -.3, -.1, -.25] });
     sync(zo, ft, mo);
   },
@@ -97,12 +98,12 @@ const fr = checkedStage('souk_mur', {
   // Foreground floor marks put the painted counter at waist height, rather than under their chins.
   man1: { at: [1420, 900], face: 'woman1', seed: 21, talk: 0, look: 'woman1', lookMax: .25 },
   woman1: { at: [1220, 1040], face: 'man1', seed: 25, talk: 0, look: 'man1', lookMax: .3 },
-  kid2: { at: [470, 740], seed: 27, talk: 0, walk: { to: [120, 1000], t0: B(2)[0] - .3, t1: B(2)[1] + .4 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
-  kid3: { at: [560, 730], seed: 29, talk: 0, walk: { to: [360, 1060], t0: B(2)[0], t1: B(2)[1] + .7 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
+  kid2: { at: [640, 740], seed: 27, talk: 0, walk: { to: [-260, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 8.5 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
+  kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [-120, 1070], t0: B(2)[0], t1: B(2)[0] + 9 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
 }, {
   light: { shadow: .4, area: 6 },
   traffic:['kid2','kid3','man1','woman1'],
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     st.G = gaze;
     st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
     const { zoubida: zo, mohammed: mo, fatma: ft, man1: m1, woman1: w1, kid2: k2, kid3: k3 } = st.A;
@@ -118,21 +119,24 @@ const fr = checkedStage('souk_mur', {
       a.B.head.rotation.set(.04 * hurry, .85 * sw * hurry, 0);
       sync(a);
     }
-    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[1] + .4;
+    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[0] + 9.6;
     for (const a of [m1, w1]) a.group.visible = t < B(3)[0];
     ft.group.visible = t < B(3)[0];   // neither CU admits a sliced-off neighbour at its edge
     mo.group.visible = t < B(4)[0];   // the mother's reaction has the boy just off screen below her eyeline
     // The strolling boys retain their leg cycle; wrist IK adds a relaxed, plainly visible arm swing.
-    for (const [a, ph] of [[k2, 0], [k3, .4]]) if (a.group.visible) stride(a, t, B(2)[0] + ph, 2.1, 1, false);
+    for (const [a, ph] of [[k2, 0], [k3, .4]]) if (a.group.visible) stride(a, t, B(2)[0] + ph, 2.6, 1, false);
     // Seller alternates a low scoop/weighing movement with an offer toward the client.
     const scoop = .5 + .5 * Math.sin((t - B(2)[0]) * 2.2);
     m1.group.rotation.y = yawTo(m1.group.position, w1.group.position) + .18 * Math.sin(t * 1.7);
     m1.B.spine.rotation.x += .16 * (1 - scoop); m1.B.chest.rotation.y += .14 * Math.sin(t * 1.7);
     w1.B.chest.rotation.x += .045 * Math.sin(t * 1.7 + 1); sync(m1, w1);
     // Weighing: the right hand rides the brass pan (behind his right shoulder, screen right), the pan bobbing.
-    const pan = at(m1, 'root').add(V(.5 * k1, .62 * k1 + .03 * Math.sin(t * 2.6) * k1, -.3 * k1));
-    m1.group.rotation.y = yawTo(m1.group.position, w1.group.position) * .35 + .3 + .08 * Math.sin(t * 1.7); sync(m1);
-    { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .93, Math.max(len * .72, d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
+    const pan0 = S3?.floorAt ? S3.floorAt(1600, 420, 1.2) : null;
+    if (pan0) {
+      m1.group.position.set(pan0.x - .05 * k1, 0, pan0.z + .5 * k1); m1.group.rotation.y = yawTo(m1.group.position, pan0) * .8 + .15 * Math.sin(t * 1.7); sync(m1);
+    }
+    const pan = (pan0 || at(m1, 'root').add(V(.5 * k1, .62 * k1, -.3 * k1))).clone().add(V(0, .03 * Math.sin(t * 2.6) * k1, 0));
+    { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .96, Math.max(len * .72, d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
     PO.reach(m1, 'R', pan, { grip: .02, pole: [-1, .1, .05] });
     PO.reach(m1, 'L', front(m1, 'root', .40 * k1, -.2 * k1, (.34 + .05 * Math.sin(t * 2.6)) * k1), { grip: .015, pole: [.6, -.05, .18] });
     PO.fingers(m1, 'R', .5);
@@ -167,10 +171,18 @@ const fr = checkedStage('souk_mur', {
     zo.B.head.rotation.set(.16 * defeat + .1 * dip, 0, 0);
     zo.B.chest.rotation.x += .3 * defeat + .15 * dip; zo.B.spine.rotation.x += .16 * defeat;
     zo.B.chest.rotation.z += .07 * defeat * Math.sin(t * .9);
+    zo.B.chest.scale.set(1 - .1 * defeat, 1 - .06 * defeat, 1 - .06 * defeat); zo.group.position.y -= .07 * defeat * kz;
     if (zo.B.LeftShoulder) zo.B.LeftShoulder.rotation.z -= .18 * defeat;
     if (zo.B.RightShoulder) zo.B.RightShoulder.rotation.z += .18 * defeat;
     if (hurry > .2) for (const [a, ph, t0] of [[zo, 0, B(1)[0] - .2], [mo, .8, B(1)[0] - .2], [ft, 1.7, B(1)[0] + .1]]) stride(a, t + ph, t0, 3.4, a === zo ? hurry * .55 : hurry, true);
     haikTuck(zo); haikTuck(ft);
+    if (hurry > .05) {
+      for (const s2 of ['L', 'R']) PO.reach(mo, s2, hanging(mo, s2, .05 * Math.sin(t * 7 + (s2 === 'L' ? 0 : Math.PI))), { grip: 0, pole: [s2 === 'L' ? .3 : -.3, -.1, -.25] });
+      for (const [a, ph] of [[zo, 0], [mo, .8], [ft, 1.7]]) {
+        const sw = Math.sin((t - B(1)[0]) * 2.3 + ph);
+        a.B.neck.rotation.y = .3 * sw * hurry; a.B.head.rotation.set(.04, .62 * sw * hurry, 0);
+      }
+    }
     sync(zo, mo, m1);
   },
 });
@@ -183,6 +195,6 @@ export default beatScene(ID, {
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
     // pt follows their final floor marks (coverage otherwise anchors to their distant build positions).
     b101: { shot: 'fr', size: 'CU', on: 'mohammed', pt: STOP.mohammed, z: 2.9, dx: 30, dy: 60 },   // boy head-to-hip, grip in frame
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.1, dx: -20, dy: 40 },   // full hood and headroom
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.5, dx: -20, dy: 70 },   // full hood and headroom
   },
 });
