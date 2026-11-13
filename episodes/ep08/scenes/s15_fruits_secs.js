@@ -98,8 +98,8 @@ const fr = checkedStage('souk_mur', {
   // Foreground floor marks put the painted counter at waist height, rather than under their chins.
   man1: { at: [1420, 900], face: 'woman1', seed: 21, talk: 0, look: 'woman1', lookMax: .25 },
   woman1: { at: [1220, 1040], face: 'man1', seed: 25, talk: 0, look: 'man1', lookMax: .3 },
-  kid2: { at: [640, 740], seed: 27, talk: 0, walk: { to: [-260, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 8.5 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
-  kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [-120, 1070], t0: B(2)[0], t1: B(2)[0] + 9 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
+  kid2: { at: [640, 740], seed: 27, talk: 0, walk: { to: [30, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 11.6 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
+  kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [110, 1070], t0: B(2)[0], t1: B(2)[0] + 11.6 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
 }, {
   light: { shadow: .4, area: 6 },
   traffic:['kid2','kid3','man1','woman1'],
@@ -119,7 +119,7 @@ const fr = checkedStage('souk_mur', {
       a.B.head.rotation.set(.04 * hurry, .85 * sw * hurry, 0);
       sync(a);
     }
-    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[0] + 9.6;
+    for (const a of [k2, k3]) a.group.visible = t > B(2)[0] - .2 && t < B(2)[0] + 11.9;
     for (const a of [m1, w1]) a.group.visible = t < B(3)[0];
     ft.group.visible = t < B(3)[0];   // neither CU admits a sliced-off neighbour at its edge
     mo.group.visible = t < B(4)[0];   // the mother's reaction has the boy just off screen below her eyeline
@@ -195,6 +195,6 @@ export default beatScene(ID, {
     b100: { shot: 'fr', size: 'W', on: 'kid2' },
     // pt follows their final floor marks (coverage otherwise anchors to their distant build positions).
     b101: { shot: 'fr', size: 'CU', on: 'mohammed', pt: STOP.mohammed, z: 2.9, dx: 30, dy: 60 },   // boy head-to-hip, grip in frame
-    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.5, dx: -20, dy: 70 },   // full hood and headroom
+    b102: { shot: 'fr', size: 'CU', on: 'zoubida', pt: STOP.zoubida, z: 3.1, dx: -20, dy: 0 },   // full hood and headroom
   },
 });

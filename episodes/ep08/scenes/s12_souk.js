@@ -124,11 +124,11 @@ const la = checkedStage('souk_bijoux', {
       rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 1.8 });
     };
     move(fa, LEAD.father, [860, 740], B(7)[0] - 1.6, B(7)[0] - .5);
-    move(ma, DELLAL, [1180, 720], B(7)[0] - .7, B(7)[0] + .8);
-    move(zo, LEAD.zoubida, [900, 815], B(7)[0] - .5, B(7)[0] + .25);
+    move(ma, DELLAL, [1270, 700], B(7)[0] - .7, B(7)[0] + .8);
+    move(zo, LEAD.zoubida, [900, 815], B(7)[0] - .1, B(7)[0] + .35);
     move(ft, LEAD.fatma, [1090, 800], f(7, .36), f(7, .49));
     move(fa, [860, 740], [800, 880], B(8)[0] + .2, B(8)[0] + 1.0);
-    move(ma, [1180, 720], DELLAL, B(8)[0] - 1.6, B(8)[0] - .4);
+    move(ma, [1270, 700], DELLAL, B(8)[0] - 1.6, B(8)[0] - .4);
     if(t<B(8)[0]+.05)move(zo,[915,850],[930,800],f(7,.94),B(8)[0]+.05);
     else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
     else move(zo,[930,800],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);

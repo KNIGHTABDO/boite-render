@@ -141,8 +141,8 @@ const pr = sized(checkedStage('mausolee_rev', {
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
   kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1050, 822], ...T11(2.0, 3.4) } },
-  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1385, 852], ...T11(3.0, 3.4) } },
-  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1585, 820], ...T11(3.95, 3.4) } },
+  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1360, 852], ...T11(3.0, 3.4) } },
+  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
@@ -158,7 +158,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     fq.group.updateMatrixWorld(true);
     // once he has turned he gestures to the boys, then the room: open right hand, left hand relaxed
     if (lead > 0) {
-      const kf = k(fq), g = front(fq, 'chest', (.2 + .02 * Math.sin(t * 1.7)) * kf, -.2 * kf, -.34 * kf);   // R25C: hand resting at the belt, no raised arm
+      const kf = k(fq), g = front(fq, 'chest', (.3 + .02 * Math.sin(t * 1.7)) * kf, -.34 * kf, -.3 * kf);   // R25C: hand resting at the belt, no raised arm
       PO.reach(fq, 'R', at(fq, 'handR').lerp(g, lead), { grip: 0, pole: [-.55, -.6, -.1] });
       PO.fingers(fq, 'R', .4, { thumb: .3, spread: .1 });
     }
