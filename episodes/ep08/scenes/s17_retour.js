@@ -23,7 +23,7 @@ const DARK = { keyI: .35, fillI: .22, sky: '#5a5a78', ground: '#2a2018', key: '#
 
 // he climbs treads 2 → 3 with his back to us while the narrator speaks; a slow push-in on the whole flight
 const es = stagedFix('escalier_nuit', { father: { backOk: true, tread: 2, face: 'up', seed: 5, height: 1.76, climb: { to: 3, t0: .1, t1: B(0)[1] - .3 } } },
-  { stairs: ESCALIER, light: DARK, view: () => [1180, 105, .92],
+  { stairs: ESCALIER, light: DARK, view: () => [1180, 105, .8],
     act(lt, t, S, st, S3) {
       const fa = st.A.father; bareHead(fa);
       // R25M: back to the lens, climbing UP the flight; arms swing in counter-phase with the stride
@@ -169,7 +169,7 @@ const nu = staged('chambre_nuit', {
       const shoulder = at(zo, 'upperArmR'), dir = aim.clone().sub(shoulder);
       const len = shoulder.distanceTo(at(zo, 'foreArmR')) + at(zo, 'foreArmR').distanceTo(at(zo, 'handR'));
       if (dir.length() > len * .95) dir.setLength(len * .95);
-      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-1.1, .3, .45] });
+      PO.reach(zo, 'R', shoulder.clone().add(dir), { grip: 0, pole: [-1.1, .3, -.4] });   // R31C: pole flipped, the forearm crossed his own torso at b121
     }
     if (heart > 0) {
       PO.reach(zo, 'R', front(zo, 'chest', .15 * kz, -.07 * kz, -.2 * kz), { grip: 0, pole: [-.8, .05, -.1] });   // R25M: flat on the heart, below the collarbone
