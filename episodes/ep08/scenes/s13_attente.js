@@ -175,13 +175,13 @@ const mu = checkedStage('souk_mur', {
       const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t), sag = sm(B(0)[0] - 1.6, f(0, .18), t);
       mo.B.spine.rotation.x += .18 * sag; mo.B.chest.rotation.x += .12 * sag;   // R31S: sag harder
       mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
-      mo.B.spine.rotation.z += .36 * (1.05 * sag + 1.0 * lean);   // R31AA: trunk visibly leans onto her side (>=20 deg) from the first seconds mo.B.head.rotation.z += .36 * (.5 * sag + lean);
+      mo.B.spine.rotation.z += .36 * (.95 * sag + .8 * lean);   // R31AA: trunk visibly leans onto her side (>=20 deg) from the first seconds mo.B.head.rotation.z += .36 * (.5 * sag + lean);
       sync(mo);
       if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
       sync(mo);
       const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
-      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .09 * km, s === 'R' ? .09 : -.07, .12 * km), { grip: .01 });   // R31Q: L target closer to the shoulder (IK reach)
-      PO.reach(mo, 'R', front(mo, 'root', .09 * km, .09, .12 * km).lerp(cloth, lean), { grip: .01 });
+      for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .09 * km, s === 'R' ? .17 : -.07, .12 * km), { grip: .01 });   // R31Q: L target closer to the shoulder (IK reach)
+      PO.reach(mo, 'R', front(mo, 'root', .09 * km, .17, .12 * km).lerp(cloth, lean), { grip: .01 });
     }
 
     // b086: five staggered foreground crossings. At most two cross the family together;
@@ -336,8 +336,8 @@ const la = checkedStage('souk_bijoux', {
       ma.group.position.copy(F(1180, 720));
       ma.group.rotation.y = addressYaw(ma.group.position);
     } else {
-      walk(ma, F(1180, 720), F(1090, 625), tc, td, t, { cps: 2.9 });   // R31AA: he turns and leaves up the lane
-      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(1090, 625));
+      walk(ma, F(1180, 720), F(1400, 705), tc, td, t, { cps: 2.9 });   // R31AA: he turns and leaves up the lane
+      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(1400, 705));
       ma.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn;
     }
     const shout = win(1, 0, .66, t);
@@ -356,7 +356,7 @@ const la = checkedStage('souk_bijoux', {
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={haikFwd:{zoubida:.18+.05*Math.sin(t*1.7)},haikLat:{zoubida:.17+.04*Math.sin(t*1.1+1)},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.18+.04*(.5+.5*Math.sin(t*1.7))},haikLat:{zoubida:.17+.03*(.5+.5*Math.sin(t*1.1+1))},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
@@ -424,7 +424,7 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 3.1, dx: -35, dy: 60 },   // R31AA: tighter low CU on the boy,
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.7, dx: -35, dy: 10 },   // R31AA: tighter low CU on the boy,
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775] },
     b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
