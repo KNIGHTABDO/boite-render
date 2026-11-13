@@ -4,10 +4,14 @@
 import * as PO from '../../../engine/poses.js';
 import { aim } from '../../../engine/ik.js';
 import * as PR from '../../../engine/props3d.js';
+const toon = PR.toon;
 import { staged, THREE } from '../lib/autostage.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
-import { bangles } from '../lib/fix8_R17A.js';
+function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
+  const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
+  mk(0xe0a820, .046, .0085); mk(0xc9d3de, .042, .0075); S3.scene.add(g); return g;
+}
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
 
@@ -26,6 +30,7 @@ function palmsCover(a) {
   }
 }
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
+const INS = [1.9, 7.6];   // R25A: bracelet insert window (scene seconds)
 
 const pa = staged('patio_matin', {
   father: { height: 1.76, at: [700, 985], face: 'zoubida', seed: 5, 
@@ -34,6 +39,8 @@ const pa = staged('patio_matin', {
   zoubida: { at: [850, 975], face: 'father', seed: 7,
     look: (t, st) => t < B(0)[0] + .45 * (B(0)[1] - B(0)[0]) ? st.offer : 'father' },
 }, {
+  // R25A: insert close-up on the father's upturned palm with the two bangles (his hand sits near plate (690, 674); her hands enter the frame below)
+  view: (lt, u, t) => t >= INS[0] && t < INS[1] ? [715, 655 + 8 * sm(INS[0], INS[1], t), 3.1 + .3 * sm(INS[0], INS[1], t)] : null,
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
     const u = 1;   // Argon r6: the hand was empty at the open → he already holds the bracelets out, waist height, elbow bent and down, palm up
@@ -51,6 +58,7 @@ const pa = staged('patio_matin', {
       const ramp = sm(B(0)[0], B(0)[1], t), lg = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
       fa.B.chest.rotation.x += .07 * ramp; fa.B.chest.rotation.y += .06 * ramp; fa.B.head.rotation.z += .10 * ramp; fa.B.head.rotation.x += .03 * lg; fa.B.chest.updateWorldMatrix(false, true);
       const p2 = p.clone().add(front(fa, 'chest', .05 * k * ramp + .035 * k * lg, 0, 0).sub(front(fa, 'chest', 0, 0, 0)));
+      p2.y += .03 * k * sm(INS[0], INS[1] - 1, t);   // R25A: the hand rises slightly as he offers
       PO.reach(fa, 'R', p2, { grip: 0, pole: [-.95, -.25, -.1] });
       // R23D: true supination: turn the forearm about its own axis until the palm normal points up (sign-checked), palm open
       const Bn = fa.B, W = n => Bn[n].getWorldPosition(V(0, 0, 0));
@@ -66,9 +74,19 @@ const pa = staged('patio_matin', {
       st.offer = p2.clone().add(V(0, .03, 0)); if (Bn.RightHandIndex1) st.palmN = palmN();
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
-      const br = st.br ||= bangles(S3);
+      const br = st.br ||= bangles2(S3);
       fa.group.updateMatrixWorld(true); br.visible = true;
-      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .032 * k, 0)));   // R23D: on the upturned palm surface br.scale.setScalar(1.2 * Math.max(.9, k)); br.updateMatrixWorld(true);
+      const pp = PO.handPts(fa, 'R'), pal = pp.palm.clone(), arm = pp.palm.clone().sub(fa.B.foreArmR.getWorldPosition(V(0, 0, 0))).setY(0).normalize();
+      const dc = S3.cam.position.clone().sub(pal).setY(0).normalize();
+      // gold flat on the palm toward the wrist, silver beside it toward the fingertips; both leaning a little toward the lens so the rings read
+      const place = (m, along, lift, tilt, roll) => {
+        m.position.copy(arm).multiplyScalar(along).add(V(0, lift, 0));
+        const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
+        m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
+      const w = .08 * Math.sin(t * 1.3);
+      place(br.children[0], -.028 * k, .014 * k, .5 + .04 * w, w);
+      place(br.children[1], .02 * k, .026 * k, .35 - .04 * w, -w);
+      br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
