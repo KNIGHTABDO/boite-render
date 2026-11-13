@@ -103,12 +103,12 @@ const ch = staged('chambre_jour', {
         const gp = base.clone().add(V(0, 0.13 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), 0.1 * km).addScaledVector(dirW(mo, sg, 0, 0), 0.04 * km);
         p.lerp(gp, Math.min(1, gest));
         if (fidget > 0.01) {
-          const fa0 = at(mo, 'foreArmL'), ha0 = at(mo, 'handL'), rub = 0.5 + 0.4 * Math.sin(t * 3.6);
-          const rp = fa0.clone().lerp(ha0, rub).addScaledVector(dirW(mo, 0, 0, 1), 0.045 * km).add(V(0, 0.02 * km, 0));
-          p.lerp(rp, Math.min(1, fidget * 1.2));
+          const fa0 = at(mo, 'foreArmL'), ha0 = at(mo, 'handL'), rub = 0.62 + 0.3 * Math.sin(t * 3.6);
+          const rp = fa0.clone().lerp(ha0, rub).addScaledVector(dirW(mo, 0, 0, 1), 0.08 * km).addScaledVector(dirW(mo, sg, 0, 0), -0.0 * km).add(V(0, 0.03 * km, 0));
+          p.lerp(rp, Math.min(0.85, fidget * 1.2));
         }
       } else {
-        p.addScaledVector(dirW(mo, 0, 0, 1), 0.05 * km * fidget).add(V(0, 0.04 * km * fidget, 0));
+        p.addScaledVector(dirW(mo, 0, 0, 1), 0.11 * km * fidget).addScaledVector(dirW(mo, sg, 0, 0), 0.03 * km * fidget).add(V(0, 0.05 * km * fidget, 0));
       }
       const act2 = Math.max(gest, fidget);
       palm(mo, s, p, { grip: 0.025, pole: [sg * (1.15 - 0.3 * act2), -0.05 + 0.2 * act2, -0.5 + 0.3 * act2], gap: 0.16 });
