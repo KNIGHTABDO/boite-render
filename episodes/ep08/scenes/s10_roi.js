@@ -170,11 +170,11 @@ const pa = staged('patio_matin', {
       handTo(w2, 'R', { fwd: .16, out: .03, drop: .14 + .03 * q, curl: .4 }); handTo(w2, 'L', { fwd: .14, out: .03, drop: .16, curl: .4 });
       const down = [.22, .02, .2, .05, .18, .0][bi];
       w1.B.neck.rotation.x += down * (bi % 2 ? 1 : .3); w2.B.neck.rotation.x += down * (bi % 2 ? .3 : 1);
-      w1.B.head.rotation.y += .12 * Math.sin(t * .6 + bi * 2); w2.B.head.rotation.y -= .12 * Math.sin(t * .5 + bi * 3);
+      w1.B.head.rotation.y += .12 * Math.sin(t * .6 + bi * 2); w1.B.chest.rotation.z += .06 * Math.sin(t * .8 + 1); w1.B.spine.rotation.x += .04 * Math.sin(t * .6 + 2); w1.B.chest.rotation.y += .07 * Math.sin(t * .5); w1.B.chest.updateWorldMatrix(false, true); w2.B.head.rotation.y -= .12 * Math.sin(t * .5 + bi * 3);
       for (const a of [w1, w2]) a.B.neck.updateWorldMatrix(false, true);
     }
     { const lw = hold(B(6)[0] - .1, B(6)[1], t) * .8 + win(8, 0, .5, t) * .4;   // R31L: both kneelers laugh visibly through b060: shoulders up, head back, a hand to the mouth/chest
-      if (lw > 0) for (const [a, f, ph, sd, mo2] of [[w2, 13, 0, 'L', 0], [w1, 11, 1.7, 'R', 1]]) {
+      if (lw > 0) for (const [a, f, ph, sd, mo2] of [[w2, 13, 0, 'L', 0], [w1, 11, 1.7, 'R', 1], [fa, 12, .8, 'L', 1]]) {
         laugh(a, lw, t, f); a.B.head.rotation.x -= .08 * lw; a.B.neck.rotation.x -= .06 * lw; a.B.chest.rotation.x -= .02 * lw; a.B.head.rotation.z += (sd === 'R' ? .12 : -.12) * lw;
         a.B.chest.rotation.z += .05 * Math.sin(t * f + ph) * lw; a.B.neck.updateWorldMatrix(false, true);
         handTo(a, sd, mo2 ? { fwd: .2, out: -.02, drop: -.1, curl: .3, spread: .1 } : { fwd: .16, out: .0, drop: .04 + .02 * Math.sin(t * f + ph), curl: .25, spread: .1 });
@@ -189,7 +189,7 @@ const pa = staged('patio_matin', {
     }
     const envy = win(8, 0, 1, t);
     if (envy > 0) {
-      akimbo(zo); handTo(zo, 'L', { fwd: .22, out: -.02, drop: .27, curl: .35, spread: .08 }); zo.B.chest.rotation.y += .22 * envy; zo.B.spine.rotation.z += .05 * envy;
+      handTo(zo, 'R', { fwd: .26, out: .04, drop: .2, curl: .35, spread: .08 }); handTo(zo, 'L', { fwd: .24, out: -.02, drop: .22, curl: .35, spread: .08 }); zo.B.chest.rotation.y += .22 * envy; zo.B.spine.rotation.z += .05 * envy;
       zo.B.chest.rotation.x -= .04 * envy; zo.B.head.rotation.z += .05 * envy;
       ra.B.spine.rotation.z += .08 * envy; ra.B.chest.rotation.y += .06 * envy;
       fa.B.spine.rotation.x += .06 * envy; fa.B.chest.rotation.y -= .05 * envy;
@@ -199,8 +199,8 @@ const pa = staged('patio_matin', {
     const hand = sm(B(10)[0] - .5, B(10)[0] - .2, t) * (1 - sm(B(10)[1] + .1, B(10)[1] + .35, t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
-      raiseHand(zo, 'R', { fwd: .2, out: .16, up: .06 + .03 * Math.sin(t * 2.4), curl: .1, spread: .3 });   // R31L: forearm up, open palm at shoulder/face height, held through b064
-      const toR = ra.group.position.clone().sub(zo.group.position); toR.y = 0; toR.normalize(); toR.y = .15;
+      raiseHand(zo, 'R', { fwd: .26, out: .26, up: -.02 + .02 * Math.sin(t * 2.4), curl: .1, spread: .3 });   // R31L: forearm up, open palm at shoulder/face height, held through b064
+      const toR = ra.group.position.clone().sub(zo.group.position); toR.y = 0; toR.normalize(); toR.y = .3;
       PO.palmTo(zo, 'R', 1, toR);
       handTo(zo, 'L', { fwd: .22, out: -.02, drop: .26, curl: .35, spread: .08 });
       fa.B.chest.rotation.y -= .06 * hand;
@@ -228,7 +228,7 @@ const pa = staged('patio_matin', {
       ra.B.spine.rotation.z += .04 * sw; ra.B.chest.rotation.z -= .02 * sw; ra.B.head.rotation.z += .03 * sw;
       // R30H: never frozen hands-on-hips: cycles between one hand on the hip and both hands loosely in front, with a slow sway
       const cyc = Math.sin(t * .42 + 1);
-      if (cyc > -.2) { akimbo(zo); handTo(zo, 'L', { fwd: .22 + .05 * sw, out: -.02, drop: .27 - .06 * Math.max(0, cyc), curl: .35, spread: .08 }); }
+      if (cyc > -.2) { handTo(zo, 'R', { fwd: .26, out: .04, drop: .2 + .03 * sw, curl: .35, spread: .08 }); handTo(zo, 'L', { fwd: .22 + .05 * sw, out: -.02, drop: .22 - .04 * Math.max(0, cyc), curl: .35, spread: .08 }); }
       else { handTo(zo, 'L', { fwd: .3, out: .0, drop: .2, curl: .4, spread: .06 }); handTo(zo, 'R', { fwd: .26, out: .08, drop: .13 + .04 * sw, curl: .3, spread: .12 }); PO.palmTo(zo, 'R', .4, V(0, 1, .3)); }
       zo.B.spine.rotation.z -= .07 + .04 * sw; zo.B.chest.rotation.y += .22; zo.B.head.rotation.z += .06 + .03 * sw;
       for (const a of [ra, zo]) a.B.spine.updateWorldMatrix(false, true);
@@ -244,8 +244,8 @@ const pa = staged('patio_matin', {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
       // R28: both palms up, both forearms raised in front, symmetric through handTo
       for (const sd of ['L', 'R']) {
-        raiseHand(ra, sd, { fwd: .24, out: .2, up: -.02 + .03 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)) });   // R31L: forearms up, palms up at chest/shoulder height
-        PO.palmTo(ra, sd, 1, V(0, 1, .05));
+        raiseHand(ra, sd, { fwd: .3, out: .12, up: -.2 + .02 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)), curl: .1, spread: .4 });   // R31L2: elbows ~90deg, hands in front of the chest   // R31L: forearms up, palms up at chest/shoulder height
+        PO.palmTo(ra, sd, 1, V(0, 1, 0));
       }
     }
     { const wf = sm(B(5)[0] - .1, B(5)[0] + .3, t) * (1 - sm(B(5)[1] - .05, B(5)[1] + .2, t));   // R31O: Fatma laughs along: hand to mouth, other on chest, shoulders shaking, head back
