@@ -23,8 +23,8 @@ function handsOnChest(mo, t) {
   const c = at(mo, 'chest'), ax = at(mo, 'upperArmL').sub(at(mo, 'upperArmR')).setY(0).normalize(), fw = V(-ax.z, 0, ax.x);   // shoulder axis, and the horizontal axis across it
   if (fw.dot(at(mo, 'root').sub(c).setY(0)) < 0) fw.negate();                                                                    // fw points toward the feet
   const br = .004 * Math.sin(t * 5);
-  for (const [s, sg, along] of [['L', 1, -.02], ['R', -1, .07]]) {
-    const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .135 * k + br;
+  for (const [s, sg, along] of [['L', 1, .17], ['R', -1, .25]]) {
+    const tg = c.clone().addScaledVector(ax, sg * .055 * k).addScaledVector(fw, along * k); tg.y += .12 * k + br;
     PO.reach(mo, s, tg, { grip: 0, pole: [sg * .5, .5, 0] });
     PO.fingers(mo, s, .25, { thumb: .2, spread: .1 });
   }
@@ -39,7 +39,7 @@ function fever(mo, t, st, S3) {
 function temples(a, { bow = .06 } = {}) {
   const B = a.B; a.B.chest.rotation.x += .05; B.neck.rotation.x += bow; a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
-    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .104, .12, .012));
+    const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .085, .07, .02));
     let wrist = skin();
     for (let i = 0; i < 4; i++) {
       const p = skin();
@@ -71,7 +71,7 @@ const ch2 = staged('chambre_jour', {
 export default beatScene(ID, {
   shots: { ch1, ch2 },
   plan: {
-    b152: { shot: 'ch1', size: 'M', on: 'mohammed', z: 3.6, zTo: 7.5, dx: 20, dy: -45, push: B(0)[1] - B(0)[0] + 1.5 },
+    b152: { shot: 'ch1', size: 'M', on: 'mohammed', z: 3.6, zTo: 6.8, dx: 20, dy: -95, push: B(0)[1] - B(0)[0] + 1.5 },
     b153: { move: 'faceL' },   // r25: crop clear of the unpainted left strip
     b154: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.65, dx: 170, dy: -30 },
     b155: { shot: 'p40_tambour', move: 'pushL', segs: [[.5, 'p40_tambour', { move: 'rise' }]] },   // keep the drum painting, move down so the late crop retains his chin

@@ -76,12 +76,12 @@ function houseLights(lt, u, t) {
   const t0 = B(4)[0], c = K.c;
   c.save(); c.globalCompositeOperation = 'lighter';
   LIT.forEach(([fx, fy, w, h, k], i) => {
-    const on = sm(t0 + .15 + i * .22, t0 + .75 + i * .22, t); if (on <= 0) return;
-    const [x, y] = FP(fx, fy), W = w * 1.852, H = h * 1.852, fl = 1 + .04 * Math.sin(t * 7 + i * 2);
+    const on = sm(t0 - .1 + i * .12, t0 + .5 + i * .12, t); if (on <= 0) return;
+    const [x, y] = FP(fx, fy), W = w * 1.75, H = h * 1.75, fl = 1 + .04 * Math.sin(t * 7 + i * 2);
     const g = c.createRadialGradient(x, y, 2, x, y, Math.max(W, H) * 1.5);
     g.addColorStop(0, `rgba(255,190,90,${.55 * on * fl})`); g.addColorStop(1, 'rgba(255,150,40,0)');
     c.fillStyle = g; c.fillRect(x - W * 2, y - H * 2, W * 4, H * 4);
-    c.fillStyle = `rgba(255,205,115,${.85 * on * fl})`; c.beginPath();
+    c.fillStyle = `rgba(255,196,105,${.62 * on * fl})`; c.beginPath();
     if (k === 'a') { c.moveTo(x - W / 2, y + H / 2); c.lineTo(x - W / 2, y - H * .1); c.quadraticCurveTo(x - W / 2, y - H / 2, x, y - H / 2); c.quadraticCurveTo(x + W / 2, y - H / 2, x + W / 2, y - H * .1); c.lineTo(x + W / 2, y + H / 2); }
     else c.rect(x - W / 2, y - H / 2, W, H);
     c.closePath(); c.fill();
