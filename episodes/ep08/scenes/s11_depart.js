@@ -58,6 +58,7 @@ const pa = staged('patio_matin', {
     lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(5)[0] && t < B(6)[0] ? .26 : t >= B(3)[0] && t < B(6)[0] ? .3 : .45,
     look: (t, st) => {
       if (t >= B(6)[0]) return 'father';
+      if (t >= B(5)[0]) return 'mohammed';
       if (t >= B(3)[0]) {
         const p = st.A.fatma.B.head.getWorldPosition(V(0, 0, 0));
         if (t >= B(5)[0] && t < B(5)[1]) p.y -= .18 * Math.max(0, Math.sin((t - B(5)[0]) * 6.5));
@@ -113,6 +114,8 @@ const pa = staged('patio_matin', {
     const lean = sm(B(3)[0], B(3)[0] + .55, t) * (1 - sm(B(7)[0], B(7)[0] + .45, t) * .65);
     const sway = Math.sin((t - B(3)[0]) * 1.6);
     fa.B.spine.rotation.x += .1 * lean * (1 + sway * .5); fa.B.spine.rotation.z += .07 * lean * sway;
+    fa.B.head.rotation.y += (t > B(7)[0] - 1 ? .3 : .12 * Math.sin((t - B(3)[0]) * .7)) * lean;
+    fa.B.chest.rotation.y += .1 * lean * Math.sin((t - B(3)[0]) * .5);
     fa.B.neck.rotation.z += .08 * lean * Math.sin((t - B(3)[0]) * 2.1);
     fa.B.spine.rotation.x += .5 * lean; fa.B.chest.rotation.x += .2 * lean; fa.B.spine.rotation.z += .05 * lean * Math.sin(t * .9);
     fa.B.spine.updateWorldMatrix(false, true);
@@ -130,7 +133,7 @@ const pa = staged('patio_matin', {
     if (call) {
       const w = sm(B(6)[0] - .1, B(6)[0] + .25, t);
       paFa.B.spine.rotation.x += .22 * w; paFa.B.chest.rotation.x += .06 * w;
-      handTo(paFa, 'R', { fwd: .12, out: .2, drop: -.42 + .04 * Math.sin(t * 5), curl: .12, spread: .3 });
+      handTo(paFa, 'R', { fwd: .12, out: .2, drop: -.2 + .05 * Math.sin(t * 5), curl: .12, spread: .3 });
       handTo(paFa, 'L', { fwd: .06, out: .14, drop: .22, curl: .25 });
     }
     if (t >= B(6)[0] - .4) {
