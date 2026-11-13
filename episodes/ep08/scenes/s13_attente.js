@@ -243,7 +243,7 @@ const mu = checkedStage('souk_mur', {
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
       zo.group.position.y = by.zo - .01; mo.group.position.y = by.mo + .01; }
-    sync(zo, mo); liftCloth(zo, .16); liftCloth(mo);   // R31J: seat gap / hanging sole
+    sync(zo, mo); liftCloth(zo, t >= B(3)[0] && t < B(4)[0] ? .22 : .16); liftCloth(mo);   // R31J: seat gap / hanging sole
     sync(zo, mo, fa);
   },
 });
@@ -285,9 +285,9 @@ const ca = checkedStage('souk_mur', {
     // R31J: father's L hand on the boy's side at shoulder width (the side nearer that shoulder), elbow out
     const sideL = () => { const sh = at(fa, 'upperArmL'), a = front(mo, 'chest', -.02 * km, .14 * km, -.04 * km), b = front(mo, 'chest', -.02 * km, -.14 * km, -.04 * km); return sh.distanceTo(a) < sh.distanceTo(b) ? a : b; };
     const seat = front(mo, 'root', .15 * km, .02 * km, 0).add(V(0, .05 * km, 0));
-    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.15*km,.02*km,0).add(V(0,.05*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(fa, 0, 0, 1), .05),purpose:'arm around boy back'}];
+    st.actcheck.reaches=[{actor:'father',side:'R',target:()=>front(mo,'root',.15*km,.02*km,0).add(V(0,.05*km,0)),purpose:'forearm supporting boy pelvis'},{actor:'father',side:'L',target:()=>sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(mo, 0, 0, -1), .10).add(V(0, -.08, 0)),purpose:'arm around boy back'}];
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.9, -.1, .2] });
-    PO.reach(fa, 'L', sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(fa, 0, 0, 1), .05), { grip: .015, pole: [1.0, .3, .1] });   // R31Q: hand out from midline
+    PO.reach(fa, 'L', sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(mo, 0, 0, -1), .10).add(V(0, -.08, 0)), { grip: .015, pole: [1.0, .3, .1] });   // R31Q: hand out from midline
     PO.reach(mo, 'R', front(fa, 'neck', .13, .14 * kf, -.08), { grip: .01 });
     PO.reach(mo, 'L', front(fa, 'upperArmR', .24 * kf, .16 * kf, .05), { grip: .01 });
     sync(fa, mo, zo);
