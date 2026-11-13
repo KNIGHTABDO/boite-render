@@ -65,12 +65,12 @@ const cry = staged('chambre_jour', {
     const mo = st.A.mohammed;
     // r28: lift him so the hem rests ON the mattress top (it cut flat into it), with a soft contact blob under him.
     if (st.y0 == null) st.y0 = mo.group.position.y;
-    mo.group.position.y = st.y0 + .03;
+    mo.group.position.y = st.y0 + .014;
     if (!st.blob) {
-      const cv = document.createElement('canvas'); cv.width = cv.height = 128; const g = cv.getContext('2d');
-      const gr = g.createRadialGradient(64, 64, 4, 64, 64, 62); gr.addColorStop(0, 'rgba(40,18,10,.55)'); gr.addColorStop(.6, 'rgba(40,18,10,.22)'); gr.addColorStop(1, 'rgba(40,18,10,0)');
-      g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
-      st.blob = new THREE.Mesh(new THREE.PlaneGeometry(.5, .36), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false }));
+      const N = 64, d = new Uint8Array(N * N * 4);
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const r = Math.hypot(x - 31.5, y - 31.5) / 32, v = Math.max(0, 1 - r); const i = (y * N + x) * 4; d[i] = 40; d[i + 1] = 18; d[i + 2] = 10; d[i + 3] = Math.round(255 * .6 * v * v * (3 - 2 * v)); }
+      const tex = new THREE.DataTexture(d, N, N, THREE.RGBAFormat); tex.needsUpdate = true; tex.magFilter = tex.minFilter = THREE.LinearFilter;
+      st.blob = new THREE.Mesh(new THREE.PlaneGeometry(.62, .46), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
       st.blob.rotation.x = -Math.PI / 2; st.blob.renderOrder = 2;
     }
     S3.prop(st.blob, mo.group.position.x, TOP + .004, mo.group.position.z, 0);

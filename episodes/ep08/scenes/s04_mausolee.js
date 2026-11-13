@@ -87,9 +87,9 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .20 * kk, .35 * kk, -.34 * kk);
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .20 * kk, .44 * kk, -.34 * kk);
   lh.scale.setScalar(Math.min(.72, kk * .8));
-  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .16 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .2 * wave, a.group.rotation.y - .25 + amp * .6 * wave, -.08 + .45 * wave);   // R28: raised near the face, wide wave lh.updateMatrixWorld(true);
+  lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .05 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .2 * wave, a.group.rotation.y - .25 + amp * .6 * wave, -.08 + .45 * wave);   // R28: raised near the face, wide wave lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
   IK.aim(a.B.handR, PO.handPts(a, 'R').end, lh.localToWorld(V(-.08, .11, .025)));
   PO.fingers(a, 'R', .35, { thumb: .25 });
