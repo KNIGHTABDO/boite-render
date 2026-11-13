@@ -125,7 +125,7 @@ const ch = staged('chambre_jour', {
     }
     if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); const sw = Math.sin(t * 1.6);
       zo.B.chest.rotation.z += .05 * sw; zo.B.chest.rotation.x += .03;
-      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * 1, .8, .5], fingers: .1 }); }
+      zo.B.neck.rotation.x += .15; zo.B.head.rotation.x += .15; zo.B.neck.updateWorldMatrix(false, true); for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .12, pole: [(sd === 'L' ? 1 : -1) * 1, .8, .5], fingers: .1 }); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
       zo.B.chest.rotation.z += .16 * u; ai.B.chest.rotation.z -= .16 * u;
