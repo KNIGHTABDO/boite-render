@@ -41,11 +41,9 @@ const pa = staged('patio_matin', {
 }, {
   // R25A: insert close-up on the father's upturned palm with the two bangles (his hand sits near plate (690, 674); her hands enter the frame below)
   view: (lt, u, t) => {
-    if (t < INS[0] || t >= INS[1] || !pa.st) return null;
-    const fa = pa.st.A.father, k = fa.group.scale.y / 1.6, yw = fa.group.rotation.y;   // a pure function of the placement (identical in every render chunk)
-    const w = V(fa.group.position.x + Math.sin(yw) * .46 * k - Math.cos(yw) * .2 * k, fa.group.position.y + 1.0 * k, fa.group.position.z + Math.cos(yw) * .46 * k + Math.sin(yw) * .2 * k);
-    const [px, py] = pa.S3.project(w), e = sm(INS[0], INS[1], t);
-    return [px + 15, py - 10 + 8 * e, 3.1 + .3 * e];
+    if (t < INS[0] || t >= INS[1] || !pa.hp) return null;
+    const e = sm(INS[0], INS[1], t);
+    return [pa.hp[0], pa.hp[1] + 8 * e, 3.1 + .3 * e];
   },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
@@ -107,6 +105,14 @@ const pa = staged('patio_matin', {
     }
   },
 });
+
+{   // R25A: the hand's plate point, projected ONCE at load with the stage's default view (project() depends on the current camera, so never per frame)
+  const ld = pa.load;
+  pa.load = async () => { const had = !!pa.st; await ld(); if (had || pa.hp) return;
+    const fa = pa.st.A.father, k = fa.group.scale.y / 1.6, yw = fa.group.rotation.y;
+    const w = V(fa.group.position.x + Math.sin(yw) * .46 * k - Math.cos(yw) * .2 * k, fa.group.position.y + 1.0 * k, fa.group.position.z + Math.cos(yw) * .46 * k + Math.sin(yw) * .2 * k);
+    const [px, py] = pa.S3.project(w); pa.hp = [px + 15, py - 10]; };
+}
 
 // Right divan top, clockwise from the back-left corner. The chest beside it is off limits.
 const MATTRESS = [[1055, 588], [1412, 588], [1420, 772], [1148, 748]];
