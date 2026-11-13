@@ -140,8 +140,8 @@ const pr = sized(checkedStage('mausolee_rev', {
     // he looks back at the boys only once he has turned to them (a leader walking away cannot face the file behind him)
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
-  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1095, 822], ...T11(2.0, 3.4) } },
+  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [905, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1050, 822], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1360, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
 }, {
@@ -328,6 +328,7 @@ const pray = sized(checkedStage('mausolee', {
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
+      for (const bn of ['SkirtBack1', 'SkirtBack2', 'LeftRobe1', 'RightRobe1']) { const b = a.B[bn]; if (b?.userData?.rest) { b.quaternion.copy(b.userData.rest).multiply(new THREE.Quaternion().setFromAxisAngle(V(1, 0, 0), -.5 * hinge)); b.updateWorldMatrix(false, true); } }   // R31I: back cloth tips with the bow
       const fw = dirW(a, 0, 0, 1); let settle = 0;
       for (const s of ['L', 'R']) {
         const shoulder = at(a, 'upperArm' + s), elbow = at(a, 'foreArm' + s), wrist = at(a, 'hand' + s);
