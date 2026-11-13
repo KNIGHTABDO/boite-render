@@ -36,6 +36,10 @@ const pa = staged('patio_matin', {
       }
     }
     lapLouha(st.A.mohammed, st.lh, { f: 0, x: 0, y: -.06, sc: 1.3, tilt: .2 });   // R25B: bigger, flatter slate on the knees
+    { const mo = st.A.mohammed, km = mo.group.scale.y / 1.6;   // R31K: both hands actively hold the slate's sides
+      st.lh.updateWorldMatrix(true, false); const c = st.lh.getWorldPosition(new THREE.Vector3());
+      for (const s of ['L', 'R']) { const sg = s === 'L' ? 1 : -1;
+        reachSafe(mo, s, c.clone().addScaledVector(dirW(mo, -sg, 0, 0), .15 * km).add(new THREE.Vector3(0, .02 * km + .01 * Math.sin(t * 1.6 + sg), 0)), { grip: .02, pole: [sg * .6, .1, .4] }); } }
     // r16: idempotent re-attach is in holdBoard; the slate is drawn larger so it reads in the wide patio master
     // Argon r5: stiff arms on the walk → relaxed hands swinging opposite to the stride, settling when he stops
     const fa = st.A.father, go = 1 - sm(B(0)[0] + 2.9, B(0)[0] + 3.6, t);
@@ -83,12 +87,19 @@ const ch = staged('chambre_jour', {
     }
     // he turns his shoulders toward Zoubida when she speaks (b030, b033, b034) so head + body reach her
     const zw = zwin(t);
-    if (zw > 0) { mo.B.spine.rotation.y += ZS * .35 * zw; mo.B.chest.rotation.y += ZS * .3 * zw; }
+    if (zw > 0) { mo.B.spine.rotation.y += ZS * .12 * zw; mo.B.chest.rotation.y += ZS * .1 * zw;   // R31K: face stays open to camera }
     if (wel > 0) fa.B.spine.rotation.x += .08 * wel;
     if (ask > 0) { zo.B.spine.rotation.x += .1 * ask; zo.B.head.rotation.z += .08 * ask; }
     if (pat > 0) { fa.B.spine.rotation.x += .22 * pat; fa.B.chest.rotation.x += .1 * pat; fa.B.neck.rotation.x += .12 * pat; }   // over the boy, still upright enough that the forearm stays outside the ribs
     for (const a of [fa, zo, mo]) { a.B.spine.updateWorldMatrix(false, true); fitKneel(a); }
     for (const a of [fa, zo, mo]) for (const s of ['L', 'R']) lapRest(a, s, t);
+    // R31K: the father's hands rest visibly on his knees, in front of the robe fold
+    { const free = 1 - Math.max(palms > 0 ? 1 : 0, wel > 0 ? 1 : 0, pat > 0 ? 1 : 0);
+      if (free > 0) for (const s of ['L', 'R']) {
+        const sg = s === 'L' ? 1 : -1;
+        reachSafe(fa, s, at(fa, 'shin' + s).clone().addScaledVector(dirW(fa, 0, 0, 1), .15 * kf).addScaledVector(dirW(fa, -sg, 0, 0), .05 * kf).add(V(0, .1 * kf, 0)), { grip: .02, pole: [sg * .6, .1, .4] });
+        PO.palmTo(fa, s, 1, V(0, 1, 0)); PO.fingers(fa, s, .2, { thumb: .2 });
+      } }
     // b030: right hand to her chest from "bracelets", palm turned onto the breastbone
     if (chest > 0) {
       reachSafe(zo, 'R', front(zo, 'chest', .12 * kz, .03 * kz, -.1 * kz).lerp(front(zo, 'root', .18 * kz, .14 * kz, .05 * kz), 1 - chest), { grip: .03, pole: [-.35, -.1, .15] });
@@ -96,21 +107,21 @@ const ch = staged('chambre_jour', {
     }
     // b033: an open questioning hand toward the father, clear of her face
     if (ask > 0) {
-      reachSafe(zo, 'R', front(zo, 'root', .18 * kz, .14 * kz, .05 * kz).lerp(front(zo, 'root', .3 * kz, .1 * kz, .2 * kz), ask), { grip: 0, pole: [-.35, -.1, .15] });
-      PO.palmTo(zo, 'R', ask); PO.fingers(zo, 'R', .1, { spread: .3 });
+      reachSafe(zo, 'R', front(zo, 'root', .18 * kz, .14 * kz, .05 * kz).lerp(front(zo, 'root', .24 * kz, .12 * kz, .3 * kz), ask), { grip: 0, pole: [-.35, -.1, .15] });
+      PO.palmTo(zo, 'R', ask); PO.fingers(zo, 'R', .3, { spread: .15 });
     }
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', (s === 'L' ? .38 : .36) * kf, sign * (s === 'L' ? .3 : .40) * kf, (s === 'L' ? -.06 : -.2) * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
-      PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, 0, { thumb: 0, spread: .5 });
+      reachSafe(fa, s, front(fa, 'chest', .3 * kf, sign * .17 * kf, -.13 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * .8, -.5, .1] });
+      PO.palmTo(fa, s, palms, V(0, 1, 0));   // R31K: both hands in front of the chest PO.fingers(fa, s, 0, { thumb: 0, spread: .5 });
     }
     // b035: left fist at his chest, right hand open toward his father
     if (up > 0) {
-      reachSafe(mo, 'L', front(mo, 'chest', .28 * km, .15 * km, -.07 * km), { grip: .04, pole: [.12, -.1, .1] });
+      reachSafe(mo, 'L', front(mo, 'chest', .25 * km, .2 * km, -.15 * km), { grip: .04, pole: [.5, -.3, .1] });
       PO.fingers(mo, 'L', .3 + .3 * up, { thumb: .3 });
       const pump = .5 + .5 * Math.sin(t * 4.5);
-      reachSafe(mo, 'R', front(mo, 'chest', (.22 + .03 * pump) * km, -.07 * km, .02 * km), { grip: 0, pole: [-.12, -.05, .12] });
+      reachSafe(mo, 'R', front(mo, 'chest', (.24 + .03 * pump) * km, -.12 * km, -.06 * km), { grip: 0, pole: [-.12, -.05, .12] });
       PO.palmTo(mo, 'R', up); PO.fingers(mo, 'R', .12, { spread: .3 });
     }
     // b028–b029: a small open-handed welcome as he announces the outing
@@ -128,7 +139,7 @@ const ch = staged('chambre_jour', {
       const bz = win(10, .1, .9, t); if (bz > 0) { fa.B.head.rotation.x -= .08 * bz; fa.B.neck.rotation.x -= .04 * bz; } }
     // b036: he shifts closer, then the right palm rests on his son's crown. The left hand stays on the lap.
     if (pat > 0) {
-      const top = at(mo, 'head').add(V(0, .3 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);   // R29
+      const top = at(mo, 'head').add(V(0, .36 * km, 0)).addScaledVector(dirW(fa, 1, 0, 0), .03 * kf);   // R29, R31K higher
       approach(fa, 'R', top, .08);
       PO.reach(fa, 'R', top, { grip: .01, pole: [-.8, .4, .05] });
       PO.palmTo(fa, 'R', pat, V(0, -1, 0)); PO.fingers(fa, 'R', .35 * pat, { spread: .2 });
