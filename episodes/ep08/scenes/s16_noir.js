@@ -33,11 +33,14 @@ function mourn(zo, t) {
     const B = zo.B, k = zo.group.scale.y / 1.6;
     zo.group.updateMatrixWorld(true);
     const skin = () => B.head.localToWorld(V(-.06, .06, .072)), wrist = skin();
-    for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, 'R', wrist, { grip: 0, pole: [-2, -.1, .2] }); wrist.add(p.sub(PO.handPts(zo, 'R').palm)); }
+    for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, 'R', wrist, { grip: 0, pole: [-2.6, .3, .2] }); wrist.add(p.sub(PO.handPts(zo, 'R').palm)); }
     aim(B.handR, PO.handPts(zo, 'R').end, B.head.localToWorld(V(-.025, .2, .1)));
     PO.fingers(zo, 'R', .1, { thumb: .04, spread: .1 });
-    PO.reach(zo, 'L', front(zo, 'root', .2 * k, -.14 * k, -.02 * k), { grip: .3, pole: [1.5, -1, 0] });
-    PO.fingers(zo, 'L', .3, { thumb: .2, spread: .1 });
+    {   // left hand: soft fist at the chin/mouth, elbow low and out (not a second palm on the cheek)
+      const sk2 = () => B.head.localToWorld(V(.035, -.01, .11)), w2 = sk2();
+      for (let i = 0; i < 4; i++) { const p = sk2(); PO.reach(zo, 'L', w2, { grip: 0, pole: [2.5, -.6, .1] }); w2.add(p.sub(PO.handPts(zo, 'L').palm)); }
+      PO.fingers(zo, 'L', .45, { thumb: .3, spread: .05 });
+    }
   }
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
