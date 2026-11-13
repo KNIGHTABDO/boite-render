@@ -79,8 +79,8 @@ const ch = staged('chambre_jour', {
       // R31F: hands wander a little (not frozen), the mother's right hand moves in and forward off the sash ends, the father's hands clearly lift in the laugh and his right arm opens out.
       const wv = Math.sin(t * 0.6 + (isZ ? 1 : 0)), wv2 = Math.sin(t * 0.47 + 2);
       for (const p of [pL, pR]) p.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * wv).add(V(0, 0.012 * kk * wv2, 0));
-      if (isZ) pR.addScaledVector(dirW(a, 0, 0, 1), 0.07 * kk * (1 - laugh)).addScaledVector(dirW(a, 1, 0, 0), 0.05 * kk * (1 - laugh)).add(V(0, 0.01 * kk, 0));
-      else { const lf = Math.min(1, laugh * 1.4 + residue * 0.3); for (const p of [pL, pR]) p.add(V(0, 0.13 * kk * lf, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.06 * kk * lf); pR.addScaledVector(dirW(a, -1, 0, 0), 0.06 * kk); pL.addScaledVector(dirW(a, 1, 0, 0), 0.05 * kk); }
+      if (isZ) pR.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * (1 - laugh)).addScaledVector(dirW(a, 1, 0, 0), -0.07 * kk * (1 - laugh)).add(V(0, 0.035 * kk * (1 - laugh), 0)).addScaledVector(at(zo, 'root').clone().sub(pR), 0.2 * (1 - laugh));
+      else { const lf = Math.min(1, laugh * 1.4 + residue * 0.3); for (const p of [pL, pR]) p.add(V(0, 0.13 * kk * lf, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.0 * kk * lf); pR.addScaledVector(dirW(a, -1, 0, 0), 0.06 * kk); pL.addScaledVector(dirW(a, 1, 0, 0), 0.05 * kk); }
       palm(a, 'L', pL, { grip: 0.03, pole: isZ ? [1.0, 0.1, -0.1] : [0.9, 0.2, 0.1], gap: 0.14 });
       palm(a, 'R', pR, { grip: 0.03, pole: isZ ? [-0.6, 0.3, 0.3] : [-1.1, 0.15, 0.05], gap: 0.14 });
       if (isZ) {
