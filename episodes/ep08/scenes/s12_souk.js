@@ -40,15 +40,15 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
 const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1100, 735] };
-const DELLAL = [1185, 878], EXIT = [960, 690];
+const DELLAL = [1185, 878], EXIT = [860, 600];
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [690, 720], 0, 1],
   ['woman2', [1250, 790], [1170, 700], .25, 1],
-  ['woman1', [640, 700], [860, 660], .4, 0],
+  ['woman1', [640, 700], [700, 660], .4, 0],
   ['kid1', [700, 780], [790, 710], .1, 0],
   ['kid2', [1250, 720], [1100, 650], .55, 0],
   ['kid3', [900, 630], [1160, 760], .7, 0],
-  ['fqih', [880, 625], [780, 640], .2, 0],
+  ['fqih', [880, 625], [640, 640], .2, 0],
   ['rahma', [560, 740], [700, 680], .15, 0],
 ];
 /** relaxed standing arms: elbows soft, hands a little forward of the thigh, never splayed (A-pose) */
@@ -123,9 +123,9 @@ const la = checkedStage('souk_bijoux', {
       if (t < t0) return;
       rest(a.B); walk(a, S3.floorAt(...p0), S3.floorAt(...p1), t0, t1, t, { cps: 1.8 });
     };
-    move(fa, LEAD.father, [780, 800], B(7)[0] - 1.6, B(7)[0] - .5);
+    move(fa, LEAD.father, [760, 800], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1270, 700], B(7)[0] - .7, B(7)[0] + .8);
-    move(zo, LEAD.zoubida, [950, 815], B(7)[0] - .1, B(7)[0] + .35);
+    move(zo, LEAD.zoubida, [950, 815], B(7)[0] - 1.3, B(7)[0] - .2);
     move(ft, LEAD.fatma, [1090, 800], f(7, .36), f(7, .49));
     move(ma, [1270, 700], DELLAL, B(8)[0] - 1.6, B(8)[0] - .4);
     if(t<B(8)[0]+.05)move(zo,[915,850],[930,800],f(7,.94),B(8)[0]+.05);
@@ -133,7 +133,7 @@ const la = checkedStage('souk_bijoux', {
     else { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }
     if (t < B(8)[0] + 1.9) { if (t >= B(8)[0]) { const hp = S3.floorAt(1090, 800); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); } }   // R19J: hold until Zoubida has left the spot
     else { const hp = S3.floorAt(1090, 800); ft.group.position.set(hp.x, ft.group.position.y, hp.z); ft.group.updateMatrixWorld(true); }
-    if (t >= B(7)[0] - .5) { const hp = S3.floorAt(780, 800); fa.group.position.set(hp.x, fa.group.position.y, hp.z); fa.group.updateMatrixWorld(true); }
+    if (t >= B(7)[0] - .5) { const hp = S3.floorAt(760, 800); fa.group.position.set(hp.x, fa.group.position.y, hp.z); fa.group.updateMatrixWorld(true); }
     const face = sm(B(5)[0] - .6, B(5)[0] + .6, t);
     turn(fa, ma.group.position, face);
     // Full body turn every frame: the original walk heading must never leave the boy looking into the left wall.
@@ -155,7 +155,7 @@ const la = checkedStage('souk_bijoux', {
     st.exitLook ||= S3.floorAt(...EXIT).setY(1.7);
     if (t >= f(8, .28)) turn(ma, st.exitLook, sm(f(8, .28), f(8, .35), t));
     if (t > f(8, .35)) {
-      rest(ma.B);const via=S3.floorAt(950,740);
+      rest(ma.B);const via=S3.floorAt(900,700);
       if(t<f(8,.5))walk(ma,S3.floorAt(...DELLAL),via,f(8,.35),f(8,.5),t,{cps:2.6,ease:false});
       else walk(ma,via,S3.floorAt(...EXIT),f(8,.5),f(8,.88),t,{cps:2.6,ease:false});
       swing(ma, t, f(8, .35), 2.6, ['L']);
