@@ -68,7 +68,7 @@ const pa = staged('patio_matin', {
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact
       const br = st.br ||= bangles(S3);
       fa.group.updateMatrixWorld(true); br.visible = true;
-      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .022 * k, 0)));   // R23D: on the upturned palm surface br.scale.setScalar(1.2 * Math.max(.9, k)); br.updateMatrixWorld(true);
+      br.position.copy(PO.handPts(fa, 'R').palm.add(V(0, .032 * k, 0)));   // R23D: on the upturned palm surface br.scale.setScalar(1.2 * Math.max(.9, k)); br.updateMatrixWorld(true);
       st.actcheck = { held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
     const laugh = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
