@@ -39,7 +39,7 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: .8,
     const think = win(0, .4, 1.1, t), chin = win(1, .05, .95, t);
     // Hold the deflated pose through b050's tail and the pause before b051.
     const drop = sm(B(6)[0], B(6)[0] + .65, t) * (1 - sm(B(7)[0], B(7)[0] + .6, t));
-    const fist = sm(B(7)[0] + .1 * (B(7)[1] - B(7)[0]), B(7)[0] + .2 * (B(7)[1] - B(7)[0]), t)
+    const fist = sm(B(7)[0] - .35, B(7)[0] + .2, t)   // R27: fists already closed at the start of b051 (Hydrogen 80.7)
       * (1 - sm(B(8)[0], B(8)[0] + .4, t));
     const dream = sm(B(9)[0] - .35, B(9)[0] + .1, t), settle = sm(0, 2.4, t);
     b.spine.rotation.x += .07 * settle + .08 * think + .16 * drop + .1 * fist;
@@ -122,7 +122,7 @@ function pinKneesOut(a, curl) {
     const kn = IK.wpos(B['shin' + side]), hip = IK.wpos(B.root);
     const tgt = kn.clone();
     tgt.y = Math.min(hip.y - .03, kn.y + .035 * k) - .012 * k * curl;
-    tgt.addScaledVector(fwd, .05 * k).addScaledVector(lat, sign * (.035 + .02 * curl) * k);
+    tgt.addScaledVector(fwd, .05 * k).addScaledVector(lat, sign * (.035 + .06 * curl) * k);   // R27: fists sit clearly on each knee, apart
     reachClamp(a, side, tgt, { grip: .015, pole: [sign * .45, .08, .15] });
     PO.fingers(a, side, .12 + .88 * Math.min(1, curl * 1.15), { thumb: .15 + .85 * curl });
     for (const n of ['shoulder', 'clavicle']) if (B[n + side]) B[n + side].rotation.z += sign * .05 * curl;

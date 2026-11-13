@@ -10,7 +10,7 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .032 * 1.3, .007 * 1.3); mk(0xc9d3de, .03 * 1.3, .0065 * 1.3); S3.scene.add(g); return g;
+  mk(0xe0a820, .04 * 1.5, .0085 * 1.5); mk(0xc9d3de, .038 * 1.5, .008 * 1.5); S3.scene.add(g); return g;
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -88,8 +88,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.042 * k, .011 * k, .25 + .03 * w, w);
-      place(br.children[1], .042 * k, .011 * k, .25 - .03 * w, -w);
+      place(br.children[0], -.058 * k, .022 * k, .75 + .03 * w, w);
+      place(br.children[1], .05 * k, .022 * k, .75 - .03 * w, -w);
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }
