@@ -188,7 +188,7 @@ const scene = beatScene(ID, {
     b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 1.9, dx: 20, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.3, dx: 240, dy: -20 },
     b019: { shot: 'ch', size: 'CU', on: 'father', z: 3.3, dx: -20, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
-    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.8, dx: -33, dy: 5 },   // r19: father (left) and the mother (right) both fully out,
+    b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.7, dx: -33, dy: -40 },   // r19: father (left) and the mother (right) both fully out,
     b020: { shot: 'p05' },
   },
 });
