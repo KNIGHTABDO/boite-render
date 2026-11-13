@@ -55,7 +55,7 @@ const cl = staged('mausolee', {
   act(lt, t, S, st, S3) {
     const { fqih: fq, mohammed: mo } = st.A;
     life(fq, t, 2); life(mo, t, 5);
-    mo.group.visible = t >= B(1)[0] - .05;   // R25D b016: solo CU of the fqih
+    mo.group.visible = t >= B(1)[0] + .02;   // R25D b016: solo CU of the fqih
     if (st.lh) st.lh.visible = mo.group.visible;
     // b016 the kind master, including the pre-roll: head tilted, a slow nod, shoulders uneven, a forward lean
     const kind = t < B(1)[0] ? 1 : 0;
@@ -112,8 +112,8 @@ const ch = staged('chambre_jour', {
     const { father: fa, zoubida: zo, mohammed: mo } = st.A, kf = k(fa);
     life(fa, t, 1); life(zo, t, 4); life(mo, t, 6);
     // b018–b019 pride: the chest swells, the chin is carried by the look (above her head on the quote)
-    const proud = Math.max(win(2, .05, 1, t), t >= B(3)[0] && t < B(4)[0] ? 1 : 0);
-    fa.B.spine.rotation.x -= .11 * proud; fa.B.chest.rotation.x -= .26 * proud;   // R26A: chest out, proud
+    const proud = Math.max(t >= B(2)[0] - .2 && t < B(3)[0] ? 1 : 0, win(2, .05, 1, t), t >= B(3)[0] && t < B(4)[0] ? 1 : 0);
+    fa.B.spine.rotation.x -= .2 * proud; fa.B.chest.rotation.x -= .4 * proud; fa.B.upperArmL.rotation.z += .12 * proud; fa.B.upperArmR.rotation.z -= .12 * proud;   // R26A: chest out, proud
     zo.B.neck.rotation.x += .05 * Math.sin(t * 1.3);
     zo.B.head.rotation.z += .045 * Math.sin(t * .85);
     zo.B.spine.updateWorldMatrix(false, true);
@@ -124,7 +124,7 @@ const ch = staged('chambre_jour', {
     mo.B.spine.rotation.z += .03 * Math.sin(t * .45 + 1);   // weight shift
     mo.B.head.rotation.y += .3 * no * Math.sin(u * 5.2);   // R26A: smaller swing so the near eye never rolls into the cheek
     fa.group.visible = zo.group.visible = !no;   // R23B: no cropped father/mother wedges in the b021 CU corners
-    mo.B.neck.rotation.x += .05 * no;
+    mo.B.neck.rotation.x += .05 * no; mo.B.neck.rotation.z *= 1 - no; mo.B.head.rotation.z *= 1 - no; mo.B.neck.rotation.y *= 1 - no;
     mo.group.rotation.y -= .8 * sm(B(5)[0] - .5, B(5)[0] - .1, t);   // r20: turn from the father to 3/4 front so the face reads in the b021 CU
     mo.group.updateMatrixWorld(true);
     mo.B.spine.updateWorldMatrix(false, true);
@@ -133,12 +133,12 @@ const ch = staged('chambre_jour', {
     if (quote > .05) {
       // R23B b019: chin rises with pride, nod/tilt, the hand opens palm-up toward screen right and rises between the two lines
       const q = Math.min(1, Math.max(0, (t - B(3)[0]) / Math.max(.1, B(3)[1] - B(3)[0])));
-      fa.B.neck.rotation.x -= (.1 + .22 * q) * quote; fa.B.head.rotation.x -= .1 * q * quote;
+      fa.B.neck.rotation.x -= (.2 + .3 * q) * quote; fa.B.head.rotation.x -= .1 * q * quote;
       fa.B.head.rotation.z += (.1 * Math.sin(q * 6.3) + .07) * quote; fa.B.neck.rotation.y += .12 * Math.sin(q * 5) * quote;
       fa.B.spine.updateWorldMatrix(false, true);
-      reachSafe(fa, 'R', front(fa, 'chest', (.36 + .09 * q) * kf, (.12 + .2 * q) * kf, (-.08 + .3 * q) * kf), { grip: .04, pole: [-.5, -.02, .3] });
+      reachSafe(fa, 'R', front(fa, 'chest', (.36 + .09 * q) * kf, (.12 + .2 * q) * kf, (-.08 + .3 * q) * kf), { grip: 0, pole: [-.5, -.02, .3] });
       PO.palmTo(fa, 'R', quote, dirW(fa, .5 * q, .2 + 1.1 * q, .6));
-      PO.fingers(fa, 'R', .1, { thumb: .1, spread: .3 });   // R26A: open but relaxed palm, not a flat paddle
+      PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });   // R26A: open but relaxed palm, not a flat paddle
       reachSafe(fa, 'L', front(fa, 'chest', .26 * kf, -.24 * kf, -.24 * kf), { grip: .04, pole: [.4, -.4, .2] });   // G1: off the beard, down by the thigh
       PO.fingers(fa, 'L', .04, { spread: .3 });
     } else if (tell > .05) {
@@ -182,8 +182,8 @@ const scene = beatScene(ID, {
   shots: { cl, ch, p05 },
   plan: {
     // hand-set z only where the automatic crop is the wrong size; a CU stays tight enough that a second bust cannot sit in frame
-    b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 70 },
-    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.3, dx: -230, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
+    b016: { shot: 'cl', size: 'CU', on: 'fqih', z: 4.2, dx: 110 },
+    b017: { shot: 'cl', size: 'M', on: 'mohammed', z: 2.3, dx: -90, dy: 25 },   // r19: fqih fully in (head 3% clear of the top), Mohammed full head + lap,
     b018: { shot: 'ch', size: 'M', on: 'father', z: 1.38, dx: 240, dy: -30 },
     b019: { shot: 'ch', size: 'CU', on: 'father', z: 3.0, dx: -70, dy: -25 },   // r19: head+shoulders, Mohammed's head fully out right,
     b021: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.9, dx: -33, dy: -15 },   // r19: father (left) and the mother (right) both fully out,
