@@ -40,16 +40,16 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
 const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1040, 725] };
-const DELLAL = [1185, 878], EXIT = [940, 690];
+const DELLAL = [1250, 880], EXIT = [1010, 690];
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
-  ['man1', [560, 800], [770, 700], 0, 1],
-  ['woman2', [1250, 790], [1070, 700], .25, 1],
-  ['woman1', [640, 700], [880, 665], .4, 0],
-  ['kid1', [700, 780], [830, 705], .1, 0],
-  ['kid2', [1250, 720], [1010, 680], .55, 0],
-  ['kid3', [900, 630], [840, 735], .7, 0],
-  ['fqih', [880, 625], [1010, 740], .2, 0],
-  ['rahma', [560, 740], [900, 690], .15, 0],
+  ['man1', [560, 800], [690, 720], 0, 1],
+  ['woman2', [1250, 790], [1170, 700], .25, 1],
+  ['woman1', [640, 700], [860, 660], .4, 0],
+  ['kid1', [700, 780], [790, 710], .1, 0],
+  ['kid2', [1250, 720], [1100, 650], .55, 0],
+  ['kid3', [900, 630], [1160, 760], .7, 0],
+  ['fqih', [880, 625], [780, 640], .2, 0],
+  ['rahma', [560, 740], [700, 680], .15, 0],
 ];
 /** relaxed standing arms: elbows soft, hands a little forward of the thigh, never splayed (A-pose) */
 function loose(a, sides, t, seed = 0) {
@@ -57,7 +57,7 @@ function loose(a, sides, t, seed = 0) {
   for (const s of sides) {
     const sh = at(a, 'upperArm' + s), len = sh.distanceTo(at(a, 'foreArm' + s)) + at(a, 'foreArm' + s).distanceTo(at(a, 'hand' + s));
     const sw = .015 * Math.sin(t * .9 + seed + (s === 'L' ? 0 : 1.7));
-    const tg = sh.clone().addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), .03 * k).addScaledVector(dirW(a, 0, 0, 1), (.16 + sw) * k).add(V(0, -.8 * len, 0));
+    const tg = sh.clone().addScaledVector(dirW(a, s === 'L' ? 1 : -1, 0, 0), .05 * k).addScaledVector(dirW(a, 0, 0, 1), (.16 + sw) * k).add(V(0, -.8 * len, 0));
     PO.reach(a, s, tg, { grip: 0, pole: s === 'L' ? [.15, .1, -.5] : [-.15, .1, -.5] });
     PO.fingers(a, s, .2, { thumb: .15 });
   }
@@ -125,10 +125,10 @@ const la = checkedStage('souk_bijoux', {
     };
     move(fa, LEAD.father, [800, 790], B(7)[0] - 1.6, B(7)[0] - .5);
     move(ma, DELLAL, [1180, 720], B(7)[0] - .7, B(7)[0] + .8);
-    move(zo, LEAD.zoubida, [915, 850], B(7)[0] - .7, B(7)[0] + .15);
+    move(zo, LEAD.zoubida, [915, 850], B(7)[0] - .3, B(7)[0] + .3);
     move(ft, LEAD.fatma, [1110, 830], f(7, .36), f(7, .49));
-    move(fa, [800, 790], LEAD.father, B(8)[0] + .2, B(8)[0] + 1.0);
-    move(ma, [1180, 720], DELLAL, B(8)[0] - .6, B(8)[0] + .3);
+    move(fa, [800, 790], [800, 880], B(8)[0] + .2, B(8)[0] + 1.0);
+    move(ma, [1180, 720], DELLAL, B(8)[0] - 1.6, B(8)[0] - .4);
     if(t<B(8)[0]+.05)move(zo,[915,850],[930,800],f(7,.94),B(8)[0]+.05);
     else if (t < B(8)[0] + 1.6) { const hp = S3.floorAt(930, 800); zo.group.position.set(hp.x, zo.group.position.y, hp.z); zo.group.updateMatrixWorld(true); }   // R19J: hold until the father has crossed back
     else move(zo,[930,800],LEAD.zoubida,B(8)[0]+1.6,B(8)[0]+2.4);
@@ -158,8 +158,10 @@ const la = checkedStage('souk_bijoux', {
       if(t<f(8,.5))walk(ma,S3.floorAt(...DELLAL),via,f(8,.35),f(8,.5),t,{cps:2.6,ease:false});
       else walk(ma,via,S3.floorAt(...EXIT),f(8,.5),f(8,.88),t,{cps:2.6,ease:false});
       swing(ma, t, f(8, .35), 2.6, ['L']);
+      faceCam(ma, S3.cam, 1.4);
     }
     // Gaze is measured against the look string, so the body has to be turned toward that person after the walks.
+    if (t >= f(8, .3)) faceCam(fa, S3.cam, 1.3);
     if (t >= B(8)[0]) turn(zo, ma.group.position, 1);
     if (t >= B(7)[0] && t < f(7, .48)) turn(ft, zo.group.position, 1);
     if (t >= f(7, .48) && t < B(8)[0]) faceCam(ft, S3.cam, 1.15);
@@ -177,7 +179,7 @@ const la = checkedStage('souk_bijoux', {
 
     // b077: one jewel, not a second pair of bracelets. The auction pair is st.br and is the only pair in a shot.
     if (!st.jw) {
-      st.jw = jewel(S3); st.jw.scale.setScalar(1.7);   // a small gold piece (3.4 cm), unlit gold so it reads in the wide shot
+      st.jw = jewel(S3); st.jw.scale.setScalar(2.6);   // a small gold piece (3.4 cm), unlit gold so it reads in the wide shot
       st.jw.material = new THREE.MeshBasicMaterial({ color: 0xffd24a });
     }
     st.jw.visible = m1.group.visible && t >= B(3)[0] - .1 && t < B(3)[1] + .2;
@@ -195,10 +197,10 @@ const la = checkedStage('souk_bijoux', {
         a.B.spine.updateWorldMatrix(false, true);
       }
       for (const s of ['L', 'R']) {
-        PO.reach(m1, s, front(m1, 'chest', .24 * k1, (s === 'L' ? -.085 : .085) * k1, (-.2 + .004 * rub) * k1), { grip: .015 });
-        PO.palmTo(m1, s); PO.fingers(m1, s, .12, { thumb: .15 });
+        PO.reach(m1, s, front(m1, 'chest', .27 * k1, (s === 'L' ? -.1 : .1) * k1, (-.17 + .004 * rub) * k1), { grip: .015 });
+        PO.palmTo(m1, s); PO.fingers(m1, s, .03, { thumb: .05 });
       }
-      st.jw.position.copy(PO.handPts(m1, 'L').palm.lerp(PO.handPts(m1, 'R').palm, .5)).add(V(0, .03 * k1, 0));
+      st.jw.position.copy(PO.handPts(m1, 'L').palm.lerp(PO.handPts(m1, 'R').palm, .5)).add(V(0, .06 * k1, 0));
       const k2 = k(w2);
       PO.reach(w2, 'R', front(w2, 'chest', .2 * k2, .04 * k2, -.18 * k2), { grip: .015 });
       PO.reach(w2, 'L', front(w2, 'chest', .22 * k2, -.07 * k2, -.2 * k2), { grip: .015 });
