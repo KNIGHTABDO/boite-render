@@ -82,6 +82,10 @@ const ch = staged('chambre_jour', {
       for (const p of [pL, pR]) p.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * wv).add(V(0, 0.012 * kk * wv2, 0));
       if (isZ) pR.addScaledVector(dirW(a, 0, 0, 1), 0.02 * kk * (1 - laugh)).addScaledVector(dirW(a, 1, 0, 0), -0.07 * kk * (1 - laugh)).add(V(0, 0.008 * kk * (1 - laugh), 0)).addScaledVector(at(zo, 'root').clone().sub(pR), 0.2 * (1 - laugh)).lerp(kneeHand(zo, 'R', t, 1, kk).add(V(0, -0.02 * kk, 0)), 0.55 * (1 - laugh));
       else { const lf = Math.min(1, laugh * 1.4 + residue * 0.3); for (const p of [pL, pR]) p.add(V(0, 0.13 * kk * lf, 0)).addScaledVector(dirW(a, 0, 0, 1), 0.0 * kk * lf); pR.addScaledVector(dirW(a, -1, 0, 0), 0.06 * kk); pL.addScaledVector(dirW(a, 1, 0, 0), 0.05 * kk); }
+      // R31S6 (t>=12 only): mother's L hand rests on the knee, lifts clear of the dress below the sash in the laugh; father's raised hands clear the chest.
+      const w12 = sm(11.9, 12.0, t);
+      if (isZ) { pL.lerp(kneeHand(zo, 'L', t, 2, kk).add(V(0, -0.015 * kk, 0)), 0.6 * w12 * (1 - laugh)); pL.addScaledVector(dirW(a, 0, 0, 1), 0.06 * kk * laugh * w12).add(V(0, 0.03 * kk * laugh * w12, 0)); }
+      else { for (const p of [pL, pR]) p.addScaledVector(dirW(a, 0, 0, 1), 0.07 * kk * laugh * w12); pR.addScaledVector(dirW(a, -1, 0, 0), 0.03 * kk * laugh * w12); }
       palm(a, 'L', pL, { grip: 0.03, pole: isZ ? [1.0, 0.1, -0.1] : [0.9, 0.2, 0.1], gap: 0.14 });
       palm(a, 'R', pR, { grip: 0.03, pole: isZ ? [-0.6, 0.3, 0.3] : [-1.1, 0.15, 0.05], gap: 0.14 });
       if (isZ) {
@@ -96,8 +100,11 @@ const ch = staged('chambre_jour', {
       // R31S3: no chest clasp. Palms rest on the thighs, hands apart; right hand lifts in a small open-palm gesture on b038 and in the sceptical beat;
       // b040 fidget: the right hand rubs the left forearm while the left is presented forward, all well away from the chest.
       const sg = s === 'L' ? 1 : -1;
-      const gest = s === 'R' ? Math.max(search * (0.6 + 0.4 * Math.sin(t * 1.9)) * 0.8, sceptical * 0.6 * (0.5 + 0.5 * Math.sin(t * 0.8))) : 0;
+      const gest = s === 'R' ? Math.max(search * (0.6 + 0.4 * Math.sin(t * 1.9)) * 0.8, sceptical * 0.3 * (0.5 + 0.5 * Math.sin(t * 0.8))) : 0;
       const base = lapHand(mo, s, t, 3, km).addScaledVector(dirW(mo, sg, 0, 0), 0.045 * km);
+      const w12 = sm(11.9, 12.0, t);
+      // R31S6 (t>=12): hands forward and out on the thighs, asymmetric (right higher and further out, left lower and a touch back).
+      base.addScaledVector(dirW(mo, 0, 0, 1), (s === 'R' ? 0.06 : 0.035) * km * w12).addScaledVector(dirW(mo, sg, 0, 0), (s === 'R' ? 0.04 : 0.02) * km * w12).add(V(0, (s === 'R' ? 0.03 : -0.015) * km * w12, 0));
       let p = base.clone();
       if (s === 'R') {
         const gp = base.clone().add(V(0, 0.13 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), 0.1 * km).addScaledVector(dirW(mo, sg, 0, 0), 0.04 * km);
