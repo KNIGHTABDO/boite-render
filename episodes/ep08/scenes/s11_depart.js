@@ -175,6 +175,7 @@ const pa = staged('patio_matin', {
       }
     }
     yawToward(mo, S3.cam, t < B(3)[0] ? .65 : t < B(6)[0] ? .3 : .9); yawToward(zo, S3.cam, t < B(6)[0] ? .9 : .85);
+    if (Math.abs(t-6.2)<.03) for (const [n,a] of [['mo',mo],['zo',zo]]) { const hp=at(a,'head'); let mx=-9,mn=9; a.group.traverse(o=>{ if(o.isMesh&&o.geometry?.attributes?.position){ const ps=o.geometry.attributes.position; const v=V(); for(let i=0;i<ps.count;i+=3){ v.fromBufferAttribute(ps,i); if(o.isSkinnedMesh) o.applyBoneTransform(i,v); v.applyMatrix4(o.matrixWorld); if(Math.abs(v.y-hp.y)<.1&&Math.hypot(v.x-hp.x,v.z-hp.z)<.3){ const l=a.B.head.worldToLocal(v.clone()); mx=Math.max(mx,l.z); mn=Math.min(mn,l.z);} } } }); const hl=at(a,'handL'),hr=at(a,'handR'); console.error('DBGZ',n,'headLocalZ',mn.toFixed(3),mx.toFixed(3),'handL-handR x',(hl.x-hr.x).toFixed(2),'z',(hl.z-hr.z).toFixed(2),'ry',a.group.rotation.y.toFixed(2)); }
     addStains(mo, S3);
     if (paFa.group.visible && !walking) yawToward(paFa, S3.cam, 1.2);
     if (fa.group.visible) yawToward(fa, S3.cam, .75);

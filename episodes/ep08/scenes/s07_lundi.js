@@ -102,7 +102,7 @@ const ch = staged('chambre_jour', {
     // b034: palms up briefly at "miséricorde"
     if (palms > 0) for (const s of ['L', 'R']) {
       const sign = s === 'L' ? 1 : -1;
-      reachSafe(fa, s, front(fa, 'chest', .24 * kf, sign * .32 * kf, -.12 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
+      reachSafe(fa, s, front(fa, 'chest', .28 * kf, sign * .38 * kf, -.12 * kf).lerp(front(fa, 'root', .18 * kf, sign * .16 * kf, .05 * kf), 1 - palms), { grip: 0, pole: [sign * 1, -.2, .15] });
       PO.palmTo(fa, s, palms, V(0, 1, 0)); PO.fingers(fa, s, .0, { thumb: .1, spread: .4 });
     }
     // b035: left fist at his chest, right hand open toward his father
@@ -122,7 +122,7 @@ const ch = staged('chambre_jour', {
     { const rl = sm(B(9)[0] - .3, B(9)[0] + .2, t) * (1 - up);
       if (rl > 0) for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        reachSafe(mo, s, front(mo, 'root', .2 * km, sg * .13 * km, .03 * km), { grip: .02, pole: [sg * .4, -.1, .2] });
+        reachSafe(mo, s, front(mo, 'root', .26 * km, sg * .19 * km, .03 * km), { grip: .02, pole: [sg * .6, -.1, .2] });
         PO.fingers(mo, s, .3, { thumb: .3 });
       }
       const bz = win(10, .1, .9, t); if (bz > 0) { fa.B.head.rotation.x -= .08 * bz; fa.B.neck.rotation.x -= .04 * bz; } }
