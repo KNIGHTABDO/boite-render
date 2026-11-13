@@ -140,9 +140,9 @@ const pr = sized(checkedStage('mausolee_rev', {
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
   mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [975, 890], ...T11(1, 3.4) }, look: [1150, 1030, 1.45], lookMax: .3 },
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1140, 845], ...T11(2.0, 3.4) } },
-  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 900], ...T11(3.0, 3.4) } },
-  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 858], ...T11(3.95, 3.4) } },
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1140, 822], ...T11(2.0, 3.4) } },
+  kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1345, 835], ...T11(3.0, 3.4) } },
+  kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1530, 818], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
@@ -159,7 +159,7 @@ const pr = sized(checkedStage('mausolee_rev', {
     // once he has turned he gestures to the boys, then the room: open right hand, left hand relaxed
     if (lead > 0) {
       const kf = k(fq), g = front(fq, 'chest', (.3 + .03 * Math.sin(t * 1.7)) * kf, -.2 * kf, .0);
-      PO.reach(fq, 'R', at(fq, 'handR').lerp(g, lead), { grip: 0, pole: [-.4, -.1, -.2] });
+      PO.reach(fq, 'R', at(fq, 'handR').lerp(g, lead), { grip: 0, pole: [-.5, -.5, -.05] });
       PO.fingers(fq, 'R', .12, { thumb: .1, spread: .35 });
     }
     // after stopping, each boy settles into his own stance (varied yaw)
@@ -167,13 +167,13 @@ const pr = sized(checkedStage('mausolee_rev', {
     st.lh ||= [kid1, mo, kid2, kid3].map(() => S3.prop(PR.louha({ col: 0x9a6a38 }), 0, 0, 0));
     [kid1, mo, kid2, kid3].forEach((a, i) => { st.lh[i].visible = a.group.visible; chestLouha(a, st.lh[i]); });
   },
-}), STANDING);
+}), { ...STANDING, kid1: 1.1, kid2: 1.08, kid3: 1.06 });   // R25C: boys nearer the lens had grown past the fqih; child proportions
 
 // ---------------------------------------------------------------- b012 memory: seven turns around the tomb
 // A CLOSED lap around the left-hand tomb: right flank, near plinth, left flank, far side.
 // The return half is hidden by the tomb; it still advances along the same continuous floor path.
 const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
-const GIRLS = [['woman1', 0], ['woman2', 1.6], ['fatma', 3.2]];   // spacing along the path (m)
+const GIRLS = [['woman1', 0], ['woman2', .75], ['fatma', 1.5]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
 // The far half runs along the wall BEHIND the tomb: the women stay real, posed actors the whole lap, and the tomb is a depth
 // holdout (below), so the renderer hides them behind its painted body and only heads above the rail show.
 const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [120, 1000], [100, 850], [130, 722], [420, 705], [650, 712]];
@@ -209,7 +209,7 @@ const fl = sized(checkedStage('mausolee', Object.fromEntries(GIRLS.map(([n], i) 
       const ka = k(a), cnt = 1 + (Math.floor((start + v * (t - B(2)[0]) - off) / period + 10) % 5);
       a.B.neck.rotation.set(.3, 0, 0); a.B.head.rotation.set(0, 0, 0); upd(a, 'neck');
       PO.reach(a, 'R', front(a, 'chest', .27 * ka, .08 * ka, .05 * ka), { grip: .015, pole: [-.4, -.1, -.1] });
-      PO.reach(a, 'L', front(a, 'chest', (.24 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, -.07 * ka, -.06 * ka), { grip: 0, pole: [.35, .05, .1] });
+      PO.reach(a, 'L', front(a, 'chest', (.25 + .02 * Math.sin(d / 1.05 * Math.PI * 2)) * ka, .0 * ka, -.04 * ka), { grip: 0, pole: [.35, .05, .1] });
       PO.fingers(a, 'R', .95, { thumb: cnt === 5 ? 0 : .6, each: [1, 0, cnt >= 2 ? 0 : 1, cnt >= 3 ? 0 : 1, cnt >= 4 ? 0 : 1], spread: .6 });
       const index = a.B.RightHandIndex3;
       if (index) IK.aim(a.B.handR, IK.wpos(index), at(a, 'handR').add(V(0, .2 * ka, 0)));

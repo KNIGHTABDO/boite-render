@@ -42,13 +42,14 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 const LEAD = { father: [900, 870], mohammed: [740, 850], zoubida: [770, 755], fatma: [1040, 725] };
 const DELLAL = [1185, 878], EXIT = [940, 690];
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
-  ['man1', [560, 800], [740, 690], 0, 1],
-  ['woman2', [1250, 790], [1060, 680], .25, 1],
-  ['woman1', [640, 700], [860, 645], .4, 0],
-  ['kid1', [700, 780], [830, 690], .1, 0],
-  ['kid2', [1250, 720], [1010, 655], .55, 0],
-  ['kid3', [900, 630], [830, 720], .7, 0],
-  ['fqih', [880, 625], [1060, 745], .2, 0],
+  ['man1', [560, 800], [770, 700], 0, 1],
+  ['woman2', [1250, 790], [1070, 700], .25, 1],
+  ['woman1', [640, 700], [880, 665], .4, 0],
+  ['kid1', [700, 780], [830, 705], .1, 0],
+  ['kid2', [1250, 720], [1010, 680], .55, 0],
+  ['kid3', [900, 630], [840, 735], .7, 0],
+  ['fqih', [880, 625], [1010, 740], .2, 0],
+  ['rahma', [560, 740], [900, 690], .15, 0],
 ];
 /** relaxed standing arms: elbows soft, hands a little forward of the thigh, never splayed (A-pose) */
 function loose(a, sides, t, seed = 0) {
@@ -103,9 +104,10 @@ const la = checkedStage('souk_bijoux', {
   kid1: { at: [780, 730], face: [880, 650], seed: 26, talk: 0 },
   kid2: { at: [1030, 710], face: [950, 640], seed: 27, talk: 0 },
   kid3: { at: [850, 640], face: [1020, 740], seed: 29, talk: 0 },
+  rahma: { at: [600, 720], face: [900, 690], seed: 33, talk: 0 },
 }, {
   addressee: { marchand: 'father', father: 'marchand' },
-  traffic:['man1','woman1','woman2','kid1','kid2','kid3','fqih'],
+  traffic:['man1','woman1','woman2','kid1','kid2','kid3','fqih','rahma'],
   act(lt, t, S, st, S3) {
     st.actcheck={exposed:{zoubida:['handL','handR','foreArmL','foreArmR'],fatma:['handL','handR','foreArmL','foreArmR']},
       contacts:[{actors:['father','marchand'],parts:['foreArmR:foreArmR','foreArmL:foreArmR','foreArmR:handR','handR:foreArmR','handR:handR','handR:handL','handR:foreArmL']}]};
@@ -316,6 +318,6 @@ export default beatScene(ID, {
     b081: { shot: 'la', size: 'M', on: 'zoubida', pt: [915, 850], z: 1.65, dx: 0, dy: 30,
       cover: [{ f: .48, size: 'M', on: 'fatma', pt: [1120, 890], z: 1.85, dx: 0, dy: 40 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
-    cover: [{ f: .3, size: 'W', on: 'father' }], insAt: .6 },
+    cover: [{ f: .3, size: 'W', on: 'father' }, { f: .52, size: 'M', on: 'marchand', z: 1.3, dy: -80 }], insAt: .6 },
   },
 });
