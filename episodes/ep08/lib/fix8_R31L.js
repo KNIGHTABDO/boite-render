@@ -7,7 +7,7 @@ const lat = (a, side) => { const o = at(a, 'upperArm' + side).sub(at(a, 'chest')
 const sgnOf = (a, o) => o.clone().applyQuaternion(a.group.quaternion.clone().invert()).x >= 0 ? 1 : -1;
 const tgt = (a, side, o, { fwd, out, drop }) => { const k = a.group.scale.y / 1.6; return at(a, 'upperArm' + side).addScaledVector(o, out * k).addScaledVector(dirW(a, 0, 0, 1), fwd * k).add(V(0, -drop * k, 0)); };
 
-export const HIP = { fwd: .03, out: .03, drop: .36 };
+export const HIP = { fwd: .03, out: .07, drop: .46 };
 export function hipBlend(a, side, w, loose = { fwd: .22, out: .0, drop: .25, curl: .35, spread: .08 }, hip = HIP) {
   const o = lat(a, side), s = sgnOf(a, o);
   const p0 = tgt(a, side, o, loose), p1 = tgt(a, side, o, hip);

@@ -65,7 +65,8 @@ const esc = staged('escalier', {
     yawToward(zo, S3.cam, .3);
     open34(zo, S3.cam, .55);
     castScale(mo);
-    sitStep(mo, SEAT.o.seat - .075, SEAT.o.floor, 1.0);   // R31L: pelvis on tread 3, soles on tread 2 (as s09)
+    sitStep(mo, SEAT.o.seat - .075, SEAT.o.floor, .62);   // R31O: feet pulled in under the knees so the knees rise high
+       // R31L: pelvis on tread 3, soles on tread 2 (as s09)
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;
@@ -81,7 +82,7 @@ const esc = staged('escalier', {
       const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2) * hw;
       const sv = Math.sin(t * 2.1), sl = Math.sin(t * .8);
       hipBlend(zo, 'R', hw, { fwd: .2, out: .0, drop: .25 + .02 * sl, curl: .35, spread: .08 });
-      hipBlend(zo, 'L', hw, { fwd: .24, out: .02, drop: .23 - .02 * sl, curl: .35, spread: .08 }, { fwd: .03 + g * .02, out: .03 + g * .02, drop: .36 - g * .01 * sv });
+      hipBlend(zo, 'L', hw, { fwd: .24, out: .02, drop: .23 - .02 * sl, curl: .35, spread: .08 }, { fwd: .03 + g * .02, out: .07 + g * .02, drop: .46 - g * .01 * sv });
       if (g > .05) PO.palmTo(zo, 'L', .4 * g, V(.5, .7, .1));
       zo.B.spine.rotation.z += .03 * hw; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
     }
@@ -100,13 +101,19 @@ const esc = staged('escalier', {
     }
     // Unmistakable crouch: pelvis on the tread, torso hunched forward over the knees, forearms resting on them.
     const hunch = sm(0, .5, t) * (1 - sm(B(7)[0] - .1, B(7)[0] + .4, t));
-    mo.B.spine.rotation.x += .2 * hunch; mo.B.chest.rotation.x += .22 * hunch; mo.B.neck.rotation.x -= .12 * hunch;
+    mo.B.spine.rotation.x += .34 * hunch; mo.B.chest.rotation.x += .3 * hunch; mo.B.neck.rotation.x -= .12 * hunch;
     mo.B.spine.updateWorldMatrix(false, true);
     pinKnees(mo, 0);
     onKnees(mo);
-    if (!mo.pins && proud < .05) for (const sd of ['L', 'R']) {   // R26A: hands rest on the knees, not in the air beside them
-      const kk = mo.group.scale.y / 1.6, kn = at(mo, 'shin' + sd).add(V(0, .045 * kk, .02 * kk));
-      PO.reach(mo, sd, kn, { grip: .02, pole: [sd === 'L' ? .5 : -.5, .04, -.28] }); PO.fingers(mo, sd, .3, { spread: .1 });
+    if (!mo.pins && proud < .05) {   // R31O: arms wrap the knees, hands clasped in front of the shins, elbows out
+      const kk = mo.group.scale.y / 1.6, mid = at(mo, 'shinL').add(at(mo, 'shinR')).multiplyScalar(.5);
+      mo.group.updateMatrixWorld(true);
+      const fw = V(Math.sin(mo.group.rotation.y), 0, Math.cos(mo.group.rotation.y));
+      for (const sd of ['L', 'R']) {
+        const sg = sd === 'L' ? 1 : -1, sh = at(mo, 'shin' + sd);
+        const tg = mid.clone().lerp(sh, .15).addScaledVector(fw, .1 * kk).add(V(0, -.01 * kk, 0));
+        PO.reach(mo, sd, tg, { grip: .02, pole: [sg * .9, .25, -.1] }); PO.fingers(mo, sd, .8, { thumb: .5 });
+      }
     }
     { const sc = win(7, .05, 1, t);   // R30H: scornful: chin up, loose folded arms, small sway
       if (sc > 0) { mo.B.head.rotation.x -= .14 * sc; mo.B.head.rotation.z += .06 * sc + .02 * Math.sin(t * 1.2) * sc; mo.B.chest.rotation.z += .02 * Math.sin(t * .9) * sc;
@@ -241,6 +248,11 @@ const pa = staged('patio_matin', {
         PO.palmTo(ra, sd, palms, V(0, 1, .05));
       }
     }
+    { const wf = sm(B(5)[0] - .1, B(5)[0] + .3, t) * (1 - sm(B(5)[1] - .05, B(5)[1] + .2, t));   // R31O: Fatma laughs along: hand to mouth, other on chest, shoulders shaking, head back
+      if (wf > 0) { const sh = Math.sin(t * 14 + 2);
+        fa.B.chest.rotation.x += .06 * sh * wf; fa.B.chest.rotation.z += .06 * sh * wf; fa.B.neck.rotation.x -= .2 * wf; fa.B.head.rotation.x -= .25 * wf; fa.B.head.rotation.z -= .12 * wf;
+        fa.B.chest.updateWorldMatrix(false, true);
+        handTo(fa, 'L', { fwd: .2, out: -.02, drop: -.1, curl: .3, spread: .1 }); handTo(fa, 'R', { fwd: .22, out: -.04, drop: .06, curl: .3, spread: .1 }); } }
   },
 });
 
