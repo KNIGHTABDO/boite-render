@@ -74,7 +74,7 @@ function foldHands(a, t, ph = 0, w = 1) {
 
 /** Bottom-origin board, clear of the chest; wrists stay OUTSIDE its lower corners. */
 function chestLouha(a, lh) {
-  const kk = k(a); lh.scale.setScalar(Math.min(.95, kk * 1.15));
+  const kk = k(a); lh.scale.setScalar(Math.min(.8, kk * .95));
   lh.position.copy(front(a, 'chest', .20 * kk, 0, -.38 * kk));
   lh.rotation.order = 'YXZ'; lh.rotation.set(-.06, a.group.rotation.y, 0); lh.updateMatrixWorld(true);
   for (const [s, sign] of [['L', 1], ['R', -1]]) {
@@ -87,8 +87,8 @@ function chestLouha(a, lh) {
 }
 /** Fan beside the chest: the board's origin is its BOTTOM edge, so its whole arc stays below the chin. */
 function fanLouha(a, lh, t, ph = 0, rate = 6.5, amp = .55) {
-  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .16 * kk, .24 * kk, -.2 * kk);
-  lh.scale.setScalar(Math.min(.95, kk * 1.15));
+  const kk = k(a), wave = Math.sin(t * rate + ph), g = front(a, 'chest', .16 * kk, .3 * kk, -.3 * kk);
+  lh.scale.setScalar(Math.min(.8, kk * .95));
   lh.position.copy(g).addScaledVector(dirW(a, 1, 0, 0), .07 * kk * wave).add(V(0, .03 * kk, 0)); lh.rotation.order = 'YXZ'; lh.rotation.set(-.35 + .25 * wave, a.group.rotation.y - .25 + amp * .8 * wave, -.08 + .6 * wave);   // R31I: raised near the face, wide visible back-and-forth wave
   lh.updateMatrixWorld(true);
   PO.reach(a, 'R', lh.localToWorld(V(-.175, .045, .035)), { grip: 0, pole: [-.35, -.2, -.1] });
@@ -254,7 +254,7 @@ const br = sized(checkedStage('mausolee', {
 const basinGaze = (st, i) => st?.water ? st.water[i].clone().add(V(-.3, -.12, .14)) : null;
 const ab = sized(checkedStage('mausolee_rev', {
   fqih: { at: [760, 850], face: 'cam', yaw: -.2, seed: 9, talk: 0, lookMax: .75,
-    look: 'kid1' },
+    look: (t, st) => t < B(4)[0] + .38 * (B(4)[1] - B(4)[0]) ? front(st.A.fqih, 'head', 1, 0, -.4) : 'kid2' },
   kid2: { at: [200, 785], face: [220, 770], seed: 4, talk: 0, look: (t, st) => t < B(4)[0] + 2.2 ? 'fqih' : basinGaze(st, 0) },
   mohammed: { at: [345, 785], face: [275, 770], seed: 3, talk: 0, look: (t, st) => t < B(4)[0] + 2.5 ? 'fqih' : basinGaze(st, 1), lookMax: .55 },
   // the two other boys wait their turn behind, listening to the master (they stay in the room for the whole beat)
@@ -288,14 +288,14 @@ const ab = sized(checkedStage('mausolee_rev', {
       const yaw1 = yawTo(a.group.position, fq.group.position), yaw2 = -1.15, turn = sm(B(4)[0] + d - .1, B(4)[0] + d + .6, t);
       const yawW = yaw1 + Math.atan2(Math.sin(yaw2 - yaw1), Math.cos(yaw2 - yaw1)) * turn;
       a.group.rotation.y = yaw2; a.group.updateMatrixWorld(true);
-      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .66 * ka);
+      a.group.position.copy(water).setY(0).addScaledVector(dirW(a, 0, 0, -1), .72 * ka);
       a.group.rotation.y = yawW; a.group.updateMatrixWorld(true);
       if (u <= 0) { foldHands(a, t, ph); return; }
       a.B.spine.rotation.set(.8 * u, 0, 0); a.B.chest.rotation.set(.35 * u, 0, 0);
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), .8 * u); upd(a, 'spine');
       for (const [s, q] of [['L', 0], ['R', Math.PI]]) {
         const c = Math.cos(t * 4.2 + ph + q) * .035, e = Math.sin(t * 4.2 + ph + q) * .04;
-        const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e + .06, .05));
+        const target = water.clone().add(V((s === 'L' ? -.025 : .025) * ka + c, e + .03, .03));
         PO.reach(a, s, at(a, 'hand' + s).lerp(target, u ** 3), { grip: .015, pole: [s === 'L' ? .5 : -.5, 0, .1] });   // R23A elbows out of the torso   // lower the torso before extending to the water
       }
     };
@@ -322,12 +322,14 @@ const pray = sized(checkedStage('mausolee', {
       const a = st.A[n], ka = k(a), r = ruku(lag);
       // Leave the root, straight legs and feet in their standing pose throughout the bow.
       // Rotate BOTH the spine offset and its orientation about the hip, giving a level back at full ruku.
-      const hinge = 1.2 * r;
+      const hinge = 1.05 * r;
       a.B.spine.rotation.set(hinge, 0, 0); a.B.chest.rotation.set(0, 0, 0);
       a.B.spine.position.applyAxisAngle(V(1, 0, 0), hinge);
       a.B.neck.rotation.set(-.3 * r, 0, 0); a.B.head.rotation.set(-.35 * r, 0, 0); upd(a, 'spine');   // r16: head straight ahead (back to the lens)
       // These child rigs have long torsos and short arms. Settle the torso back enough for actual knee
       // contact, keeping the back level and leaving the hips, legs, feet and actor scale untouched.
+      // R31I: the back panels follow the bowed back (torso skin tore through the robe at ruku)
+      for (const [bn, f] of [['SkirtBack1', .45], ['LeftRobe1', .25], ['RightRobe1', .25]]) { const b = a.B[bn]; if (b?.userData?.rest) { b.quaternion.copy(b.userData.rest).multiply(new THREE.Quaternion().setFromAxisAngle(V(1, 0, 0), f * hinge)); b.updateWorldMatrix(false, true); } }
       const fw = dirW(a, 0, 0, 1); let settle = 0;
       for (const s of ['L', 'R']) {
         const shoulder = at(a, 'upperArm' + s), elbow = at(a, 'foreArm' + s), wrist = at(a, 'hand' + s);
