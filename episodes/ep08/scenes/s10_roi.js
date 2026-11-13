@@ -80,8 +80,8 @@ const esc = staged('escalier', {
         const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2);
         const sv = Math.sin(t * 2.1);
         handTo(zo, 'R', { fwd: -.02, out: .26, drop: .31, curl: .4, spread: .1 });
-        handTo(zo, 'L', { fwd: -.02 + g * (.4 + .05 * sv), out: .26 + g * .1, drop: .31 - g * (.3 - .04 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
-        if (g > .05) PO.palmTo(zo, 'L', .6 * g, V(.3, .8, .4));
+        handTo(zo, 'L', { fwd: -.02 + g * (.2 + .04 * sv), out: .26 + g * .18, drop: .31 - g * (.2 - .04 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
+        if (g > .05) PO.palmTo(zo, 'L', .6 * g, V(.5, .7, .1));
         zo.B.spine.rotation.z += .03; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
       }
       else for (const sd of ['L', 'R']) handTo(zo, sd, { fwd: .03, out: .15, drop: .31, curl: .3, spread: .1 });
