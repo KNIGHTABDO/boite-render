@@ -143,18 +143,18 @@ const pr = sized(checkedStage('mausolee_rev', {
     // he looks back at the boys only once he has turned to them (a leader walking away cannot face the file behind him)
     look: t => t > T11(0, 3.6).t1 - .3 ? 'kid1' : null },
   // start order == end order left to right (no crossing), staggered in depth so the file reads as a walking procession
-  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [1215, 845], ...T11(4.9, 3.4) }, look: 'fqih', lookMax: .5 },   // R31Y: the smallest boy comes in LAST, behind the fqih and the file
-  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1015, 822], ...T11(2.0, 3.4) } },
+  mohammed: { at: [930, 748], face: 'cam', seed: 3, talk: 0, walk: { to: [1015, 822], ...T11(1.0, 3.4) }, look: 'fqih', lookMax: .75 },   // R31Y: the smallest boy comes in LAST, behind the fqih and the file
+  kid1: { at: [1010, 750], face: 'cam', seed: 2, talk: 0, walk: { to: [1215, 845], ...T11(2.0, 3.4) } },
   kid2: { at: [1085, 752], face: 'cam', seed: 4, talk: 0, walk: { to: [1395, 852], ...T11(3.0, 3.4) } },
   kid3: { at: [1215, 756], face: 'cam', seed: 6, talk: 0, walk: { to: [1610, 820], ...T11(3.95, 3.4) } },
 }, {
   act(lt, t, S, st, S3) {
     const { fqih: fq, kid1, kid2, mohammed: mo, kid3 } = st.A;
     // nobody stands in the doorway before his turn: each one steps in over the threshold on his own t0
-    [[fq, 0], [kid1, 2.0], [mo, 4.9], [kid2, 3.0], [kid3, 3.95]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
+    [[fq, 0], [kid1, 2.0], [mo, 1.0], [kid2, 3.0], [kid3, 3.95]].forEach(([a, j]) => { a.group.visible = t >= T11(j).t0 - .05; });
     // Keep Mohammed's torso and slate toward the room/camera even as he steps diagonally out of the doorway.
-    mo.group.rotation.y = -.45; mo.group.updateMatrixWorld(true);
-    { const sh = sm(T11(4.9, 3.4).t1 - .2, T11(4.9, 3.4).t1 + .8, t); mo.B.spine.rotation.z += .045 * sh; mo.B.chest.rotation.z -= .06 * sh; mo.B.spine.updateWorldMatrix(false, true);
+    mo.group.rotation.y = -.45 - .35 * sm(T11(1.0, 3.4).t0 + 1.5, T11(1.0, 3.4).t1, t); mo.group.updateMatrixWorld(true);
+    { const sh = sm(T11(1.0, 3.4).t1 - .2, T11(1.0, 3.4).t1 + .8, t); mo.B.spine.rotation.z += .045 * sh; mo.B.chest.rotation.z -= .06 * sh; mo.B.spine.updateWorldMatrix(false, true);
       const km = k(mo), fR = at(mo, 'footR').addScaledVector(dirW(mo, 0, 0, 1), .07 * km * sh).addScaledVector(dirW(mo, 1, 0, 0), .025 * km * sh);   // R28: weight on the left leg, right foot a step forward
       IK.leg(mo, 'R', fR, at(mo, 'shinR')); }
     const t1f = T11(0, 3.6).t1;
@@ -180,7 +180,7 @@ const pr = sized(checkedStage('mausolee_rev', {
 // A CLOSED lap around the left-hand tomb: right flank, near plinth, left flank, far side.
 // The return half is hidden by the tomb; it still advances along the same continuous floor path.
 const WARM = { grade: 'rgb(255,212,150)', gradeOp: 'multiply', vignette: .75 };
-const GIRLS = [['woman1', 0, 0], ['woman2', 1.8, 0], ['fatma', 3.6, 0]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
+const GIRLS = [['woman1', 0, 0], ['woman2', 2.2, 0], ['fatma', 3.6, 0]];   // R25C: bunched so 2-3 circle together   // spacing along the path (m)
 // The far half runs along the wall BEHIND the tomb: the women stay real, posed actors the whole lap, and the tomb is a depth
 // holdout (below), so the renderer hides them behind its painted body and only heads above the rail show.
 const LAP = [[800, 850], [800, 930], [650, 1000], [420, 1020], [300, 1025], [120, 1000], [100, 850], [130, 722], [420, 705], [650, 712]];
