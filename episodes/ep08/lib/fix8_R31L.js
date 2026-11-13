@@ -25,7 +25,7 @@ export function raiseHand(a, side, { fwd = .2, out = .18, up = .0, curl = .12, s
   PO.fingers(a, side, curl, { spread });
 }
 // Hand resting on another actor's nearer upper arm (shared gesture).
-export function handOnArm(a, b, w) {
+export function handOnArm(a, b, w, drop = .12) {   // R31AB: drop = how far below the target arm's shoulder the hand lands
   if (w <= 0) return;
   const k = a.group.scale.y / 1.6, bp = b.group.position;
   const near = (x, sd) => at(x, 'upperArm' + sd).distanceTo(sd === 'L' || sd === 'R' ? bp : bp);
@@ -33,7 +33,7 @@ export function handOnArm(a, b, w) {
   const ap = at(a, 'upperArm' + sa);
   const sb = at(b, 'upperArmL').distanceTo(ap) < at(b, 'upperArmR').distanceTo(ap) ? 'L' : 'R';
   const sh = ap.clone();
-  const tp = at(b, 'upperArm' + sb).addScaledVector(dirW(b, 0, 0, 1), .15 * k).add(V(0, -.12 * k, 0));
+  const tp = at(b, 'upperArm' + sb).addScaledVector(dirW(b, 0, 0, 1), .15 * k).add(V(0, -drop * k, 0));
   const d = tp.clone().sub(sh), cap = .34 * k; if (d.length() > cap) tp.copy(sh).addScaledVector(d.normalize(), cap);   // never out of reach
   const o = lat(a, sa), s = sgnOf(a, o);
   PO.reach(a, sa, tp, { grip: .02, pole: [s * .5, -.5, -.25] });

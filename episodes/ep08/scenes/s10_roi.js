@@ -12,6 +12,7 @@ import { castScale, pinKnees } from '../lib/fix8c.js';
 import { sitStepDrop as sitStep } from '../lib/fix8_R15C.js';
 import { akimbo } from '../lib/fix8_R16F.js';
 import { hipBlend, raiseHand, handOnArm } from '../lib/fix8_R31L.js';
+import { openHand, plantFoot, scornArms } from '../lib/fix8_R31AB.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 
 const ID = 's10_roi', L = lines(ID);
@@ -67,6 +68,7 @@ const esc = staged('escalier', {
     castScale(mo);
     sitStep(mo, SEAT.o.seat - .075, SEAT.o.floor, .62);   // R31O: feet pulled in under the knees so the knees rise high
        // R31L: pelvis on tread 3, soles on tread 2 (as s09)
+    if (t >= 21.5) { plantFoot(mo, 'R', SEAT.o.floor); plantFoot(mo, 'L', SEAT.o.floor); }   // R31AB: soles really on tread 2 (only from b061)
     zo.group.visible = t < B(5)[0];
     const proud = win(3, 0, 1, t);
     if (proud > 0) { mo.B.chest.rotation.x -= .1 * proud; mo.B.spine.rotation.x -= .04 * proud;
@@ -114,6 +116,7 @@ const esc = staged('escalier', {
         PO.reach(mo, sd, tg, { grip: .02, pole: [sg * .9, .25, -.1] }); PO.fingers(mo, sd, .8, { thumb: .5 });
       }
     }
+    scornArms(mo, sm(B(7)[0] - .1, B(7)[0] + .4, t), t);   // R31AB: bent, asymmetric arms: left hand on the knee, right forearm gesturing (t >= 21.65)
     { const sc = win(7, .05, 1, t);   // R30H: scornful: chin up, loose folded arms, small sway
       if (sc > 0) { mo.B.head.rotation.x -= .14 * sc; mo.B.head.rotation.z += .06 * sc + .02 * Math.sin(t * 1.2) * sc; mo.B.chest.rotation.z += .02 * Math.sin(t * .9) * sc;
         mo.B.head.updateWorldMatrix(false, true); } }
@@ -199,10 +202,11 @@ const pa = staged('patio_matin', {
     const hand = sm(B(10)[0] - .5, B(10)[0] - .2, t) * (1 - sm(B(10)[1] + .1, B(10)[1] + .35, t));
     if (hand > 0) {
       zo.B.spine.rotation.x += .05 * hand;
-      raiseHand(zo, 'R', { fwd: .26, out: .26, up: -.02 + .02 * Math.sin(t * 2.4), curl: .1, spread: .3 });   // R31L: forearm up, open palm at shoulder/face height, held through b064
+      // R31AB: she answers with ONE open hand raised toward Rahma at head height (left hand = the side facing Rahma), the other hand on her hip.
+      openHand(zo, 'L', { fwd: .2, out: .24, up: .12 + .015 * Math.sin(t * 2.4), px: 1.0, py: -.3, pz: -.1, curl: .12, spread: .35, w: Math.min(1, hand * 1.5) });
       const toR = ra.group.position.clone().sub(zo.group.position); toR.y = 0; toR.normalize(); toR.y = .3;
-      PO.palmTo(zo, 'R', 1, toR);
-      handTo(zo, 'L', { fwd: .22, out: -.02, drop: .26, curl: .35, spread: .08 });
+      PO.palmTo(zo, 'L', hand, toR);
+      hipBlend(zo, 'R', hand);
       fa.B.chest.rotation.y -= .06 * hand;
     }
     const amen = sm(B(11)[0] - .15, B(11)[0] + .4, t);
@@ -217,7 +221,8 @@ const pa = staged('patio_matin', {
         a.B.head.rotation.z += .05 * w * (k % 2 ? 1 : -1);
         laugh(a, .5 * w, t, 8 + k); a.B.chest.rotation.y += .12 * w * (k === 2 ? 1 : -1); a.B.spine.rotation.z += .05 * w * (k === 1 ? 1 : -1);
       }
-      { const g = sm(B(11)[0] + .5, B(11)[0] + 1.0, t); if (g > 0) { zo.B.chest.updateWorldMatrix(false, true); fa.B.chest.updateWorldMatrix(false, true); handOnArm(zo, fa, g); handOnArm(ra, fa, g); } }   // R31L: both rest a hand on Fatma's arm
+      { const g = sm(B(11)[0] + .5, B(11)[0] + 1.0, t); if (g > 0) { zo.B.chest.updateWorldMatrix(false, true); fa.B.chest.updateWorldMatrix(false, true); handOnArm(zo, fa, g); handOnArm(ra, fa, g, .3);   // R31AB: Rahma's hand lands lower (chest level), a few cm off her cheek and headscarf
+ } }   // R31L: both rest a hand on Fatma's arm
       for (const a of [w1, w2]) { a.B.neck.rotation.x += .16 * amen; a.B.neck.updateWorldMatrix(false, true); }
     }
     // Listening stance whenever a beat has not taken her hands: weight on one hip, gaze in the group.
@@ -243,9 +248,10 @@ const pa = staged('patio_matin', {
     if (palms > 0) {
       ra.B.spine.rotation.x += .08 * palms; ra.B.chest.rotation.z += .04 * Math.sin(t * 2.6) * palms;
       // R28: both palms up, both forearms raised in front, symmetric through handTo
+      // R31AB: the elbows go OUT (R31L's pole y=-.8 tucked them at the waist: forearm across the belly, far arm hidden). Both hands out in front at chest height, palms up.
       for (const sd of ['L', 'R']) {
-        raiseHand(ra, sd, { fwd: .3, out: .12, up: -.2 + .02 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)), curl: .1, spread: .4 });   // R31L2: elbows ~90deg, hands in front of the chest   // R31L: forearms up, palms up at chest/shoulder height
-        PO.palmTo(ra, sd, 1, V(0, 1, 0));
+        openHand(ra, sd, { fwd: .3, out: .26, up: -.1 + .015 * Math.sin(t * 2.2 + (sd === 'L' ? 1.3 : 0)), px: 1.2, py: -.2, curl: .1, spread: .4, w: Math.min(1, palms * 1.5) });
+        PO.palmTo(ra, sd, palms, V(0, 1, 0));
       }
     }
     { const wf = sm(B(5)[0] - .1, B(5)[0] + .3, t) * (1 - sm(B(5)[1] - .05, B(5)[1] + .2, t));   // R31O: Fatma laughs along: hand to mouth, other on chest, shoulders shaking, head back
