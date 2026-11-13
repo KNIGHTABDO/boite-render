@@ -10,6 +10,7 @@ import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder, cradleFace } from '../lib/fix8_lie.js';
 import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import * as K from '../../../engine/core.js';
+import * as THREE from 'three';
 
 const ID = 's16_noir', L = lines(ID), B = i => L[i] || [0, 0];
 const TOP = .26;
@@ -59,9 +60,26 @@ const cry = staged('chambre_jour', {
     hands: false, seed: 3, talk: 0, lids: .85, },
 }, {
   over: tears,
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     st.G.apply = () => {}; mourn(st.A.zoubida, t);
     const mo = st.A.mohammed;
+    // r28: lift him so the hem rests ON the mattress top (it cut flat into it), with a soft contact blob under him.
+    if (st.y0 == null) st.y0 = mo.group.position.y;
+    mo.group.position.y = st.y0 + .03;
+    if (!st.blob) {
+      const cv = document.createElement('canvas'); cv.width = cv.height = 128; const g = cv.getContext('2d');
+      const gr = g.createRadialGradient(64, 64, 4, 64, 64, 62); gr.addColorStop(0, 'rgba(40,18,10,.55)'); gr.addColorStop(.6, 'rgba(40,18,10,.22)'); gr.addColorStop(1, 'rgba(40,18,10,0)');
+      g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+      st.blob = new THREE.Mesh(new THREE.PlaneGeometry(.5, .36), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false }));
+      st.blob.rotation.x = -Math.PI / 2; st.blob.renderOrder = 2;
+    }
+    S3.prop(st.blob, mo.group.position.x, TOP + .004, mo.group.position.z, 0);
+    // natural posture: weight shifted onto one hip, head tilted, shoulders uneven
+    const wsh = Math.sin(t * .45);
+    mo.B.spine.rotation.z += .05 + .02 * wsh; mo.B.chest.rotation.z -= .035;
+    mo.B.head.rotation.z += .09 + .02 * Math.sin(t * .7); mo.B.head.rotation.y += .05 * Math.sin(t * .31);
+    if (mo.B.LeftShoulder) mo.B.LeftShoulder.rotation.z += .05;
+    if (mo.B.RightShoulder) mo.B.RightShoulder.rotation.z -= .02 * Math.sin(t * 1.3);
     mo.B.chest.rotation.x += .06 + .02 * Math.sin(t * 9);   // hunched, shoulders heaving
     cradleFace(mo, { mode: 'eyes', bow: .3, u: .5 });
   },

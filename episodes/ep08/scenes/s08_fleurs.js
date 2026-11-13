@@ -26,7 +26,7 @@ const ch = staged('chambre_jour', {
     ZO = zo;
     const k = a => a.group.scale.y / 1.6, kf = k(fa), kz = k(zo), km = k(mo);
     // fix8 drapeLap runs after act and reintroduces the back-hem spike. Settle once that pass is done.
-    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.08, s1: 0.45 }, flank: 0.6 }); };
+    st.G.apply = () => { settleRobe(mo); settleRobe(fa, 0, { front: { fwd: -0.14, over: -0.03, scale: 0.3 }, flank: 0.7, back: 0.55 }); settleRobe(zo, 0, { front: { fwd: 0.0, over: 0.02, scale: 1.0, s1: 1.0 }, flank: 1.0 }); };
 
     const search = 1 - sm(B(1)[0] - 0.1, B(1)[0] + 0.25, t);
     const lean = ramp(B(1)[0], B(1)[1], t);
@@ -67,8 +67,19 @@ const ch = staged('chambre_jour', {
     PHV = sm(B(4)[0] + 0.9, B(4)[0] + 1.1, t);
     const raised = laugh + residue * 0.45;
     for (const [a, ph, kk] of [[fa, 0.2, kf], [zo, 1.7, kz]]) {
-      palm(a, 'L', handAt(a, 'L', t, ph, kk, raised), { grip: 0.03, pole: [0.6, 0.3, 0.3], gap: 0.14 });
-      palm(a, 'R', handAt(a, 'R', t, ph + 0.9, kk, raised), { grip: 0.03, pole: [-0.6, 0.3, 0.3], gap: 0.14 });
+      const isZ = a === zo, pL = handAt(a, 'L', t, ph, kk, raised), pR = handAt(a, 'R', t, ph + 0.9, kk, raised);
+      // r28: mother's left hand rests forward on the lap (not behind the hip); father's right hand clears the knee fold by ~2.5 cm.
+      if (isZ) pL.addScaledVector(dirW(a, 0, 0, 1), 0.07 * kk * (1 - laugh)).addScaledVector(dirW(a, -1, 0, 0), 0.05 * kk * (1 - laugh)).add(V(0, 0.01 * kk, 0));
+      else pR.add(V(0, 0.025 * kk, 0));
+      palm(a, 'L', pL, { grip: 0.03, pole: isZ ? [1.0, 0.1, -0.1] : [0.6, 0.3, 0.3], gap: 0.14 });
+      palm(a, 'R', pR, { grip: 0.03, pole: [-0.6, 0.3, 0.3], gap: 0.14 });
+      if (isZ) {
+        // soft wrist and loose, slightly curled fingers on the lifted right hand
+        const w = Math.sin(t * 2.2);
+        if (a.B.handR) { a.B.handR.rotation.x += 0.22 + 0.08 * w; a.B.handR.rotation.z += 0.12 * Math.sin(t * 1.7 + 1); a.B.handR.updateWorldMatrix(false, true); }
+        fingers(a, 'R', 0.35 + 0.12 * Math.sin(t * 2.6), { spread: 0.25 + 0.1 * w });
+        fingers(a, 'L', 0.25, { spread: 0.18 });
+      }
     }
     for (const [s, ph] of [['L', 0], ['R', 1.6]]) {
       // Resting hand: flat on the thigh, elbow clearly bent and pushed out (pole), not a straight arm hanging from the shoulder.
