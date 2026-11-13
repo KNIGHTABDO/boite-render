@@ -50,17 +50,17 @@ const ch = staged('chambre_jour', {
   addressee: { zoubida: 'aicha', aicha: 'zoubida', narrator: 'zoubida' },
   act(lt, t, S, st, S3) {
     { const mo = st.A.mohammed; st.s0 ||= mo.group.scale.clone(); mo.group.scale.copy(st.s0).multiplyScalar(1);   // r25: doll-sized, faced away, legs in the mattress
-      lieOnBed(mo, { top: .26, feet: [.5, .87], origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.12, 0, 0)), hands: 'belly', pillow: .08, tuck: .22, headTurn: -.12 }); pillowUnder(S3, st, mo, { top: .26, h: .08 });
+      lieOnBed(mo, { top: .26, feet: [.5, .87], origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)), hands: 'belly', pillow: .08, tuck: .22, headTurn: -.12 }); pillowUnder(S3, st, mo, { top: .26, h: .08 });
       mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5); mo.B.chest.updateWorldMatrix(false, true); }
     const { zoubida: zo, aicha: ai } = st.A, kz = zo.group.scale.y / 1.6, ka = ai.group.scale.y / 1.6;
     if (!st.gaze) st.gaze = st.G.apply;
     // the women shuffle toward each other: touching hands at b148, in each other's arms at b151
     const base = st.base ||= [zo, ai].map(a => a.group.position.clone());
     const yaw0 = st.yaw0 ||= [zo, ai].map(a => a.group.rotation.y);
-    const turn = .18 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .3 * sm(B(8)[0] - .3, B(8)[0] + .9, t);
+    const turn = .18 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .2 * sm(B(8)[0] - .3, B(8)[0] + .9, t);
     zo.group.rotation.y = yaw0[0] + turn; ai.group.rotation.y = yaw0[1] - turn;
     const dir = base[1].clone().sub(base[0]).setY(0).normalize();
-    const close = .1 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .06 * sm(B(8)[0] - .3, B(8)[0] + 1, t);
+    const close = .05 * sm(B(5)[0] - .3, B(5)[0] + .6, t) + .02 * sm(B(8)[0] - .3, B(8)[0] + 1, t);
     const closeT = close * (1 - sm(B(8)[1] + .1, B(8)[1] + .4, t));
     zo.group.position.copy(base[0]).addScaledVector(dir, closeT); ai.group.position.copy(base[1]).addScaledVector(dir, -closeT);
     zo.group.updateMatrixWorld(true); ai.group.updateMatrixWorld(true);
@@ -103,7 +103,7 @@ const ch = staged('chambre_jour', {
       // three pats of the palm on the cheek: the whole hand taps, the head leans into it
       const c2 = t - B(2)[0], tap = c2 > .6 && c2 < 3.1 ? Math.max(0, Math.sin((c2 - .6) * 8.9)) : 0;   // three visible taps
       PO.look(ai, at(zo, 'head'), .9, { max: .55 });   // she talks to Zoubida, on her left
-      ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .06, fingers: .15 }); lap(ai, 'L', ka);
+      ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .06, fingers: .15, pole: [-.8, -.4, -.1] }); lap(ai, 'L', ka);
     }
     if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .3; ai.B.chest.rotation.x += .05; for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .055, y: .035, z: .075, pole: [(sd === 'L' ? 1 : -1) * .5, -.6, .2], fingers: .02 }); }
     if (IN(5, t) || IN(6, t)) {
@@ -135,13 +135,13 @@ const ch = staged('chambre_jour', {
         const dirTo = at(other, 'chest').sub(at(a, 'chest')).setY(0).normalize();
         // r30: hands on her near shoulder and upper arm from the front/side (never through either torso)
         const fo = dirW(other, 0, 0, 1), sh = at(other, 'upperArm' + oside);
-        reach(a, side, sh.clone().addScaledVector(fo, .1 * k2).addScaledVector(dirTo, -.03 * k2).add(V(0, (lift + .15) * k2, 0)), { grip: .02, pole: [(side === 'L' ? 1 : -1) * .7, -.3, .0] });
+        reach(a, side, sh.clone().addScaledVector(fo, .1 * k2).addScaledVector(dirTo, -.03 * k2).add(V(0, (lift + .15) * k2, 0)), { grip: .02, pole: [(side === 'L' ? 1 : -1) * .7, 0, .0] });
         PO.fingers(a, side, .3);
-        reach(a, osd, sh.clone().addScaledVector(fo, .12 * k2).addScaledVector(dirTo, -.05 * k2).add(V(0, (lift + .03) * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .7, -.5, .0] });
+        reach(a, osd, sh.clone().addScaledVector(fo, .12 * k2).addScaledVector(dirTo, -.05 * k2).add(V(0, (lift + .03) * k2, 0)), { grip: .02, pole: [(osd === 'L' ? 1 : -1) * .7, -.1, .0] });
         PO.fingers(a, osd, .3);
       };
       hug(zo, ai, -.13); hug(ai, zo, -.13);
-      zo.B.chest.rotation.x += .1 * u; ai.B.chest.rotation.x += .1 * u;
+      zo.B.chest.rotation.x += .05 * u; ai.B.chest.rotation.x += .05 * u;
       zo.B.head.rotation.z += .12 * u; ai.B.head.rotation.z -= .12 * u;
     }
     for (const a of [zo, ai]) a.B.chest.updateWorldMatrix(false, true);
