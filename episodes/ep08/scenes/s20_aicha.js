@@ -105,15 +105,15 @@ const ch = staged('chambre_jour', {
       PO.look(ai, at(zo, 'head'), .9, { max: .55 });   // she talks to Zoubida, on her left
       ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .09, fingers: .15, pole: [-1, .8, .3] }); lap(ai, 'L', ka);
     }
-    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .3; ai.B.chest.rotation.x += .05; for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .055, y: .035, z: .075, pole: [(sd === 'L' ? 1 : -1) * .5, -.6, .2], fingers: .02 }); }
+    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .3; ai.B.chest.rotation.x += .05; for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .055, y: .035, z: .075, pole: [(sd === 'L' ? 1 : -1) * 1, .6, .3], fingers: .02 }); }
     if (IN(5, t) || IN(6, t)) {
       // Zoubida holds one hand out between them; Aicha closes her palm over it (hand-to-hand contact at the midpoint)
       const zs = armToward(zo, ai), as = armToward(ai, zo), os = as === 'L' ? 'R' : 'L';
       const mid = at(zo, 'chest').lerp(at(ai, 'chest'), .5); mid.y -= .27 * kz; mid.z += .08 * kz;
-      reach(zo, zs, mid, { grip: 0, pole: [(zs === 'L' ? 1 : -1) * .36, .1, .18] });
+      reach(zo, zs, mid, { grip: 0, pole: [(zs === 'L' ? 1 : -1) * .5, -.4, .18] });
       PO.fingers(zo, zs, .02, { spread: .1 });
       lap(zo, zs === 'L' ? 'R' : 'L', kz);
-      reach(ai, as, mid.clone().add(V(0, .05 * ka, 0)), { grip: .01, pole: [(as === 'L' ? 1 : -1) * .38, .12, .2] });
+      reach(ai, as, mid.clone().add(V(0, .09 * ka, 0)), { grip: .01, pole: [(as === 'L' ? 1 : -1) * .9, .7, .2] });
       PO.fingers(ai, as, .3, { thumb: .2 });
       if (IN(6, t)) {
         // bitter laugh in tears: the free hand wipes a cheek, comes back to cover Zoubida's hand, shoulders shake; both sway
@@ -125,7 +125,7 @@ const ch = staged('chambre_jour', {
     }
     if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); const sw = Math.sin(t * 1.6);
       zo.B.chest.rotation.z += .05 * sw; zo.B.chest.rotation.x += .03;
-      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * 1, .4, .3], fingers: .1 }); }
+      zo.B.neck.rotation.x += .08; for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: .02, z: .06, pole: [(sd === 'L' ? 1 : -1) * 1, .8, .5], fingers: .1 }); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
       zo.B.chest.rotation.z += .16 * u; ai.B.chest.rotation.z -= .16 * u;
