@@ -80,7 +80,7 @@ const esc = staged('escalier', {
         const g = Math.max(win(2, .1, .85, t), win(3, .05, .9, t), win(4, 0, .6, t) * .7) * (1 - .25 * Math.sin(t * 1.9) ** 2);
         const sv = Math.sin(t * 2.1);
         handTo(zo, 'R', { fwd: -.02, out: .26, drop: .31, curl: .4, spread: .1 });
-        handTo(zo, 'L', { fwd: -.02 + g * (.04 + .02 * sv), out: .26 + g * .1, drop: .31 - g * (.03 + .02 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
+        handTo(zo, 'L', { fwd: -.02 + g * .02 * sv, out: .26 + g * .2, drop: .31 + g * (.02 - .02 * sv), curl: .35 - .2 * g, spread: .1 + .15 * g });
         if (g > .05) PO.palmTo(zo, 'L', .6 * g, V(.5, .7, .1));
         zo.B.spine.rotation.z += .03; zo.B.chest.rotation.z += .02 * g; zo.B.head.rotation.z += .03 * sv * g;
       }
@@ -216,7 +216,7 @@ export default beatScene(ID, {
     b058: { shot: 'esc', size: 'M', on: 'mohammed', z: .95, dx: -70, dy: 10 },
     b059: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dy: 50 },
     b060: { shot: 'pa', size: 'M', on: 'rahma', z: 1.8, dx: -90, dy: 75 },
-    b061: { shot: 'esc', size: 'CU', on: 'mohammed', z: 1.55, dy: -85 },
+    b061: { shot: 'esc', size: 'CU', on: 'mohammed', z: 1.2, dy: 70 },
     b062: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.9, dy: 60 },
     b063: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dy: 60 },
     b064: { shot: 'pa', size: 'M', on: 'fatma', z: 1.9, dy: 40 },
