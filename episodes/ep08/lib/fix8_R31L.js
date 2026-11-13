@@ -16,3 +16,24 @@ export function hipBlend(a, side, w, loose = { fwd: .22, out: .0, drop: .25, cur
   PO.reach(a, side, p, { grip: .02, pole: [s * (.5 + 1.8 * pw), .0, -.32 - .35 * pw] });
   PO.fingers(a, side, (loose.curl ?? .35) * (1 - w) + .4 * w, { spread: .1 });
 }
+
+// Raised forearm: elbow down, hand at shoulder/face height in front and out, open (no straight-out arm).
+export function raiseHand(a, side, { fwd = .2, out = .18, up = .0, curl = .12, spread = .35 } = {}) {
+  const o = lat(a, side), s = sgnOf(a, o), k = a.group.scale.y / 1.6;
+  const p = at(a, 'upperArm' + side).addScaledVector(o, out * k).addScaledVector(dirW(a, 0, 0, 1), fwd * k).add(V(0, up * k, 0));
+  PO.reach(a, side, p, { grip: .02, pole: [s * .45, -.8, -.15] });
+  PO.fingers(a, side, curl, { spread });
+}
+// Hand resting on another actor's nearer upper arm (shared gesture).
+export function handOnArm(a, b, w) {
+  if (w <= 0) return;
+  const k = a.group.scale.y / 1.6, bp = b.group.position;
+  const near = (x, sd) => at(x, 'upperArm' + sd).distanceTo(sd === 'L' || sd === 'R' ? bp : bp);
+  const sa = near(a, 'L') < near(a, 'R') ? 'L' : 'R';
+  const ap = at(a, 'upperArm' + sa);
+  const sb = at(b, 'upperArmL').distanceTo(ap) < at(b, 'upperArmR').distanceTo(ap) ? 'L' : 'R';
+  const tp = at(b, 'upperArm' + sb).addScaledVector(dirW(b, 0, 0, 1), .07 * k).add(V(0, -.07 * k, 0));
+  const o = lat(a, sa), s = sgnOf(a, o);
+  PO.reach(a, sa, tp, { grip: .02, pole: [s * .5, -.5, -.25] });
+  PO.fingers(a, sa, .25, { spread: .1 });
+}
