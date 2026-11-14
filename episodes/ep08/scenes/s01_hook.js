@@ -10,7 +10,8 @@ import { beatScene, lines, sm, front, at, V } from '../lib/beatscene.js';
 import { still, loadStill } from '../lib/stage.js';
 function bangles2(S3) {   // R25A: bigger, thicker gold + silver bangles (world-placed children)
   const g = new THREE.Group(), mk = (col, R, r) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 48), toon(col)); m.material.emissive?.setHex(col); if (m.material.emissiveIntensity != null) m.material.emissiveIntensity = .15; g.add(m); };
-  mk(0xe0a820, .024, .0035); mk(0xc9d3de, .022, .003); S3.scene.add(g); return g;   // R31H: thin small bangles seated in the palm
+  for (const [c, R, r] of [[0xe0a820, .034, .006], [0xc9d3de, .032, .005], [0xe0a820, .03, .0055], [0xc9d3de, .036, .005], [0xe0a820, .028, .005]]) mk(c, R, r);   // R31AH: a small pile of 5 gold/silver rings
+  S3.scene.add(g); return g;   // R31H: thin small bangles seated in the palm
 }
 import { faceCam } from '../lib/fix8c.js';
 import { lieOnBed, pillowUnder, palmsOverEyes } from '../lib/fix8_lie.js';
@@ -43,7 +44,7 @@ const pa = staged('patio_matin', {
   view: (lt, u, t) => {
     if (t < INS[0] || t >= INS[1] || !pa.hp) return null;
     const e = sm(INS[0], INS[1], t);
-    return [pa.hp[0], pa.hp[1] - 30 + 4 * e, 7.4 + .4 * e];   // tight: the characters are small in the plate, so the palm needs a high zoom
+    return [pa.hp[0], pa.hp[1] - 30 + 4 * e - 45 * sm(3, 5.5, t), 7.4 + .4 * e - .5 * sm(3, 5.5, t)];   // R31AH: headroom for the turban late in the shot   // tight: the characters are small in the plate, so the palm needs a high zoom
   },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
@@ -60,10 +61,10 @@ const pa = staged('patio_matin', {
       PO.reach(fa, 'L', front(fa, 'chest', .24 * k, -.25 * k, -.16 * k + .02 * k * Math.sin(t * 1.3)), { grip: .25, pole: [.55, -1, .3] });
       // R23D: life motion over the beat: lean + head tilt toward Zoubida, the hand drifts forward as she laughs
       const ramp = sm(B(0)[0], B(0)[1], t), lg = sm(B(0)[0] + .55 * (B(0)[1] - B(0)[0]), B(0)[1], t);
-      fa.B.chest.rotation.x += .07 * ramp; fa.B.chest.rotation.y += .06 * ramp; fa.B.head.rotation.z += .10 * ramp; fa.B.head.rotation.x += .03 * lg; fa.B.chest.updateWorldMatrix(false, true);
+      fa.B.chest.rotation.x += .07 * ramp; fa.B.chest.rotation.y += .06 * ramp; fa.B.head.rotation.z += .10 * ramp; fa.B.head.rotation.x += .03 * lg; fa.B.chest.rotation.x += .05 * sm(1, 2.5, t) - .09 * sm(4, 5.6, t); fa.B.chest.rotation.y += .05 * sm(1.5, 3, t) - .08 * sm(4, 5.6, t); fa.B.spine.rotation.z += .04 * sm(3, 5, t); fa.B.chest.updateWorldMatrix(false, true);   // R31AH: pose drifts across 0.2 / 1.9 / 5.5
       const p2 = p.clone().add(front(fa, 'chest', .05 * k * ramp + .035 * k * lg, 0, 0).sub(front(fa, 'chest', 0, 0, 0)));
       p2.y += .03 * k * sm(INS[0], INS[1] - 1, t);   // R25A: the hand rises slightly as he offers
-      PO.reach(fa, 'R', p2, { grip: 0, pole: [-.95, -.25, -.1] });
+      PO.reach(fa, 'R', p2, { grip: 0, pole: [-.95, -.25 - .35 * sm(2, 5, t), -.1] });   // R31AH: elbow drops/bends a little over time
       // R23D: true supination: turn the forearm about its own axis until the palm normal points up (sign-checked), palm open
       const Bn = fa.B, W = n => Bn[n].getWorldPosition(V(0, 0, 0));
       const palmN = () => { fa.group.updateMatrixWorld(true); const hp = W('RightHand'), al = W('RightHandIndex1').sub(hp).normalize(), tt = W('RightHandThumb1').sub(hp); tt.addScaledVector(al, -tt.dot(al)); return V(0, 0, 0).crossVectors(tt, al).normalize(); };
@@ -88,8 +89,8 @@ const pa = staged('patio_matin', {
         const n = V(0, 1, 0).multiplyScalar(Math.cos(tilt)).addScaledVector(dc, Math.sin(tilt)).normalize();
         m.quaternion.setFromUnitVectors(V(0, 0, 1), n); m.rotateZ(roll); m.updateMatrixWorld(true); };
       const w = .08 * Math.sin(t * 1.3);
-      place(br.children[0], -.004 * k, .016 * k, .12 + .02 * w, w);
-      place(br.children[1], .012 * k, .022 * k, .16 - .02 * w, -w);   // R31H: both on the palm centre, stacked, clear of cuff and fingertips
+      const PL = [[-.012, .02, .1, 0], [.014, .02, .18, 1.1], [0, .031, .06, 2.2], [-.018, .04, .22, 3.3], [.01, .045, .12, 4.4]];   // along, lift, tilt, roll: stacked pile
+      br.children.forEach((m, i) => { const q = PL[i]; place(m, q[0] * k, q[1] * k, q[2] + .02 * w, q[3] + w); });   // R31H: both on the palm centre, stacked, clear of cuff and fingertips
       br.position.copy(pal); br.quaternion.identity(); br.scale.setScalar(1); br.updateMatrixWorld(true);
       st.actcheck = { insert: t >= INS[0] && t < INS[1], held: { actor: 'father', side: 'R', prop: br, max: .08, required: true } };
     }

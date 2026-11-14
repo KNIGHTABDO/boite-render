@@ -53,7 +53,7 @@ function veilDown(a) {
   if (back.length() > .22 && tip.y > .16) IK.aim(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hip.clone().addScaledVector(back.normalize(), .08).setY(.03));
 }
 const pe = staged('chambre_penombre', {
-  father: { at: [140, 890], face: [1000, 800], seed: 5, height: 1.58, walk: { to: [520, 875], t0: B(1)[0] + .8, t1: B(1)[0] + 3.4 },   // R31AE: starts IN the doorway, head under the lintel
+  father: { at: [140, 890], face: [1000, 800], seed: 5, height: 1.68, walk: { to: [520, 875], t0: B(1)[0] + .8, t1: B(1)[0] + 3.4 },   // R31AE: starts IN the doorway, head under the lintel
     lookMax: .5, look: (t, st) => {
       if (!(t > B(4)[0])) return null;
       const p = at(st.A.mohammed, 'head').clone();
@@ -67,13 +67,13 @@ const pe = staged('chambre_penombre', {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo } = st.A, kf = k(fa); bareHead(fa);
-    dim(fa, .45 + .55 * sm(B(1)[0] + 2.5, B(2)[0] + 1, t)); glow(st.A.mohammed, .16);   // R31AE: black silhouette at the door; Mohammed readable in bed
+    dim(fa, .45 + .55 * sm(B(1)[0] + 2.5, B(2)[0] + 1, t)); glow(st.A.mohammed, .05);   // R31AE: black silhouette at the door; Mohammed readable in bed
     if (t < B(4)[0] - .05) yawToward(fa, S3.cam, 1.6);
     // R25M b113: from the mattress line on he turns his body toward Mohammed's divan
     if (t < B(4)[0] - .05) st.fy0 = fa.group.rotation.y;
     else if (st.fy0 != null) {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
-      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .75; fa.group.updateMatrixWorld(true);
+      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .45; fa.group.updateMatrixWorld(true);
     }
     lap(zo); veilDown(zo);
     if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .55; h.rotation.y += .02; if (!(t > B(4)[0])) n.rotation.x += .2; h.updateWorldMatrix(false, true); }; }
