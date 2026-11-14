@@ -13,6 +13,7 @@ import { toon } from '../../../engine/props3d.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { settleRobe } from '../lib/fix8g.js';
 import { armToward } from '../lib/fix8_R15E.js';
+import { glow, dim } from '../lib/fix8_R31AE.js';
 import { beatScene, lines, sm, front, at, V, yawTo } from '../lib/beatscene.js';
 
 const ID = 's17_retour', L = lines(ID);
@@ -28,7 +29,7 @@ const es = stagedFix('escalier_nuit', { father: { backOk: true, tread: 2, face: 
       const fa = st.A.father; bareHead(fa);
       // R25M: back to the lens, climbing UP the flight; arms swing in counter-phase with the stride
       { const kk = k(fa), w = Math.sin((t - .1) * 4.2), sg = [1, -1];
-        ['L', 'R'].forEach((sd, i) => PO.reach(fa, sd, PO.hipToWorld(fa, sg[i] * .17 * kk, (-.04) * kk, (.07 + .13 * w * sg[i]) * kk), { grip: .1, pole: [sg[i] * .2, -.3, -.1] })); }
+        ['L', 'R'].forEach((sd, i) => PO.reach(fa, sd, PO.hipToWorld(fa, sg[i] * .17 * kk, (-.04) * kk, (.07 + .26 * w * sg[i]) * kk), { grip: .1, pole: [sg[i] * .2, -.3, -.1] })); }
       settleRobe(fa);
       st.actcheck = { supports: { father: fa.group.position.y } };
     } });
@@ -52,33 +53,34 @@ function veilDown(a) {
   if (back.length() > .22 && tip.y > .16) IK.aim(B.SkirtBack2, IK.wpos(B.SkirtBack2, [0, -1, 0]), hip.clone().addScaledVector(back.normalize(), .08).setY(.03));
 }
 const pe = staged('chambre_penombre', {
-  father: { at: [400, 890], face: [1000, 800], seed: 5, height: 1.76, walk: { to: [450, 870], t0: B(1)[0] + 1.2, t1: B(1)[0] + 3.2 },
+  father: { at: [140, 890], face: [1000, 800], seed: 5, height: 1.58, walk: { to: [520, 875], t0: B(1)[0] + .8, t1: B(1)[0] + 3.4 },   // R31AE: starts IN the doorway, head under the lintel
     lookMax: .5, look: (t, st) => {
       if (!(t > B(4)[0])) return null;
       const p = at(st.A.mohammed, 'head').clone();
       p.y = Math.max(p.y, at(st.A.father, 'head').y - .22);
       return p;
     } },
-  zoubida: { at: [720, 950], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .6, look: null },   // R25M: head forced down in act (below)
+  zoubida: { at: [680, 950], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .6, look: null },   // R25M: head forced down in act (below)
   // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
-  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null, height: 1.1 },
+  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null, height: 1.15 },
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo } = st.A, kf = k(fa); bareHead(fa);
+    dim(fa, .45 + .55 * sm(B(1)[0] + 2.5, B(2)[0] + 1, t)); glow(st.A.mohammed, .16);   // R31AE: black silhouette at the door; Mohammed readable in bed
     if (t < B(4)[0] - .05) yawToward(fa, S3.cam, 1.6);
     // R25M b113: from the mattress line on he turns his body toward Mohammed's divan
     if (t < B(4)[0] - .05) st.fy0 = fa.group.rotation.y;
     else if (st.fy0 != null) {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
-      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .3; fa.group.updateMatrixWorld(true);
+      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .75; fa.group.updateMatrixWorld(true);
     }
     lap(zo); veilDown(zo);
-    if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .35; h.rotation.y += .25; h.updateWorldMatrix(false, true); }; }
+    if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .55; h.rotation.y += .02; if (!(t > B(4)[0])) n.rotation.x += .2; h.updateWorldMatrix(false, true); }; }
     // R25M: relaxed free arm, small talk motion
     { const sg = -1, w = Math.sin(t * 1.3 + 1); if (!(win(2, .2, 1, t) > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, sg * .16 * kf, (-.05 + .02 * w) * kf, .08 * kf), { grip: .12, pole: [sg * .15, -.3, -.1] });
       PO.reach(fa, 'L', PO.hipToWorld(fa, .16 * kf, -.06 * kf, .07 * kf), { grip: .1, pole: [.15, -.3, -.1] }); }
-    const mo = st.A.mohammed, surface = .3;
+    const mo = st.A.mohammed, surface = .27;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     for (let i = 0; i < 5; i++) {
       const gap = PO.lowestOf(mo, ['head']) - surface;
@@ -91,13 +93,14 @@ const pe = staged('chambre_penombre', {
     // R25M: a plain shelf (plank + tea box) on the wall at his hand height; fixed once he has stopped walking
     if (t >= B(2)[0] - .3) {
       if (!st.shelf) {
-        const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), c = at(fa, 'chest').clone().addScaledVector(R, -.5).addScaledVector(V(0, 0, 1).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), -.15).add(V(0, -.02, 0)), g = new THREE.Group();
-        const plank = new THREE.Mesh(new THREE.BoxGeometry(.7, .025, .16), toon(0xe8c078)); g.add(plank);
+        const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), c = at(fa, 'chest').clone().addScaledVector(R, -.36).addScaledVector(V(0, 0, 1).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), -.15)
+          .add(V(0, -.14, 0)), g = new THREE.Group();
+        const plank = new THREE.Mesh(new THREE.BoxGeometry(.42, .025, .16), toon(0xe8c078)); g.add(plank);
         const box = new THREE.Mesh(new THREE.BoxGeometry(.14, .12, .12), toon(0xb0402a)); box.position.set(-.2, .08, 0); g.add(box);
         g.position.copy(c); g.rotation.y = Math.atan2(S3.cam.position.x - c.x, S3.cam.position.z - c.z); S3.scene.add(g); st.shelf = g;
       }
     }
-    if (grope > 0 && st.shelf) { const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(); PO.reach(fa, 'R', st.shelf.position.clone().addScaledVector(R, .12 * Math.sin(t * 1.4)).add(V(0, .03, 0)).add(PO.hipToWorld(fa, -.14 * kf, 0, .1 * kf)).sub(PO.hipToWorld(fa, 0, 0, 0)), { grip: .08, pole: [-1.0, .3, .4] }); }
+    if (grope > 0 && st.shelf) { const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(); PO.reach(fa, 'R', st.shelf.position.clone().addScaledVector(R, .07 * Math.sin(t * 1.4)).add(V(0, .035, 0)), { grip: .08, pole: [-1.0, .3, .4] }); }
     else if (grope > 0) { const sd = armToward(fa, zo) === 'L' ? 'R' : 'L', sg = sd === 'L' ? 1 : -1; PO.reach(fa, sd, front(fa, 'chest', .44 * kf, sg * (.06 + .1 * Math.sin(t * 1.6)) * kf, .12 * kf), { grip: .08, pole: [sg * .35, .1, .15] }); }
   },
 });

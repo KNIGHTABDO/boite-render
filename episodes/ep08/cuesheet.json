@@ -1,0 +1,3214 @@
+{
+ "cues": [
+  {
+   "beat": "b001",
+   "scene": "s01_hook",
+   "t": 1.5,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b002",
+   "scene": "s01_hook",
+   "t": 8.93,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {},
+   "raw": "soft sobbing",
+   "have": null
+  },
+  {
+   "beat": "b002",
+   "scene": "s01_hook",
+   "t": 8.93,
+   "kind": "unknown",
+   "id": "far",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "far city night",
+   "have": null
+  },
+  {
+   "beat": "b004",
+   "scene": "s03_mouches",
+   "t": 28.67,
+   "kind": "unknown",
+   "id": "cicadas",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "cicadas far",
+   "have": null
+  },
+  {
+   "beat": "b004",
+   "scene": "s03_mouches",
+   "t": 28.67,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz",
+   "have": null
+  },
+  {
+   "beat": "b005",
+   "scene": "s03_mouches",
+   "t": 37.72,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz swarm",
+   "have": null
+  },
+  {
+   "beat": "b005",
+   "scene": "s03_mouches",
+   "t": 37.72,
+   "kind": "unknown",
+   "id": "wood",
+   "params": {},
+   "raw": "wood creak",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_mouches",
+   "t": 50.63,
+   "kind": "unknown",
+   "id": "brush_whitewash",
+   "params": {
+    "word": "Chaux"
+   },
+   "raw": "brush_whitewash @Chaux",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_mouches",
+   "t": 51.94,
+   "kind": "unknown",
+   "id": "sulphur",
+   "params": {
+    "word": "Soufre"
+   },
+   "raw": "sulphur hiss @Soufre",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_mouches",
+   "t": 52.81,
+   "kind": "unknown",
+   "id": "liquid_splash",
+   "params": {
+    "word": "Pétrole"
+   },
+   "raw": "liquid_splash @Pétrole",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_mouches",
+   "t": 57.68,
+   "kind": "unknown",
+   "id": "paper",
+   "params": {
+    "word": "talismans"
+   },
+   "raw": "paper rustle @talismans",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_mouches",
+   "t": 58.98,
+   "kind": "unknown",
+   "id": "powder",
+   "params": {
+    "word": "poudres"
+   },
+   "raw": "powder puff @poudres",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_mouches",
+   "t": 62.1,
+   "kind": "unknown",
+   "id": "whispered",
+   "params": {
+    "word": "invocations"
+   },
+   "raw": "whispered invocation @invocations",
+   "have": null
+  },
+  {
+   "beat": "b008",
+   "scene": "s03_mouches",
+   "t": 63.94,
+   "kind": "unknown",
+   "id": "tiny",
+   "params": {},
+   "raw": "tiny creak",
+   "have": null
+  },
+  {
+   "beat": "b009",
+   "scene": "s03_mouches",
+   "t": 74.41,
+   "kind": "unknown",
+   "id": "cloth_whip",
+   "params": {
+    "count": 3
+   },
+   "raw": "cloth_whip x3",
+   "have": null
+  },
+  {
+   "beat": "b009",
+   "scene": "s03_mouches",
+   "t": 74.41,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz angry exit",
+   "have": null
+  },
+  {
+   "beat": "b010",
+   "scene": "s04_mausolee",
+   "t": 87.02,
+   "kind": "vocal",
+   "id": "kids_murmur_class",
+   "params": {},
+   "raw": "pupils murmur tired",
+   "have": true
+  },
+  {
+   "beat": "b010",
+   "scene": "s04_mausolee",
+   "t": 87.02,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz",
+   "have": null
+  },
+  {
+   "beat": "b011",
+   "scene": "s04_mausolee",
+   "t": 94.02,
+   "kind": "unknown",
+   "id": "many",
+   "params": {},
+   "raw": "many small footsteps",
+   "have": null
+  },
+  {
+   "beat": "b011",
+   "scene": "s04_mausolee",
+   "t": 94.02,
+   "kind": "unknown",
+   "id": "slates",
+   "params": {},
+   "raw": "slates knock",
+   "have": null
+  },
+  {
+   "beat": "b012",
+   "scene": "s04_mausolee",
+   "t": 101.96,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women whisper count",
+   "have": null
+  },
+  {
+   "beat": "b012",
+   "scene": "s04_mausolee",
+   "t": 101.96,
+   "kind": "unknown",
+   "id": "slippers",
+   "params": {},
+   "raw": "slippers on tiles",
+   "have": null
+  },
+  {
+   "beat": "b013",
+   "scene": "s04_mausolee",
+   "t": 113.67,
+   "kind": "unknown",
+   "id": "fountain",
+   "params": {},
+   "raw": "fountain trickle",
+   "have": null
+  },
+  {
+   "beat": "b013",
+   "scene": "s04_mausolee",
+   "t": 113.67,
+   "kind": "unknown",
+   "id": "cool",
+   "params": {},
+   "raw": "cool breeze",
+   "have": null
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "kind": "unknown",
+   "id": "adhan",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "adhan far",
+   "have": null
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "kind": "unknown",
+   "id": "fountain",
+   "params": {},
+   "raw": "fountain trickle",
+   "have": null
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "kind": "unknown",
+   "id": "water",
+   "params": {},
+   "raw": "water splash hands",
+   "have": null
+  },
+  {
+   "beat": "b015",
+   "scene": "s04_mausolee",
+   "t": 128.35,
+   "kind": "unknown",
+   "id": "prayer",
+   "params": {},
+   "raw": "prayer rustle",
+   "have": null
+  },
+  {
+   "beat": "b017",
+   "scene": "s05_memoire",
+   "t": 147.38,
+   "kind": "unknown",
+   "id": "reed",
+   "params": {},
+   "raw": "reed pen scratch",
+   "have": null
+  },
+  {
+   "beat": "b017",
+   "scene": "s05_memoire",
+   "t": 153.42,
+   "kind": "unknown",
+   "id": "sparkle",
+   "params": {
+    "word": "quinze"
+   },
+   "raw": "sparkle soft @quinze",
+   "have": null
+  },
+  {
+   "beat": "b020",
+   "scene": "s05_memoire",
+   "t": 168.29,
+   "kind": "unknown",
+   "id": "comic",
+   "params": {},
+   "raw": "comic inflate",
+   "have": null
+  },
+  {
+   "beat": "b020",
+   "scene": "s05_memoire",
+   "t": 168.29,
+   "kind": "unknown",
+   "id": "boy",
+   "params": {},
+   "raw": "boy gasp",
+   "have": null
+  },
+  {
+   "beat": "b022",
+   "scene": "s06_reves",
+   "t": 185.43,
+   "kind": "unknown",
+   "id": "recitation",
+   "params": {},
+   "raw": "recitation murmur",
+   "have": null
+  },
+  {
+   "beat": "b023",
+   "scene": "s06_reves",
+   "t": 192.43,
+   "kind": "unknown",
+   "id": "recitation",
+   "params": {},
+   "raw": "recitation fervent",
+   "have": null
+  },
+  {
+   "beat": "b023",
+   "scene": "s06_reves",
+   "t": 192.43,
+   "kind": "unknown",
+   "id": "recitation",
+   "params": {},
+   "raw": "recitation sleepy",
+   "have": null
+  },
+  {
+   "beat": "b024",
+   "scene": "s06_reves",
+   "t": 205.61,
+   "kind": "unknown",
+   "id": "wind",
+   "params": {},
+   "raw": "wind soft",
+   "have": null
+  },
+  {
+   "beat": "b024",
+   "scene": "s06_reves",
+   "t": 205.61,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b025",
+   "scene": "s06_reves",
+   "t": 213.01,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b025",
+   "scene": "s06_reves",
+   "t": 213.01,
+   "kind": "unknown",
+   "id": "warm",
+   "params": {},
+   "raw": "warm wind",
+   "have": null
+  },
+  {
+   "beat": "b026",
+   "scene": "s06_reves",
+   "t": 222.85,
+   "kind": "unknown",
+   "id": "ink",
+   "params": {},
+   "raw": "ink bloom low",
+   "have": null
+  },
+  {
+   "beat": "b026",
+   "scene": "s06_reves",
+   "t": 222.85,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat soft",
+   "have": null
+  },
+  {
+   "beat": "b027",
+   "scene": "s07_lundi",
+   "t": 237.29,
+   "kind": "unknown",
+   "id": "door_open",
+   "params": {},
+   "raw": "door_open",
+   "have": null
+  },
+  {
+   "beat": "b027",
+   "scene": "s07_lundi",
+   "t": 237.29,
+   "kind": "unknown",
+   "id": "footsteps",
+   "params": {},
+   "raw": "footsteps",
+   "have": null
+  },
+  {
+   "beat": "b028",
+   "scene": "s07_lundi",
+   "t": 244.14,
+   "kind": "unknown",
+   "id": "spoons",
+   "params": {},
+   "raw": "spoons",
+   "have": null
+  },
+  {
+   "beat": "b028",
+   "scene": "s07_lundi",
+   "t": 244.14,
+   "kind": "unknown",
+   "id": "bread",
+   "params": {},
+   "raw": "bread tear",
+   "have": null
+  },
+  {
+   "beat": "b030",
+   "scene": "s07_lundi",
+   "t": 265.14,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {
+    "word": "bracelets"
+   },
+   "raw": "soft shimmer @bracelets",
+   "have": null
+  },
+  {
+   "beat": "b031",
+   "scene": "s07_lundi",
+   "t": 272.26,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {
+    "word": "or"
+   },
+   "raw": "bracelet_clink @or",
+   "have": null
+  },
+  {
+   "beat": "b031",
+   "scene": "s07_lundi",
+   "t": 273.79,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {
+    "word": "argent"
+   },
+   "raw": "bracelet_clink high @argent",
+   "have": null
+  },
+  {
+   "beat": "b042",
+   "scene": "s08_fleurs",
+   "t": 325.87,
+   "kind": "unknown",
+   "id": "laughter",
+   "params": {},
+   "raw": "laughter two",
+   "have": null
+  },
+  {
+   "beat": "b044",
+   "scene": "s09_escalier",
+   "t": 340.75,
+   "kind": "unknown",
+   "id": "house",
+   "params": {},
+   "raw": "house afternoon quiet",
+   "have": null
+  },
+  {
+   "beat": "b046",
+   "scene": "s09_escalier",
+   "t": 359.08,
+   "kind": "unknown",
+   "id": "breeze",
+   "params": {},
+   "raw": "breeze",
+   "have": null
+  },
+  {
+   "beat": "b046",
+   "scene": "s09_escalier",
+   "t": 359.08,
+   "kind": "unknown",
+   "id": "bee",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "bee far",
+   "have": null
+  },
+  {
+   "beat": "b047",
+   "scene": "s09_escalier",
+   "t": 373.79,
+   "kind": "unknown",
+   "id": "breeze",
+   "params": {},
+   "raw": "breeze",
+   "have": null
+  },
+  {
+   "beat": "b047",
+   "scene": "s09_escalier",
+   "t": 373.79,
+   "kind": "unknown",
+   "id": "pigeons",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "pigeons far",
+   "have": null
+  },
+  {
+   "beat": "b048",
+   "scene": "s09_escalier",
+   "t": 382.76,
+   "kind": "unknown",
+   "id": "forge",
+   "params": {},
+   "raw": "forge rumble",
+   "have": null
+  },
+  {
+   "beat": "b048",
+   "scene": "s09_escalier",
+   "t": 382.76,
+   "kind": "unknown",
+   "id": "anvil",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "anvil far",
+   "have": null
+  },
+  {
+   "beat": "b048",
+   "scene": "s09_escalier",
+   "t": 382.76,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b049",
+   "scene": "s09_escalier",
+   "t": 396.12,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b049",
+   "scene": "s09_escalier",
+   "t": 396.12,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {},
+   "raw": "soft chime per step",
+   "have": null
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 426.96,
+   "kind": "unknown",
+   "id": "water",
+   "params": {
+    "word": "pieds"
+   },
+   "raw": "water splash @pieds",
+   "have": null
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 430.46,
+   "kind": "unknown",
+   "id": "prayer",
+   "params": {
+    "word": "prière"
+   },
+   "raw": "prayer rustle @prière",
+   "have": null
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 433.83,
+   "kind": "unknown",
+   "id": "shh",
+   "params": {
+    "word": "bruit"
+   },
+   "raw": "shh @bruit",
+   "have": null
+  },
+  {
+   "beat": "b059",
+   "scene": "s10_roi",
+   "t": 459.79,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women laughter",
+   "have": null
+  },
+  {
+   "beat": "b062",
+   "scene": "s10_roi",
+   "t": 473.17,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b062",
+   "scene": "s10_roi",
+   "t": 473.17,
+   "kind": "unknown",
+   "id": "comic",
+   "params": {},
+   "raw": "comic sting soft",
+   "have": null
+  },
+  {
+   "beat": "b063",
+   "scene": "s10_roi",
+   "t": 485.36,
+   "kind": "unknown",
+   "id": "rope",
+   "params": {},
+   "raw": "rope creak",
+   "have": null
+  },
+  {
+   "beat": "b063",
+   "scene": "s10_roi",
+   "t": 485.36,
+   "kind": "unknown",
+   "id": "well",
+   "params": {},
+   "raw": "well echo",
+   "have": null
+  },
+  {
+   "beat": "b064",
+   "scene": "s10_roi",
+   "t": 492.08,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {},
+   "raw": "soft shimmer",
+   "have": null
+  },
+  {
+   "beat": "b065",
+   "scene": "s10_roi",
+   "t": 498.22,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women murmur",
+   "have": null
+  },
+  {
+   "beat": "b066",
+   "scene": "s11_depart",
+   "t": 504.27,
+   "kind": "unknown",
+   "id": "adhan",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "adhan Asr far",
+   "have": null
+  },
+  {
+   "beat": "b069",
+   "scene": "s11_depart",
+   "t": 516.48,
+   "kind": "unknown",
+   "id": "broom",
+   "params": {},
+   "raw": "broom sweep... stop",
+   "have": null
+  },
+  {
+   "beat": "b071",
+   "scene": "s11_depart",
+   "t": 528.25,
+   "kind": "unknown",
+   "id": "chest_lid_slam",
+   "params": {},
+   "raw": "chest_lid_slam",
+   "have": null
+  },
+  {
+   "beat": "b072",
+   "scene": "s11_depart",
+   "t": 533.68,
+   "kind": "unknown",
+   "id": "door_knock",
+   "params": {},
+   "raw": "door_knock",
+   "have": null
+  },
+  {
+   "beat": "b072",
+   "scene": "s11_depart",
+   "t": 533.68,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "father voice reverb",
+   "have": null
+  },
+  {
+   "beat": "b073",
+   "scene": "s11_depart",
+   "t": 537.12,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "female voice from above, reverb",
+   "have": null
+  },
+  {
+   "beat": "b074",
+   "scene": "s12_souk",
+   "t": 544.11,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk crowd bed",
+   "have": null
+  },
+  {
+   "beat": "b074",
+   "scene": "s12_souk",
+   "t": 544.11,
+   "kind": "unknown",
+   "id": "jeweller",
+   "params": {},
+   "raw": "jeweller hammers",
+   "have": null
+  },
+  {
+   "beat": "b075",
+   "scene": "s12_souk",
+   "t": 549.89,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk crowd bed",
+   "have": null
+  },
+  {
+   "beat": "b075",
+   "scene": "s12_souk",
+   "t": 549.89,
+   "kind": "unknown",
+   "id": "small",
+   "params": {},
+   "raw": "small steps",
+   "have": null
+  },
+  {
+   "beat": "b077",
+   "scene": "s12_souk",
+   "t": 568.18,
+   "kind": "unknown",
+   "id": "muffled",
+   "params": {},
+   "raw": "muffled souk",
+   "have": null
+  },
+  {
+   "beat": "b077",
+   "scene": "s12_souk",
+   "t": 568.18,
+   "kind": "unknown",
+   "id": "sniff",
+   "params": {},
+   "raw": "sniff",
+   "have": null
+  },
+  {
+   "beat": "b078",
+   "scene": "s12_souk",
+   "t": 573.82,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat soft",
+   "have": null
+  },
+  {
+   "beat": "b078",
+   "scene": "s12_souk",
+   "t": 573.82,
+   "kind": "unknown",
+   "id": "muffled",
+   "params": {},
+   "raw": "muffled bargaining",
+   "have": null
+  },
+  {
+   "beat": "b079",
+   "scene": "s12_souk",
+   "t": 585.21,
+   "kind": "unknown",
+   "id": "dellal",
+   "params": {},
+   "raw": "dellal shout",
+   "have": null
+  },
+  {
+   "beat": "b079",
+   "scene": "s12_souk",
+   "t": 585.21,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd bed",
+   "have": null
+  },
+  {
+   "beat": "b080",
+   "scene": "s12_souk",
+   "t": 592.81,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b081",
+   "scene": "s12_souk",
+   "t": 601.66,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {
+    "count": 4
+   },
+   "raw": "bracelet_clink x4",
+   "have": null
+  },
+  {
+   "beat": "b081",
+   "scene": "s12_souk",
+   "t": 601.66,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women murmur",
+   "have": null
+  },
+  {
+   "beat": "b082",
+   "scene": "s12_souk",
+   "t": 611.6,
+   "kind": "unknown",
+   "id": "dellal",
+   "params": {},
+   "raw": "dellal shout fading",
+   "have": null
+  },
+  {
+   "beat": "b084",
+   "scene": "s13_attente",
+   "t": 636.97,
+   "kind": "unknown",
+   "id": "dellal",
+   "params": {},
+   "raw": "dellal shout",
+   "have": null
+  },
+  {
+   "beat": "b085",
+   "scene": "s13_attente",
+   "t": 644.02,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk peak",
+   "have": null
+  },
+  {
+   "beat": "b085",
+   "scene": "s13_attente",
+   "t": 644.02,
+   "kind": "unknown",
+   "id": "shouted",
+   "params": {},
+   "raw": "shouted numbers",
+   "have": null
+  },
+  {
+   "beat": "b086",
+   "scene": "s13_attente",
+   "t": 650.79,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd surge",
+   "have": null
+  },
+  {
+   "beat": "b086",
+   "scene": "s13_attente",
+   "t": 650.79,
+   "kind": "unknown",
+   "id": "grunt",
+   "params": {},
+   "raw": "grunt",
+   "have": null
+  },
+  {
+   "beat": "b090",
+   "scene": "s14_bagarre",
+   "t": 678.63,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd swallow",
+   "have": null
+  },
+  {
+   "beat": "b091",
+   "scene": "s14_bagarre",
+   "t": 683.81,
+   "kind": "unknown",
+   "id": "shouts",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "shouts far",
+   "have": null
+  },
+  {
+   "beat": "b091",
+   "scene": "s14_bagarre",
+   "t": 683.81,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd roar rising",
+   "have": null
+  },
+  {
+   "beat": "b092",
+   "scene": "s14_bagarre",
+   "t": 691.8,
+   "kind": "unknown",
+   "id": "stampede",
+   "params": {},
+   "raw": "stampede",
+   "have": null
+  },
+  {
+   "beat": "b092",
+   "scene": "s14_bagarre",
+   "t": 691.8,
+   "kind": "unknown",
+   "id": "shouts",
+   "params": {},
+   "raw": "shouts",
+   "have": null
+  },
+  {
+   "beat": "b093",
+   "scene": "s14_bagarre",
+   "t": 694.18,
+   "kind": "unknown",
+   "id": "foot",
+   "params": {},
+   "raw": "foot stomp",
+   "have": null
+  },
+  {
+   "beat": "b094",
+   "scene": "s14_bagarre",
+   "t": 697.64,
+   "kind": "unknown",
+   "id": "cloth",
+   "params": {},
+   "raw": "cloth tug",
+   "have": null
+  },
+  {
+   "beat": "b095",
+   "scene": "s14_bagarre",
+   "t": 700.78,
+   "kind": "unknown",
+   "id": "grunts",
+   "params": {},
+   "raw": "grunts",
+   "have": null
+  },
+  {
+   "beat": "b095",
+   "scene": "s14_bagarre",
+   "t": 700.78,
+   "kind": "unknown",
+   "id": "cloth",
+   "params": {},
+   "raw": "cloth tear",
+   "have": null
+  },
+  {
+   "beat": "b096",
+   "scene": "s14_bagarre",
+   "t": 710.25,
+   "kind": "unknown",
+   "id": "heavy",
+   "params": {},
+   "raw": "heavy breathing",
+   "have": null
+  },
+  {
+   "beat": "b097",
+   "scene": "s14_bagarre",
+   "t": 719.85,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd roar receding",
+   "have": null
+  },
+  {
+   "beat": "b098",
+   "scene": "s15_fruits_secs",
+   "t": 726.25,
+   "kind": "unknown",
+   "id": "crying",
+   "params": {},
+   "raw": "crying three",
+   "have": null
+  },
+  {
+   "beat": "b099",
+   "scene": "s15_fruits_secs",
+   "t": 733.85,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk calm bed",
+   "have": null
+  },
+  {
+   "beat": "b099",
+   "scene": "s15_fruits_secs",
+   "t": 733.85,
+   "kind": "unknown",
+   "id": "running",
+   "params": {},
+   "raw": "running steps",
+   "have": null
+  },
+  {
+   "beat": "b100",
+   "scene": "s15_fruits_secs",
+   "t": 739.52,
+   "kind": "unknown",
+   "id": "kids",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "kids singing far",
+   "have": null
+  },
+  {
+   "beat": "b100",
+   "scene": "s15_fruits_secs",
+   "t": 739.52,
+   "kind": "unknown",
+   "id": "market",
+   "params": {},
+   "raw": "market banter",
+   "have": null
+  },
+  {
+   "beat": "b103",
+   "scene": "s16_noir",
+   "t": 770.26,
+   "kind": "unknown",
+   "id": "cloth",
+   "params": {},
+   "raw": "cloth drop",
+   "have": null
+  },
+  {
+   "beat": "b103",
+   "scene": "s16_noir",
+   "t": 770.26,
+   "kind": "unknown",
+   "id": "silent",
+   "params": {},
+   "raw": "silent sob",
+   "have": null
+  },
+  {
+   "beat": "b107",
+   "scene": "s16_noir",
+   "t": 813.52,
+   "kind": "unknown",
+   "id": "night",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "night far",
+   "have": null
+  },
+  {
+   "beat": "b107",
+   "scene": "s16_noir",
+   "t": 813.52,
+   "kind": "unknown",
+   "id": "door",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "door far",
+   "have": null
+  },
+  {
+   "beat": "b108",
+   "scene": "s16_noir",
+   "t": 821.31,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "low drone",
+   "have": null
+  },
+  {
+   "beat": "b108",
+   "scene": "s16_noir",
+   "t": 821.31,
+   "kind": "unknown",
+   "id": "spark",
+   "params": {},
+   "raw": "spark crackle",
+   "have": null
+  },
+  {
+   "beat": "b109",
+   "scene": "s17_retour",
+   "t": 835.12,
+   "kind": "foley",
+   "id": "footsteps_stairs",
+   "params": {},
+   "raw": "footsteps_stairs",
+   "have": true
+  },
+  {
+   "beat": "b109",
+   "scene": "s17_retour",
+   "t": 835.12,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {},
+   "raw": "father voice reverb",
+   "have": null
+  },
+  {
+   "beat": "b110",
+   "scene": "s17_retour",
+   "t": 841.71,
+   "kind": "unknown",
+   "id": "door_open",
+   "params": {},
+   "raw": "door_open slow",
+   "have": null
+  },
+  {
+   "beat": "b117",
+   "scene": "s17_retour",
+   "t": 869.05,
+   "kind": "foley",
+   "id": "match_strike",
+   "params": {},
+   "raw": "match_strike",
+   "have": true
+  },
+  {
+   "beat": "b117",
+   "scene": "s17_retour",
+   "t": 869.05,
+   "kind": "unknown",
+   "id": "lamp",
+   "params": {},
+   "raw": "lamp flame",
+   "have": null
+  },
+  {
+   "beat": "b118",
+   "scene": "s17_retour",
+   "t": 875.9,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b121",
+   "scene": "s17_retour",
+   "t": 900.43,
+   "kind": "unknown",
+   "id": "chest",
+   "params": {},
+   "raw": "chest open",
+   "have": null
+  },
+  {
+   "beat": "b121",
+   "scene": "s17_retour",
+   "t": 900.43,
+   "kind": "unknown",
+   "id": "bracelets",
+   "params": {},
+   "raw": "bracelets drop in",
+   "have": null
+  },
+  {
+   "beat": "b121",
+   "scene": "s17_retour",
+   "t": 900.43,
+   "kind": "unknown",
+   "id": "lid",
+   "params": {},
+   "raw": "lid slam",
+   "have": null
+  },
+  {
+   "beat": "b123",
+   "scene": "s18_cauchemar",
+   "t": 919.83,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "nightmare drone",
+   "have": null
+  },
+  {
+   "beat": "b123",
+   "scene": "s18_cauchemar",
+   "t": 919.83,
+   "kind": "unknown",
+   "id": "growl",
+   "params": {},
+   "raw": "growl",
+   "have": null
+  },
+  {
+   "beat": "b124",
+   "scene": "s18_cauchemar",
+   "t": 933.72,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd distorted",
+   "have": null
+  },
+  {
+   "beat": "b124",
+   "scene": "s18_cauchemar",
+   "t": 933.72,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat",
+   "have": null
+  },
+  {
+   "beat": "b125",
+   "scene": "s18_cauchemar",
+   "t": 942.87,
+   "kind": "unknown",
+   "id": "horse",
+   "params": {},
+   "raw": "horse gallop",
+   "have": null
+  },
+  {
+   "beat": "b125",
+   "scene": "s18_cauchemar",
+   "t": 942.87,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd parting",
+   "have": null
+  },
+  {
+   "beat": "b126",
+   "scene": "s18_cauchemar",
+   "t": 952.1,
+   "kind": "unknown",
+   "id": "wind",
+   "params": {},
+   "raw": "wind flag",
+   "have": null
+  },
+  {
+   "beat": "b127",
+   "scene": "s18_cauchemar",
+   "t": 959.07,
+   "kind": "unknown",
+   "id": "desert",
+   "params": {},
+   "raw": "desert wind",
+   "have": null
+  },
+  {
+   "beat": "b127",
+   "scene": "s18_cauchemar",
+   "t": 959.07,
+   "kind": "ctrl",
+   "id": "silence_or_room",
+   "params": {},
+   "raw": "silence",
+   "have": null
+  },
+  {
+   "beat": "b128",
+   "scene": "s18_cauchemar",
+   "t": 972.72,
+   "kind": "unknown",
+   "id": "wind",
+   "params": {},
+   "raw": "wind",
+   "have": null
+  },
+  {
+   "beat": "b129",
+   "scene": "s18_cauchemar",
+   "t": 977.34,
+   "kind": "unknown",
+   "id": "box",
+   "params": {},
+   "raw": "box open",
+   "have": null
+  },
+  {
+   "beat": "b129",
+   "scene": "s18_cauchemar",
+   "t": 977.34,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b129",
+   "scene": "s18_cauchemar",
+   "t": 977.34,
+   "kind": "unknown",
+   "id": "jewels",
+   "params": {},
+   "raw": "jewels chime",
+   "have": null
+  },
+  {
+   "beat": "b130",
+   "scene": "s18_cauchemar",
+   "t": 989.56,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b131",
+   "scene": "s18_cauchemar",
+   "t": 993.04,
+   "kind": "unknown",
+   "id": "cold",
+   "params": {},
+   "raw": "cold wind",
+   "have": null
+  },
+  {
+   "beat": "b131",
+   "scene": "s18_cauchemar",
+   "t": 993.04,
+   "kind": "unknown",
+   "id": "chime",
+   "params": {},
+   "raw": "chime detuned",
+   "have": null
+  },
+  {
+   "beat": "b132",
+   "scene": "s18_cauchemar",
+   "t": 1000.17,
+   "kind": "unknown",
+   "id": "ice",
+   "params": {},
+   "raw": "ice crackle",
+   "have": null
+  },
+  {
+   "beat": "b132",
+   "scene": "s18_cauchemar",
+   "t": 1000.17,
+   "kind": "unknown",
+   "id": "child",
+   "params": {},
+   "raw": "child sob",
+   "have": null
+  },
+  {
+   "beat": "b134",
+   "scene": "s19_matin",
+   "t": 1017.93,
+   "kind": "unknown",
+   "id": "buckets",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "buckets clink far",
+   "have": null
+  },
+  {
+   "beat": "b143",
+   "scene": "s20_aicha",
+   "t": 1080.56,
+   "kind": "unknown",
+   "id": "door_open",
+   "params": {},
+   "raw": "door_open",
+   "have": null
+  },
+  {
+   "beat": "b143",
+   "scene": "s20_aicha",
+   "t": 1080.56,
+   "kind": "unknown",
+   "id": "greetings",
+   "params": {},
+   "raw": "greetings",
+   "have": null
+  },
+  {
+   "beat": "b153",
+   "scene": "s21_fievre",
+   "t": 1167.09,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat",
+   "have": null
+  },
+  {
+   "beat": "b153",
+   "scene": "s21_fievre",
+   "t": 1167.09,
+   "kind": "unknown",
+   "id": "tinnitus",
+   "params": {},
+   "raw": "tinnitus",
+   "have": null
+  },
+  {
+   "beat": "b155",
+   "scene": "s21_fievre",
+   "t": 1181.16,
+   "kind": "unknown",
+   "id": "giant",
+   "params": {},
+   "raw": "giant drum heartbeat",
+   "have": null
+  }
+ ],
+ "verb_gaps": [
+  {
+   "beat": "b002",
+   "scene": "s01_hook",
+   "t": 8.93,
+   "words": [
+    "pleur"
+   ],
+   "text": "Le soir même, elle pleurait dans le noir. Et moi, j'attendais."
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "words": [
+    "appel",
+    "chant"
+   ],
+   "text": "À l'appel du muezzin, le fqih nous imposa silence. Nous fîmes nos ablutions à la petite fo"
+  },
+  {
+   "beat": "b042",
+   "scene": "s08_fleurs",
+   "t": 325.87,
+   "words": [
+    "rire",
+    "éclat"
+   ],
+   "text": "Mon père et ma mère éclatèrent de rire."
+  },
+  {
+   "beat": "b045",
+   "scene": "s09_escalier",
+   "t": 352.44,
+   "words": [
+    "rire"
+   ],
+   "text": "Ma comparaison exprimait une idée essentielle. Elle méritait le silence. Pas le rire."
+  },
+  {
+   "beat": "b051",
+   "scene": "s09_escalier",
+   "t": 414.42,
+   "words": [
+    "frapp",
+    "grond"
+   ],
+   "text": "Je pardonnais aux grandes personnes de me gronder, même de me frapper. Mais je leur en vou"
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 423.6,
+   "words": [
+    "bruit"
+   ],
+   "text": "Pour ma mère, j'étais parfait si je me lavais les pieds. Pour mon père, si je copiais ses "
+  },
+  {
+   "beat": "b059",
+   "scene": "s10_roi",
+   "t": 459.79,
+   "words": [
+    "rire"
+   ],
+   "text": "Les voisines se mirent à rire."
+  },
+  {
+   "beat": "b066",
+   "scene": "s11_depart",
+   "t": 504.27,
+   "words": [
+    "appel"
+   ],
+   "text": "Et justement, le muezzin appela à la prière."
+  },
+  {
+   "beat": "b071",
+   "scene": "s11_depart",
+   "t": 528.25,
+   "words": [
+    "claqu"
+   ],
+   "text": "Ma mère fit oui de la tête. Un couvercle de coffre claqua."
+  },
+  {
+   "beat": "b079",
+   "scene": "s12_souk",
+   "t": 585.21,
+   "words": [
+    "criait"
+   ],
+   "text": "Un grand diable de dellal, aux yeux extatiques, criait un chiffre à perdre haleine."
+  },
+  {
+   "beat": "b085",
+   "scene": "s13_attente",
+   "t": 644.02,
+   "words": [
+    "criaient"
+   ],
+   "text": "Le souk battait son plein. Les courtiers criaient des chiffres, couraient, entraînaient le"
+  },
+  {
+   "beat": "b091",
+   "scene": "s14_bagarre",
+   "t": 683.81,
+   "words": [
+    "cris",
+    "éclat"
+   ],
+   "text": "Des cris éclatèrent à l'autre bout du souk, comme un orage. La foule ondula, comme une mer"
+  },
+  {
+   "beat": "b098",
+   "scene": "s15_fruits_secs",
+   "t": 726.25,
+   "words": [
+    "pleur"
+   ],
+   "text": "Ma mère, la voisine et moi, nous nous mîmes à pleurer bruyamment."
+  },
+  {
+   "beat": "b100",
+   "scene": "s15_fruits_secs",
+   "t": 739.52,
+   "words": [
+    "chant"
+   ],
+   "text": "Je m'attendais à des rues désertes, des babouches perdues dans la panique. Rien. On vendai"
+  },
+  {
+   "beat": "b102",
+   "scene": "s15_fruits_secs",
+   "t": 759.97,
+   "words": [
+    "pleur"
+   ],
+   "text": "Il ne sert à rien de courir partout. Rentrons, pour attendre et pour pleurer."
+  },
+  {
+   "beat": "b103",
+   "scene": "s16_noir",
+   "t": 770.26,
+   "words": [
+    "pleur"
+   ],
+   "text": "À la maison, ma mère enleva son haïk, s'assit sur un matelas, la tête dans ses deux mains,"
+  },
+  {
+   "beat": "b104",
+   "scene": "s16_noir",
+   "t": 782.65,
+   "words": [
+    "cris"
+   ],
+   "text": "Pour la première fois, sa douleur me bouleversait. Ce n'étaient pas ses grands cris habitu"
+  },
+  {
+   "beat": "b105",
+   "scene": "s16_noir",
+   "t": 796.11,
+   "words": [
+    "pleur"
+   ],
+   "text": "Je pleurai un moment, moi aussi. Puis je m'étendis sur le lit, les yeux au plafond, et j'a"
+  },
+  {
+   "beat": "b106",
+   "scene": "s16_noir",
+   "t": 805.74,
+   "words": [
+    "pleur"
+   ],
+   "text": "Ma mère pleurait. Et moi, j'attendais. J'étais habitué à cet exercice."
+  },
+  {
+   "beat": "b132",
+   "scene": "s18_cauchemar",
+   "t": 1000.17,
+   "words": [
+    "sanglot"
+   ],
+   "text": "Un grand froid m'enveloppa. Je refermai la boîte, et je me mis à sangloter."
+  },
+  {
+   "beat": "b133",
+   "scene": "s19_matin",
+   "t": 1009.89,
+   "words": [
+    "pleur"
+   ],
+   "text": "Sidi Mohammed, pourquoi tu pleures ? Réveille-toi ! Réveille-toi !"
+  },
+  {
+   "beat": "b138",
+   "scene": "s19_matin",
+   "t": 1042.29,
+   "words": [
+    "frapp"
+   ],
+   "text": "Mon Dieu, punis-moi, mais ne me frappe pas dans mon enfant ! Homme, je ne veux pas garder "
+  },
+  {
+   "beat": "b142",
+   "scene": "s19_matin",
+   "t": 1068.25,
+   "words": [
+    "crier"
+   ],
+   "text": "Mon père gardait son sang-froid. Ma mère, elle, voulait le voir crier, s'agiter, tout exag"
+  },
+  {
+   "beat": "b144",
+   "scene": "s20_aicha",
+   "t": 1087.35,
+   "words": [
+    "pleur",
+    "soupir"
+   ],
+   "text": "Ma mère lui raconta tout : le souk, les bracelets, le drame. Elle pleura, soupira, invoqua"
+  },
+  {
+   "beat": "b145",
+   "scene": "s20_aicha",
+   "t": 1100.02,
+   "words": [
+    "soupir"
+   ],
+   "text": "Lalla Aïcha, par politesse, approuvait, soupirait, se donnait de petites tapes sur la joue"
+  },
+  {
+   "beat": "b147",
+   "scene": "s20_aicha",
+   "t": 1112.27,
+   "words": [
+    "sanglot",
+    "éclat"
+   ],
+   "text": "Lalla Aïcha enfouit son visage dans ses mains, et éclata en sanglots."
+  },
+  {
+   "beat": "b151",
+   "scene": "s20_aicha",
+   "t": 1147.04,
+   "words": [
+    "sanglot"
+   ],
+   "text": "Et les deux femmes, dans les bras l'une de l'autre, se remirent à sangloter."
+  },
+  {
+   "beat": "b153",
+   "scene": "s21_fievre",
+   "t": 1167.09,
+   "words": [
+    "cogn"
+   ],
+   "text": "Ma tête cognait. La fièvre me secoua tout entier."
+  },
+  {
+   "beat": "b155",
+   "scene": "s21_fievre",
+   "t": 1181.16,
+   "words": [
+    "tambour"
+   ],
+   "text": "Les voisines envahirent la chambre. Mes paupières se fermèrent. Dans mon crâne, je n'enten"
+  }
+ ],
+ "missing_ids": [],
+ "unknown": [
+  {
+   "beat": "b001",
+   "scene": "s01_hook",
+   "t": 1.5,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b002",
+   "scene": "s01_hook",
+   "t": 8.93,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {},
+   "raw": "soft sobbing",
+   "have": null
+  },
+  {
+   "beat": "b002",
+   "scene": "s01_hook",
+   "t": 8.93,
+   "kind": "unknown",
+   "id": "far",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "far city night",
+   "have": null
+  },
+  {
+   "beat": "b004",
+   "scene": "s03_mouches",
+   "t": 28.67,
+   "kind": "unknown",
+   "id": "cicadas",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "cicadas far",
+   "have": null
+  },
+  {
+   "beat": "b004",
+   "scene": "s03_mouches",
+   "t": 28.67,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz",
+   "have": null
+  },
+  {
+   "beat": "b005",
+   "scene": "s03_mouches",
+   "t": 37.72,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz swarm",
+   "have": null
+  },
+  {
+   "beat": "b005",
+   "scene": "s03_mouches",
+   "t": 37.72,
+   "kind": "unknown",
+   "id": "wood",
+   "params": {},
+   "raw": "wood creak",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_mouches",
+   "t": 50.63,
+   "kind": "unknown",
+   "id": "brush_whitewash",
+   "params": {
+    "word": "Chaux"
+   },
+   "raw": "brush_whitewash @Chaux",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_mouches",
+   "t": 51.94,
+   "kind": "unknown",
+   "id": "sulphur",
+   "params": {
+    "word": "Soufre"
+   },
+   "raw": "sulphur hiss @Soufre",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_mouches",
+   "t": 52.81,
+   "kind": "unknown",
+   "id": "liquid_splash",
+   "params": {
+    "word": "Pétrole"
+   },
+   "raw": "liquid_splash @Pétrole",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_mouches",
+   "t": 57.68,
+   "kind": "unknown",
+   "id": "paper",
+   "params": {
+    "word": "talismans"
+   },
+   "raw": "paper rustle @talismans",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_mouches",
+   "t": 58.98,
+   "kind": "unknown",
+   "id": "powder",
+   "params": {
+    "word": "poudres"
+   },
+   "raw": "powder puff @poudres",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_mouches",
+   "t": 62.1,
+   "kind": "unknown",
+   "id": "whispered",
+   "params": {
+    "word": "invocations"
+   },
+   "raw": "whispered invocation @invocations",
+   "have": null
+  },
+  {
+   "beat": "b008",
+   "scene": "s03_mouches",
+   "t": 63.94,
+   "kind": "unknown",
+   "id": "tiny",
+   "params": {},
+   "raw": "tiny creak",
+   "have": null
+  },
+  {
+   "beat": "b009",
+   "scene": "s03_mouches",
+   "t": 74.41,
+   "kind": "unknown",
+   "id": "cloth_whip",
+   "params": {
+    "count": 3
+   },
+   "raw": "cloth_whip x3",
+   "have": null
+  },
+  {
+   "beat": "b009",
+   "scene": "s03_mouches",
+   "t": 74.41,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz angry exit",
+   "have": null
+  },
+  {
+   "beat": "b010",
+   "scene": "s04_mausolee",
+   "t": 87.02,
+   "kind": "unknown",
+   "id": "fly",
+   "params": {},
+   "raw": "fly buzz",
+   "have": null
+  },
+  {
+   "beat": "b011",
+   "scene": "s04_mausolee",
+   "t": 94.02,
+   "kind": "unknown",
+   "id": "many",
+   "params": {},
+   "raw": "many small footsteps",
+   "have": null
+  },
+  {
+   "beat": "b011",
+   "scene": "s04_mausolee",
+   "t": 94.02,
+   "kind": "unknown",
+   "id": "slates",
+   "params": {},
+   "raw": "slates knock",
+   "have": null
+  },
+  {
+   "beat": "b012",
+   "scene": "s04_mausolee",
+   "t": 101.96,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women whisper count",
+   "have": null
+  },
+  {
+   "beat": "b012",
+   "scene": "s04_mausolee",
+   "t": 101.96,
+   "kind": "unknown",
+   "id": "slippers",
+   "params": {},
+   "raw": "slippers on tiles",
+   "have": null
+  },
+  {
+   "beat": "b013",
+   "scene": "s04_mausolee",
+   "t": 113.67,
+   "kind": "unknown",
+   "id": "fountain",
+   "params": {},
+   "raw": "fountain trickle",
+   "have": null
+  },
+  {
+   "beat": "b013",
+   "scene": "s04_mausolee",
+   "t": 113.67,
+   "kind": "unknown",
+   "id": "cool",
+   "params": {},
+   "raw": "cool breeze",
+   "have": null
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "kind": "unknown",
+   "id": "adhan",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "adhan far",
+   "have": null
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "kind": "unknown",
+   "id": "fountain",
+   "params": {},
+   "raw": "fountain trickle",
+   "have": null
+  },
+  {
+   "beat": "b014",
+   "scene": "s04_mausolee",
+   "t": 118.65,
+   "kind": "unknown",
+   "id": "water",
+   "params": {},
+   "raw": "water splash hands",
+   "have": null
+  },
+  {
+   "beat": "b015",
+   "scene": "s04_mausolee",
+   "t": 128.35,
+   "kind": "unknown",
+   "id": "prayer",
+   "params": {},
+   "raw": "prayer rustle",
+   "have": null
+  },
+  {
+   "beat": "b017",
+   "scene": "s05_memoire",
+   "t": 147.38,
+   "kind": "unknown",
+   "id": "reed",
+   "params": {},
+   "raw": "reed pen scratch",
+   "have": null
+  },
+  {
+   "beat": "b017",
+   "scene": "s05_memoire",
+   "t": 153.42,
+   "kind": "unknown",
+   "id": "sparkle",
+   "params": {
+    "word": "quinze"
+   },
+   "raw": "sparkle soft @quinze",
+   "have": null
+  },
+  {
+   "beat": "b020",
+   "scene": "s05_memoire",
+   "t": 168.29,
+   "kind": "unknown",
+   "id": "comic",
+   "params": {},
+   "raw": "comic inflate",
+   "have": null
+  },
+  {
+   "beat": "b020",
+   "scene": "s05_memoire",
+   "t": 168.29,
+   "kind": "unknown",
+   "id": "boy",
+   "params": {},
+   "raw": "boy gasp",
+   "have": null
+  },
+  {
+   "beat": "b022",
+   "scene": "s06_reves",
+   "t": 185.43,
+   "kind": "unknown",
+   "id": "recitation",
+   "params": {},
+   "raw": "recitation murmur",
+   "have": null
+  },
+  {
+   "beat": "b023",
+   "scene": "s06_reves",
+   "t": 192.43,
+   "kind": "unknown",
+   "id": "recitation",
+   "params": {},
+   "raw": "recitation fervent",
+   "have": null
+  },
+  {
+   "beat": "b023",
+   "scene": "s06_reves",
+   "t": 192.43,
+   "kind": "unknown",
+   "id": "recitation",
+   "params": {},
+   "raw": "recitation sleepy",
+   "have": null
+  },
+  {
+   "beat": "b024",
+   "scene": "s06_reves",
+   "t": 205.61,
+   "kind": "unknown",
+   "id": "wind",
+   "params": {},
+   "raw": "wind soft",
+   "have": null
+  },
+  {
+   "beat": "b025",
+   "scene": "s06_reves",
+   "t": 213.01,
+   "kind": "unknown",
+   "id": "warm",
+   "params": {},
+   "raw": "warm wind",
+   "have": null
+  },
+  {
+   "beat": "b026",
+   "scene": "s06_reves",
+   "t": 222.85,
+   "kind": "unknown",
+   "id": "ink",
+   "params": {},
+   "raw": "ink bloom low",
+   "have": null
+  },
+  {
+   "beat": "b026",
+   "scene": "s06_reves",
+   "t": 222.85,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat soft",
+   "have": null
+  },
+  {
+   "beat": "b027",
+   "scene": "s07_lundi",
+   "t": 237.29,
+   "kind": "unknown",
+   "id": "door_open",
+   "params": {},
+   "raw": "door_open",
+   "have": null
+  },
+  {
+   "beat": "b027",
+   "scene": "s07_lundi",
+   "t": 237.29,
+   "kind": "unknown",
+   "id": "footsteps",
+   "params": {},
+   "raw": "footsteps",
+   "have": null
+  },
+  {
+   "beat": "b028",
+   "scene": "s07_lundi",
+   "t": 244.14,
+   "kind": "unknown",
+   "id": "spoons",
+   "params": {},
+   "raw": "spoons",
+   "have": null
+  },
+  {
+   "beat": "b028",
+   "scene": "s07_lundi",
+   "t": 244.14,
+   "kind": "unknown",
+   "id": "bread",
+   "params": {},
+   "raw": "bread tear",
+   "have": null
+  },
+  {
+   "beat": "b030",
+   "scene": "s07_lundi",
+   "t": 265.14,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {
+    "word": "bracelets"
+   },
+   "raw": "soft shimmer @bracelets",
+   "have": null
+  },
+  {
+   "beat": "b031",
+   "scene": "s07_lundi",
+   "t": 272.26,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {
+    "word": "or"
+   },
+   "raw": "bracelet_clink @or",
+   "have": null
+  },
+  {
+   "beat": "b031",
+   "scene": "s07_lundi",
+   "t": 273.79,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {
+    "word": "argent"
+   },
+   "raw": "bracelet_clink high @argent",
+   "have": null
+  },
+  {
+   "beat": "b042",
+   "scene": "s08_fleurs",
+   "t": 325.87,
+   "kind": "unknown",
+   "id": "laughter",
+   "params": {},
+   "raw": "laughter two",
+   "have": null
+  },
+  {
+   "beat": "b044",
+   "scene": "s09_escalier",
+   "t": 340.75,
+   "kind": "unknown",
+   "id": "house",
+   "params": {},
+   "raw": "house afternoon quiet",
+   "have": null
+  },
+  {
+   "beat": "b046",
+   "scene": "s09_escalier",
+   "t": 359.08,
+   "kind": "unknown",
+   "id": "breeze",
+   "params": {},
+   "raw": "breeze",
+   "have": null
+  },
+  {
+   "beat": "b046",
+   "scene": "s09_escalier",
+   "t": 359.08,
+   "kind": "unknown",
+   "id": "bee",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "bee far",
+   "have": null
+  },
+  {
+   "beat": "b047",
+   "scene": "s09_escalier",
+   "t": 373.79,
+   "kind": "unknown",
+   "id": "breeze",
+   "params": {},
+   "raw": "breeze",
+   "have": null
+  },
+  {
+   "beat": "b047",
+   "scene": "s09_escalier",
+   "t": 373.79,
+   "kind": "unknown",
+   "id": "pigeons",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "pigeons far",
+   "have": null
+  },
+  {
+   "beat": "b048",
+   "scene": "s09_escalier",
+   "t": 382.76,
+   "kind": "unknown",
+   "id": "forge",
+   "params": {},
+   "raw": "forge rumble",
+   "have": null
+  },
+  {
+   "beat": "b048",
+   "scene": "s09_escalier",
+   "t": 382.76,
+   "kind": "unknown",
+   "id": "anvil",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "anvil far",
+   "have": null
+  },
+  {
+   "beat": "b049",
+   "scene": "s09_escalier",
+   "t": 396.12,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {},
+   "raw": "soft chime per step",
+   "have": null
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 426.96,
+   "kind": "unknown",
+   "id": "water",
+   "params": {
+    "word": "pieds"
+   },
+   "raw": "water splash @pieds",
+   "have": null
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 430.46,
+   "kind": "unknown",
+   "id": "prayer",
+   "params": {
+    "word": "prière"
+   },
+   "raw": "prayer rustle @prière",
+   "have": null
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_escalier",
+   "t": 433.83,
+   "kind": "unknown",
+   "id": "shh",
+   "params": {
+    "word": "bruit"
+   },
+   "raw": "shh @bruit",
+   "have": null
+  },
+  {
+   "beat": "b059",
+   "scene": "s10_roi",
+   "t": 459.79,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women laughter",
+   "have": null
+  },
+  {
+   "beat": "b062",
+   "scene": "s10_roi",
+   "t": 473.17,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b062",
+   "scene": "s10_roi",
+   "t": 473.17,
+   "kind": "unknown",
+   "id": "comic",
+   "params": {},
+   "raw": "comic sting soft",
+   "have": null
+  },
+  {
+   "beat": "b063",
+   "scene": "s10_roi",
+   "t": 485.36,
+   "kind": "unknown",
+   "id": "rope",
+   "params": {},
+   "raw": "rope creak",
+   "have": null
+  },
+  {
+   "beat": "b063",
+   "scene": "s10_roi",
+   "t": 485.36,
+   "kind": "unknown",
+   "id": "well",
+   "params": {},
+   "raw": "well echo",
+   "have": null
+  },
+  {
+   "beat": "b064",
+   "scene": "s10_roi",
+   "t": 492.08,
+   "kind": "unknown",
+   "id": "soft",
+   "params": {},
+   "raw": "soft shimmer",
+   "have": null
+  },
+  {
+   "beat": "b065",
+   "scene": "s10_roi",
+   "t": 498.22,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women murmur",
+   "have": null
+  },
+  {
+   "beat": "b066",
+   "scene": "s11_depart",
+   "t": 504.27,
+   "kind": "unknown",
+   "id": "adhan",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "adhan Asr far",
+   "have": null
+  },
+  {
+   "beat": "b069",
+   "scene": "s11_depart",
+   "t": 516.48,
+   "kind": "unknown",
+   "id": "broom",
+   "params": {},
+   "raw": "broom sweep... stop",
+   "have": null
+  },
+  {
+   "beat": "b071",
+   "scene": "s11_depart",
+   "t": 528.25,
+   "kind": "unknown",
+   "id": "chest_lid_slam",
+   "params": {},
+   "raw": "chest_lid_slam",
+   "have": null
+  },
+  {
+   "beat": "b072",
+   "scene": "s11_depart",
+   "t": 533.68,
+   "kind": "unknown",
+   "id": "door_knock",
+   "params": {},
+   "raw": "door_knock",
+   "have": null
+  },
+  {
+   "beat": "b074",
+   "scene": "s12_souk",
+   "t": 544.11,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk crowd bed",
+   "have": null
+  },
+  {
+   "beat": "b074",
+   "scene": "s12_souk",
+   "t": 544.11,
+   "kind": "unknown",
+   "id": "jeweller",
+   "params": {},
+   "raw": "jeweller hammers",
+   "have": null
+  },
+  {
+   "beat": "b075",
+   "scene": "s12_souk",
+   "t": 549.89,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk crowd bed",
+   "have": null
+  },
+  {
+   "beat": "b075",
+   "scene": "s12_souk",
+   "t": 549.89,
+   "kind": "unknown",
+   "id": "small",
+   "params": {},
+   "raw": "small steps",
+   "have": null
+  },
+  {
+   "beat": "b077",
+   "scene": "s12_souk",
+   "t": 568.18,
+   "kind": "unknown",
+   "id": "muffled",
+   "params": {},
+   "raw": "muffled souk",
+   "have": null
+  },
+  {
+   "beat": "b077",
+   "scene": "s12_souk",
+   "t": 568.18,
+   "kind": "unknown",
+   "id": "sniff",
+   "params": {},
+   "raw": "sniff",
+   "have": null
+  },
+  {
+   "beat": "b078",
+   "scene": "s12_souk",
+   "t": 573.82,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat soft",
+   "have": null
+  },
+  {
+   "beat": "b078",
+   "scene": "s12_souk",
+   "t": 573.82,
+   "kind": "unknown",
+   "id": "muffled",
+   "params": {},
+   "raw": "muffled bargaining",
+   "have": null
+  },
+  {
+   "beat": "b079",
+   "scene": "s12_souk",
+   "t": 585.21,
+   "kind": "unknown",
+   "id": "dellal",
+   "params": {},
+   "raw": "dellal shout",
+   "have": null
+  },
+  {
+   "beat": "b079",
+   "scene": "s12_souk",
+   "t": 585.21,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd bed",
+   "have": null
+  },
+  {
+   "beat": "b080",
+   "scene": "s12_souk",
+   "t": 592.81,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b081",
+   "scene": "s12_souk",
+   "t": 601.66,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {
+    "count": 4
+   },
+   "raw": "bracelet_clink x4",
+   "have": null
+  },
+  {
+   "beat": "b081",
+   "scene": "s12_souk",
+   "t": 601.66,
+   "kind": "unknown",
+   "id": "women",
+   "params": {},
+   "raw": "women murmur",
+   "have": null
+  },
+  {
+   "beat": "b082",
+   "scene": "s12_souk",
+   "t": 611.6,
+   "kind": "unknown",
+   "id": "dellal",
+   "params": {},
+   "raw": "dellal shout fading",
+   "have": null
+  },
+  {
+   "beat": "b084",
+   "scene": "s13_attente",
+   "t": 636.97,
+   "kind": "unknown",
+   "id": "dellal",
+   "params": {},
+   "raw": "dellal shout",
+   "have": null
+  },
+  {
+   "beat": "b085",
+   "scene": "s13_attente",
+   "t": 644.02,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk peak",
+   "have": null
+  },
+  {
+   "beat": "b085",
+   "scene": "s13_attente",
+   "t": 644.02,
+   "kind": "unknown",
+   "id": "shouted",
+   "params": {},
+   "raw": "shouted numbers",
+   "have": null
+  },
+  {
+   "beat": "b086",
+   "scene": "s13_attente",
+   "t": 650.79,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd surge",
+   "have": null
+  },
+  {
+   "beat": "b086",
+   "scene": "s13_attente",
+   "t": 650.79,
+   "kind": "unknown",
+   "id": "grunt",
+   "params": {},
+   "raw": "grunt",
+   "have": null
+  },
+  {
+   "beat": "b090",
+   "scene": "s14_bagarre",
+   "t": 678.63,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd swallow",
+   "have": null
+  },
+  {
+   "beat": "b091",
+   "scene": "s14_bagarre",
+   "t": 683.81,
+   "kind": "unknown",
+   "id": "shouts",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "shouts far",
+   "have": null
+  },
+  {
+   "beat": "b091",
+   "scene": "s14_bagarre",
+   "t": 683.81,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd roar rising",
+   "have": null
+  },
+  {
+   "beat": "b092",
+   "scene": "s14_bagarre",
+   "t": 691.8,
+   "kind": "unknown",
+   "id": "stampede",
+   "params": {},
+   "raw": "stampede",
+   "have": null
+  },
+  {
+   "beat": "b092",
+   "scene": "s14_bagarre",
+   "t": 691.8,
+   "kind": "unknown",
+   "id": "shouts",
+   "params": {},
+   "raw": "shouts",
+   "have": null
+  },
+  {
+   "beat": "b093",
+   "scene": "s14_bagarre",
+   "t": 694.18,
+   "kind": "unknown",
+   "id": "foot",
+   "params": {},
+   "raw": "foot stomp",
+   "have": null
+  },
+  {
+   "beat": "b094",
+   "scene": "s14_bagarre",
+   "t": 697.64,
+   "kind": "unknown",
+   "id": "cloth",
+   "params": {},
+   "raw": "cloth tug",
+   "have": null
+  },
+  {
+   "beat": "b095",
+   "scene": "s14_bagarre",
+   "t": 700.78,
+   "kind": "unknown",
+   "id": "grunts",
+   "params": {},
+   "raw": "grunts",
+   "have": null
+  },
+  {
+   "beat": "b095",
+   "scene": "s14_bagarre",
+   "t": 700.78,
+   "kind": "unknown",
+   "id": "cloth",
+   "params": {},
+   "raw": "cloth tear",
+   "have": null
+  },
+  {
+   "beat": "b096",
+   "scene": "s14_bagarre",
+   "t": 710.25,
+   "kind": "unknown",
+   "id": "heavy",
+   "params": {},
+   "raw": "heavy breathing",
+   "have": null
+  },
+  {
+   "beat": "b097",
+   "scene": "s14_bagarre",
+   "t": 719.85,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd roar receding",
+   "have": null
+  },
+  {
+   "beat": "b098",
+   "scene": "s15_fruits_secs",
+   "t": 726.25,
+   "kind": "unknown",
+   "id": "crying",
+   "params": {},
+   "raw": "crying three",
+   "have": null
+  },
+  {
+   "beat": "b099",
+   "scene": "s15_fruits_secs",
+   "t": 733.85,
+   "kind": "unknown",
+   "id": "souk",
+   "params": {},
+   "raw": "souk calm bed",
+   "have": null
+  },
+  {
+   "beat": "b099",
+   "scene": "s15_fruits_secs",
+   "t": 733.85,
+   "kind": "unknown",
+   "id": "running",
+   "params": {},
+   "raw": "running steps",
+   "have": null
+  },
+  {
+   "beat": "b100",
+   "scene": "s15_fruits_secs",
+   "t": 739.52,
+   "kind": "unknown",
+   "id": "kids",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "kids singing far",
+   "have": null
+  },
+  {
+   "beat": "b100",
+   "scene": "s15_fruits_secs",
+   "t": 739.52,
+   "kind": "unknown",
+   "id": "market",
+   "params": {},
+   "raw": "market banter",
+   "have": null
+  },
+  {
+   "beat": "b103",
+   "scene": "s16_noir",
+   "t": 770.26,
+   "kind": "unknown",
+   "id": "cloth",
+   "params": {},
+   "raw": "cloth drop",
+   "have": null
+  },
+  {
+   "beat": "b103",
+   "scene": "s16_noir",
+   "t": 770.26,
+   "kind": "unknown",
+   "id": "silent",
+   "params": {},
+   "raw": "silent sob",
+   "have": null
+  },
+  {
+   "beat": "b107",
+   "scene": "s16_noir",
+   "t": 813.52,
+   "kind": "unknown",
+   "id": "night",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "night far",
+   "have": null
+  },
+  {
+   "beat": "b107",
+   "scene": "s16_noir",
+   "t": 813.52,
+   "kind": "unknown",
+   "id": "door",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "door far",
+   "have": null
+  },
+  {
+   "beat": "b108",
+   "scene": "s16_noir",
+   "t": 821.31,
+   "kind": "unknown",
+   "id": "spark",
+   "params": {},
+   "raw": "spark crackle",
+   "have": null
+  },
+  {
+   "beat": "b110",
+   "scene": "s17_retour",
+   "t": 841.71,
+   "kind": "unknown",
+   "id": "door_open",
+   "params": {},
+   "raw": "door_open slow",
+   "have": null
+  },
+  {
+   "beat": "b117",
+   "scene": "s17_retour",
+   "t": 869.05,
+   "kind": "unknown",
+   "id": "lamp",
+   "params": {},
+   "raw": "lamp flame",
+   "have": null
+  },
+  {
+   "beat": "b118",
+   "scene": "s17_retour",
+   "t": 875.9,
+   "kind": "unknown",
+   "id": "bracelet_clink",
+   "params": {},
+   "raw": "bracelet_clink",
+   "have": null
+  },
+  {
+   "beat": "b121",
+   "scene": "s17_retour",
+   "t": 900.43,
+   "kind": "unknown",
+   "id": "chest",
+   "params": {},
+   "raw": "chest open",
+   "have": null
+  },
+  {
+   "beat": "b121",
+   "scene": "s17_retour",
+   "t": 900.43,
+   "kind": "unknown",
+   "id": "bracelets",
+   "params": {},
+   "raw": "bracelets drop in",
+   "have": null
+  },
+  {
+   "beat": "b121",
+   "scene": "s17_retour",
+   "t": 900.43,
+   "kind": "unknown",
+   "id": "lid",
+   "params": {},
+   "raw": "lid slam",
+   "have": null
+  },
+  {
+   "beat": "b123",
+   "scene": "s18_cauchemar",
+   "t": 919.83,
+   "kind": "unknown",
+   "id": "growl",
+   "params": {},
+   "raw": "growl",
+   "have": null
+  },
+  {
+   "beat": "b124",
+   "scene": "s18_cauchemar",
+   "t": 933.72,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd distorted",
+   "have": null
+  },
+  {
+   "beat": "b124",
+   "scene": "s18_cauchemar",
+   "t": 933.72,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat",
+   "have": null
+  },
+  {
+   "beat": "b125",
+   "scene": "s18_cauchemar",
+   "t": 942.87,
+   "kind": "unknown",
+   "id": "horse",
+   "params": {},
+   "raw": "horse gallop",
+   "have": null
+  },
+  {
+   "beat": "b125",
+   "scene": "s18_cauchemar",
+   "t": 942.87,
+   "kind": "unknown",
+   "id": "crowd",
+   "params": {},
+   "raw": "crowd parting",
+   "have": null
+  },
+  {
+   "beat": "b126",
+   "scene": "s18_cauchemar",
+   "t": 952.1,
+   "kind": "unknown",
+   "id": "wind",
+   "params": {},
+   "raw": "wind flag",
+   "have": null
+  },
+  {
+   "beat": "b127",
+   "scene": "s18_cauchemar",
+   "t": 959.07,
+   "kind": "unknown",
+   "id": "desert",
+   "params": {},
+   "raw": "desert wind",
+   "have": null
+  },
+  {
+   "beat": "b128",
+   "scene": "s18_cauchemar",
+   "t": 972.72,
+   "kind": "unknown",
+   "id": "wind",
+   "params": {},
+   "raw": "wind",
+   "have": null
+  },
+  {
+   "beat": "b129",
+   "scene": "s18_cauchemar",
+   "t": 977.34,
+   "kind": "unknown",
+   "id": "box",
+   "params": {},
+   "raw": "box open",
+   "have": null
+  },
+  {
+   "beat": "b129",
+   "scene": "s18_cauchemar",
+   "t": 977.34,
+   "kind": "unknown",
+   "id": "jewels",
+   "params": {},
+   "raw": "jewels chime",
+   "have": null
+  },
+  {
+   "beat": "b131",
+   "scene": "s18_cauchemar",
+   "t": 993.04,
+   "kind": "unknown",
+   "id": "cold",
+   "params": {},
+   "raw": "cold wind",
+   "have": null
+  },
+  {
+   "beat": "b131",
+   "scene": "s18_cauchemar",
+   "t": 993.04,
+   "kind": "unknown",
+   "id": "chime",
+   "params": {},
+   "raw": "chime detuned",
+   "have": null
+  },
+  {
+   "beat": "b132",
+   "scene": "s18_cauchemar",
+   "t": 1000.17,
+   "kind": "unknown",
+   "id": "ice",
+   "params": {},
+   "raw": "ice crackle",
+   "have": null
+  },
+  {
+   "beat": "b132",
+   "scene": "s18_cauchemar",
+   "t": 1000.17,
+   "kind": "unknown",
+   "id": "child",
+   "params": {},
+   "raw": "child sob",
+   "have": null
+  },
+  {
+   "beat": "b134",
+   "scene": "s19_matin",
+   "t": 1017.93,
+   "kind": "unknown",
+   "id": "buckets",
+   "params": {
+    "dist": 0.8
+   },
+   "raw": "buckets clink far",
+   "have": null
+  },
+  {
+   "beat": "b143",
+   "scene": "s20_aicha",
+   "t": 1080.56,
+   "kind": "unknown",
+   "id": "door_open",
+   "params": {},
+   "raw": "door_open",
+   "have": null
+  },
+  {
+   "beat": "b143",
+   "scene": "s20_aicha",
+   "t": 1080.56,
+   "kind": "unknown",
+   "id": "greetings",
+   "params": {},
+   "raw": "greetings",
+   "have": null
+  },
+  {
+   "beat": "b153",
+   "scene": "s21_fievre",
+   "t": 1167.09,
+   "kind": "unknown",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat",
+   "have": null
+  },
+  {
+   "beat": "b153",
+   "scene": "s21_fievre",
+   "t": 1167.09,
+   "kind": "unknown",
+   "id": "tinnitus",
+   "params": {},
+   "raw": "tinnitus",
+   "have": null
+  },
+  {
+   "beat": "b155",
+   "scene": "s21_fievre",
+   "t": 1181.16,
+   "kind": "unknown",
+   "id": "giant",
+   "params": {},
+   "raw": "giant drum heartbeat",
+   "have": null
+  }
+ ]
+}
