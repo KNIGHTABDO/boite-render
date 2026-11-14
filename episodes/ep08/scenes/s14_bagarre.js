@@ -167,7 +167,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
   // Up the lane from the pair, so a foreground haik does not cover the grapple.
   zoubida: { at: [640, 660], face: [770, 760], costume: 'haik', seed: 7, talk: 0, lookMax: .8, look: 'father' },
   mohammed: { at: [560, 700], face: [770, 760], seed: 3, talk: 0, look: 'father' },
-  fatma: { at: [1220, 680], face: [770, 760], costume: 'haik', seed: 11, talk: 0, look: 'father' },
+  fatma: { at: [1190, 790], face: [770, 760], costume: 'haik', seed: 11, talk: 0, look: 'father' },
   // the procession (b097): they follow from the foreground, backs to us
   man1: { at: FOLLOW[0][1], seed: 21, talk: 0 }, woman1: { at: FOLLOW[1][1], seed: 25, talk: 0 },
   woman2: { at: FOLLOW[2][1], seed: 23, talk: 0 }, kid2: { at: FOLLOW[3][1], seed: 27, talk: 0 }, kid3: { at: FOLLOW[4][1], seed: 29, talk: 0 }, kid1: { at: FOLLOW[5][1], seed: 26, talk: 0 },
@@ -213,6 +213,9 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     }
     // the turban is lost on b096's phrase: from then on he is bareheaded (baked into the mesh, so swap the geometry)
     { const m = fa.mesh; if (m) { if (!m.userData.r15Orig && m.geometry !== m.userData.bareGeo) m.userData.r15Orig = m.geometry; if (t >= turbanAt) { bareHead(fa); if (!fa.cap) { const face = fa.S.face, cap = new THREE.Mesh(new THREE.SphereGeometry(.1, 14, 10, 0, Math.PI * 2, 0, Math.PI * .5), toon(0x5a2a1c)); cap.scale.set(1, .8, 1.05); cap.position.set(0, face.eyeL[1] - fa.S.head + .045, -.02); fa.B.head.add(cap); fa.cap = cap; } fa.cap.visible = true; } else { if (fa.cap) fa.cap.visible = false; if (m.userData.r15Orig) m.geometry = m.userData.r15Orig; } } }
+    // R31AQ: the dellal's white turban was read as the father's after the loss: from then on he wears a red fez (the insert hides the change)
+    if (!ma.fez) { const fez = new THREE.Mesh(new THREE.CylinderGeometry(.125, .155, .17, 16), toon(0xb0201a)); const face = ma.S.face; fez.position.set(0, face.eyeL[1] - ma.S.head + .1, -.02); ma.B.head.add(fez); ma.fez = fez; }
+    ma.fez.visible = t >= turbanAt;
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
       if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
@@ -223,7 +226,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     if (ft.group.visible) idleHaik(ft, t, 2.1);
     if (mo.group.visible) { const up = .5 + .5 * Math.sin(t * 2.2); PO.reach(mo, 'R', front(mo, 'head', .22 * k(mo), -.16 * k(mo), -.04 * k(mo) + .1 * up * k(mo)), { grip: .01 }); mo.B.neck.rotation.y += .2 * Math.sin(t * 1.7); }
     apart(zo, ft, 1.2);
-    for (const [a, c, sc] of [[zo, 0xd9a21b, 1], [ft, 0x9b4a2a, .98]]) {
+    for (const [a, c, sc] of [[zo, 0xd9a21b, 1], [ft, 0x9b4a2a, 1]]) {
       if (!a.shoeM || a.shoeM.parent !== a.group) { for (const sx of [-.075, .075]) { const m = new THREE.Mesh(new THREE.SphereGeometry(.05, 10, 8), toon(c)); m.scale.set(.8, .4, 1.4); m.position.set(sx, .02, .17); a.group.add(m); a.shoeM = m; } }
       a.group.scale.multiplyScalar(sc); a.group.updateMatrixWorld(true);
     }

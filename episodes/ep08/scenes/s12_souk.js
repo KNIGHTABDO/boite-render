@@ -44,14 +44,14 @@ const LEAD = { father: [950, 870], mohammed: [775, 868], zoubida: [640, 745], fa
 const ZT = [870, 835], FT = [1100, 768];   // R31AI: try-on spots >=250 px apart (haik ~200 px wide) so the two haiks never fuse   // R31C: was behind the dellal at b080 (Hydrogen: Fatma missing 44-52 s)
 const DELLAL = [1185, 878], EXIT = [1330, 590]   // R31C: exit up the right lane, not behind the haiks (b082 occlusion);
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
-  ['man1', [560, 800], [690, 720], 0, 1],
-  ['woman2', [1250, 790], [1170, 700], .25, 1],
+  ['man1', [560, 700], [690, 720], 0, 1],
+  ['woman2', [1250, 700], [1170, 690], .25, 1],
   ['woman1', [640, 700], [700, 660], .4, 0],
-  ['kid1', [700, 780], [790, 710], .1, 0],
+  ['kid1', [700, 700], [790, 690], .1, 0],
   ['kid2', [1250, 720], [1100, 650], .55, 0],
   ['kid3', [900, 630], [1160, 760], .7, 0],
   ['fqih', [880, 625], [640, 640], .2, 0],
-  ['rahma', [560, 740], [700, 680], .15, 0],
+  ['rahma', [560, 690], [700, 670], .15, 0],
 ];
 /** relaxed standing arms: elbows soft, hands a little forward of the thigh, never splayed (A-pose) */
 function loose(a, sides, t, seed = 0, out = .05) {
@@ -90,16 +90,16 @@ const la = checkedStage('souk_bijoux', {
     look: (t, st, S3) => t >= B(6)[0] && t < B(7)[0] ? st.br?.position : t >= f(8, .56) ? st.exitLook : t >= f(8, .3) ? S3.cam.position : t > B(5)[0] ? 'marchand' : null },
   mohammed: { ...WALK([790, 650], LEAD.mohammed, B(1)[0] + .1, B(1)[1] - .4), seed: 3, lookMax: .6,
     look: (t, st) => t >= f(8, .56) ? st.exitLook : t >= B(6)[0] ? (t < B(8)[0] && st.br?.visible ? st.br.position : 'father') : null },
-  zoubida: { ...WALK([800, 610], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
+  zoubida: { ...WALK([700, 610], LEAD.zoubida, B(1)[0] + .9, B(1)[1] + .4), costume: 'haik', seed: 7, lookMax: 1.35,
     look: (t, st) => t > B(7)[0] && t < f(7, .75) ? st.br?.position : t > B(5)[0] ? 'marchand' : null },
-  fatma: { costume:'haik', ...WALK([960, 610], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
+  fatma: { costume:'haik', ...WALK([830, 610], LEAD.fatma, B(1)[0] + 1.1, B(1)[1] + .5), seed: 11, lookMax: 1.35,
     look: (t, st, S3) => t >= f(7, .48) && t < B(8)[0] ? (S3?.cam?.position || null) : t > f(7, .4) && t < f(7, .8) ? st?.br?.position : t > B(7)[0] ? 'zoubida' : t > B(5)[0] ? 'marchand' : null },
   marchand: { at: DELLAL, face: LEAD.father, seed: 13, talk: 0, lookMax: .8,
     look: (t, st, S3) => t > f(8, .4) ? S3.cam.position : t > f(8, .28) ? st.exitLook : t > B(7)[0] && t < B(8)[0] ? 'zoubida' : t > B(6)[0] ? st.br?.position : [905, 900, 2.6],
     mutter: t => Math.max(win(5, .05, .9, t) * (.75 + .25 * Math.sin(t * 9)), win(8, .3, .85, t) * .6) },
   // b077: two extras by the left stalls, turned toward each other and a little to the lens, heads bowed over the jewel
-  man1: { at: [610, 800], face: [700, 830], seed: 21, lids: .55, look: jewelGaze, lookMax: .65, talk: 0 },
-  woman2: { at: [725, 815], face: [660, 830], seed: 23, lids: .6, look: jewelGaze, lookMax: .65, talk: 0 },
+  man1: { at: [610, 735], face: [700, 745], seed: 21, lids: .55, look: jewelGaze, lookMax: .65, talk: 0 },
+  woman2: { at: [700, 728], face: [650, 745], seed: 23, lids: .6, look: jewelGaze, lookMax: .65, talk: 0 },
   // Six walkers for the final crowd; no early path through the right stall.
   fqih: { at: [880, 625], face: [1000, 740], seed: 31, talk: 0 },
   woman1: { at: [920, 640], face: [800, 740], seed: 25, talk: 0 },
@@ -227,7 +227,7 @@ const la = checkedStage('souk_bijoux', {
     // The bracelets wait in his LEFT hand while his right gives an unmistakable two-finger signal.
     const sig = Math.max(win(7, .94, 1.08, t), win(8, 0, .29, t));
     if (sig > 0) {
-      PO.reach(fa, 'R', front(fa, 'chest', .32 * kf, .3 * kf, .16 * kf), { grip: .01 });
+      PO.reach(fa, 'R', front(fa, 'chest', .36 * kf, .38 * kf, .2 * kf), { grip: .01 });
       if (t >= B(8)[0] - .2) PO.reach(fa, 'L', front(fa, 'chest', .28 * kf, -.08 * kf, -.28 * kf), { grip: .01 });
       aim(fa.B.handR, PO.handPts(fa, 'R').end, at(fa, 'handR').add(V(0, .25, 0)));
       PO.fingers(fa, 'R', 1, { thumb: .8, each: [1, 0, 0, 1, 1], spread: .45 });
@@ -238,7 +238,7 @@ const la = checkedStage('souk_bijoux', {
     const tryOn = (a, w) => {
       if (w <= 0) return 0;
       const ka = k(a), p = ((t - B(7)[0]) * .95) % 1, sl = Math.sin(p * Math.PI);
-      const wrist = front(a, 'chest', .3 * ka, -.1 * ka, -.04 * ka);   // R31AI: hand at the haik opening (cloth surface ~.215), not poking out of the mesh
+      const wrist = front(a, 'chest', .3 * ka, -.1 * ka, -.12 * ka);   // R31AI: hand at the haik opening (cloth surface ~.215), not poking out of the mesh
       //   // R19J: wrist raised clear of the haik opening   // r16: well out in front of the haik cone so wrist + bracelets show
       PO.reach(a, 'L', front(a, 'root', .1 * ka, -.12 * ka, .1 * ka).lerp(wrist, w), { grip: .01 });
       const lw = at(a, 'handL'), fwd = lw.clone().sub(at(a, 'foreArmL')).normalize();
@@ -297,7 +297,7 @@ const la = checkedStage('souk_bijoux', {
 
 // b076 the reverse: the boy alone before the shop window, his body 3/4 to the lens, the head turned to the trays
 const re = checkedStage('souk_bijoux_rev', {
-  mohammed: { at: [1100, 900], face: [930, 800], seed: 3, lids: .5, look: [930, 800, .7], lookMax: .25, talk: 0 },
+  mohammed: { at: [1100, 900], face: [930, 800], seed: 3, lids: .5, look: [930, 800, .7], lookMax: .5, talk: 0 },
 }, {
   act(lt, t, S, st, S3) {
     const mo = st.A.mohammed, u = Math.max(0, t - B(2)[0]);
@@ -306,7 +306,7 @@ const re = checkedStage('souk_bijoux_rev', {
     if (closer) mo.group.position.set(closer.x, mo.group.position.y, closer.z);
     const cam = S3.cam.position, yCam = Math.atan2(cam.x - mo.group.position.x, cam.z - mo.group.position.z);
     const yC = Math.atan2(S3.floorAt(930, 800).x - mo.group.position.x, S3.floorAt(930, 800).z - mo.group.position.z), dd = Math.atan2(Math.sin(yC - yCam), Math.cos(yC - yCam));
-    mo.group.rotation.y = yCam + dd * .4;   // R31AI: 3/4 toward the counter
+    mo.group.rotation.y = yCam + dd * .65;   // R31AI: 3/4 toward the counter
     mo.group.updateMatrixWorld(true);
     mo.B.neck.rotation.x += .28; mo.B.head.rotation.x += .08; mo.B.spine.rotation.x -= .05;
     mo.B.head.rotation.y += .14 * Math.sin(u * 1.6); mo.B.spine.updateWorldMatrix(false, true);
@@ -323,7 +323,7 @@ export default beatScene(ID, {
     b079: { shot: 'la', size: 'M', on: 'marchand', z: 1.25, dx: -40, dy: -50 },   // raised hand and the one pair, family still in the lane
     b080: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.5, dx: 110, dy: 20, insAt: .72 },
     b081: { shot: 'la', size: 'M', on: 'zoubida', pt: ZT, z: 1.65, dx: 0, dy: 30,
-      cover: [{ f: .48, size: 'M', on: 'fatma', pt: FT, z: 1.6, dx: 0, dy: 55 }] },
+      cover: [{ f: .48, size: 'M', on: 'fatma', pt: FT, z: 1.3, dx: 0, dy: 55 }] },
   b082: { shot: 'la', size: 'M', on: 'father', pt: LEAD.father, z: 1.6, dx: 100, dy: 0,
     cover: [{ f: .3, size: 'W', on: 'father' }, { f: .52, size: 'M', on: 'marchand', z: 1.3, dy: -80 }], insAt: .6 },
   },

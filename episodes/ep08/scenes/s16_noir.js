@@ -17,7 +17,7 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
-const MO = { at: [1305, 650], face: [1425, 676], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, };
+const MO = { at: [1305, 650], face: [1425, 676], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, height: 1.16, };   // R31AQ: cast 1.1 read doll-like on the far divan
 const ZO = { at: [1050, 748], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: 0, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
@@ -42,7 +42,7 @@ function mourn(zo, t) {
     }   // R31AM: face buried in both palms (palms in front of the scarf, elbows forward), head bowed
     else {   // R31AM: after b103 she lowers both hands into her lap, head still bowed
       B.neck.rotation.x += .17 + .02 * sob; zo.group.updateMatrixWorld(true);
-      for (const s of ['L', 'R']) { const sg = s === 'L' ? 1 : -1; PO.reach(zo, s, front(zo, 'root', .2 * k, -.1 * k, -sg * .17 * k), { grip: .3, pole: [sg * 2.5, -.6, .3] }); PO.fingers(zo, s, .3, { thumb: .2, spread: .1 }); }
+      for (const s of ['L', 'R']) { const sg = s === 'L' ? 1 : -1; PO.reach(zo, s, front(zo, 'root', .3 * k, -.06 * k, -sg * .14 * k), { grip: .3, pole: [sg * .5, -1, -.1] }); PO.fingers(zo, s, .25, { thumb: .15, spread: .08 });  /* R31AQ: hands on the thighs, elbows down */ }
     }
   }
 }
