@@ -63,7 +63,7 @@ function idleHaik(a, t, ph) {
 }
 
 const mu = soukCast(checkedStage('souk_mur', {
-  father: { at: [800, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [720, 630], t0: B(0)[0] + .2, t1: B(0)[1] - .15 } },
+  father: { at: [800, 850], face: [700, 900], seed: 5, talk: 0, walk: { to: [740, 680], t0: B(0)[0] + .2, t1: B(1)[0] - .3 } },
   mohammed: { at: [700, 900], face: [680, 850], seed: 3, talk: 0, lookMax: .15, look: () => null },
   zoubida: { at: [400, 900], face: [800, 1000], costume: 'haik', seed: 7, talk: 0, lookMax: .9, lids: t => .35 * win(3, 0, 1, t),
     look: t => t > B(3)[0] && t < B(4)[0] ? [560, 980, 0] : t < B(1)[0] ? 'father' : null },
@@ -102,7 +102,7 @@ const mu = soukCast(checkedStage('souk_mur', {
     }
     // b090 he rises from setting the boy down (bent at first), then strides away and is swallowed by the passage
     const up = sm(0, B(0)[0] + .2, t);
-    if (t >= B(0)[0] + .2 && t < B(0)[1]) stride(fa, t, B(0)[0] + .2, 2.6, 1, true);
+    if (t >= B(0)[0] + .2 && t < B(1)[0]) { stride(fa, t, B(0)[0] + .2, 1.9, .7, false); fa.B.upperArmL.rotation.z += .32; fa.B.upperArmR.rotation.z -= .32; fa.B.upperArmL.rotation.x *= .6; fa.B.upperArmR.rotation.x *= .6; fa.B.spine.updateWorldMatrix(false, true); }
     fa.B.spine.rotation.x += .55 * (1 - up); fa.B.spine.updateWorldMatrix(false, true);
     if (up < 1) reachClamp(fa, 'R', at(mo, 'neck').lerp(front(fa, 'root', .2 * kf, .2 * kf, .2 * kf), up), { grip: .025, pole: [-.42, .12, .22] });
     fa.group.visible = t < B(1)[0];
@@ -212,11 +212,11 @@ const fi = soukCast(checkedStage('souk_bijoux', {
       st.G = { _wrapped: true, apply(tt) { inner.apply(tt); { faceCam(fa, S3.cam, sm(c0, c1, tt) > .25 ? 1.68 : 1.55); faceCam(ma, S3.cam, 1.55); } } };
     }
     // the turban is lost on b096's phrase: from then on he is bareheaded (baked into the mesh, so swap the geometry)
-    { const m = fa.mesh; if (m) { if (!m.userData.r15Orig && m.geometry !== m.userData.bareGeo) m.userData.r15Orig = m.geometry; if (t >= turbanAt) bareHead(fa); else if (m.userData.r15Orig) m.geometry = m.userData.r15Orig; } }
+    { const m = fa.mesh; if (m) { if (!m.userData.r15Orig && m.geometry !== m.userData.bareGeo) m.userData.r15Orig = m.geometry; if (t >= turbanAt) { bareHead(fa); if (!fa.cap) { const face = fa.S.face, cap = new THREE.Mesh(new THREE.SphereGeometry(.1, 14, 10, 0, Math.PI * 2, 0, Math.PI * .5), toon(0x5a2a1c)); cap.scale.set(1, .8, 1.05); cap.position.set(0, face.eyeL[1] - fa.S.head + .045, -.02); fa.B.head.add(cap); fa.cap = cap; } fa.cap.visible = true; } else { if (fa.cap) fa.cap.visible = false; if (m.userData.r15Orig) m.geometry = m.userData.r15Orig; } } }
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
       if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
-      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .17 * k(o), (s === 'L' ? .1 : -.1) * k(o), -.13 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .0, .3] });
+      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .14 * k(o), (s === 'L' ? .15 : -.15) * k(o), -.07 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .0, .3] });
       PO.fingers(a, s, .95, { thumb: .85 });
     }
     st.actcheck.exposed = { ...(st.actcheck.exposed || {}), zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'], fatma: ['handL', 'handR', 'foreArmL', 'foreArmR'] };
@@ -238,11 +238,11 @@ const fi = soukCast(checkedStage('souk_bijoux', {
         const tube=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),28,.022,8),toon(0xf0eadc));tube.scale.y=.6;cloth.add(tube);}
       st.tb = S3.prop(cloth, 0, 0, 0);
       // Head-local marks follow the gaze applied after act(), including the dellal's turned cheek.
-      st.bl = new THREE.Mesh(new THREE.SphereGeometry(.06, 12, 8), toon(0xb01a12));
+      st.bl = new THREE.Mesh(new THREE.SphereGeometry(.035, 12, 8), new THREE.MeshBasicMaterial({ color: 0xb01a12, transparent: true, opacity: .6, depthWrite: false }));
       const face = ma.S.face;
-      st.bl.position.set(face.mouth[0] + .065, face.mouth[1] - ma.S.head + .025, face.mouth[2]);
+      st.bl.position.set(face.mouth[0] + .065, face.mouth[1] - ma.S.head + .01, face.mouth[2]);
       st.bl.scale.set(.65, 1, .3); ma.B.head.add(st.bl);
-      const drip = new THREE.Mesh(new THREE.SphereGeometry(.025, 10, 8), toon(0x8f120c)); drip.position.set(.01, -.06, .01); drip.scale.set(.5, 1.6, .4); st.bl.add(drip);
+      const drip = new THREE.Mesh(new THREE.SphereGeometry(.012, 10, 8), new THREE.MeshBasicMaterial({ color: 0x8f120c, transparent: true, opacity: .6, depthWrite: false })); drip.position.set(.01, -.06, .01); drip.scale.set(.5, 1.6, .4); st.bl.add(drip);
       st.strain = [fa, ma].map(a => {
         const g = new THREE.Group(), face = a.S.face, local = p => V(p[0], p[1] - a.S.head, p[2] + .008);
         for (const eye of [face.eyeL, face.eyeR]) {
@@ -252,9 +252,8 @@ const fi = soukCast(checkedStage('souk_bijoux', {
           tint.position.copy(local(eye)).add(V(0, 0, .004)); g.add(tint);
         }
         for (let j = 0; j < 3; j++) {
-          const foam = new THREE.Mesh(new THREE.SphereGeometry(.032 - j * .005, 10, 8), toon(0xf6f2e7));
-          foam.position.copy(local(face.mouth)).add(V(.03 + j * .008, -.005 - j * .014, .008)); g.add(foam);
-          const foam2 = foam.clone(); foam2.position.x = local(face.mouth).x - (.03 + j * .008); g.add(foam2);
+          const foam = new THREE.Mesh(new THREE.SphereGeometry(.011 - j * .002, 8, 6), toon(0xf6f2e7));
+          foam.position.copy(local(face.mouth)).add(V(.04 + j * .009, -.004 - j * .008, .006)); g.add(foam);
         }
         a.B.head.add(g); return g;
       });
@@ -281,7 +280,7 @@ const scene = beatScene(ID, {
   shots: { mu, fi },
   plan: {
     b090: { shot: 'mu', size: 'W', on: 'mohammed' },   // the boy in frame, the father striding off up the passage
-    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.5, dx: -20, dy: 0 },
+    b093: { shot: 'mu', size: 'M', on: 'zoubida', z: 1.12, zTo: 1.3, push: 3, dx: -20, dy: 60 },
     b094: { shot: 'mu', size: 'CU', on: 'fatma', z: 3.2, dx: 0, dy: 20 },
     b095: { shot: 'fi', size: 'M', on: 'father', z: 1.7, pt: [950, 790] },
     b096: { shot: 'fi', size: 'CU', on: 'marchand', z: 3.4, dx: -70, dy: 0, pt: [830, 760] },

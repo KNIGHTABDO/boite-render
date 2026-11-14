@@ -18,7 +18,7 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 
 // Absolute support heights: autostage places the group on tread 2, but PO.stool solves in WORLD metres.
 // Shorten the ankle reach for this child's legs: .24 gives ~90° knees and level thighs; .087 puts the soles on .40.
-export const SEAT = { tread: 3, back: .28, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
+export const SEAT = { tread: 3, back: .35, face: 'down', yaw: .35, pose: 'step', hands: 'knees',
   o: { seat: .6, floor: .384, fz: .2, ankle: .087, spread: .12, lean: .18 }, seed: 3 };
 const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: .8,
   mutter: t => 3.5 * sm(B(9)[0], B(9)[0] + .25, t),   // R29: the face driver scales by .25-.5, so ~3.5 for a visibly open mouth
@@ -35,15 +35,15 @@ const esc = staged('escalier', { mohammed: { ...SEAT, talk: 0, lookMax: .8,
     castScale(mo);
     // R24C: back .28, seat -.075, reach 1.0 (pelvis lower/further back, feet not overstretched). R23C: pelvis moved back so the seat rests behind tread 3's nosing; longer reach puts soles on tread 2.
     // Stool planted the knees on tread 3 and left the pelvis at tread 4. Sit the capsule on tread 3.
-    sitStep(mo, SEAT.o.seat - .075, SEAT.o.floor, 1.0);
+    sitStep(mo, SEAT.o.seat - .1, SEAT.o.floor, 1.0);
     const think = win(0, .4, 1.1, t), chin = win(1, .05, .95, t);
     // Hold the deflated pose through b050's tail and the pause before b051.
     const drop = sm(B(6)[0], B(6)[0] + .65, t) * (1 - sm(B(7)[0], B(7)[0] + .6, t));
     const fist = sm(B(7)[0] - .35, B(7)[0] + .2, t)   // R27: fists already closed at the start of b051 (Hydrogen 80.7)
       * (1 - sm(B(8)[0], B(8)[0] + .4, t));
     const dream = sm(B(9)[0] - .35, B(9)[0] + .1, t), settle = sm(0, 2.4, t);
-    b.spine.rotation.x += .07 * settle + .08 * think + .16 * drop + .1 * fist;
-    b.chest.rotation.x += .06 * settle + .08 * think + .2 * drop + .12 * fist;
+    b.spine.rotation.x += .03 * settle + .05 * think + .12 * drop + .08 * fist;   // R31AK: less forward pitch
+    b.chest.rotation.x += .03 * settle + .05 * think + .15 * drop + .1 * fist;
     b.neck.rotation.x += .18 * think - .42 * chin + .18 * drop;
     b.head.rotation.x += .1 * think - .2 * chin + .12 * drop;
     b.head.rotation.z += .06 * think;
@@ -120,10 +120,14 @@ function pinKneesOut(a, curl) {
   const lat = IK.wpos(B.shinL).sub(IK.wpos(B.shinR)); lat.y = 0; lat.normalize();
   for (const [side, sign] of [['L', 1], ['R', -1]]) {
     const kn = IK.wpos(B['shin' + side]), hip = IK.wpos(B.root);
-    const tgt = kn.clone();
-    tgt.y = kn.y + (.09 + .01 * curl) * k;   // R29: clearly above the robe surface
-    tgt.addScaledVector(fwd, .07 * k).addScaledVector(lat, sign * (.035 + .06 * curl) * k);   // R27: fists sit clearly on each knee, apart
-    reachClamp(a, side, tgt, { grip: 0, pole: [sign * .45, .08, .15] });
+    // R31AK: Hydrogen saw both hands clasped in the lap: the knee was out of reach and reachClamp pulled the hand back.
+    // Aim at the top of the thigh just behind the kneecap (clearly on the leg), further apart, and allow nearly full arm length.
+    const tgt = hip.clone().lerp(kn, .74);
+    tgt.y = kn.y + (.09 + .01 * curl) * k;
+    tgt.addScaledVector(lat, sign * (.075 + .05 * curl) * k);
+    const sh = IK.wpos(B['upperArm' + side]), len = sh.distanceTo(IK.wpos(B['foreArm' + side])) + IK.wpos(B['foreArm' + side]).distanceTo(IK.wpos(B['hand' + side]));
+    const dd = tgt.clone().sub(sh); if (dd.length() > len * .97) tgt.copy(sh).addScaledVector(dd.normalize(), len * .97);
+    PO.reach(a, side, tgt, { grip: 0, pole: [sign * .45, .08, .15] });
     PO.fingers(a, side, .12 + .88 * Math.min(1, curl * 1.15), { thumb: .15 + .85 * curl });
     for (const n of ['shoulder', 'clavicle']) if (B[n + side]) B[n + side].rotation.z += sign * .05 * curl;
   }
