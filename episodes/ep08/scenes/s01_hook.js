@@ -44,7 +44,7 @@ const pa = staged('patio_matin', {
   view: (lt, u, t) => {
     if (t < INS[0] || t >= INS[1] || !pa.hp) return null;
     const e = sm(INS[0], INS[1], t);
-    return [pa.hp[0], pa.hp[1] - 30 + 4 * e - 45 * sm(3, 5.5, t), 7.4 + .4 * e - .5 * sm(3, 5.5, t)];   // R31AH: headroom for the turban late in the shot   // tight: the characters are small in the plate, so the palm needs a high zoom
+    return [pa.hp[0], pa.hp[1] - 30 + 4 * e - 22 * sm(3, 5.5, t), 7.4 + .4 * e - .25 * sm(3, 5.5, t)];   // R31AM: half the R31AH shift   // R31AH: headroom for the turban late in the shot   // tight: the characters are small in the plate, so the palm needs a high zoom
   },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, zo = st.A.zoubida, k = fa.group.scale.y / 1.6;
@@ -70,12 +70,12 @@ const pa = staged('patio_matin', {
       const palmN = () => { fa.group.updateMatrixWorld(true); const hp = W('RightHand'), al = W('RightHandIndex1').sub(hp).normalize(), tt = W('RightHandThumb1').sub(hp); tt.addScaledVector(al, -tt.dot(al)); return V(0, 0, 0).crossVectors(tt, al).normalize(); };
       if (Bn.RightHand && Bn.RightHandIndex1) for (let i = 0; i < 6; i++) {
         const ax = W('RightHand').sub(Bn.foreArmR.getWorldPosition(V(0, 0, 0))).normalize(), n = palmN();
-        const a1 = n.clone().addScaledVector(ax, -n.dot(ax)).normalize(), up = (u0 => u0.addScaledVector(ax, -u0.dot(ax)).normalize())(V(0, 1, 0).addScaledVector(fa.camDir ||= S3.cam.position.clone().sub(fa.group.position).setY(0).normalize(), .45));
+        const a1 = n.clone().addScaledVector(ax, -n.dot(ax)).normalize(), up = (u0 => u0.addScaledVector(ax, -u0.dot(ax)).normalize())(V(0, 1, 0).addScaledVector(fa.camDir ||= S3.cam.position.clone().sub(fa.group.position).setY(0).normalize(), .9));
         const ang = Math.atan2(V(0, 0, 0).crossVectors(a1, up).dot(ax), a1.dot(up)), b = Bn.foreArmR, q0 = b.quaternion.clone();
         const turn = g => { const pq = new THREE.Quaternion(), bq = new THREE.Quaternion(); b.getWorldQuaternion(bq); b.parent.getWorldQuaternion(pq); b.quaternion.copy(pq.invert().multiply(new THREE.Quaternion().setFromAxisAngle(ax, g).multiply(bq))); b.updateWorldMatrix(false, true); };
         const before = n.y; turn(ang); if (palmN().y < before) { b.quaternion.copy(q0); turn(-ang); }
       }
-      PO.fingers(fa, 'R', 0, { thumb: 0, spread: .2 });   // R25A r26: open flat palm, fingers extended, slight cup
+      PO.fingers(fa, 'R', -.12, { thumb: -.1, spread: .3 });   // R31AM: fully extended, flat open palm (was reading as a fist); R25A r26: open flat palm, fingers extended, slight cup
       st.offer = p2.clone().add(V(0, .03, 0)); if (Bn.RightHandIndex1) st.palmN = palmN();
     }
     {   // r18: bangles are placed LAST (after every reach/torso move) from the hand's palm point, so they ride the hand; gate checks contact

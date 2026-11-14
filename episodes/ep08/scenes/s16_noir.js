@@ -17,7 +17,7 @@ const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];   // right divan, clockwise from back-left
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 // Head on the back cushions, feet further down the same cloth. Zoubida sits on the left mattress.
-const MO = { at: [1325, 636], face: [1430, 672], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, };
+const MO = { at: [1305, 650], face: [1425, 676], pose: 'lie', o: { top: TOP, turn: .12, headTurn: .08, hands: 'belly', pillow: .12, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0, };
 const ZO = { at: [1050, 748], face: 'cam', yaw: .25, pose: 'kneel', o: { grounded: true, seat: 0, lean: .28, spread: .07, hands: false, avoid: CHEST },
   seed: 7, hands: false, talk: 0, lids: .96 };
 function mourn(zo, t) {
@@ -32,19 +32,16 @@ function mourn(zo, t) {
   {   // R31A r7: head bows into the hands. b103 = both palms at the head, targets forward of the face, elbows high and out
     const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
     B.chest.rotation.x -= .0;   // net chest pitch already ~ -.05 above
-    B.neck.rotation.x += (t < t1 ? .14 : .17) + .02 * sob; zo.group.updateMatrixWorld(true);
-    const fwd = two ? .03 : .12;
-    for (const s of two ? ['L', 'R'] : ['R']) {
-      const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * (s === 'R' ? .048 : .055), s === 'R' ? .045 : .065, fwd)), wrist = skin();
-      for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: s === 'R' ? [sg * 4, 3.6, -.5] : [sg * 2.8, 1.3, .1] }); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
-      aim(B['hand' + s], PO.handPts(zo, s).end, B.head.localToWorld(V(sg * .03, .2, fwd - .02)));
-      PO.fingers(zo, s, .1, { thumb: .04, spread: .1 });
+    if (two) cradleFace(zo, { mode: 'eyes', bow: .22 + .02 * sob, out: .035 });   // R31AM: face buried in both palms (palms in front of the scarf, elbows forward), head bowed
+    else {   // R31AM: after b103 she lowers both hands into her lap, head still bowed
+      B.neck.rotation.x += .17 + .02 * sob; zo.group.updateMatrixWorld(true);
+      for (const s of ['L', 'R']) { const sg = s === 'L' ? 1 : -1; PO.reach(zo, s, front(zo, 'root', .15 * k, -.15 * k, -sg * .09 * k), { grip: .3, pole: [sg * 1.5, -1, .2] }); PO.fingers(zo, s, .3, { thumb: .2, spread: .1 }); }
     }
-    if (!two) { PO.reach(zo, 'L', front(zo, 'root', .2 * k, -.14 * k, -.02 * k), { grip: .3, pole: [1.5, -1, 0] }); PO.fingers(zo, 'L', .3, { thumb: .2, spread: .1 }); }
   }
 }
 function tears(lt, u, t, S, st, S3) {   // over() hook signature (lt, u, t, S, st, S3)
   const zo = st.A.zoubida, c = K.c;
+  if (t < B(1)[0]) return;   // R31AM: b103 face is inside the palms
   c.save(); c.strokeStyle = 'rgba(180,212,230,.32)'; c.lineWidth = 1.1; c.lineCap = 'round';
   for (const sign of [-1, 1]) {
     const pts = [[sign * .045, .10, .17], [sign * .043, .035, .175], [sign * .025, -.025, .15]].map(p => S3.project(at(zo, 'head', p)).slice(0, 2));
@@ -61,7 +58,7 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
     const mo = st.A.mohammed, lieT = B(2)[0] + .32 * (B(2)[1] - B(2)[0]), here = t >= lieT - .05;
     mo.group.visible = here;
     if (st.pillow) st.pillow.visible = here;
-    lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .12, tuck: .22, headTurn: .08 });   // r15: flat on the cloth, full cast scale
+    lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .12, tuck: .22, headTurn: .08, sink: 0 });   // r15: flat on the cloth, full cast scale
     pillowUnder(S3, st, mo, { top: TOP, h: .12 }); st.pillow.visible = here;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.6); mo.B.chest.updateWorldMatrix(false, true);
   },
@@ -129,7 +126,7 @@ export default beatScene(ID, {
   plan: {
     b103: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.15, dy: -30 },
     b104: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.0, dy: 10 },
-    b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 2.3, dy: -55,
+    b105: { shot: 'cry', size: 'M', on: 'mohammed', z: 1.95, dy: -35,
       segs: [[.32, 'ch']], cover: [{ f: .32, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: 10, dy: -80 }] },
     b106: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.28, dx: 70, dy: -30 },
     b107: { shot: 'win' },
