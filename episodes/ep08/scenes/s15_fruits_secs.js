@@ -48,15 +48,17 @@ const mu = checkedStage('souk_mur', {
     st.G = gaze;
     st.actcheck={exposed:{zoubida:['handL','handR','foreArmL','foreArmR']}};
     const { zoubida: zo, mohammed: mo, fatma: ft } = st.A;
+    zo.haikSlim = true;   // R31AS: draped profile (shoulders, hem) instead of the rigid bell
     for (const a of [zo, mo, ft]) { castScale(a); if (a.actMark?.costume === 'haik') sealHaik(a); }
     apart(mo, zo, .48); apart(mo, ft, .48);
     const kz = k(zo), kt = k(ft);
     for (const [a, ph, b] of [[zo, 0, .16], [ft, 1.9, .2], [mo, .8, .06]]) {
       const s = sob(t, ph);
-      a.B.spine.rotation.x += b + .08 * s; a.B.chest.rotation.x += .06 + .12 * s;
+      a.B.spine.rotation.x += b + .13 * s; a.B.chest.rotation.x += .06 + .18 * s;
+      a.B.head.rotation.y += .05 * Math.sin(t * .8 + ph);
       a.B.chest.rotation.z += .05 * Math.sin(t * 6.5 + ph);
-      if (a.B.LeftShoulder) a.B.LeftShoulder.rotation.z += .045 * s;
-      if (a.B.RightShoulder) a.B.RightShoulder.rotation.z -= .045 * s;
+      if (a.B.LeftShoulder) a.B.LeftShoulder.rotation.z += .08 * s;
+      if (a.B.RightShoulder) a.B.RightShoulder.rotation.z -= .08 * s;
     }
     zo.B.neck.rotation.set(.035, 0, 0); zo.B.head.rotation.set(.035, 0, 0);
     ft.B.neck.rotation.set(.5, 0, .04 * Math.sin(t * 1.1)); ft.B.head.rotation.set(.42 + .04 * sob(t, 1.9), .05 * Math.sin(t * .9), 0);
@@ -69,7 +71,7 @@ const mu = checkedStage('souk_mur', {
     haikTuck(zo); haikTuck(ft);
     // The torso capsule is a sphere around the neck: a palm on the mouth lands inside it.
     // The hand sits on the right cheek, clear of that sphere, still up at the veil.
-    const mouth = at(zo, 'head').add(V(0, -.005 * kz, 0)).addScaledVector(dirW(zo, -1, 0, 0), .04 * kz).addScaledVector(dirW(zo, 0, 0, 1), .27 * kz);
+    const mouth = at(zo, 'head').add(V(0, -.005 * kz, 0)).addScaledVector(dirW(zo, -1, 0, 0), .04 * kz).addScaledVector(dirW(zo, 0, 0, 1), .30 * kz);
     st.mouthReach = reachRatio(zo, 'R', mouth, .01);
     PO.reach(zo, 'R', mouth, { grip: .01, pole: [-.6, .0, .3] });
     PO.fingers(zo, 'R', .08, { spread: .12 }); PO.palmTo(zo, 'R', 1, dirW(zo, 0, 0, -1));
@@ -98,8 +100,8 @@ const fr = checkedStage('souk_mur', {
   // Foreground floor marks put the painted counter at waist height, rather than under their chins.
   man1: { at: [1420, 900], face: 'woman1', seed: 21, talk: 0, look: 'woman1', lookMax: .25 },
   woman1: { at: [1220, 1040], face: 'man1', seed: 25, talk: 0, look: 'man1', lookMax: .3 },
-  kid2: { at: [540, 745], seed: 27, talk: 0, walk: { to: [140, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
-  kid3: { at: [740, 730], seed: 29, talk: 0, walk: { to: [280, 1070], t0: B(2)[0], t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
+  kid2: { at: [450, 745], seed: 27, talk: 0, walk: { to: [140, 1010], t0: B(2)[0] - .3, t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5) },
+  kid3: { at: [600, 715], seed: 29, talk: 0, walk: { to: [280, 1070], t0: B(2)[0], t1: B(2)[0] + 13.2 }, mutter: t => 1.7 + .5 * Math.sin(t * 5 + 1) },
 }, {
   light: { shadow: .4, area: 6 },
   traffic:['kid2','kid3','man1','woman1'],
@@ -107,6 +109,7 @@ const fr = checkedStage('souk_mur', {
     st.G = gaze;
     st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
     const { zoubida: zo, mohammed: mo, fatma: ft, man1: m1, woman1: w1, kid2: k2, kid3: k3 } = st.A;
+    zo.haikSlim = true;   // R31AS
     for (const a of [zo, mo, ft, m1, w1, k2, k3]) { castScale(a); if (a.actMark?.costume === 'haik') sealHaik(a); }
     zo.group.scale.setScalar(1.6 * 1.04); sync(zo);   // haik sheet reads shorter than Fatma's rig: match visually
     const kz = k(zo), k1 = k(m1);
@@ -137,9 +140,11 @@ const fr = checkedStage('souk_mur', {
     }
     const pan = ((pan0 && t > B(2)[0] - .5) ? pan0 : null) || (at(m1, 'root').add(V(.5 * k1, .62 * k1, -.3 * k1))).clone().add(V(0, .03 * Math.sin(t * 2.6) * k1, 0));
     { const { sh, len } = arm(m1, 'R'), d = pan.clone().sub(sh); const dl = Math.min(len * .96, Math.max(len * (t > B(2)[0] - .5 ? .72 : .4), d.length())); pan.copy(sh).addScaledVector(d.normalize(), dl); }
-    PO.reach(m1, 'R', pan, { grip: .02, pole: [-1, .1, .05] });
-    PO.reach(m1, 'L', front(m1, 'root', .40 * k1, -.2 * k1, (.34 + .05 * Math.sin(t * 2.6)) * k1), { grip: .015, pole: [.6, -.05, .18] });
-    PO.fingers(m1, 'R', .5);
+    // R31AS: both hands hold a small sack at waist height (no raised hand at the beard).
+    const bob = .015 * Math.sin(t * 2.6);
+    PO.reach(m1, 'R', front(m1, 'root', .36 * k1, .11 * k1, (.16 + bob) * k1), { grip: .02, pole: [-.6, -.1, .1] });
+    PO.reach(m1, 'L', front(m1, 'root', .36 * k1, -.11 * k1, (.16 + bob) * k1), { grip: .02, pole: [.6, -.1, .1] });
+    PO.fingers(m1, 'R', .7); PO.fingers(m1, 'L', .7);
     // urchins: plain arm swing, opposite phases
     for (const [a, ph] of [[k2, 0], [k3, .4]]) if (a.group.visible) for (const s of ['L', 'R']) {
       const sw = .2 * Math.sin(t * 5.5 + ph + (s === 'L' ? 0 : Math.PI));
@@ -154,7 +159,7 @@ const fr = checkedStage('souk_mur', {
     if (cling > 0) {
       const zr = at(zo, 'root'), mr = at(mo, 'root'), d = mr.clone().sub(zr).setY(0).normalize();
       // The boy steps beside the hip before reaching; keep his shoulder within his measured arm span.
-      const handTarget = zr.clone().addScaledVector(d, .27 * kz);
+      const handTarget = zr.clone().addScaledVector(d, .31 * kz);   // R31AS: slim mantle surface/edge, hand on it not inside
       handTarget.y = zr.y - .0 * kz;
       const shoulder=at(mo,'upperArmL'),len=arm(mo,'L').len,offset=handTarget.clone().sub(shoulder),dist=offset.length();
       if(dist>len*.90){offset.y=0;mo.group.position.addScaledVector(offset.normalize(),(dist-len*.90)*cling);sync(mo);}
@@ -168,7 +173,7 @@ const fr = checkedStage('souk_mur', {
     // b102: one slow dip and a lasting slump. Keep neck pitch below .1, including the capped gaze after act().
     const defeat = sm(B(4)[0], f(4, .75), t), dip = Math.sin(Math.PI * sm(B(4)[0], B(4)[1], t));
     zo.B.neck.rotation.x = .06 * defeat;
-    zo.B.head.rotation.set(.16 * defeat + .1 * dip, 0, 0);
+    zo.B.head.rotation.set(.1 * defeat + .07 * dip, 0, 0);   // R31AS: less pitch so the veil stays clear of the hood rim
     zo.B.chest.rotation.x += .3 * defeat + .15 * dip; zo.B.spine.rotation.x += .16 * defeat;
     zo.B.chest.rotation.z += .07 * defeat * Math.sin(t * .9);
     zo.B.chest.scale.set(1 - .1 * defeat, 1 - .06 * defeat, 1 - .06 * defeat); zo.group.position.y -= .07 * defeat * kz;
