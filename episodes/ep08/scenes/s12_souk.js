@@ -147,7 +147,7 @@ const la = checkedStage('souk_bijoux', {
     if (t >= f(7, .45) && t < B(8)[0]) ma.group.visible = false;   // R28: clean single on Fatma, the dellal re-enters on the b082 cut
     {   // relaxed arms for everyone whose hands are not working (the later reaches override these)
       const walking = t > B(1)[0] + .1 && t < B(1)[1] + .5;
-      if (!walking) loose(mo, ['L', 'R'], t, 3);
+      if (!walking) { relaxArm(mo, 'L', 'free'); relaxArm(mo, 'R', 'belt'); }   // R31AI
       if (t > B(1)[1] - .3 && (t < B(6)[0] - .05 || (t >= B(7)[0] && t < f(7, .92)))) loose(fa, ['L', 'R'], t, 5);
       if (ma.group.visible && t < f(8, .35)) relaxArm(ma, 'L', 'belt');
       if (ma.group.visible && t > f(6, .52) && t < f(8, .1)) relaxArm(ma, 'R', 'free');
