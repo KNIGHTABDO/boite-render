@@ -89,7 +89,7 @@ const ch1 = staged('chambre_jour', {
     const fh = () => { const F = mo.S.face, ey = (F.eyeL[1] - mo.S.head), ez = F.eyeL[2]; return mo.B.head.localToWorld(V(0, ey + .075, ez * .55 + .01)); };
     const outw = at(fa, 'upperArm' + side).sub(at(fa, 'chest')).setY(0).normalize(), rest = at(fa, 'thigh' + side).add(V(0, .1 * kf, .03)).addScaledVector(outw, .12 * kf).add(front(fa, 'root', .12 * kf).sub(at(fa, 'root')));
     // the other hand rests on its own thigh, with a little drift, so no arm ever sticks out stiff
-    const poleO = other === 'L' ? [.5, .3, .6] : [-.5, .3, .6];   // R31AJ: elbow forward/out (handTo's pole put it BEHIND the torso)
+    const oo = at(fa, 'upperArm' + other).sub(at(fa, 'chest')).setY(0).normalize(), poleO = [fwdv.x * .8 + oo.x * .4, .2, fwdv.z * .8 + oo.z * .4];   // R31AJ: elbow forward/out (handTo's pole put it BEHIND the torso)
     const lap = () => { const rO = at(fa, 'thigh' + other).add(V(0, .1 * kf, .03)).addScaledVector(at(fa, 'upperArm' + other).sub(at(fa, 'chest')).setY(0).normalize(), .1 * kf).add(front(fa, 'root', .12 * kf).sub(at(fa, 'root')));
       const sh = at(fa, 'upperArm' + other), len = sh.distanceTo(at(fa, 'foreArm' + other)) + at(fa, 'foreArm' + other).distanceTo(at(fa, 'hand' + other)), d = rO.clone().sub(sh);
       if (d.length() > len * .97) rO.copy(sh).addScaledVector(d.normalize(), len * .97);
