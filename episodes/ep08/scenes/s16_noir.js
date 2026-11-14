@@ -32,10 +32,10 @@ function mourn(zo, t) {
   {   // R31A r7: head bows into the hands. b103 = both palms at the head, targets forward of the face, elbows high and out
     const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
     B.chest.rotation.x -= .0;   // net chest pitch already ~ -.05 above
-    B.neck.rotation.x += (t < t1 ? .21 : .17) + .02 * sob; zo.group.updateMatrixWorld(true);
+    B.neck.rotation.x += (t < t1 ? .14 : .17) + .02 * sob; zo.group.updateMatrixWorld(true);
     const fwd = two ? .03 : .12;
     for (const s of two ? ['L', 'R'] : ['R']) {
-      const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * (s === 'R' ? .048 : .055), s === 'R' ? .07 : .065, s === 'R' && two ? .012 : fwd)), wrist = skin();
+      const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * (s === 'R' ? .048 : .055), s === 'R' ? .045 : .065, fwd)), wrist = skin();
       for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: s === 'R' ? [sg * 3.4, 2.2, -.2] : [sg * 2.8, 1.3, .1] }); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
       aim(B['hand' + s], PO.handPts(zo, s).end, B.head.localToWorld(V(sg * .03, .2, fwd - .02)));
       PO.fingers(zo, s, .1, { thumb: .04, spread: .1 });
