@@ -73,7 +73,7 @@ const pe = staged('chambre_penombre', {
     if (t < B(4)[0] - .05) st.fy0 = fa.group.rotation.y;
     else if (st.fy0 != null) {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
-      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .45; fa.group.updateMatrixWorld(true);
+      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .3; fa.group.updateMatrixWorld(true);
     }
     lap(zo); veilDown(zo);
     if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .55; h.rotation.y += .02; if (!(t > B(4)[0])) n.rotation.x += .2; h.updateWorldMatrix(false, true); }; }
