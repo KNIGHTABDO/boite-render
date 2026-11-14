@@ -61,6 +61,46 @@ const ASSETS = {
     text(g, 'صندوق الباك', 1000, 350, 'bold 72px Amiri', CREAM);
     text(g, 'LES ŒUVRES DU BAC RÉGIONAL, EN IMAGES', 1000, 425, '32px "IM Fell English"', '#d8c9a8');
   },
+  // REBRAND 2026-11-13: صندوق الحكايات · Sandouq Lhkayat
+  async banner2(g) {
+    cv.width = 2560; cv.height = 1440;
+    const f = await frame(8); cover(g, f, 0, 70, 1920, 940, 2560, 1440 * 1.0);
+    g.fillStyle = 'rgba(8,12,34,.45)'; g.fillRect(0, 0, 2560, 1440);
+    K.setCtx(g); g.fillStyle = K.radial(1280, 720, 200, 1100, 'rgba(8,12,34,.1)', 'rgba(8,12,34,.75)'); g.fillRect(0, 0, 2560, 1440);
+    mark(g, 700, 720, 175);
+    text(g, 'صندوق الحكايات', 1380, 700, 'bold 130px Amiri', GOLD, { shadow: 24 });
+    text(g, 'Sandouq Lhkayat  ·  حكايات بالدارجة، مصوّرة', 1380, 790, 'italic 46px "IM Fell English"', CREAM, { shadow: 16 });
+    const tags = [['BAC RÉGIONAL', '#c8322b'], ['قصص إسلامية', '#1f8a84'], ['حكايات التاريخ', '#b8862a']];
+    let x = 1380 - 3 * 300 / 2 - 20; g.save(); g.shadowColor = 'rgba(0,0,0,.5)'; g.shadowBlur = 10;
+    for (const [t, c] of tags) { g.fillStyle = c; g.beginPath(); g.roundRect(x, 835, 300, 62, 31); g.fill(); x += 320; } g.restore();
+    x = 1380 - 3 * 300 / 2 - 20;
+    for (const [t] of tags) { text(g, t, x + 150, 878, t.startsWith('BAC') ? '34px "Lilita One"' : 'bold 38px Amiri', '#fff'); x += 320; }
+  },
+  async post2(g) {
+    cv.width = cv.height = 1080;
+    const f = await frame(8); cover(g, f, 300, 60, 1000, 1000, 1080, 1080);
+    g.fillStyle = 'rgba(8,12,34,.5)'; g.fillRect(0, 0, 1080, 1080);
+    K.setCtx(g); g.fillStyle = K.radial(540, 540, 120, 760, 'rgba(8,12,34,.15)', 'rgba(8,12,34,.85)'); g.fillRect(0, 0, 1080, 1080);
+    text(g, 'La Boîte à Bac', 540, 150, 'italic 56px "IM Fell English"', 'rgba(251,241,220,.55)', { shadow: 10 });
+    g.save(); g.strokeStyle = 'rgba(251,241,220,.55)'; g.lineWidth = 3; g.beginPath(); g.moveTo(375, 132); g.lineTo(705, 132); g.stroke(); g.restore();
+    text(g, '↓', 540, 225, '54px "IM Fell English"', GOLD, { shadow: 10 });
+    mark(g, 540, 420, 165);
+    text(g, 'صندوق الحكايات', 540, 720, 'bold 120px Amiri', GOLD, { shadow: 24 });
+    text(g, 'Sandouq Lhkayat', 540, 800, '58px "IM Fell English"', CREAM, { shadow: 14 });
+    const tags = [['حكايات التاريخ', '#b8862a'], ['قصص إسلامية', '#1f8a84'], ['BAC RÉGIONAL', '#c8322b']];
+    let x = 540 - (3 * 290 + 2 * 20) / 2; g.save(); g.shadowColor = 'rgba(0,0,0,.5)'; g.shadowBlur = 10;
+    for (const [t, c] of tags) { g.fillStyle = c; g.beginPath(); g.roundRect(x, 870, 290, 62, 31); g.fill(); x += 310; } g.restore();
+    x = 540 - (3 * 290 + 2 * 20) / 2;
+    for (const [t] of tags) { text(g, t, x + 145, 913, t.startsWith('BAC') ? '34px "Lilita One"' : 'bold 38px Amiri', '#fff'); x += 310; }
+    text(g, '@SandouqLhkayat', 540, 1010, '40px "IM Fell English"', '#d8c9a8', { shadow: 10 });
+  },
+  async wordmark2(g) {
+    cv.width = 1600; cv.height = 500; g.clearRect(0, 0, 1600, 500);
+    mark(g, 250, 250, 210);
+    text(g, 'صندوق الحكايات', 1000, 245, 'bold 140px Amiri', GOLD, { shadow: 12 });
+    text(g, 'Sandouq Lhkayat', 1000, 345, '78px "IM Fell English"', CREAM);
+    text(g, 'حكايات بالدارجة · BAC · قصص إسلامية · تاريخ', 1000, 425, 'bold 38px Amiri', '#d8c9a8');
+  },
   // 2560×1440 channel banner (safe area 1546×423 in the centre)
   async banner(g) {
     cv.width = 2560; cv.height = 1440;
@@ -139,6 +179,9 @@ const ASSETS = {
   async thumb7(g) { await thumbEp(g, 'ep07', 'p03_reve_cierges', true, 'CHAPITRE 7', 'La nuit de l’Achoura'); },
   async thumb7b(g) { await thumbEp(g, 'ep07', 'i_lame_nuque', false, 'LA TÊTE RASÉE', 'Chapitre VII · le barbier bavard'); },
   async thumb7c(g) { await thumbEp(g, 'ep07', 'p04_souk_foule', true, 'RÉSUMÉ', 'Chapitre VII en animation'); },
+  async thumb8(g) { await thumbEp(g, 'ep08', 'p09_soleil_lune', true, 'CHAPITRE 8', 'Les bracelets soleil et lune'); },
+  async thumb8b(g) { await thumbEp(g, 'ep08', 'p29_monstres', false, 'MAUVAIS AUGURE', 'Chapitre VIII · le souk des bijoux'); },
+  async thumb8c(g) { await thumbEp(g, 'ep08', 'p18_fourmiliere', false, 'RÉSUMÉ', 'Chapitre VIII en animation'); },
 };
 window.render = async name => { const g = cv.getContext('2d'); await ASSETS[name](g); return cv.toDataURL('image/png'); };
 window.ready = true;
