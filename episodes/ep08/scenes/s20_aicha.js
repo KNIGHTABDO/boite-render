@@ -105,7 +105,7 @@ const ch = staged('chambre_jour', {
       PO.look(ai, at(zo, 'head'), .9, { max: .55 });   // she talks to Zoubida, on her left
       ai.B.head.rotation.z += .14; faceHand(ai, 'R', { x: .09 - .01 * tap, y: 0, z: .105, fingers: .15, pole: [-.9, -.7, .45] }); lap(ai, 'L', ka);
     }
-    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .42; ai.B.head.rotation.x += .1; ai.B.chest.rotation.x += .1; ai.B.neck.updateWorldMatrix(false, true); for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .04, y: .01, z: .115, pole: [(sd === 'L' ? 1 : -1) * .5, -.7, .9], fingers: .02 }); PO.look(zo, at(ai, 'head'), .8, { max: .4 }); }
+    if (IN(4, t)) { ai.B.chest.rotation.x += .02 * Math.sin(t * 7); ai.B.neck.rotation.x += .42; ai.B.head.rotation.x += .1; ai.B.chest.rotation.x += .1; ai.B.neck.updateWorldMatrix(false, true); for (const sd of ['L', 'R']) faceHand(ai, sd, { x: .04, y: .01, z: .115, pole: [(sd === 'L' ? 1 : -1) * .6, -.35, .9], fingers: .02 }); PO.look(zo, at(ai, 'head'), .8, { max: .4 }); }
     if (IN(5, t) || IN(6, t)) {
       // Zoubida holds one hand out between them; Aicha closes her palm over it (hand-to-hand contact at the midpoint)
       const zs = armToward(zo, ai), as = armToward(ai, zo), os = as === 'L' ? 'R' : 'L';
@@ -127,7 +127,7 @@ const ch = staged('chambre_jour', {
     }
     if (IN(7, t)) { PO.look(zo, at(ai, 'head'), .8, { max: .35 }); const sw = Math.sin(t * 1.6);
       zo.B.chest.rotation.z += .05 * sw; zo.B.chest.rotation.x += .03;
-      zo.B.neck.rotation.x += .15; zo.B.head.rotation.x += .15; zo.B.neck.updateWorldMatrix(false, true); for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .075, y: -.005, z: .105, pole: [(sd === 'L' ? 1 : -1) * .7, -.6, .75], fingers: .1 }); }
+      zo.B.neck.rotation.x += .15; zo.B.head.rotation.x += .15; zo.B.neck.updateWorldMatrix(false, true); for (const sd of ['L', 'R']) faceHand(zo, sd, { x: .08, y: -.005, z: .105, pole: [(sd === 'L' ? 1 : -1) * .9, -.25, .6], fingers: .1 }); }
     if (IN(8, t)) {
       const u = sm(B(8)[0], B(8)[0] + 1.2, t);
       zo.B.chest.rotation.z += .22 * u; ai.B.chest.rotation.z -= .22 * u;
@@ -142,7 +142,7 @@ const ch = staged('chambre_jour', {
         reach(a, side, sh.clone().addScaledVector(fo, -.05 * k2).addScaledVector(dirTo, .0).add(V(0, (lift + .17) * k2, 0)), { grip: .02, pole: [sg2 * 1, .8, 0] });
         PO.fingers(a, side, .3);
       };
-      hug(zo, ai, -.1); hug(ai, zo, -.1);
+      hug(zo, ai, -.04); hug(ai, zo, -.16);
       zo.B.chest.rotation.x += .05 * u; ai.B.chest.rotation.x += .05 * u;
       zo.B.head.rotation.z += .12 * u; ai.B.head.rotation.z -= .12 * u;
     }
