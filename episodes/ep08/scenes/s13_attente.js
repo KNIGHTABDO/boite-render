@@ -133,7 +133,7 @@ export const MUR = { zoubida: [420, 790], mohammed: [560, 820], fatma: [700, 735
 
 // Local spacing leaves the boy a clear silhouette beside the haik; MUR stays shared and unchanged.
 const WALL = { zoubida: MUR.zoubida, mohammed: [565, 790], father: [760, 790] };
-const LANE = { father: [600, 790], mohammed: [560, 830], zoubida: [700, 790] };
+const LANE = { father: [690, 795], mohammed: [650, 850], zoubida: [790, 795] };   // R31AF: family shifted right, Mohammed in front-left of the father so the b085 pan never hides him
 const child = a => { a.group.scale.setScalar(1.1); a.group.updateMatrixWorld(true); };
 const sync = (...actors) => actors.forEach(a => a.group.updateMatrixWorld(true));
 const scriptedGaze = { apply() {} };
@@ -167,7 +167,7 @@ const mu = checkedStage('souk_mur', {
     child(mo); closeHaik(zo);
     haikCloth(zo); trimShoes(zo);   // R31AA: build the mantle now, then drop the shoe triangles that poke out of the hem
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
-    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[]};
+    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
@@ -188,7 +188,7 @@ const mu = checkedStage('souk_mur', {
     // the family spans 580px, so one passing body cannot erase all three silhouettes.
     // R25I: a real wave: all five within ~1 s, and a second surge so b086's later stills still show crowd.
     const rush = [
-      ['man1', [1330, 950], [120, 950], -.35],
+      ['man1', [1330, 950], [120, 950], -.35],   // R31AF: man1 is overridden below as the pusher during b086
       ['fqih', [1330, 985], [200, 950], -.15],
       ['guerrab', [1250, 985], [120, 950], 0],
       ['driss', [1330, 950], [200, 950], .20],
@@ -196,6 +196,7 @@ const mu = checkedStage('souk_mur', {
     ];
     for (const [n, p0, p1, delay] of rush) {
       if ((n === 'guerrab' || n === 'man1') && t > B(3)[0] + 2.2) { st.A[n].group.visible = false; continue; }   // gate: M slices his head in the second surge
+      if (n === 'man1' && t >= B(3)[0] - .3 && t <= B(3)[0] + 2.0) continue;   // R31AF: scripted pusher below
       const a = st.A[n], w1 = B(3)[0] + .7 + delay + 2.9, w0 = B(3)[0] - .1 + (delay + .35) * .6;   // R31S: wave already crossing at the b086 cut   // R30B: second surge 1 s later, b086's 30.00 sample had it across the father
       let t0 = w0, t1 = t0 + 1.9, q0 = p0, q1 = p1;
       if (t > t1 + .2) { t0 = w1; t1 = t0 + 1.2; q0 = [p0[0], 715]; q1 = [p1[0], 715]; }   // R31C: second surge passes BEHIND the family (lane y715), never over the father   // R31C: faster second surge, clear of the father by b086 30.96
@@ -234,6 +235,34 @@ const mu = checkedStage('souk_mur', {
       PO.reach(fa, 'L', front(fa, 'chest', .22 * k(fa), -.50 * k(fa), .02), { grip: .01, pole: [.5, 0, 0] });
       PO.reach(fa, 'R', front(fa, 'chest', .22 * k(fa), .50 * k(fa), .02), { grip: .01, pole: [-.5, 0, 0] });
       PO.reach(mo, 'R', front(mo, 'chest', .14, .12, -.1), { grip: .01 });
+    }
+    // R31AF: the shove must read: man1 lunges in from the crowd, both arms straight into the father's shoulders; the father is driven back off balance
+    { const m1 = st.A.man1, T = B(3)[0];
+      if (m1) {
+        const on = t >= T - .3 && t <= T + 2.0;
+        if (on) {
+          m1.group.visible = true; rest(m1.B);
+          const dirC = S3.floorAt(1150, 930).sub(fa.group.position).setY(0).normalize();
+          const hit = sm(T - .3, T + .2, t), gone = sm(T + .8, T + 1.9, t);
+          if (gone < 1) {
+            const p = fa.group.position.clone().addScaledVector(dirC, .62 + 1.2 * (1 - hit) + .0 * gone);
+            m1.group.position.set(p.x, fa.group.position.y, p.z); m1.group.rotation.y = yawTo(m1.group.position, fa.group.position);
+            m1.B.spine.rotation.x += .30; m1.B.chest.rotation.x += .12; sync(m1);
+            const lean = shove * hit;
+            fa.group.position.addScaledVector(dirC.clone().negate(), .18 * lean);   // driven back
+            fa.B.spine.rotation.x -= .40 * lean; fa.B.neck.rotation.x += .15 * lean; fa.B.thighL.rotation.x += .35 * lean; fa.B.shinL.rotation.x += .25 * lean; sync(fa);
+            for (const sd of ['L', 'R']) {
+              const tgt = at(fa, 'upperArm' + (sd === 'L' ? 'R' : 'L')).addScaledVector(dirC, .05);   // crossed: his left hand to the father's right shoulder side nearest
+              PO.reach(m1, sd, tgt, { grip: .01 });
+            }
+          } else {
+            const q0 = fa.group.position.clone().addScaledVector(dirC, .62);
+            walk(m1, q0, S3.floorAt(120, 950), T + .8, T + 2.0, t, { cps: 3.8, ease: false });
+            m1.B.spine.rotation.x += .22;
+          }
+          sync(m1);
+        }
+      }
     }
 
     // b088: shoulder-high cuts, clear of the veil; keep the other palm in front of the cloth.
@@ -337,13 +366,13 @@ const la = checkedStage('souk_bijoux', {
     const ta = B(1)[0], tb = f(1, .23), tc = B(1)[0] + 3.1, td = B(1)[1] + .15;
     ma.group.visible = t >= ta - .4 && t <= td;
     rest(ma.B);
-    if (t < tb) walk(ma, F(1300, 700), F(1180, 720), ta - .4, tb, t, { cps: 3.2 });   // R31AA: longer stride back down the lane
+    if (t < tb) walk(ma, F(1250, 740), F(1090, 755), ta - .4, tb, t, { cps: 3.2 });   // R31AA: longer stride back down the lane
     else if (t < tc) {
-      ma.group.position.copy(F(1180, 720));
+      ma.group.position.copy(F(1090, 755));
       ma.group.rotation.y = addressYaw(ma.group.position);
     } else {
-      walk(ma, F(1180, 720), F(960, 860), tc, td, t, { cps: 2.9 });   // R31AA: back down the lane, in 3/4 profile
-      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1180, 720)), y1 = yawTo(F(1180, 720), F(960, 860));
+      walk(ma, F(1090, 755), F(960, 860), tc, td, t, { cps: 2.9 });   // R31AA: back down the lane, in 3/4 profile
+      const turn = sm(tc - .1, tc + .25, t), y0 = addressYaw(F(1090, 755)), y1 = yawTo(F(1090, 755), F(960, 860));
       ma.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * turn;
     }
     const shout = win(1, 0, .66, t);
@@ -384,15 +413,15 @@ const la = checkedStage('souk_bijoux', {
       PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
-        ['woman1', [1330, 960], [1430, 700], 0],   // R31AA: they hurry away UP the lane on the right-hand side, clear of the clasp; fqih no longer blocks the family
-        ['kid2', [1350, 940], [1450, 700], .3],
-        ['kid3', [1310, 990], [1400, 700], .5],
+        ['woman1', [1200, 930], [1430, 700], 0],   // R31AA: they hurry away UP the lane on the right-hand side, clear of the clasp; fqih no longer blocks the family
+        ['kid2', [1230, 915], [1450, 700], .3],
+        ['kid3', [1180, 950], [1400, 700], .5],
         ['fqih', [1000, 720], [1060, 640], .05],
-        ['woman2', [1380, 930], [1470, 700], .8],
+        ['woman2', [1260, 925], [1470, 700], .8],
       ]) {
         const a = st.A[n]; rest(a.B);
         walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 5.4 : 4.6, ease: false });
-        a.B.spine.rotation.x += .25; sync(a);
+        a.B.spine.rotation.x += .25; castScale(a); sync(a);   // R31AF: adult heights from cast.json
       }
     } else if (scan) {
       // Ordinary shoppers only: the missing dellal never reappears during the search.
