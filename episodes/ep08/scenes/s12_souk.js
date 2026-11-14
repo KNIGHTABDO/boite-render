@@ -238,7 +238,7 @@ const la = checkedStage('souk_bijoux', {
     const tryOn = (a, w) => {
       if (w <= 0) return 0;
       const ka = k(a), p = ((t - B(7)[0]) * .95) % 1, sl = Math.sin(p * Math.PI);
-      const wrist = front(a, 'chest', .3 * ka, -.1 * ka, -.12 * ka);   // R31AI: hand at the haik opening (cloth surface ~.215), not poking out of the mesh
+      const wrist = front(a, 'chest', .3 * ka, -.1 * ka, -.07 * ka);   // R31AI: hand at the haik opening (cloth surface ~.215), not poking out of the mesh
       //   // R19J: wrist raised clear of the haik opening   // r16: well out in front of the haik cone so wrist + bracelets show
       PO.reach(a, 'L', front(a, 'root', .1 * ka, -.12 * ka, .1 * ka).lerp(wrist, w), { grip: .01 });
       const lw = at(a, 'handL'), fwd = lw.clone().sub(at(a, 'foreArmL')).normalize();
@@ -306,7 +306,7 @@ const re = checkedStage('souk_bijoux_rev', {
     if (closer) mo.group.position.set(closer.x, mo.group.position.y, closer.z);
     const cam = S3.cam.position, yCam = Math.atan2(cam.x - mo.group.position.x, cam.z - mo.group.position.z);
     const yC = Math.atan2(S3.floorAt(930, 800).x - mo.group.position.x, S3.floorAt(930, 800).z - mo.group.position.z), dd = Math.atan2(Math.sin(yC - yCam), Math.cos(yC - yCam));
-    mo.group.rotation.y = yCam + dd * .65;   // R31AI: 3/4 toward the counter
+    mo.group.rotation.y = yCam + dd * .45;   // R31AI: 3/4 toward the counter
     mo.group.updateMatrixWorld(true);
     mo.B.neck.rotation.x += .28; mo.B.head.rotation.x += .08; mo.B.spine.rotation.x -= .05;
     mo.B.head.rotation.y += .14 * Math.sin(u * 1.6); mo.B.spine.updateWorldMatrix(false, true);
