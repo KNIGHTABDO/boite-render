@@ -279,9 +279,9 @@
    {
     "who": "mohammed",
     "text": "Mais... je ne peux pas manquer le Msid ! J'ai ma leçon à apprendre.",
-    "wav": null,
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/ce19f838acc8.wav",
     "start": 288.978,
-    "dur": 5.8
+    "dur": 6.04
    },
    {
     "who": "father",
@@ -328,9 +328,9 @@
    {
     "who": "mohammed",
     "text": "Les bijoux, c'est beau comme les fleurs.",
-    "wav": null,
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/79f715ca1c88.wav",
     "start": 321.743,
-    "dur": 3.329
+    "dur": 4.64
    },
    {
     "who": "narrator",
@@ -440,9 +440,9 @@
    {
     "who": "mohammed",
     "text": "Je joue.",
-    "wav": null,
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/baac3bc6f11e.wav",
     "start": 449.28,
-    "dur": 0.571
+    "dur": 1.32
    },
    {
     "who": "zoubida",
@@ -573,9 +573,9 @@
    {
     "who": "kanza",
     "text": "Passe, maalem Abdeslem.",
-    "wav": null,
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/921fdf093e56.wav",
     "start": 537.121,
-    "dur": 2.186
+    "dur": 4.52
    }
   ]
  },
@@ -1161,16 +1161,16 @@
    {
     "who": "aicha",
     "text": "Zoubida, je n'ai plus personne au monde. Tu es ma seule famille.",
-    "wav": null,
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/cbe9b74d73d3.wav",
     "start": 1118.573,
-    "dur": 5.514
+    "dur": 5.32
    },
    {
     "who": "aicha",
     "text": "Le fils du péché, pour qui j'ai tout donné, m'a abandonnée. Il a pris une seconde femme : la fille d'Abderrahman, le coiffeur.",
-    "wav": null,
+    "wav": "/home/knight/Desktop/projects/boite-a-merveilles/audio/voice/ep08/3cdea6dca648.wav",
     "start": 1124.888,
-    "dur": 11.429
+    "dur": 11.28
    },
    {
     "who": "zoubida",

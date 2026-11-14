@@ -52,8 +52,12 @@ export function haikCloth(a) {
   const bottom=.012, top=neck.y+.018;
   for(let j=0;j<=rings;j++) {
     const u=j/rings,y=bottom+(top-bottom)*u, q=Math.max(0,Math.min(1,(y-root.y)/(neck.y-root.y))), center=root.clone().lerp(chest,Math.min(1,q*1.5)).lerp(neck,Math.max(0,(q-.65)/.35));
-    const radius=u>.87 ? .205-(u-.87)/.13*.11 : .235-.035*u;
-    for(let i=0;i<=sides;i++){const angle=i/sides*Math.PI*2, fold=1+.025*Math.cos(angle*8);let X=center.x+Math.cos(angle)*radius*fold,Y=y,Z=center.z+Math.sin(angle)*radius*.86*fold;
+    let radius=u>.87 ? .205-(u-.87)/.13*.11 : .235-.035*u;
+    if(a.haikSlim){   // R31AN (opt-in, s13 only): a draped body-hugging profile (hem, waist, rounded shoulders, hood) instead of the boxy cylinder
+      const P=[[0,.2],[.3,.185],[.55,.165],[.78,.172],[.9,.135],[1,.07]];let n=1;while(n<P.length-1&&u>P[n][0])n++;
+      const w=Math.max(0,Math.min(1,(u-P[n-1][0])/(P[n][0]-P[n-1][0]))),e=(1-Math.cos(w*Math.PI))/2;radius=P[n-1][1]+(P[n][1]-P[n-1][1])*e;
+    }
+    for(let i=0;i<=sides;i++){const angle=i/sides*Math.PI*2, fold=a.haikSlim?1+.035*Math.cos(angle*5+u*2):1+.025*Math.cos(angle*8);let X=center.x+Math.cos(angle)*radius*fold,Y=y,Z=center.z+Math.sin(angle)*radius*(a.haikSlim?.8:.86)*fold;
       const D=a.haikLift;   // opt-in (s14 b093): hem raised and knee bulge on the side facing D.dx/D.dz
       if(D&&D.w>0){const vx=X-center.x,vz=Z-center.z,l=Math.hypot(vx,vz)||1,w=Math.max(0,(vx*D.dx+vz*D.dz)/l)**2*D.w;Y=y+w*D.lift*Math.max(0,1-u/.62);const bu=w*D.bulge*Math.exp(-(((u-.3)/.14)**2));X+=bu*D.dx;Z+=bu*D.dz;}
       p.setXYZ(j*(sides+1)+i,X,Y,Z);}
@@ -139,7 +143,7 @@ const sync = (...actors) => actors.forEach(a => a.group.updateMatrixWorld(true))
 const scriptedGaze = { apply() {} };
 // Haik hands emerge in front of the drape, never through the cloth at the hip.
 const closeHaik = a => {
-  for (const s of ['L', 'R']) PO.reach(a, s, front(a, 'chest', .14 * k(a), (s === 'R' ? .07 : -.07) * k(a), -.12 * k(a)), { grip: .015 });
+  for (const s of ['L', 'R']) PO.reach(a, s, front(a, 'chest', .09 * k(a), (s === 'R' ? .08 : -.08) * k(a), -.17 * k(a)), { grip: .015 });   // R31AN: hands INSIDE the slim mantle
 };
 
 const mu = checkedStage('souk_mur', {
@@ -164,20 +168,20 @@ const mu = checkedStage('souk_mur', {
     // The later Zoubida line otherwise makes the gaze net turn the boy toward her even in b083.
     st.G = scriptedGaze;
     const { zoubida: zo, mohammed: mo, father: fa, fatma: fm } = st.A;
-    child(mo); closeHaik(zo);
+    zo.haikSlim = true; child(mo); closeHaik(zo);
     haikCloth(zo); trimShoes(zo);   // R31AA: build the mantle now, then drop the shoe triangles that poke out of the hem
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
-    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:t>=B(5)[0]?.19:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:t<B(3)[0]-.3||t>B(3)[0]+2.0?[]:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
+    st.actcheck={haikLat:{zoubida:.08},haikFwd:{zoubida:.10},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:t>=B(5)[0]?['handR','foreArmR']:[]},contacts:t<B(3)[0]-.3||t>B(3)[0]+2.0?[]:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
-      fa.group.position.copy(S3.floorAt(1250, 790));
+      fa.group.position.copy(S3.floorAt(715, 788)); fa.group.rotation.y = yawTo(fa.group.position, S3.cam.position) - .25; sync(fa);   // R31AN: the father stands right behind the boy, in the b083 frame
       const yawn = win(0, .46, .88, t), lean = sm(f(0, .87), B(0)[1], t), sag = sm(B(0)[0] - 1.6, f(0, .18), t);
       mo.B.spine.rotation.x += .18 * sag; mo.B.chest.rotation.x += .12 * sag;   // R31S: sag harder
       mo.B.neck.rotation.x -= 1.0 * yawn; mo.B.head.rotation.x -= .45 * yawn;
       mo.B.spine.rotation.z += .36 * (.95 * sag + .8 * lean);   // R31AA: trunk visibly leans onto her side (>=20 deg) from the first seconds mo.B.head.rotation.z += .36 * (.5 * sag + lean);
       sync(mo);
-      if (t < B(1)[0]) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), .03);
+      mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), -.05 * lean);   // R31AN: his back sinks against her haik
       sync(mo);
       const cloth = front(zo, 'root', .22 * kz, -.30 * kz, .30 * kz);
       for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'root', .09 * km, s === 'R' ? .17 : -.07, .12 * km), { grip: .01 });   // R31Q: L target closer to the shoulder (IK reach)
@@ -209,6 +213,7 @@ const mu = checkedStage('souk_mur', {
       }
     }
     const shove = win(3, -.02, .9, t);
+    if (t >= B(3)[0] - .3 && t < B(5)[0]) { zo.group.position.copy(S3.floorAt(445, 818)); mo.group.position.copy(S3.floorAt(590, 826)); sync(zo, mo); }   // R31AN: b086 the seated pair sits nearer the lens, so they are not half the size of the crowd
     if (t >= B(3)[0] - .3 && t < B(5)[0]) { fa.group.position.copy(S3.floorAt(705, 805)); fa.group.rotation.y = yawTo(fa.group.position, S3.floorAt(1150, 930)); sync(fa); }   // R31AA: father close in front of them for the shove
     const jolt = shove * (.75 + .25 * Math.max(0, Math.sin((t - B(3)[0]) * 9)));
     for (const a of [zo, mo, fa]) {
@@ -277,6 +282,9 @@ const mu = checkedStage('souk_mur', {
       // R25I: the raised hand tore the haik (spikes behind the head, forearm through the chest). The hands now stay in
       // front of the cloth (haikFwd pulses with each cut); the sharp head jerks carry the beat.
       zo.B.head.rotation.y += .18 * Math.sin(ph * 6.3) ** 3;
+      // R31AN: right hand emerges at the haik opening (front edge) and slices the air; the left stays inside
+      { const kz2 = k(zo), up = -.10 + .20 * cut; sync(zo);
+        PO.reach(zo, 'R', front(zo, 'chest', (.19 + .08 * cut) * kz2, (.12 + .10 * cut) * kz2, up * kz2), { grip: .01, pole: [-.2, .1, .1] }); PO.fingers(zo, 'R', .15); }
     }
     // R30B: the cross-legged seat sinks the skirt/robe below the floor; absolute lift (cached base y, so scrubbing is safe)
     { const by = st.baseY ||= { zo: zo.group.position.y, mo: mo.group.position.y };
@@ -298,7 +306,7 @@ const ca = checkedStage('souk_mur', {
   light: { shadow: .4, area: 6 },
   act(lt, t, S, st) {
     const { father: fa, mohammed: mo, zoubida: zo } = st.A;
-    child(mo); closeHaik(zo);
+    zo.haikSlim = true; child(mo); closeHaik(zo);
     st.actcheck={carried:['mohammed'],contacts:[{actors:['father','mohammed'],parts:['foreArmR:thighL','foreArmR:thighR','foreArmR:torso','foreArmL:torso','upperArmR:torso','torso:torso','head:upperArmR','head:torso','upperArmL:torso','foreArmL:upperArmR','foreArmL:upperArmL','foreArmR:upperArmR','foreArmR:upperArmL']} ]};
     const kf = k(fa), km = k(mo), lift = sm(B(4)[0] - .5, B(4)[0] + .08, t);
     fa.B.chest.rotation.x -= .065 + .05 * Math.sin((t - B(4)[0]) * 3.4);
@@ -355,9 +363,9 @@ const la = checkedStage('souk_bijoux', {
   addressee: { marchand: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo, mohammed: mo, marchand: ma, man1: client } = st.A;
-    child(mo); closeHaik(zo);
+    zo.haikSlim = true; child(mo); closeHaik(zo);
     for (const s of ['L', 'R']) PO.reach(mo, s, front(mo, 'chest', .15 * k(mo), (s === 'R' ? .06 : -.09) * k(mo), -.16 * k(mo) + (s === 'L' ? .05 : 0)), { grip: .01 });   // R31AA: hands in front of the belly, not pinned down
-    PO.reach(zo, 'R', front(zo, 'chest', .24 * k(zo), .22 * k(zo), -.12 * k(zo)), { grip: .015 });   // R31Q: R hand out .15 lateral, .1 fwd (forearm out of torso)
+    PO.reach(zo, 'R', front(zo, 'chest', .09 * k(zo), .08 * k(zo), -.17 * k(zo)), { grip: .015 });   // R31Q: R hand out .15 lateral, .1 fwd (forearm out of torso)
     const F = (x, y) => S3.floorAt(x, y), km = k(ma), kf = k(fa);
     const addressYaw = p => {
       const y0 = yawTo(p, S3.cam.position), y1 = yawTo(p, fa.group.position);
@@ -391,7 +399,7 @@ const la = checkedStage('souk_bijoux', {
     if (nod > 0) PO.reach(fa, 'R', front(fa, 'chest', .35 * kf, .16 * kf, -.02), { grip: .01 });
 
     // Bidirectional traffic stays between y690 and y940, never at the vanishing point.
-    st.actcheck={haikFwd:{zoubida:.18+.04*(.5+.5*Math.sin(t*1.7))},haikLat:{zoubida:.17+.03*(.5+.5*Math.sin(t*1.1+1))},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
+    st.actcheck={haikFwd:{zoubida:.10},haikLat:{zoubida:.08},contacts:[{actors:['marchand','man1'],parts:['foreArmL:foreArmR','foreArmL:foreArmL','foreArmR:foreArmR','foreArmL:handR','foreArmR:handL','handL:handR','handL:handL','handR:handR','foreArmL:handL','foreArmR:handR']} ]};
     const boil = t >= B(2)[0] - .2 && t < B(3)[0], scan = t >= B(6)[0] - .3;
     for (const n of ['man1', 'woman1', 'kid2', 'kid3', 'fqih', 'woman2']) st.A[n].group.visible = boil || scan;
     if (boil) {
@@ -459,10 +467,10 @@ export default beatScene(ID, {
   shots: { mu, ca, la },
   plan: {
     // dy is in plate PIXELS, positive down. Explicit offsets bypass automatic multi-head reframing.
-    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 2.7, dx: -35, dy: 10 },   // R31AA: tighter low CU on the boy,
+    b083: { shot: 'mu', size: 'CU', on: 'mohammed', z: 3.0, dx: -25, dy: 30 },   // R31AA: tighter low CU on the boy,
     b084: { shot: 'la', size: 'M', on: 'marchand', z: 1.4, pt: [1080, 790], dx: -150, dy: 55 },
     b085: { shot: 'la', size: 'M', on: 'marchand', z: 1.5, pt: [1070, 775], dx: -40 },
-    b086: { shot: 'mu', size: 'M', on: 'father', z: 1.15, dx: -180, dy: 90 },
+    b086: { shot: 'mu', size: 'M', on: 'father', z: 1.3, dx: -230, dy: 90 },
     b087: { shot: 'ca', size: 'CU', on: 'father', z: 3.3, dx: -65, dy: 10 },
     b088: { shot: 'mu', size: 'CU', on: 'zoubida', z: 3.4, dx: -55, dy: 25 },
     b089: { shot: 'la', size: 'M', on: 'father', z: 1.3, dx: 120, dy: 95 },
