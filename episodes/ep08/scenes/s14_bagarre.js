@@ -167,7 +167,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
   // Up the lane from the pair, so a foreground haik does not cover the grapple.
   zoubida: { at: [640, 660], face: [770, 760], costume: 'haik', seed: 7, talk: 0, lookMax: .8, look: 'father' },
   mohammed: { at: [560, 700], face: [770, 760], seed: 3, talk: 0, look: 'father' },
-  fatma: { at: [1190, 790], face: [770, 760], costume: 'haik', seed: 11, talk: 0, look: 'father' },
+  fatma: { at: [1380, 790], face: [770, 760], costume: 'haik', seed: 11, talk: 0, look: 'father' },
   // the procession (b097): they follow from the foreground, backs to us
   man1: { at: FOLLOW[0][1], seed: 21, talk: 0 }, woman1: { at: FOLLOW[1][1], seed: 25, talk: 0 },
   woman2: { at: FOLLOW[2][1], seed: 23, talk: 0 }, kid2: { at: FOLLOW[3][1], seed: 27, talk: 0 }, kid3: { at: FOLLOW[4][1], seed: 29, talk: 0 }, kid1: { at: FOLLOW[5][1], seed: 26, talk: 0 },
