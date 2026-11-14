@@ -27,7 +27,7 @@ function mourn(zo, t) {
   zo.B.chest.rotation.x += .06 + .015 * sob;   // bowed forward, face down into both palms
   zo.B.neck.rotation.z += .035 * Math.sin(t * .55) + .02 * sh; zo.B.head.rotation.y += .05 * Math.sin(t * .37 + 1);   // slow small head shake
   for (const s of ['L', 'R']) zo.B['clavicle' + s] && (zo.B['clavicle' + s].rotation.z += (s === 'L' ? 1 : -1) * .05 * sh);
-  zo.B.chest.rotation.x -= .11;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
+  zo.B.chest.rotation.x -= .16;   // r30: less folded, so the forearms clear her own torso (b103 2.98)
   const t1 = B(1)[0];
   {   // R31A r7: head bows into the hands. b103 = both palms at the head, targets forward of the face, elbows high and out
     const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
@@ -36,7 +36,7 @@ function mourn(zo, t) {
     const fwd = two ? .03 : .12;
     for (const s of two ? ['L', 'R'] : ['R']) {
       const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * (s === 'R' ? .048 : .055), s === 'R' ? .045 : .065, fwd)), wrist = skin();
-      for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: s === 'R' ? [sg * 3.4, 2.2, -.2] : [sg * 2.8, 1.3, .1] }); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
+      for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: s === 'R' ? [sg * 4, 3.6, -.5] : [sg * 2.8, 1.3, .1] }); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
       aim(B['hand' + s], PO.handPts(zo, s).end, B.head.localToWorld(V(sg * .03, .2, fwd - .02)));
       PO.fingers(zo, s, .1, { thumb: .04, spread: .1 });
     }

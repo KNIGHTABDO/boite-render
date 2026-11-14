@@ -1,0 +1,195 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s10 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Because Zoubida stands upright on tread 1 and toddler Mohammed crouches on tread 3, Zoubida's eye level is higher than his so she looks slightly down at him rather than up at him as specified; contact shadows under Zoubida's dress hem on tread 1 and Mohammed's feet on tread 2 are very faint."
+   ],
+   "fix": "Ensure Zoubida's gaze targets Mohammed clearly (or adjust vertical staging/head tilt if an upward gaze is strictly required) and plan ground contact shadows for the lighting pass."
+  },
+  {
+   "tile": "s10 1.8",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's standing height on tread 1 puts her eye level above crouched Mohammed on tread 3, so she looks slightly down at him rather than up as specified."
+   ],
+   "fix": "Adjust Zoubida's posture or staging if the brief's upward eyeline to Mohammed must read literally."
+  },
+  {
+   "tile": "s10 2.2",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's standing height on tread 1 keeps her looking slightly down at crouched Mohammed on tread 3 rather than up at him."
+   ],
+   "fix": "Adjust Zoubida's posture or staging if an upward eyeline to Mohammed is strictly required."
+  },
+  {
+   "tile": "s10 3.8",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's standing height on tread 1 keeps her looking slightly down at crouched Mohammed on tread 3 rather than up at him; Mohammed's pose is unchanged from the earlier beats as he delivers 'Je joue.'."
+   ],
+   "fix": "Add subtle weight shift or head/hand emphasis on Mohammed for his speaking beat and clarify Zoubida's eyeline."
+  },
+  {
+   "tile": "s10 3.8",
+   "verdict": "minor",
+   "defects": [
+    "Exact duplicate tile timestamp ('s10 3.8') and identical frame to the preceding tile, with the same eyeline height issue on Zoubida."
+   ],
+   "fix": "Remove the duplicate s10 3.8 capture or replace it with the intended distinct timestamp."
+  },
+  {
+   "tile": "s10 5.2",
+   "verdict": "fail",
+   "defects": [
+    "During 'À quoi tu joues ?', Zoubida's hands are not on her hips as required—both hands hover awkwardly mid-transition in front of her abdomen with inward-bent wrists.",
+    "Zoubida's head turns mostly toward the camera and her gaze drifts forward-right rather than locking onto Mohammed."
+   ],
+   "fix": "Move Zoubida's hands cleanly onto her hips/orange sash before the first frame of 'À quoi tu joues ?' and turn her head and eyes back onto Mohammed."
+  },
+  {
+   "tile": "s10 5.5",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's hands-on-hips pose is overly symmetrical and stiff, and her head still faces mostly toward the camera while glancing sideways and slightly down at Mohammed."
+   ],
+   "fix": "Break the symmetry in Zoubida's shoulders/elbows and turn her head more directly toward Mohammed."
+  },
+  {
+   "tile": "s10 7.1",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida holds a rigid, perfectly symmetrical hands-on-hips pose while looking slightly down at Mohammed rather than up."
+   ],
+   "fix": "Add slight asymmetry and natural weight shift to Zoubida's hips-pose silhouette."
+  },
+  {
+   "tile": "s10 7.2",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida remains locked in the same stiff, symmetrical hands-on-hips pose from s10 7.1 while looking slightly down at Mohammed."
+   ],
+   "fix": "Introduce subtle asymmetry and breathing/weight variation in Zoubida's stance."
+  },
+  {
+   "tile": "s10 8.7",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida's symmetrical hands-on-hips stance appears frozen across multiple seconds from s10 7.1 through 8.7, and her eyeline angles slightly down toward Mohammed rather than up."
+   ],
+   "fix": "Vary Zoubida's torso tilt, elbow angle, and head orientation during the long scolding line so she does not read as frozen."
+  },
+  {
+   "tile": "s10 11.3",
+   "verdict": "minor",
+   "defects": [
+    "Zoubida still holds the exact same symmetrical, mannequin-like hands-on-hips pose seen since s10 7.1, looking slightly down at Mohammed."
+   ],
+   "fix": "Add a clear pose accent or weight shift near the end of 'accroupi sur une marche' to break the multi-second freeze."
+  },
+  {
+   "tile": "s10 14.4",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s10 15.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "None."
+  },
+  {
+   "tile": "s10 16.9",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 19.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 22.1",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed's right foot (viewer's left) hovers slightly above tread 2 instead of resting on the step below.",
+    "Both of Mohammed's arms hang straight and stiffly at his sides with hands barely grazing tread 3, reading like a rigid mannequin pose."
+   ],
+   "fix": "Lower Mohammed's right foot to plant firmly on tread 2 and relax his elbows/wrists so his hands rest naturally on his thighs or tread 3."
+  },
+  {
+   "tile": "s10 24.7",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed's right foot (viewer's left) still floats slightly above tread 2 without clear contact.",
+    "His arms remain locked in a stiff, symmetric straight-down pose against his sides."
+   ],
+   "fix": "Plant Mohammed's right foot onto tread 2 and give his arms and shoulders a relaxed, natural seated bend."
+  },
+  {
+   "tile": "s10 27.7",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 34.2",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 39.9",
+   "verdict": "fail",
+   "defects": [
+    "Rahma (center, red dress) has her right arm across her waist and left arm down at her side rather than complaining with palms up from the first word of b063."
+   ],
+   "fix": "Animate Rahma raising both forearms with both palms turned upward from the start of her complaint in b063."
+  },
+  {
+   "tile": "s10 43.1",
+   "verdict": "minor",
+   "defects": [
+    "Rahma (center, red dress) extends only her right hand palm-up while her left arm stays lowered by her hip instead of showing both palms up."
+   ],
+   "fix": "Raise Rahma's left forearm to match her right so both palms are turned up as she complains."
+  },
+  {
+   "tile": "s10 46.6",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (far left, blue-grey dress) keeps both hands clasped down at her waist instead of answering with a raised hand as required for b064."
+   ],
+   "fix": "Pose Zoubida raising one hand cleanly in front of her chest/shoulder as she answers Rahma in b064."
+  },
+  {
+   "tile": "s10 49.5",
+   "verdict": "fail",
+   "defects": [
+    "Zoubida (far left, blue-grey dress) still keeps both hands clasped down at her waist throughout the second line of b064 instead of answering with a raised hand."
+   ],
+   "fix": "Keep Zoubida's answering hand raised with an expressive gesture toward Rahma through the end of b064."
+  },
+  {
+   "tile": "s10 52.8",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s10 53.9",
+   "verdict": "minor",
+   "defects": [
+    "Rahma's raised right hand/fingers press tightly against and slightly clip the edge of her cheek and orange headscarf."
+   ],
+   "fix": "Offset Rahma's right hand slightly forward and outward from her face so her fingers do not clip her cheek or headscarf."
+  }
+ ],
+ "worst_problem": "At s10 5.2 ('À quoi tu joues ?'), Zoubida's hands are held awkwardly in front of her abdomen instead of resting on her hips as directed, and her subsequent symmetrical hands-on-hips pose remains frozen from s10 7.1 through s10 11.3 alongside a duplicate s10 3.8 tile. | Key directed gestures in the patio beats are missing or mistimed: Rahma's arms are down at the start of b063 (s10 39.9) instead of palms up, and Zoubida never raises her hand during b064 (s10 46.6 and s10 49.5)."
+}

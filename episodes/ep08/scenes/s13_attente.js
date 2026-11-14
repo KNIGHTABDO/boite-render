@@ -167,7 +167,7 @@ const mu = checkedStage('souk_mur', {
     child(mo); closeHaik(zo);
     haikCloth(zo); trimShoes(zo);   // R31AA: build the mantle now, then drop the shoe triangles that poke out of the hem
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
-    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
+    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:t<B(3)[0]-.3||t>B(3)[0]+2.0?[]:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
@@ -243,16 +243,16 @@ const mu = checkedStage('souk_mur', {
         if (on) {
           m1.group.visible = true; rest(m1.B);
           const dirC = S3.floorAt(1150, 930).sub(fa.group.position).setY(0).normalize();
-          const hit = sm(T - .3, T + .2, t), gone = sm(T + .8, T + 1.9, t);
+          const hit = sm(T - .55, T - .1, t), gone = sm(T + .8, T + 1.9, t);
           if (gone < 1) {
-            const p = fa.group.position.clone().addScaledVector(dirC, .62 + 1.2 * (1 - hit) + .0 * gone);
-            m1.group.position.set(p.x, fa.group.position.y, p.z); m1.group.rotation.y = yawTo(m1.group.position, fa.group.position);
-            m1.B.spine.rotation.x += .30; m1.B.chest.rotation.x += .12; sync(m1);
             const lean = shove * hit;
             fa.group.position.addScaledVector(dirC.clone().negate(), .18 * lean);   // driven back
             fa.B.spine.rotation.x -= .40 * lean; fa.B.neck.rotation.x += .15 * lean; fa.B.thighL.rotation.x += .35 * lean; fa.B.shinL.rotation.x += .25 * lean; sync(fa);
+            const p = fa.group.position.clone().addScaledVector(dirC, .50 + 1.2 * (1 - hit));
+            m1.group.position.set(p.x, fa.group.position.y, p.z); m1.group.rotation.y = yawTo(m1.group.position, fa.group.position);
+            m1.B.spine.rotation.x += .30; m1.B.chest.rotation.x += .12; sync(m1);
             for (const sd of ['L', 'R']) {
-              const tgt = at(fa, 'upperArm' + (sd === 'L' ? 'R' : 'L')).addScaledVector(dirC, .05);   // crossed: his left hand to the father's right shoulder side nearest
+              const tgt = at(fa, 'upperArm' + (sd === 'L' ? 'R' : 'L')).addScaledVector(dirC, .05);
               PO.reach(m1, sd, tgt, { grip: .01 });
             }
           } else {
@@ -413,11 +413,11 @@ const la = checkedStage('souk_bijoux', {
       PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
-        ['woman1', [1200, 930], [1430, 700], 0],   // R31AA: they hurry away UP the lane on the right-hand side, clear of the clasp; fqih no longer blocks the family
-        ['kid2', [1230, 915], [1450, 700], .3],
-        ['kid3', [1180, 950], [1400, 700], .5],
+        ['woman1', [1290, 890], [1430, 700], 0],   // R31AA: they hurry away UP the lane on the right-hand side, clear of the clasp; fqih no longer blocks the family
+        ['kid2', [1340, 880], [1450, 700], .3],
+        ['kid3', [1260, 905], [1400, 700], .5],
         ['fqih', [1000, 720], [1060, 640], .05],
-        ['woman2', [1260, 925], [1470, 700], .8],
+        ['woman2', [1370, 885], [1470, 700], .8],
       ]) {
         const a = st.A[n]; rest(a.B);
         walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 5.4 : 4.6, ease: false });
