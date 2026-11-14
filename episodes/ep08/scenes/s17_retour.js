@@ -75,7 +75,7 @@ const pe = staged('chambre_penombre', {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
       const dd = Math.atan2(Math.sin(d), Math.cos(d));   // R31AP: root keeps the gated .3; the rest of the turn goes into spine + head
       fa.group.rotation.y = st.fy0 + dd * w * .3; fa.group.updateMatrixWorld(true);
-      fa.B.chest.rotation.y += dd * w * .35; fa.B.spine && (fa.B.spine.rotation.y += dd * w * .1); fa.B.head.rotation.y += dd * w * .25; fa.B.chest.updateWorldMatrix(false, true);
+      fa.B.chest.rotation.y += dd * w * .12; fa.B.spine && (fa.B.spine.rotation.y += dd * w * .05); fa.B.head.rotation.y += dd * w * .1; fa.B.chest.updateWorldMatrix(false, true);
     }
     lap(zo); veilDown(zo);
     if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .55; h.rotation.y += .02; if (!(t > B(4)[0])) n.rotation.x += .2; h.updateWorldMatrix(false, true); }; }
@@ -151,10 +151,10 @@ const nu = staged('chambre_nuit', {
     PO.reach(fa, 'L', PO.hipToWorld(fa, (.16 + .03 * Math.sin(t * .8)) * kf, (-.03 + .03 * Math.sin(t * 1.1)) * kf, (.1 + .06 * sm(B(11)[0], B(11)[1], t)) * kf), { grip: .1, pole: [.15, -.3, -.1] });   // R31AP: free arm varies, lifts a little as he insists
     if (!(offer > 0 || take > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, -.16 * kf, (-.04 + .02 * Math.sin(t * 1.5)) * kf, .08 * kf), { grip: .12, pole: [-.15, -.3, -.1] });
     if (offer > 0 && take <= 0) {
-      const sh = at(fa, 'upperArmR'), reach = .56 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
-      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .03 * win(11, 0, 1, t))); p.y = sh.y - .22 * kf;
+      const sh = at(fa, 'upperArmR'), reach = .5 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
+      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .01 * win(11, 0, 1, t))); p.y = sh.y - .22 * kf;
       p.add(PO.hipToWorld(fa, -.06 * kf, 0, .05 * kf)).sub(PO.hipToWorld(fa, 0, 0, 0));   // R31J: hand target itself out to the side and forward
-      PO.reach(fa, 'R', p, { grip: 0, pole: [-1.3, .8, .7] });   // R31J: shorter reach, elbow out
+      PO.reach(fa, 'R', p, { grip: 0, pole: [-1.0, .5, .5] });   // R31J: shorter reach, elbow out
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
     if (take > 0) {
