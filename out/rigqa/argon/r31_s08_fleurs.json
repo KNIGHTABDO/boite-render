@@ -1,0 +1,110 @@
+{
+ "scene_ok": false,
+ "tiles": [
+  {
+   "tile": "s08 0.3",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (center) looks toward the mother on screen right with his mouth closed rather than searching with eyes up-left and mouth half open as b038 specifies."
+   ],
+   "fix": "Shift Mohammed's gaze up-left and open his mouth slightly at the start of b038."
+  },
+  {
+   "tile": "s08 1.8",
+   "verdict": "fail",
+   "defects": [
+    "Mohammed (center) looks forward and slightly right with a closed mouth instead of eyes up-left and mouth half open during b038.",
+    "The father (left) pitches his head steeply downward, staring at the floor by Mohammed's feet instead of at Mohammed's face.",
+    "The mother (right) gazes high above the father's head toward the upper wall rather than at Mohammed or the father."
+   ],
+   "fix": "Aim Mohammed's eyes up-left with his mouth half open, lift the father's head to look at Mohammed, and bring the mother's gaze down onto Mohammed."
+  },
+  {
+   "tile": "s08 5.0",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed (center) looks up-left but keeps his mouth closed instead of half open as b038 requires.",
+    "The father (left) looks across past Mohammed rather than focusing on him."
+   ],
+   "fix": "Part Mohammed's lips into a half-open mouth and aim the father's gaze directly at Mohammed."
+  },
+  {
+   "tile": "s08 8.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No fix needed."
+  },
+  {
+   "tile": "s08 9.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No fix needed."
+  },
+  {
+   "tile": "s08 10.6",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No fix needed."
+  },
+  {
+   "tile": "s08 11.1",
+   "verdict": "pass",
+   "defects": [],
+   "fix": "No fix needed."
+  },
+  {
+   "tile": "s08 12.7",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed's mouth appears closed despite the whispered speaking beat (b041).",
+    "Mohammed's arms are pinned rigidly straight down against his sides, giving a stiff mannequin-like silhouette.",
+    "Mother's front (right) hand hovers slightly in front of her knee without making contact."
+   ],
+   "fix": "Part Mohammed's lips for the whispered line, relax his elbows slightly away from his tunic, and rest the mother's right hand on her knee."
+  },
+  {
+   "tile": "s08 14.4",
+   "verdict": "minor",
+   "defects": [
+    "Mohammed's arms remain rigidly pinned straight down at his sides against his tunic.",
+    "Mother's front (right) hand hovers slightly off her knee without resting on it."
+   ],
+   "fix": "Give Mohammed's arms and hands a slight natural bend at the elbows/wrists and plant the mother's right hand firmly onto her knee."
+  },
+  {
+   "tile": "s08 16.9",
+   "verdict": "minor",
+   "defects": [
+    "Father's raised right hand slightly clips/sinks into the front fold of his white robe at his chest.",
+    "Mohammed's arms remain stiffly glued to the sides of his tunic."
+   ],
+   "fix": "Offset the father's right hand slightly forward clear of his robe chest fold and soften Mohammed's rigid arm pose."
+  },
+  {
+   "tile": "s08 18.0",
+   "verdict": "pass",
+   "defects": [],
+   "fix": ""
+  },
+  {
+   "tile": "s08 20.2",
+   "verdict": "minor",
+   "defects": [
+    "Mother's front (right) hand hovers awkwardly in mid-air in front of her knees rather than resting on them.",
+    "Father's right hand floats slightly off his thigh/knee without clear contact.",
+    "Mohammed's arms remain rigidly straight at his sides."
+   ],
+   "fix": "Rest both parents' front hands cleanly onto their knees/thighs after the laugh and add subtle relaxation to Mohammed's arms."
+  },
+  {
+   "tile": "s08 24.2",
+   "verdict": "minor",
+   "defects": [
+    "Mother's front (right) hand still hovers slightly above her knee without clean contact.",
+    "Mohammed's arms stay frozen straight down against his tunic across the entire beat."
+   ],
+   "fix": "Seat the mother's right hand onto her knee and relax Mohammed's stiff arm/hand posture."
+  }
+ ],
+ "worst_problem": "In s08 1.8 (b038), all three characters miss their required gaze and expression: Mohammed looks forward with a closed mouth instead of up-left and half open, the father stares at the floor, and the mother stares above the father's head. | Across the sequence, the mother's front hand frequently hovers off her knee without contact and Mohammed's arms stay rigidly pinned to his sides, while his mouth reads closed on the start of his whispered line in s08 12.7."
+}

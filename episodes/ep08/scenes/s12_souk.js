@@ -40,8 +40,8 @@ const WALK = (from, to, t0, t1) => ({ at: from, walk: { to, t0, t1 } });
 // Local blocking: retain SOUK's exported marks for the following scenes. Two depth pairs, not a row across the lane.
 // R19J: the family stands nearer the lens (feet y 870/890 -> head well above the horizon, reads full size against the stalls);
 // Zoubida and Fatma are clear of the father's and the dellal's silhouettes so both women show in the wide shots.
-const LEAD = { father: [930, 870], mohammed: [800, 862], zoubida: [640, 745], fatma: [755, 722] };   // R31AI: women side by side left of the boy (were stacked behind father/boy: one haik hidden)
-const ZT = [900, 830], FT = [1150, 780];   // R31AI: try-on spots >=250 px apart (haik ~200 px wide) so the two haiks never fuse   // R31C: was behind the dellal at b080 (Hydrogen: Fatma missing 44-52 s)
+const LEAD = { father: [950, 870], mohammed: [775, 868], zoubida: [640, 745], fatma: [755, 722] };   // R31AI: women side by side left of the boy (were stacked behind father/boy: one haik hidden)
+const ZT = [870, 835], FT = [1100, 768];   // R31AI: try-on spots >=250 px apart (haik ~200 px wide) so the two haiks never fuse   // R31C: was behind the dellal at b080 (Hydrogen: Fatma missing 44-52 s)
 const DELLAL = [1185, 878], EXIT = [1330, 590]   // R31C: exit up the right lane, not behind the haiks (b082 occlusion);
 const CROWD = [   // [name, from, to, delay, faceLens (stands toward the camera before/after its walk)]
   ['man1', [560, 800], [690, 720], 0, 1],
@@ -306,7 +306,7 @@ const re = checkedStage('souk_bijoux_rev', {
     if (closer) mo.group.position.set(closer.x, mo.group.position.y, closer.z);
     const cam = S3.cam.position, yCam = Math.atan2(cam.x - mo.group.position.x, cam.z - mo.group.position.z);
     const yC = Math.atan2(S3.floorAt(930, 800).x - mo.group.position.x, S3.floorAt(930, 800).z - mo.group.position.z), dd = Math.atan2(Math.sin(yC - yCam), Math.cos(yC - yCam));
-    mo.group.rotation.y = yCam + dd * .6;   // R31AI: 3/4 toward the counter
+    mo.group.rotation.y = yCam + dd * .4;   // R31AI: 3/4 toward the counter
     mo.group.updateMatrixWorld(true);
     mo.B.neck.rotation.x += .28; mo.B.head.rotation.x += .08; mo.B.spine.rotation.x -= .05;
     mo.B.head.rotation.y += .14 * Math.sin(u * 1.6); mo.B.spine.updateWorldMatrix(false, true);
