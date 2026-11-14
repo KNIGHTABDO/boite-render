@@ -167,7 +167,7 @@ const mu = checkedStage('souk_mur', {
     child(mo); closeHaik(zo);
     haikCloth(zo); trimShoes(zo);   // R31AA: build the mantle now, then drop the shoe triangles that poke out of the hem
     if (fm) { fm.group.visible = t >= B(3)[0] - .3 && t <= B(3)[1]; if (fm.group.visible) { fm.group.position.copy(S3.floorAt(1180, 745)); sync(fm); } }   // R31S: Fatma now her own model (no haik copy of Zoubida = no duplicate). R25I: far right, behind the crowd, never beside Zoubida
-    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:t<B(3)[0]-.3||t>B(3)[0]+2.0?[]:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
+    st.actcheck={haikLat:{zoubida:win(3, -.02, .9, t) > 0 ? .10 : .09},haikFwd:{zoubida:t>=B(3)[0]-.3&&t<B(5)[0]?.26:t>=B(5)[0]?.19:.15},exposed:{zoubida:t>=B(3)[0]&&t<B(4)[0]?['handL','foreArmL']:[]},contacts:t<B(3)[0]-.3||t>B(3)[0]+2.0?[]:[{actors:['man1','father'],parts:['handL:upperArmL','handR:upperArmR','handL:upperArmR','handR:upperArmL','handL:torso','handR:torso','foreArmL:upperArmL','foreArmR:upperArmR','foreArmL:upperArmR','foreArmR:upperArmL','handL:handR','handL:handL','handR:handR','foreArmL:foreArmR','foreArmL:torso','foreArmR:torso']}]};
     const km = k(mo), kz = k(zo);
     // b083: seated, knees given way, trunk slumped; yawn at ~6.6 s (jaw wide, head tilted back), then he leans on her haik.
     if (t < B(1)[0]) {
@@ -219,7 +219,7 @@ const mu = checkedStage('souk_mur', {
       if (a === fa) { const c = .45 * shove; for (const s of ['L', 'R']) { a.B['thigh' + s].rotation.x -= .85 * c; a.B['shin' + s].rotation.x += 1.25 * c; a.B['foot' + s].rotation.x -= .4 * c; } a.B.spine.rotation.x += .25 * c; }   // R31AA: father crouches in front of them, shielding
     }
     sync(zo, mo, fa);
-    if (shove > 0) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), -.07 * shove);   // R31AA: she pulls him close
+    if (shove > 0) mo.group.position.addScaledVector(mo.group.position.clone().sub(zo.group.position).setY(0).normalize(), -.04 * shove);   // R31AA: she pulls him close (R31AF: less, shinL overlap)
     if (shove > 0) { mo.B.spine.rotation.z += .3 * shove; mo.B.head.rotation.z += .15 * shove; sync(mo); }
     sync(mo);
     if (shove > 0) {
@@ -242,13 +242,13 @@ const mu = checkedStage('souk_mur', {
         const on = t >= T - .3 && t <= T + 2.0;
         if (on) {
           m1.group.visible = true; rest(m1.B);
-          const dirC = S3.floorAt(1150, 930).sub(fa.group.position).setY(0).normalize();
+          const dirC = S3.floorAt(1150, 805).sub(fa.group.position).setY(0).normalize();   // from the side (crowd side), not between lens and father
           const hit = sm(T - .55, T - .1, t), gone = sm(T + .8, T + 1.9, t);
           if (gone < 1) {
             const lean = shove * hit;
             fa.group.position.addScaledVector(dirC.clone().negate(), .18 * lean);   // driven back
             fa.B.spine.rotation.x -= .40 * lean; fa.B.neck.rotation.x += .15 * lean; fa.B.thighL.rotation.x += .35 * lean; fa.B.shinL.rotation.x += .25 * lean; sync(fa);
-            const p = fa.group.position.clone().addScaledVector(dirC, .50 + 1.2 * (1 - hit));
+            const p = fa.group.position.clone().addScaledVector(dirC, .46 + 1.2 * (1 - hit));
             m1.group.position.set(p.x, fa.group.position.y, p.z); m1.group.rotation.y = yawTo(m1.group.position, fa.group.position);
             m1.B.spine.rotation.x += .30; m1.B.chest.rotation.x += .12; sync(m1);
             for (const sd of ['L', 'R']) {
