@@ -32,10 +32,17 @@ function mourn(zo, t) {
   {   // R31A r7: head bows into the hands. b103 = both palms at the head, targets forward of the face, elbows high and out
     const B = zo.B, k = zo.group.scale.y / 1.6, two = t < t1;
     B.chest.rotation.x -= .0;   // net chest pitch already ~ -.05 above
-    if (two) cradleFace(zo, { mode: 'eyes', bow: .22 + .02 * sob, out: .035 });   // R31AM: face buried in both palms (palms in front of the scarf, elbows forward), head bowed
+    if (two) {   // R31AM: both palms on the face (cheeks/jaw, in front of the scarf), elbows forward, head bowed
+      B.chest.rotation.x += .05; B.neck.rotation.x += .22 + .02 * sob; zo.group.updateMatrixWorld(true);
+      for (const s of ['L', 'R']) {
+        const sg = s === 'L' ? 1 : -1, skin = () => B.head.localToWorld(V(sg * .045, .07, .1)); let wrist = skin();
+        for (let i = 0; i < 4; i++) { const p = skin(); PO.reach(zo, s, wrist, { grip: 0, pole: [sg * .35, -.05, .3] }); aim(B['hand' + s], PO.handPts(zo, s).end, B.head.localToWorld(V(sg * .035, .19, .12))); wrist.add(p.sub(PO.handPts(zo, s).palm)); }
+        PO.fingers(zo, s, .08, { thumb: .06, spread: .06 });
+      }
+    }   // R31AM: face buried in both palms (palms in front of the scarf, elbows forward), head bowed
     else {   // R31AM: after b103 she lowers both hands into her lap, head still bowed
       B.neck.rotation.x += .17 + .02 * sob; zo.group.updateMatrixWorld(true);
-      for (const s of ['L', 'R']) { const sg = s === 'L' ? 1 : -1; PO.reach(zo, s, front(zo, 'root', .15 * k, -.15 * k, -sg * .09 * k), { grip: .3, pole: [sg * 1.5, -1, .2] }); PO.fingers(zo, s, .3, { thumb: .2, spread: .1 }); }
+      for (const s of ['L', 'R']) { const sg = s === 'L' ? 1 : -1; PO.reach(zo, s, front(zo, 'root', .2 * k, -.1 * k, -sg * .17 * k), { grip: .3, pole: [sg * 2.5, -.6, .3] }); PO.fingers(zo, s, .3, { thumb: .2, spread: .1 }); }
     }
   }
 }
@@ -58,7 +65,7 @@ const ch = staged('chambre_jour', { zoubida: ZO, mohammed: MO }, {
     const mo = st.A.mohammed, lieT = B(2)[0] + .32 * (B(2)[1] - B(2)[0]), here = t >= lieT - .05;
     mo.group.visible = here;
     if (st.pillow) st.pillow.visible = here;
-    lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .12, tuck: .22, headTurn: .08, sink: 0 });   // r15: flat on the cloth, full cast scale
+    lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .12, tuck: .22, headTurn: .08, sink: .007 });   // r15: flat on the cloth, full cast scale
     pillowUnder(S3, st, mo, { top: TOP, h: .12 }); st.pillow.visible = here;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.6); mo.B.chest.updateWorldMatrix(false, true);
   },

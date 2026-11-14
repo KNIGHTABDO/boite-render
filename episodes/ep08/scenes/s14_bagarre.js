@@ -216,7 +216,7 @@ const fi = soukCast(checkedStage('souk_bijoux', {
     // Palms contact the OTHER man's collar; fingers curl through the cloth, with the wrists outside it.
     for (const [a, o] of [[fa, ma], [ma, fa]]) for (const s of ['L', 'R']) {
       if (UP && a === ma) { PO.reach(ma, s, front(ma, 'chest', .1 * k(ma), (s === 'L' ? -.2 : .2) * k(ma), -.4 * k(ma)), { grip: .01 }); continue; }
-      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .14 * k(o), (s === 'L' ? .15 : -.15) * k(o), -.07 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .0, .3] });
+      PO.grip(a, s, front(o, 'neck', UP ? -.1 * k(o) : .17 * k(o), (s === 'L' ? .1 : -.1) * k(o), -.13 * k(o)), at(o, 'chest'), { pole: [s === 'L' ? .5 : -.5, .0, .3] });
       PO.fingers(a, s, .95, { thumb: .85 });
     }
     st.actcheck.exposed = { ...(st.actcheck.exposed || {}), zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'], fatma: ['handL', 'handR', 'foreArmL', 'foreArmR'] };
