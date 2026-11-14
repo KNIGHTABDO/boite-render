@@ -19,11 +19,11 @@ Implementation: F1/F7 pair 400 ms windows and repair dominant SCORE/BED/HITS cue
 ## Music-level verification
 
 {
-  "score_max_lufs_s": -14.835322100530371,
-  "solo_max_lufs_s": -14.835322100530371,
-  "solo_median_lufs_s": -19.79135591374718,
+  "score_max_lufs_s": -14.835823183539937,
+  "solo_max_lufs_s": -14.835823183539937,
+  "solo_median_lufs_s": -19.791857171237623,
   "solo_windows": 178,
-  "loudest_narrator_line_lufs": -11.891260119958647,
+  "loudest_narrator_line_lufs": -11.891216627300212,
   "ceiling_pass": true,
   "solo_target_lufs_s": -20.0,
   "solo_target_tolerance_db": 3.0,
@@ -50,8 +50,8 @@ F4 is a source-take screen only, as requested: no voice files were rewritten. A 
 | s12_souk:08 narrator | 601.656 | -32.55 | -45.08 | 12.53 | PASS |
 | s13_attente:03 narrator | 644.019 | -34.52 | -47.07 | 12.55 | PASS |
 | s12_souk:09 narrator | 611.604 | -33.11 | -45.79 | 12.68 | PASS |
+| s22_fiche:05 narrator | 1229.379 | -41.30 | -54.30 | 13.00 | PASS |
 | s09_escalier:03 narrator | 359.080 | -38.40 | -51.40 | 13.00 | PASS |
-| s18_cauchemar:05 narrator | 959.072 | -37.56 | -50.56 | 13.00 | PASS |
 | s18_cauchemar:09 zoubida | 993.039 | -38.63 | -51.63 | 13.00 | PASS |
 
 ## Every voice line
@@ -87,7 +87,7 @@ F4 is a source-take screen only, as requested: no voice files were rewritten. A 
 | s07_lundi:02 father | 244.142 | -36.30 | -49.42 | 13.12 | PASS |
 | s07_lundi:03 father | 256.090 | -31.53 | -200.69 | 169.16 | PASS |
 | s07_lundi:04 father | 261.764 | -40.59 | -200.69 | 160.10 | PASS |
-| s07_lundi:05 narrator | 270.012 | -28.92 | -52.58 | 23.66 | PASS |
+| s07_lundi:05 narrator | 270.012 | -28.91 | -52.58 | 23.66 | PASS |
 | s07_lundi:06 father | 275.095 | -20.69 | -42.48 | 21.80 | PASS |
 | s07_lundi:07 zoubida | 281.195 | -20.56 | -200.69 | 180.13 | PASS |
 | s07_lundi:08 father | 283.455 | -38.64 | -200.69 | 162.05 | PASS |
@@ -97,8 +97,8 @@ F4 is a source-take screen only, as requested: no voice files were rewritten. A 
 | s08_fleurs:01 mohammed | 310.768 | -33.87 | -200.69 | 166.82 | PASS |
 | s08_fleurs:02 father | 317.565 | -21.65 | -200.69 | 179.04 | PASS |
 | s08_fleurs:03 narrator | 319.637 | -26.37 | -200.69 | 174.32 | PASS |
-| s08_fleurs:04 mohammed | 321.743 | -15.23 | -88.09 | 72.86 | PASS |
-| s08_fleurs:05 narrator | 325.871 | -23.59 | -45.94 | 22.35 | PASS |
+| s08_fleurs:04 mohammed | 321.743 | -34.30 | -200.69 | 166.39 | PASS |
+| s08_fleurs:05 narrator | 326.483 | -24.44 | -45.56 | 21.12 | PASS |
 | s08_fleurs:06 narrator | 329.168 | -28.85 | -200.69 | 171.84 | PASS |
 | s09_escalier:01 narrator | 340.746 | -37.34 | -200.69 | 163.35 | PASS |
 | s09_escalier:02 narrator | 352.445 | -33.05 | -200.69 | 167.64 | PASS |
@@ -263,18 +263,18 @@ Hard-silence windows (beds zero, 100 ms outside fades): [(767.861, 813.52), (115
   - {"line": "s17_retour:13", "window_start_s": 901.1129999999999, "margin_before_db": 11.168032347985665, "dominant_bus": "hits", "bus_lufs_s": {"score": -200.691, "bed": -68.82394287486014, "hits": -47.66874489829584}, "action": "attenuate_cue", "id": "metal_clinks", "gain_db": -1.8319676520143346, "reason": "No improving whole-cue gap within +/-400 ms", "margin_after_db": 11.825307905949714}
   - {"line": "s17_retour:13", "window_start_s": 901.1129999999999, "margin_before_db": 11.825307905949714, "dominant_bus": "hits", "bus_lufs_s": {"score": -200.691, "bed": -68.82394287486014, "hits": -48.33029200182618}, "action": "attenuate_cue", "id": "metal_clinks", "gain_db": -1.174692094050286, "reason": "No improving whole-cue gap within +/-400 ms", "margin_after_db": 12.155885407293631}
   - {"line": "s18_cauchemar:05", "window_start_s": 969.432, "margin_before_db": 8.253154096593988, "dominant_bus": "bed", "bus_lufs_s": {"score": -200.691, "bed": -44.2108230619302, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -4.746845903406012, "margin_after_db": 12.999999566455855}
-  - {"line": "s18_cauchemar:07", "window_start_s": 982.7, "margin_before_db": -2.020493389228754, "dominant_bus": "score", "bus_lufs_s": {"score": -29.861356749835426, "bed": -43.118384824304044, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -15.020493389228754, "margin_after_db": 8.354388683982783}
-  - {"line": "s18_cauchemar:07", "window_start_s": 979.4, "margin_before_db": 8.354388683982783, "dominant_bus": "hits", "bus_lufs_s": {"score": -44.22397589693654, "bed": -59.644151670190006, "hits": -40.88113172181979}, "action": "attenuate_cue", "id": "metal_clinks", "gain_db": -4.6456113160172166, "reason": "No improving whole-cue gap within +/-400 ms", "margin_after_db": 10.921690716881862}
-  - {"line": "s18_cauchemar:07", "window_start_s": 979.4, "margin_before_db": 10.921690716881862, "dominant_bus": "score", "bus_lufs_s": {"score": -44.22397589693654, "bed": -59.644151670190006, "hits": -45.52669077335421}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -2.078309283118138, "margin_after_db": 12.001702945150477}
-  - {"line": "s18_cauchemar:09", "window_start_s": 997.299, "margin_before_db": 6.902245552156259, "dominant_bus": "bed", "bus_lufs_s": {"score": -200.691, "bed": -43.930386521290515, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -6.097754447843741, "margin_after_db": 12.999999587590715}
+  - {"line": "s18_cauchemar:07", "window_start_s": 982.7, "margin_before_db": -2.019973159351302, "dominant_bus": "score", "bus_lufs_s": {"score": -29.861901268592955, "bed": -43.118384824304044, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -15.019973159351302, "margin_after_db": 8.354392181753468}
+  - {"line": "s18_cauchemar:07", "window_start_s": 979.4, "margin_before_db": 8.354392181753468, "dominant_bus": "hits", "bus_lufs_s": {"score": -44.22399952412363, "bed": -59.643630781816555, "hits": -40.88113172181979}, "action": "attenuate_cue", "id": "metal_clinks", "gain_db": -4.645607818246532, "reason": "No improving whole-cue gap within +/-400 ms", "margin_after_db": 10.921695556568643}
+  - {"line": "s18_cauchemar:07", "window_start_s": 979.4, "margin_before_db": 10.921695556568643, "dominant_bus": "score", "bus_lufs_s": {"score": -44.22399952412363, "bed": -59.643630781816555, "hits": -45.52668724686225}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -2.0783044434313567, "margin_after_db": 12.001703938971602}
+  - {"line": "s18_cauchemar:09", "window_start_s": 997.299, "margin_before_db": 6.902245552156238, "dominant_bus": "bed", "bus_lufs_s": {"score": -200.691, "bed": -43.930386521290515, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -6.097754447843762, "margin_after_db": 12.999999587590715}
   - {"line": "s18_cauchemar:10", "window_start_s": 1001.9499999999999, "margin_before_db": 7.06181370941578, "dominant_bus": "bed", "bus_lufs_s": {"score": -200.691, "bed": -44.565161039660296, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -5.93818629058422, "margin_after_db": 12.999999737973447}
   - {"line": "s20_aicha:05", "window_start_s": 1113.031, "margin_before_db": 5.925320965299406, "dominant_bus": "hits", "bus_lufs_s": {"score": -200.691, "bed": -200.691, "hits": -41.47701249168986}, "action": "attenuate_cue", "id": "child_whimper", "gain_db": -7.074679034700594, "reason": "No improving whole-cue gap within +/-400 ms", "margin_after_db": 12.999999893983798}
   - {"line": "s21_fievre:04", "window_start_s": 1185.5269999999998, "margin_before_db": 9.06946209313125, "dominant_bus": "bed", "bus_lufs_s": {"score": -200.691, "bed": -41.472439949545006, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -3.93053790686875, "margin_after_db": 13.000000179095998}
-  - {"line": "s22_fiche:01", "window_start_s": 1199.141, "margin_before_db": -9.187681723050822, "dominant_bus": "score", "bus_lufs_s": {"score": -26.15116519064908, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -22.187681723050822, "margin_after_db": 12.999999612698716}
-  - {"line": "s22_fiche:02", "window_start_s": 1209.176, "margin_before_db": -5.622735283605266, "dominant_bus": "score", "bus_lufs_s": {"score": -30.094735785789013, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -18.622735283605266, "margin_after_db": 13.000000648746386}
-  - {"line": "s22_fiche:03", "window_start_s": 1216.093, "margin_before_db": -3.7225801197543547, "dominant_bus": "score", "bus_lufs_s": {"score": -29.526759026203557, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -16.722580119754355, "margin_after_db": 13.000000123160682}
-  - {"line": "s22_fiche:04", "window_start_s": 1226.855, "margin_before_db": 6.74639238468945, "dominant_bus": "score", "bus_lufs_s": {"score": -33.171192639764236, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -6.25360761531055, "margin_after_db": 13.000000245262441}
-  - {"line": "s22_fiche:05", "window_start_s": 1229.7389999999998, "margin_before_db": -5.8974779516844364, "dominant_bus": "score", "bus_lufs_s": {"score": -33.80070854426383, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -18.897477951684436, "margin_after_db": 13.000000721049169}
+  - {"line": "s22_fiche:01", "window_start_s": 1199.141, "margin_before_db": -9.187137190182945, "dominant_bus": "score", "bus_lufs_s": {"score": -26.15170972351696, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -22.187137190182945, "margin_after_db": 13.000000532226856}
+  - {"line": "s22_fiche:02", "window_start_s": 1209.176, "margin_before_db": -5.622190752302, "dominant_bus": "score", "bus_lufs_s": {"score": -30.09528031709228, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -18.622190752302, "margin_after_db": 13.000000116124959}
+  - {"line": "s22_fiche:03", "window_start_s": 1216.093, "margin_before_db": -3.722035590645522, "dominant_bus": "score", "bus_lufs_s": {"score": -29.52730355531239, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -16.722035590645522, "margin_after_db": 13.00000063998845}
+  - {"line": "s22_fiche:04", "window_start_s": 1226.855, "margin_before_db": 6.746936922758628, "dominant_bus": "score", "bus_lufs_s": {"score": -33.171737177833414, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -6.253063077241372, "margin_after_db": 13.0000002429367}
+  - {"line": "s22_fiche:05", "window_start_s": 1229.7389999999998, "margin_before_db": -5.896933418790958, "dominant_bus": "score", "bus_lufs_s": {"score": -33.801253077157305, "bed": -200.691, "hits": -200.691}, "action": "attenuate_buses", "buses": ["score", "bed"], "gain_db": -18.896933418790958, "margin_after_db": 12.99999920337978}
 - Pass 1: 0 failures; worst 12.00 dB.
 
 ### Hit nudges
@@ -328,4 +328,4 @@ Hard-silence windows (beds zero, 100 ms outside fades): [(767.861, 813.52), (115
 - s03 fly buzz (procedural) and s21 giant heartbeat (procedural).
 - Source-check offenders and any unresolved hit placements listed above.
 
-Runtime: 1254.324 s. Render time: 766.7 s.
+Runtime: 1254.324 s. Render time: 581.7 s.
