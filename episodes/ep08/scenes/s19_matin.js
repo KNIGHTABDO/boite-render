@@ -37,7 +37,7 @@ function kindPS(kind, sd, t) {
     case 'palms': return sd === 'R' ? { fwd: .26 + .04 * alt, out: .1 + .04 * w, drop: .08 + .1 * (1 - alt), curl: .1, spread: .4, palm: .8 } : { fwd: .2, out: .16 + .03 * v, drop: .2 + .08 * alt, curl: .15, spread: .4, palm: .7 };
     case 'chest': return sd === 'R' ? { fwd: .12, out: -.02, drop: .1 + .01 * i1, curl: .35, spread: .15, palm: .1 } : { fwd: .1, out: .1, drop: .27 + .02 * i2, curl: .4, spread: .1, palm: 0 };
     case 'wide': return sd === 'R' ? { fwd: .24 + .04 * alt, out: .32 + .04 * w, drop: .0 + .1 * alt, curl: .1, spread: .45, palm: .8 } : { fwd: .18, out: .14 + .03 * v, drop: .16 + .08 * alt, curl: .2, spread: .3, palm: .6 };
-    case 'sash': return sd === 'R' ? { fwd: .14 + .02 * i1, out: .04, drop: .24, curl: .5, spread: .1, palm: 0 } : { fwd: .12, out: .1, drop: .3 + .02 * i2, curl: .5, spread: .1, palm: 0 };
+    case 'sash': return sd === 'R' ? { fwd: .14 + .02 * i1, out: .08, drop: .24, curl: .5, spread: .1, palm: 0 } : { fwd: .12 + .02 * i1, out: .2 + .02 * i2, drop: .3 + .03 * i2, curl: .5, spread: .1, palm: 0 };
     default: return sd === 'R' ? { fwd: .13 + .03 * i1, out: .07, drop: .27 + .03 * i2, curl: .4 + .1 * i1, spread: .1, palm: 0 } : { fwd: .16 + .02 * i2, out: .03, drop: .34 + .02 * i1, curl: .5, spread: .1, palm: 0 };   // relaxed: hands in front of the belly, small drift
   }
 }
@@ -63,7 +63,7 @@ const ch1 = staged('chambre_jour', {
       p.y = Math.max(p.y, eye - .2);
       return p;
     }, lookMax: .95 },
-  zoubida: { at: [860, 760], face: [1130, 1010], seed: 7 },
+  zoubida: { at: [860, 735], face: [1130, 1010], seed: 7 },
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
@@ -89,13 +89,13 @@ const ch1 = staged('chambre_jour', {
     const fh = () => { const F = mo.S.face, ey = (F.eyeL[1] - mo.S.head), ez = F.eyeL[2]; return mo.B.head.localToWorld(V(0, ey + .075, ez * .55 + .01)); };
     const outw = at(fa, 'upperArm' + side).sub(at(fa, 'chest')).setY(0).normalize(), rest = at(fa, 'thigh' + side).add(V(0, .1 * kf, .03)).addScaledVector(outw, .12 * kf).add(front(fa, 'root', .12 * kf).sub(at(fa, 'root')));
     // the other hand rests on its own thigh, with a little drift, so no arm ever sticks out stiff
-    const lap = () => { const p = at(fa, 'thigh' + other).add(V(0, .1 * kf, .05 + .01 * Math.sin(t * .9))).addScaledVector(at(fa, 'upperArm' + other).sub(at(fa, 'chest')).setY(0).normalize(), .14 * kf); PO.reach(fa, other, p, { grip: .02, pole: other === 'L' ? [.4, .05, .2] : [-.4, .05, .2] }); PO.fingers(fa, other, .3, { spread: .12 }); };
+    const lap = () => { handTo(fa, other, { fwd: .22 + .01 * Math.sin(t * .9), out: .1, drop: .4, curl: .3, spread: .12 }); };   // R31AD: rest hand in FRONT on the thigh, never anchored behind the torso
     if (IN(0, t)) {   // hand ON the shoulder, shaking him awake
       const shk = .03 * Math.sin(t * 16) * sm(B(0)[0], B(0)[0] + .3, t);
-      reach(at(mo, 'upperArm' + near).add(V(shk, .045 * km, .02)).add(fwdv.clone().multiplyScalar(.05)), { grip: .02, pole }); PO.fingers(fa, side, .35); lap();
+      reach(at(mo, 'upperArm' + near).add(V(shk, .085 * km, .02)).addScaledVector(at(mo, 'upperArm' + near).sub(at(mo, 'chest')).setY(0).normalize(), .04 * km).add(fwdv.clone().multiplyScalar(.05)), { grip: .02, pole }); PO.fingers(fa, side, .35); lap();
     } else if (IN(1, t)) {   // feels the forehead (the line he tells it on), then draws back
       const u = sm(B(1)[0] + 3.2, B(1)[0] + 4.2, t) * (1 - sm(B(2)[0] - .6, B(2)[0] - .1, t));
-      reach(at(mo, 'upperArm' + near).add(V(0, .045 * km, .02)).add(fwdv.clone().multiplyScalar(.05)).lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .2); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
+      reach(at(mo, 'upperArm' + near).add(V(0, .085 * km, .02)).add(fwdv.clone().multiplyScalar(.05)).lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .2); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
     } else if (IN(2, t)) {
       const u = 1 - sm(B(2)[0] - .2, B(2)[0] + .5, t);
       reach(rest.clone().lerp(fh(), u), { grip: .01, pole }); PO.fingers(fa, side, .3); PO.palmTo(fa, side, u, V(0, -1, .15)); lap();
@@ -107,7 +107,7 @@ const ch1 = staged('chambre_jour', {
       fa.B.chest.rotation.y += .05 * Math.sin(t * .6); fa.B.chest.rotation.x += .03 * Math.sin(t * .45 + 1);
     }
     fa.B.chest.rotation.x += .012 * Math.sin(t * 1.6); fa.B.chest.rotation.z += .02 * Math.sin(t * .7); fa.B.chest.updateWorldMatrix(false, true);
-    zo.B.chest.rotation.z += .035 * Math.sin(t * .55 + .5); zo.B.chest.rotation.y += .03 * Math.sin(t * .4); zo.B.chest.updateWorldMatrix(false, true);
+    zo.B.chest.rotation.z += .05 * Math.sin(t * .55 + .5); zo.B.chest.rotation.y += .03 * Math.sin(t * .4); zo.B.chest.updateWorldMatrix(false, true);
     gestSched(zo, t, [[0, 'idle'], [B(0)[0] + 3.5, 'sash'], [B(1)[0] + 1, 'idle'], [B(3)[0] - 3, 'chop'], [B(3)[0] + 6, 'palms'], [B(4)[0], 'idle'], [B(4)[0] + 2.6, 'chest'], [B(5)[0] - .2, 'palms'], [B(5)[0] + 3.5, 'chop']]);
   },
 });
@@ -143,12 +143,12 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { ch1, ch2, pa },
   plan: {
-    b133: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 70, dy: -70 },
-    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 70, dy: -70 },
-    b135: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 80, dy: -70 },
-    b136: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 30, dy: -70 },
-    b137: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 80, dy: -70 },
-    b138: { shot: 'ch1', size: 'M', on: 'father', z: 1.9, dx: 30, dy: -70 },
+    b133: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 70, dy: -70 },
+    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 70, dy: -70 },
+    b135: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 80, dy: -70 },
+    b136: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 30, dy: -70 },
+    b137: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 80, dy: -70 },
+    b138: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 30, dy: -70 },
     b139: { shot: 'ch2', size: 'W', on: 'father' },
     b140: { shot: 'ch2', size: 'W', on: 'zoubida' },
     b141: { shot: 'pa', size: 'W', on: 'father' },
