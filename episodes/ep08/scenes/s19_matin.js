@@ -89,7 +89,11 @@ const ch1 = staged('chambre_jour', {
     const fh = () => { const F = mo.S.face, ey = (F.eyeL[1] - mo.S.head), ez = F.eyeL[2]; return mo.B.head.localToWorld(V(0, ey + .075, ez * .55 + .01)); };
     const outw = at(fa, 'upperArm' + side).sub(at(fa, 'chest')).setY(0).normalize(), rest = at(fa, 'thigh' + side).add(V(0, .1 * kf, .03)).addScaledVector(outw, .12 * kf).add(front(fa, 'root', .12 * kf).sub(at(fa, 'root')));
     // the other hand rests on its own thigh, with a little drift, so no arm ever sticks out stiff
-    const lap = () => { handTo(fa, other, { fwd: .22 + .01 * Math.sin(t * .9), out: .1, drop: .4, curl: .3, spread: .12 }); };   // R31AD: rest hand in FRONT on the thigh, never anchored behind the torso
+    const poleO = other === 'L' ? [.5, .3, .6] : [-.5, .3, .6];   // R31AJ: elbow forward/out (handTo's pole put it BEHIND the torso)
+    const lap = () => { const rO = at(fa, 'thigh' + other).add(V(0, .1 * kf, .03)).addScaledVector(at(fa, 'upperArm' + other).sub(at(fa, 'chest')).setY(0).normalize(), .1 * kf).add(front(fa, 'root', .12 * kf).sub(at(fa, 'root')));
+      const sh = at(fa, 'upperArm' + other), len = sh.distanceTo(at(fa, 'foreArm' + other)) + at(fa, 'foreArm' + other).distanceTo(at(fa, 'hand' + other)), d = rO.clone().sub(sh);
+      if (d.length() > len * .97) rO.copy(sh).addScaledVector(d.normalize(), len * .97);
+      PO.reach(fa, other, rO, { grip: .02, pole: poleO }); PO.fingers(fa, other, .3, { spread: .12 }); };
     if (IN(0, t)) {   // hand ON the shoulder, shaking him awake
       const shk = .03 * Math.sin(t * 16) * sm(B(0)[0], B(0)[0] + .3, t);
       reach(at(mo, 'upperArm' + near).add(V(shk, .085 * km, .02)).addScaledVector(at(mo, 'upperArm' + near).sub(at(mo, 'chest')).setY(0).normalize(), .04 * km).add(fwdv.clone().multiplyScalar(.05)), { grip: .02, pole }); PO.fingers(fa, side, .35); lap();
@@ -143,12 +147,12 @@ const pa = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { ch1, ch2, pa },
   plan: {
-    b133: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 70, dy: -70 },
-    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 70, dy: -70 },
-    b135: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 80, dy: -70 },
-    b136: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 30, dy: -70 },
-    b137: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 80, dy: -70 },
-    b138: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 30, dy: -70 },
+    b133: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 70, dy: -25 },
+    b134: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 70, dy: -25 },
+    b135: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 80, dy: -25 },
+    b136: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 30, dy: -25 },
+    b137: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 80, dy: -25 },
+    b138: { shot: 'ch1', size: 'M', on: 'father', z: 1.68, dx: 30, dy: -25 },
     b139: { shot: 'ch2', size: 'W', on: 'father' },
     b140: { shot: 'ch2', size: 'W', on: 'zoubida' },
     b141: { shot: 'pa', size: 'W', on: 'father' },
