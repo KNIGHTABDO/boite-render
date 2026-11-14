@@ -55,7 +55,7 @@ const pa = staged('patio_matin', {
   mohammed: { at: [960, 1035], face: 'cam', yaw: 0, seed: 3, talk: 0, lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : t >= B(1)[0] - .15 ? .4 : .95,
     look: (t, st) => t >= B(6)[0] ? 'father' : t < B(1)[0] - .15 ? skyOf(st.A.mohammed) : t >= B(2)[0] + .8 && t < B(3)[0] ? at(st.A.mohammed, 'root').add(V(.1, .3, .25)) : 'zoubida' },
   zoubida: { at: [1140, 1015], face: 'cam', yaw: .2, seed: 7, talk: 0,
-    lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .95 : .45,
+    lookMax: t => t >= B(6)[0] ? 1.15 : t >= B(3)[0] ? .6 : .45,
     look: (t, st) => {
       if (t >= B(6)[0]) return 'father';
       if (t >= B(3)[0]) {   // R31AK: eyes stay on Fatma's doorway through b070 and b071 (the nod is a neck tilt)
@@ -73,7 +73,7 @@ const pa = staged('patio_matin', {
     walk: { to: [680, 1005], t0: WALK0(), t1: B(7)[0] + 2.1 } },
 }, {
   light: AMBER,
-  addressee: { mohammed: 'zoubida', zoubida: 'mohammed', fatma: 'zoubida', father: 'zoubida' },
+  addressee: { zoubida: 'mohammed', fatma: 'zoubida', father: 'zoubida' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo, fatma: fa, father: paFa } = st.A;
     const broom = st.broom ||= S3.prop(brightBroom(), 0, 0, 0);
