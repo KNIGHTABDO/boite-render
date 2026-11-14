@@ -62,24 +62,27 @@ const pe = staged('chambre_penombre', {
     } },
   zoubida: { at: [680, 950], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .1, hands: false }, seed: 7, hands: false, lookMax: .6, look: null },   // R25M: head forced down in act (below)
   // left divan: head toward the back cushions, feet down the cloth, not spun toward the lens (that walked him off the bed)
-  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: null, height: 1.15 },
+  mohammed: { at: [1011, 662], face: [812, 683], pose: 'lie', o: { top: .2, turn: .12, headTurn: .15, pillow: .1, hands: 'belly', mattress: PEN_BED, avoid: CHEST_J }, seed: 3, look: (t, st, S3) => at(st.A.mohammed, 'head').clone().add(V(0, .1, 0)).lerp(S3.cam.position, .5), lookMax: 1.0, height: 1.15 },   // R31AP: face turned toward the lens/door so the open eyes show
 }, {
   light: DARK, fx: NIGHT, addressee: { father: 'zoubida', mohammed: 'father' },
   act(lt, t, S, st, S3) {
     const { father: fa, zoubida: zo } = st.A, kf = k(fa); bareHead(fa);
-    dim(fa, .45 + .55 * sm(B(1)[0] + 2.5, B(2)[0] + 1, t)); glow(st.A.mohammed, .05);   // R31AE: black silhouette at the door; Mohammed readable in bed
+    dim(fa, .45 + .55 * sm(B(1)[0] + 2.5, B(2)[0] + 1, t)); glow(st.A.mohammed, .02);   // R31AE: black silhouette at the door; Mohammed readable in bed
     if (t < B(4)[0] - .05) yawToward(fa, S3.cam, 1.6);
     // R25M b113: from the mattress line on he turns his body toward Mohammed's divan
     if (t < B(4)[0] - .05) st.fy0 = fa.group.rotation.y;
     else if (st.fy0 != null) {
       const d = yawTo(fa.group.position, st.A.mohammed.group.position) - st.fy0, w = sm(B(4)[0] - .1, B(4)[0] + .6, t);
-      fa.group.rotation.y = st.fy0 + Math.atan2(Math.sin(d), Math.cos(d)) * w * .3; fa.group.updateMatrixWorld(true);
+      const dd = Math.atan2(Math.sin(d), Math.cos(d));   // R31AP: root keeps the gated .3; the rest of the turn goes into spine + head
+      fa.group.rotation.y = st.fy0 + dd * w * .3; fa.group.updateMatrixWorld(true);
+      fa.B.chest.rotation.y += dd * w * .35; fa.B.spine && (fa.B.spine.rotation.y += dd * w * .1); fa.B.head.rotation.y += dd * w * .25; fa.B.chest.updateWorldMatrix(false, true);
     }
     lap(zo); veilDown(zo);
     if (!st.zwrap) { st.zwrap = true; const o = st.G.apply; st.G.apply = tt => { o(tt); const h = zo.B.head, n = zo.B.neck; n.rotation.x += .3; h.rotation.x += .55; h.rotation.y += .02; if (!(t > B(4)[0])) n.rotation.x += .2; h.updateWorldMatrix(false, true); }; }
     // R25M: relaxed free arm, small talk motion
-    { const sg = -1, w = Math.sin(t * 1.3 + 1); if (!(win(2, .2, 1, t) > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, sg * .16 * kf, (-.05 + .02 * w) * kf, .08 * kf), { grip: .12, pole: [sg * .15, -.3, -.1] });
-      PO.reach(fa, 'L', PO.hipToWorld(fa, .16 * kf, -.06 * kf, .07 * kf), { grip: .1, pole: [.15, -.3, -.1] }); }
+    const grope = Math.max(win(2, .2, 1, t), win(3, 0, .6, t));   // R31AP: the hand keeps feeling along the shelf through b112
+    { const sg = -1, w = Math.sin(t * 1.3 + 1); PO.reach(fa, 'R', PO.hipToWorld(fa, sg * .16 * kf, (-.05 + .02 * w) * kf, .08 * kf), { grip: .12, pole: [sg * .15, -.3, -.1] });
+      if (!(grope > 0)) PO.reach(fa, 'L', PO.hipToWorld(fa, .16 * kf, -.06 * kf, .07 * kf), { grip: .1, pole: [.15, -.3, -.1] }); }
     const mo = st.A.mohammed, surface = .27;
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
     for (let i = 0; i < 5; i++) {
@@ -89,18 +92,17 @@ const pe = staged('chambre_penombre', {
       mo.B.head.rotation.x += gap > 0 ? -.08 : .08;
       mo.B.head.updateWorldMatrix(false, true);
     }
-    const grope = win(2, .2, 1, t);
     // R25M: a plain shelf (plank + tea box) on the wall at his hand height; fixed once he has stopped walking
     if (t >= B(2)[0] - .3) {
       if (!st.shelf) {
-        const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), c = at(fa, 'chest').clone().addScaledVector(R, -.36).addScaledVector(V(0, 0, 1).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), -.15)
+        const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), c = at(fa, 'chest').clone().addScaledVector(R, .42).addScaledVector(V(0, 0, 1).applyQuaternion(S3.cam.quaternion).setY(0).normalize(), -.15)
           .add(V(0, -.14, 0)), g = new THREE.Group();
         const plank = new THREE.Mesh(new THREE.BoxGeometry(.42, .025, .16), toon(0xe8c078)); g.add(plank);
         const box = new THREE.Mesh(new THREE.BoxGeometry(.14, .12, .12), toon(0xb0402a)); box.position.set(-.2, .08, 0); g.add(box);
         g.position.copy(c); g.rotation.y = Math.atan2(S3.cam.position.x - c.x, S3.cam.position.z - c.z); S3.scene.add(g); st.shelf = g;
       }
     }
-    if (grope > 0 && st.shelf) { const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(); PO.reach(fa, 'R', st.shelf.position.clone().addScaledVector(R, .07 * Math.sin(t * 1.4)).add(V(0, .035, 0)), { grip: .08, pole: [-1.0, .3, .4] }); }
+    if (grope > 0 && st.shelf) { const R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion).setY(0).normalize(); PO.reach(fa, 'L', st.shelf.position.clone().addScaledVector(R, -.1 + .13 * Math.sin(t * 1.4)).add(V(0, .05, 0)), { grip: .08, pole: [1.0, .5, .3] }); }   // R31AP: shelf now on his screen-right (tea box above her), left hand slides along it
     else if (grope > 0) { const sd = armToward(fa, zo) === 'L' ? 'R' : 'L', sg = sd === 'L' ? 1 : -1; PO.reach(fa, sd, front(fa, 'chest', .44 * kf, sg * (.06 + .1 * Math.sin(t * 1.6)) * kf, .12 * kf), { grip: .08, pole: [sg * .35, .1, .15] }); }
   },
 });
@@ -111,10 +113,10 @@ const nu = staged('chambre_nuit', {
   father: { at: [480, 900], face: 'cam', yaw: .2, seed: 5, height: 1.76, lookMax: .35,
     look: (t, st) => { const p = at(st.A.zoubida, 'head').clone(); p.y = Math.max(p.y, at(st.A.father, 'head').y - .18); return p; } },
   // b117 she lifts her face toward him; from b119 she glances toward the chest without turning her back on the lens
-  zoubida: { at: [1010, 905], face: 'cam', yaw: -.7, seed: 7, hands: false, lookMax: .6,
+  zoubida: { at: [1010, 905], face: 'cam', yaw: -.7, seed: 7, hands: false, lookMax: 1.0,
     look: (t, st, S3) => {
       if (t >= B(8)[0] && t < B(10)[0]) { const p = at(st.A.father, 'head').clone(); p.y = Math.max(p.y, at(st.A.zoubida, 'head').y - .15); return p; }
-      if (t >= B(10)[0]) { const h = at(st.A.zoubida, 'head'), R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion); R.y = 0; R.normalize(); return h.clone().addScaledVector(R, 1.2).add(V(0, -.18, 0)); }   // R25M: away from him, screen right, level (not the ceiling)
+      if (t >= B(10)[0]) { const h = at(st.A.zoubida, 'head'), R = V(1, 0, 0).applyQuaternion(S3.cam.quaternion); R.y = 0; R.normalize(); return h.clone().addScaledVector(R, 1.2).add(V(0, -.4, 0)); }   // R25M: away from him, screen right, level (not the ceiling)
       return null;
     } },
   mohammed: { at: [1170, 665], face: [1290, 690], pose: 'lie', o: { top: .35, turn: .12, pillow: .08, hands: 'belly', mattress: NUIT_BED, avoid: CHEST_N }, seed: 3, talk: 0, height: 1.1 },
@@ -146,12 +148,12 @@ const nu = staged('chambre_nuit', {
     const take = win(12, 0, .4, t), toss = win(12, .4, 1, t);
     const heart = win(13, .3, 1.2, t);
     if (!(offer > 0 || take > 0 || toss > 0 || heart > 0)) for (const [sd, sg] of [['L', 1], ['R', -1]]) PO.reach(zo, sd, PO.hipToWorld(zo, sg * .15 * kz, (-.03 + .015 * Math.sin(t * 1.2 + sg)) * kz, .08 * kz), { grip: .1, pole: [sg * .15, -.3, -.1] });
-    PO.reach(fa, 'L', PO.hipToWorld(fa, .16 * kf, -.05 * kf, .07 * kf), { grip: .1, pole: [.15, -.3, -.1] });
+    PO.reach(fa, 'L', PO.hipToWorld(fa, (.16 + .03 * Math.sin(t * .8)) * kf, (-.03 + .03 * Math.sin(t * 1.1)) * kf, (.1 + .06 * sm(B(11)[0], B(11)[1], t)) * kf), { grip: .1, pole: [.15, -.3, -.1] });   // R31AP: free arm varies, lifts a little as he insists
     if (!(offer > 0 || take > 0)) PO.reach(fa, 'R', PO.hipToWorld(fa, -.16 * kf, (-.04 + .02 * Math.sin(t * 1.5)) * kf, .08 * kf), { grip: .12, pole: [-.15, -.3, -.1] });
     if (offer > 0 && take <= 0) {
-      const sh = at(fa, 'upperArmR'), reach = .45 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
-      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .03 * win(11, 0, 1, t))); p.y = sh.y - .15 * kf;
-      p.add(PO.hipToWorld(fa, -.15 * kf, 0, .1 * kf)).sub(PO.hipToWorld(fa, 0, 0, 0));   // R31J: hand target itself out to the side and forward
+      const sh = at(fa, 'upperArmR'), reach = .56 * kf;   // R25M: held out toward her, palm open and firm (b120 reaches further)
+      const p = sh.clone().addScaledVector(toZ().sub(sh).normalize(), reach * (1 + .03 * win(11, 0, 1, t))); p.y = sh.y - .22 * kf;
+      p.add(PO.hipToWorld(fa, -.06 * kf, 0, .05 * kf)).sub(PO.hipToWorld(fa, 0, 0, 0));   // R31J: hand target itself out to the side and forward
       PO.reach(fa, 'R', p, { grip: 0, pole: [-1.3, .8, .7] });   // R31J: shorter reach, elbow out
       PO.fingers(fa, 'R', 0, { thumb: 0, spread: .25 });
     }
@@ -182,28 +184,44 @@ const nu = staged('chambre_nuit', {
     if (heart > 0 || take > 0 || toss > 0) PO.reach(zo, 'L', PO.hipToWorld(zo, .15 * kz, -.03 * kz, .08 * kz), { grip: .1, pole: [.15, -.3, -.1] });
     const br = st.br ||= bracelets(S3);
     const inHis = t >= B(9)[0] && take < .5 && toss <= 0, inHers = take >= .5 && toss < .6 && t < B(13)[0];
-    br.visible = inHis || inHers;
-    if (br.visible) {
+    // R31AP: the open chest (right of the table) and the toss: bracelets fly from her palm into it, then are gone
+    const lid = st.lid ||= chestLid(S3); const tq = toss > 0 ? Math.min(1, Math.max(0, (t - (B(12)[0] + .4 * (B(12)[1] - B(12)[0]))) / (.6 * (B(12)[1] - B(12)[0]) * .75))) : 0;
+    lid.visible = t >= B(12)[0] - .3 && t < B(13)[1];
+    const inAir = toss > 0 && tq > 0 && tq < 1;
+    br.visible = inHis || inHers || inAir;
+    if (inAir) {
+      const palm = PO.handPts(zo, 'R').palm, tgt = lid.userData.mouth, e = tq * tq * (3 - 2 * tq);
+      br.position.copy(palm).lerp(tgt, e); br.position.y += .12 * Math.sin(Math.PI * e); br.rotation.set(1.2 + 3 * e, 0, 0); br.scale.setScalar(1); br.updateMatrixWorld(true);
+    } else if (br.visible) {
       const who = inHis ? fa : zo;
       PO.fingers(who, 'R', 0, { thumb: .05, spread: .3 });
       const palm = PO.handPts(who, 'R').palm;
-      br.position.copy(palm).add(V(0, .05 * k(who), 0));
-      br.lookAt(S3.cam.position); br.scale.setScalar(1.6 * Math.max(.85, k(who)));
+      br.position.copy(palm).add(V(0, .03 * k(who), 0));   // R31AP: real bangles (~7 cm) resting on the open palm
+      br.rotation.set(1.25, 0, 0); br.scale.setScalar(Math.max(.85, k(who)));
       br.updateMatrixWorld(true);
     }
     veilDown(zo);
     const holder = inHis ? 'father' : 'zoubida';
-    st.actcheck = (inHis || inHers) ? { held: { actor: holder, side: 'R', prop: br, max: .08, required: true } } : {};
+    st.actcheck = ((inHis || inHers) && !inAir) ? { held: { actor: holder, side: 'R', prop: br, max: .08, required: true } } : {};
     const sob = win(8, .4, 1.2, t);
     if (sob > 0) { zo.B.chest.rotation.x += .03 * Math.sin(t * 9) * sob; zo.B.chest.updateWorldMatrix(false, true); }
   },
 });
 
+/** open chest lid (right of the table): a hinged lid tilted up behind a dark mouth; userData.mouth = world point the bracelets drop into */
+function chestLid(S3) {
+  const g = new THREE.Group(), c = S3.floorAt(1620, 800) || new THREE.Vector3(1, 0, 0);
+  const lid = new THREE.Mesh(new THREE.BoxGeometry(.6, .035, .38), toon(0x5a3420)); lid.position.set(0, .2, 0); lid.rotation.x = 0; const hinge = new THREE.Group(); hinge.position.set(0, .5, -.19); hinge.rotation.x = -1.85; lid.position.set(0, .0, .19); hinge.add(lid); g.add(hinge);
+  const mouth = new THREE.Mesh(new THREE.PlaneGeometry(.55, .34), new THREE.MeshBasicMaterial({ color: 0x120a06 })); mouth.rotation.x = -Math.PI / 2; mouth.position.set(0, .5, 0); g.add(mouth);
+  g.position.copy(c); g.rotation.y = Math.atan2(S3.cam.position.x - c.x, S3.cam.position.z - c.z); S3.scene.add(g); g.updateMatrixWorld(true);
+  g.userData.mouth = new THREE.Vector3(0, .5, 0).applyMatrix4(g.matrixWorld); g.visible = false; return g;
+}
+
 /** the sun and moon bracelets: a gold and a silver ring lying crossed on the palm */
 export function bracelets(S3) {
   const g = new THREE.Group();
   for (const [col, x, ry] of [[0xe0b040, -.012, .3], [0xd8dde4, .012, -.4]]) {
-    const r = new THREE.Mesh(new THREE.TorusGeometry(.045, .011, 10, 40), toon(col)); r.material.emissive?.setHex(col); if (r.material.emissiveIntensity != null) r.material.emissiveIntensity = .3; r.rotation.set(0, ry * .3, 0); r.position.set(x * 3, x * 1.5, 0); g.add(r);
+    const r = new THREE.Mesh(new THREE.TorusGeometry(.035, .006, 10, 40), toon(col)); r.material.emissive?.setHex(col); if (r.material.emissiveIntensity != null) r.material.emissiveIntensity = .3; r.rotation.set(ry * .15, 0, ry * .1); r.position.set(x * 2.5, x * 1.2, 0); g.add(r);
   }
   S3.scene.add(g); return g;
 }
