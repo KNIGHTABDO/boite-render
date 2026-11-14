@@ -304,12 +304,14 @@ const ca = checkedStage('souk_mur', {
   zoubida: { at: WALL.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, look: 'mohammed', lookMax: .25 },
 }, {
   light: { shadow: .4, area: 6 },
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     const { father: fa, mohammed: mo, zoubida: zo } = st.A;
     zo.haikSlim = true; child(mo); closeHaik(zo);
     st.actcheck={carried:['mohammed'],contacts:[{actors:['father','mohammed'],parts:['foreArmR:thighL','foreArmR:thighR','foreArmR:torso','foreArmL:torso','upperArmR:torso','torso:torso','head:upperArmR','head:torso','upperArmL:torso','foreArmL:upperArmR','foreArmL:upperArmL','foreArmR:upperArmR','foreArmR:upperArmL']} ]};
     const kf = k(fa), km = k(mo), lift = sm(B(4)[0] - .5, B(4)[0] + .08, t);
-    fa.B.chest.rotation.x -= .065 + .05 * Math.sin((t - B(4)[0]) * 3.4);
+    const heave = Math.sin((t - B(4)[0]) * 5.2);   // R31AN: chest heaving, the boy rides it
+    fa.B.chest.rotation.x -= .065 + .05 * Math.sin((t - B(4)[0]) * 3.4) + .03 * heave;
+    fa.B.spine.rotation.x += .02 * heave;
     fa.B.neck.rotation.x += .10;
     mo.group.rotation.y = fa.group.rotation.y + Math.PI;
     mo.B.spine.rotation.x += .45;
@@ -320,9 +322,12 @@ const ca = checkedStage('souk_mur', {
       mo.B['foot' + s].rotation.x += .12;
     }
     sync(fa, mo);
+    // R31AN: the boy's face turns to the lens (cheek on the shoulder, face visible), with a slow hug sway
+    { mo.B.head.updateWorldMatrix(true, false); const lp = mo.B.head.worldToLocal(S3.cam.position.clone()); const ty = Math.atan2(lp.x, lp.z); mo.B.head.rotation.y += Math.max(-.9, Math.min(.9, ty)) * .8 + .06 * Math.sin((t - B(4)[0]) * 1.7); mo.B.head.rotation.z += .08 * Math.sin((t - B(4)[0]) * 2.3); }
+    sync(fa, mo);
     // Head outside the neck, cheek against the outer shoulder, torso in front of the chest.
     const cheek = at(mo, 'head', [.10, .02, .06]);
-    const shoulder = front(fa, 'upperArmR', .08 * kf, .25 * kf, -.08 * kf);
+    const shoulder = front(fa, 'upperArmR', .08 * kf, .25 * kf, -.02 * kf);   // R31AN: head up ON the shoulder
     const delta = shoulder.sub(cheek);
     mo.group.position.x += delta.x; mo.group.position.z += delta.z;
     mo.group.position.y += delta.y * lift;
@@ -337,7 +342,7 @@ const ca = checkedStage('souk_mur', {
     PO.reach(fa, 'R', seat, { grip: .015, pole: [-.9, -.1, .2] });
     PO.reach(fa, 'L', sideL().addScaledVector(dirW(fa, -1, 0, 0), -.15).addScaledVector(dirW(mo, 0, 0, -1), .10).add(V(0, -.08, 0)), { grip: .015, pole: [1.0, .3, .1] });   // R31Q: hand out from midline
     PO.reach(mo, 'R', front(fa, 'neck', .13, .14 * kf, -.08), { grip: .01 });
-    PO.reach(mo, 'L', front(fa, 'upperArmR', .24 * kf, .16 * kf, .05), { grip: .01 });
+    PO.reach(mo, 'L', front(fa, 'neck', .04 * kf, -.12 * kf + .01 * heave, -.13 * kf), { grip: .01 });   // R31AN: arm round the father's neck, not up at his beard
     sync(fa, mo, zo);
   },
 });
@@ -345,10 +350,10 @@ const ca = checkedStage('souk_mur', {
 // b084/b085/b089: a readable mid-depth lane, with the whole family kept beside it.
 const la = checkedStage('souk_bijoux', {
   father: { at: LANE.father, face: 'cam', yaw: 0, seed: 5, talk: 0, lookMax: .95,
-    look: (t, st) => t >= B(6)[0] ? front(st.A.father, 'head', 1.8, 2.2 * Math.sin((t - B(6)[0]) * .9 - 1.2), 0) : 'marchand' },
+    look: (t, st) => t >= B(6)[0] ? at(st.A.man1, 'head').lerp(at(st.A.woman2, 'head'), .5 + .5 * Math.sin((t - B(6)[0]) * .9)) : 'marchand' },   // R31AN: scans the crowd down the lane
   zoubida: { at: LANE.zoubida, face: 'cam', yaw: .28, costume: 'haik', seed: 7, talk: 0, lookMax: .8,
-    look: (t, st) => t >= B(6)[0] ? front(st.A.zoubida, 'head', 1.8, 2.0 * Math.sin(1.2 - (t - B(6)[0]) * .9), 0) : [1180, 720, 1.5] },
-  mohammed: { at: LANE.mohammed, face: 'marchand', yaw: .25, seed: 3, lids: .6, talk: 0, look: 'marchand', lookMax: .9 },
+    look: (t, st) => t >= B(6)[0] ? at(st.A.fqih, 'head').lerp(at(st.A.kid3, 'head'), .5 + .5 * Math.sin(1.2 - (t - B(6)[0]) * .9)) : [1180, 720, 1.5] },
+  mohammed: { at: LANE.mohammed, face: 'marchand', yaw: .25, seed: 3, lids: .6, talk: 0, look: (t, st) => t >= B(6)[0] ? at(st.A.kid2, 'head') : 'marchand', lookMax: .9 },
   marchand: { at: [1080, 690], face: [700, 790], seed: 13, talk: 1,
     mutter: t => t < B(2)[0] ? 3 * win(1, 0, .66, t) : 2 * win(2, 0, 1.1, t) },
   man1: { at: [880, 830], face: [1180, 720], seed: 21, talk: 0 },
@@ -412,7 +417,7 @@ const la = checkedStage('souk_bijoux', {
       walk(client, F(960, 860).add(off), F(1200, 700).add(off), t0, t1, t, { cps: 4.0, ease: false });
       ma.B.spine.rotation.x += .32; client.B.spine.rotation.x += .25;
       sync(ma, client);
-      { const yc = yawTo(ma.group.position, S3.cam.position), y0 = ma.group.rotation.y; ma.group.rotation.y = y0 + Math.atan2(Math.sin(yc - y0), Math.cos(yc - y0)) * .8; sync(ma); }   // R31S: turn BEFORE the clasp reach (it used to drag the posed arms off the target)
+      { const yc = yawTo(ma.group.position, S3.cam.position), y0 = ma.group.rotation.y; ma.group.rotation.y = y0 + Math.atan2(Math.sin(yc - y0), Math.cos(yc - y0)) * .3; sync(ma); }   // R31AN: they travel up the lane, not moonwalk toward the lens   // R31S: turn BEFORE the clasp reach (it used to drag the posed arms off the target)
       const nearest=(a,b)=>a.group.worldToLocal(b.group.position.clone()).x>0?'L':'R';
       const drag=st.dragSide=nearest(ma,client), receive=nearest(client,ma);
       const clasp = at(ma, 'upperArm'+drag).lerp(at(client, 'upperArm'+receive), .5);   // R31C: nearer the dragger so the client's forearm leaves his torso
@@ -421,11 +426,11 @@ const la = checkedStage('souk_bijoux', {
       PO.reach(client, receive, clasp, { grip: 0, pole: [.3, .05, -.25] });   // R31C: pole flipped
       PO.fingers(ma, drag, .65); PO.fingers(client, receive, .65);
       for (const [n, p0, p1, delay] of [
-        ['woman1', [1290, 890], [1430, 700], 0],   // R31AA: they hurry away UP the lane on the right-hand side, clear of the clasp; fqih no longer blocks the family
-        ['kid2', [1340, 880], [1450, 700], .3],
-        ['kid3', [1260, 905], [1400, 700], .5],
+        ['woman1', [1420, 900], [1520, 700], .5],   // R31AA: they hurry away UP the lane on the right-hand side, clear of the clasp; fqih no longer blocks the family
+        ['kid2', [1440, 880], [1530, 700], .6],
+        ['kid3', [1380, 905], [1500, 700], .8],
         ['fqih', [1000, 720], [1060, 640], .05],
-        ['woman2', [1370, 885], [1470, 700], .8],
+        ['woman2', [1480, 885], [1560, 700], 1.0],
       ]) {
         const a = st.A[n]; rest(a.B);
         walk(a, F(...p0), F(...p1), t0 + delay, t1 + delay, t, { cps: n.startsWith('kid') ? 5.4 : 4.6, ease: false });
@@ -459,6 +464,7 @@ const la = checkedStage('souk_bijoux', {
       br.quaternion.copy(hand.getWorldQuaternion(br.quaternion));
       br.scale.setScalar(2.4); br.updateMatrixWorld(true);
     }
+    if (scan) { const lane = F(1150, 735); for (const [a, w] of [[fa, .75], [zo, .6], [mo, .6]]) { const y0 = a.group.rotation.y, y1 = yawTo(a.group.position, lane); a.group.rotation.y = y0 + Math.atan2(Math.sin(y1 - y0), Math.cos(y1 - y0)) * w; } }   // R31AN: the family turns toward the lane
     sync(fa, zo, mo, ma, client);
   },
 });
