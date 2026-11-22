@@ -35,7 +35,7 @@ function lightningPulse(t) {
 const nu1 = staged('chambre_nuit', {
   mohammed: {
     at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST },
+    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, pillow: .08, mattress: MATTRESS, avoid: CHEST },
     seed: 3, talk: 0,
     lids: t => {
       if (t >= B(4)[0] + 3.0) return .25 + .72 * sm(B(4)[0] + 3.4, B(4)[1] - 1.0, t);
@@ -67,9 +67,9 @@ const nu1 = staged('chambre_nuit', {
     lieOnBed(mo, {
       top: TOP, feet: [.5, .87],
       origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .085, tuck: .22, headTurn: -.14,
+      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.14,
     });
-    pillowUnder(S3, st, mo, { top: TOP, h: .09, col: 0x3b485e });
+    pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b485e });
     st.cover ||= PR.blanket({ w: .42, l: .58, h: .065, col: 0x8a3a2c });
     const pullUp = fear ? sm(B(3)[0], B(3)[0] + .8, t) : (t >= B(4)[0] ? 1 - .35 * sleep : 0);
     const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
@@ -88,17 +88,16 @@ const nu1 = staged('chambre_nuit', {
       mo.B.chest.rotation.x += .02 * Math.sin(t * 3.1);
       const hy = at(mo, 'head').y;
       for (const [sd, sg] of [['L', 1], ['R', -1]]) {
-        const tg = front(mo, 'chest', .12 * km, sg * .11 * km, .12 * km);
-        tg.y = Math.min(tg.y, hy + .04);
-        clampReach(mo, sd, tg, { grip: .02, pole: [sg * .6, -.2, -.2] });
+        const tg = front(mo, 'chest', .04 * km, -sg * .19 * km, .22 * km);
+        tg.y = Math.min(tg.y, hy + .03);
+        clampReach(mo, sd, tg, { grip: .02, pole: [sg * .65, .05, .25] });
         PO.fingers(mo, sd, .45, { spread: .1 });
       }
     } else {
       const shiv = (1 - sleep) * Math.sin(t * 12) * .014;
       mo.B.chest.rotation.z += shiv;
-      mo.B.head.rotation.y -= .32 * sleep;
-      mo.B.neck.rotation.x += .14 * sleep;
-      mo.B.head.rotation.x += .10 * sleep;
+      mo.B.head.rotation.y -= .30 * sleep;
+      mo.B.head.rotation.z += .05 * sleep;
       mo.B.chest.rotation.x += .012 * Math.sin(t * 1.5);
     }
     mo.B.chest.updateWorldMatrix(false, true);

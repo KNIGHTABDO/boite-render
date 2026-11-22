@@ -63,10 +63,10 @@ function citronProp() {
 const pe = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .55 },
   zoubida: {
-    height: 1.6, at: [1065, 785], face: 'cam', yaw: .5, pose: 'kneel',
+    height: 1.6, at: [1065, 785], face: 'cam', yaw: .28, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7, talk: 0,
     look: (t, st) => at(st.A.mohammed, 'head').clone().setY(at(st.A.zoubida, 'head').y - .15),
-    lookMax: .8,
+    lookMax: .45,
   },
 }, {
   light: PEN_LIGHT,
@@ -119,13 +119,13 @@ const pa = staged('patio_matin', {
       ft.B.chest.updateWorldMatrix(false, true);
       const restL = at(ft, 'root').addScaledVector(dirW(ft, 1, 0, 0), .2 * kf).addScaledVector(dirW(ft, 0, 0, 1), .1 * kf);
       const restR = at(ft, 'root').addScaledVector(dirW(ft, -1, 0, 0), .2 * kf).addScaledVector(dirW(ft, 0, 0, 1), .1 * kf);
-      const lHold = at(ft, 'chest').addScaledVector(dirW(ft, 0, 0, 1), .26 * kf).addScaledVector(dirW(ft, 1, 0, 0), .18 * kf).add(V(0, (-.08 + .02 * Math.sin(t * 2.4)) * kf, 0));
-      const rGest = at(ft, 'chest').addScaledVector(dirW(ft, 0, 0, 1), (.24 + .03 * Math.sin(t * 3.2)) * kf).addScaledVector(dirW(ft, -1, 0, 0), .18 * kf).add(V(0, (-.1 + .04 * Math.sin(t * 2.8)) * kf, 0));
-      reachClamp(ft, 'L', restL.lerp(lHold, g), { grip: .02, pole: [.4, -.05, .25] });
-      reachClamp(ft, 'R', restR.lerp(rGest, g), { grip: .01, pole: [-.4, -.05, .25] });
+      const lHold = at(ft, 'spine').addScaledVector(dirW(ft, 0, 0, 1), .22 * kf).addScaledVector(dirW(ft, 1, 0, 0), .24 * kf).add(V(0, (-.08 + .02 * Math.sin(t * 2.4)) * kf, 0));
+      const rGest = at(ft, 'chest').addScaledVector(dirW(ft, 0, 0, 1), (.22 + .03 * Math.sin(t * 3.2)) * kf).addScaledVector(dirW(ft, -1, 0, 0), .22 * kf).add(V(0, (-.14 + .04 * Math.sin(t * 2.8)) * kf, 0));
+      reachClamp(ft, 'L', restL.lerp(lHold, g), { grip: .02, pole: [.45, -.05, .25] });
+      reachClamp(ft, 'R', restR.lerp(rGest, g), { grip: .01, pole: [-.45, -.05, .25] });
       PO.fingers(ft, 'L', .55); PO.fingers(ft, 'R', .18, { spread: .3 });
       ft.group.updateMatrixWorld(true);
-      orient(st.mint, PO.handPts(ft, 'L').palm, dirW(ft, .1, .9, .3), V(0, 0, 1));
+      orient(st.mint, PO.handPts(ft, 'L').palm, dirW(ft, .25, .42, .88), V(0, 0, 1));
       orient(st.citron, PO.handPts(ft, 'R').palm, dirW(ft, 0, 1, .2), V(0, 0, 1));
     }
   },

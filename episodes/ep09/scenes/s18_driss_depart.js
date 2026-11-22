@@ -1,10 +1,10 @@
 // s18 "Driss et le départ".
 // Rooms: chambre_jour (b110, b112, b113), patio_matin (b111, b114, b115).
 // Cast & placements:
-//   - ch1 (chambre_jour, b110): zoubida (house kaftan) stands at [1060, 825] facing the low tabla [855, 765].
+//   - ch1 (chambre_jour, b110): zoubida (house kaftan) stands at [1040, 825] facing 3/4 cam toward the low tabla [855, 765].
 //   - pa1 (patio_matin, b111): zoubida (house kaftan) starts by the courtyard well [1180, 945] and walks to [880, 985] with a water bucket.
-//   - ch2 (chambre_jour, b112–b113): zoubida (costume: 'haik') at [680, 885] facing mohammed [1140, 840] by the right divan.
-//   - pa2 (patio_matin, b114–b115): zoubida (costume: 'haik') at [980, 985] facing fatma [1580, 915] at the right arcade doorway.
+//   - ch2 (chambre_jour, b112): zoubida (costume: 'haik') at [680, 885] and mohammed at [1140, 875] by the right divan.
+//   - pa2 (patio_matin, b114–b115): zoubida (costume: 'haik') at [980, 955] and fatma [1560, 955] at the right arcade doorway.
 // Beat actions:
 //   - b110: Driss calls from the street door; Zoubida looks toward the left door, then packs bread, butter and olives into paper on the tabla (ins: pain_olives).
 //   - b111: Zoubida lifts the bucket beside the well and carries water across the patio (ins: jarre_eau).
@@ -46,8 +46,8 @@ function hand85(a, side, { fwd = .16, out = .08, drop = .18, curl = .25, spread 
 // b110: Zoubida in chambre_jour packing bread & olives on the low tabla
 const ch1 = staged('chambre_jour', {
   zoubida: {
-    at: [1040, 825], face: [855, 765], seed: 7, lookMax: .85,
-    look: t => t < B(0)[0] + 3.2 ? [300, 950, 1.45] : [855, 765, .36],
+    at: [1010, 795], face: 'cam', yaw: -.62, seed: 7, lookMax: .55,
+    look: t => t < B(0)[0] + 3.2 ? [520, 930, 1.45] : [855, 815, .45],
   },
 }, {
   addressee: { narrator: 'zoubida' },
@@ -65,13 +65,13 @@ const ch1 = staged('chambre_jour', {
     zo.B.chest.rotation.x += .08 * wrap;
     zo.B.chest.updateWorldMatrix(false, true);
     const tb = S3.floorAt(855, 765);
-    const p = tb.clone().setY(.36);
-    const r1 = .04 * Math.sin(t * 5.2), r2 = .04 * Math.cos(t * 5.2);
+    const p = front(zo, 'root', .28, 0, -.18);
+    const r1 = .03 * Math.sin(t * 5.2), r2 = .03 * Math.cos(t * 5.2);
     for (const s of ['L', 'R']) {
       const sg = s === 'L' ? 1 : -1;
-      const idle = front(zo, 'root', .14, -sg * .14, .06);
-      const tgt = p.clone().add(V(sg * .06 + (s === 'R' ? r1 : r2), .03 * Math.abs(Math.sin(t * 4)), (s === 'R' ? r2 : -r1)));
-      reach85(zo, s, idle.lerp(tgt, wrap), { grip: .02, pole: [sg * .45, -.1, .2] });
+      const idle = front(zo, 'root', .22, -sg * .16, .04);
+      const tgt = p.clone().addScaledVector(dirW(zo, sg, 0, 0), .18).add(V(s === 'R' ? r1 : r2, .03 * Math.abs(Math.sin(t * 4)), s === 'R' ? r2 : -r1));
+      reach85(zo, s, idle.lerp(tgt, wrap), { grip: .02, pole: [sg * .9, .2, .5] });
       PO.fingers(zo, s, .35 + .25 * wrap, { spread: .15 });
     }
   },
@@ -81,9 +81,9 @@ const ch1 = staged('chambre_jour', {
 const WALK_T0 = B(1)[0] + 1.4, WALK_T1 = B(1)[1] - 1.1;
 const pa1 = staged('patio_matin', {
   zoubida: {
-    at: [1180, 945], face: [900, 980], seed: 7, lookMax: .8,
+    at: [1180, 945], face: 'cam', yaw: -.5, seed: 7, lookMax: .55,
     walk: { to: [880, 985], t0: WALK_T0, t1: WALK_T1 },
-    look: t => t < WALK_T0 ? [1320, 900, .75] : [820, 985, 1.3],
+    look: t => t < WALK_T0 ? [1230, 980, .85] : [820, 1005, 1.3],
   },
 }, {
   addressee: { narrator: 'zoubida' },
@@ -109,10 +109,10 @@ const pa1 = staged('patio_matin', {
 
 // b112–b113: Zoubida in haik instructs Mohammed; Mohammed finds crumpled handkerchief & blows nose
 const ch2 = staged('chambre_jour', {
-  zoubida: { at: [680, 885], face: 'mohammed', costume: 'haik', seed: 7, look: 'mohammed', lookMax: .75 },
+  zoubida: { at: [680, 885], face: 'cam', yaw: .65, costume: 'haik', seed: 7, look: 'mohammed', lookMax: .65 },
   mohammed: {
-    at: [1140, 840], face: 'zoubida', seed: 3, lookMax: .85,
-    look: t => IN(3, t) && t < B(3)[0] + 3.2 ? [1250, 740, .48] : 'zoubida',
+    at: [1140, 875], face: 'cam', yaw: -.35, seed: 3, lookMax: .65,
+    look: t => IN(3, t) ? (t < B(3)[0] + 3.2 ? [1060, 905, .48] : 'cam') : 'zoubida',
   },
 }, {
   addressee: { zoubida: 'mohammed', narrator: 'mohammed' },
@@ -129,15 +129,15 @@ const ch2 = staged('chambre_jour', {
     if (IN(2, t)) {
       const g = sm(B(2)[0] + .4, B(2)[0] + 1.0, t);
       const wave = Math.sin(t * 4.2) * .04;
-      hand85(zo, 'R', { fwd: .22 + .06 * g + wave, out: .05, drop: .14 - .06 * g, curl: .15, spread: .3 });
+      hand85(zo, 'R', { fwd: .22 + .06 * g + wave, out: .15, drop: .14 - .06 * g, curl: .15, spread: .3 });
       zo.B.head.rotation.z += .05 * Math.sin(t * 2.1);
       zo.B.chest.updateWorldMatrix(false, true);
     }
 
     // Mohammed (b112 listen -> b113 hunt under cushion, blow nose, wipe on djellaba)
     if (IN(2, t)) {
-      hand85(mo, 'L', { fwd: .12, out: .10, drop: .26, curl: .25 });
-      hand85(mo, 'R', { fwd: .10, out: .08, drop: .28, curl: .25 });
+      hand85(mo, 'L', { fwd: .22, out: .15, drop: .26, curl: .25 });
+      hand85(mo, 'R', { fwd: .22, out: .15, drop: .28, curl: .25 });
       st.hanky.visible = false;
     } else {
       const c3 = t - B(3)[0], km = mo.group.scale.y / 1.6;
@@ -149,17 +149,21 @@ const ch2 = staged('chambre_jour', {
       mo.B.head.rotation.y += .09 * Math.sin(t * 14) * blow;
       mo.B.chest.updateWorldMatrix(false, true);
 
-      const divanSpot = S3.floorAt(1260, 745).setY(.38);
-      const noseSpot = at(mo, 'head').addScaledVector(dirW(mo, 0, 0, 1), .11 * km).add(V(0, .01 * km, 0));
-      const wipeSpot = PO.hipToWorld(mo, -.14 * km, -.06 * km + .06 * Math.sin(t * 6) * wipe, .16 * km);
-      const restR = PO.hipToWorld(mo, -.18 * km, .04 * km, .12 * km);
+      const divanSpot = PO.hipToWorld(mo, -.24 * km, -.12 * km, .24 * km);
+      const noseSpot = at(mo, 'head')
+        .addScaledVector(dirW(mo, -1, 0, 0), .14 * km)
+        .addScaledVector(dirW(mo, 0, 0, 1), .08 * km)
+        .add(V(0, -.14 * km, 0));
+      const wipeSpot = PO.hipToWorld(mo, -.20 * km, .02 * km + .06 * Math.sin(t * 6) * wipe, .22 * km);
+      const restR = PO.hipToWorld(mo, -.20 * km, .04 * km, .22 * km);
       let tgR = restR.clone();
       if (hunt > 0) tgR.lerp(divanSpot, hunt);
       if (blow > 0) tgR.lerp(noseSpot, blow);
       if (wipe > 0) tgR.lerp(wipeSpot, wipe);
-      reach85(mo, 'R', tgR, { grip: .015, pole: [-.45, -.15, .25] });
+      reach85(mo, 'R', tgR, { grip: .015, pole: [-.9, .2, .5] });
       PO.fingers(mo, 'R', .45, { spread: .1 });
-      hand85(mo, 'L', { fwd: .14, out: .10, drop: .24, curl: .3 });
+      reach85(mo, 'L', PO.hipToWorld(mo, .18 * km, .04 * km, .22 * km), { grip: .015, pole: [.9, .2, .5] });
+      PO.fingers(mo, 'L', .3, { spread: .15 });
 
       const palmR = PO.handPts(mo, 'R').palm;
       S3.prop(st.hanky, palmR.x, palmR.y, palmR.z, t);
@@ -170,8 +174,8 @@ const ch2 = staged('chambre_jour', {
 
 // b114–b115: Fatma & Zoubida in patio_matin
 const pa2 = staged('patio_matin', {
-  zoubida: { at: [980, 985], face: 'fatma', costume: 'haik', seed: 7, look: 'fatma', lookMax: .85 },
-  fatma: { at: [1580, 915], face: 'zoubida', seed: 11, look: 'zoubida', lookMax: .85 },
+  zoubida: { at: [980, 955], face: 'cam', yaw: .72, costume: 'haik', seed: 7, look: 'fatma', lookMax: .55 },
+  fatma: { at: [1560, 955], face: 'cam', yaw: -.72, seed: 11, look: 'zoubida', lookMax: .55 },
 }, {
   addressee: { fatma: 'zoubida', zoubida: 'fatma' },
   act(lt, t, S, st) {
@@ -185,8 +189,8 @@ const pa2 = staged('patio_matin', {
     fa.B.spine.rotation.x += .18 * eager;
     fa.B.chest.rotation.y += .06 * Math.sin(t * 2.1) * eager;
     fa.B.chest.updateWorldMatrix(false, true);
-    hand85(fa, 'L', { fwd: .22 + .06 * eager, out: .08, drop: .12 - .04 * eager, curl: .12, spread: .3 });
-    hand85(fa, 'R', { fwd: .14, out: .10, drop: .24, curl: .25 });
+    hand85(fa, 'L', { fwd: .22 + .06 * eager, out: .15, drop: .12 - .04 * eager, curl: .12, spread: .3 });
+    hand85(fa, 'R', { fwd: .22, out: .15, drop: .24, curl: .25 });
 
     if (IN(5, t)) {
       const chat = sm(B(5)[0], B(5)[0] + .5, t);
@@ -195,7 +199,7 @@ const pa2 = staged('patio_matin', {
       zo.B.chest.rotation.y += .05 * Math.sin(t * 1.9) * chat;
       zo.B.chest.updateWorldMatrix(false, true);
       const bob = .04 * Math.sin(t * 4.5);
-      hand85(zo, 'R', { fwd: .22, out: .06, drop: .13 + bob, curl: .14, spread: .32 });
+      hand85(zo, 'R', { fwd: .22, out: .15, drop: .13 + bob, curl: .14, spread: .32 });
     }
   },
 });
@@ -203,11 +207,11 @@ const pa2 = staged('patio_matin', {
 export default beatScene(ID, {
   shots: { ch1, pa1, ch2, pa2 },
   plan: {
-    b110: { shot: 'ch1', size: 'M', on: 'zoubida', insAt: .56 },
-    b111: { shot: 'pa1', size: 'M', on: 'zoubida', insAt: .68 },
-    b112: { shot: 'ch2', size: 'CU', on: 'zoubida' },
-    b113: { shot: 'ch2', size: 'M', on: 'mohammed' },
-    b114: { shot: 'pa2', size: 'M', on: 'fatma' },
-    b115: { shot: 'pa2', size: 'CU', on: 'zoubida' },
+    b110: { shot: 'ch1', size: 'W', on: 'zoubida', insAt: .56 },
+    b111: { shot: 'pa1', size: 'W', on: 'zoubida', insAt: .68 },
+    b112: { shot: 'ch2', size: 'W', on: 'zoubida' },
+    b113: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.35, dy: -90 },
+    b114: { shot: 'pa2', size: 'W', on: 'fatma' },
+    b115: { shot: 'pa2', size: 'W', on: 'zoubida' },
   },
 });

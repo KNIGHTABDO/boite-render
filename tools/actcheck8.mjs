@@ -201,6 +201,11 @@ function evaluate(S) {
     }
   }
  }
+ // Animal rigs (loaded via loadAnimal into st.cat / st[name], outside st.actors): verify visible 3D mesh intersects crop.
+ for(const [n,info] of Object.entries(CAST))if(info?.animal&&!inFrame.has(n)){
+  const r=st?.[n]?.root||st?.animals?.[n]?.root||(n.startsWith('cat')?st?.cat?.root:null);
+  if(r&&shown(r)&&r.parent===S.scene){const bb=bboxProp(r);if(!bb.isEmpty()){const pb=new THREE.Box3().setFromPoints(corners(bb).map(p=>V(...screen(p,S,view))));if(pb.max.x>=0&&pb.min.x<=1920&&pb.max.y>=0&&pb.min.y<=1080&&pb.min.z<=1&&pb.max.z>=-1)inFrame.add(n);}}
+ }
  // Actors named by the beat's cast/comment must intersect the actual crop, including background witnesses.
  const required=new Set([...(/cutaway/i.test(activeBeat?.comment||'')?[]:activeBeat?.cast||[]),...Object.keys(CAST).filter(n=>new RegExp('\\b'+n+'\\b','i').test(activeBeat?.comment||'')),...(e?.on?[e.on]:[])]);
  for(const n of required)if(!CAST[n]?.voice_only&&!note.insert&&!inFrame.has(n))fail('actor-present',n,1,0,'named beat actor outside frame or absent');

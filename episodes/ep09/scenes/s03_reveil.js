@@ -55,17 +55,17 @@ function bed(S3, st, t, headTurn = -.14) {
   mo.B.chest.updateWorldMatrix(false, true);
 }
 
-// b004–b005: Zoubida whispers to a dark motionless shadow near the doorway, then both exit
+// b004–b005: Zoubida whispers to a dark motionless shadow near the doorway, then both step back toward the threshold
 const pe1 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: t => t < B(0)[0] + 4 ? .85 : .55 },
   zoubida: {
-    height: 1.6, at: [480, 885], face: [340, 900], seed: 7, talk: 0,
-    walk: { to: [240, 915], t0: B(1)[0] + 5.5, t1: B(1)[0] + 10.5 },
-    lookMax: .6,
+    height: 1.6, at: [620, 880], face: 'cam', yaw: -.35, seed: 7, talk: 0,
+    walk: { to: [510, 915], t0: B(1)[0] + 5.5, t1: B(1)[0] + 10.5 },
+    look: [360, 955, 1.35], lookMax: .35,
   },
   woman1: {
-    height: 1.6, at: [310, 880], face: [480, 885], seed: 11, talk: 0,
-    walk: { to: [180, 915], t0: B(1)[0] + 4.8, t1: B(1)[0] + 9.2 },
+    height: 1.6, at: [310, 895], face: [620, 880], seed: 11, talk: 0,
+    walk: { to: [275, 915], t0: B(1)[0] + 4.8, t1: B(1)[0] + 9.2 },
     lookMax: .4,
   },
 }, {
@@ -76,8 +76,6 @@ const pe1 = staged('chambre_penombre', {
     bed(S3, st, t, -.18);
     const { zoubida: zo, woman1: sh } = st.A, kz = zo.group.scale.y / 1.6;
     dim(sh, .12);
-    sh.group.visible = t < B(1)[0] + 9.5;
-    zo.group.visible = t < B(1)[0] + 10.8;
     // b004 & early b005: Zoubida leans slightly toward the shadow with a hand near her mouth whispering
     const wh = 1 - sm(B(1)[0] + 4.8, B(1)[0] + 5.5, t);
     if (wh > 0 && zo.group.visible) {
@@ -113,9 +111,10 @@ const p01 = {
 const pe2 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .75 },
   zoubida: {
-    height: 1.6, at: [520, 845], face: [1350, 694], seed: 7, talk: 0,
-    walk: { to: [1060, 765], t0: B(3)[0] + .3, t1: B(3)[0] + 5.6 },
-    look: 'mohammed', lookMax: .7,
+    height: 1.6, at: [600, 720], face: [1060, 775], seed: 7, talk: 0,
+    walk: { to: [1060, 775], t0: B(3)[0] + .3, t1: B(3)[0] + 5.6 },
+    look: (t, st) => t >= B(3)[0] + 5.8 ? at(st.A.mohammed, 'head').clone().setY(at(st.A.zoubida, 'head').y - .15) : [1150, 860, 1.35],
+    lookMax: .4,
   },
 }, {
   light: PEN_LIGHT,
@@ -123,10 +122,16 @@ const pe2 = staged('chambre_penombre', {
   act(lt, t, S, st, S3) {
     bed(S3, st, t, -.12);
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
+    const turnU = sm(B(3)[0] + 4.5, B(3)[0] + 5.9, t);
     const bend = sm(B(3)[0] + 5.6, B(3)[0] + 7.2, t);
+    if (turnU > 0) {
+      const y0 = zo.group.rotation.y;
+      zo.group.rotation.y = y0 + (.35 - y0) * turnU;
+      zo.group.updateMatrixWorld(true);
+    }
     if (bend > 0) {
-      zo.B.spine.rotation.x += .16 * bend;
-      zo.B.chest.rotation.x += .08 * bend;
+      zo.B.spine.rotation.x += .14 * bend;
+      zo.B.chest.rotation.x += .06 * bend;
       zo.B.chest.updateWorldMatrix(false, true);
       const rTgt = at(zo, 'root').addScaledVector(dirW(zo, -1, 0, 0), .18 * kz).addScaledVector(dirW(zo, 0, 0, 1), .16 * kz).add(V(0, -.04 * kz, 0));
       const lTgt = at(zo, 'root').addScaledVector(dirW(zo, 1, 0, 0), .18 * kz).addScaledVector(dirW(zo, 0, 0, 1), .16 * kz).add(V(0, -.04 * kz, 0));
@@ -143,17 +148,16 @@ const pe3 = staged('chambre_penombre', {
     lids: t => IN(4, t) ? .6 : IN(6, t) ? .45 : IN(8, t) ? .4 : .5,
   },
   zoubida: {
-    height: 1.6, at: [1090, 770], face: 'cam', yaw: .55, pose: 'kneel',
+    height: 1.6, at: [1090, 770], face: 'cam', yaw: .28, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7,
     look: (t, st) => IN(7, t)
       ? at(st.A.mohammed, 'head').clone().lerp(at(st.A.zoubida, 'root'), .2)
       : at(st.A.mohammed, 'head').clone().setY(at(st.A.zoubida, 'head').y - .18),
-    lookMax: .85,
+    lookMax: .45,
   },
 }, {
   light: PEN_LIGHT,
   fx: PEN_FX,
-  addressee: { zoubida: 'mohammed', mohammed: 'zoubida' },
   act(lt, t, S, st, S3) {
     const moTurn = IN(4, t) ? -.26 : IN(6, t) ? -.04 : IN(8, t) ? -.22 : -.16;
     bed(S3, st, t, moTurn);
@@ -193,9 +197,10 @@ const pe3 = staged('chambre_penombre', {
 const pe4 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .4 },
   zoubida: {
-    height: 1.6, at: [1060, 775], face: [520, 885], seed: 7, talk: 1,
-    walk: { to: [520, 885], t0: B(9)[0] + .9, t1: B(9)[0] + 3.4 },
-    look: 'mohammed', lookMax: .7,
+    height: 1.6, at: [1060, 775], face: 'cam', yaw: -.2, seed: 7, talk: 1,
+    walk: { to: [640, 915], t0: B(9)[0] + .9, t1: B(9)[0] + 3.4 },
+    look: (t, st) => t < B(9)[0] + .9 ? at(st.A.mohammed, 'head').clone().setY(at(st.A.zoubida, 'head').y - .15) : [640, 960, 1.35],
+    lookMax: .45,
   },
 }, {
   light: PEN_LIGHT,
@@ -229,7 +234,7 @@ export default beatScene(ID, {
   shots: { pe1, p01, pe2, pe3, pe4, p02 },
   plan: {
     b004: { shot: 'pe1', size: 'W', on: 'zoubida' },
-    b005: { shot: 'pe1', size: 'M', on: 'zoubida', cover: [{ f: .55, size: 'W', on: 'mohammed' }] },
+    b005: { shot: 'pe1', size: 'W', on: 'zoubida' },
     b006: { shot: 'p01', dissolve: true },
     b007: { shot: 'pe2', size: 'M', on: 'zoubida', pt: [960, 780], z: 1.42, dx: 40, dy: -20 },
     b008: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 1.55, dx: -40, dy: -20 },

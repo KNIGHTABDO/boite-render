@@ -46,11 +46,11 @@ function lapRest(a, t, seed = 0) {
 }
 
 function makeBedProps(S3, st, mo, seated) {
-  pillowUnder(S3, st, mo, { top: TOP, h: .11, col: 0x3b4d6b });
+  pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b4d6b });
   if (seated && st.pillow) {
     const back = dirW(mo, 0, 0, -1);
     const hp = mo.B.root.getWorldPosition(V(0, 0, 0));
-    S3.prop(st.pillow, hp.x + back.x * .24, TOP + .055 - .004, hp.z + back.z * .24, mo.group.rotation.y);
+    S3.prop(st.pillow, hp.x + back.x * .24, TOP + .04 - .004, hp.z + back.z * .24, mo.group.rotation.y);
   }
   st.cover ||= PR.blanket({ w: .42, l: .54, h: .055, col: 0xb23a2a });
   const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
@@ -60,16 +60,19 @@ function makeBedProps(S3, st, mo, seated) {
 }
 
 const ch_lie = staged('chambre_jour', {
-  mohammed: { at: [1325, 636], face: [1430, 672], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.08, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
-  zoubida: { at: [1080, 780], face: 'cam', yaw: .52, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .75 },
+  mohammed: { at: [1350, 694], face: [1336, 754], pose: 'lie',
+    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.08, pillow: .08, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
+  zoubida: { at: [1000, 685], face: 'cam', yaw: .65, pose: 'kneel',
+    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .56 },
 }, {
   light: MORNING,
-  addressee: { zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo } = st.A;
-    lieOnBed(mo, { top: TOP, feet: [.45, .89], hands: 'belly', pillow: .095, tuck: .22, headTurn: -.08 });
+    lieOnBed(mo, {
+      top: TOP, feet: [.5, .87],
+      origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
+      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.08,
+    });
     makeBedProps(S3, st, mo, false);
     mo.B.chest.rotation.x += .012 * Math.sin(t * 1.5);
     mo.B.chest.updateWorldMatrix(false, true);
@@ -79,14 +82,13 @@ const ch_lie = staged('chambre_jour', {
 });
 
 const ch = staged('chambre_jour', {
-  mohammed: { at: [1350, 694], face: [1140, 780], pose: 'kneel',
-    o: { grounded: true, seat: TOP, lean: .08, spread: .045, hands: false, mattress: MATTRESS, avoid: CHEST },
-    hands: false, seed: 3, look: 'zoubida', lookMax: .7 },
-  zoubida: { at: [1080, 780], face: 'cam', yaw: .52, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .75 },
+  mohammed: { at: [1350, 694], face: 'cam', yaw: -.65, pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .08, hands: false, mattress: MATTRESS, avoid: CHEST },
+    hands: false, seed: 3, look: 'zoubida', lookMax: .55 },
+  zoubida: { at: [1000, 685], face: 'cam', yaw: .65, pose: 'kneel',
+    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .56 },
 }, {
   light: MORNING,
-  addressee: { mohammed: 'zoubida', zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo } = st.A;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
@@ -109,7 +111,7 @@ const ch = staged('chambre_jour', {
       const q = win(1, .05, .95, t);
       mo.B.head.rotation.z += .14 * q;
       mo.B.neck.rotation.x -= .05 * q;
-      reach85(mo, 'R', front(mo, 'chest', .22 * km, -.12 * km, -.14 * km), { grip: 0, pole: [-.35, -.1, .15] });
+      reach85(mo, 'R', front(mo, 'chest', .22 * km, .14 * km, -.14 * km), { grip: 0, pole: [-.45, .05, .2] });
       PO.palmTo(mo, 'R', q * .7, V(0, 1, .2));
       PO.fingers(mo, 'R', .2, { spread: .25 });
     }
@@ -119,7 +121,7 @@ const ch = staged('chambre_jour', {
       const q = win(2, .05, .95, t);
       zo.B.spine.rotation.x -= .04 * q;
       zo.B.head.rotation.z -= .06 * q;
-      reach85(zo, 'R', front(zo, 'chest', .24 * kz, -.14 * kz, -.16 * kz), { grip: 0, pole: [-.38, -.1, .15] });
+      reach85(zo, 'R', front(zo, 'chest', .24 * kz, .15 * kz, -.16 * kz), { grip: 0, pole: [-.45, .05, .2] });
       PO.palmTo(zo, 'R', q * .6, V(0, 1, .25));
       PO.fingers(zo, 'R', .18, { spread: .3 });
     }
@@ -129,7 +131,7 @@ const ch = staged('chambre_jour', {
       const q = win(3, .05, .95, t);
       mo.B.neck.rotation.x -= .1 * q;
       mo.B.head.rotation.x -= .08 * q;
-      reach85(mo, 'L', front(mo, 'chest', .22 * km, .12 * km, -.12 * km), { grip: 0, pole: [.35, -.1, .18] });
+      reach85(mo, 'L', front(mo, 'chest', .22 * km, -.14 * km, -.12 * km), { grip: 0, pole: [.45, .05, .2] });
       PO.fingers(mo, 'L', .22, { spread: .18 });
     }
 
@@ -137,9 +139,9 @@ const ch = staged('chambre_jour', {
     if (IN(4, t)) {
       const q = win(4, .08, .92, t);
       zo.B.spine.rotation.x -= .05 * q;
-      const cheek = zo.B.head.localToWorld(V(-.075, .01, .11));
+      const cheek = zo.B.head.localToWorld(V(-.13, .03, .13));
       const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'R', rest.lerp(cheek, q), { grip: .01, pole: [-.45, -.2, .25] });
+      reach85(zo, 'R', rest.lerp(cheek, q), { grip: .01, pole: [-.5, .22, .2] });
       PO.fingers(zo, 'R', .18, { spread: .25 });
     }
 
@@ -148,7 +150,7 @@ const ch = staged('chambre_jour', {
       const q = win(6, .05, .95, t);
       zo.B.head.rotation.z += .08 * q;
       zo.B.chest.rotation.x += .04 * q;
-      reach85(zo, 'L', front(zo, 'chest', .25 * kz, .14 * kz, -.15 * kz), { grip: 0, pole: [.38, -.1, .18] });
+      reach85(zo, 'L', front(zo, 'chest', .25 * kz, -.15 * kz, -.15 * kz), { grip: 0, pole: [.45, .05, .2] });
       PO.palmTo(zo, 'L', q * .65, V(0, 1, .25));
       PO.fingers(zo, 'L', .15, { spread: .3 });
     }
@@ -158,7 +160,7 @@ const ch = staged('chambre_jour', {
       const q = win(7, .05, .95, t);
       mo.B.head.rotation.x += .1 * Math.max(0, Math.sin((t - B(7)[0]) * 3.5)) * q;
       mo.B.chest.rotation.x -= .05 * q;
-      reach85(mo, 'R', front(mo, 'chest', .22 * km, -.14 * km, -.16 * km), { grip: 0, pole: [-.36, -.1, .18] });
+      reach85(mo, 'R', front(mo, 'chest', .22 * km, .15 * km, -.16 * km), { grip: 0, pole: [-.45, .05, .2] });
       PO.fingers(mo, 'R', .45, { thumb: .3 });
     }
 
@@ -174,14 +176,14 @@ const ch = staged('chambre_jour', {
         mo.B.chest.rotation.x += .03 * Math.sin(t * 14) * laughW;
         const clap = .03 * Math.abs(Math.sin(t * 11));
         for (const [s, sg] of [['L', 1], ['R', -1]]) {
-          reach85(mo, s, front(mo, 'chest', .24 * km, -sg * (.035 + clap) * km, -.12 * km), { grip: 0, pole: [sg * .4, -.15, .2] });
+          reach85(mo, s, front(mo, 'chest', .24 * km, -sg * (.05 + clap) * km, -.12 * km), { grip: 0, pole: [sg * .45, .05, .2] });
           PO.fingers(mo, s, .08, { spread: .15 });
         }
       }
       if (hushW > .01) {
-        const lips = zo.B.head.localToWorld(V(-.02, .01, .135));
+        const lips = zo.B.head.localToWorld(V(-.06, .03, .19));
         const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-        reach85(zo, 'R', rest.lerp(lips, hushW), { grip: .01, pole: [-.4, -.15, .25] });
+        reach85(zo, 'R', rest.lerp(lips, hushW), { grip: .01, pole: [-.52, .18, .32] });
         PO.fingers(zo, 'R', .85, { each: [.75, 0, 1, 1, 1] });
       }
     }
@@ -189,9 +191,9 @@ const ch = staged('chambre_jour', {
     // b066: finger stays gently on lips
     if (IN(9, t)) {
       const q = win(9, 0, .95, t);
-      const lips = zo.B.head.localToWorld(V(-.02, .01, .135));
+      const lips = zo.B.head.localToWorld(V(-.06, .03, .19));
       const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'R', rest.lerp(lips, q), { grip: .01, pole: [-.4, -.15, .25] });
+      reach85(zo, 'R', rest.lerp(lips, q), { grip: .01, pole: [-.52, .18, .32] });
       PO.fingers(zo, 'R', .85, { each: [.75, 0, 1, 1, 1] });
       zo.B.head.rotation.z += .05 * q;
     }
@@ -201,7 +203,7 @@ const ch = staged('chambre_jour', {
       const q = win(10, .05, .95, t);
       mo.B.head.rotation.x += .08 * Math.sin((t - B(10)[0]) * 3) * q;
       mo.B.neck.rotation.x -= .06 * q;
-      reach85(mo, 'R', front(mo, 'chest', .23 * km, -.12 * km, -.15 * km), { grip: 0, pole: [-.35, -.1, .15] });
+      reach85(mo, 'R', front(mo, 'chest', .23 * km, .14 * km, -.15 * km), { grip: 0, pole: [-.45, .05, .2] });
       PO.palmTo(mo, 'R', q * .6, V(0, 1, .2));
     }
 
@@ -209,12 +211,12 @@ const ch = staged('chambre_jour', {
     if (IN(11, t)) {
       const q = win(11, .08, .92, t);
       zo.B.chest.rotation.x += .07 * q;
-      const shM = at(mo, 'upperArmL').add(V(0, .06 * km, .04));
-      const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'R', rest.lerp(shM, q), { grip: .02, pole: [-.4, -.05, .25] });
-      PO.fingers(zo, 'R', .16, { spread: .2 });
+      const shM = at(mo, 'upperArmR').add(V(0, .05 * km, .03));
+      const rest = PO.hipToWorld(zo, .17 * kz, .09 * kz, .23 * kz);
+      reach85(zo, 'L', rest.lerp(shM, q), { grip: .02, pole: [.55, .15, .35] });
+      PO.fingers(zo, 'L', .16, { spread: .2 });
       st.actcheck = {
-        contacts: q > .5 ? [{ actors: ['zoubida', 'mohammed'], parts: ['handR:upperArmL', 'handR:torso', 'foreArmR:upperArmL'] }] : [],
+        contacts: q > .25 ? [{ actors: ['zoubida', 'mohammed'], parts: ['handL:upperArmR', 'handL:upperArmL', 'handL:torso', 'foreArmL:upperArmR', 'foreArmL:upperArmL'] }] : [],
       };
     }
 

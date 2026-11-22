@@ -1,9 +1,9 @@
 // s21 "Vers Sidi El Arafi".
 // Room: aicha_pauvre (b131, b133–b137), painting p14_seffah_arafi (b132).
 // Cast & placements:
-//   - sh1 (aicha_pauvre, b131, b133–b136): aicha (default) cross-legged at [1180, 855], zoubida (default) kneeling at [800, 845],
-//     mohammed cross-legged at [560, 880]; brass tray, teapot and two tea glasses on the floor between them.
-//   - sh2 (aicha_pauvre, b137): zoubida (costume: 'haik') at [920, 855] and mohammed at [740, 875] stepping toward the right doorway [1650, 830];
+//   - sh1 (aicha_pauvre, b131, b133–b136): aicha (default) kneeling at [1180, 855], zoubida (default) kneeling at [800, 855],
+//     mohammed kneeling at [560, 875]; brass tray, teapot and two tea glasses on the floor between them.
+//   - sh2 (aicha_pauvre, b137): zoubida (costume: 'haik') at [920, 855] and mohammed at [740, 875] stepping toward the right doorway [1580, 930];
 //     aicha (default, never haik costume) rises heavily at [1180, 855] carrying a simple folded white cloth prop in her hands.
 // Beat actions:
 //   - b131: Heavy silence; all three sit still with lowered eyes before Aïcha speaks.
@@ -33,11 +33,11 @@ function reach85(a, side, target, o = {}) {
   return PO.reach(a, side, tgt, o);
 }
 
-/** Relaxed lap hand for grounded kneeling / cross-legged actors. */
+/** Relaxed lap hand for grounded kneeling actors. */
 function lap85(a, side, k, drift = 0) {
   const sg = side === 'L' ? 1 : -1;
-  const tg = PO.hipToWorld(a, sg * .15 * k, .07 * k + drift, .22 * k);
-  reach85(a, side, tg, { grip: .02, pole: [sg * .34, .05, .12] });
+  const tg = PO.hipToWorld(a, sg * .18 * k, .08 * k + drift, .24 * k);
+  reach85(a, side, tg, { grip: .02, pole: [sg * .9, .2, .5] });
   PO.fingers(a, side, .32, { spread: .12 });
 }
 
@@ -55,22 +55,24 @@ function foldedCloth() {
 // b131, b133–b136: seated conversation in aicha_pauvre
 const sh1 = staged('aicha_pauvre', {
   aicha: {
-    at: [1180, 855], face: 'zoubida', yaw: .35, pose: 'cross', o: { grounded: true, lean: .08 }, seed: 9,
-    look: t => IN(0, t) ? [980, 875, .2] : 'zoubida', lookMax: .7,
+    at: [1180, 855], face: 'cam', yaw: -.45, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 9,
+    look: t => IN(0, t) ? [980, 880, .25] : 'zoubida', lookMax: .6,
   },
   zoubida: {
-    at: [800, 845], face: 'aicha', yaw: -.35, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 7,
-    look: t => IN(0, t) ? [980, 875, .2] : 'aicha', lookMax: .7,
+    at: [800, 855], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 7,
+    look: t => IN(0, t) ? [980, 880, .25] : 'aicha', lookMax: .6,
   },
   mohammed: {
-    at: [560, 880], face: 'aicha', yaw: -.2, pose: 'cross', o: { grounded: true, lean: .08 }, seed: 3,
-    look: t => IN(0, t) ? [840, 875, .2] : IN(4, t) ? 'zoubida' : 'aicha', lookMax: .75,
+    height: 1.1, at: [560, 875], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08, hip: .24, spread: .045 }, seed: 3,
+    look: t => IN(0, t) ? [840, 880, .25] : IN(4, t) ? 'zoubida' : 'aicha', lookMax: .6,
   },
 }, {
   addressee: { aicha: 'zoubida', zoubida: 'aicha', narrator: 'aicha' },
   act(lt, t, S, st, S3) {
     const { aicha: ai, zoubida: zo, mohammed: mo } = st.A;
     for (const a of [ai, zo, mo]) castScale(a);
+    mo.group.position.y -= .01;
+    mo.group.updateMatrixWorld(true);
     const ka = ai.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;
 
     if (!st.tea) {
@@ -152,19 +154,19 @@ const sh1 = staged('aicha_pauvre', {
 const W0 = B(6)[0] + 2.8, W1 = B(6)[1] - .4;
 const sh2 = staged('aicha_pauvre', {
   aicha: {
-    at: [1180, 855], face: [1650, 830], seed: 9, lookMax: .8,
-    walk: { to: [1330, 840], t0: W0 + .2, t1: W1 },
-    look: [1650, 830, 1.35],
+    at: [1180, 855], face: 'cam', yaw: .55, seed: 9, lookMax: .5,
+    walk: { to: [1310, 875], t0: W0 + .2, t1: W1 },
+    look: [1580, 930, 1.35],
   },
   zoubida: {
-    at: [920, 855], face: [1650, 830], costume: 'haik', seed: 7, lookMax: .8,
-    walk: { to: [1110, 845], t0: W0, t1: W1 },
-    look: t => t < W0 ? 'aicha' : [1650, 830, 1.35],
+    at: [920, 855], face: 'cam', yaw: .55, costume: 'haik', seed: 7, lookMax: .5,
+    walk: { to: [1090, 875], t0: W0, t1: W1 },
+    look: t => t < W0 ? 'aicha' : [1580, 930, 1.35],
   },
   mohammed: {
-    at: [740, 875], face: [1650, 830], seed: 3, lookMax: .8,
-    walk: { to: [950, 865], t0: W0, t1: W1 },
-    look: [1650, 830, 1.2],
+    at: [740, 875], face: 'cam', yaw: .55, seed: 3, lookMax: .5,
+    walk: { to: [920, 885], t0: W0, t1: W1 },
+    look: [1580, 930, 1.2],
   },
 }, {
   addressee: { narrator: 'aicha' },
@@ -197,7 +199,7 @@ const sh2 = staged('aicha_pauvre', {
     const bundle = front(ai, 'root', .26 * ka, 0, .06 * ka);
     for (const s of ['L', 'R']) {
       const sg = s === 'L' ? 1 : -1;
-      reach85(ai, s, bundle.clone().addScaledVector(dirW(ai, sg, 0, 0), .12 * ka), { grip: .015, pole: [sg * .4, -.1, .15] });
+      reach85(ai, s, bundle.clone().addScaledVector(dirW(ai, sg, 0, 0), .15 * ka), { grip: .015, pole: [sg * .9, .2, .5] });
       PO.fingers(ai, s, .45);
     }
     S3.prop(st.cloth, bundle.x, bundle.y, bundle.z, ai.group.rotation.y);
@@ -208,7 +210,7 @@ const sh2 = staged('aicha_pauvre', {
     const km = mo.group.scale.y / 1.6;
     for (const s of ['L', 'R']) {
       const sg = s === 'L' ? 1 : -1;
-      reach85(mo, s, PO.hipToWorld(mo, sg * .22 * km, .02 * km, .08 * km), { grip: .015, pole: [sg * .4, .05, -.25] });
+      reach85(mo, s, PO.hipToWorld(mo, sg * .22 * km, .04 * km, .22 * km), { grip: .015, pole: [sg * .9, .2, .5] });
       PO.fingers(mo, s, .25);
     }
   },
@@ -217,12 +219,12 @@ const sh2 = staged('aicha_pauvre', {
 export default beatScene(ID, {
   shots: { sh1, sh2 },
   plan: {
-    b131: { shot: 'sh1', size: 'M', on: 'aicha' },
+    b131: { shot: 'sh1', size: 'W', on: 'aicha' },
     b132: { move: 'push' },   // painting p14_seffah_arafi auto-picked via b.still
-    b133: { shot: 'sh1', size: 'CU', on: 'aicha' },
-    b134: { shot: 'sh1', size: 'M', on: 'mohammed' },
-    b135: { shot: 'sh1', size: 'CU', on: 'zoubida' },
-    b136: { shot: 'sh1', size: 'CU', on: 'aicha' },
-    b137: { shot: 'sh2', size: 'M', on: 'aicha' },
+    b133: { shot: 'sh1', size: 'W', on: 'aicha' },
+    b134: { shot: 'sh1', size: 'W', on: 'mohammed' },
+    b135: { shot: 'sh1', size: 'W', on: 'zoubida' },
+    b136: { shot: 'sh1', size: 'W', on: 'aicha' },
+    b137: { shot: 'sh2', size: 'W', on: 'aicha' },
   },
 });

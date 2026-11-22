@@ -18,6 +18,7 @@ import { shot, role, memoPose } from '../scenes/_3d.js';
 import { walk } from './acts.js';
 import { V, yawTo, dirW } from './beatscene.js';
 import { fitStairs } from './stairs.js';
+import { liftCloth } from './fix8_R31J.js';
 
 const SEATED = new Set(['kneel', 'cross', 'lie', 'step']);
 const POSES = {
@@ -97,6 +98,35 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
         else if (g?.isVector3) PO.look(A[n], g, .85, o);
       }
       for (const a of Object.values(A)) a.group.updateMatrixWorld(true);
+      for (const n of names) {
+        const a = A[n], m = marks[n];
+        if (!a.group.visible) continue;
+        if (['kneel', 'cross'].includes(m.pose)) {
+          liftCloth(a, (m.o?.seat ?? 0) + .09);
+          a.group.updateMatrixWorld(true);
+        } else if (m.pose !== 'lie' && m.pose !== 'step' && !st.actcheck?.carried?.includes(n)) {
+          const support = st.actcheck?.supports?.[n] ?? (m.tread != null && ST ? ST.y(m.tread) : 0);
+          let mesh = a.mesh;
+          if (!mesh) a.group.traverse(o => { if (!mesh && o.isSkinnedMesh) mesh = o; });
+          if (mesh) {
+            if (!a.floorSamples) {
+              const p = mesh.geometry.attributes.position, si = mesh.geometry.attributes.skinIndex, sw = mesh.geometry.attributes.skinWeight;
+              const all = [...new Set(mesh.geometry.index?.array || Array.from({ length: p.count }, (_, idx) => idx))], ex = new Map();
+              for (const idx of all) {
+                let weight = 0, bone = 0;
+                for (let j = 0; j < 4; j++) if (sw.getComponent(idx, j) > weight) { weight = sw.getComponent(idx, j); bone = si.getComponent(idx, j); }
+                let e = ex.get(bone); if (!e) ex.set(bone, e = Array(6).fill(idx));
+                for (let d = 0; d < 3; d++) { if (p.getComponent(idx, d) < p.getComponent(e[d * 2], d)) e[d * 2] = idx; if (p.getComponent(idx, d) > p.getComponent(e[d * 2 + 1], d)) e[d * 2 + 1] = idx; }
+              }
+              const body = all.filter(idx => idx % 8 === 0), stride = Math.max(1, Math.ceil(body.length / 1000));
+              a.floorSamples = [...new Set([...body.filter((_, idx) => idx % stride === 0), ...[...ex.values()].flat()])];
+            }
+            let low = Infinity; const v = V(0, 0, 0);
+            for (const idx of a.floorSamples) { mesh.getVertexPosition(idx, v); mesh.localToWorld(v); low = Math.min(low, v.y); }
+            if (Number.isFinite(low)) { a.group.position.y += support - low; a.group.updateMatrixWorld(true); }
+          }
+        }
+      }
       if (globalThis.DBG8) for (const n of names) { const a = A[n], h = a.B.head.getWorldPosition(V(0, 0, 0)); console.error('DBG', plate, n, marks[n].pose || 'stand', 't=' + t.toFixed(2), 'walk=' + (marks[n].walk ? marks[n].walk.t0.toFixed(2) : '-'), 'pos=' + a.group.position.x.toFixed(2) + ',' + a.group.position.z.toFixed(2), 'headY=' + h.y.toFixed(2), 'scale=' + a.group.scale.y.toFixed(2)); }
     },
   });

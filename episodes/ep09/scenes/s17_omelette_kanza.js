@@ -2,11 +2,11 @@
 // b102 chambre_jour (fadeIn 0.7): Zoubida kneels beside the right divan and taps Mohammed awake; he yawns in the morning sun.
 // b103 chambre_jour: Mohammed sits up eagerly on the divan ("œufs à l'huile, piment rouge et persil"); auto-insert omelette_epices.
 // b104 chambre_jour: Zoubida smiles indulgently ("une pincée de cumin").
-// b105 patio_matin: Rahma laughs merrily in the sunlit courtyard calling up toward Zoubida's window ("une omelette juive !").
+// b105 patio_matin: Rahma laughs merrily in the sunlit courtyard calling up vers la fenêtre d'en face ("une omelette juive !").
 // b106 chambre_jour: Zoubida chuckles warmly back toward the window ("envies comme une femme enceinte").
-// b107 patio_matin: two distinct courtyard neighbours (woman1 taller terracotta, woman2 shorter sage-teal) laugh together as Kanza tells her tale.
+// b107 patio_matin: two distinct courtyard neighbours (woman1 taller terracotta, woman2 shorter sage-teal) laugh together au fil du récit.
 // b108 painting p13_laitier_fromage: the stingy milkman and the baby marked with white cheese.
-// b109 patio_matin: voisine (distinct indigo-plum woman1 variant) delivers her deadpan serious nod and quip.
+// b109 patio_matin: voisine (en robe prune) delivers her deadpan serious nod and quip.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged, THREE } from '../lib/autostage.js';
@@ -65,7 +65,7 @@ function tintRobe(a, hex, amt = .75) {
 const ch1 = staged('chambre_jour', {
   mohammed: {
     at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST },
+    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, pillow: .08, mattress: MATTRESS, avoid: CHEST },
     seed: 3, talk: 0,
     lids: t => .88 * (1 - sm(B(0)[0] + 1.8, B(0)[0] + 4.2, t)),
   },
@@ -81,15 +81,14 @@ const ch1 = staged('chambre_jour', {
     lookMax: .7,
   },
 }, {
-  addressee: { zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo } = st.A, kz = zo.group.scale.y / 1.6;
     lieOnBed(mo, {
       top: TOP, feet: [.5, .87],
       origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .085, tuck: .22, headTurn: -.14,
+      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.14,
     });
-    pillowUnder(S3, st, mo, { top: TOP, h: .085, col: 0x3b5875 });
+    pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b5875 });
     st.cover ||= PR.blanket({ w: .4, l: .56, h: .06, col: 0xb24a34 });
     const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
     S3.prop(st.cover, hp.x + Math.sin(ry) * .28, TOP + .03 - .004, hp.z + Math.cos(ry) * .28, ry);
@@ -116,23 +115,22 @@ const ch1 = staged('chambre_jour', {
 // b103, b104, b106: Mohammed seated eagerly on the divan, Zoubida smiling & chuckling warmly
 const ch2 = staged('chambre_jour', {
   mohammed: {
-    at: [1340, 640], face: 'zoubida', yaw: -.2, pose: 'kneel',
-    o: { grounded: true, seat: TOP, lean: .08, avoid: CHEST },
-    seed: 3, look: 'zoubida', lookMax: .7,
+    at: [1350, 694], face: 'cam', yaw: -.65, pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .08, mattress: MATTRESS, avoid: CHEST },
+    seed: 3, look: 'zoubida', lookMax: .55,
   },
   zoubida: {
-    at: [1045, 790], face: 'cam', yaw: .52, pose: 'kneel',
+    at: [1005, 690], face: 'cam', yaw: .62, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST },
     seed: 7,
-    look: t => IN(4, t) ? [720, 620, 1.35] : 'mohammed',
-    lookMax: .75,
+    look: t => IN(4, t) ? [650, 740, 1.35] : 'mohammed',
+    lookMax: .54,
   },
 }, {
-  addressee: { mohammed: 'zoubida', zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo } = st.A;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
-    pillowUnder(S3, st, mo, { top: TOP, h: .07, col: 0x3b5875 });
+    pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b5875 });
     st.pillow.visible = false;
 
     const eager = IN(1, t) ? 1 : 0;
@@ -144,8 +142,8 @@ const ch2 = staged('chambre_jour', {
       mo.B.chest.rotation.x -= .04 * (.5 + .5 * bob);
       mo.B.head.rotation.z += .05 * Math.sin(t * 2.1);
       for (const [sd, sg] of [['L', 1], ['R', -1]]) {
-        const tg = front(mo, 'chest', .22 * km, sg * .14 * km, (-.06 + .04 * (sg > 0 ? bob : -bob)) * km);
-        clampReach(mo, sd, tg, { grip: .02, pole: [sg * .4, -.1, .2] });
+        const tg = front(mo, 'chest', .22 * km, -sg * .15 * km, (-.06 + .04 * (sg > 0 ? bob : -bob)) * km);
+        clampReach(mo, sd, tg, { grip: .02, pole: [sg * .45, .05, .25] });
         PO.fingers(mo, sd, .18, { spread: .25 });
       }
     } else {
@@ -160,16 +158,16 @@ const ch2 = staged('chambre_jour', {
       zo.B.chest.rotation.x += .04 * sh;
       zo.B.chest.rotation.z += .03 * Math.sin(t * 2.2);
       zo.B.head.rotation.x -= .06;
-      const waveR = front(zo, 'chest', .24 * kz, -.16 * kz, -.02 * kz + .03 * Math.sin(t * 3.2) * kz);
-      clampReach(zo, 'R', waveR, { grip: .02, pole: [-.45, -.1, .2] });
+      const waveR = front(zo, 'chest', .24 * kz, .16 * kz, -.02 * kz + .03 * Math.sin(t * 3.2) * kz);
+      clampReach(zo, 'R', waveR, { grip: .02, pole: [-.48, .05, .25] });
       PO.palmTo(zo, 'R', .7, V(0, 1, .2));
       PO.fingers(zo, 'R', .14, { spread: .3 });
       lap(zo, 'L', kz, .01 * Math.sin(t * 1.3));
     } else if (grin) {
       zo.B.head.rotation.z += .06 * Math.sin(t * 1.6);
       zo.B.chest.rotation.x += .02 * Math.sin(t * 1.2);
-      const gestL = front(zo, 'chest', .22 * kz, .12 * kz, -.06 * kz + .02 * Math.sin(t * 2.6) * kz);
-      clampReach(zo, 'L', gestL, { grip: .02, pole: [.42, -.1, .2] });
+      const gestL = front(zo, 'chest', .22 * kz, -.15 * kz, -.06 * kz + .02 * Math.sin(t * 2.6) * kz);
+      clampReach(zo, 'L', gestL, { grip: .02, pole: [.48, .05, .25] });
       PO.fingers(zo, 'L', .2, { spread: .25 });
       lap(zo, 'R', kz, .01 * Math.sin(t * 1.1));
     } else {
@@ -181,14 +179,13 @@ const ch2 = staged('chambre_jour', {
   },
 });
 
-// b105: Rahma in the sunlit courtyard calling up toward Zoubida's window
+// b105: Rahma in the sunlit courtyard calling up toward the opposite window
 const pa1 = staged('patio_matin', {
   rahma: {
     at: [1100, 960], face: 'cam', yaw: -.22, seed: 9,
     look: [760, 820, 2.05], lookMax: .7,
   },
 }, {
-  addressee: { rahma: 'zoubida' },
   act(lt, t, S, st) {
     const ra = st.A.rahma, k = ra.group.scale.y / 1.6;
     const sh = Math.sin(t * 10);
@@ -197,10 +194,10 @@ const pa1 = staged('patio_matin', {
     ra.B.head.rotation.x -= .08;
     ra.B.head.rotation.z += .05 * Math.sin(t * 2.4);
     ra.B.chest.updateWorldMatrix(false, true);
-    const tgR = front(ra, 'chest', .26 * k, -.14 * k, (-.04 + .03 * Math.sin(t * 3.1)) * k);
-    const tgL = front(ra, 'chest', .24 * k, .14 * k, (-.08 + .02 * Math.cos(t * 2.6)) * k);
-    clampReach(ra, 'R', tgR, { grip: .02, pole: [-.45, -.1, .2] });
-    clampReach(ra, 'L', tgL, { grip: .02, pole: [.45, -.1, .2] });
+    const tgR = front(ra, 'chest', .26 * k, .16 * k, (-.04 + .03 * Math.sin(t * 3.1)) * k);
+    const tgL = front(ra, 'chest', .24 * k, -.16 * k, (-.08 + .02 * Math.cos(t * 2.6)) * k);
+    clampReach(ra, 'R', tgR, { grip: .02, pole: [-.48, .05, .24] });
+    clampReach(ra, 'L', tgL, { grip: .02, pole: [.48, .05, .24] });
     PO.palmTo(ra, 'R', .7, V(0, 1, .2));
     PO.fingers(ra, 'R', .12, { spread: .3 });
     PO.fingers(ra, 'L', .2, { spread: .2 });
@@ -231,17 +228,17 @@ const pa2 = staged('patio_matin', {
       a.B.neck.rotation.x -= .10;
       a.B.head.rotation.z += sg * .08;
       a.B.chest.updateWorldMatrix(false, true);
-      const hi = front(a, 'chest', .2 * k, sg * .06 * k, (.03 + .02 * sh) * k);
-      const lo = front(a, 'root', .16 * k, osg * .12 * k, (.06 + .015 * Math.cos(t * 2.5 + ph)) * k);
-      clampReach(a, sd, hi, { grip: .02, pole: [sg * .45, -.1, .2] });
-      clampReach(a, osd, lo, { grip: .02, pole: [osg * .4, -.1, .1] });
+      const hi = front(a, 'chest', .22 * k, -sg * .15 * k, (.03 + .02 * sh) * k);
+      const lo = front(a, 'root', .20 * k, -osg * .16 * k, (.06 + .015 * Math.cos(t * 2.5 + ph)) * k);
+      clampReach(a, sd, hi, { grip: .02, pole: [sg * .52, .05, .28] });
+      clampReach(a, osd, lo, { grip: .02, pole: [osg * .48, .05, .22] });
       PO.fingers(a, sd, .22, { spread: .22 });
       PO.fingers(a, osd, .32, { spread: .12 });
     }
   },
 });
 
-// b109: Distinct extra woman1 variant (voisine) with deadpan serious nod
+// b109: Distinct extra variant (voisine) with deadpan serious nod
 const pa3 = staged('patio_matin', {
   voisine: {
     at: [960, 985], face: 'cam', yaw: .18, height: 1.56, seed: 19, lids: .22,
@@ -256,10 +253,10 @@ const pa3 = staged('patio_matin', {
     vo.B.head.rotation.z += .04;
     vo.B.chest.rotation.z += .02 * Math.sin(t * .9);
     vo.B.chest.updateWorldMatrix(false, true);
-    const lTg = front(vo, 'root', .18 * k, .10 * k, .05 * k);
-    const rTg = front(vo, 'chest', .22 * k, -.12 * k, (-.10 + .02 * Math.sin(t * 2.0)) * k);
-    clampReach(vo, 'L', lTg, { grip: .02, pole: [.38, -.1, .15] });
-    clampReach(vo, 'R', rTg, { grip: .02, pole: [-.42, -.1, .18] });
+    const lTg = front(vo, 'root', .22 * k, -.17 * k, .04 * k);
+    const rTg = front(vo, 'chest', .24 * k, .16 * k, (-.08 + .02 * Math.sin(t * 2.0)) * k);
+    clampReach(vo, 'L', lTg, { grip: .02, pole: [.52, .05, .22] });
+    clampReach(vo, 'R', rTg, { grip: .02, pole: [-.52, .05, .24] });
     PO.fingers(vo, 'L', .34, { spread: .1 });
     PO.fingers(vo, 'R', .2, { spread: .2 });
   },
@@ -270,7 +267,7 @@ export default beatScene(ID, {
   fadeIn: .7,
   plan: {
     b102: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.65, dx: 95, dy: -20 },
-    b103: { shot: 'ch2', size: 'CU', on: 'mohammed', z: 2.8, dy: -30 },
+    b103: { shot: 'ch2', size: 'CU', on: 'mohammed', z: 3.1, dx: 20, dy: -20 },
     b104: { shot: 'ch2', size: 'CU', on: 'zoubida', z: 2.5, dx: 40, dy: -30 },
     b105: { shot: 'pa1', size: 'M', on: 'rahma', z: 1.75, dy: -20 },
     b106: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.65, dx: 70, dy: -25 },

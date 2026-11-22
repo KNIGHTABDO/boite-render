@@ -113,7 +113,7 @@ const dawn = staged('chambre_jour', {
   father: {
     height: 1.76, at: [700, 830], face: [410, 895], seed: 5, talk: 0,
     walk: { to: [410, 895], t0: B(0)[0] + .4, t1: B(0)[0] + 6.2 },
-    lookMax: .95,
+    lookMax: .55,
     look: (t, st) => t >= B(0)[0] + 6.4 ? at(st.A.mohammed, 'head').clone().setY(at(st.A.father, 'head').y - .15) : null,
   },
 }, {
@@ -126,9 +126,9 @@ const dawn = staged('chambre_jour', {
     // At the threshold, turn 3/4 back toward Mohammed and camera so his look-back reads clearly
     if (stopU > 0) {
       const y0 = fa.group.rotation.y;
-      fa.group.rotation.y = y0 + (.85 - y0) * stopU;
+      fa.group.rotation.y = y0 + (.48 - y0) * stopU;
       fa.group.updateMatrixWorld(true);
-      fa.B.chest.rotation.y += .22 * stopU;
+      fa.B.chest.rotation.y += .14 * stopU;
       fa.B.chest.updateWorldMatrix(false, true);
       const rTgt = at(fa, 'root').addScaledVector(dirW(fa, -1, 0, 0), .2 * k).addScaledVector(dirW(fa, 0, 0, 1), .1 * k).add(V(0, -.04 * k, 0));
       const lTgt = at(fa, 'root').addScaledVector(dirW(fa, 1, 0, 0), .2 * k).addScaledVector(dirW(fa, 0, 0, 1), .12 * k).add(V(0, -.03 * k, 0));
@@ -179,7 +179,7 @@ export default beatScene(ID, {
       shot: 'dawn', size: 'W', on: 'father',
       cover: [
         { f: .58, size: 'M', pt: [410, 895], on: 'father', z: 1.38, dx: 90, dy: -65 },
-        { f: .82, size: 'CU', on: 'mohammed', z: 1.55, dx: -40, dy: -20 },
+        { f: .82, size: 'W', on: 'mohammed' },
       ],
     },
     b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 1.42, dx: -75, dy: 15 },

@@ -4,7 +4,7 @@
 // b081 (ch1 CU zoubida): Zoubida replies courteously with blessings from inside the room.
 // b082 (pa M rahma): Rahma sighs piously about hard times ("sachons louer Dieu dans l'adversité").
 // b083 (pa CU mohammed + insert trompette_ramadan): downstairs triple sneeze and trumpet nose blow; Mohammed bursts laughing.
-// b084 (ch2 chambre_jour): Zoubida steers him gently back to the mattress to recite the Quran for his father.
+// b084 (ch2 chambre_jour): Zoubida steers him gently back to the mattress to recite the Quran pour son père.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
@@ -80,7 +80,7 @@ const ch1 = staged('chambre_jour', {
     if (IN(2, t)) {
       const q = win(2, .05, .95, t);
       zo.B.head.rotation.x += .08 * q;
-      reach85(zo, 'R', front(zo, 'chest', .15 * kz, -.02 * kz, -.08 * kz), { grip: .02, pole: [-.35, -.15, .15] });
+      reach85(zo, 'R', front(zo, 'chest', .24 * kz, .14 * kz, -.06 * kz), { grip: 0, pole: [-.55, .15, .28] });
       PO.fingers(zo, 'R', .22, { spread: .18 });
     }
     mo.B.chest.updateWorldMatrix(false, true);
@@ -90,8 +90,8 @@ const ch1 = staged('chambre_jour', {
 
 // b080, b082, b083: patio_matin
 const pa = staged('patio_matin', {
-  mohammed: { at: [830, 990], face: 'rahma', seed: 3, look: 'rahma', lookMax: .8 },
-  rahma: { at: [1300, 845], face: 'mohammed', seed: 9, look: 'mohammed', lookMax: .8 },
+  mohammed: { at: [830, 895], face: 'cam', yaw: .7, seed: 3, look: 'rahma', lookMax: .6 },
+  rahma: { at: [1300, 895], face: 'cam', yaw: -.7, seed: 9, look: 'mohammed', lookMax: .6 },
 }, {
   light: PATIO_LT,
   addressee: { rahma: 'mohammed', mohammed: 'rahma' },
@@ -103,7 +103,7 @@ const pa = staged('patio_matin', {
     if (IN(1, t)) {
       const q = win(1, .05, .95, t), sw = Math.sin(t * 6.5);
       ra.B.chest.rotation.x += .06 * q;
-      reach85(ra, 'R', front(ra, 'chest', (.22 + .03 * sw) * kr, (-.18 + .04 * sw) * kr, .04 * kr), { grip: 0, pole: [-.45, -.15, .15] });
+      reach85(ra, 'R', front(ra, 'chest', (.22 + .03 * sw) * kr, (.18 + .04 * sw) * kr, .04 * kr), { grip: 0, pole: [-.5, .05, .22] });
       PO.palmTo(ra, 'R', q * .7, dirW(ra, 0, 0, 1));
       PO.fingers(ra, 'R', .12, { spread: .3 });
     }
@@ -114,7 +114,7 @@ const pa = staged('patio_matin', {
       ra.B.chest.rotation.x += .06 * q;
       ra.B.head.rotation.z += .07 * q;
       for (const [s, sg] of [['L', 1], ['R', -1]]) {
-        reach85(ra, s, front(ra, 'chest', .22 * kr, -sg * .16 * kr, -.12 * kr), { grip: 0, pole: [sg * .42, -.12, .18] });
+        reach85(ra, s, front(ra, 'chest', .22 * kr, -sg * .16 * kr, -.12 * kr), { grip: 0, pole: [sg * .45, .05, .22] });
         PO.palmTo(ra, s, q * .8, V(0, 1, .2));
         PO.fingers(ra, s, .14, { spread: .28 });
       }
@@ -128,7 +128,7 @@ const pa = staged('patio_matin', {
         mo.B.neck.rotation.x -= .16 * lgh;
         mo.B.head.rotation.x -= .14 * lgh;
         for (const [s, sg] of [['L', 1], ['R', -1]]) {
-          reach85(mo, s, front(mo, 'chest', .16 * km, -sg * .08 * km, -.22 * km), { grip: .02, pole: [sg * .4, -.15, .2] });
+          reach85(mo, s, front(mo, 'chest', .18 * km, -sg * .14 * km, -.20 * km), { grip: .02, pole: [sg * .45, .05, .22] });
           PO.fingers(mo, s, .25, { spread: .15 });
         }
       }
@@ -140,12 +140,12 @@ const pa = staged('patio_matin', {
 
 // b084: chambre_jour, back on the mattress reciting the Quran
 const ch2 = staged('chambre_jour', {
-  mohammed: { at: [1350, 694], face: [1100, 780], pose: 'kneel',
-    o: { grounded: true, seat: TOP, lean: .08, spread: .045, hands: false, mattress: MATTRESS, avoid: CHEST },
-    hands: false, seed: 3, look: 'zoubida', lookMax: .7,
+  mohammed: { at: [1350, 694], face: 'cam', yaw: -.85, pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .08, hands: false, mattress: MATTRESS, avoid: CHEST },
+    hands: false, seed: 3, look: 'zoubida', lookMax: .62,
     mutter: t => 2.8 * sm(B(5)[0] + 4.0, B(5)[0] + 5.0, t) },
-  zoubida: { at: [1085, 785], face: 'cam', yaw: .52, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .75 },
+  zoubida: { at: [1030, 710], face: 'cam', yaw: .85, pose: 'kneel',
+    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .62 },
 }, {
   light: ROOM_LT,
   addressee: { zoubida: 'mohammed' },
@@ -162,22 +162,22 @@ const ch2 = staged('chambre_jour', {
 
     if (steer > .05) {
       zo.B.chest.rotation.x += .07 * steer;
-      const shM = at(mo, 'upperArmL').add(V(0, .06 * km, .03));
-      const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'R', rest.lerp(shM, steer), { grip: .02, pole: [-.4, -.05, .25] });
-      PO.fingers(zo, 'R', .2, { spread: .18 });
+      const shM = at(mo, 'upperArmR').add(V(0, .05 * km, .03));
+      const rest = PO.hipToWorld(zo, .17 * kz, .09 * kz, .23 * kz);
+      reach85(zo, 'L', rest.lerp(shM, steer), { grip: .02, pole: [.55, .15, .35] });
+      PO.fingers(zo, 'L', .2, { spread: .18 });
     }
     if (recite > .05) {
       mo.B.spine.rotation.x += .04 * Math.sin(t * 2.4) * recite;
       mo.B.chest.rotation.x += .03 * Math.sin(t * 2.4 + .4) * recite;
       for (const [s, sg] of [['L', 1], ['R', -1]]) {
-        reach85(mo, s, front(mo, 'chest', .21 * km, -sg * .11 * km, -.17 * km), { grip: 0, pole: [sg * .36, -.12, .18] });
+        reach85(mo, s, front(mo, 'chest', .22 * km, -sg * .14 * km, -.17 * km), { grip: 0, pole: [sg * .45, .05, .22] });
         PO.palmTo(mo, s, recite * .85, V(0, 1, .15));
         PO.fingers(mo, s, .12, { spread: .12 });
       }
     }
     st.actcheck = {
-      contacts: steer > .3 ? [{ actors: ['zoubida', 'mohammed'], parts: ['handR:upperArmL', 'handR:torso', 'foreArmR:upperArmL'] }] : [],
+      contacts: steer > .25 ? [{ actors: ['zoubida', 'mohammed'], parts: ['handL:upperArmR', 'handL:upperArmL', 'handL:torso', 'foreArmL:upperArmR', 'foreArmL:upperArmL'] }] : [],
     };
     mo.B.chest.updateWorldMatrix(false, true);
     zo.B.chest.updateWorldMatrix(false, true);
@@ -187,11 +187,11 @@ const ch2 = staged('chambre_jour', {
 export default beatScene(ID, {
   shots: { ch1, pa, ch2 },
   plan: {
-    b079: { shot: 'ch1', size: 'M', on: 'mohammed', z: 1.55, dy: -20 },
+    b079: { shot: 'ch1', size: 'M', on: 'mohammed', z: 1.25, dy: -90 },
     b080: { shot: 'pa', size: 'M', on: 'rahma', z: 1.5, dx: -110, dy: 25 },
     b081: { shot: 'ch1', size: 'CU', on: 'zoubida', z: 2.3, dx: 20, dy: -15 },
     b082: { shot: 'pa', size: 'M', on: 'rahma', z: 1.75, dx: -15, dy: 20 },
     b083: { shot: 'pa', size: 'CU', on: 'mohammed', z: 2.35, dy: 10, insAt: .46 },
-    b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.38, dx: -65, dy: -15 },
+    b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.32, dx: -75, dy: -30 },
   },
 });

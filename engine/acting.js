@@ -26,11 +26,12 @@ export function gazeNet(lines, actors, { addressee = {}, fixed = {}, lag = .25, 
   for (const l of L) {
     const ad = typeof addressee[l.who] === 'function' ? addressee[l.who](l) : addressee[l.who];
     const to = ad ?? (prev && prev !== l.who ? prev : names.find(n => n !== l.who));
-    if (to) plan[l.who].push([l.t0 - .15, to]);                      // speakers look just before they speak
+    if (to && actors[to]) plan[l.who].push([l.t0 - .15, to]);                      // speakers look just before they speak
     for (const n of names) if (n !== l.who) plan[n].push([l.t0 + lag + hash(n.length, l.t0) * .2, l.who]);
     prev = l.who;
   }
   const target = (n, name, t) => {
+    if (!actors[name]) return null;
     const p = headOf(actors[name]);
     // glance-away on long speaker lines: 1-2 s look-aways to a random side every ~5 s
     const l = L.find(l => l.who === n && t >= l.t0 && t < l.t1);
@@ -47,8 +48,10 @@ export function gazeNet(lines, actors, { addressee = {}, fixed = {}, lag = .25, 
     const P = plan[n]; let k = -1; for (let i = 0; i < P.length; i++) if (P[i][0] <= t) k = i;
     if (k < 0) return P.length ? target(n, P[0][1], t) : null;
     const cur = target(n, P[k][1], t), w = sm((t - P[k][0]) / turn);
+    if (!cur) return null;
     if (w >= 1 || k === 0) return cur;
-    return target(n, P[k - 1][1], t).lerp(cur, w);
+    const prevT = target(n, P[k - 1][1], t);
+    return prevT ? prevT.lerp(cur, w) : cur;
   };
   return { at, plan, apply(t, a = amt) { for (const n of names) { const p = at(n, t); if (p) look(actors[n], p, a); } } };
 }

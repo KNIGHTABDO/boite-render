@@ -82,16 +82,15 @@ function buildLunchGroup() {
 }
 
 const ch = staged('chambre_jour', {
-  mohammed: { at: [1345, 690], face: [1080, 790], pose: 'kneel',
-    o: { grounded: true, seat: TOP, lean: .08, spread: .045, hands: false, mattress: MATTRESS, avoid: CHEST },
-    hands: false, seed: 3, look: (t) => IN(0, t) ? [1140, 790, .4] : 'zoubida', lookMax: .75,
+  mohammed: { at: [1345, 690], face: 'cam', yaw: -.82, pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .08, hands: false, mattress: MATTRESS, avoid: CHEST },
+    hands: false, seed: 3, look: (t) => IN(0, t) ? [1140, 790, .4] : 'zoubida', lookMax: .62,
     mutter: t => IN(1, t) ? 1.8 * Math.max(0, Math.sin(t * 4.5)) : 0 },
-  zoubida: { at: [980, 820], face: [1200, 750], pose: 'kneel',
+  zoubida: { at: [960, 730], face: 'cam', yaw: .88, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7,
-    look: (t) => IN(2, t) ? [1140, 790, .3] : 'mohammed', lookMax: .75 },
+    look: (t) => IN(2, t) ? [1140, 790, .35] : 'mohammed', lookMax: .62 },
 }, {
   light: DIM_DAY,
-  addressee: { zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo } = st.A;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
@@ -132,9 +131,10 @@ const ch = staged('chambre_jour', {
       const eat = win(1, .15, .85, t);
       const chew = .5 + .5 * Math.sin(t * 2.1);
       const rest = PO.hipToWorld(mo, -.17 * km, .09 * km, .23 * km);
-      const mouth = at(mo, 'head', [-.02, .01, .12]);
-      const handP = rest.lerp(mouth.clone().add(V(0, -.04 * km, .03 * km)), eat * (.55 + .35 * chew));
-      reach85(mo, 'R', handP, { grip: .015, pole: [-.36, -.12, .22] });
+      const eatEnd = front(mo, 'chest', .22 * km, .10 * km, -.04 * km);
+      eatEnd.y = Math.min(eatEnd.y, at(mo, 'head').y - .11 * km);
+      const handP = rest.lerp(eatEnd, eat * (.55 + .35 * chew));
+      reach85(mo, 'R', handP, { grip: .015, pole: [-.45, .02, .24] });
       PO.fingers(mo, 'R', .55, { thumb: .45 });
       if (eat > .2) {
         st.beignet.position.copy(PO.handPts(mo, 'R').palm);
@@ -151,7 +151,7 @@ const ch = staged('chambre_jour', {
         zo.B.chest.rotation.x += .08 * place;
         const potTop = V(tp.x - .04, tblTop + .15, tp.z);
         const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-        reach85(zo, 'R', rest.lerp(potTop, place), { grip: .02, pole: [-.4, -.05, .25] });
+        reach85(zo, 'R', rest.lerp(potTop, place), { grip: .02, pole: [-.48, .08, .28] });
         PO.fingers(zo, 'R', .4, { thumb: .3 });
       }
       zo.B.neck.rotation.x += .1 * win(2, .4, .95, t);
@@ -164,7 +164,7 @@ const ch = staged('chambre_jour', {
 
 // b088: escalier, Zoubida in her white haik descending alone
 const esc = staged('escalier', {
-  zoubida: { tread: 5, off: 0, face: 'down', costume: 'haik', seed: 7,
+  zoubida: { tread: 4, off: 0, face: 'down', costume: 'haik', seed: 7,
     climb: { to: 1, t0: B(3)[0] + .3, t1: B(3)[1] - .2 }, look: 'cam', lookMax: .45 },
 }, {
   stairs: ESCALIER,
@@ -173,7 +173,7 @@ const esc = staged('escalier', {
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
     sealHaik(zo);
     for (const [side, sign] of [['L', 1], ['R', -1]]) {
-      reach85(zo, side, PO.hipToWorld(zo, sign * .26 * kz, .06 * kz, .03 * kz), { grip: .01, pole: [sign * .9, .05, -.05] });
+      reach85(zo, side, PO.hipToWorld(zo, sign * .09 * kz, .16 * kz, .13 * kz), { grip: .01, pole: [sign * .16, .08, .02] });
       PO.fingers(zo, side, .3);
     }
     st.actcheck = { supports: { zoubida: zo.group.position.y } };

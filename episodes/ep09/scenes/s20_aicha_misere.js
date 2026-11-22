@@ -28,32 +28,34 @@ function reach85(a, side, target, o = {}) {
   return PO.reach(a, side, tgt, o);
 }
 
-/** Relaxed lap hand for grounded kneeling / cross-legged actors. */
+/** Relaxed lap hand for grounded kneeling actors. */
 function lap85(a, side, k, drift = 0) {
   const sg = side === 'L' ? 1 : -1;
-  const tg = PO.hipToWorld(a, sg * .15 * k, .07 * k + drift, .22 * k);
-  reach85(a, side, tg, { grip: .02, pole: [sg * .34, .05, .12] });
+  const tg = PO.hipToWorld(a, sg * .18 * k, .08 * k + drift, .24 * k);
+  reach85(a, side, tg, { grip: .02, pole: [sg * .9, .2, .5] });
   PO.fingers(a, side, .32, { spread: .12 });
 }
 
 const ap = staged('aicha_pauvre', {
   aicha: {
-    at: [1180, 855], face: 'zoubida', yaw: .35, pose: 'cross', o: { grounded: true, lean: .08 }, seed: 9,
-    look: t => IN(3, t) ? 'zoubida' : IN(1, t) ? [920, 685, 1.1] : 'zoubida', lookMax: .65,
+    at: [1180, 855], face: 'cam', yaw: -.45, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 9,
+    look: t => IN(3, t) ? 'zoubida' : IN(1, t) ? [920, 845, 1.05] : 'zoubida', lookMax: .6,
   },
   zoubida: {
-    at: [800, 845], face: 'aicha', yaw: -.35, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 7,
-    look: t => IN(1, t) ? [1250, 720, .8] : IN(2, t) ? [920, 685, 1.3] : 'aicha', lookMax: .7,
+    at: [800, 855], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 7,
+    look: t => IN(1, t) ? [1150, 845, .85] : IN(2, t) ? [940, 845, 1.35] : 'aicha', lookMax: .6,
   },
   mohammed: {
-    at: [560, 880], face: 'aicha', yaw: -.2, pose: 'cross', o: { grounded: true, lean: .08 }, seed: 3,
-    look: t => IN(1, t) ? [300, 760, 1.1] : IN(2, t) ? (t < B(2)[0] + 6.5 ? [920, 685, 1.55] : [240, 760, 1.35]) : 'aicha', lookMax: .8,
+    height: 1.1, at: [560, 875], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08, hip: .24, spread: .045 }, seed: 3,
+    look: t => IN(1, t) ? [720, 855, 1.05] : IN(2, t) ? (t < B(2)[0] + 6.5 ? [920, 845, 1.55] : [450, 880, 1.35]) : 'aicha', lookMax: .6,
   },
 }, {
   addressee: { narrator: 'aicha' },
   act(lt, t, S, st, S3) {
     const { aicha: ai, zoubida: zo, mohammed: mo } = st.A;
     for (const a of [ai, zo, mo]) castScale(a);
+    mo.group.position.y -= .01;
+    mo.group.updateMatrixWorld(true);
     const ka = ai.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;
 
     // Tea service on the bare floor just in front of Aïcha
@@ -126,9 +128,9 @@ const ap = staged('aicha_pauvre', {
 export default beatScene(ID, {
   shots: { ap },
   plan: {
-    b127: { shot: 'ap', size: 'M', on: 'aicha' },
+    b127: { shot: 'ap', size: 'W', on: 'aicha' },
     b128: { shot: 'ap', size: 'W', on: 'aicha' },
-    b129: { shot: 'ap', size: 'CU', on: 'mohammed', insAt: .14 },
-    b130: { shot: 'ap', size: 'M', on: 'aicha' },
+    b129: { shot: 'ap', size: 'W', on: 'mohammed', insAt: .14 },
+    b130: { shot: 'ap', size: 'W', on: 'aicha' },
   },
 });

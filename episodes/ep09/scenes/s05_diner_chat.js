@@ -4,7 +4,7 @@
 // b020 (chambre_nuit): Father kneels beside Mohammed's divan (lieOnBed), pale and hollow-eyed; he reaches gently to
 // touch the boy's forehead, nods slowly, then turns his head and shoulders away in silence.
 // b021 (chambre_nuit + insert i_plat_safran): Silent dinner around the tabla and brown earthenware saffron dish —
-// father sits cross-legged on the left, Zoubida kneels on the right, neither eats nor speaks.
+// father kneels on the left, Zoubida kneels on the right, neither eats nor speaks.
 // b022 (chambre_nuit): Zineb's tabby cat (cat2, loadAnimal) creeps in from the left toward the two frozen parents,
 // pauses to meow timidly, puffs up in sudden fright with wide yellow eyes, and bolts off-frame left.
 // b023–b026 (chambre_nuit, tag À RETENIR): Crushed by the silence, Mohammed sobs on the divan; his father stirs out
@@ -94,22 +94,22 @@ const WARM_LIGHT = { key: '#ffcb7e', keyI: 1.35, sky: '#6b6d8f', ground: '#3b2c2
 const nu1 = staged('chambre_nuit', {
   mohammed: { ...BED, lids: .45 },
   zoubida: {
-    height: 1.6, at: [790, 880], face: [900, 860], pose: 'kneel',
+    height: 1.6, at: [760, 870], face: 'cam', yaw: .35, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7, talk: 0,
-    look: (t, st) => t < B(0)[0] + 4.4 ? [900, 860, .4] : at(st.A.father, 'head'),
-    lookMax: .7,
+    look: (t, st) => t < B(0)[0] + 4.4 ? [880, 910, .4] : at(st.A.father, 'head'),
+    lookMax: .55,
   },
   father: {
-    height: 1.76, at: [440, 895], face: [900, 860], seed: 5, talk: 0,
+    height: 1.76, at: [440, 895], face: [880, 910], seed: 5, talk: 0,
     walk: { to: [610, 895], t0: B(0)[0] + .6, t1: B(0)[0] + 5.2 },
-    look: 'zoubida', lookMax: .65, lids: .35,
+    look: 'zoubida', lookMax: .55, lids: .35,
   },
 }, {
   light: WARM_LIGHT,
   act(lt, t, S, st, S3) {
     bed(S3, st, t, -.24);
     const { zoubida: zo, father: fa } = st.A, kz = zo.group.scale.y / 1.6;
-    const tbPos = st.tbPos ||= S3.floorAt(900, 855);
+    const tbPos = st.tbPos ||= S3.floorAt(880, 910);
     st.tabla ||= S3.prop(PR.tabla({ r: .24, h: .24 }));
     S3.prop(st.tabla, tbPos.x, 0, tbPos.z, 0);
     st.lamp ||= S3.prop(petrolLampProp());
@@ -141,9 +141,9 @@ const nu1 = staged('chambre_nuit', {
 const nu2 = staged('chambre_nuit', {
   mohammed: { ...BED, lids: .42 },
   father: {
-    height: 1.76, at: [1175, 745], face: 'cam', yaw: .72, pose: 'kneel',
+    height: 1.76, at: [1165, 745], face: 'cam', yaw: .35, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST }, seed: 5, talk: 0, lids: .42,
-    lookMax: .85,
+    lookMax: .45,
     look: (t, st) => {
       const away = sm(B(1)[0] + 10.6, B(1)[0] + 12.0, t);
       if (away > .4) return at(st.A.father, 'head').add(V(-.8, -.1, .9));
@@ -162,7 +162,7 @@ const nu2 = staged('chambre_nuit', {
     const nod = sm(B(1)[0] + 8.6, B(1)[0] + 9.3, t) * (1 - sm(B(1)[0] + 9.7, B(1)[0] + 10.4, t));
     const away = sm(B(1)[0] + 10.5, B(1)[0] + 12.2, t);
     st.fy0 ??= fa.group.rotation.y;
-    fa.group.rotation.y = st.fy0 - .75 * away;
+    fa.group.rotation.y = st.fy0 - .65 * away;
     fa.group.updateMatrixWorld(true);
     fa.B.chest.rotation.x += .08 * touch + .012 * Math.sin(t * 1.4);
     fa.B.neck.rotation.x += .14 * nod;
@@ -183,24 +183,23 @@ const nu3 = staged('chambre_nuit', {
     lids: t => IN(4, t) || IN(6, t) ? .78 : .42,
   },
   father: {
-    height: 1.76, at: [560, 890], face: 'cam', yaw: .55, pose: 'cross',
-    o: { grounded: true, seat: 0, lean: .08, avoid: CHEST }, seed: 5, lids: .35,
-    lookMax: .8,
-    look: (t, st) => t < B(4)[0] + 4.5
+    height: 1.76, at: [560, 890], face: 'cam', yaw: -.1, pose: 'kneel',
+    o: { grounded: true, lean: .08, avoid: CHEST }, seed: 5, lids: .35,
+    lookMax: .35,
+    look: (t, st, S3) => t < B(4)[0] + 4.5
       ? at(st.A.father, 'head').add(V(.3, -.35, .6))
-      : at(st.A.mohammed, 'head').clone().setY(at(st.A.father, 'head').y - .18),
+      : at(st.A.mohammed, 'head').clone().lerp(S3.cam.position, .35).setY(at(st.A.father, 'head').y - .15),
   },
   zoubida: {
-    height: 1.6, at: [1040, 890], face: 'cam', yaw: -.5, pose: 'kneel',
+    height: 1.6, at: [1040, 890], face: 'cam', yaw: -.35, pose: 'kneel',
     o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7, lids: .3,
-    lookMax: .8,
+    lookMax: .55,
     look: (t, st) => t < B(4)[0] + 4.0
       ? at(st.A.zoubida, 'head').add(V(-.3, -.35, .6))
       : at(st.A.mohammed, 'head').clone().setY(at(st.A.zoubida, 'head').y - .15),
   },
 }, {
   light: WARM_LIGHT,
-  addressee: { father: 'mohammed', mohammed: 'father', zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const moTurn = t >= B(4)[0] ? -.22 : -.18;
     bed(S3, st, t, moTurn);
@@ -233,33 +232,33 @@ const nu3 = staged('chambre_nuit', {
     const cat = st.cat;
     if (cat) {
       const c0 = B(3)[0], dt = t - c0;
-      const vis = dt >= -.3 && dt < 14.8;
+      const vis = dt >= -.3 && dt < 17.3;
       cat.root.visible = vis;
       if (vis) {
         const pIn = st.catIn ||= S3.floorAt(270, 955);
         const pStop = st.catStop ||= S3.floorAt(755, 945);
-        const pOut = st.catOut ||= S3.floorAt(-160, 955);
+        const pOut = st.catOut ||= S3.floorAt(60, 955);
         const p = pIn.clone();
         let yaw = yawTo(pIn, pStop), sc = 1, br = 1 + .02 * Math.sin(t * 3), pitch = 0, bob = 0;
-        if (dt < 4.8) {
-          const u = clamp(dt / 4.8);
+        if (dt < 5.2) {
+          const u = clamp(dt / 5.2);
           p.lerp(pStop, K.ease(u));
           bob = u > 0 && u < 1 ? .008 * Math.abs(Math.sin(dt * 7)) : 0;
           pitch = .04 * Math.sin(dt * 7);
-        } else if (dt < 8.6) {
+        } else if (dt < 9.6) {
           p.copy(pStop);
           yaw = yawTo(pStop, fa.group.position.clone().lerp(zo.group.position, .5));
-          const meow = Math.max(0, Math.sin((dt - 4.8) * 2.6));
+          const meow = Math.max(0, Math.sin((dt - 5.2) * 2.6));
           pitch = -.14 * meow;
-        } else if (dt < 11.4) {
-          const u = clamp((dt - 8.6) / 1.2);
+        } else if (dt < 13.2) {
+          const u = clamp((dt - 9.6) / 1.4);
           p.copy(pStop);
           yaw = yawTo(pStop, fa.group.position.clone().lerp(zo.group.position, .5)) - .45 * u;
           sc = 1 + .2 * u * (1 + .15 * Math.sin(t * 24));
           br = 1 + .14 * Math.sin(u * Math.PI);
           pitch = -.12 * u + .05 * Math.sin(t * 28) * u;
         } else {
-          const u = clamp((dt - 11.4) / 2.6), ph = (dt - 11.4) * 16;
+          const u = clamp((dt - 13.2) / 3.8), ph = (dt - 13.2) * 16;
           p.copy(pStop).lerp(pOut, u);
           yaw = yawTo(pStop, pOut);
           bob = .05 * Math.abs(Math.sin(ph));
@@ -310,11 +309,11 @@ export default beatScene(ID, {
   plan: {
     b019: { shot: 'nu1', size: 'W', on: 'zoubida' },
     b020: { shot: 'nu2', size: 'M', on: 'father', z: 1.55, dx: 45, dy: -15 },
-    b021: { shot: 'nu3', size: 'M', on: 'father', z: 1.25, dx: 110, dy: -20 },
+    b021: { shot: 'nu3', size: 'W', on: 'father' },
     b022: { shot: 'nu3', size: 'W', on: 'father' },
     b023: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 1.55, dx: -40, dy: -20 },
-    b024: { shot: 'nu3', size: 'CU', on: 'father', z: 1.75, dy: -15 },
+    b024: { shot: 'nu3', size: 'CU', on: 'father', z: 2.1, dx: -100, dy: -15 },
     b025: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 1.55, dx: -40, dy: -20 },
-    b026: { shot: 'nu3', size: 'M', on: 'father', z: 1.38, dx: 60, dy: -20 },
+    b026: { shot: 'nu3', size: 'M', on: 'father', z: 1.25, dx: 180, dy: -20 },
   },
 });
