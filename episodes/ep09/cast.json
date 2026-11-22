@@ -1,0 +1,136 @@
+{
+ "characters": {
+  "mohammed": {
+   "model": "mohammed",
+   "age": 6,
+   "height": 1.1,
+   "palette": ["#e8e0cc"],
+   "ref": "art/src/mohammed.png",
+   "notes": "white house shirt / djellaba, shaved head with a tuft; feverish in bed then recovers"
+  },
+  "zoubida": {
+   "model": "zoubida",
+   "age": 22,
+   "height": 1.6,
+   "costumes": {
+    "haik": "zoubida_haik"
+   },
+   "palette": ["#5a6a8a"],
+   "ref": "art/src/zoubida.png",
+   "notes": "grey-blue house kaftan; s18-s21 outdoor white haik (zoubida_haik)"
+  },
+  "father": {
+   "model": "father",
+   "age": 45,
+   "height": 1.76,
+   "palette": ["#d9d2c0"],
+   "notes": "maalem Abdeslem, brown wool djellaba; returns ruined, leaves at dawn for the harvest"
+  },
+  "fatma": {
+   "model": "fatma",
+   "age": 40,
+   "height": 1.58,
+   "palette": ["#e9e4d8"],
+   "notes": "Fatma Bziouya, generous neighbour, brings hot tadeffi soup"
+  },
+  "rahma": {
+   "model": "rahma",
+   "age": 35,
+   "height": 1.6,
+   "palette": ["#7a5a8a"],
+   "notes": "wife of the plough-maker, calls from her window"
+  },
+  "aicha": {
+   "model": "aicha",
+   "age": 35,
+   "height": 1.62,
+   "costumes": {
+    "haik": "aicha_haik"
+   },
+   "palette": ["#d98a3a"],
+   "ref": "art/models/aicha__base_basic_pbr.glb",
+   "notes": "Lalla Aïcha at Zenqat-Hajjama: ruined, dignified, plump, kind"
+  },
+  "kanza": {
+   "model": "chouafa",
+   "age": 65,
+   "height": 1.55,
+   "voice_only": true,
+   "palette": ["#6a4a3a"],
+   "notes": "Tante Kanza the chouafa: tells the cheese birthmark story from her window / downstairs"
+  },
+  "driss": {
+   "model": "driss",
+   "age": 14,
+   "height": 1.48,
+   "voice_only": true,
+   "palette": ["#b5a48a"],
+   "notes": "Driss le teigneux: faithful apprentice who comes every day for errands"
+  },
+  "marchand": {
+   "model": "marchand",
+   "age": 40,
+   "height": 1.82,
+   "palette": ["#8a6a3a"],
+   "notes": "angry pepper and tomato vendor in the medina street"
+  },
+  "cat2": {
+   "model": "cat2",
+   "animal": true,
+   "height": 0.25,
+   "notes": "Zineb's cat: creeps near the silent dinner table, panics at the stillness, hisses and bolts"
+  },
+  "man1": {
+   "model": "man1",
+   "height": 1.72,
+   "extra": true,
+   "vary": ["cap", "robe", "scale"]
+  },
+  "woman1": {
+   "model": "woman1",
+   "height": 1.6,
+   "extra": true,
+   "vary": ["cap", "robe", "scale"]
+  },
+  "woman2": {
+   "model": "woman2",
+   "height": 1.6,
+   "extra": true,
+   "vary": ["cap", "robe", "scale"]
+  },
+  "voisine": {
+   "model": "woman1",
+   "height": 1.6,
+   "extra": true,
+   "vary": ["cap", "robe", "scale"],
+   "notes": "neighbour replying to Tante Kanza's cheese tale"
+  },
+  "femmes": {
+   "model": "woman2",
+   "height": 1.6,
+   "extra": true,
+   "vary": ["cap", "robe", "scale"]
+  }
+ },
+ "lexicon": [
+  "cercueil", "sacoche", "faucille", "sac", "olive", "figue", "farine", "qarchala",
+  "beignet", "miel", "beurre", "bigaradier", "citron", "menthe", "tadeffi", "soupe",
+  "bouillon", "safran", "viande", "legume", "sucre", "the", "mouchoir", "sacoche",
+  "bracelet", "trompette", "radis", "chiffon", "flute", "oeuf", "piment", "persil",
+  "cumin", "fromage", "seau", "mosaique", "grille", "poivron", "tomate", "portail",
+  "bouilloire", "horloge", "cretonne", "carpette", "etagere", "assiette",
+  "crin", "queue", "oreille", "cheveu", "front", "joue", "terre", "mur", "toit", "ciel"
+ ],
+ "voices": {
+  "narrator": "Jett",
+  "mohammed": "Sola",
+  "zoubida": "Cleo",
+  "father": "Neno",
+  "fatma": "Hali",
+  "rahma": "Kira",
+  "kanza": "Tova",
+  "aicha": "Fola",
+  "marchand": "Arlo",
+  "voisine": "Nika"
+ }
+}

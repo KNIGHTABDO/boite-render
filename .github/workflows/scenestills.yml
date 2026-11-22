@@ -72,7 +72,7 @@ jobs:
   gate:
     # CPU geometry gate (tools/actcheck8.mjs), one runner per scene, independent of the stills job (both always run).
     needs: discover
-    if: inputs.episode == 'ep08'
+    if: inputs.episode == 'ep08' || inputs.episode == 'ep09'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -90,7 +90,7 @@ jobs:
         run: |
           mkdir -p out/gate out/rigqa/argon
           set +e
-          node tools/actcheck8.mjs --step 5 --scenes "${{ matrix.scene }}" --out "out/gate/${{ matrix.scene }}.json" > "out/gate/${{ matrix.scene }}.txt" 2>&1
+          node tools/actcheck8.mjs --ep "${{ inputs.episode }}" --step 5 --scenes "${{ matrix.scene }}" --out "out/gate/${{ matrix.scene }}.json" > "out/gate/${{ matrix.scene }}.txt" 2>&1
           rc=$?
           echo "$rc" > "out/gate/${{ matrix.scene }}.status"
           verdict=$([ $rc -eq 0 ] && echo PASS || echo FAIL)

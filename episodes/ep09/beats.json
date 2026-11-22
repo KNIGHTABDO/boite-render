@@ -1,0 +1,3078 @@
+{
+ "episode": "ep09",
+ "chapter": 9,
+ "lint": {
+  "HOOK_MAX": 14,
+  "TITLE_MAX": 10
+ },
+ "beats": [
+  {
+   "id": "b001",
+   "scene": "s01_hook",
+   "text": "À l'aube, mon père partit vers l'inconnu, sans argent, avec sa sacoche, une faucille neuve et un sac de provisions.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "sacoche",
+    "faucille",
+    "sac"
+   ],
+   "visual": "Dawn gloom: the father steps quietly toward the door with his shepherd bag, sickle and provisions sack; from the bed, Mohammed watches in silence.",
+   "cam": "ots",
+   "act": "father looks back once from the threshold; Mohammed watches still",
+   "sfx": [
+    "door_open soft"
+   ]
+  },
+  {
+   "id": "b002",
+   "scene": "s01_hook",
+   "text": "Et ma Boîte à Merveilles n'était plus qu'un cercueil où dormaient mes rêves.",
+   "speaker": "narrator",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "boite",
+    "cercueil"
+   ],
+   "visual": "Night: the open Wonder Box sits beside the dark mattress while Mohammed stares motionless into the shadows.",
+   "cam": "low",
+   "peak": true,
+   "light": "night_window",
+   "act": "slow blink, motionless",
+   "sfx": [
+    "far city night"
+   ]
+  },
+  {
+   "id": "b003",
+   "scene": "s02_titre",
+   "mode": "title",
+   "text": "La Boîte à Merveilles · Chapitre IX · La ruine et le départ",
+   "dur": 4.0,
+   "visual": "ep06 rosette title: zellige rosette blooms in indigo, Arabic + French titles, CHAPITRE IX · LA RUINE ET LE DÉPART"
+  },
+  {
+   "id": "b004",
+   "scene": "s03_reveil",
+   "text": "Il n'a rien mangé depuis son déjeuner d'hier. Cette phrase, dite dans un soupir, suffit pour me réveiller.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Card LA FIÈVRE. Dense dim room: Mohammed lies on the back mattress; Zoubida leans whispering toward a motionless shadow near the door.",
+   "cam": "master",
+   "act": "Zoubida whispers, hand near mouth",
+   "sfx": [
+    "whisper soft"
+   ],
+   "card": "LA FIÈVRE"
+  },
+  {
+   "id": "b005",
+   "scene": "s03_reveil",
+   "text": "Une pénombre épaisse remplissait la chambre. Ma mère chuchotait à une forme immobile, debout dans le noir. Puis les deux ombres m'abandonnèrent.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The two dark silhouettes drift away toward the doorway while the boy lies alone in the dim light.",
+   "cam": "reverse",
+   "act": "Zoubida steps toward door"
+  },
+  {
+   "id": "b006",
+   "scene": "s03_reveil",
+   "text": "Un tambour battait dans mon crâne. Des traînées de cendre rouge et des étincelles froides tournoyaient autour de mon visage.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Fever hallucination: red embers of ash and cold swirling sparks spin in the dark around a blurred boy's silhouette.",
+   "still": "p01_cendres_etincelles",
+   "move": "slow dizzy swirl, sparks drift outward",
+   "sfx": [
+    "heartbeat soft",
+    "tinnitus"
+   ]
+  },
+  {
+   "id": "b007",
+   "scene": "s03_reveil",
+   "text": "Ma mère revint à pas furtifs, si silencieuse qu'elle ne semblait plus respirer, comme un fantôme prêt à se dissoudre.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida steals back silently on tiptoe and bends close over Mohammed, dark and fuzzy like a phantom.",
+   "cam": "ots",
+   "act": "Zoubida leans forward slowly, motionless",
+   "sfx": [
+    "soft footsteps"
+   ]
+  },
+  {
+   "id": "b008",
+   "scene": "s03_reveil",
+   "text": "Je suis réveillé... mais j'ai mal.",
+   "speaker": "mohammed",
+   "dur": 2.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_penombre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Je suis réveillé... mais j'ai mal.' — weak head turn on the pillow.",
+   "cam": "low",
+   "peak": true,
+   "act": "eyes half open, small wince"
+  },
+  {
+   "id": "b009",
+   "scene": "s03_reveil",
+   "text": "Cela va mieux puisque tu me parles.",
+   "speaker": "zoubida",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida softens with relief, leaning closer.",
+   "cam": "ots",
+   "act": "hand gently lowers toward blanket"
+  },
+  {
+   "id": "b010",
+   "scene": "s03_reveil",
+   "text": "Pourquoi fait-il si sombre ?",
+   "speaker": "mohammed",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_penombre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Pourquoi fait-il si sombre ?'",
+   "cam": "low",
+   "act": "eyes drift toward dark window"
+  },
+  {
+   "id": "b011",
+   "scene": "s03_reveil",
+   "text": "C'est le soir. Tu as eu la fièvre toute la nuit et toute la matinée. Mes yeux n'ont pas cessé de pleurer.",
+   "speaker": "zoubida",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida sits close beside the mattress, wiping a tear with the back of her hand.",
+   "cam": "master",
+   "act": "head bows, slow breath"
+  },
+  {
+   "id": "b012",
+   "scene": "s03_reveil",
+   "text": "J'ai faim.",
+   "speaker": "mohammed",
+   "dur": 1.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_penombre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Mohammed whispers softly: 'J'ai faim.'",
+   "cam": "low",
+   "act": "slight lift of chin"
+  },
+  {
+   "id": "b013",
+   "scene": "s03_reveil",
+   "text": "Louange à Dieu ! Je vais te chercher un bol de bouillon.",
+   "speaker": "zoubida",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bouillon",
+    "bol"
+   ],
+   "visual": "Zoubida brightens and hurries out toward the kitchen for a bowl of hot broth.",
+   "cam": "reverse",
+   "action": "walk",
+   "ins": [
+    [
+     "bol_bouillon",
+     1.2
+    ]
+   ],
+   "sfx": [
+    "footsteps",
+    "spoon clink"
+   ]
+  },
+  {
+   "id": "b014",
+   "scene": "s03_reveil",
+   "text": "Mais rien que l'odeur me soulevait le cœur. La pièce roula, tangua dans l'espace comme les astres et les météores. Ma mère rattrapa le bol à temps et me rallongea doucement.",
+   "speaker": "narrator",
+   "dur": 12.3,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "bol"
+   ],
+   "visual": "Vertigo: the bowl blurs as the bedroom walls tilt, roll and spin through cosmic darkness like stars and meteors.",
+   "still": "p02_chambre_tournante",
+   "move": "slow rotational drift and pull back 10%",
+   "sfx": [
+    "dizzy whoosh",
+    "heartbeat"
+   ]
+  },
+  {
+   "id": "b015",
+   "scene": "s04_remedes",
+   "text": "Les objets cessèrent de tourner. Ma mère s'assit près de mon lit, sur un matelas très bas.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_penombre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "lit",
+    "matelas"
+   ],
+   "visual": "The room settles; Zoubida sits beside Mohammed on a very low mattress.",
+   "cam": "master",
+   "act": "Zoubida lowers onto low mattress, hands on lap"
+  },
+  {
+   "id": "b016",
+   "scene": "s04_remedes",
+   "text": "Zoubida, comment va Sidi Mohammed ? Couvre-le bien et donne-lui du thé chaud, il a dû attraper froid.",
+   "speaker": "rahma",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "rahma"
+   ],
+   "props": [
+    "the"
+   ],
+   "visual": "Cutaway to patio gallery: Rahma leans out of her window, calling kindly with warm advice.",
+   "cam": "high",
+   "act": "Rahma leans forward, hand cupped near mouth",
+   "sfx": [
+    "courtyard echo"
+   ]
+  },
+  {
+   "id": "b017",
+   "scene": "s04_remedes",
+   "text": "Je crois plutôt qu'il a pris une insolation. Entoure-lui la tête d'écorces de citron et de feuilles de menthe.",
+   "speaker": "fatma",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "fatma"
+   ],
+   "props": [
+    "citron",
+    "menthe"
+   ],
+   "visual": "Across the courtyard, Fatma leans from her window holding lemon peel and mint sprigs.",
+   "cam": "reverse",
+   "ins": [
+    [
+     "citron_menthe",
+     1.2
+    ]
+   ],
+   "act": "Fatma gestures with hands"
+  },
+  {
+   "id": "b018",
+   "scene": "s04_remedes",
+   "text": "Vous avez peut-être raison, mes sœurs... Mais si Dieu ne soulage pas ses souffrances, tous mes soins restent inutiles.",
+   "speaker": "zoubida",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Inside: Zoubida sighs softly, glancing up in resignation, leaving it in God's hands.",
+   "cam": "ots",
+   "act": "slow upward glance, gentle nod"
+  },
+  {
+   "id": "b019",
+   "scene": "s05_diner_chat",
+   "text": "Mon père rentra plus tôt que d'habitude. Ma mère se hâta d'allumer la lampe à pétrole, et la chambre fut inondée de lumière jaune.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "lampe",
+    "petrole"
+   ],
+   "visual": "Evening: Zoubida lights the petrol lamp as the father enters early, flooding the room with warm yellow light.",
+   "cam": "master",
+   "light": "lamp_on",
+   "ins": [
+    [
+     "lampe_petrole",
+     1.1
+    ]
+   ],
+   "sfx": [
+    "footsteps_stairs",
+    "match_strike"
+   ]
+  },
+  {
+   "id": "b020",
+   "scene": "s05_diner_chat",
+   "text": "Son visage était pâle et fatigué, ses yeux creusés de deux trous noirs. Il me toucha doucement le front, hocha la tête, et me tourna le dos sans un mot.",
+   "speaker": "narrator",
+   "dur": 11.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [
+    "front"
+   ],
+   "visual": "The father's pale, hollow-eyed face bends gently, touches the boy's forehead, nods, then turns away silently.",
+   "cam": "ots",
+   "action": "touch",
+   "act": "father reaches gently to forehead then turns away"
+  },
+  {
+   "id": "b021",
+   "scene": "s05_diner_chat",
+   "text": "Ce fut le dîner le plus triste de leur vie. L'odeur du safran me donnait la nausée. Ni mon père ni ma mère ne mangeaient, ne parlaient.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "safran",
+    "plat",
+    "legume",
+    "viande"
+   ],
+   "visual": "The saddest dinner: around the brown earthenware dish of saffron, meat and vegetables, neither parent eats or speaks.",
+   "cam": "master",
+   "ins": [
+    [
+     "plat_safran",
+     1.2
+    ]
+   ],
+   "act": "both stare down motionless",
+   "sfx": [
+    "clock quiet",
+    "room stillness"
+   ]
+  },
+  {
+   "id": "b022",
+   "scene": "s05_diner_chat",
+   "text": "Le chat de Zineb entra à pas feutrés. Il miaula timidement devant ces deux statues immobiles. Mais la frayeur le saisit : il écarquilla ses yeux jaunes, cracha un juron, et fila tous poils dehors !",
+   "speaker": "narrator",
+   "dur": 14.2,
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_nuit",
+   "cast": [
+    "cat2",
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "chat",
+    "queue",
+    "oreille"
+   ],
+   "visual": "Zineb's cat creeps in, meows timidly at the two frozen parents, widens its yellow eyes, ears back, hisses and bolts.",
+   "cam": "low",
+   "action": "cat_flee",
+   "sfx": [
+    "cat_meow timid",
+    "cat_hiss",
+    "cat_scurry"
+   ]
+  },
+  {
+   "id": "b023",
+   "scene": "s05_diner_chat",
+   "text": "Une angoisse de fin du monde pesait sur la chambre. Je fondis en sanglots. Mon père sortit de sa torpeur.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Crushed by the silence, Mohammed bursts into sobs; the father stirs out of his numbness.",
+   "cam": "low",
+   "peak": true,
+   "action": "cry",
+   "sfx": [
+    "child_sob"
+   ]
+  },
+  {
+   "id": "b024",
+   "scene": "s05_diner_chat",
+   "text": "Où as-tu mal, mon enfant ?",
+   "speaker": "father",
+   "dur": 2.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "'Où as-tu mal, mon enfant ?'",
+   "cam": "ots",
+   "act": "father turns head gently toward bed"
+  },
+  {
+   "id": "b025",
+   "scene": "s05_diner_chat",
+   "text": "Je n'ai pas mal... mais pourquoi ne parlez-vous pas ?",
+   "speaker": "mohammed",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Je n'ai pas mal... mais pourquoi ne parlez-vous pas ?'",
+   "cam": "low",
+   "peak": true,
+   "act": "shoulders tremble"
+  },
+  {
+   "id": "b026",
+   "scene": "s05_diner_chat",
+   "text": "Nous n'avons rien à dire. Repose-toi, et ne pleure plus.",
+   "speaker": "father",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Nous n'avons rien à dire. Repose-toi, et ne pleure plus.'",
+   "cam": "master",
+   "act": "father sits heavy, shoulders low",
+   "tag": "À RETENIR : le silence pesant annonce la ruine"
+  },
+  {
+   "id": "b027",
+   "scene": "s06_ruine",
+   "text": "Ma mère apporta le plateau et les verres pour le thé. Elle trouva mon père debout, prêt à se coucher.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "plateau",
+    "verre",
+    "the"
+   ],
+   "visual": "On the dark gallery, Zoubida carries the tea tray and glasses toward the bedroom threshold.",
+   "cam": "master",
+   "act": "Zoubida holds tray walking softly",
+   "sfx": [
+    "glass clink"
+   ]
+  },
+  {
+   "id": "b028",
+   "scene": "s06_ruine",
+   "text": "Tu ne prends pas de thé ?",
+   "speaker": "zoubida",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "father"
+   ],
+   "props": [
+    "the"
+   ],
+   "visual": "'Tu ne prends pas de thé ?' — she finds the father already standing ready for bed.",
+   "cam": "ots",
+   "act": "looks up puzzled"
+  },
+  {
+   "id": "b029",
+   "scene": "s06_ruine",
+   "text": "Non. Et dorénavant, ne gaspille plus ton sucre. À partir de demain, il nous sera difficile d'avoir du sucre et du thé tous les jours.",
+   "speaker": "father",
+   "dur": 10.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "sucre",
+    "the"
+   ],
+   "visual": "Father, grave and flat: 'Ne gaspille plus ton sucre... difficile d'en avoir tous les jours.'",
+   "cam": "ots",
+   "act": "head still, firm gaze"
+  },
+  {
+   "id": "b030",
+   "scene": "s06_ruine",
+   "text": "Ma mère devint toute pâle. Elle posa le plateau et regarda mon père bien en face.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "father"
+   ],
+   "props": [
+    "plateau"
+   ],
+   "visual": "Zoubida turns pale, sets the tray slowly down, and faces him squarely.",
+   "cam": "reverse",
+   "act": "sets tray down slowly, straightens"
+  },
+  {
+   "id": "b031",
+   "scene": "s06_ruine",
+   "text": "Je pressens un grand malheur.",
+   "speaker": "zoubida",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Je pressens un grand malheur.'",
+   "cam": "low",
+   "peak": true,
+   "act": "trembling breath, eyes wide"
+  },
+  {
+   "id": "b032",
+   "scene": "s06_ruine",
+   "text": "Soudain, un claquement sec me fit sursauter ! Ma mère s'était frappé les deux joues. Assise par terre, elle se griffait le visage et s'arrachait les cheveux sans un cri.",
+   "speaker": "narrator",
+   "dur": 11.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "joue",
+    "cheveu",
+    "terre"
+   ],
+   "visual": "A sharp slap rings out! Zoubida drops to the floor, beating her cheeks and tearing at her hair in silent despair.",
+   "cam": "master",
+   "action": "slap",
+   "sfx": [
+    "slap_cheeks",
+    "cloth rustle"
+   ]
+  },
+  {
+   "id": "b033",
+   "scene": "s06_ruine",
+   "text": "Mon père se jeta sur elle pour retenir ses mains. Ils luttèrent un long moment, puis elle s'écroula, face contre terre.",
+   "speaker": "narrator",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "terre"
+   ],
+   "visual": "The father rushes to catch her wrists; they struggle briefly until Zoubida collapses face down on the floor.",
+   "cam": "reverse",
+   "action": "struggle",
+   "sfx": [
+    "struggle rustle",
+    "floor thud"
+   ]
+  },
+  {
+   "id": "b034",
+   "scene": "s06_ruine",
+   "text": "Ô femme ! Aie confiance en la miséricorde de Dieu. J'ai perdu dans la cohue des enchères aux haïks tout notre maigre capital.",
+   "speaker": "father",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Father speaks softly over her: he lost their entire working capital in the crush of the haïk auctions.",
+   "cam": "ots",
+   "act": "father kneels gently beside her"
+  },
+  {
+   "id": "b035",
+   "scene": "s06_ruine",
+   "text": "J'avais mis l'argent dans un mouchoir. J'ai dû le laisser tomber par terre en croyant le glisser dans ma sacoche.",
+   "speaker": "father",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "mouchoir",
+    "sacoche",
+    "terre"
+   ],
+   "visual": "He explains the handkerchief full of money must have slipped to the ground when he reached for his pouch.",
+   "cam": "low",
+   "ins": [
+    [
+     "mouchoir_argent",
+     1.2
+    ]
+   ],
+   "act": "open empty hands"
+  },
+  {
+   "id": "b036",
+   "scene": "s07_decision",
+   "text": "Qu'allons-nous faire ?",
+   "speaker": "zoubida",
+   "dur": 1.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "From the floor, hollow whisper: 'Qu'allons-nous faire ?'",
+   "cam": "low",
+   "act": "lifts head slightly"
+  },
+  {
+   "id": "b037",
+   "scene": "s07_decision",
+   "text": "Je vais travailler.",
+   "speaker": "father",
+   "dur": 1.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "'Je vais travailler.'",
+   "cam": "ots",
+   "act": "calm, unshaken nod"
+  },
+  {
+   "id": "b038",
+   "scene": "s07_decision",
+   "text": "Combien as-tu perdu ?",
+   "speaker": "zoubida",
+   "dur": 1.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Combien as-tu perdu ?'",
+   "cam": "low"
+  },
+  {
+   "id": "b039",
+   "scene": "s07_decision",
+   "text": "Tout mon fonds de roulement. Je n'ai même plus de quoi payer mon ouvrier, ni le mois de loyer de l'atelier.",
+   "speaker": "father",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "All his working capital: not even enough left to pay his apprentice or the workshop rent.",
+   "cam": "master",
+   "act": "father sits on mat, palms resting on knees"
+  },
+  {
+   "id": "b040",
+   "scene": "s07_decision",
+   "text": "Les marchands te connaissent. Ils ne pourraient pas te faire crédit ?",
+   "speaker": "zoubida",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Les marchands te connaissent. Ils ne pourraient pas te faire crédit ?'",
+   "cam": "ots",
+   "act": "hopeful lean forward"
+  },
+  {
+   "id": "b041",
+   "scene": "s07_decision",
+   "text": "Jamais je ne mendierai du coton à ces voleurs, et je ne veux pas non plus d'un salaire de misère. Je suis un montagnard et un paysan : j'irai faire la moisson aux environs de Fès.",
+   "speaker": "father",
+   "dur": 14.2,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Sunlit wheatfields outside Fès: sturdy mountain harvesters bending over golden grain under a vast sky — pride in honest work.",
+   "still": "p03_moissonneurs",
+   "move": "slow pan left to right 8% across golden harvest",
+   "sfx": [
+    "wind fields",
+    "sickle swish"
+   ]
+  },
+  {
+   "id": "b042",
+   "scene": "s07_decision",
+   "text": "Tu oserais m'abandonner avec un enfant malade ?",
+   "speaker": "zoubida",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Tu oserais m'abandonner avec un enfant malade ?'",
+   "cam": "low",
+   "peak": true,
+   "act": "hands clasp chest"
+  },
+  {
+   "id": "b043",
+   "scene": "s07_decision",
+   "text": "Aimerais-tu devenir un objet de pitié pour tes voisines ? Sidi Mohammed ira mieux demain. Fais-lui une soupe à la menthe sauvage.",
+   "speaker": "father",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "menthe",
+    "soupe"
+   ],
+   "visual": "Father gently reminds her: would she rather be pitied by neighbours? Make him wild mint soup tomorrow.",
+   "cam": "master",
+   "act": "steady calming hand gesture"
+  },
+  {
+   "id": "b044",
+   "scene": "s07_decision",
+   "text": "C'est un châtiment de Dieu ! Ce sont ces maudits bracelets qui ont semé le malheur ! Pourquoi ne les vendrais-tu pas ?",
+   "speaker": "zoubida",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "'Ce sont ces maudits bracelets ! Pourquoi ne les vendrais-tu pas ?'",
+   "cam": "ots",
+   "peak": true,
+   "act": "points sharply toward chest"
+  },
+  {
+   "id": "b045",
+   "scene": "s07_decision",
+   "text": "Je compte les vendre pour vous nourrir. Driss le teigneux viendra chaque jour faire les courses. Donne-lui à manger, il n'a personne.",
+   "speaker": "father",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida"
+   ],
+   "props": [
+    "bracelet"
+   ],
+   "visual": "He will sell the bracelets to feed them; faithful Driss le teigneux will bring groceries every day.",
+   "cam": "reverse",
+   "ins": [
+    [
+     "bracelets_vente",
+     1.2
+    ]
+   ],
+   "sfx": [
+    "bracelet_clink"
+   ]
+  },
+  {
+   "id": "b046",
+   "scene": "s07_decision",
+   "text": "Je vous laisse seuls pendant un mois. Je tâcherai de ne rien dépenser, pour rouvrir l'atelier dès mon retour.",
+   "speaker": "father",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "father"
+   ],
+   "props": [],
+   "visual": "One month away, saving every coin so he can reopen the weaving workshop upon his return.",
+   "cam": "ots",
+   "act": "quiet resolved gaze",
+   "tag": "À RETENIR : Sidi Abdeslem refuse le crédit et part aux moissons"
+  },
+  {
+   "id": "b047",
+   "scene": "s08_solitude",
+   "text": "Un grand silence s'établit, lourd, huileux et noir comme la suie. J'étouffais.",
+   "speaker": "narrator",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "A thick, oily, soot-black silence settles over the room; the boy feels suffocated.",
+   "cam": "low",
+   "act": "eyes wide in darkness"
+  },
+  {
+   "id": "b048",
+   "scene": "s08_solitude",
+   "text": "Mes parents ne bougeaient plus. Ils se transformaient devant mes yeux en figures de cauchemar, fluides, insaisissables.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "father",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "The motionless parents look blurry and monstrous in the lamp shadows, terrifying the feverish boy.",
+   "cam": "master",
+   "act": "parents completely frozen like statues",
+   "sfx": [
+    "low drone"
+   ]
+  },
+  {
+   "id": "b049",
+   "scene": "s08_solitude",
+   "text": "Pour la première fois, je connus le vide absolu, la solitude sans pitié. Je fermai les yeux et je priai de toutes mes forces.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "For the first time he feels absolute void and pitiless solitude; he shuts his eyes and prays with all his strength.",
+   "cam": "low",
+   "peak": true,
+   "act": "eyes tight shut, hands clasped"
+  },
+  {
+   "id": "b050",
+   "scene": "s08_solitude",
+   "text": "Seigneur ! Je me souviens encore de cette solitude vaste comme les planètes mortes, où le son meurt sans écho.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Cosmic solitude: a tiny silhouette standing alone on the edge of vast, silent dead planets where sound dies without an echo.",
+   "still": "p04_planetes_mortes",
+   "move": "slow zoom out into the dark expanse, 10%",
+   "sfx": [
+    "void wind low"
+   ]
+  },
+  {
+   "id": "b051",
+   "scene": "s08_solitude",
+   "text": "Je n'étais qu'un enfant, Seigneur ! Je ne savais pas encore que le jour naît de la nuit, et qu'après l'hiver, la terre sourit de toutes ses fleurs et chante par ses rossignols.",
+   "speaker": "narrator",
+   "dur": 13.1,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "terre"
+   ],
+   "visual": "Dawn light after winter: warm morning sun breaks over spring wildflowers and nightingales singing in green branches.",
+   "still": "p05_aube_rossignols",
+   "move": "slow rise toward sunlit blossoms, warm glow",
+   "sfx": [
+    "nightingale birds",
+    "morning breeze"
+   ]
+  },
+  {
+   "id": "b052",
+   "scene": "s09_depart",
+   "text": "Mon père partit le surlendemain à l'aube. Tout son bagage tenait en trois choses : une sacoche de berger en palmier nain, une faucille neuve, et un sac de toile.",
+   "speaker": "narrator",
+   "dur": 11.9,
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "sacoche",
+    "faucille",
+    "sac"
+   ],
+   "visual": "Card LE SURLENDEMAIN, À L'AUBE. In cool blue dawn light, the father walks away down the narrow lane with his dwarf-palm shepherd bag, new sickle and canvas provisions sack.",
+   "still": "p06_pere_aube",
+   "move": "slow push-in along the dawn lane after him",
+   "ins": [
+    [
+     "sacoche_faucille",
+     1.3
+    ]
+   ],
+   "sfx": [
+    "morning birds",
+    "footsteps receding"
+   ],
+   "card": "LE SURLENDEMAIN, À L'AUBE"
+  },
+  {
+   "id": "b053",
+   "scene": "s09_depart",
+   "text": "Ma mère lui avait cousu un sac de toile bourré de provisions : olives noires, figues sèches, farine grillée et sucrée, deux pains à l'anis, et dix qarchalas parfumées à la fleur d'oranger.",
+   "speaker": "narrator",
+   "dur": 13.1,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "sac",
+    "olive",
+    "figue",
+    "farine",
+    "pain",
+    "qarchala"
+   ],
+   "visual": "Earlier packing: the canvas sack stuffed with black olives, dried figs, roasted flour, two anise loaves, and ten sesame qarchalas.",
+   "cam": "master",
+   "enum": [
+    [
+     "olives noires",
+     "olives"
+    ],
+    [
+     "figues sèches",
+     "figues"
+    ],
+    [
+     "farine grillée",
+     "farine"
+    ],
+    [
+     "dix qarchalas",
+     "qarchalas"
+    ]
+   ],
+   "ins": [
+    [
+     "provisions_olives",
+     1.3
+    ],
+    [
+     "qarchalas",
+     1.3
+    ]
+   ],
+   "sfx": [
+    "cloth pack",
+    "bread rustle"
+   ]
+  },
+  {
+   "id": "b054",
+   "scene": "s09_depart",
+   "text": "J'étais réveillé quand il franchit la porte. Ma mère resta prostrée sur son lit, le visage caché dans ses deux mains. J'avais l'impression que nous étions devenus orphelins.",
+   "speaker": "narrator",
+   "dur": 11.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "porte",
+    "lit"
+   ],
+   "visual": "Awake as his father crosses the doorway; Zoubida collapses prostrate on her bed, face buried in both hands — orphaned.",
+   "cam": "reverse",
+   "action": "cry",
+   "act": "Zoubida face in hands; Mohammed watches from bed",
+   "sfx": [
+    "door close soft",
+    "muffled sob"
+   ]
+  },
+  {
+   "id": "b055",
+   "scene": "s09_depart",
+   "text": "Tout le quartier devait savoir. Dans une famille comme la nôtre, le père est une protection invisible. Son prestige donne force, sécurité et paix.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio",
+   "cast": [
+    "father"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "Cutaway to patio: the quiet dignity of the father as the family's unseen shield — strength, security, and peace.",
+   "cam": "master",
+   "action": "walk",
+   "act": "father walks steadily toward exit door"
+  },
+  {
+   "id": "b056",
+   "scene": "s09_depart",
+   "text": "Je compris la peine de ma mère ce matin-là. Le soir, personne ne pousserait plus notre porte avec la bonne odeur du travail.",
+   "speaker": "narrator",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "In the morning light of the bedroom, the boy understands why his mother grieves the empty evening ahead.",
+   "cam": "ots",
+   "act": "Zoubida sits slumped, Mohammed gazes gently at her"
+  },
+  {
+   "id": "b057",
+   "scene": "s10_quarante_chats",
+   "text": "La maison s'éveilla au soleil. Ma fièvre était tombée. Je m'assis dans mon lit.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "lit"
+   ],
+   "visual": "Sunlight pours into the house; the fever has broken and Mohammed sits upright on his bed.",
+   "cam": "master",
+   "act": "Mohammed sits up, shoulders light",
+   "sfx": [
+    "morning sparrows"
+   ]
+  },
+  {
+   "id": "b058",
+   "scene": "s10_quarante_chats",
+   "text": "Maman, est-ce que c'est long, un mois ?",
+   "speaker": "mohammed",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Maman, est-ce que c'est long, un mois ?'",
+   "cam": "low",
+   "act": "head tilts curiously"
+  },
+  {
+   "id": "b059",
+   "scene": "s10_quarante_chats",
+   "text": "Un mois dure un mois, mon fils... Mais pour nous, ce mois sera une éternité.",
+   "speaker": "zoubida",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida startles out of her daze: 'Un mois dure un mois... mais pour nous, une éternité.'",
+   "cam": "ots",
+   "act": "looks up surprised, faint tired smile"
+  },
+  {
+   "id": "b060",
+   "scene": "s10_quarante_chats",
+   "text": "Moi, je sais attendre. J'attends d'être un homme. Toi, tu n'attends plus rien.",
+   "speaker": "mohammed",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Moi, je sais attendre. J'attends d'être un homme.'",
+   "cam": "low",
+   "act": "solemn serious chin lift"
+  },
+  {
+   "id": "b061",
+   "scene": "s10_quarante_chats",
+   "text": "Ma mère me regarda, stupéfaite.",
+   "speaker": "narrator",
+   "dur": 2.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida stares at her six-year-old philosopher in genuine astonishment.",
+   "cam": "master",
+   "act": "hand to cheek in surprise"
+  },
+  {
+   "id": "b062",
+   "scene": "s10_quarante_chats",
+   "text": "Quand je serai grand, je porterai de belles djellabas blanches. Je mangerai chaque matin des beignets chauds au beurre et au miel. J'aurai quarante chats qui m'obéiront toujours, et un bigaradier dans notre cour.",
+   "speaker": "mohammed",
+   "dur": 13.5,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "djellaba",
+    "beignet",
+    "beurre",
+    "miel",
+    "chat",
+    "bigaradier"
+   ],
+   "visual": "Child's future dream: grown Mohammed in spotless white djellaba eating hot honey-butter beignets, surrounded by forty obedient cats under a courtyard bitter-orange tree.",
+   "still": "p07_quarante_chats",
+   "move": "slow pan across the forty cats and orange blossoms",
+   "enum": [
+    [
+     "belles djellabas blanches",
+     "djellabas"
+    ],
+    [
+     "beignets au beurre et au miel",
+     "beignets"
+    ],
+    [
+     "quarante chats",
+     "chats"
+    ],
+    [
+     "un bigaradier dans la cour",
+     "bigaradier"
+    ]
+   ],
+   "ins": [
+    [
+     "beignets_miel",
+     1.2
+    ]
+   ],
+   "sfx": [
+    "happy purrs",
+    "dream shimmer"
+   ]
+  },
+  {
+   "id": "b063",
+   "scene": "s10_quarante_chats",
+   "text": "Jamais ta femme n'acceptera de veiller sur ton troupeau de chats !",
+   "speaker": "zoubida",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "chat"
+   ],
+   "visual": "'Jamais ta femme n'acceptera de veiller sur ton troupeau de chats !'",
+   "cam": "ots",
+   "act": "warm broad smile"
+  },
+  {
+   "id": "b064",
+   "scene": "s10_quarante_chats",
+   "text": "Je ne me marie pas ! Toi tu aimes les chats, tu t'en occuperas.",
+   "speaker": "mohammed",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "chat"
+   ],
+   "visual": "'Je ne me marie pas ! Toi tu t'en occuperas.'",
+   "cam": "low",
+   "act": "firm proud nod"
+  },
+  {
+   "id": "b065",
+   "scene": "s10_quarante_chats",
+   "text": "Elle éclata franchement de rire ! Je ris plus fort qu'elle en battant des mains. Aussitôt, elle posa un doigt sur ses lèvres.",
+   "speaker": "narrator",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida bursts out laughing; Mohammed claps his hands, then she presses one finger to her lips.",
+   "cam": "master",
+   "action": "laugh",
+   "act": "mother laughs then raises finger to lips",
+   "sfx": [
+    "warm laughter",
+    "claps"
+   ]
+  },
+  {
+   "id": "b066",
+   "scene": "s10_quarante_chats",
+   "text": "Chut ! Que diraient les voisins s'ils t'entendaient rire le jour du départ de ton père ?",
+   "speaker": "zoubida",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Chut ! Que diraient les voisins si tu riais le jour du départ de ton père ?'",
+   "cam": "ots",
+   "act": "finger stays on lips, tender eyes"
+  },
+  {
+   "id": "b067",
+   "scene": "s10_quarante_chats",
+   "text": "Mon père reviendra bientôt, et nous serons très riches !",
+   "speaker": "mohammed",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Mon père reviendra bientôt, et nous serons très riches !'",
+   "cam": "low",
+   "act": "beaming hopeful smile"
+  },
+  {
+   "id": "b068",
+   "scene": "s10_quarante_chats",
+   "text": "Repose-toi, mon petit. Tant que je serai vivante, tu n'auras jamais faim, dussé-je mendier.",
+   "speaker": "zoubida",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Tant que je serai vivante, tu n'auras jamais faim, dussé-je mendier.'",
+   "cam": "ots",
+   "peak": true,
+   "act": "reaches tenderly toward him"
+  },
+  {
+   "id": "b069",
+   "scene": "s11_tadeffi",
+   "text": "Quelqu'un gratta timidement à la porte. Après un long conciliabule dans le couloir, ma mère pressa la visiteuse d'entrer.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida",
+    "fatma"
+   ],
+   "props": [
+    "porte"
+   ],
+   "visual": "At the landing door: a timid scratch; Zoubida steps out into the corridor, whispers briefly, then urges Fatma inside.",
+   "cam": "master",
+   "action": "walk",
+   "sfx": [
+    "door scratch",
+    "corridor whispers"
+   ]
+  },
+  {
+   "id": "b070",
+   "scene": "s11_tadeffi",
+   "text": "Entre, Fatma ! Donne-le-lui toi-même : à moi, il refusera, il est si entêté !",
+   "speaker": "zoubida",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Entre, Fatma ! Donne-le-lui toi-même : à moi, il refusera !'",
+   "cam": "ots",
+   "act": "beckons eagerly toward door"
+  },
+  {
+   "id": "b071",
+   "scene": "s11_tadeffi",
+   "text": "Fatma Bziouya parut avec un bol fumant de tadeffi, ce potage parfumé à la menthe sauvage. Par principe, je tournai le nez contre le mur.",
+   "speaker": "narrator",
+   "dur": 10.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "fatma",
+    "mohammed"
+   ],
+   "props": [
+    "bol",
+    "tadeffi",
+    "menthe",
+    "mur"
+   ],
+   "visual": "Fatma enters carrying a steaming bowl of tadeffi soup; stubborn Mohammed turns his nose straight to the wall.",
+   "cam": "reverse",
+   "ins": [
+    [
+     "bol_tadeffi",
+     1.3
+    ]
+   ],
+   "act": "boy turns back toward wall",
+   "sfx": [
+    "soup steam"
+   ]
+  },
+  {
+   "id": "b072",
+   "scene": "s11_tadeffi",
+   "text": "Comment te sens-tu ce matin, fqih ?",
+   "speaker": "fatma",
+   "dur": 3.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "fatma"
+   ],
+   "props": [],
+   "visual": "'Comment te sens-tu ce matin, fqih ?'",
+   "cam": "ots",
+   "act": "gentle teasing smile"
+  },
+  {
+   "id": "b073",
+   "scene": "s11_tadeffi",
+   "text": "Prends-le, mon fils. Après, j'enverrai Zineb t'acheter un beignet.",
+   "speaker": "zoubida",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "beignet"
+   ],
+   "visual": "Zoubida bribes him gently: 'Après, j'enverrai Zineb t'acheter un beignet.'",
+   "cam": "master",
+   "act": "leans down coaxing"
+  },
+  {
+   "id": "b074",
+   "scene": "s11_tadeffi",
+   "text": "Je finis par me redresser, flairai le bol d'une narine méfiante, et déclarai que je n'aimais pas la soupe piquante.",
+   "speaker": "narrator",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "bol",
+    "soupe"
+   ],
+   "visual": "He sits up, sniffs the bowl suspiciously, and announces he doesn't like spicy soup.",
+   "cam": "low",
+   "act": "nose up suspiciously"
+  },
+  {
+   "id": "b075",
+   "scene": "s11_tadeffi",
+   "text": "Les deux femmes jurèrent qu'il n'y avait pas une pincée de piment ! Je regardai ma mère droit dans les yeux : comment pouvait-elle le savoir, puisqu'elle n'y avait même pas goûté ?",
+   "speaker": "narrator",
+   "dur": 13.1,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "mohammed"
+   ],
+   "props": [
+    "soupe",
+    "piment"
+   ],
+   "visual": "Both women swear there isn't a speck of pepper — he catches his mother: how could she know without tasting it?",
+   "cam": "master",
+   "act": "boy points accusingly, mother freezes"
+  },
+  {
+   "id": "b076",
+   "scene": "s11_tadeffi",
+   "text": "Prise au piège, elle leva les yeux au plafond et s'enfuit dans la cuisine.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "fatma",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Caught red-handed, Zoubida rolls her eyes to the ceiling beams and slips away into the kitchen.",
+   "cam": "reverse",
+   "action": "walk",
+   "act": "Zoubida exits sheepishly"
+  },
+  {
+   "id": "b077",
+   "scene": "s11_tadeffi",
+   "text": "Allons, bonbon acidulé ! Petit fromage blanc ! Vermicelle au lait ! Goûte vite, je te dis que c'est bon !",
+   "speaker": "fatma",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "fatma",
+    "mohammed"
+   ],
+   "props": [
+    "fromage",
+    "farine",
+    "bol"
+   ],
+   "visual": "Fatma coaxes him gently: 'Allons, bonbon acidulé ! Petit fromage blanc ! Vermicelle au lait !'",
+   "cam": "ots",
+   "act": "holds out bowl warmly"
+  },
+  {
+   "id": "b078",
+   "scene": "s11_tadeffi",
+   "text": "À des mots si câlins, je ne pus résister : j'avalai toute la soupe à grandes goulées.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "fatma",
+    "mohammed"
+   ],
+   "props": [
+    "soupe"
+   ],
+   "visual": "Unable to resist the sweet nicknames, Mohammed grabs the bowl and gulps the whole tadeffi down.",
+   "cam": "master",
+   "action": "drink",
+   "act": "tilts bowl eagerly",
+   "sfx": [
+    "happy slurps"
+   ],
+   "tag": "À RETENIR : le tadeffi, potage à la menthe sauvage"
+  },
+  {
+   "id": "b079",
+   "scene": "s12_fenetre_rahma",
+   "text": "Je me débarbouillai et mis ma djellaba. Pour quelques jours, j'allais jouir de vraies vacances.",
+   "speaker": "narrator",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "djellaba"
+   ],
+   "visual": "Washed and wearing his djellaba, Mohammed feels ready for real school-free holiday days.",
+   "cam": "master",
+   "act": "stands stretching arms happily"
+  },
+  {
+   "id": "b080",
+   "scene": "s12_fenetre_rahma",
+   "text": "Louange à Dieu ! Sidi Mohammed te voilà rétabli ! Promets-moi de ne plus tomber malade, j'en perds l'appétit !",
+   "speaker": "rahma",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "rahma",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Looking across from the window, Rahma greets him warmly: 'Te voilà rétabli ! Promets de ne plus tomber malade.'",
+   "cam": "high",
+   "act": "Rahma waves warmly from upper gallery",
+   "sfx": [
+    "courtyard bright"
+   ]
+  },
+  {
+   "id": "b081",
+   "scene": "s12_fenetre_rahma",
+   "text": "Qu'Allah te garde en bonne santé, ma sœur Rahma.",
+   "speaker": "zoubida",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "From inside the kitchen, Zoubida replies courteously with blessings.",
+   "cam": "ots"
+  },
+  {
+   "id": "b082",
+   "scene": "s12_fenetre_rahma",
+   "text": "Sidi Abdeslem est parti ce matin ? Les temps deviennent durs pour les pauvres gens... mais sachons louer Dieu dans l'adversité.",
+   "speaker": "rahma",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "rahma"
+   ],
+   "props": [],
+   "visual": "Rahma leans on her window grille: 'Les temps deviennent durs... sachons louer Dieu.'",
+   "cam": "master",
+   "act": "Rahma sighs piously"
+  },
+  {
+   "id": "b083",
+   "scene": "s12_fenetre_rahma",
+   "text": "Pour toute réponse, quelqu'un au rez-de-chaussée éternua trois fois, puis se moucha comme la trompette du Ramadan ! J'éclatai de rire.",
+   "speaker": "narrator",
+   "dur": 8.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "trompette"
+   ],
+   "visual": "Downstairs someone sneezes three giant sneezes and blows their nose like the Ramadan trumpet — Mohammed bursts laughing!",
+   "cam": "low",
+   "ins": [
+    [
+     "trompette_ramadan",
+     1.1
+    ]
+   ],
+   "action": "laugh",
+   "sfx": [
+    "triple sneeze",
+    "trumpet nose blow",
+    "child laugh"
+   ]
+  },
+  {
+   "id": "b084",
+   "scene": "s12_fenetre_rahma",
+   "text": "Ma mère me prit par les épaules, me ramena sur le matelas et m'ordonna de réciter le Coran pour attirer la bénédiction sur mon père.",
+   "speaker": "narrator",
+   "dur": 10.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "matelas"
+   ],
+   "visual": "Zoubida steers him firmly by the shoulders back to the mattress to recite Quran verses for his father.",
+   "cam": "master",
+   "act": "Zoubida guides boy gently back to mattress"
+  },
+  {
+   "id": "b085",
+   "scene": "s13_dejeuner_pauvre",
+   "text": "Installé sur le matelas, l'air renfrogné, je n'avais plus envie de rien. Même le soleil paraissait sombre.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "matelas"
+   ],
+   "visual": "Sulking cross-legged on the mattress, Mohammed finds even the sunlight gloomy.",
+   "cam": "low",
+   "act": "chin resting on hands, glum"
+  },
+  {
+   "id": "b086",
+   "scene": "s13_dejeuner_pauvre",
+   "text": "Au déjeuner, deux beignets, du beurre rance, des olives noires, et des radis offerts par Fatma Bziouya. Le beignet était pâteux et sans goût.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "beignet",
+    "beurre",
+    "olive",
+    "radis"
+   ],
+   "visual": "Sparse lunch: two beignets, rancid butter, black olives, radishes from Fatma; the beignet tastes like bland paste.",
+   "cam": "master",
+   "action": "eat",
+   "act": "chews slowly without joy"
+  },
+  {
+   "id": "b087",
+   "scene": "s13_dejeuner_pauvre",
+   "text": "La table débarrassée, ma mère posa à même le bois une petite théière d'émail ébréchée et deux verres. Sans plateau, sans bouilloire : comme chez les plus misérables.",
+   "speaker": "narrator",
+   "dur": 11.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "theiere",
+    "verre",
+    "plateau",
+    "bouilloire"
+   ],
+   "visual": "No tray, no kettle: Zoubida places a chipped enamel teapot and two glasses on bare wood — the unmistakable mark of poverty.",
+   "cam": "ots",
+   "ins": [
+    [
+     "theiere_email",
+     1.3
+    ]
+   ],
+   "act": "sets teapot silently on bare floor",
+   "sfx": [
+    "ceramic clink quiet"
+   ]
+  },
+  {
+   "id": "b088",
+   "scene": "s13_dejeuner_pauvre",
+   "text": "Puis elle me recommanda d'être sage, enfila son haïk, et partit voir son amie Lalla Aïcha.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "W",
+   "room": "escalier",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Wrapped in her white haïk, Zoubida descends the stairs alone to visit her friend Lalla Aïcha.",
+   "cam": "high",
+   "action": "walk",
+   "sfx": [
+    "footsteps_stairs"
+   ]
+  },
+  {
+   "id": "b089",
+   "scene": "s14_cercueil",
+   "text": "Je me souviens de ces heures affreuses passées seul. Je jetai un coup d'œil dans ma Boîte à Merveilles.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "W",
+   "room": "chambre_penombre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "boite"
+   ],
+   "visual": "Endless lonely hours in the quiet room; Mohammed opens his Wonder Box.",
+   "cam": "master",
+   "act": "kneels slowly beside wooden box",
+   "sfx": [
+    "wood creak"
+   ]
+  },
+  {
+   "id": "b090",
+   "scene": "s14_cercueil",
+   "text": "Ce n'était plus une boîte à merveilles, mais un cercueil où gisaient les cadavres de mes rêves. Je me mouchai dans un vieux chiffon qui traînait par terre.",
+   "speaker": "narrator",
+   "dur": 11.2,
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "boite",
+    "cercueil",
+    "chiffon",
+    "terre"
+   ],
+   "visual": "Inside the Wonder Box: no magic left — a dark coffin holding the pitiful corpses of his dreams, an old rag beside it.",
+   "still": "p08_boite_cercueil",
+   "move": "slow push-in over the open box lid, shadows deepening",
+   "sfx": [
+    "hollow wood thud"
+   ]
+  },
+  {
+   "id": "b091",
+   "scene": "s14_cercueil",
+   "text": "Couché sur le dos, je fixai les taches du mur. Autrefois elles dansaient des ballets pour moi ; aujourd'hui elles restaient figées et me donnaient la nausée.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "painting",
+   "reason": "macro",
+   "props": [
+    "mur"
+   ],
+   "visual": "Damp, scaly spots on the bedroom wall: once they danced dazzling ballets for him, now they stay frozen and sickening.",
+   "still": "p09_taches_murs",
+   "move": "slow cold drift across peeling plaster stains",
+   "sfx": [
+    "empty room hum"
+   ]
+  },
+  {
+   "id": "b092",
+   "scene": "s14_cercueil",
+   "text": "Mon cœur battait de tristesse et de peur. Épuisé par mes larmes silencieuses, je finis par m'endormir.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_penombre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Fear grips his chest despite familiar neighbours' brooms outside; exhausted by silent tears, he falls asleep.",
+   "cam": "low",
+   "peak": true,
+   "action": "cry",
+   "act": "curls on back, eyes closing",
+   "sfx": [
+    "broom far",
+    "soft sniff"
+   ]
+  },
+  {
+   "id": "b093",
+   "scene": "s14_cercueil",
+   "text": "Quand ma mère rentra, la fièvre m'avait repris. Elle me couvrit chaudement, s'assit près de mon lit, et pleura en chantonnant doucement.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "lit"
+   ],
+   "visual": "Zoubida returns to find his fever back; she tucks him in warmly, sits close and weeps while humming softly.",
+   "cam": "master",
+   "light": "lamp_on",
+   "act": "tucks blanket, rocks gently humming",
+   "sfx": [
+    "soft hum lullaby",
+    "quiet sob"
+   ]
+  },
+  {
+   "id": "b094",
+   "scene": "s15_orage_flute",
+   "text": "Le soir, elle ne prépara pas de dîner. Je me tournais et retournais sans trouver le sommeil.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Card LA NUIT. No dinner cooked; Mohammed tosses and turns restlessly in the dark.",
+   "cam": "master",
+   "fade": true,
+   "act": "shifts restlessly under blanket",
+   "sfx": [
+    "night crickets far"
+   ],
+   "card": "LA NUIT"
+  },
+  {
+   "id": "b095",
+   "scene": "s15_orage_flute",
+   "text": "Brusquement, l'orage se déchaîna ! Le vent hurla sur la maison et fit claquer toutes les portes.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "W",
+   "room": "patio_nuit",
+   "cast": [],
+   "props": [
+    "porte"
+   ],
+   "visual": "Suddenly a violent storm breaks! Wind howls into the courtyard and slams every door.",
+   "cam": "high",
+   "sfx": [
+    "storm wind howl",
+    "door slam x3"
+   ]
+  },
+  {
+   "id": "b096",
+   "scene": "s15_orage_flute",
+   "text": "Au milieu de la rafale s'éleva un chant de flûte étrange. Pas une flûte humaine : un instrument forgé au fond des eaux par un djinn fou.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [
+    "flute",
+    "djinn"
+   ],
+   "visual": "Above the storm roofs, an eerie unearthly flute melody drifts in glowing mist — forged underwater by a mad djinn.",
+   "still": "p10_orage_djinn",
+   "move": "slow tilt through storm clouds and swirling mist",
+   "sfx": [
+    "eerie flute drone",
+    "wind howl"
+   ]
+  },
+  {
+   "id": "b097",
+   "scene": "s15_orage_flute",
+   "text": "Il mêlait des appels, des rires d'hyène, de longs cris de douleur et des phrases de colère.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Pleas, hyena laughs, cries of pain and rage echo around the trembling boy in the shadows.",
+   "cam": "low",
+   "act": "pulls blanket up to chin, eyes wide"
+  },
+  {
+   "id": "b098",
+   "scene": "s15_orage_flute",
+   "text": "Tremblant de tous mes membres, je récitai trois fois la sourate de l'Unité, j'enfouis mon visage dans un coussin, et je m'endormis.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre_nuit",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "coussin"
+   ],
+   "visual": "Shivering, he recites the Sourate de l'Unité three times, buries his face in the cushion, and drifts asleep.",
+   "cam": "ots",
+   "act": "head drops into cushion",
+   "sfx": [
+    "soft whispered prayer",
+    "rain fade"
+   ]
+  },
+  {
+   "id": "b099",
+   "scene": "s16_deux_mondes",
+   "text": "Ma vie s'écoulait dans deux mondes opposés. Le jour, je subissais les contraintes des grands. La nuit, j'étais lancé dans le vide des abîmes.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Two opposite worlds: sunlit Fès of morning sparrows and childhood above, dark bottomless abysses of night fears below.",
+   "still": "p11_deux_mondes",
+   "move": "slow vertical sink from bright daylight into deep indigo shadow",
+   "sfx": [
+    "sparrows fading into drone"
+   ]
+  },
+  {
+   "id": "b100",
+   "scene": "s16_deux_mondes",
+   "text": "Je mourais chaque soir pour renaître chaque matin avec le soleil, le chant des moineaux, le pain et la fraîcheur de l'eau.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "pain"
+   ],
+   "visual": "Morning rebirth: waking into bright sun, sparrows, fresh bread and cool spring water.",
+   "cam": "master",
+   "act": "opens eyes softly to warm morning beam",
+   "sfx": [
+    "sparrows",
+    "water trickle"
+   ]
+  },
+  {
+   "id": "b101",
+   "scene": "s16_deux_mondes",
+   "text": "Pourtant, la nuit, je rencontrais mes parents et le fqih dans des pays sans lumière, sur des sentiers pleins de dangers. Alors je me blottissais en chien de fusil, sans pouvoir m'échapper.",
+   "speaker": "narrator",
+   "dur": 12.7,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "Dark dream paths: parents and the fqih with his quince rod looming in starless night trails as the small boy curls tightly.",
+   "still": "p12_sentiers_nuit",
+   "move": "slow pan along winding night path",
+   "sfx": [
+    "nightmare hum low"
+   ]
+  },
+  {
+   "id": "b102",
+   "scene": "s17_omelette_kanza",
+   "text": "Sidi Mohammed, réveille-toi ! Tu es mal couché, tu vas attraper le torticolis. Va faire tes ablutions, je vais te cuire un œuf.",
+   "speaker": "zoubida",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "oeuf"
+   ],
+   "visual": "Card LE LENDEMAIN MATIN. Bright sun floods the room; Zoubida wakes him gently and offers to fry him an egg.",
+   "cam": "master",
+   "fade": true,
+   "act": "Zoubida taps shoulder gently; boy yawns awake",
+   "sfx": [
+    "morning birds"
+   ],
+   "card": "LE LENDEMAIN MATIN"
+  },
+  {
+   "id": "b103",
+   "scene": "s17_omelette_kanza",
+   "text": "J'aime les œufs à l'huile, avec du piment rouge et du persil !",
+   "speaker": "mohammed",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "oeuf",
+    "piment",
+    "persil"
+   ],
+   "visual": "'J'aime les œufs à l'huile, avec du piment rouge et du persil !'",
+   "cam": "low",
+   "ins": [
+    [
+     "omelette_epices",
+     1.1
+    ]
+   ],
+   "act": "eager smile, sitting up"
+  },
+  {
+   "id": "b104",
+   "scene": "s17_omelette_kanza",
+   "text": "Je sais. Je mettrai même une pincée de cumin.",
+   "speaker": "zoubida",
+   "dur": 3.9,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "cumin"
+   ],
+   "visual": "Zoubida smiles indulgently: 'J'y mettrai même une pincée de cumin.'",
+   "cam": "ots",
+   "act": "warm grin"
+  },
+  {
+   "id": "b105",
+   "scene": "s17_omelette_kanza",
+   "text": "Nous appelons ce plat une omelette juive ! C'est délicieux !",
+   "speaker": "rahma",
+   "dur": 4.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "rahma"
+   ],
+   "props": [
+    "plat"
+   ],
+   "visual": "Rahma calls merrily from her window: 'Nous appelons ce plat une omelette juive !'",
+   "cam": "high",
+   "act": "Rahma laughs leaning out"
+  },
+  {
+   "id": "b106",
+   "scene": "s17_omelette_kanza",
+   "text": "Sidi Mohammed est encore malade : il a des envies comme une femme enceinte !",
+   "speaker": "zoubida",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida laughs back through the window: 'Il a des envies comme une femme enceinte !'",
+   "cam": "reverse",
+   "action": "laugh",
+   "act": "Zoubida chuckles warmly"
+  },
+  {
+   "id": "b107",
+   "scene": "s17_omelette_kanza",
+   "text": "Toutes les voisines rirent. Tante Kanza la chouafa raconta l'histoire d'un laitier avare qui avait refusé une miette de fromage blanc à une femme enceinte.",
+   "speaker": "narrator",
+   "dur": 10.0,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "woman1",
+    "woman2"
+   ],
+   "props": [
+    "fromage"
+   ],
+   "visual": "All the courtyard neighbours laugh together as old Tante Kanza starts a tall tale from her window.",
+   "cam": "master",
+   "action": "laugh",
+   "sfx": [
+    "women laughter"
+   ]
+  },
+  {
+   "id": "b108",
+   "scene": "s17_omelette_kanza",
+   "text": "Quelques mois plus tard, le bébé naquit avec un vrai morceau de fromage blanc sur le ventre ! Je l'ai vu, de mes propres yeux vu !",
+   "speaker": "kanza",
+   "dur": 10.8,
+   "mode": "painting",
+   "reason": "flashback",
+   "props": [
+    "fromage"
+   ],
+   "visual": "Kanza's tale: a stingy milkman refusing a crumb of white cheese — and the newborn baby marked with a dab of cheese on its belly!",
+   "still": "p13_laitier_fromage",
+   "move": "slow push-in on the dairy shop counter, warm comic ink",
+   "sfx": [
+    "comic chime"
+   ]
+  },
+  {
+   "id": "b109",
+   "scene": "s17_omelette_kanza",
+   "text": "Heureusement que le fromage ne pendait pas à son front, ou sur sa joue !",
+   "speaker": "voisine",
+   "dur": 6.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "voisine"
+   ],
+   "props": [
+    "fromage",
+    "front",
+    "joue"
+   ],
+   "visual": "A dry-humoured neighbour quips: 'Heureusement que le fromage ne pendait pas à son front ou sur sa joue !'",
+   "cam": "ots",
+   "act": "deadpan serious nod",
+   "sfx": [
+    "chuckle"
+   ]
+  },
+  {
+   "id": "b110",
+   "scene": "s18_driss_depart",
+   "text": "Driss le teigneux appela à la porte d'entrée. Ma mère coupa un gros quartier de pain avec du beurre rance et des olives noires dans un papier graisseux.",
+   "speaker": "narrator",
+   "dur": 11.2,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "porte",
+    "pain",
+    "beurre",
+    "olive"
+   ],
+   "visual": "Driss le teigneux calls from the street door; Zoubida packs bread, rancid butter and olives in greasy paper.",
+   "cam": "master",
+   "ins": [
+    [
+     "pain_olives",
+     1.1
+    ]
+   ],
+   "act": "wraps parcel briskly",
+   "sfx": [
+    "door call far",
+    "paper wrap"
+   ]
+  },
+  {
+   "id": "b111",
+   "scene": "s18_driss_depart",
+   "text": "Avant de remonter, elle emprunta le seau de tante Kanza au puits et remplit la grande jarre d'eau potable de notre cuisine.",
+   "speaker": "narrator",
+   "dur": 8.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [
+    "seau",
+    "jarre"
+   ],
+   "visual": "At the courtyard well, she fills Tante Kanza's bucket and carries water back up to fill the clay kitchen jar.",
+   "cam": "reverse",
+   "ins": [
+    [
+     "jarre_eau",
+     1.1
+    ]
+   ],
+   "action": "walk",
+   "sfx": [
+    "water pour",
+    "footsteps_stairs"
+   ]
+  },
+  {
+   "id": "b112",
+   "scene": "s18_driss_depart",
+   "text": "Prépare-toi, nous allons sortir ! Nous passerons prendre Lalla Aïcha pour aller dans le quartier Qalqlyine. Et mouche-toi donc !",
+   "speaker": "zoubida",
+   "dur": 8.1,
+   "mode": "3d",
+   "size": "CU",
+   "room": "chambre",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Zoubida wraps in her haïk: they're going to visit Lalla Aïcha and Qalqlyine — 'Mouche-toi donc !'",
+   "cam": "ots",
+   "act": "tucks haïk fold, gestures sharply at boy"
+  },
+  {
+   "id": "b113",
+   "scene": "s18_driss_depart",
+   "text": "Je retrouvai mon mouchoir froissé sous un coussin, me mouchai si fort que mes doigts furent tout mouillés, et m'essuyai à même ma djellaba.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "chambre",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [
+    "mouchoir",
+    "coussin",
+    "djellaba"
+   ],
+   "visual": "Boy hunts out a crumpled handkerchief under a cushion, blows his nose loudly, and wipes wet fingers on his djellaba.",
+   "cam": "master",
+   "act": "reaches under cushion, wipes sleeve guiltily",
+   "sfx": [
+    "nose blow loud"
+   ]
+  },
+  {
+   "id": "b114",
+   "scene": "s18_driss_depart",
+   "text": "Lalla Zoubida ! Où vas-tu ? Est-ce que Sidi Larbi a répudié la fille du coiffeur ?",
+   "speaker": "fatma",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "patio",
+   "cast": [
+    "fatma",
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Out on the gallery, Fatma leans out eagerly: 'Où vas-tu ? Sidi Larbi a-t-il répudié la fille du coiffeur ?'",
+   "cam": "high",
+   "act": "Fatma leans forward whispering"
+  },
+  {
+   "id": "b115",
+   "scene": "s18_driss_depart",
+   "text": "Lalla Aïcha nous a invités pour la journée, elle est si seule ! Et non, il ne l'a pas répudiée, mais sa belle-famille lui rend les jours amers, elle l'accuse de laisser sa jeune femme souffrir de faim.",
+   "speaker": "zoubida",
+   "dur": 15.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "patio",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "Zoubida lifts her veil proudly to spill every juicy secret about Sidi Larbi's troubled in-laws.",
+   "cam": "ots",
+   "act": "head high, smug animated hands",
+   "sfx": [
+    "women chatter"
+   ]
+  },
+  {
+   "id": "b116",
+   "scene": "s19_medina",
+   "text": "Nous partîmes enfin, moi devant, dévorant des yeux tous les étalages. Devant le sanctuaire de Sidi Ahmed Tijani, ma mère introduisit sa main dans le trou aux offrandes sans rien y déposer.",
+   "speaker": "narrator",
+   "dur": 12.7,
+   "mode": "3d",
+   "size": "W",
+   "room": "rue_tijani",
+   "cast": [
+    "mohammed",
+    "zoubida"
+   ],
+   "props": [
+    "mosaique",
+    "grille"
+   ],
+   "visual": "In the medina lane: past Sidi Ahmed Tijani's mosaic wall; Zoubida slips her hand into the bronze alms grille without dropping a coin.",
+   "cam": "master",
+   "ins": [
+    [
+     "tronc_tijani",
+     1.2
+    ]
+   ],
+   "action": "walk",
+   "sfx": [
+    "medina murmur",
+    "slippers cobblestone"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b117",
+   "scene": "s19_medina",
+   "text": "Elle frotta sa joue contre la boiserie. Trop petit pour atteindre la grille, je collai mes lèvres sur la mosaïque froide du mur.",
+   "speaker": "narrator",
+   "dur": 9.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_tijani",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "joue",
+    "grille",
+    "mosaique",
+    "mur"
+   ],
+   "visual": "Zoubida presses her cheek to the woodwork praying; too small to reach, Mohammed kisses the cold mosaic wall.",
+   "cam": "low",
+   "act": "Zoubida cheek near grille; boy leans to touch tile",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b118",
+   "scene": "s19_medina",
+   "text": "Viens, mon petit œil, et qu'Allah te préserve de tout mal !",
+   "speaker": "zoubida",
+   "dur": 5.0,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_tijani",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Viens, mon petit œil, et qu'Allah te préserve de tout mal !'",
+   "cam": "ots",
+   "act": "looks down tenderly",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b119",
+   "scene": "s19_medina",
+   "text": "Un peu plus loin, un marchand exposait ses poivrons et ses tomates en jolies pyramides. Ma mère tâta, tripota, et sema partout le désordre.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_legumes",
+   "cast": [
+    "zoubida",
+    "marchand",
+    "mohammed"
+   ],
+   "props": [
+    "poivron",
+    "tomate"
+   ],
+   "visual": "Round the corner: a vegetable stall with neat pyramids of peppers and tomatoes; Zoubida pokes and topples them.",
+   "cam": "master",
+   "action": "poke",
+   "act": "Zoubida pokes vegetables; marchand steps forward angry",
+   "sfx": [
+    "market bustle"
+   ],
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b120",
+   "scene": "s19_medina",
+   "text": "Cette marchandise n'est pas à vendre ! Surtout à une cliente aussi ennuyeuse !",
+   "speaker": "marchand",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_legumes",
+   "cast": [
+    "marchand"
+   ],
+   "props": [],
+   "visual": "Furious vendor snaps: 'Cette marchandise n'est pas à vendre ! Surtout à une cliente aussi ennuyeuse !'",
+   "cam": "ots",
+   "peak": true,
+   "act": "waving hands angrily"
+  },
+  {
+   "id": "b121",
+   "scene": "s19_medina",
+   "text": "Très digne, ma mère lui conseilla de ramasser ses ordures s'il ne voulait pas vendre. Je tirai sa main pour l'arracher à sa colère.",
+   "speaker": "narrator",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "rue_legumes",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "marchand"
+   ],
+   "props": [],
+   "visual": "Dignified Zoubida tells him to clear away his rubbish; little Mohammed tugs her sleeve to pull her away.",
+   "cam": "reverse",
+   "action": "tug",
+   "act": "boy pulls mother forward past glaring seller",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b122",
+   "scene": "s19_medina",
+   "text": "À gauche s'ouvrait un portail monumental orné de clous et de marteaux de bronze.",
+   "speaker": "narrator",
+   "dur": 5.8,
+   "mode": "3d",
+   "size": "W",
+   "room": "rue_tijani",
+   "cast": [
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "portail"
+   ],
+   "visual": "On the left rises a towering monumental doorway studded with bronze nails and heavy knockers.",
+   "cam": "high",
+   "ins": [
+    [
+     "portail_bronze",
+     1.2
+    ]
+   ],
+   "act": "boy stares up in awe",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b123",
+   "scene": "s19_medina",
+   "text": "Maman, à qui appartient cette grande maison ?",
+   "speaker": "mohammed",
+   "dur": 3.5,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_tijani",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Maman, à qui appartient cette grande maison ?'",
+   "cam": "low",
+   "act": "points upward"
+  },
+  {
+   "id": "b124",
+   "scene": "s19_medina",
+   "text": "Ce n'est pas une maison : c'est un bureau de Chrétiens. Ils paient bien ceux qui connaissent leur langue.",
+   "speaker": "zoubida",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_tijani",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'C'est un bureau de Chrétiens. Ils paient bien ceux qui connaissent leur langue.'",
+   "cam": "ots",
+   "act": "glances sideways cautiously",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b125",
+   "scene": "s19_medina",
+   "text": "Est-ce que je parlerai la langue des Chrétiens quand je serai grand ?",
+   "speaker": "mohammed",
+   "dur": 5.4,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_tijani",
+   "cast": [
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "'Est-ce que je parlerai la langue des Chrétiens quand je serai grand ?'",
+   "cam": "low",
+   "act": "wide innocent curiosity"
+  },
+  {
+   "id": "b126",
+   "scene": "s19_medina",
+   "text": "Dieu te préserve de tout contact avec ces gens-là !",
+   "speaker": "zoubida",
+   "dur": 4.2,
+   "mode": "3d",
+   "size": "CU",
+   "room": "rue_tijani",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Dieu te préserve de tout contact avec ces gens-là !'",
+   "cam": "ots",
+   "act": "quick protective tug of hand",
+   "costume": {
+    "zoubida": "haik"
+   }
+  },
+  {
+   "id": "b127",
+   "scene": "s20_aicha_misere",
+   "text": "Rue Zenqat-Hajjama, Lalla Aïcha nous accueillit de sa chambre du deuxième étage, assise devant sa bouilloire.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "bouilloire"
+   ],
+   "visual": "2nd floor at Zenqat-Hajjama: Lalla Aïcha welcomes them seated beside her steaming kettle in a stripped room.",
+   "cam": "master",
+   "act": "Aïcha gestures gently from floor",
+   "sfx": [
+    "kettle hiss"
+   ]
+  },
+  {
+   "id": "b128",
+   "scene": "s20_aicha_misere",
+   "text": "La chambre suait la misère et l'ennui. Plus de cretonne sur les matelas, plus de carpettes gaies, plus d'étagères de bois peint ni d'assiettes décorées.",
+   "speaker": "narrator",
+   "dur": 10.0,
+   "mode": "3d",
+   "size": "W",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "matelas",
+    "cretonne",
+    "carpette",
+    "etagere",
+    "assiette"
+   ],
+   "visual": "Bleak misery: gone are the bright cretonne, cheerful rugs, painted wooden shelves and decorated porcelain bowls.",
+   "cam": "reverse",
+   "act": "slow pan across bare room",
+   "sfx": [
+    "empty silence"
+   ]
+  },
+  {
+   "id": "b129",
+   "scene": "s20_aicha_misere",
+   "text": "L'horloge avait laissé une tache claire sur le mur. Les matelas, bourrés de crin végétal, étaient froids et durs. Sur la terrasse, un petit chat miaulait désespérément.",
+   "speaker": "narrator",
+   "dur": 10.8,
+   "mode": "3d",
+   "size": "CU",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha",
+    "mohammed"
+   ],
+   "props": [
+    "horloge",
+    "mur",
+    "matelas",
+    "crin",
+    "chat"
+   ],
+   "visual": "A pale rectangle marks where the wall clock once hung; hard straw-stuffed mattresses; outside a starving kitten cries.",
+   "cam": "low",
+   "ins": [
+    [
+     "tache_horloge",
+     1.2
+    ]
+   ],
+   "act": "boy glances toward empty wall",
+   "sfx": [
+    "kitten meow far"
+   ]
+  },
+  {
+   "id": "b130",
+   "scene": "s20_aicha_misere",
+   "text": "Lalla Aïcha servit le thé avec beaucoup de dignité, sur un petit plateau de cuivre jaune aux gravures effacées.",
+   "speaker": "narrator",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "M",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha",
+    "zoubida"
+   ],
+   "props": [
+    "the",
+    "plateau",
+    "cuivre"
+   ],
+   "visual": "With quiet, unbroken dignity, Lalla Aïcha pours tea on a small brass tray with worn engravings.",
+   "cam": "master",
+   "action": "pour",
+   "act": "Aïcha pours slowly",
+   "sfx": [
+    "tea pour"
+   ],
+   "tag": "À RETENIR : la misère de Lalla Aïcha à Zenqat-Hajjama"
+  },
+  {
+   "id": "b131",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Personne ne disait rien. Chacun de nous trois s'absorbait dans ses pensées. Lalla Aïcha rompit enfin le silence.",
+   "speaker": "narrator",
+   "dur": 7.3,
+   "mode": "3d",
+   "size": "M",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [],
+   "visual": "Heavy silence settles; each of the three sinks into private thoughts before Aïcha speaks.",
+   "cam": "master",
+   "act": "all three still, eyes lowered"
+  },
+  {
+   "id": "b132",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Le fqih de Qalqlyine est parti en voyage dans le djebel. Nous irons plutôt dans le quartier Seffah, consulter Sidi El Arafi.",
+   "speaker": "aicha",
+   "dur": 8.9,
+   "mode": "painting",
+   "reason": "dream",
+   "props": [],
+   "visual": "A sun-dappled narrow lane in quartier Seffah leading toward an arched doorway where blind seer Sidi El Arafi sits waiting.",
+   "still": "p14_seffah_arafi",
+   "move": "slow push forward down the narrow Seffah alley",
+   "sfx": [
+    "distant birds",
+    "soft footsteps"
+   ]
+  },
+  {
+   "id": "b133",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Il est aveugle, mais tout ce qu'il prédit se réalise point par point. Mon nid a été saccagé... avec lui, je retrouverai la paix.",
+   "speaker": "aicha",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "Aïcha speaks quietly: 'Il est aveugle, mais tout ce qu'il prédit se réalise... Mon nid a été saccagé.'",
+   "cam": "ots",
+   "peak": true,
+   "act": "eyes glisten, gentle nod"
+  },
+  {
+   "id": "b134",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Ma mère hocha la tête ; moi, je soupirai, parce que je savais qu'il convenait de soupirer.",
+   "speaker": "narrator",
+   "dur": 6.9,
+   "mode": "3d",
+   "size": "M",
+   "room": "aicha_pauvre",
+   "cast": [
+    "zoubida",
+    "mohammed",
+    "aicha"
+   ],
+   "props": [],
+   "visual": "Zoubida nods solemnly; Mohammed sighs softly, knowing sighing fits such grown-up moments.",
+   "cam": "reverse",
+   "act": "Zoubida nods; boy sighs gravely"
+  },
+  {
+   "id": "b135",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Moi aussi, j'ai grand besoin de conseils. Je tremble pour ma maison, pour mon mari, pour mon fils. Sidi El Arafi nous aidera sûrement.",
+   "speaker": "zoubida",
+   "dur": 9.6,
+   "mode": "3d",
+   "size": "CU",
+   "room": "aicha_pauvre",
+   "cast": [
+    "zoubida"
+   ],
+   "props": [],
+   "visual": "'Je tremble pour ma maison, pour mon mari, pour mon fils. Sidi El Arafi nous aidera.'",
+   "cam": "ots",
+   "peak": true,
+   "act": "leans earnestly toward friend"
+  },
+  {
+   "id": "b136",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Il est permis de faire ce qui est en notre pouvoir, puis de s'en remettre à Dieu. Ayons confiance.",
+   "speaker": "aicha",
+   "dur": 7.7,
+   "mode": "3d",
+   "size": "CU",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha"
+   ],
+   "props": [],
+   "visual": "'Faisons ce qui est en notre pouvoir, puis remettons-nous-en à Dieu. Ayons confiance.'",
+   "cam": "low",
+   "act": "calm reassuring palm"
+  },
+  {
+   "id": "b137",
+   "scene": "s21_sidi_el_arafi",
+   "text": "Lalla Aïcha s'arracha péniblement du sol, reprit son haïk, et nous sortîmes vers un nouvel espoir.",
+   "speaker": "narrator",
+   "dur": 6.6,
+   "mode": "3d",
+   "size": "M",
+   "room": "aicha_pauvre",
+   "cast": [
+    "aicha",
+    "zoubida",
+    "mohammed"
+   ],
+   "props": [
+    "haik"
+   ],
+   "visual": "Stout Lalla Aïcha pulls herself painfully off the floor, wraps her haïk, and they step out toward hope.",
+   "cam": "master",
+   "action": "stand",
+   "act": "Aïcha rises slowly, takes haïk",
+   "sfx": [
+    "cloth rustle",
+    "footsteps"
+   ],
+   "costume": {
+    "zoubida": "haik",
+    "aicha": "haik"
+   }
+  },
+  {
+   "id": "b138",
+   "scene": "s22_fiche",
+   "text": "Fiche de révision. Chapitre neuf : la ruine et le départ, en quatre temps.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Fiche: Chapitre IX card — La ruine et le départ, en quatre temps.",
+   "room": "fiche",
+   "music": "fiche"
+  },
+  {
+   "id": "b139",
+   "scene": "s22_fiche",
+   "text": "La fièvre et la perte du capital. Le départ du père aux moissons. Le cercueil des rêves et l'orage. Et la misère de Lalla Aïcha.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Four squares: la fièvre & ruine / départ du père / cercueil & orage / misère de Lalla Aïcha.",
+   "room": "fiche",
+   "enum": [
+    [
+     "la fièvre et la perte du capital",
+     "perte"
+    ],
+    [
+     "le départ du père",
+     "départ"
+    ],
+    [
+     "le cercueil et l'orage",
+     "cercueil"
+    ],
+    [
+     "la misère de Lalla Aïcha",
+     "Aïcha"
+    ]
+   ]
+  },
+  {
+   "id": "b140",
+   "scene": "s22_fiche",
+   "text": "Les détails à retenir : Sidi Abdeslem refuse l'endettement par fierté, vend les bracelets et part travailler un mois aux moissons.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Detail: Sidi Abdeslem refuses credit -> sells bracelets -> 1 month harvest.",
+   "room": "fiche"
+  },
+  {
+   "id": "b141",
+   "scene": "s22_fiche",
+   "text": "Pour l'enfant, la Boîte à Merveilles devient un cercueil. Et les deux femmes décident de consulter Sidi El Arafi, le voyant aveugle.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Detail: Wonder Box becomes a coffin; decision to see blind Sidi El Arafi.",
+   "room": "fiche"
+  },
+  {
+   "id": "b142",
+   "scene": "s22_fiche",
+   "text": "Thèmes : la ruine et la pauvreté, l'absence du père, la solitude et la peur, la solidarité féminine. Au chapitre dix : les prédictions de Sidi El Arafi.",
+   "speaker": "narrator",
+   "dur": 4.0,
+   "mode": "title",
+   "visual": "Four themes + teaser for Chapitre X: Sidi El Arafi.",
+   "room": "fiche",
+   "enum": [
+    [
+     "la ruine et la pauvreté",
+     "ruine"
+    ],
+    [
+     "l'absence du père",
+     "absence"
+    ],
+    [
+     "la solitude et la peur",
+     "solitude"
+    ],
+    [
+     "la solidarité féminine",
+     "solidarité"
+    ]
+   ]
+  },
+  {
+   "id": "b143",
+   "scene": "s23_endcard",
+   "mode": "title",
+   "text": "fin",
+   "dur": 4.0,
+   "visual": "end card: next episode (chapter 10, Sidi El Arafi) + subscribe; no TikTok/WhatsApp"
+  }
+ ]
+}

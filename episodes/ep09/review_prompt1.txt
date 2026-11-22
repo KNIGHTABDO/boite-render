@@ -1,0 +1,571 @@
+Tu es expert de Fès (années 1920-30), de la darija fassie et du roman « La Boîte à Merveilles » d'Ahmed Sefrioui. Ci-dessous : (A) le TEXTE INTÉGRAL du chapitre IX, puis (B) TOUTES les répliques d'un épisode animé pour élèves du bac (français, accent fassi, petits mots de darija). L'épisode est une ADAPTATION fidèle mais condensée : couper, condenser ou reformuler est voulu ; seuls les faits doivent rester exacts. Personnages : narrateur (Mohammed adulte), Mohammed 6 ans, Zoubida (mère), le père (maalem Abdeslem), Fatma Bziouya, Rahma (femme du fabricant de charrues), Tante Kanza la chouafa, Lalla Aïcha, un marchand de poivrons et tomates, une voisine.
+
+RÈGLES STRICTES :
+1. Le texte de Sefrioui FAIT FOI. Un mot, un nom, un fait ou une expression qui figure dans le texte (A) est CORRECT, même s'il te semble étrange : ne le touche pas.
+2. Signale seulement : (a) contresens ou fait qui CONTREDIT le texte (A) ; (b) un ajout inventé qui n'est pas dans le roman et qui fausse l'histoire ; (c) faute de français ; (d) phrase confuse pour un élève ; (e) darija mal transcrite ou impossible à prononcer par une voix française ; (f) réplique attribuée au mauvais personnage.
+3. N'utilise QUE les identifiants exacts de la partie (B) (forme sNN_nom#i). N'invente aucun identifiant.
+4. Pour chaque problème, cite entre guillemets le passage du roman qui le prouve.
+5. Vérifie aussi que chaque réplique sonne naturelle À L'ORAL, avec l'émotion juste (propose une meilleure formulation orale si besoin).
+Réponds UNIQUEMENT en JSON : [{"line":"id#i","problem":"...","quote":"passage du roman","fix":"who | texte corrigé complet"}]. Si tout est bon, réponds [].
+
+(A) TEXTE INTÉGRAL DU CHAPITRE IX
+Chapitre IX
+ 
+68
+  Il n’a rien mangé depuis son déjeuner d’hier. Cette phrase prononcée dans un soupir suffit pour me 
+réveiller. Une pénombre dense remplissait notre chambre. Ma mère chuchotait. Elle s’adressait à une sil-
+houette indécise, debout au milieu de la pièce. La forme ne bougeait pas. Un vague murmure s’en échap-
+pait de temps à autre. Des syllabes dépourvues de sens me parvenaient dans mon lit. Les deux formes, 
+m’abandonnèrent. J’essayai de bouger, le tambour qui battait dans mon crâne redoubla d’ardeur. Il se 
+mêla à l’ombre des traînées impalpables de cendre rouge. Une nuée de minuscules étincelles tournoya 
+autour de mon visage.   Silencieuses et froides, elles transformaient le décor qui m’était familier en une 
+atmosphère irréelle. Une douleur sourde se propagea dans mes os et me tira un gémissement.
+ Ma mère revint, s’approcha à pas furtifs de mon lit, se pencha légèrement sur moi et resta dans cette 
+attitude un long moment, si silencieuse qu’elle ne semblait pas respirer. Elle formait devant mes yeux une 
+masse noire aux contours pelucheux. Je m’attendais à la voir s’effilocher et se dissoudre à l’exemple de ces 
+fantômes qui me visitaient par mes nuits d’insomnie.
+ Elle finit par soupirer et recula d’un pas.
+- Je suis réveillé, lui dis-je, mais j’ai mal.
+- Cela va mieux puisque tu me parles.
+- Pourquoi fait-il si sombre? demandai-je.
+- C’est le soir, répondit ma mère ; je n’ai pas voulu allumer la lampe pour ne pas gêner ton sommeil. 
+T u as eu la fièvre toute la nuit dernière et toute la matinée. Mes yeux n’ont pas cessé de couler. Hélas mes 
+larmes ne peuvent soulager ta souffrance.
+- J’ai faim.
+- Voilà une bonne nouvelle, louange à Dieu! Je vais te chercher un bol de bouillon.
+Elle me quitta un moment. Le bol de bouillon qu’elle m’apporta resta sur mes genoux quelques mi -
+nutes. Rien que l’odeur de la nourriture me soulevait le cœur. Ma mère m’exhorta en vain à y goûter. 
+Elle m’avait soutenu le corps à l’aide de coussins. La pièce roula, tangua, fut emportée à travers l’espace, 
+tournant sur elle-même, subissant la loi immuable des astres et des météores. Ma mère eut juste le temps 
+de rattraper le bol qui commençait à se répandre sur les couvertures et m’allongea avec d’infinies précau-
+tions. Les battements de tambour sous mon crâne s’exaspéraient.
+Les objets peu à peu ne partaient plus à la dérive. Ma mère vint s’asseoir non loin de mon lit sur un 
+matelas très bas.
+La femme du fabricant de charrues l’interpella:
+- Zoubida, comment va Sidi Mohammed ?
+Couvre-le bien et donne-lui à boire du thé chaud, sans doute a-t-il attrapé froid.
+Fatma intervint de sa fenêtre.
+- Je crois plutôt qu’il souffre d’une insolation. Il faudrait lui entourer la tête d’écorces de citron et de 
+feuilles de menthe.
+- Vous avez peut-être raison toutes les deux, mes sœurs, mais si Dieu ne daigne pas soulager ses souf -
+frances, tous mes soins resteront superflus. J’essaierai tous les remèdes pour hâter la guérison de mon 
+enfant.
+69
+Mon père s’annonça à la porte d’entrée de la maison. Il arrivait plus tôt que d’habitude. Pendant qu’il 
+grimpait l’escalier, ma mère s’empressa d’allumer la lampe à pétrole. Notre chambre fut inondée de lu -
+mière jaune. Mon père entra. Il vint se pencher sur moi. Ses orbites creusaient deux trous noirs dans son 
+visage qui me parut pâle et fatigué. Il me toucha doucement le front, hocha la tête et me tourna le dos 
+sans rien dire.
+Ma mère disposa la petite table basse pour le dîner. Ce fut, je crois, le dîner le plus triste de leur vie.
+De mon lit, j’apercevais le plat de faïence brune. Je n’arrivai pas à identifier la nourriture qui s’y trou-
+vait. Je savais qu’il y avait une sauce au safran, des légumes et de la viande. L ’odeur du safran me donnait 
+des nausées. Mon père et ma mère, chacun abîmé dans ses pensées, ne mangeaient pas, ne parlaient pas.
+Le chat de Zineb surgit de l’invisible, s’avança à pas feutrés de la table, regarda les formes immobiles 
+des deux convives et miaula d’étonnement. Il miaula timidement, d’une voix plaintive, serrant sa queue 
+entre ses pattes de derrière et rentrant son cou dans ses épaules. Son miaulement s’étouffa dans l’atmos-
+phère comme dans un tampon de coton. La frayeur s’empara de lui. Il écarquilla ses yeux jaunes, rabattit 
+ses oreilles en arrière, cracha un horrible juron et s’en alla tous poils dehors.
+Mes parents n’avaient pas remué le petit doigt, n’avaient pas ouvert la bouche. Une angoisse de fin 
+du monde s’appesantit sur toutes choses. Je fondis en sanglots. Mon père se secoua de sa torpeur et me 
+demanda:
+-Où as-tu mal, mon enfant ? T out hoquetant, je lui répondis:
+- Je n’ai pas mal, mais pourquoi ne parlez-vous pas?
+- Nous n’avons rien à dire. Repose-toi et ne pleure plus.
+Ma mère se réveilla à son tour, prit la table et se dirigea vers sa cuisine. Elle revint, les mains chargées 
+du plateau et des verres pour le thé. Elle trouva mon père debout, se préparant déjà pour dormir.
+- T u ne prends pas de thé ? lui demanda ma mère.
+- Non, et dorénavant, tu feras attention à ne pas trop gaspiller ton sucre.
+- Suis-je une femme qui gaspille?
+- T elle n’est pas ma pensée. Je veux simplement te dire qu’à partir de demain, il nous sera difficile 
+d’avoir du sucre et du thé tous les Jours.
+Ma mère devint toute pâle. J’ouvris grands mes yeux pour ne rien perdre de la scène. Elle posa le pla-
+teau, se redressa, regarda mon père bien en face.
+- Je pressens un grand malheur, dit-elle d’une voix brisée.
+Mon père resta silencieux, les paupières baissées. Brusquement, un claquement sonore me fit sursauter 
+dans mon lit, me tira un gémissement de douleur. Ma mère s’était appliqué sur les joues ses deux mains 
+avec la force du désespoir. Elle s’assit à même le sol, s’acharna sur son visage, se griffa, se tira les cheveux 
+sans proférer une parole. Mon père se précipita pour lui retenir les mains. Ils luttèrent un bon moment. 
+Ma mère s’écroula face contre terre.
+- 0 femme! Ne crains-tu plus la colère de Dieu? dit doucement mon père. Aie confiance en sa miséri -
+corde. Dieu ne nous abandonnera pas. Ce qui nous arrive, arrive tous les jours à des milliers de musul -
+mans. Le croyant est souvent éprouvé. J’ai perdu dans la cohue des enchères aux haïks tout notre maigre 
+capital.
+ J’avais mis l’argent dans un mouchoir. J’ai dû laisser le mouchoir tomber par terre, croyant le glisser 
+70
+dans ma sacoche.
+Ma mère avait relevé la tête. Elle ne disait rien.
+Mon père, de sa voix calme, continuait:
+- Pourquoi se lamenter? Nous devons louer Dieu en toutes circonstances.
+Enfin, ma mère sortit de son silence.
+- Qu’allons-nous faire?
+- Je vais travailler.
+- Combien as-tu perdu?
+-T out mon fonds de roulement. Je n’ai pas même de quoi payer mon ouvrier qui n’a rien touché cette 
+semaine. Je dois aussi un mois de loyer au propriétaire de l’atelier. Je pensais régler toutes ces dettes et 
+acheter du coton.
+- Les marchands ne pourraient-ils pas te faire crédit? T u es connu honorablement.
+- Jamais je ne m’abaisserai jusqu’à mendier du coton à l’un de ces voleurs. Je ne veux pas non plus du 
+misérable salaire d’un ouvrier. Je suis un montagnard et un paysan. La saison de la moisson commence à 
+peine, on embauche des moissonneurs. J’irai travailler aux environs de Fès.
+-T u oserais m’abandonner avec un enfant malade ?
+- Préférerais-tu mourir de faim ? Aimerais-tu devenir un objet de pitié pour tes amies et tes voisines? 
+Je serai à deux jours de marche de la ville. Sidi Mohammed ira mieux demain. Fais-lui une soupe à la 
+menthe sauvage; couvre-le bien afin qu’il transpire abondamment. Aujourd’hui, il a moins de fièvre que 
+la nuit dernière.
+- C’est un châtiment de Dieu qui nous accable. Ce sont ces maudits bracelets qui ont semé le malheur 
+dans notre maison. Pourquoi ne les vendrais-tu pas ?
+- Je compte les vendre. Je vous laisserai cet argent pour vous nourrir pendant mon absence. Driss le 
+teigneux nous reste fidèle, il viendra tous les jours faire les courses. Donne-lui à manger, il n’a personne.
+Mon père se recueillit un moment.
+- Je vous laisserai seuls pendant un mois. Je tâcherai de ne rien dépenser de mon salaire, il me sera 
+possible de remettre l’atelier en marche dès mon retour.
+Un grand silence s’établit, un silence lourd, moite, huileux et noir comme la suie. J’étouffais. Je désirais 
+de toutes mes forces qu’une porte claquât, qu’une voisine poussât un cri de joie ou un gémissement de 
+douleur, que quelque événement extraordinaire survînt pour rompre cette angoisse. Je voulais parler, dire 
+n’importe quelle sottise mais ma gorge se serra et une plainte expira sur mes lèvres.
+Mes parents ne bougeaient pas, se transformaient peu à peu en personnages de cauchemar. Plus j’écar-
+quillais les yeux pour les voir, plus ils devenaient fluides, insaisissables, tantôt transparents, tantôt d’un 
+noir agressif, mais sans contours précis. Pour la première fois, j’eus la sensation du vide absolu, de la soli-
+tude sans miséricorde. Mon cœur se remplit de peine. Une boule dure se forma dans ma poitrine, gênant 
+ma respiration. Je fermai les yeux. Je priai avec ferveur. Je me sentais abandonné aux portes de l’Enfer.
+Non ! Je n’ai pas encore oublié ces instants. Seigneur! Je me souviens. Je me souviens de cette solitude 
+71
+vaste comme les immenses étendues des planètes mortes, de cette solitude où le son meurt sans écho, 
+où les ombres se prolongent dans des profondeurs d’angoisse et de mort. Et le cœur qui saigne ! Source 
+intarissable de peine, torrent surchauffé par les feux de mes chagrins et de mes douleurs ; cri de ma chair 
+écrasée sous le poids de ta malédiction. Je n’étais qu’un enfant, Seigneur! Je ne savais pas que le jour nais-
+sait de la nuit, qu’après le sommeil de l’hiver, la terre sous la caresse du soleil souriait de toutes ses fleurs, 
+bourdonnait de tous ses insectes, chantait par la voix de ses rossignols.
+Mon père nous quitta le surlendemain à l’aube. Il partit, avec pour tout bagage, une sacoche de berger, 
+en palmier nain, dont il avait fait l’acquisition la veille, une faucille neuve et un sac en toile, avec une 
+fermeture à coulisse. Ma mère l’avait confectionné dans un morceau de haïk de coton et l’avait bourré de 
+provisions : olives noires, figues sèches, farine grillée et sucrée, deux pains parfumés à l’anis et dix qarcha-
+las. Nous appelons ainsi des petits pains ronds sucrés, parfumés à l’anis et à la fleur d’oranger et décorés 
+de grains de sésame.
+J’étais réveillé quand mon père partit. Ma mère lui fit quelques recommandations et resta après son 
+départ, prostrée sur son lit, le visage caché dans ses deux mains. J’eus la sensation que nous étions aban-
+donnés, que nous étions devenus orphelins.
+T out le monde dans le quartier devait être au courant de nos ennuis matériels et du départ de mon 
+père. Ils manifesteraient à notre égard une pitié ostentatoire plus humiliante que le pire mépris. Mon père 
+parti, nous restions sans soutien, sans défense.            
+Le père, dans une famille comme la nôtre, représente une protection occulte. Point n’est besoin qu’il 
+soit riche, son prestige moral donne force, équilibre, assurance et respectabilité.
+Mon père venait le soir seulement à la maison, mais il semblait que toute la journée se passait en pré-
+paratifs pour le recevoir. Je comprenais ce qui tourmentait ma mère, ce matin, dans la lumière du jour 
+à peine naissant. Elle se rendait compte dans le tréfonds de son cœur que ses préparatifs seraient vains.
+Personne le soir ne pousserait plus notre porte, n’apporterait de l’extérieur la suave odeur du travail, ne 
+servirait de lien entre nous et la vie exubérante de la rue.
+ Pour ma mère et pour moi, mon père représentait la force, l’aventure, la sécurité, la paix. Il n’avait ja-
+mais quitté sa maison; les circonstances qui l’obligeaient ainsi à le faire prenaient dans notre imagination 
+une figure hideuse.
+La maison se réveillait peu à peu, saluait le soleil et ses bruits familiers. Je me sentais mieux ce matin. 
+Je m’assis dans mon lit. Ma tête ne pesait rien sur mes épaules, mes bras n’étaient agités d’aucune fièvre.
+Maman, dis-je, est-ce que c’est long un mois?
+Ma mère se secoua de sa torpeur, regarda à droite, puis à gauche, comme pour reconnaître l’endroit où 
+elle se trouvait et me fixa avec des yeux étonnés.   .
+- As-tu parlé, Sidi Mohammed?
+- Oui, maman ; je te demande si un mois est long.
+- Un mois dure un mois, mon fils, mais pour nous, le mois à venir sera une éternité.
+- Je sais attendre; toi, tu ne sais pas encore ou plutôt, tu l’as su autrefois mais tu as dû oublier. Ma mère 
+parut abasourdie par cette réflexion.
+- Qu’est-ce que tu attends?
+- J’attends d’être un homme. T oi, tu n’attends plus rien puisque tu es une grande personne.
+72
+Je me tus un moment avant d’ajouter:
+- Quand tu étais une petite fille, tu ne pouvais pas faire tout ce que tu voulais, tu as attendu d’être 
+une femme pour réaliser tes projets, acheter les vêtements dont tu avais envie, sortir avec Lalla Aicha ton 
+amie, préparer les plats que tu aimais manger. Moi, je mange ce que tu me donnes, je ne sors jamais seul, 
+je porte souvent des chemises qui ne sont pas à ma taille.
+L ’étonnement de ma mère grandissait. Elle ne savait quoi me répondre; elle me considérait avec curio-
+sité.
+Calmement je murmurai :
+- Quand je serai un homme, je porterai de belles djellabas blanches qui seront lavées tous les jours, je 
+mangerai tous les matins au moins une livre de beignets très chauds avec beaucoup de beurre, parfois 
+avec du miel. J’aurai quarante chats qui m’obéiront toujours. Ils ne feront jamais de saletés dans les coins. 
+D’ailleurs, nous habiterons une autre maison avec un bigaradier dans la cour.
+Un sourire éclaira le visage de ma mère.
+- Jamais ta femme n’acceptera de veiller sur ton troupeau de chats.
+- Je ne me marie pas, toi, tu aimes les chats, tu pourras t’en occuper.
+Elle éclata franchement de rire. Sa gaîté soudain me rendit toute ma confiance. Je ris plus fort qu’elle; 
+je battis des mains. Ma mère mit son index sur les lèvres et me dit:
+- Que diraient les voisins s’ils t’entendaient rire de la sorte le jour du départ de ton père ?
+- Mon père reviendra bientôt et nous serons de nouveau très riches.
+- Mais nous n’avons jamais été riches.
+- Si, nous n’avions pas faim ; et notre chambre n’est-elle pas la plus jolie de la maison ?
+- Repose-roi, mon petit ; tant que je serai vivante, tu n’auras jamais faim, dussé-je mendier.
+Quelqu’un gratta timidement à la porte. Ma mère se leva.
+- Qui est là ? dit-elle tout en se dirigeant vers le couloir d’entrée. Suivit un long conciliabule, tout en 
+murmures et en chuchotements. J’entendis finalement ma mère dire d’une voix pressante:
+- Entre, Fatma ! Entre et donne-le-lui toi-même; à moi il refusera, il est si entêté! Entre donc!
+Fatma Bziouya parut. Elle tenait à la main un bol fumant. Elle s’approcha de moi, me fit un large 
+sourire et me demanda:
+- Comment te sens-tu ce matin, fqih !
+Je ne répondis rien. Je ne voulais engager aucune conversation avec cette femme qui venait m’ama -
+douer afin de me faire avaler quelque breuvage infect.
+- J’ai préparé pour toi du tadeffi ! Ne voudrais-tu pas y goûter?
+D’ordinaire, j’aimais le tadeffi, ce potage parfumé à la menthe sauvage. Par principe, je détournai mon
+visage du côté du mur. Je pensais mettre ainsi fin à toute tentative de persuasion. Ma mère vint au 
+secours de notre voisine.
+- Je suis sûre que tu l’aimeras, cette soupe. Après, j’enverrai Zineb t’acheter un beignet.
+73
+Je me fis encore prier un moment. Je finis par me mettre sur mon séant. Je pris le bol, le humai d’une 
+narine méfiante, regardai les deux femmes penchées sur moi avec sollicitude et déclarai que je n’aimais 
+pas la soupe piquante.
+T outes les deux me répondirent de concert, avec un ensemble émouvant, qu’il n’y avait pas dans cette 
+soupe la moindre parcelle de piment ou de poivre. Je regardai ma mère dans les yeux et lui demandai à 
+brûle-pourpoint comment elle pouvait le savoir puisqu’elle n’avait pas goûté à cette soupe. Elle tenta de 
+me répondre, chercha sa phrase, s’embrouilla, soupira, leva les yeux au plafond pour prendre à témoin les 
+solives enfumées et partit se réfugier dans la cuisine.
+Fatma insistait,
+-Moi, je t’affirme qu’il n’y a pas d’épices dans ce tadeffi. D’un geste, je lui collai le bol dans les mains. 
+-T out le monde sait que le tadeffi sans épices est absolument immangeable. Ce n’est pas parce que je lis 
+malade que tu vas me faire manger de la colle de farine.
+Fatma perdit patience.
+- Je te dis que c’est bon! Goûte d’abord avant de dire de telles sottises. Prends vite.
+Je boudais toujours. Fatma devint tendre. D’une voix caressante elle m’appela: bonbon acidulé, petit 
+fromage blanc, vermicelle au lait. Je ne pouvais pas résister à des mots si câlins, je repris le bol de tadeffi. 
+J’avais passablement faim, je bus cette bonne soupe à grandes goulées.
+Je demandai ensuite à ma mère de me débarbouiller. Je changeai de chemise, me vêtis de ma djellaba. 
+Je me sentais guéri mais pas encore assez fort pour retourner à l’école.
+Pendant quelques jours, j’allais jouir de vraies vacances.
+Rahma m’aperçut à la fenêtre et me salua joyeusement :
+- Louange à Dieu ! Sidi Mohammed ! T e voilà rétabli. Nous étions bien inquiets à ton sujet. Promets-
+moi de ne jamais tomber malade, j’en perds l’appétit, je le jure par Dieu et par ses saints vénérés.
+- Qu’Allah vous conserve toi et les tiens en excellente santé, Rahma, qu’il vous donne bonheur et pros-
+périté, répondit ma mère du fond de sa cuisine.
+Rahma s’accouda à la grille de sa fenêtre décidée à poursuivre le dialogue.
+- Amine, Ô ma sœur Zoubida. Est-ce que Sidi Abdeslem est parti ce matin ? Je l’ai entendu descendre 
+l’escalier.
+- Oui, il doit être déjà loin.
+- Dieu vous le ramènera sain et sauf.
+Rahma s’adressa à toute la maison pour déclarer:
+- Les temps deviennent durs pour les pauvres gens que nous sommes, mais sachons louer Dieu dans 
+la joie comme dans l’adversité.
+Pour toute réponse, quelqu’un éternua très fort au rez-de-chaussée. Il éternua trois fois, puis se moucha 
+avec conviction. Le bruit de ses narines me rappela le son de la trompette du Ramadan. J’éclatai d’un 
+rire joyeux.
+Ma mère me prit par les épaules, me ramena vers mon matelas. Elle me conseilla d’une voix ferme de 
+m’allonger. Je n’étais pas encore assez fort pour me livrer à des excentricités. Je devais rester au lit. Elle me 
+recommanda de réciter quelques versets du Coran afin de ne pas oublier tout ce que j’avais appris et pour 
+74
+attirer la bénédiction sur notre maison et sur la tête de mon père, parti vers l’inconnu.
+Je m’installai sur le matelas, l’air renfrogné. Je n’avais pas envie de réciter des versets du Coran, je n’avais 
+plus envie de rien. J’écoutais d’une oreille distraite les papotages ordinaires des femmes de la maison. Je 
+ne prêtais aucune attention à leurs propos. Malgré le soleil, tout me paraissait sombre. La saleté des murs 
+que j’apercevais par notre fenêtre me dégoûtait. Enfin, ma mère servit le déjeuner. Le menu se composait 
+de deux beignets qui m’étaient destinés, de beurre rance, d’olives noires et d’une botte de radis, cadeau 
+de Fatma Bziouya ou plutôt de  son mari, Mohammed le jardinier.
+J’entamai un beignet. Il devint dans ma bouche pâteux et sans goût. Je le mâchai, le remâchai, le pro-
+menant d’une joue à l’autre; je finis par l’avaler sans plaisir. La table débarrassée, ma mère posa à même 
+le bois, une petite théière d’émail dont nous ne nous servions jamais et deux verres. Sans plateau, sans 
+bouilloire dans la pièce, sans le rituel habituel qui présidait à la préparation du thé, une impression de 
+dénuement flottait dans l’atmosphère. Seuls, les ménages misérables procédaient de la sorte.
+A mes réflexions, ma mère répondit qu’elle ne pouvait plus passer son temps à faire briller le plateau, 
+laver les verres, astiquer la théière d’étain. Qu’allait-elle donc faire de son temps ? Je ne savais.
+Après déjeuner, ma mère me recommanda d’être bien sage, prit son haïk et partit rendre visite à Lalla 
+Aicha son amie. Elles avaient tellement de choses à se dire.
+Je me souviens encore des heures affreuses passées à attendre. Sans oser me mettre à la fenêtre, répri -
+mant l’envie que j’avais de courir dans l’escalier, de sauter au soleil sur la terrasse. Je jetai un coup d’œil 
+dans ma Boîte à Merveilles. Ce n’était plus une boîte à merveilles mais un cercueil où gisaient les pi -
+toyables cadavres de mes rêves. Je fis une atroce grimace. Les voisines ne devaient pas m’entendre pleurer. 
+Je me mouchai dans un vieux chiffon qui traînait par terre. Couché sur le dos, je contemplai fixement les 
+taches squameuses qui constellaient les murs de notre chambre. Elles ne bougeaient plus. Elles organi -
+saient autrefois en mon honneur des ballets à ravir les yeux. Je passais des heures à suivre les évolutions de 
+ces formes changeantes. Maintenant, elles n’étaient plus que des taches figées qui me donnaient la nausée.
+Mon cœur se mit à battre de tristesse, d’angoisse, de dépit et de colère. Il battait surtout de peur. Mal-
+gré les discussions des voisines, le bruit familier des petits balais de doum, les crépitements des étincelles, 
+les ronflements des soufflets, j’avais peur. Épuisé par mes larmes silencieuses, je finis par m’endormir. 
+Quand ma mère revint, j’avais de nouveau la fièvre. Elle me couvrit chaudement, s’assit à côté de mon 
+lit et pleura longtemps. Elle chantonnait doucement, s’interrompait de temps à autre pour se moucher, 
+reprenait son murmure.
+Le soir, elle ne prépara pas de dîner, elle se coucha tôt. J’avais de la peine à m’endormir. Je m’agitais 
+dans mon lit, me tournais, me retournais sans réussir à sombrer dans le sommeil.
+Brusquement l’orage se déchaîna. Le vent fonça sur la maison avec des hurlements de fureur. Les portes 
+claquèrent. Au milieu des gémissements, des pleurs et des chuintements de la rafale, s’éleva un chant ti-
+mide de flûtiau. Ce n’était pas une flûte humaine, semblable à ces roseaux à sept trous qui font danser les 
+fantômes à la lumière des étoiles, c’était, à n’en pas douter, quelque instrument d’une matière luisante et 
+froide, forgé sans bruit au fond des eaux par un djinn atteint de démence. Elle parlait un langage à  la fois 
+déchirant et suave, parfois incompréhensible, grimaçant, maléfique, parfois d’une nostalgie farouche. Il 
+y avait des appels, des supplications, des reproches, des rires d’hyène, de longs cris de douleur, des mots 
+d’amour et des phrases de colère.
+Le vent riait, jouait avec les portes, les cognait de fureur. Pour conjurer ces forces obscures, je récitai 
+trois fois la sourate de l’Unité. T remblant de tous mes membres, j’enfouis mon visage dans un coussin ; 
+Je finis par m’endormir.
+Ma vie s’écoulait dans deux mondes opposés. Le jour je subissais toutes sortes de contraintes, je prenais 
+part à des drames que je ne comprenais pas, la nuit me servait d’appât à ses monstres, me lançait dans le 
+75
+vide de ses abîmes, me faisait don de fruits que mes mains ne pouvaient saisir. Vie double, semée d’em-
+bûches, de mirages, de farces, mais à laquelle je finis par m’habituer. Je n’agissais pas, je subissais. Chaque 
+fragment du devenir couvait une parcelle de mystère. Les instants se succédaient avec chacun sa charge de 
+joie, hélas! trop éphémère, avec son poids de peine qui imprimait dans ma chair sa meurtrissure. Au gré 
+de l’humeur des uns et de la fantaisie des autres, mes jours me paraissaient sombres ou radieux, mes nuits, 
+un havre de repos, un lieu de torture, un moment de félicité, le douloureux calvaire des âmes damnées 
+de toute éternité.
+Ceci me donna par la suite le goût de l’aventure, à  savoir: le goût de la mort. Je mourais chaque soir 
+pour renaître instantanément dans un univers sans dimensions. Je ressuscitais chaque matin pour retrou-
+ver le soleil, le chant des moineaux, le pain, le blé et la fraîcheur de l’eau de source. Le pain et l’eau avaient 
+bon goût et je me réjouissais d’être sur une terre où ils ne manquaient pas. Cependant, dans les heures de 
+chagrin et de solitude, ils me paraissaient amers, fades, durs pour mon gosier trop étroit.
+ Bien sûr, je préférais le jour à la nuit, les jours en principe se tenaient, obéissaient à la à logique du 
+temps, se succédaient en apparence bien en ordre. Les nuits enfantaient des personnages, des sites, des 
+événements, lesquels créaient leur espace et leur temps. Mes parents, les voisins, les enfants du Msid , le  
+maître et sa baguette de cognassier habitaient la terre ensoleillée mais il m’arrivait la nuit de les rencontrer 
+dans des pays lointains privés de lumière, dans  des sentiers hérissés de dangers. Nos rapports, souvent 
+n’étaient plus les mêmes que pendant le jour. Maintes fois, j’essayai de les éviter, mes efforts s’avéraient 
+toujours vains. Je ne pouvais leur échapper,   ni dans ce monde, ni dans aucun autre. Il leur était donné de 
+me choyer ou de me tourmenter selon leur bon plaisir. Plus tard je me défendrai. Maintenant, je n’étais 
+qu’un enfant, un enfant couché en chien de fusil qui ronflait discrètement alors que tous les hommes 
+étaient déjà partis au travail, alors que toutes les voisines avaient déjà procédé à leur toilette.
+Ma mère me réveilla.
+- Sidi Mohammed, tu es mal couché, tu vas attraper le torticolis.
+J’entrouvris péniblement mes paupières. Le jour inondait notre chambre.
+- Lève-toi et va faire tes ablutions, pendant ce temps, je vais te faire cuire un œuf.
+- J’aime beaucoup les œufs à l’huile avec du piment rouge et du persil.
+- Je sais, je mettrai du piment rouge et du persil et même une pincée de cumin.
+Cette phrase n’échappa pas à l’oreille de Rahma.
+Elle se mit à sa fenêtre et cria:
+- Nous appelons ce plat une omelette juive, c’est délicieux.
+Ma mère répondit :
+- Sidi Mohammed est encore malade, il a des envies comme une femme enceinte.
+T outes les voisines se mêlèrent à la conversation.
+Les unes riaient, les autres faisaient des vœux pour mon prompt rétablissement. Tante Kanza, la choua-
+fa, raconta un de ses souvenirs: elle avait connu une jeune femme enceinte qui, un jour, se rendant au 
+bain, avait vu dans une boutique de laitier de beaux fromages blancs. Elle désira en goûter, mais le laitier, 
+un avaricieux, un disciple de Satan, refusa de lui en offrir la moindre miette. L ’enfant arriva au monde 
+quelques mois plus tard. Sur son ventre, se détachait bien visible un morceau de fromage blanc.
+Tante Kanza l’avait vu, de ses yeux vu.
+76
+- Heureusement, dit une voix, sans la moindre ironie, que le morceau de fromage ne pendait pas à son 
+front ou à l’une de ses joues.
+ Driss, le teigneux, appela de la porte d’entrée. Ma mère lui demanda de patienter une seconde, elle 
+allait descendre. Elle coupa un gros quartier de pain, courut à sa cuisine l’enduire de beurre rance, empa-
+queta dans un papier graisseux une poignée d’olives noires et s’engouffra dans l’escalier. Avant de remon-
+ter, elle emprunta le seau de tante Kanza, le remplit d’eau du puits et grimpa péniblement les marches. A 
+la porte de notre cuisine, trônait depuis toujours la jarre d’eau potable en terre poreuse. Ma mère y versa 
+le seau. Elle revint vers moi et me dit:
+- Je vais me préparer, nous allons sortir ensemble; nous passerons prendre Lalla Aïcha qui nous attend. 
+Aujourd’hui, je t’emmène voir quelqu’un que tu ne con nais pas. N’es-tu pas content de sortir un peu ? 
+Nous allons très loin ...
+T out en parlant, elle s’enveloppait dans son haïk, serrait son voile, secouait la poussière de ses ba -
+bouches.
+- T u ne connais pas le quartier Qalqlyine, tu verras, c’est un joli quartier avec des derbs étroits qui des-
+cendent en pente, des maisons aux plafonds peints et un ou deux figuiers qui sortent des murs et se pen-
+chent sur la ruelle. T u aimeras tout cela. Mouche-toi, qu’as-tu fait de ton mouchoir ? Mouche-toi donc !
+Je tournais en rond à la recherche de mon mouchoir, je le découvris enfin sous un coussin tout froissé 
+et collé. Je tirai dessus pour avoir une surface suffisante pour y placer mon nez. Je me mouchai fort, si 
+fort que mes doigts furent tout mouillés. Je jetai le mouchoir et m’essuyai les doigts à même ma djellaba.
+Nous nous disposions à quitter la chambre quand Fatma Bziouya interpella ma mère.
+- Lalla Zoubida ! Où vas-tu ?
+- Lalla Aicha nous a invités à passer la journée, avec elle, elle est si seule!
+- Que devient son mari, Sidi Larbi ? N’a-t-il pas encore répudié la fille du coiffeur ?
+- Non, mais je sais qu’il paie actuellement son ingratitude envers Lalla Aïcha. Sa belle-famille lui rend 
+les jours amers, l’accuse de laisser sa jeune femme souffrir de faim.
+Ma mère enleva son voile qui la gênait pour parler. La maison était tout oreilles. Quelle aubaine d’en 
+savoir plus long que les autres ! Quelle magnifique occasion de montrer à routes ces envieuses dans quelle 
+estime la tenait Lalla Aicha. Elle lui confiait tous ses secrets! A la fin, elle laissa entendre qu’elle en savait 
+beaucoup plus long, mais que les convenances lui interdisaient de tout révéler. Nous partîmes enfin. Je 
+marchais devant, dévorant des yeux les étalages. Arrivés à Sidi Ahmed Tijani, ma mère se dirigea vers le 
+tronc aux offrandes. Dans un mur couvert de mosaïques, s’ouvrait un trou, à hauteur d’homme, sur -
+monté d’une grille en bronze ouvragé.
+Ma mère ne déposa aucune offrande dans le trou.
+Elle y introduisit simplement sa main, frotta sa joue contre la boiserie qui l’entourait et murmura une 
+vague prière, J’étais trop petit pour atteindre le trou, je collai mes lèvres sur la mosaïque froide du mur. 
+Cette manifestation de respect pour Sidi Ahmed Tijani fit plaisir à ma mère.
+- Viens, mon petit œil, et qu’Allah te préserve de tout mal! Me dit-elle.
+Je la suivis. Nous fîmes quelques pas. Un marchand de poivrons et de tomates s’était installé dans 
+l’angle d’une ruelle. Il exposait par terre ses légumes en petits tas bien ordonnés, de forme pyramidale.
+- Combien vends-tu tes tomates ? lui demanda ma mère. Elle se courba, tâta par ci, toucha par-là, mé-
+langea poivrons et tomates, sema le désordre. Le marchand, furieux, lui répondit que cette marchandise 
+77
+n’était pas à vendre, surtout à une cliente aussi ennuyeuse.
+T rès digne, ma mère se leva et lui conseilla de ramasser ses ordures s’il n’avait pas l’intention de les 
+vendre. On ne devait pas permettre à des fainéants  de cette espèce d’encombrer la rue et de gêner la cir-
+culation. Elle allait sûrement continuer sa diatribe mais je m’emparai de sa main et la forçai à me suivre. 
+Nous abandonnâmes le marchand secoué de colère.
+A notre gauche, se dressait un portail mon mental orné de clous et de marteaux de bronze d’un très 
+beau travail,
+- Mé! Dis-moi à qui appartient cette maison?
+- Ce n’est pas une maison, c’est un bureau de Chrétiens.
+- Je vois des Musulmans y entrer.
+- Ils travaillent avec les Chrétiens. Les Chrétiens, mon fils, sont riches et paient bien ceux qui connais-
+sent leur langue.
+- Est-ce que je parierai la langue des Chrétiens quand je serai grand ?
+- Dieu te préserve, mon fils, de tout contact avec ces gens que nous ne connaissons pas.
+  La rue Zenqat-Hajjama s’ouvrait à main gauche, face à l’ancien marché aux esclaves. Dés l’entrée 
+de la maison, ma mère appela Lalla Aïcha, Elle nous souhaita la bienvenue de sa chambre du deuxième 
+étage et nous pria de monter. Elle nous attendait, assise devant sa bouilloire qui lançait des jets de vapeur. 
+La chambre offrait l’image de la désolation. Elle suait la misère et l’ennui. Je l’avais connue en des jours 
+meilleurs. Plus de cretonne sur les matelas, plus de carpettes aux couleurs gaies ! Les étagères de bois peint 
+avec leur cargaison de bols de faïence et d’assiettes décorées avaient disparu, l’horloge laissait à sa place 
+une tache claire sur le mur. Le nombre des matelas n’avait pas changé mais ils étaient bourrés de crin 
+végétal au lieu de laine. Le crin s’était tassé, les matelas étaient froids et durs. D’ailleurs, toute la pièce 
+paraissait froide et dure. Une sorte d’angoisse imprégnait l’atmosphère. La maison me parut morte. Les 
+locataires silencieux se tenaient tapis, sans aucun doute, dans les coins les plus sombres de leurs pièces. 
+Un petit chat miaulait désespérément sur la terrasse. Il avait dû miauler pendant des jours. Sa voix sai -
+gnait à chaque appel.
+Lalla Aïcha prépara le thé. Elle le servit dans un petit plateau de cuivre jaune aux gravures effacées. Elle 
+s’acquittait de ses devoirs d’hôtesse avec beaucoup de dignité.
+Personne ne disait rien. Chacun de nous trois poursuivait son rêve particulier, s’absorbait dans ses pen-
+sées. Lalla Aïcha rompit le silence.
+- Nous irons plutôt dans le quartier Seffah, le fqih de Qalklyine est en voyage dans le djebel. Il paraît 
+qu’il a encore de la famille dans un village perdu. Sidi El Arafi que nous irons consulter est aveugle. Je 
+tiens les renseignements de Khadouj Lalaouia qui l’a consulté deux ou trois fois. Elle m’a affirmé que tout 
+ce qu’il lui avait prédit s’était réalisé point par point.
+J’ai de l’espoir, Zoubida ; avec l’aide de ce voyant, je suis sûre d’atteindre le but. Nous sommes de très 
+faibles créatures, le bonheur est chose fragile. Mon nid a été saccagé, je n’aurai de repos que le jour où il 
+redeviendra ce qu’il était.
+Ma mère hochait la tête, moi je soupirais parce que je savais que dans de telles circonstances il conve-
+nait de soupirer. Le silence s’établit de nouveau.
+Ma mère dit enfin:
+-Lalla Aicha j’ai, moi aussi, grand besoin de conseils. Je tremble pour ma maison, pour mon mari, 
+78
+pour mon fils. Quand la colère de Dieu se déchaîne sur les gens pauvres comme nous, elle les réduit en 
+cendres. Les personnes qui « savent  nous sont d’un secours précieux. Sidi El Arafi a bonne réputation, il 
+nous aidera sûrement.
+- II est permis à l’esclave de faire ce qui est en son pouvoir pour remédier à sa misère, ensuite il doit s’en 
+remettre à son seigneur pour l’accomplissement de ses desseins. Ayons confiance.
+ Lalla Aïcha, qui n’avait rien perdu de son embonpoint, s’arracha péniblement du sol, prit son haïk.
+79
+
+(B) RÉPLIQUES DE L'ÉPISODE
+s01_hook#0 [narrator] À l'aube, mon père partit vers l'inconnu, sans argent, avec une simple faucille.
+s01_hook#1 [narrator] Et ma Boîte à Merveilles n'était plus qu'un cercueil où dormaient mes rêves.
+s03_reveil#0 [narrator] Il n'a rien mangé depuis son déjeuner d'hier. Cette phrase, dite dans un soupir, suffit pour me réveiller.
+s03_reveil#1 [narrator] Une pénombre épaisse remplissait la chambre. Ma mère chuchotait à une forme immobile, debout dans le noir. Puis les deux ombres m'abandonnèrent.
+s03_reveil#2 [narrator] Un tambour battait dans mon crâne. Des traînées de cendre rouge et des étincelles froides tournoyaient autour de mon visage.
+s03_reveil#3 [narrator] Ma mère revint à pas furtifs, si silencieuse qu'elle ne semblait plus respirer, comme un fantôme prêt à se dissoudre.
+s03_reveil#4 [mohammed] Je suis réveillé... mais j'ai mal.
+s03_reveil#5 [zoubida] Cela va mieux puisque tu me parles.
+s03_reveil#6 [mohammed] Pourquoi fait-il si sombre ?
+s03_reveil#7 [zoubida] C'est le soir. Tu as eu la fièvre toute la nuit et toute la matinée. Mes yeux n'ont pas cessé de pleurer.
+s03_reveil#8 [mohammed] J'ai faim.
+s03_reveil#9 [zoubida] Louange à Dieu ! Je vais te chercher un bol de bouillon.
+s03_reveil#10 [narrator] Mais rien que l'odeur me soulevait le cœur. La pièce roula, tangua dans l'espace comme les astres et les météores. Ma mère rattrapa le bol à temps et me rallongea doucement.
+s04_remedes#0 [narrator] Les objets cessèrent de tourner. Ma mère s'assit près de mon lit, sur un matelas très bas.
+s04_remedes#1 [rahma] Zoubida, comment va Sidi Mohammed ? Couvre-le bien et donne-lui du thé chaud, il a dû attraper froid.
+s04_remedes#2 [fatma] Je crois plutôt qu'il a pris une insolation. Entoure-lui la tête d'écorces de citron et de feuilles de menthe.
+s04_remedes#3 [zoubida] Vous avez peut-être raison, mes sœurs... Mais si Dieu ne soulage pas ses souffrances, tous mes soins restent inutiles.
+s05_diner_chat#0 [narrator] Mon père rentra plus tôt que d'habitude. Ma mère se hâta d'allumer la lampe à pétrole, et la chambre fut inondée de lumière jaune.
+s05_diner_chat#1 [narrator] Son visage était pâle et fatigué, ses yeux creusés de deux trous noirs. Il me toucha doucement le front, hocha la tête, et me tourna le dos sans un mot.
+s05_diner_chat#2 [narrator] Ce fut le dîner le plus triste de leur vie. L'odeur du safran me donnait la nausée. Ni mon père ni ma mère ne mangeaient, ne parlaient.
+s05_diner_chat#3 [narrator] Le chat de Zineb entra à pas feutrés. Il miaula timidement devant ces deux statues immobiles. Mais la frayeur le saisit : il écarquilla ses yeux jaunes, cracha un juron, et fila tous poils dehors !
+s05_diner_chat#4 [narrator] Une angoisse de fin du monde pesait sur la chambre. Je fondis en sanglots. Mon père sortit de sa torpeur.
+s05_diner_chat#5 [father] Où as-tu mal, mon enfant ?
+s05_diner_chat#6 [mohammed] Je n'ai pas mal... mais pourquoi ne parlez-vous pas ?
+s05_diner_chat#7 [father] Nous n'avons rien à dire. Repose-toi, et ne pleure plus.
+s06_ruine#0 [narrator] Ma mère apporta le plateau et les verres pour le thé. Elle trouva mon père debout, prêt à se coucher.
+s06_ruine#1 [zoubida] Tu ne prends pas de thé ?
+s06_ruine#2 [father] Non. Et dorénavant, ne gaspille plus ton sucre. À partir de demain, il nous sera difficile d'avoir du sucre et du thé tous les jours.
+s06_ruine#3 [narrator] Ma mère devint toute pâle. Elle posa le plateau et regarda mon père bien en face.
+s06_ruine#4 [zoubida] Je pressens un grand malheur.
+s06_ruine#5 [narrator] Soudain, un claquement sec me fit sursauter ! Ma mère s'était frappé les deux joues. Assise par terre, elle se griffait le visage et s'arrachait les cheveux sans un cri.
+s06_ruine#6 [narrator] Mon père se jeta sur elle pour retenir ses mains. Ils luttèrent un long moment, puis elle s'écroula, face contre terre.
+s06_ruine#7 [father] Ô femme ! Aie confiance en la miséricorde de Dieu. J'ai perdu dans la cohue des enchères aux haïks tout notre maigre capital.
+s06_ruine#8 [father] J'avais mis l'argent dans un mouchoir. J'ai dû le laisser tomber par terre en croyant le glisser dans ma sacoche.
+s07_decision#0 [zoubida] Qu'allons-nous faire ?
+s07_decision#1 [father] Je vais travailler.
+s07_decision#2 [zoubida] Combien as-tu perdu ?
+s07_decision#3 [father] Tout mon fonds de roulement. Je n'ai même plus de quoi payer mon ouvrier, ni le mois de loyer de l'atelier.
+s07_decision#4 [zoubida] Les marchands te connaissent. Ils ne pourraient pas te faire crédit ?
+s07_decision#5 [father] Jamais je ne mendierai du coton à ces voleurs. Ni un salaire de misère. Je suis un montagnard et un paysan. J'irai faire la moisson aux environs de Fès.
+s07_decision#6 [zoubida] Tu oserais m'abandonner avec un enfant malade ?
+s07_decision#7 [father] Aimerais-tu devenir un objet de pitié pour tes voisines ? Sidi Mohammed ira mieux demain. Fais-lui une soupe à la menthe sauvage.
+s07_decision#8 [zoubida] C'est un châtiment de Dieu ! Ce sont ces maudits bracelets qui ont semé le malheur ! Pourquoi ne les vendrais-tu pas ?
+s07_decision#9 [father] Je compte les vendre pour vous nourrir. Driss le teigneux viendra chaque jour faire les courses. Donne-lui à manger, il n'a personne.
+s07_decision#10 [father] Je vous laisse seuls pendant un mois. Je tâcherai de ne rien dépenser, pour rouvrir l'atelier dès mon retour.
+s08_solitude#0 [narrator] Un grand silence s'établit, lourd, huileux et noir comme la suie. J'étouffais.
+s08_solitude#1 [narrator] Mes parents ne bougeaient plus. Ils se transformaient devant mes yeux en figures de cauchemar, fluides, insaisissables.
+s08_solitude#2 [narrator] Pour la première fois, je connus le vide absolu, la solitude sans pitié. Je fermai les yeux et je priai de toutes mes forces.
+s08_solitude#3 [narrator] Seigneur ! Je me souviens encore de cette solitude vaste comme les planètes mortes, où le son meurt sans écho.
+s08_solitude#4 [narrator] Je n'étais qu'un enfant, Seigneur ! Je ne savais pas encore que le jour naît de la nuit, et qu'après l'hiver, la terre sourit de toutes ses fleurs et chante par ses rossignols.
+s09_depart#0 [narrator] Mon père partit le surlendemain à l'aube. Tout son bagage tenait en deux objets : une sacoche de berger en palmier nain, et une faucille neuve.
+s09_depart#1 [narrator] Ma mère lui avait cousu un sac de toile bourré de provisions : olives noires, figues sèches, farine grillée et sucrée, deux pains à l'anis, et dix qarchalas parfumées à la fleur d'oranger.
+s09_depart#2 [narrator] J'étais réveillé quand il franchit la porte. Ma mère resta prostrée sur son lit, le visage caché dans ses deux mains. Nous étions devenus orphelins.
+s09_depart#3 [narrator] Tout le quartier devait savoir. Dans une famille comme la nôtre, le père est une protection invisible. Son prestige donne force, sécurité et paix.
+s09_depart#4 [narrator] Je compris la peine de ma mère ce matin-là. Le soir, personne ne pousserait plus notre porte avec la bonne odeur du travail.
+s10_quarante_chats#0 [narrator] La maison s'éveilla au soleil. Ma fièvre était tombée. Je m'assis dans mon lit.
+s10_quarante_chats#1 [mohammed] Maman, est-ce que c'est long, un mois ?
+s10_quarante_chats#2 [zoubida] Un mois dure un mois, mon fils... Mais pour nous, ce mois sera une éternité.
+s10_quarante_chats#3 [mohammed] Moi, je sais attendre. J'attends d'être un homme. Toi, tu n'attends plus rien.
+s10_quarante_chats#4 [narrator] Ma mère me regarda, stupéfaite.
+s10_quarante_chats#5 [mohammed] Quand je serai grand, je porterai de belles djellabas blanches. Je mangerai chaque matin des beignets chauds au beurre et au miel. J'aurai quarante chats qui m'obéiront toujours, et un bigaradier dans notre cour.
+s10_quarante_chats#6 [zoubida] Jamais ta femme n'acceptera de veiller sur ton troupeau de chats !
+s10_quarante_chats#7 [mohammed] Je ne me marie pas ! Toi tu aimes les chats, tu t'en occuperas.
+s10_quarante_chats#8 [narrator] Elle éclata franchement de rire ! Je ris plus fort qu'elle en battant des mains. Aussitôt, elle posa un doigt sur ses lèvres.
+s10_quarante_chats#9 [zoubida] Chut ! Que diraient les voisins s'ils t'entendaient rire le jour du départ de ton père ?
+s10_quarante_chats#10 [mohammed] Mon père reviendra bientôt, et nous serons très riches !
+s10_quarante_chats#11 [zoubida] Repose-toi, mon petit. Tant que je serai vivante, tu n'auras jamais faim, dussé-je mendier.
+s11_tadeffi#0 [narrator] Quelqu'un gratta timidement à la porte. Après un long conciliabule dans le couloir, ma mère pressa la visiteuse d'entrer.
+s11_tadeffi#1 [zoubida] Entre, Fatma ! Donne-le-lui toi-même : à moi, il refusera, il est si entêté !
+s11_tadeffi#2 [narrator] Fatma Bziouya parut avec un bol fumant de tadeffi, ce potage parfumé à la menthe sauvage. Par principe, je tournai le nez contre le mur.
+s11_tadeffi#3 [fatma] Comment te sens-tu ce matin, fqih ?
+s11_tadeffi#4 [zoubida] Prends-le, mon fils. Après, j'enverrai Zineb t'acheter un beignet.
+s11_tadeffi#5 [narrator] Je finis par me redresser, flairai le bol d'une narine méfiante, et déclarai que je n'aimais pas la soupe piquante.
+s11_tadeffi#6 [narrator] Les deux femmes jurèrent qu'il n'y avait pas une pincée de piment ! Je regardai ma mère droit dans les yeux : comment pouvait-elle le savoir, puisqu'elle n'y avait même pas goûté ?
+s11_tadeffi#7 [narrator] Prise au piège, elle leva les yeux au plafond et s'enfuit dans la cuisine.
+s11_tadeffi#8 [fatma] Allons, bonbon acidulé ! Petit fromage blanc ! Vermicelle au lait ! Goûte vite, ce n'est pas de la colle de farine !
+s11_tadeffi#9 [narrator] À des mots si câlins, je ne pus résister : j'avalai toute la soupe à grandes goulées.
+s12_fenetre_rahma#0 [narrator] Je me débarbouillai et mis ma djellaba. Pour quelques jours, j'allais jouir de vraies vacances.
+s12_fenetre_rahma#1 [rahma] Louange à Dieu ! Sidi Mohammed te voilà rétabli ! Promets-moi de ne plus tomber malade, j'en perds l'appétit !
+s12_fenetre_rahma#2 [zoubida] Qu'Allah te garde en bonne santé, ma sœur Rahma.
+s12_fenetre_rahma#3 [rahma] Sidi Abdeslem est parti ce matin ? Les temps deviennent durs pour les pauvres gens... mais sachons louer Dieu dans l'adversité.
+s12_fenetre_rahma#4 [narrator] Pour toute réponse, quelqu'un au rez-de-chaussée éternua trois fois, puis se moucha comme la trompette du Ramadan ! J'éclatai de rire.
+s12_fenetre_rahma#5 [narrator] Ma mère me prit par les épaules, me ramena sur le matelas et m'ordonna de réciter le Coran pour attirer la bénédiction sur mon père.
+s13_dejeuner_pauvre#0 [narrator] Installé sur le matelas, l'air renfrogné, je n'avais plus envie de rien. Même le soleil paraissait sombre.
+s13_dejeuner_pauvre#1 [narrator] Au déjeuner, deux beignets, du beurre rance, des olives noires, et des radis offerts par Fatma Bziouya. Le beignet était pâteux et sans goût.
+s13_dejeuner_pauvre#2 [narrator] La table débarrassée, ma mère posa à même le bois une petite théière d'émail ébréchée et deux verres. Sans plateau, sans bouilloire : comme chez les plus misérables.
+s13_dejeuner_pauvre#3 [narrator] Puis elle me recommanda d'être sage, enfila son haïk, et partit voir son amie Lalla Aïcha.
+s14_cercueil#0 [narrator] Je me souviens de ces heures affreuses passées seul. Je jetai un coup d'œil dans ma Boîte à Merveilles.
+s14_cercueil#1 [narrator] Ce n'était plus une boîte à merveilles, mais un cercueil où gisaient les cadavres de mes rêves. Je me mouchai dans un vieux chiffon qui traînait par terre.
+s14_cercueil#2 [narrator] Couché sur le dos, je fixai les taches du mur. Autrefois elles dansaient des ballets pour moi ; aujourd'hui elles restaient figées et me donnaient la nausée.
+s14_cercueil#3 [narrator] Mon cœur battait de tristesse et de peur. Épuisé par mes larmes silencieuses, je finis par m'endormir.
+s14_cercueil#4 [narrator] Quand ma mère rentra, la fièvre m'avait repris. Elle me couvrit chaudement, s'assit près de mon lit, et pleura en chantonnant doucement.
+s15_orage_flute#0 [narrator] Le soir, elle ne prépara pas de dîner. Je me tournais et retournais sans trouver le sommeil.
+s15_orage_flute#1 [narrator] Brusquement, l'orage se déchaîna ! Le vent hurla sur la maison et fit claquer toutes les portes.
+s15_orage_flute#2 [narrator] Au milieu de la rafale s'éleva un chant de flûte étrange. Pas une flûte humaine : un instrument forgé au fond des eaux par un djinn fou.
+s15_orage_flute#3 [narrator] Il mêlait des appels, des rires d'hyène, de longs cris de douleur et des phrases de colère.
+s15_orage_flute#4 [narrator] Tremblant de tous mes membres, je récitai trois fois la sourate de l'Unité, j'enfouis mon visage dans un coussin, et je m'endormis.
+s16_deux_mondes#0 [narrator] Ma vie s'écoulait dans deux mondes opposés. Le jour, je subissais les contraintes des grands. La nuit, j'étais lancé dans le vide des abîmes.
+s16_deux_mondes#1 [narrator] Je mourais chaque soir pour renaître chaque matin avec le soleil, le chant des moineaux, le pain et la fraîcheur de l'eau.
+s16_deux_mondes#2 [narrator] Pourtant, la nuit, je rencontrais mes parents et le fqih dans des pays sans lumière, sur des sentiers pleins de dangers. Alors je me blottissais en chien de fusil, sans pouvoir m'échapper.
+s17_omelette_kanza#0 [zoubida] Sidi Mohammed, réveille-toi ! Tu es mal couché, tu vas attraper le torticolis. Va faire tes ablutions, je vais te cuire un œuf.
+s17_omelette_kanza#1 [mohammed] J'aime les œufs à l'huile, avec du piment rouge et du persil !
+s17_omelette_kanza#2 [zoubida] Je sais. Je mettrai même une pincée de cumin.
+s17_omelette_kanza#3 [rahma] Nous appelons ce plat une omelette juive ! C'est délicieux !
+s17_omelette_kanza#4 [zoubida] Sidi Mohammed est encore malade : il a des envies comme une femme enceinte !
+s17_omelette_kanza#5 [narrator] Toutes les voisines rirent. Tante Kanza la chouafa raconta l'histoire d'un laitier avare qui avait refusé une miette de fromage blanc à une femme enceinte.
+s17_omelette_kanza#6 [kanza] Quelques mois plus tard, le bébé naquit avec un vrai morceau de fromage blanc sur le ventre ! Je l'ai vu, de mes propres yeux vu !
+s17_omelette_kanza#7 [voisine] Heureusement que le fromage ne pendait pas à son front, ou sur sa joue !
+s18_driss_depart#0 [narrator] Driss le teigneux appela à la porte d'entrée. Ma mère coupa un gros quartier de pain avec du beurre rance et des olives noires dans un papier graisseux.
+s18_driss_depart#1 [narrator] Avant de remonter, elle emprunta le seau de tante Kanza au puits et remplit la grande jarre d'eau potable de notre cuisine.
+s18_driss_depart#2 [zoubida] Prépare-toi, nous allons sortir ! Nous passerons prendre Lalla Aïcha pour aller dans le quartier Qalqlyine. Et mouche-toi donc !
+s18_driss_depart#3 [narrator] Je retrouvai mon mouchoir froissé sous un coussin, me mouchai si fort que mes doigts furent tout mouillés, et m'essuyai à même ma djellaba.
+s18_driss_depart#4 [fatma] Lalla Zoubida ! Où vas-tu ? Est-ce que Sidi Larbi a répudié la fille du coiffeur ?
+s18_driss_depart#5 [zoubida] Non ! Mais sa belle-famille lui rend les jours amers, elle l'accuse de laisser sa jeune femme souffrir de faim.
+s19_medina#0 [narrator] Nous partîmes enfin, moi devant, dévorant des yeux tous les étalages. Devant le sanctuaire de Sidi Ahmed Tijani, ma mère introduisit sa main dans le trou aux offrandes sans rien y déposer.
+s19_medina#1 [narrator] Elle frotta sa joue contre la boiserie. Trop petit pour atteindre la grille, je collai mes lèvres sur la mosaïque froide du mur.
+s19_medina#2 [zoubida] Viens, mon petit œil, et qu'Allah te préserve de tout mal !
+s19_medina#3 [narrator] Un peu plus loin, un marchand exposait ses poivrons et ses tomates en jolies pyramides. Ma mère tâta, tripota, et sema partout le désordre.
+s19_medina#4 [marchand] Cette marchandise n'est pas à vendre ! Surtout à une cliente aussi ennuyeuse !
+s19_medina#5 [narrator] Très digne, ma mère lui conseilla de ramasser ses ordures s'il ne voulait pas vendre. Je tirai sa main pour l'arracher à sa colère.
+s19_medina#6 [narrator] À gauche s'ouvrait un portail monumental orné de clous et de marteaux de bronze.
+s19_medina#7 [mohammed] Maman, à qui appartient cette grande maison ?
+s19_medina#8 [zoubida] Ce n'est pas une maison : c'est un bureau de Chrétiens. Ils paient bien ceux qui connaissent leur langue.
+s19_medina#9 [mohammed] Est-ce que je parlerai la langue des Chrétiens quand je serai grand ?
+s19_medina#10 [zoubida] Dieu te préserve de tout contact avec ces gens-là !
+s20_aicha_misere#0 [narrator] Rue Zenqat-Hajjama, Lalla Aïcha nous accueillit de sa chambre du deuxième étage, assise devant sa bouilloire.
+s20_aicha_misere#1 [narrator] La chambre suait la misère et l'ennui. Plus de cretonne sur les matelas, plus de carpettes gaies, plus d'étagères de bois peint ni d'assiettes décorées.
+s20_aicha_misere#2 [narrator] L'horloge avait laissé une tache claire sur le mur. Les matelas, bourrés de crin végétal, étaient froids et durs. Sur la terrasse, un petit chat miaulait désespérément.
+s20_aicha_misere#3 [narrator] Lalla Aïcha servit le thé avec beaucoup de dignité, sur un petit plateau de cuivre jaune aux gravures effacées.
+s21_sidi_el_arafi#0 [narrator] Personne ne disait rien. Chacun de nous trois s'absorbait dans ses pensées. Lalla Aïcha rompit enfin le silence.
+s21_sidi_el_arafi#1 [aicha] Le fqih de Qalqlyine est parti en voyage dans le djebel. Nous irons plutôt dans le quartier Seffah, consulter Sidi El Arafi.
+s21_sidi_el_arafi#2 [aicha] Il est aveugle, mais tout ce qu'il prédit se réalise point par point. Mon nid a été saccagé... avec lui, je retrouverai la paix.
+s21_sidi_el_arafi#3 [narrator] Ma mère hocha la tête ; moi, je soupirai, parce que je savais qu'il convenait de soupirer.
+s21_sidi_el_arafi#4 [zoubida] Moi aussi, j'ai grand besoin de conseils. Je tremble pour ma maison, pour mon mari, pour mon fils. Sidi El Arafi nous aidera sûrement.
+s21_sidi_el_arafi#5 [aicha] Il est permis de faire ce qui est en notre pouvoir, puis de s'en remettre à Dieu. Ayons confiance.
+s21_sidi_el_arafi#6 [narrator] Lalla Aïcha s'arracha péniblement du sol, reprit son haïk, et elles sortirent vers un nouvel espoir.
+s22_fiche#0 [narrator] Fiche de révision. Chapitre neuf : la ruine et le départ, en quatre temps.
+s22_fiche#1 [narrator] La fièvre et la perte du capital. Le départ du père aux moissons. Le cercueil des rêves et l'orage. Et la misère de Lalla Aïcha.
+s22_fiche#2 [narrator] Les détails à retenir : Sidi Abdeslem refuse l'endettement par fierté, vend les bracelets et part travailler un mois aux moissons.
+s22_fiche#3 [narrator] Pour l'enfant, la Boîte à Merveilles devient un cercueil. Et les deux femmes décident de consulter Sidi El Arafi, le voyant aveugle.
+s22_fiche#4 [narrator] Thèmes : la ruine et la pauvreté, l'absence du père, la solitude et la peur, la solidarité féminine. Au chapitre dix : les prédictions de Sidi El Arafi.
