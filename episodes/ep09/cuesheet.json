@@ -1,0 +1,1165 @@
+{
+ "cues": [
+  {
+   "beat": "b001",
+   "scene": "s01_hook",
+   "t": 1.5,
+   "kind": "foley",
+   "id": "door_wood_old",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "door_open soft",
+   "have": true
+  },
+  {
+   "beat": "b002",
+   "scene": "s01_hook",
+   "t": 13.23,
+   "kind": "foley",
+   "id": "night_city_distant",
+   "params": {
+    "gain_db": -26,
+    "loop": 1,
+    "dist": 0.8
+   },
+   "raw": "far city night",
+   "have": true
+  },
+  {
+   "beat": "b004",
+   "scene": "s03_reveil",
+   "t": 33.2,
+   "kind": "vocal",
+   "id": "whispers_group",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "whisper soft",
+   "have": true
+  },
+  {
+   "beat": "b005",
+   "scene": "s03_reveil",
+   "t": 43.64,
+   "kind": "vocal",
+   "id": "whispers_group",
+   "params": {},
+   "raw": "whispers",
+   "have": true
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_reveil",
+   "t": 58.43,
+   "kind": "synth",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat soft",
+   "have": null
+  },
+  {
+   "beat": "b006",
+   "scene": "s03_reveil",
+   "t": 58.43,
+   "kind": "synth",
+   "id": "tinnitus",
+   "params": {},
+   "raw": "tinnitus",
+   "have": null
+  },
+  {
+   "beat": "b007",
+   "scene": "s03_reveil",
+   "t": 68.78,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "soft footsteps",
+   "have": true
+  },
+  {
+   "beat": "b011",
+   "scene": "s03_reveil",
+   "t": 91.67,
+   "kind": "vocal",
+   "id": "child_whimper",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "soft sobbing",
+   "have": true
+  },
+  {
+   "beat": "b013",
+   "scene": "s03_reveil",
+   "t": 100.93,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "footsteps",
+   "have": true
+  },
+  {
+   "beat": "b013",
+   "scene": "s03_reveil",
+   "t": 100.93,
+   "kind": "foley",
+   "id": "spoon_glass_clink",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "spoon clink",
+   "have": true
+  },
+  {
+   "beat": "b014",
+   "scene": "s03_reveil",
+   "t": 105.24,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "dizzy whoosh",
+   "have": true
+  },
+  {
+   "beat": "b014",
+   "scene": "s03_reveil",
+   "t": 105.24,
+   "kind": "synth",
+   "id": "heartbeat",
+   "params": {},
+   "raw": "heartbeat",
+   "have": null
+  },
+  {
+   "beat": "b016",
+   "scene": "s04_remedes",
+   "t": 131.09,
+   "kind": "voicefx",
+   "id": "voice_space",
+   "params": {
+    "dist": 0.5
+   },
+   "raw": "courtyard echo",
+   "have": null
+  },
+  {
+   "beat": "b019",
+   "scene": "s05_diner_chat",
+   "t": 158.11,
+   "kind": "foley",
+   "id": "footsteps_stairs",
+   "params": {},
+   "raw": "footsteps_stairs",
+   "have": true
+  },
+  {
+   "beat": "b019",
+   "scene": "s05_diner_chat",
+   "t": 158.11,
+   "kind": "foley",
+   "id": "match_strike",
+   "params": {},
+   "raw": "match_strike",
+   "have": true
+  },
+  {
+   "beat": "b021",
+   "scene": "s05_diner_chat",
+   "t": 185.73,
+   "kind": "foley",
+   "id": "tin_click",
+   "params": {
+    "gain_db": -30
+   },
+   "raw": "clock quiet",
+   "have": true
+  },
+  {
+   "beat": "b021",
+   "scene": "s05_diner_chat",
+   "t": 185.73,
+   "kind": "ctrl",
+   "id": "silence_or_room",
+   "params": {},
+   "raw": "room stillness",
+   "have": null
+  },
+  {
+   "beat": "b022",
+   "scene": "s05_diner_chat",
+   "t": 199.24,
+   "kind": "foley",
+   "id": "cat_yowl",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "cat_meow timid",
+   "have": true
+  },
+  {
+   "beat": "b022",
+   "scene": "s05_diner_chat",
+   "t": 199.24,
+   "kind": "foley",
+   "id": "cat_yowl",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "cat_hiss",
+   "have": true
+  },
+  {
+   "beat": "b022",
+   "scene": "s05_diner_chat",
+   "t": 199.24,
+   "kind": "foley",
+   "id": "cat_jump_land",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "cat_scurry",
+   "have": true
+  },
+  {
+   "beat": "b023",
+   "scene": "s05_diner_chat",
+   "t": 217.02,
+   "kind": "vocal",
+   "id": "child_whimper",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "child_sob",
+   "have": true
+  },
+  {
+   "beat": "b026",
+   "scene": "s05_diner_chat",
+   "t": 234.39,
+   "kind": "ctrl",
+   "id": "none_by_design",
+   "params": {},
+   "raw": "none: 'pleurer' is the sob already heard in b023; the father tells him to stop",
+   "have": null
+  },
+  {
+   "beat": "b027",
+   "scene": "s06_ruine",
+   "t": 243.14,
+   "kind": "foley",
+   "id": "spoon_glass_clink",
+   "params": {},
+   "raw": "glass clink",
+   "have": true
+  },
+  {
+   "beat": "b032",
+   "scene": "s06_ruine",
+   "t": 278.01,
+   "kind": "foley",
+   "id": "bendir_hit",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "slap_cheeks",
+   "have": true
+  },
+  {
+   "beat": "b032",
+   "scene": "s06_ruine",
+   "t": 278.01,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "cloth rustle",
+   "have": true
+  },
+  {
+   "beat": "b033",
+   "scene": "s06_ruine",
+   "t": 289.91,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "struggle rustle",
+   "have": true
+  },
+  {
+   "beat": "b033",
+   "scene": "s06_ruine",
+   "t": 289.91,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -20
+   },
+   "raw": "floor thud",
+   "have": true
+  },
+  {
+   "beat": "b041",
+   "scene": "s07_decision",
+   "t": 345.23,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
+   "params": {
+    "gain_db": -24,
+    "loop": 1
+   },
+   "raw": "wind fields",
+   "have": true
+  },
+  {
+   "beat": "b041",
+   "scene": "s07_decision",
+   "t": 345.23,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "sickle swish",
+   "have": true
+  },
+  {
+   "beat": "b045",
+   "scene": "s07_decision",
+   "t": 380.54,
+   "kind": "foley",
+   "id": "metal_clinks",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "bracelet_clink",
+   "have": true
+  },
+  {
+   "beat": "b048",
+   "scene": "s08_solitude",
+   "t": 414.07,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "low drone",
+   "have": null
+  },
+  {
+   "beat": "b050",
+   "scene": "s08_solitude",
+   "t": 437.49,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "void wind low",
+   "have": true
+  },
+  {
+   "beat": "b051",
+   "scene": "s08_solitude",
+   "t": 449.84,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "nightingale birds",
+   "have": true
+  },
+  {
+   "beat": "b051",
+   "scene": "s08_solitude",
+   "t": 449.84,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "morning breeze",
+   "have": true
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_depart",
+   "t": 467.95,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "morning birds",
+   "have": true
+  },
+  {
+   "beat": "b052",
+   "scene": "s09_depart",
+   "t": 467.95,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "footsteps receding",
+   "have": true
+  },
+  {
+   "beat": "b053",
+   "scene": "s09_depart",
+   "t": 483.49,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "cloth pack",
+   "have": true
+  },
+  {
+   "beat": "b053",
+   "scene": "s09_depart",
+   "t": 483.49,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "bread rustle",
+   "have": true
+  },
+  {
+   "beat": "b054",
+   "scene": "s09_depart",
+   "t": 500.96,
+   "kind": "foley",
+   "id": "door_wood_old",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "door close soft",
+   "have": true
+  },
+  {
+   "beat": "b054",
+   "scene": "s09_depart",
+   "t": 500.96,
+   "kind": "vocal",
+   "id": "child_whimper",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "muffled sob",
+   "have": true
+  },
+  {
+   "beat": "b057",
+   "scene": "s10_quarante_chats",
+   "t": 543.39,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "morning sparrows",
+   "have": true
+  },
+  {
+   "beat": "b062",
+   "scene": "s10_quarante_chats",
+   "t": 574.21,
+   "kind": "ctrl",
+   "id": "none_no_sample",
+   "params": {},
+   "raw": "happy purrs",
+   "have": null
+  },
+  {
+   "beat": "b062",
+   "scene": "s10_quarante_chats",
+   "t": 574.21,
+   "kind": "music",
+   "id": "dream_shimmer",
+   "params": {},
+   "raw": "dream shimmer",
+   "have": null
+  },
+  {
+   "beat": "b065",
+   "scene": "s10_quarante_chats",
+   "t": 599.94,
+   "kind": "vocal",
+   "id": "women_laughing_group",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "warm laughter",
+   "have": true
+  },
+  {
+   "beat": "b065",
+   "scene": "s10_quarante_chats",
+   "t": 599.94,
+   "kind": "foley",
+   "id": "bendir_hit",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "claps",
+   "have": true
+  },
+  {
+   "beat": "b066",
+   "scene": "s10_quarante_chats",
+   "t": 609.61,
+   "kind": "ctrl",
+   "id": "none_by_design",
+   "params": {},
+   "raw": "none: 'rire' is the laugh in b065; this line says the neighbours must not hear it",
+   "have": null
+  },
+  {
+   "beat": "b069",
+   "scene": "s11_tadeffi",
+   "t": 631.22,
+   "kind": "foley",
+   "id": "chair_wood_creak",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "door scratch",
+   "have": true
+  },
+  {
+   "beat": "b069",
+   "scene": "s11_tadeffi",
+   "t": 631.22,
+   "kind": "vocal",
+   "id": "whispers_group",
+   "params": {},
+   "raw": "corridor whispers",
+   "have": true
+  },
+  {
+   "beat": "b071",
+   "scene": "s11_tadeffi",
+   "t": 647.45,
+   "kind": "foley",
+   "id": "steam_hiss",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "soup steam",
+   "have": true
+  },
+  {
+   "beat": "b078",
+   "scene": "s11_tadeffi",
+   "t": 709.82,
+   "kind": "foley",
+   "id": "water_pour_glass",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "happy slurps",
+   "have": true
+  },
+  {
+   "beat": "b080",
+   "scene": "s12_fenetre_rahma",
+   "t": 729.45,
+   "kind": "foley",
+   "id": "street_morning_far",
+   "params": {
+    "gain_db": -26,
+    "loop": 1
+   },
+   "raw": "courtyard bright",
+   "have": true
+  },
+  {
+   "beat": "b083",
+   "scene": "s12_fenetre_rahma",
+   "t": 750.3,
+   "kind": "vocal",
+   "id": "man_cough",
+   "params": {
+    "gain_db": -20,
+    "count": 3
+   },
+   "raw": "triple sneeze",
+   "have": true
+  },
+  {
+   "beat": "b083",
+   "scene": "s12_fenetre_rahma",
+   "t": 750.3,
+   "kind": "foley",
+   "id": "toy_trumpet",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "trumpet nose blow",
+   "have": true
+  },
+  {
+   "beat": "b083",
+   "scene": "s12_fenetre_rahma",
+   "t": 750.3,
+   "kind": "vocal",
+   "id": "kids_cheer",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "child laugh",
+   "have": true
+  },
+  {
+   "beat": "b087",
+   "scene": "s13_dejeuner_pauvre",
+   "t": 798.12,
+   "kind": "foley",
+   "id": "spoon_glass_clink",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "ceramic clink quiet",
+   "have": true
+  },
+  {
+   "beat": "b088",
+   "scene": "s13_dejeuner_pauvre",
+   "t": 813.86,
+   "kind": "foley",
+   "id": "footsteps_stairs",
+   "params": {},
+   "raw": "footsteps_stairs",
+   "have": true
+  },
+  {
+   "beat": "b089",
+   "scene": "s14_cercueil",
+   "t": 825.66,
+   "kind": "foley",
+   "id": "chair_wood_creak",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "wood creak",
+   "have": true
+  },
+  {
+   "beat": "b090",
+   "scene": "s14_cercueil",
+   "t": 834.38,
+   "kind": "foley",
+   "id": "chest_lid_wood",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "hollow wood thud",
+   "have": true
+  },
+  {
+   "beat": "b091",
+   "scene": "s14_cercueil",
+   "t": 849.44,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "empty room hum",
+   "have": null
+  },
+  {
+   "beat": "b092",
+   "scene": "s14_cercueil",
+   "t": 865.08,
+   "kind": "foley",
+   "id": "water_scrub",
+   "params": {
+    "gain_db": -30,
+    "dist": 0.8
+   },
+   "raw": "broom far",
+   "have": true
+  },
+  {
+   "beat": "b092",
+   "scene": "s14_cercueil",
+   "t": 865.08,
+   "kind": "vocal",
+   "id": "child_breath_in",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "soft sniff",
+   "have": true
+  },
+  {
+   "beat": "b093",
+   "scene": "s14_cercueil",
+   "t": 875.53,
+   "kind": "music",
+   "id": "women_songs_far",
+   "params": {},
+   "raw": "soft hum lullaby",
+   "have": null
+  },
+  {
+   "beat": "b093",
+   "scene": "s14_cercueil",
+   "t": 875.53,
+   "kind": "vocal",
+   "id": "child_whimper",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "quiet sob",
+   "have": true
+  },
+  {
+   "beat": "b094",
+   "scene": "s15_orage_flute",
+   "t": 892.18,
+   "kind": "foley",
+   "id": "night_city_distant",
+   "params": {
+    "gain_db": -26,
+    "loop": 1,
+    "dist": 0.8
+   },
+   "raw": "night crickets far",
+   "have": true
+  },
+  {
+   "beat": "b095",
+   "scene": "s15_orage_flute",
+   "t": 901.02,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "storm wind howl",
+   "have": true
+  },
+  {
+   "beat": "b095",
+   "scene": "s15_orage_flute",
+   "t": 901.02,
+   "kind": "foley",
+   "id": "door_wood_old",
+   "params": {
+    "gain_db": -22,
+    "count": 3
+   },
+   "raw": "door slam x3",
+   "have": true
+  },
+  {
+   "beat": "b096",
+   "scene": "s15_orage_flute",
+   "t": 909.69,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "eerie flute drone",
+   "have": null
+  },
+  {
+   "beat": "b096",
+   "scene": "s15_orage_flute",
+   "t": 909.69,
+   "kind": "foley",
+   "id": "terrace_wind_soft",
+   "params": {
+    "gain_db": -24,
+    "loop": 1
+   },
+   "raw": "wind howl",
+   "have": true
+  },
+  {
+   "beat": "b097",
+   "scene": "s15_orage_flute",
+   "t": 923.22,
+   "kind": "vocal",
+   "id": "beggar_call_far",
+   "params": {},
+   "raw": "beggar call",
+   "have": true
+  },
+  {
+   "beat": "b097",
+   "scene": "s15_orage_flute",
+   "t": 923.22,
+   "kind": "vocal",
+   "id": "man_laugh_neigh",
+   "params": {},
+   "raw": "neighing",
+   "have": true
+  },
+  {
+   "beat": "b097",
+   "scene": "s15_orage_flute",
+   "t": 923.22,
+   "kind": "vocal",
+   "id": "man_groan",
+   "params": {},
+   "raw": "groans",
+   "have": true
+  },
+  {
+   "beat": "b098",
+   "scene": "s15_orage_flute",
+   "t": 932.02,
+   "kind": "vocal",
+   "id": "prayer_murmur_man",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "soft whispered prayer",
+   "have": true
+  },
+  {
+   "beat": "b098",
+   "scene": "s15_orage_flute",
+   "t": 932.02,
+   "kind": "foley",
+   "id": "water_drip",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "rain fade",
+   "have": true
+  },
+  {
+   "beat": "b099",
+   "scene": "s16_deux_mondes",
+   "t": 946.23,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "sparrows fading into drone",
+   "have": null
+  },
+  {
+   "beat": "b100",
+   "scene": "s16_deux_mondes",
+   "t": 958.12,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {},
+   "raw": "sparrows",
+   "have": true
+  },
+  {
+   "beat": "b100",
+   "scene": "s16_deux_mondes",
+   "t": 958.12,
+   "kind": "foley",
+   "id": "water_drip",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "water trickle",
+   "have": true
+  },
+  {
+   "beat": "b101",
+   "scene": "s16_deux_mondes",
+   "t": 971.14,
+   "kind": "music",
+   "id": "drone",
+   "params": {},
+   "raw": "nightmare hum low",
+   "have": null
+  },
+  {
+   "beat": "b102",
+   "scene": "s17_omelette_kanza",
+   "t": 995.43,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "morning birds",
+   "have": true
+  },
+  {
+   "beat": "b105",
+   "scene": "s17_omelette_kanza",
+   "t": 1012.51,
+   "kind": "ctrl",
+   "id": "none_by_design",
+   "params": {},
+   "raw": "none: 'appelons' names the dish, it is not a shout",
+   "have": null
+  },
+  {
+   "beat": "b107",
+   "scene": "s17_omelette_kanza",
+   "t": 1023.44,
+   "kind": "vocal",
+   "id": "women_laughing_group",
+   "params": {
+    "gain_db": -22,
+    "dur": 3
+   },
+   "raw": "women laughter",
+   "have": true
+  },
+  {
+   "beat": "b108",
+   "scene": "s17_omelette_kanza",
+   "t": 1034.6,
+   "kind": "foley",
+   "id": "toy_trumpet",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "comic chime",
+   "have": true
+  },
+  {
+   "beat": "b109",
+   "scene": "s17_omelette_kanza",
+   "t": 1047.04,
+   "kind": "vocal",
+   "id": "women_laughing_group",
+   "params": {
+    "gain_db": -22
+   },
+   "raw": "chuckle",
+   "have": true
+  },
+  {
+   "beat": "b110",
+   "scene": "s18_driss_depart",
+   "t": 1055.19,
+   "kind": "vocal",
+   "id": "beggar_call_far",
+   "params": {
+    "gain_db": -22,
+    "dist": 0.8
+   },
+   "raw": "door call far",
+   "have": true
+  },
+  {
+   "beat": "b110",
+   "scene": "s18_driss_depart",
+   "t": 1055.19,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "paper wrap",
+   "have": true
+  },
+  {
+   "beat": "b111",
+   "scene": "s18_driss_depart",
+   "t": 1069.04,
+   "kind": "foley",
+   "id": "water_pour_glass",
+   "params": {},
+   "raw": "water pour",
+   "have": true
+  },
+  {
+   "beat": "b111",
+   "scene": "s18_driss_depart",
+   "t": 1069.04,
+   "kind": "foley",
+   "id": "footsteps_stairs",
+   "params": {},
+   "raw": "footsteps_stairs",
+   "have": true
+  },
+  {
+   "beat": "b113",
+   "scene": "s18_driss_depart",
+   "t": 1087.27,
+   "kind": "vocal",
+   "id": "man_cough",
+   "params": {
+    "gain_db": -18
+   },
+   "raw": "nose blow loud",
+   "have": true
+  },
+  {
+   "beat": "b115",
+   "scene": "s18_driss_depart",
+   "t": 1104.93,
+   "kind": "vocal",
+   "id": "whispers_group",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "women chatter",
+   "have": true
+  },
+  {
+   "beat": "b116",
+   "scene": "s19_medina",
+   "t": 1120.51,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {
+    "gain_db": -26,
+    "loop": 1
+   },
+   "raw": "medina murmur",
+   "have": true
+  },
+  {
+   "beat": "b116",
+   "scene": "s19_medina",
+   "t": 1120.51,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "slippers cobblestone",
+   "have": true
+  },
+  {
+   "beat": "b119",
+   "scene": "s19_medina",
+   "t": 1150.83,
+   "kind": "foley",
+   "id": "crowd_souk_walla",
+   "params": {
+    "gain_db": -26,
+    "loop": 1
+   },
+   "raw": "market bustle",
+   "have": true
+  },
+  {
+   "beat": "b127",
+   "scene": "s20_aicha_misere",
+   "t": 1210.9,
+   "kind": "foley",
+   "id": "steam_hiss",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "kettle hiss",
+   "have": true
+  },
+  {
+   "beat": "b128",
+   "scene": "s20_aicha_misere",
+   "t": 1220.1,
+   "kind": "ctrl",
+   "id": "silence_or_room",
+   "params": {},
+   "raw": "empty silence",
+   "have": null
+  },
+  {
+   "beat": "b129",
+   "scene": "s20_aicha_misere",
+   "t": 1232.46,
+   "kind": "foley",
+   "id": "cat_yowl",
+   "params": {
+    "gain_db": -24,
+    "dist": 0.8
+   },
+   "raw": "kitten meow far",
+   "have": true
+  },
+  {
+   "beat": "b130",
+   "scene": "s20_aicha_misere",
+   "t": 1248.84,
+   "kind": "foley",
+   "id": "water_pour_glass",
+   "params": {},
+   "raw": "tea pour",
+   "have": true
+  },
+  {
+   "beat": "b132",
+   "scene": "s21_sidi_el_arafi",
+   "t": 1272.82,
+   "kind": "foley",
+   "id": "sparrows_dawn",
+   "params": {
+    "gain_db": -28,
+    "dist": 0.8
+   },
+   "raw": "distant birds",
+   "have": true
+  },
+  {
+   "beat": "b132",
+   "scene": "s21_sidi_el_arafi",
+   "t": 1272.82,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "soft footsteps",
+   "have": true
+  },
+  {
+   "beat": "b134",
+   "scene": "s21_sidi_el_arafi",
+   "t": 1294.11,
+   "kind": "vocal",
+   "id": "child_breath_in",
+   "params": {
+    "gain_db": -26
+   },
+   "raw": "sigh",
+   "have": true
+  },
+  {
+   "beat": "b137",
+   "scene": "s21_sidi_el_arafi",
+   "t": 1320.76,
+   "kind": "foley",
+   "id": "cloth_rustle_stiff",
+   "params": {
+    "gain_db": -28
+   },
+   "raw": "cloth rustle",
+   "have": true
+  },
+  {
+   "beat": "b137",
+   "scene": "s21_sidi_el_arafi",
+   "t": 1320.76,
+   "kind": "foley",
+   "id": "footsteps_stone",
+   "params": {
+    "gain_db": -24
+   },
+   "raw": "footsteps",
+   "have": true
+  }
+ ],
+ "verb_gaps": [],
+ "missing_ids": [],
+ "unknown": []
+}

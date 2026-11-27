@@ -16,12 +16,11 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
+import { aimHead, fingerLips, holdGaze, reachHand } from '../lib/fix9_B.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's10_quarante_chats', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
-const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .4, t) * (1 - sm(t0 + b * D, t0 + b * D + .4, t)); };
-
 const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
@@ -82,166 +81,187 @@ const ch_lie = staged('chambre_jour', {
 });
 
 const ch = staged('chambre_jour', {
-  mohammed: { at: [1350, 694], face: 'cam', yaw: -.65, pose: 'cross',
-    o: { seat: TOP, floor: TOP, lean: .08, hands: false, mattress: MATTRESS, avoid: CHEST },
-    hands: false, seed: 3, look: 'zoubida', lookMax: .55 },
-  zoubida: { at: [1000, 685], face: 'cam', yaw: .65, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .56 },
+  mohammed: { at: [1350, 694], face: 'zoubida', pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .06, hands: false, mattress: MATTRESS, avoid: CHEST },
+    hands: false, seed: 3, look: () => null },
+  // Floor beside the right divan — she was kneeling on the back mattress, out of reach.
+  zoubida: { at: [1272, 778], face: 'mohammed', pose: 'kneel',
+    o: { grounded: true, lean: .1, avoid: CHEST }, hands: false, seed: 7, look: () => null },
 }, {
   light: MORNING,
   act(lt, t, S, st, S3) {
+    holdGaze(st);
     const { mohammed: mo, zoubida: zo } = st.A;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
     makeBedProps(S3, st, mo, true);
 
     lapRest(mo, t, 3);
     lapRest(zo, t, 7);
-    mo.B.chest.rotation.x += .015 * Math.sin(t * 1.4);
-    zo.B.chest.rotation.x += .015 * Math.sin(t * 1.2 + 1);
+    const full = (i) => sm(B(i)[0] - .05, B(i)[0] + .22, t);
+    let moAim = {}, zoAim = {};
 
-    // b057: sits up relieved
     if (IN(0, t)) {
-      const u = sm(B(0)[0] + 2.5, B(0)[1], t);
-      mo.B.spine.rotation.x -= .06 * u;
-      mo.B.chest.rotation.x -= .04 * u;
+      const u = sm(B(0)[0] + 2.2, B(0)[1], t);
+      mo.B.spine.rotation.x -= .08 * u;
     }
 
-    // b058: curious head tilt + small open hand
+    // b058: curious head tilt, held for the whole question
     if (IN(1, t)) {
-      const q = win(1, .05, .95, t);
-      mo.B.head.rotation.z += .14 * q;
-      mo.B.neck.rotation.x -= .05 * q;
-      reach85(mo, 'R', front(mo, 'chest', .22 * km, .14 * km, -.14 * km), { grip: 0, pole: [-.45, .05, .2] });
-      PO.palmTo(mo, 'R', q * .7, V(0, 1, .2));
-      PO.fingers(mo, 'R', .2, { spread: .25 });
+      const q = full(1);
+      moAim = { z: .5 * q, x: .06 * q };
+      reachHand(mo, 'R', front(mo, 'chest', .2 * km, .12 * km, .02 * km), { grip: 0, pole: [-.4, .15, .25] });
+      PO.palmTo(mo, 'R', q * .8, V(0, 1, .15));
+      PO.fingers(mo, 'R', .12, { spread: .35 });
     }
 
-    // b059: Zoubida startles out of daze, tired smile, gentle open palm
+    // b059: startle out of the daze — shoulders up, head back, hand at the chest
     if (IN(2, t)) {
-      const q = win(2, .05, .95, t);
-      zo.B.spine.rotation.x -= .04 * q;
-      zo.B.head.rotation.z -= .06 * q;
-      reach85(zo, 'R', front(zo, 'chest', .24 * kz, .15 * kz, -.16 * kz), { grip: 0, pole: [-.45, .05, .2] });
-      PO.palmTo(zo, 'R', q * .6, V(0, 1, .25));
-      PO.fingers(zo, 'R', .18, { spread: .3 });
+      const q = full(2);
+      zo.B.spine.rotation.x -= .22 * q;
+      zo.B.chest.rotation.x -= .1 * q;
+      zoAim = { x: -.2 * q, z: -.1 * q };
+      reachHand(zo, 'R', front(zo, 'chest', .16 * kz, .1 * kz, .1 * kz), { grip: 0, pole: [-.35, .25, .3] });
+      PO.fingers(zo, 'R', .12, { spread: .28 });
     }
 
-    // b060: Mohammed solemn chin lift + firm little gesture
+    // b060: solemn chin lift
     if (IN(3, t)) {
-      const q = win(3, .05, .95, t);
-      mo.B.neck.rotation.x -= .1 * q;
-      mo.B.head.rotation.x -= .08 * q;
-      reach85(mo, 'L', front(mo, 'chest', .22 * km, -.14 * km, -.12 * km), { grip: 0, pole: [.45, .05, .2] });
-      PO.fingers(mo, 'L', .22, { spread: .18 });
+      const q = full(3);
+      mo.B.spine.rotation.x -= .16 * q;
+      mo.B.chest.rotation.x -= .1 * q;
+      moAim = { x: -.42 * q };
     }
 
-    // b061: Zoubida astonished, right hand raised gently near cheek/chin
+    // b061: astonishment, hand all the way up beside the cheek
     if (IN(4, t)) {
-      const q = win(4, .08, .92, t);
-      zo.B.spine.rotation.x -= .05 * q;
-      const cheek = zo.B.head.localToWorld(V(-.13, .03, .13));
-      const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'R', rest.lerp(cheek, q), { grip: .01, pole: [-.5, .22, .2] });
-      PO.fingers(zo, 'R', .18, { spread: .25 });
+      const q = full(4);
+      zo.B.spine.rotation.x -= .2 * q;
+      zo.B.chest.rotation.x -= .08 * q;
+      zoAim = { x: -.16 * q, z: .08 * q };
+      const cheek = front(zo, 'head', .1 * kz, .08 * kz, .02 * kz);
+      reachHand(zo, 'R', cheek, { grip: 0, pole: [-.3, .5, .35], max: .99 });
+      PO.fingers(zo, 'R', .15, { spread: .3 });
     }
 
-    // b063: Zoubida warm broad smile + teasing hand
+    // b063: warm teasing, a broader smile in the lean
     if (IN(6, t)) {
-      const q = win(6, .05, .95, t);
-      zo.B.head.rotation.z += .08 * q;
-      zo.B.chest.rotation.x += .04 * q;
-      reach85(zo, 'L', front(zo, 'chest', .25 * kz, -.15 * kz, -.15 * kz), { grip: 0, pole: [.45, .05, .2] });
-      PO.palmTo(zo, 'L', q * .65, V(0, 1, .25));
-      PO.fingers(zo, 'L', .15, { spread: .3 });
+      const q = full(6);
+      zo.B.chest.rotation.y += .12 * q;
+      zo.B.spine.rotation.x += .06 * q;
+      zoAim = { z: .16 * q, x: .05 * q };
+      reachHand(zo, 'L', front(zo, 'chest', .22 * kz, -.14 * kz, .06 * kz), { grip: 0, pole: [.4, .15, .25] });
+      PO.palmTo(zo, 'L', q * .8, V(0, 1, .2));
+      PO.fingers(zo, 'L', .1, { spread: .32 });
     }
 
-    // b064: Mohammed firm proud nod
+    // b064: firm proud nod, chest out
     if (IN(7, t)) {
-      const q = win(7, .05, .95, t);
-      mo.B.head.rotation.x += .1 * Math.max(0, Math.sin((t - B(7)[0]) * 3.5)) * q;
-      mo.B.chest.rotation.x -= .05 * q;
-      reach85(mo, 'R', front(mo, 'chest', .22 * km, .15 * km, -.16 * km), { grip: 0, pole: [-.45, .05, .2] });
-      PO.fingers(mo, 'R', .45, { thumb: .3 });
+      const q = full(7);
+      const nod = Math.max(0, Math.sin((t - B(7)[0]) * 4.2));
+      mo.B.spine.rotation.x -= .18 * q;
+      mo.B.chest.rotation.x -= .12 * q;
+      moAim = { x: -.28 * q + .22 * nod * q };
+      reachHand(mo, 'R', front(mo, 'chest', .18 * km, .1 * km, .04 * km), { grip: 0, pole: [-.4, .1, .2] });
+      PO.fingers(mo, 'R', .4, { thumb: .25 });
     }
 
-    // b065: bursts out laughing, boy claps hands, then finger to lips
+    // b065: she laughs (first two clauses), he claps through the middle, then her finger goes to her lips
     if (IN(8, t)) {
       const c8 = t - B(8)[0], D8 = B(8)[1] - B(8)[0];
-      const laughW = sm(0, .35, c8) * (1 - sm(D8 * .6, D8 * .72, c8));
-      const hushW = sm(D8 * .64, D8 * .78, c8);
+      const laughW = sm(0, .18, c8) * (1 - sm(D8 * .7, D8 * .8, c8));
+      const clapW = sm(D8 * .26, D8 * .38, c8) * (1 - sm(D8 * .7, D8 * .8, c8));
+      const hushW = sm(D8 * .74, D8 * .84, c8);
       if (laughW > .01) {
-        zo.B.chest.rotation.x += .04 * Math.sin(t * 12) * laughW;
-        zo.B.neck.rotation.x -= .12 * laughW;
-        zo.B.head.rotation.x -= .1 * laughW;
-        mo.B.chest.rotation.x += .03 * Math.sin(t * 14) * laughW;
-        const clap = .03 * Math.abs(Math.sin(t * 11));
+        zo.B.spine.rotation.x -= .2 * laughW;
+        zo.B.chest.rotation.z = .08 * Math.sin(t * 11) * laughW;
+        zo.B.chest.rotation.x -= .06 * laughW;
+        zoAim = { x: -.28 * laughW, z: .06 * Math.sin(t * 9) * laughW };
         for (const [s, sg] of [['L', 1], ['R', -1]]) {
-          reach85(mo, s, front(mo, 'chest', .24 * km, -sg * (.05 + clap) * km, -.12 * km), { grip: 0, pole: [sg * .45, .05, .2] });
-          PO.fingers(mo, s, .08, { spread: .15 });
+          reachHand(zo, s, front(zo, 'chest', .16 * kz, sg * .14 * kz, .08 * kz), { grip: 0, pole: [sg * .35, .3, .25] });
+          PO.fingers(zo, s, .15, { spread: .25 });
         }
       }
-      if (hushW > .01) {
-        const lips = zo.B.head.localToWorld(V(-.06, .03, .19));
-        const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-        reach85(zo, 'R', rest.lerp(lips, hushW), { grip: .01, pole: [-.52, .18, .32] });
-        PO.fingers(zo, 'R', .85, { each: [.75, 0, 1, 1, 1] });
+      if (clapW > .01) {
+        mo.B.chest.rotation.x += .04 * Math.sin(t * 14) * clapW;
+        const sep = (.05 + .16 * Math.abs(Math.sin(t * 12))) * clapW;
+        for (const [s, sg] of [['L', 1], ['R', -1]]) {
+          reachHand(mo, s, front(mo, 'chest', .22 * km, -sg * sep * km, .06 * km), { grip: 0, pole: [sg * .4, .2, .25] });
+          PO.fingers(mo, s, .06, { spread: .12 });
+        }
       }
+      if (hushW > .01) fingerLips(zo, 'R');
     }
 
-    // b066: finger stays gently on lips
+    // b066: the finger stays on the lips for the whole "Chut"
     if (IN(9, t)) {
-      const q = win(9, 0, .95, t);
-      const lips = zo.B.head.localToWorld(V(-.06, .03, .19));
-      const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'R', rest.lerp(lips, q), { grip: .01, pole: [-.52, .18, .32] });
-      PO.fingers(zo, 'R', .85, { each: [.75, 0, 1, 1, 1] });
-      zo.B.head.rotation.z += .05 * q;
+      fingerLips(zo, 'R');
+      zo.B.spine.rotation.x += .08;
+      zoAim = { x: .06, z: .05 };
     }
 
-    // b067: Mohammed beaming hopeful nod
+    // b067: beaming hopeful nod — chin up, open hand, not the proud fist of b064
     if (IN(10, t)) {
-      const q = win(10, .05, .95, t);
-      mo.B.head.rotation.x += .08 * Math.sin((t - B(10)[0]) * 3) * q;
-      mo.B.neck.rotation.x -= .06 * q;
-      reach85(mo, 'R', front(mo, 'chest', .23 * km, .14 * km, -.15 * km), { grip: 0, pole: [-.45, .05, .2] });
-      PO.palmTo(mo, 'R', q * .6, V(0, 1, .2));
+      const q = full(10);
+      const nod = Math.sin((t - B(10)[0]) * 3.4);
+      mo.B.spine.rotation.x -= .1 * q;
+      moAim = { x: -.18 * q + .2 * nod * q, z: .08 * q };
+      reachHand(mo, 'R', front(mo, 'chest', .2 * km, .14 * km, .08 * km), { grip: 0, pole: [-.35, .2, .25] });
+      PO.palmTo(mo, 'R', q, V(0, 1, .15));
+      PO.fingers(mo, 'R', .08, { spread: .4 });
     }
 
-    // b068: Zoubida reaches tenderly toward him
+    // b068: she is beside the bed now, so the reach lands on him instead of empty air
     if (IN(11, t)) {
-      const q = win(11, .08, .92, t);
-      zo.B.chest.rotation.x += .07 * q;
-      const shM = at(mo, 'upperArmR').add(V(0, .05 * km, .03));
-      const rest = PO.hipToWorld(zo, .17 * kz, .09 * kz, .23 * kz);
-      reach85(zo, 'L', rest.lerp(shM, q), { grip: .02, pole: [.55, .15, .35] });
-      PO.fingers(zo, 'L', .16, { spread: .2 });
+      const q = full(11);
+      zo.B.spine.rotation.x += .22 * q;
+      zo.B.chest.rotation.x += .12 * q;
+      zoAim = { x: .1 * q };
+      const arm = at(mo, 'upperArmL').add(V(0, .04 * km, 0));
+      reachHand(zo, 'L', arm, { grip: .02, pole: [.4, .2, .35], max: .99 });
+      PO.fingers(zo, 'L', .12, { spread: .22 });
       st.actcheck = {
-        contacts: q > .25 ? [{ actors: ['zoubida', 'mohammed'], parts: ['handL:upperArmR', 'handL:upperArmL', 'handL:torso', 'foreArmL:upperArmR', 'foreArmL:upperArmL'] }] : [],
+        contacts: q > .2 ? [{ actors: ['zoubida', 'mohammed'], parts: ['handL:upperArmL', 'handL:upperArmR', 'handL:torso', 'foreArmL:upperArmL', 'foreArmL:upperArmR'] }] : [],
       };
     }
 
     mo.B.chest.updateWorldMatrix(false, true);
     zo.B.chest.updateWorldMatrix(false, true);
+    aimHead(mo, at(zo, 'head'), moAim);
+    aimHead(zo, at(mo, 'head'), zoAim);
+    // Head cues land after the gaze, so any finger/cheek target is solved on the head the camera sees.
+    if (IN(4, t)) {
+      reachHand(zo, 'R', front(zo, 'head', .1 * kz, .08 * kz, .02 * kz), { grip: 0, pole: [-.3, .5, .35], max: .99 });
+      PO.fingers(zo, 'R', .15, { spread: .3 });
+    }
+    if (IN(8, t)) {
+      const c8 = t - B(8)[0], D8 = B(8)[1] - B(8)[0];
+      if (sm(D8 * .74, D8 * .84, c8) > .01) fingerLips(zo, 'R');
+    }
+    if (IN(9, t)) fingerLips(zo, 'R');
   },
 });
 
-const insAtB062 = (6.18 - .08) / Math.max(.1, B(5)[1] - B(5)[0]);
+const d062 = Math.max(.1, B(5)[1] - B(5)[0]);
 
 export default beatScene(ID, {
   shots: { ch_lie, ch },
   plan: {
     b057: { shot: 'ch_lie', size: 'W', on: 'mohammed', segs: [[.55, 'ch']],
       cover: [{ f: .55, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: -30, dy: -30 }] },
-    b058: { shot: 'ch', size: 'CU', on: 'mohammed', z: 2.3, dy: -20 },
-    b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.3, dx: 20, dy: -20 },
-    b060: { shot: 'ch', size: 'CU', on: 'mohammed', z: 2.35, dy: -20 },
-    b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.55, dx: 75, dy: -20 },
-    b062: { move: 'panR', insAt: insAtB062 },
-    b063: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.3, dx: 20, dy: -20 },
-    b064: { shot: 'ch', size: 'CU', on: 'mohammed', z: 2.35, dy: -20 },
-    b065: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.5, dx: 85, dy: -20 },
-    b066: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.4, dx: 15, dy: -20 },
-    b067: { shot: 'ch', size: 'CU', on: 'mohammed', z: 2.35, dy: -20 },
-    b068: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.2, dx: 35, dy: -20 },
+    b058: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
+    b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 5.6, dx: 0, dy: -12 },
+    b060: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
+    b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 3.1, dx: 0, dy: -6 },
+    // Hold the beignets insert through the honey line (the 40.9s tile fell after the 1.2s cut).
+    b062: { move: 'panR', noIns: true, segs: [
+      [6.05 / d062, 'i_beignets_miel', { move: 'push' }],
+      [9.35 / d062, 'p07_quarante_chats', { move: 'panR' }],
+    ] },
+    b063: { shot: 'ch', size: 'CU', on: 'zoubida', z: 5.6, dx: 0, dy: -12 },
+    b064: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
+    b065: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.7, dx: 70, dy: -8 },
+    b066: { shot: 'ch', size: 'CU', on: 'zoubida', z: 5.8, dx: 0, dy: -10 },
+    b067: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
+    b068: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.8, dx: 30, dy: -8 },
   },
 });

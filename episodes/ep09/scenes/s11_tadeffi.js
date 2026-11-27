@@ -1,24 +1,24 @@
 // s11 "Le tadeffi".
-// b069: patio_matin threshold/corridor — Zoubida whispers with Fatma at the doorway.
-// b070: patio_matin — Zoubida urges her neighbour inside toward the room.
-// b071: chambre_jour (ch_lie + insert bol_tadeffi) — Fatma enters carrying a steaming bowl of tadeffi; Mohammed turns toward the wall.
-// b072: chambre_jour (ch_lie) — Fatma smiles gently down at the boy.
-// b073: chambre_jour (ch_lie) — Zoubida bribes Mohammed gently with a beignet.
-// b074: chambre_jour (ch_sit) — Mohammed sits up on the bed and sniffs suspiciously.
-// b075: chambre_jour (ch_sit) — Both women swear; Mohammed catches Zoubida in her lie and points at her.
-// b076: chambre_jour (ch_sit) — Caught, Zoubida rolls her eyes to the ceiling and slips out toward the kitchen.
-// b077: chambre_jour (ch_sit) — Fatma coaxes Mohammed warmly with sweet nicknames.
-// b078: chambre_jour (ch_sit) — Unable to resist, Mohammed takes the bowl and drinks the tadeffi eagerly.
+// b069: patio_matin left-arch threshold — Zoubida and Fatma whisper together, clear of the well.
+// b070: patio_matin — Zoubida beckons Fatma toward the room; Fatma already holds the bowl.
+// b071: chambre_jour — Fatma walks in on the stone floor with a steaming bowl; Mohammed turns his face to the wall.
+// b072: chambre_jour — Fatma, on the floor beside the bed, looks down at the boy.
+// b073: chambre_jour — Zoubida leans in and coaxes him with a beignet.
+// b074: chambre_jour — Mohammed sits up and sniffs the bowl.
+// b075: chambre_jour — both women swear; Mohammed points at his mother.
+// b076: chambre_jour — Zoubida looks up, then walks out the door.
+// b077: chambre_jour — Fatma, close on the banquette, holds the bowl out.
+// b078: chambre_jour — Mohammed tips the bowl to his mouth and drinks.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
 import { walk } from '../lib/acts.js';
+import { reachClamp, lapHands, steamAt } from '../lib/fix9_C.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's11_tadeffi', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
-const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 + a * D, t0 + a * D + .4, t) * (1 - sm(t0 + b * D, t0 + b * D + .4, t)); };
 
 const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
@@ -26,27 +26,11 @@ const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const PATIO_LT = { dir: [2, 3, 1], key: '#ffe6ba', keyI: 2.1, sky: '#cbd9ee', ground: '#8f7759', fillI: 1.15, shadow: .26 };
 const ROOM_LT = { dir: [2, 3, 1], key: '#ffe8bc', keyI: 2.15, sky: '#d0def2', ground: '#91785a', fillI: 1.15, shadow: .28 };
 
-function reach85(a, side, target, opt) {
-  const sh = at(a, 'upperArm' + side);
-  const len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
-  const maxR = len * .84, d = target.clone().sub(sh);
-  if (d.length() > maxR) target = sh.clone().addScaledVector(d.normalize(), maxR);
-  return PO.reach(a, side, target, opt);
-}
+function reach85(a, side, target, opt) { return reachClamp(a, side, target, opt); }
 
-function lapRest(a, t, seed = 0) {
+function holdBowl(a, bowl, { fwd = .36, up = .02, tilt = .15, gripSpread = .11 } = {}) {
   const k = a.group.scale.y / 1.6;
-  for (const [s, sg] of [['L', 1], ['R', -1]]) {
-    const bob = .01 * k * Math.sin(t * 1.1 + seed + (sg > 0 ? 0 : 1.6));
-    const tg = PO.hipToWorld(a, sg * .17 * k, .09 * k + bob, .23 * k);
-    reach85(a, s, tg, { grip: .02, pole: [sg * .4, .06, .15] });
-    PO.fingers(a, s, .26 + .04 * Math.sin(t * .9 + sg), { thumb: .22, spread: .16 });
-  }
-}
-
-function holdBowl(a, bowl, { fwd = .25, up = -.16, tilt = 0, gripSpread = .095 } = {}) {
-  const k = a.group.scale.y / 1.6;
-  const center = front(a, 'chest', fwd * k, 0, up * k);
+  const center = front(a, 'chest', fwd * k, .02 * k, up * k);
   bowl.position.copy(center);
   bowl.rotation.order = 'YXZ';
   bowl.rotation.y = a.group.rotation.y;
@@ -55,23 +39,24 @@ function holdBowl(a, bowl, { fwd = .25, up = -.16, tilt = 0, gripSpread = .095 }
   bowl.visible = true;
   for (const [s, sg] of [['L', 1], ['R', -1]]) {
     const sideV = dirW(a, sg, 0, 0);
-    const tg = center.clone().addScaledVector(sideV, gripSpread * k).add(V(0, .02 * k, 0));
-    reach85(a, s, tg, { grip: .015, pole: [sg * .48, .02, .22] });
-    PO.fingers(a, s, .35, { thumb: .3, spread: .12 });
+    const tg = center.clone().addScaledVector(sideV, gripSpread * k).add(V(0, .01 * k, 0));
+    reach85(a, s, tg, { grip: .015, pole: [sg * .28, -.02, .12] });
+    PO.fingers(a, s, .42, { thumb: .35, spread: .1 });
   }
+  return center;
 }
 
 function makeSoupBowl(S3, st) {
-  st.bowl ||= S3.prop(PR.bowl({ r: .10, h: .065, glaze: 0x3b6e52, food: 0xe6d294 }), 0, 0, 0);
+  st.bowl ||= S3.prop(PR.bowl({ r: .11, h: .07, glaze: 0x8fbf7a, food: 0xf0d78a }), 0, 0, 0);
   return st.bowl;
 }
 
 function makeBedProps(S3, st, mo, seated) {
-  pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b4d6b });
+  pillowUnder(S3, st, mo, { top: TOP, h: .1, col: 0xd9c7a4, w: .42, d: .32 });
   if (seated && st.pillow) {
     const back = dirW(mo, 0, 0, -1);
     const hp = mo.B.root.getWorldPosition(V(0, 0, 0));
-    S3.prop(st.pillow, hp.x + back.x * .24, TOP + .04 - .004, hp.z + back.z * .24, mo.group.rotation.y);
+    S3.prop(st.pillow, hp.x + back.x * .24, TOP + .05 - .004, hp.z + back.z * .24, mo.group.rotation.y);
   }
   st.cover ||= PR.blanket({ w: .42, l: .54, h: .055, col: 0xb23a2a });
   const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
@@ -80,227 +65,220 @@ function makeBedProps(S3, st, mo, seated) {
   st.cover.visible = true;
 }
 
-// Beats 1-2: patio_matin threshold / corridor
+function faceToward(a, world) {
+  const p = a.group.position;
+  a.group.rotation.y = Math.atan2(world.x - p.x, world.z - p.z);
+  a.group.updateMatrixWorld(true);
+}
+
+// Left arcade threshold. Both women stay on the tiles, left of the well and the bucket.
 const pa = staged('patio_matin', {
-  zoubida: { at: [1120, 895], face: 'cam', yaw: .08, walk: { to: [1240, 945], t0: B(0)[0] + 1.0, t1: B(0)[0] + 3.2 },
-    seed: 7, look: 'fatma', lookMax: .38 },
-  fatma: { at: [1550, 895], face: 'cam', yaw: -.25, walk: { to: [1430, 965], t0: B(0)[0] + .4, t1: B(0)[0] + 2.8 },
-    seed: 11, look: 'zoubida', lookMax: .45 },
+  zoubida: { height: 1.6, at: [620, 990], face: [460, 970], seed: 7, look: 'fatma', lookMax: .75,
+    walk: { to: [760, 980], t0: B(0)[0] + 4.6, t1: B(0)[0] + 7.4 } },
+  fatma: { height: 1.58, at: [390, 950], face: [620, 990], seed: 11, look: 'zoubida', lookMax: .75,
+    walk: { to: [530, 995], t0: .15, t1: 2.7 } },
 }, {
   light: PATIO_LT,
+  addressee: { zoubida: 'fatma', fatma: 'zoubida' },
   act(lt, t, S, st, S3) {
     const { zoubida: zo, fatma: fa } = st.A;
     const kz = zo.group.scale.y / 1.6;
-    const turnZ = sm(B(0)[0] + 3.0, B(0)[0] + 3.8, t);
-    if (turnZ > 0) {
-      const pZ = st.paZP ||= S3.floorAt(1240, 945);
-      const tgtZ = Math.atan2(S3.cam.position.x - pZ.x, S3.cam.position.z - pZ.z) + .08;
-      const dZ = Math.atan2(Math.sin(tgtZ - zo.group.rotation.y), Math.cos(tgtZ - zo.group.rotation.y));
-      zo.group.rotation.y += dZ * turnZ;
-      zo.group.updateMatrixWorld(true);
-    }
-    const turnF = sm(B(0)[0] + 2.6, B(0)[0] + 3.4, t);
-    if (turnF > 0) {
-      const pF = st.paFP ||= S3.floorAt(1430, 965);
-      const tgtF = Math.atan2(S3.cam.position.x - pF.x, S3.cam.position.z - pF.z) - .25;
-      const dF = Math.atan2(Math.sin(tgtF - fa.group.rotation.y), Math.cos(tgtF - fa.group.rotation.y));
-      fa.group.rotation.y += dF * turnF;
-      fa.group.updateMatrixWorld(true);
-    }
     const bowl = makeSoupBowl(S3, st);
-    holdBowl(fa, bowl, { fwd: .24, up: -.16 });
+    const ctr = holdBowl(fa, bowl, { fwd: .34, up: .0, tilt: .2 });
+    steamAt(S3, st, 'pa', ctr, t);
 
-    // Whispering conciliabule in b069, then Zoubida beckons Fatma in during b070
-    if (IN(0, t)) {
-      const talk = sm(B(0)[0] + 3.2, B(0)[0] + 4.2, t);
-      zo.B.chest.rotation.x += .06 * talk;
-      fa.B.chest.rotation.x += .05 * talk;
+    const urge = sm(B(0)[0] + 4.4, B(0)[0] + 5.2, t);
+    const whisper = 1 - urge;
+    if (whisper > .05) {
+      zo.B.chest.rotation.x += .16 * whisper;
+      fa.B.chest.rotation.x += .14 * whisper;
+      zo.B.head.rotation.z += .06 * whisper;
+      zo.B.chest.updateWorldMatrix(false, true);
+      reach85(zo, 'R', front(zo, 'head', .16 * kz, .1 * kz, -.02 * kz), { grip: 0, pole: [-.2, .04, .1] });
+      PO.fingers(zo, 'R', .32, { spread: .16 });
+      reach85(zo, 'L', front(zo, 'root', .12 * kz, -.18 * kz, -.3 * kz), { grip: .02, pole: [.16, -.04, .04] });
     }
-    if (IN(1, t)) {
-      const beck = win(1, .05, .95, t);
+    if (urge > .05) {
+      zo.B.chest.rotation.x += .08 * urge;
+      zo.B.chest.updateWorldMatrix(false, true);
       const sw = Math.sin(t * 5);
-      reach85(zo, 'R', front(zo, 'chest', (.24 + .04 * sw) * kz, .16 * kz, -.06 * kz), { grip: 0, pole: [-.45, .05, .22] });
-      PO.palmTo(zo, 'R', beck * .8, V(0, 1, .2));
-      PO.fingers(zo, 'R', .14, { spread: .3 });
+      reach85(zo, 'R', front(zo, 'chest', (.38 + .05 * sw) * kz, .26 * kz, .08 * kz), { grip: 0, pole: [-.25, .02, .12] });
+      PO.palmTo(zo, 'R', urge * .9, V(.15, .55, .8));
+      PO.fingers(zo, 'R', .06, { spread: .48 });
+      reach85(zo, 'L', front(zo, 'root', .14 * kz, -.2 * kz, -.28 * kz), { grip: .02, pole: [.2, -.05, .05] });
     }
+    zo.B.chest.updateWorldMatrix(false, true);
+    fa.B.chest.updateWorldMatrix(false, true);
   },
 });
 
-// chambre_jour, Mohammed lying turned to wall, Fatma enters with bowl
+// Fatma stays on the open floor. Mohammed's face is turned toward the back wall.
 const ch_lie = staged('chambre_jour', {
-  mohammed: { at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.28, pillow: .08, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
-  fatma: { at: [640, 720], face: 'cam', yaw: .62, walk: { to: [840, 680], t0: B(2)[0], t1: B(2)[0] + 3.0 },
-    seed: 11, look: 'mohammed', lookMax: .58 },
-  zoubida: { at: [980, 655], face: 'cam', yaw: .68, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .62 },
+  mohammed: { at: [1350, 694], face: [1280, 560], pose: 'lie',
+    o: { top: TOP, turn: .12, hands: 'belly', headTurn: 1.05, pillow: .1, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
+  fatma: { height: 1.58, at: [540, 980], face: [1100, 860], walk: { to: [1120, 900], t0: B(2)[0], t1: B(2)[0] + 3.4 },
+    seed: 11, look: 'mohammed', lookMax: .9 },
+  zoubida: { height: 1.6, at: [980, 655], face: 'mohammed', pose: 'kneel',
+    o: { grounded: true, lean: .16, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .85 },
 }, {
   light: ROOM_LT,
+  addressee: { fatma: 'mohammed', zoubida: 'mohammed' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, fatma: fa, zoubida: zo } = st.A;
     const kz = zo.group.scale.y / 1.6;
-    const sulk = sm(B(2)[0] + 4.5, B(2)[0] + 6.2, t);
+    const listen = IN(4, t) ? sm(B(4)[0], B(4)[0] + .6, t) : 0;
     lieOnBed(mo, {
-      top: TOP, feet: [.5, .87],
-      origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.10 - .22 * sulk,
+      top: TOP, feet: [1.05, .28],
+      origin: (st.mo0 ||= mo.group.position.clone()),
+      hands: 'belly', pillow: .1, tuck: .18, headTurn: 1.05 - .4 * listen,
     });
     makeBedProps(S3, st, mo, false);
-    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.5);
+    mo.B.chest.rotation.x += .012 * Math.sin(t * 1.4);
 
-    const turnF = sm(B(2)[0] + 2.8, B(2)[0] + 3.6, t);
-    if (turnF > 0) {
-      const p1 = st.faP1 ||= S3.floorAt(840, 680);
-      const tgtYaw = Math.atan2(S3.cam.position.x - p1.x, S3.cam.position.z - p1.z) + .62;
-      const dYaw = Math.atan2(Math.sin(tgtYaw - fa.group.rotation.y), Math.cos(tgtYaw - fa.group.rotation.y));
-      fa.group.rotation.y += dYaw * turnF;
-      fa.group.updateMatrixWorld(true);
-    }
+    if (t >= B(2)[0] + 3.4) faceToward(fa, at(mo, 'head'));
 
     const bowl = makeSoupBowl(S3, st);
-    holdBowl(fa, bowl, { fwd: .24, up: -.16 });
-    lapRest(zo, t, 7);
+    const ctr = holdBowl(fa, bowl, { fwd: IN(3, t) ? .42 : .36, up: .04, tilt: .35 });
+    steamAt(S3, st, 'lie', ctr, t);
+    lapHands(zo, t, 7);
 
-    // b072: Fatma leans gently toward the boy
     if (IN(3, t)) {
-      const q = win(3, .05, .95, t);
-      fa.B.chest.rotation.x += .08 * q;
-      fa.B.head.rotation.z += .06 * q;
-      holdBowl(fa, bowl, { fwd: .26, up: -.14 });
+      fa.B.chest.rotation.x += .16;
+      fa.B.chest.updateWorldMatrix(false, true);
     }
-
-    // b073: Zoubida leans down coaxing ("Après, j'enverrai Zineb t'acheter un beignet")
     if (IN(4, t)) {
-      const q = win(4, .05, .95, t);
-      zo.B.chest.rotation.x += .08 * q;
-      reach85(zo, 'R', front(zo, 'chest', .24 * kz, .14 * kz, -.14 * kz), { grip: 0, pole: [-.45, .05, .2] });
-      PO.palmTo(zo, 'R', q * .7, V(0, 1, .2));
-      PO.fingers(zo, 'R', .16, { spread: .25 });
+      const q = sm(B(4)[0], B(4)[0] + .45, t);
+      zo.B.spine.rotation.x += .2 * q;
+      zo.B.chest.rotation.x += .16 * q;
+      zo.B.chest.updateWorldMatrix(false, true);
+      const sw = .04 * Math.sin(t * 3);
+      reach85(zo, 'R', front(zo, 'chest', (.34 + sw) * kz, .22 * kz, .06 * kz), { grip: 0, pole: [-.22, .02, .1] });
+      PO.palmTo(zo, 'R', q * .9, V(.1, .6, .75));
+      PO.fingers(zo, 'R', .08, { spread: .42 });
+      reach85(zo, 'L', PO.hipToWorld(zo, .14 * kz, .04 * kz, .3 * kz), { grip: .02, pole: [.18, -.04, .06] });
     }
     fa.B.chest.updateWorldMatrix(false, true);
     zo.B.chest.updateWorldMatrix(false, true);
   },
 });
 
-// chambre_jour, Mohammed sits up, catches mother, Fatma coaxes, Mohammed drinks
 const ch_sit = staged('chambre_jour', {
-  mohammed: { at: [1350, 694], face: 'cam', yaw: -.85, pose: 'cross',
-    o: { seat: TOP, floor: TOP, lean: .08, hands: false, mattress: MATTRESS, avoid: CHEST },
-    hands: false, seed: 3, look: (t) => IN(6, t) ? 'zoubida' : 'fatma', lookMax: .65 },
-  fatma: { at: [1010, 680], face: 'cam', yaw: .72, pose: 'cross',
-    o: { seat: 0, floor: 0, lean: .08, avoid: CHEST }, hands: false, seed: 11, look: 'mohammed', lookMax: .7 },
-  zoubida: { at: [770, 735], face: 'cam', yaw: .72, seed: 7,
-    look: (t) => t >= B(7)[0] + 1.5 ? 'cam' : IN(7, t) ? [770, 735, 2.5] : 'mohammed', lookMax: .6 },
+  mohammed: { at: [1340, 700], face: 'fatma', yaw: -.35, pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .1, hands: false, mattress: MATTRESS, avoid: CHEST },
+    hands: false, seed: 3, look: (t) => IN(6, t) ? 'zoubida' : 'fatma', lookMax: .8 },
+  fatma: { height: 1.58, at: [1160, 725], face: 'mohammed', pose: 'cross',
+    o: { seat: TOP, floor: TOP, lean: .14, avoid: CHEST }, hands: false, seed: 11, look: 'mohammed', lookMax: .85 },
+  zoubida: { height: 1.6, at: [860, 910], face: 'mohammed', seed: 7,
+    look: (t) => t >= B(7)[0] + 1.3 ? [400, 990, 1.4] : IN(7, t) ? [860, 300, 3.3] : 'mohammed', lookMax: .85 },
 }, {
   light: ROOM_LT,
+  addressee: { fatma: 'mohammed', zoubida: 'mohammed', mohammed: 'fatma' },
   act(lt, t, S, st, S3) {
     const { mohammed: mo, fatma: fa, zoubida: zo } = st.A;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
-    fa.B.root.position.y -= .002;
-    fa.B.root.updateMatrixWorld(false, true);
     makeBedProps(S3, st, mo, true);
-    lapRest(mo, t, 3);
-    const bowl = makeSoupBowl(S3, st);
 
-    // Zoubida's walk out in b076 ("s'enfuit dans la cuisine")
-    const exitT0 = B(7)[0] + 1.5, exitT1 = B(7)[1] - .2;
-    if (t >= exitT0) {
-      st.zoStart ||= S3.floorAt(770, 735);
-      st.zoEnd ||= S3.floorAt(380, 880);
+    const exitT0 = B(7)[0] + 1.3, exitT1 = B(7)[1] - .15;
+    const leaving = t >= exitT0 && zo.group.visible;
+    if (leaving) {
+      st.zoStart ||= S3.floorAt(860, 910);
+      st.zoEnd ||= S3.floorAt(400, 1000);
       walk(zo, st.zoStart, st.zoEnd, exitT0, exitT1, t);
     }
     zo.group.visible = t < B(8)[0];
 
-    // Default bowl held by Fatma until b078
-    const drinkU = sm(B(9)[0], B(9)[0] + 1.1, t);
-    if (t < B(9)[0] + .02) {
-      const offer = IN(8, t) ? .06 * win(8, .05, .95, t) : 0;
-      holdBowl(fa, bowl, { fwd: .25 + offer, up: -.15 });
-    }
-
-    // b074: Mohammed sniffs bowl suspiciously
-    if (IN(5, t)) {
-      const q = win(5, .05, .95, t);
-      mo.B.neck.rotation.x -= .1 * q;
-      mo.B.head.rotation.x -= .08 * q;
-      mo.B.head.rotation.z += .07 * q;
-      reach85(mo, 'R', front(mo, 'chest', .2 * km, .14 * km, -.15 * km), { grip: 0, pole: [-.45, .05, .2] });
-      PO.fingers(mo, 'R', .22, { spread: .2 });
-    }
-
-    // b075: both women swear; Mohammed points accusingly at Zoubida
-    if (IN(6, t)) {
-      const q = win(6, .05, .95, t);
-      const acc = sm(B(6)[0] + 3.8, B(6)[0] + 4.8, t) * (1 - sm(B(6)[1] - .5, B(6)[1], t));
-      reach85(zo, 'R', front(zo, 'chest', .22 * kz, .15 * kz, -.05 * kz), { grip: 0, pole: [-.45, .05, .22] });
-      PO.palmTo(zo, 'R', q * .7, V(0, 1, .2));
-      if (acc > .05) {
-        const zHead = at(zo, 'head');
-        const dirTo = zHead.clone().sub(at(mo, 'upperArmR')).normalize();
-        const ptTgt = at(mo, 'upperArmR').addScaledVector(dirTo, .34 * km);
-        reach85(mo, 'R', ptTgt, { grip: 0, pole: [-.45, .05, .25] });
-        PO.fingers(mo, 'R', .85, { each: [.8, 0, 1, 1, 1] });
+    const drinking = t >= B(9)[0] + .15;
+    const bowl = makeSoupBowl(S3, st);
+    if (!drinking) {
+      const offer = IN(8, t) ? .1 : IN(5, t) ? .06 : 0;
+      const ctr = holdBowl(fa, bowl, { fwd: .4 + offer, up: .06, tilt: .4 });
+      steamAt(S3, st, 'sit', ctr, t);
+      if (IN(8, t)) {
+        fa.B.spine.rotation.x += .14;
+        fa.B.chest.rotation.x += .12;
       }
+    } else {
+      lapHands(fa, t, 11);
+      fa.B.chest.rotation.x += .1;
+      fa.B.head.rotation.z -= .06;
     }
 
-    // b076: Zoubida looks up to ceiling beams then slips out
-    if (IN(7, t) && zo.group.visible) {
-      const roll = win(7, 0, .45, t);
-      zo.B.neck.rotation.x -= .2 * roll;
-      zo.B.head.rotation.x -= .16 * roll;
-      if (t < exitT0) {
-        reach85(zo, 'L', front(zo, 'chest', .22 * kz, -.16 * kz, -.16 * kz), { grip: 0, pole: [.52, .08, .25] });
-      }
+    const pointing = IN(6, t) && t >= B(6)[0] + 3.2;
+    if (!drinking && !pointing) lapHands(mo, t, 3);
+
+    if (IN(5, t) && !pointing) {
+      mo.B.neck.rotation.x -= .16;
+      mo.B.head.rotation.x -= .1;
+      mo.B.chest.rotation.x += .08;
     }
 
-    // b077: Fatma coaxes warmly
-    if (IN(8, t)) {
-      const q = win(8, .05, .95, t);
-      fa.B.chest.rotation.x += .08 * q;
-      fa.B.head.rotation.z -= .07 * q;
+    if (IN(6, t) && !leaving) {
+      zo.B.chest.rotation.x += .1;
+      zo.B.chest.updateWorldMatrix(false, true);
+      reach85(zo, 'R', front(zo, 'chest', .2 * kz, .1 * kz, .08 * kz), { grip: 0, pole: [-.2, .04, .1] });
+      PO.palmTo(zo, 'R', .85, dirW(zo, 0, .3, 1));
+      PO.fingers(zo, 'R', .12, { spread: .28 });
+      reach85(zo, 'L', front(zo, 'root', .12 * kz, -.18 * kz, -.32 * kz), { grip: .02, pole: [.18, -.04, .04] });
+      // Fatma swears with the free hand; the other stays on the bowl via a second reach after holdBowl
+      reach85(fa, 'R', front(fa, 'chest', .28 * (fa.group.scale.y / 1.6), .16 * (fa.group.scale.y / 1.6), .1 * (fa.group.scale.y / 1.6)), { grip: 0, pole: [-.2, .02, .1] });
+      PO.palmTo(fa, 'R', .8, V(0, .7, .6));
+      PO.fingers(fa, 'R', .1, { spread: .35 });
+    }
+    if (pointing) {
+      mo.B.spine.rotation.x += .12;
+      mo.B.chest.rotation.x += .1;
+      mo.B.chest.updateWorldMatrix(false, true);
+      reach85(mo, 'R', at(zo, 'chest'), { grip: 0, pole: [-.15, .12, .25] });
+      PO.fingers(mo, 'R', .95, { each: [1, 0, 1, 1, 1] });
+      lapHands(mo, t, 3);
+      reach85(mo, 'R', at(zo, 'chest'), { grip: 0, pole: [-.15, .12, .25] });
+      PO.fingers(mo, 'R', .95, { each: [1, 0, 1, 1, 1] });
     }
 
-    // b078: Mohammed takes the bowl and drinks eagerly
-    if (t >= B(9)[0] + .02) {
-      lapRest(fa, t, 11);
-      const sip = Math.max(0, Math.sin((t - B(9)[0]) * 2.2));
-      const chest = front(mo, 'chest', .24 * km, .10 * km, -.17 * km);
-      const lowMouth = front(mo, 'chest', .24 * km, .10 * km, (-.15 + .015 * sip) * km);
-      const bPos = chest.lerp(lowMouth, drinkU);
-      bPos.y = Math.min(bPos.y, at(mo, 'head').y - .22 * km);
-      bowl.position.copy(bPos);
+    if (IN(7, t) && !leaving && zo.group.visible) {
+      zo.B.neck.rotation.x -= .38;
+      zo.B.head.rotation.x -= .3;
+      zo.B.chest.rotation.z += .06;
+    }
+
+    if (drinking) {
+      const sip = Math.max(0, Math.sin((t - B(9)[0]) * 2.4));
+      mo.B.neck.rotation.x -= .4 + .12 * sip;
+      mo.B.head.rotation.x -= .48 + .14 * sip;
+      mo.B.head.updateWorldMatrix(false, true);
+      const lip = at(mo, 'head').addScaledVector(dirW(mo, 0, 0, 1), .07 * km).add(V(0, -.02 * km, 0));
+      bowl.position.copy(lip);
       bowl.rotation.order = 'YXZ';
-      bowl.rotation.y = mo.group.rotation.y;
-      bowl.rotation.x = -(.22 + .24 * sip);
+      bowl.rotation.y = mo.group.rotation.y + .2;
+      bowl.rotation.x = -1.15 - .3 * sip;
       bowl.updateMatrixWorld(true);
       bowl.visible = true;
+      steamAt(S3, st, 'sit', lip, t);
       for (const [s, sg] of [['L', 1], ['R', -1]]) {
-        const tg = bPos.clone().addScaledVector(dirW(mo, sg, 0, 0), .085 * km);
-        reach85(mo, s, tg, { grip: .015, pole: [sg * .48, .02, .25] });
-        PO.fingers(mo, s, .35, { thumb: .3, spread: .1 });
+        const tg = lip.clone().addScaledVector(dirW(mo, sg, 0, 0), .07 * km);
+        reach85(mo, s, tg, { grip: .02, pole: [sg * .3, .08, .15] });
+        PO.fingers(mo, s, .45, { thumb: .4, spread: .08 });
       }
-      mo.B.neck.rotation.x -= (.10 + .08 * sip) * drinkU;
-      mo.B.head.rotation.x -= (.08 + .08 * sip) * drinkU;
     }
 
     mo.B.chest.updateWorldMatrix(false, true);
     fa.B.chest.updateWorldMatrix(false, true);
-    if (zo.group.visible) zo.B.chest.updateWorldMatrix(false, true);
+    if (zo.group.visible && !leaving) zo.B.chest.updateWorldMatrix(false, true);
   },
 });
 
 export default beatScene(ID, {
   shots: { pa, ch_lie, ch_sit },
   plan: {
-    b069: { shot: 'pa', size: 'M', on: 'zoubida', z: 1.45, dx: 70, dy: 20 },
-    b070: { shot: 'pa', size: 'CU', on: 'zoubida', z: 2.2, dx: 40, dy: 10 },
+    b069: { shot: 'pa', size: 'M', on: 'zoubida', pt: [580, 990] },
+    b070: { shot: 'pa', size: 'CU', on: 'zoubida', pt: [760, 980] },
     b071: { shot: 'ch_lie', size: 'W', on: 'mohammed', insAt: .25 },
-    b072: { shot: 'ch_lie', size: 'CU', on: 'fatma', pt: [840, 680], z: 1.85, dx: 55, dy: -30 },
-    b073: { shot: 'ch_lie', size: 'W', on: 'zoubida' },
-    b074: { shot: 'ch_sit', size: 'CU', on: 'mohammed', z: 2.25, dx: -15, dy: -15 },
-    b075: { shot: 'ch_sit', size: 'W', on: 'zoubida' },
+    b072: { shot: 'ch_lie', size: 'M', on: 'fatma', pt: [1160, 860], dx: 80, dy: 55 },
+    b073: { shot: 'ch_lie', size: 'M', on: 'zoubida' },
+    b074: { shot: 'ch_sit', size: 'CU', on: 'mohammed' },
+    b075: { shot: 'ch_sit', size: 'M', on: 'zoubida', cover: [{ f: .36, size: 'CU', on: 'mohammed' }] },
     b076: { shot: 'ch_sit', size: 'W', on: 'zoubida' },
-    b077: { shot: 'ch_sit', size: 'M', on: 'fatma', z: 1.35, dx: 90, dy: -25 },
-    b078: { shot: 'ch_sit', size: 'M', on: 'mohammed', z: 1.35, dx: -95, dy: -25 },
+    b077: { shot: 'ch_sit', size: 'M', on: 'fatma' },
+    b078: { shot: 'ch_sit', size: 'M', on: 'mohammed' },
   },
 });

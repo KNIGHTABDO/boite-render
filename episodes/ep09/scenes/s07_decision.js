@@ -15,8 +15,10 @@
 //   - b045 (chambre_nuit, W + ins i_bracelets_vente): Father calmly answers he will sell the bracelets and Driss will bring groceries.
 //   - b046 (chambre_nuit, CU): Father quiet and resolved ("Je vous laisse seuls pendant un mois...").
 import * as PO from '../../../engine/poses.js';
+import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
+import { lapHands, reachClamp } from '../lib/fix9_C.js';
 import { beatScene, allLines, sm, at, front, V } from '../lib/beatscene.js';
 
 const ID = 's07_decision', L = allLines(ID), B = i => L[i] || [0, 0];
@@ -26,85 +28,79 @@ const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const TOP = .26;
 const BED = {
-  at: [1350, 694], face: [1336, 754], pose: 'lie', height: 1.1,
-  o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.18, pillow: .08, mattress: MATTRESS, avoid: CHEST },
+  at: [1350, 694], face: [1280, 560], pose: 'lie', height: 1.32,
+  o: { top: TOP, turn: .2, hands: 'belly', headTurn: -.35, pillow: .12, mattress: MATTRESS, avoid: CHEST },
   seed: 3, talk: 0,
 };
 
-function reachClamped(a, side, target, opt) {
-  const sh = at(a, 'upperArm' + side);
-  const len = (a.armLen ||= {})[side] ||= sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
-  const d = target.clone().sub(sh), maxR = len * .85;
-  const tgt = d.length() > maxR ? sh.clone().addScaledVector(d.normalize(), maxR) : target;
-  return PO.reach(a, side, tgt, opt);
-}
-
-function lapRest(a, k, t, seed = 0) {
-  for (const s of ['L', 'R']) {
-    const sg = s === 'L' ? 1 : -1;
-    const sw = .008 * Math.sin(t * .85 + seed + sg);
-    reachClamped(a, s, PO.hipToWorld(a, sg * .18 * k, (.07 + sw) * k, .25 * k), { grip: .03, pole: [sg * .9, .2, .5] });
-    PO.fingers(a, s, .28, { spread: .12 });
-  }
-}
+function reachClamped(a, side, target, opt) { return reachClamp(a, side, target, opt); }
 
 const ch = staged('chambre_nuit', {
-  father: { height: 1.76, at: [730, 895], face: 'cam', yaw: .5, pose: 'kneel', o: { grounded: true, lean: .08, avoid: CHEST }, seed: 5, hands: false, look: 'zoubida', lookMax: .75 },
-  zoubida: { at: [1010, 895], face: 'cam', yaw: -.45, pose: 'kneel', o: { grounded: true, lean: .08, avoid: CHEST }, seed: 7, hands: false, look: 'father', lookMax: .75 },
+  father: { height: 1.76, at: [720, 910], face: 'zoubida', yaw: .42, pose: 'kneel', o: { grounded: true, lean: .12, avoid: CHEST }, seed: 5, hands: false, look: 'zoubida', lookMax: .8 },
+  zoubida: { height: 1.6, at: [1020, 915], face: 'father', yaw: -.42, pose: 'kneel', o: { grounded: true, lean: .18, avoid: CHEST }, seed: 7, hands: false, look: 'father', lookMax: .8 },
   mohammed: BED,
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
     const mo = st.A.mohammed;
     lieOnBed(mo, {
-      top: TOP, feet: [.5, .87],
+      top: TOP, feet: [1.15, .22],
       origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.12,
+      hands: 'belly', pillow: .12, tuck: .16, headTurn: -.35,
     });
-    pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x2c3a56 });
+    pillowUnder(S3, st, mo, { top: TOP, h: .14, col: 0xd9c7a4, w: .48, d: .34 });
     mo.B.chest.rotation.x += .01 * Math.sin(t * 1.4);
     mo.B.chest.updateWorldMatrix(false, true);
 
     const { father: fa, zoubida: zo } = st.A;
     const kf = fa.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
 
-    // Default relaxed lap hands + subtle breathing
-    lapRest(fa, kf, t, 5);
-    lapRest(zo, kz, t, 7);
+    st.mat ||= S3.prop(PR.mat({ w: 1.45, d: .95, col: 0x6b4a32 }));
+    const matP = S3.floorAt(870, 930);
+    S3.prop(st.mat, matP.x, 0.002, matP.z, .1);
+
+    lapHands(fa, t, 5);
+    lapHands(zo, t, 7);
+    // Bowed toward each other from the first frame, so the pre-roll is not an upright profile.
+    zo.B.spine.rotation.x += .2;
+    zo.B.chest.rotation.x += .12;
+    fa.B.spine.rotation.x += .06;
     fa.B.chest.rotation.x += .015 * Math.sin(t * .6);
     zo.B.chest.rotation.x += .018 * Math.sin(t * .75 + 1);
 
     if (IN(0, t)) {
-      // Zoubida lifts head slightly from sorrow, quiet question
-      const u = sm(B(0)[0], B(0)[0] + .8, t);
-      zo.B.spine.rotation.x += .10 * (1 - .5 * u);
-      zo.B.neck.rotation.x += .16 * (1 - u);
+      const u = sm(B(0)[0] - .2, B(0)[0] + .7, t);
+      zo.B.neck.rotation.x -= .18 * u;
+      zo.B.head.rotation.x -= .12 * u;
       zo.B.chest.updateWorldMatrix(false, true);
     } else if (IN(1, t)) {
-      // Father calm, firm nod
-      fa.B.head.rotation.x += .06 * Math.max(0, Math.sin((t - B(1)[0]) * 3.5));
+      fa.B.head.rotation.x += .26 * Math.max(0, Math.sin((t - B(1)[0]) * 3.2));
+      fa.B.chest.updateWorldMatrix(false, true);
     } else if (IN(2, t)) {
-      // Zoubida leans slightly toward him asking how much was lost
-      zo.B.chest.rotation.x += .05;
-      reachClamped(zo, 'L', front(zo, 'chest', .24 * kz, -.18 * kz, -.18 * kz), { grip: 0, pole: [.9, .2, .5] });
-      PO.palmTo(zo, 'L', .6, V(0, 1, .3)); PO.fingers(zo, 'L', .15, { spread: .2 });
+      zo.B.chest.rotation.x += .08;
+      zo.B.neck.rotation.x -= .22;
+      zo.B.head.rotation.x -= .16;
+      zo.B.chest.updateWorldMatrix(false, true);
+      reachClamped(zo, 'L', front(zo, 'root', .26 * kz, -.12 * kz, .04 * kz), { grip: 0, pole: [.16, -.04, .08] });
+      PO.palmTo(zo, 'L', .65, V(0, .8, .4));
+      PO.fingers(zo, 'L', .1, { spread: .28 });
     } else if (IN(3, t)) {
-      // Father palms resting on knees, gentle open-hand gesture on "ni le mois de loyer"
-      const g = sm(B(3)[0] + 2.5, B(3)[0] + 3.5, t) * (1 - sm(B(3)[1] - 1.2, B(3)[1], t));
+      const g = sm(B(3)[0] + 1.6, B(3)[0] + 2.6, t) * (1 - sm(B(3)[1] - 1.2, B(3)[1], t));
       if (g > .02) {
-        reachClamped(fa, 'R', front(fa, 'chest', .26 * kf, .18 * kf, -.16 * kf), { grip: 0, pole: [-.9, .2, .5] });
-        PO.palmTo(fa, 'R', .75 * g, V(0, 1, .25));
-        PO.fingers(fa, 'R', .12, { spread: .22 });
+        reachClamped(fa, 'L', front(fa, 'chest', .24 * kf, -.14 * kf, .02 * kf), { grip: 0, pole: [.16, -.02, .08] });
+        PO.palmTo(fa, 'L', .8 * g, V(0, .85, .35));
+        PO.fingers(fa, 'L', .1, { spread: .26 });
       }
     } else if (IN(4, t)) {
-      // Zoubida leans forward hopefully, open pleading palms
-      const u = sm(B(4)[0], B(4)[0] + .7, t);
-      zo.B.chest.rotation.x += .08 * u;
+      const u = sm(B(4)[0], B(4)[0] + .45, t);
+      zo.B.spine.rotation.x += .16 * u;
+      zo.B.chest.rotation.x += .14 * u;
+      zo.B.chest.updateWorldMatrix(false, true);
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        reachClamped(zo, s, front(zo, 'chest', .26 * kz, -sg * .18 * kz, -.15 * kz), { grip: 0, pole: [sg * .9, .2, .5] });
-        PO.palmTo(zo, s, .8, V(0, 1, .25));
-        PO.fingers(zo, s, .1, { spread: .28 });
+        reachClamped(zo, s, front(zo, 'root', .3 * kz, -sg * .12 * kz, .06 * kz), { grip: 0, pole: [sg * .16, -.04, .08] });
+        PO.palmTo(zo, s, .85, V(0, .8, .4));
+        PO.fingers(zo, s, .08, { spread: .32 });
       }
     } else if (IN(6, t)) {
       // Zoubida clasps both hands forward near her chest ("Tu oserais m'abandonner...")
@@ -112,26 +108,26 @@ const ch = staged('chambre_nuit', {
       zo.B.chest.rotation.x += .05;
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        reachClamped(zo, s, front(zo, 'chest', .23 * kz, -sg * .08 * kz, (-.08 + w) * kz), { grip: 0, pole: [sg * .9, .2, .5] });
+        reachClamped(zo, s, front(zo, 'chest', .23 * kz, -sg * .08 * kz, (-.08 + w) * kz), { grip: 0, pole: [sg * .18, -.02, .08] });
         PO.fingers(zo, s, .35, { spread: .12 });
       }
     } else if (IN(7, t)) {
       // Father steady calming hand gesture
       const ph = .5 + .5 * Math.sin(t * 2.2);
-      reachClamped(fa, 'R', front(fa, 'chest', .26 * kf, .18 * kf, (-.14 + .04 * ph) * kf), { grip: 0, pole: [-.9, .2, .5] });
+      reachClamped(fa, 'R', front(fa, 'chest', .26 * kf, .18 * kf, (-.14 + .04 * ph) * kf), { grip: 0, pole: [-.18, -.02, .08] });
       PO.palmTo(fa, 'R', .8, V(0, -1, .3));
       PO.fingers(fa, 'R', .12, { spread: .2 });
     } else if (IN(8, t)) {
       // Zoubida gestures sharply toward her chest / wrists ("ces maudits bracelets")
       const ph = Math.sin((t - B(8)[0]) * 4.5) * .5 + .5;
       zo.B.chest.rotation.x += .05;
-      reachClamped(zo, 'R', front(zo, 'chest', (.24 + .04 * ph) * kz, .12 * kz, -.10 * kz), { grip: 0, pole: [-.9, .2, .5] });
+      reachClamped(zo, 'R', front(zo, 'chest', (.24 + .04 * ph) * kz, .12 * kz, -.10 * kz), { grip: 0, pole: [-.18, -.02, .08] });
       PO.fingers(zo, 'R', .22, { spread: .25 });
-      reachClamped(zo, 'L', front(zo, 'chest', .24 * kz, -.18 * kz, -.15 * kz), { grip: 0, pole: [.9, .2, .5] });
+      reachClamped(zo, 'L', front(zo, 'chest', .24 * kz, -.18 * kz, -.15 * kz), { grip: 0, pole: [.18, -.02, .08] });
       PO.palmTo(zo, 'L', .7, V(0, 1, .2)); PO.fingers(zo, 'L', .15, { spread: .3 });
     } else if (IN(9, t)) {
       // Father open palm calm explanation ("Je compte les vendre pour vous nourrir...")
-      reachClamped(fa, 'R', front(fa, 'chest', .26 * kf, .18 * kf, -.14 * kf), { grip: 0, pole: [-.9, .2, .5] });
+      reachClamped(fa, 'R', front(fa, 'chest', .26 * kf, .18 * kf, -.14 * kf), { grip: 0, pole: [-.18, -.02, .08] });
       PO.palmTo(fa, 'R', .75, V(0, 1, .3));
       PO.fingers(fa, 'R', .1, { spread: .22 });
     } else if (IN(10, t)) {
@@ -144,16 +140,16 @@ const ch = staged('chambre_nuit', {
 export default beatScene(ID, {
   shots: { ch },
   plan: {
-    b036: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dy: -85 },
-    b037: { shot: 'ch', size: 'CU', on: 'father', z: 2.1, dy: -75 },
-    b038: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dy: -85 },
+    b036: { shot: 'ch', size: 'CU', on: 'zoubida' },
+    b037: { shot: 'ch', size: 'M', on: 'father', dy: 70 },
+    b038: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b039: { shot: 'ch', size: 'W', on: 'father' },
-    b040: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dy: -85 },
-    b041: { move: 'panR' },   // painting p03_moissonneurs
-    b042: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dy: -85 },
+    b040: { shot: 'ch', size: 'M', on: 'zoubida', dy: 50 },
+    b041: { move: 'sink' },   // painting p03_moissonneurs — headroom above the turban
+    b042: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b043: { shot: 'ch', size: 'W', on: 'father' },
-    b044: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dy: -85 },
+    b044: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b045: { shot: 'ch', size: 'W', on: 'father', insMove: 'push' },
-    b046: { shot: 'ch', size: 'CU', on: 'father', z: 2.1, dy: -75 },
+    b046: { shot: 'ch', size: 'CU', on: 'father', dy: 40 },
   },
 });

@@ -10,39 +10,15 @@ import * as K from '../../../engine/core.js';
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
-import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
-import { beatScene, lines, sm, at, dirW, orient, V } from '../lib/beatscene.js';
+import { glow as lift } from '../lib/fix8_R31AE.js';
+import { boyBed, BOY_H, BED_AT, sideArms } from '../lib/fix9_A.js';
+import { beatScene, lines, at, dirW, orient, V } from '../lib/beatscene.js';
 
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
-const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
-const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const BED = {
-  at: [1350, 694], face: [1336, 754], pose: 'lie', height: 1.1, seed: 3, talk: 0,
-  o: { top: .26, turn: .12, hands: 'belly', headTurn: -.2, pillow: .08, mattress: MATTRESS, avoid: CHEST },
+  at: BED_AT, face: [1180, 700], pose: 'lie', height: BOY_H, seed: 3, talk: 0,
+  o: { top: .28, hands: 'belly', headTurn: .5, pillow: .1 },
 };
-
-function reachClamp(a, side, target, opt = {}) {
-  const sh = at(a, 'upperArm' + side), el = at(a, 'foreArm' + side), hd = at(a, 'hand' + side);
-  const len = sh.distanceTo(el) + el.distanceTo(hd), d = target.clone().sub(sh), max = len * .85;
-  if (d.length() > max) target = sh.clone().addScaledVector(d.normalize(), max);
-  return PO.reach(a, side, target, opt);
-}
-
-function bed(S3, st, t, headTurn = -.2) {
-  const mo = st.A.mohammed;
-  lieOnBed(mo, {
-    top: .26, feet: [.5, .87],
-    origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-    hands: 'belly', pillow: .08, tuck: .22, headTurn,
-  });
-  pillowUnder(S3, st, mo, { top: .26, h: .08, col: 0x3b4860 });
-  st.cover ||= PR.blanket({ w: .38, l: .54, h: .06, col: 0x6b3a3a });
-  const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
-  S3.prop(st.cover, hp.x + Math.sin(ry) * .28, .26 + .03 - .004, hp.z + Math.cos(ry) * .28, ry);
-  st.cover.visible = true;
-  mo.B.chest.rotation.x += .01 * Math.sin(t * 1.4);
-  mo.B.chest.updateWorldMatrix(false, true);
-}
 
 /** Crescent iron sickle with wooden grip; origin at handle, blade rises along +y. */
 function faucilleProp() {
@@ -70,25 +46,29 @@ function sacProp() {
   return g;
 }
 
-/** Leather shepherd bag (sacoche) worn at the hip. */
+/** Leather shepherd bag worn on the hip, with a shoulder strap. */
 function sacocheProp() {
   const g = new THREE.Group();
-  const body = new THREE.Mesh(new THREE.BoxGeometry(.18, .2, .07), PR.toon(0x5e3b22));
-  const flap = new THREE.Mesh(new THREE.BoxGeometry(.186, .09, .076), PR.toon(0x4b2e19));
-  flap.position.set(0, .055, .003);
-  const buckle = new THREE.Mesh(new THREE.BoxGeometry(.025, .025, .012), PR.toon(0xc8a040));
-  buckle.position.set(0, .01, .04);
-  g.add(body, flap, buckle);
+  const body = new THREE.Mesh(new THREE.BoxGeometry(.16, .18, .06), PR.toon(0x5e3b22));
+  const flap = new THREE.Mesh(new THREE.BoxGeometry(.166, .08, .066), PR.toon(0x4b2e19));
+  flap.position.set(0, .05, .004);
+  const buckle = new THREE.Mesh(new THREE.BoxGeometry(.025, .022, .012), PR.toon(0xc8a040));
+  buckle.position.set(0, .01, .038);
+  const strap = new THREE.Mesh(new THREE.CylinderGeometry(.007, .007, .58, 6), PR.toon(0x3a2414));
+  strap.position.set(-.02, .36, .01);
+  strap.rotation.z = .62;
+  strap.rotation.x = .15;
+  g.add(body, flap, buckle, strap);
   g.traverse(o => { if (o.isMesh) o.castShadow = true; });
   return g;
 }
 
 /** Open Wonder Box (cedar chest with brass clasp, lid ajar, dim trinkets inside). */
 function boiteProp() {
-  const g = new THREE.Group(), wood = PR.toon(0x4a2c1c), brass = PR.toon(0xb89040);
-  const base = new THREE.Mesh(new THREE.BoxGeometry(.28, .11, .19), wood);
-  base.position.y = .055;
-  const interior = new THREE.Mesh(new THREE.BoxGeometry(.24, .02, .15), PR.toon(0x1f1410));
+  const g = new THREE.Group(), wood = PR.toon(0x8a5a32), brass = PR.toon(0xe0b85a);
+  const base = new THREE.Mesh(new THREE.BoxGeometry(.34, .13, .22), wood);
+  base.position.y = .065;
+  const interior = new THREE.Mesh(new THREE.BoxGeometry(.28, .03, .16), PR.toon(0x6a4a28));
   interior.position.y = .102;
   const lid = new THREE.Group();
   lid.position.set(0, .11, -.095);
@@ -109,42 +89,41 @@ function boiteProp() {
 
 // b001: Dawn gloom in chambre_jour
 const dawn = staged('chambre_jour', {
-  mohammed: { ...BED, lids: .28 },
+  mohammed: { ...BED, lids: .2, look: 'father', lookMax: .95 },
   father: {
-    height: 1.76, at: [700, 830], face: [410, 895], seed: 5, talk: 0,
-    walk: { to: [410, 895], t0: B(0)[0] + .4, t1: B(0)[0] + 6.2 },
-    lookMax: .55,
-    look: (t, st) => t >= B(0)[0] + 6.4 ? at(st.A.mohammed, 'head').clone().setY(at(st.A.father, 'head').y - .15) : null,
+    height: 1.76, at: [1040, 780], face: [460, 900], seed: 5, talk: 0,
+    walk: { to: [460, 900], t0: .08, t1: B(0)[0] + 5.4 },
+    lookMax: .85,
+    look: (t, st) => t >= B(0)[0] + 5.2 ? at(st.A.mohammed, 'head') : null,
   },
 }, {
-  light: { key: '#9cb0dc', keyI: .85, sky: '#586894', ground: '#2d2838', fillI: .48, shadow: .24, dir: [2, 2.6, 1] },
-  fx: { grade: 'rgba(65, 78, 128, 0.52)', gradeOp: 'multiply', vignette: .68 },
+  light: { key: '#d4c4a4', keyI: 1.15, sky: '#8a94b0', ground: '#3a342c', fillI: .72, shadow: .16, dir: [1.2, 3.2, .6] },
+  fx: { grade: 'rgba(90, 100, 140, 0.28)', gradeOp: 'multiply', vignette: .55 },
   act(lt, t, S, st, S3) {
-    bed(S3, st, t, -.24);
+    const mo = boyBed(S3, st, t, .55, 0x6b3a3a);
+    lift(mo, .16);
     const fa = st.A.father, k = fa.group.scale.y / 1.6;
-    const stopU = sm(B(0)[0] + 6.2, B(0)[0] + 7.4, t);
-    // At the threshold, turn 3/4 back toward Mohammed and camera so his look-back reads clearly
-    if (stopU > 0) {
-      const y0 = fa.group.rotation.y;
-      fa.group.rotation.y = y0 + (.48 - y0) * stopU;
-      fa.group.updateMatrixWorld(true);
-      fa.B.chest.rotation.y += .14 * stopU;
+    const back = t >= B(0)[0] + 5.2;
+    // Open the chest a little toward the room so the sickle in the right hand reads in three-quarter,
+    // then at the threshold twist the shoulders back toward Mohammed without facing the lens.
+    fa.group.rotation.y += back ? -.15 : .42;
+    fa.group.updateMatrixWorld(true);
+    if (back) {
+      fa.B.chest.rotation.y += .42;
       fa.B.chest.updateWorldMatrix(false, true);
-      const rTgt = at(fa, 'root').addScaledVector(dirW(fa, -1, 0, 0), .2 * k).addScaledVector(dirW(fa, 0, 0, 1), .1 * k).add(V(0, -.04 * k, 0));
-      const lTgt = at(fa, 'root').addScaledVector(dirW(fa, 1, 0, 0), .2 * k).addScaledVector(dirW(fa, 0, 0, 1), .12 * k).add(V(0, -.03 * k, 0));
-      reachClamp(fa, 'R', rTgt, { grip: .02, pole: [-.35, .05, -.25] });
-      reachClamp(fa, 'L', lTgt, { grip: .02, pole: [.35, .05, -.25] });
-      PO.fingers(fa, 'R', .7); PO.fingers(fa, 'L', .7);
     }
+    sideArms(fa, t, back ? .02 : .07);
+    PO.fingers(fa, 'R', .72);
+    PO.fingers(fa, 'L', .62);
     fa.group.updateMatrixWorld(true);
     st.faucille ||= S3.prop(faucilleProp());
     st.sac ||= S3.prop(sacProp());
     st.sacoche ||= S3.prop(sacocheProp());
     const pR = PO.handPts(fa, 'R').palm, pL = PO.handPts(fa, 'L').palm;
-    orient(st.faucille, pR, dirW(fa, .2, -.85, .5), V(0, 1, 0));
-    orient(st.sac, pL, dirW(fa, 0, .95, .2), V(0, 0, 1));
-    const hip = at(fa, 'root').addScaledVector(dirW(fa, 1, 0, 0), .18 * k).addScaledVector(dirW(fa, 0, 0, 1), .05 * k);
-    S3.prop(st.sacoche, hip.x, hip.y - .04 * k, hip.z, fa.group.rotation.y + Math.PI / 2);
+    orient(st.faucille, pR, dirW(fa, -.15, .95, .15), V(0, 0, 1));
+    orient(st.sac, pL.clone().add(V(0, -.06, 0)), dirW(fa, .15, -1, .05), V(1, 0, 0));
+    const hip = at(fa, 'root').addScaledVector(dirW(fa, -1, 0, 0), .2 * k).addScaledVector(dirW(fa, 0, 0, -1), .08 * k);
+    S3.prop(st.sacoche, hip.x, hip.y + .02 * k, hip.z, fa.group.rotation.y);
   },
 });
 
@@ -152,22 +131,24 @@ const dawn = staged('chambre_jour', {
 const nuit = staged('chambre_nuit', {
   mohammed: {
     ...BED,
-    lids: t => .22 + .55 * (Math.max(0, Math.sin(t * 1.1 + .8)) ** 10),
+    lids: t => .12 + .5 * (Math.max(0, Math.sin(t * .7 + .4)) ** 12),
+    look: [980, 760, .45], lookMax: .8,
   },
 }, {
-  light: { key: '#6e84b8', keyI: .65, sky: '#2d3756', ground: '#1c1824', fillI: .35, shadow: .22, dir: [-2, 2.2, 1] },
-  fx: { grade: 'rgba(32, 40, 72, 0.45)', gradeOp: 'multiply', vignette: .78 },
+  light: { key: '#c5d4f0', keyI: 1.05, sky: '#3a4468', ground: '#241e28', fillI: .55, shadow: .12, dir: [2.2, 2.8, -.4] },
+  fx: { grade: 'rgba(40, 48, 80, 0.22)', gradeOp: 'multiply', vignette: .62 },
   act(lt, t, S, st, S3) {
-    bed(S3, st, t, -.2);
+    const mo = boyBed(S3, st, t, .35, 0x5a3038);
+    lift(mo, .2);
     st.boite ||= S3.prop(boiteProp());
-    const bp = st.boitePos ||= S3.floorAt(1060, 765);
-    S3.prop(st.boite, bp.x, 0, bp.z, -.45);
+    const bp = st.boitePos ||= S3.floorAt(1160, 710);
+    S3.prop(st.boite, bp.x, 0, bp.z, -.4);
     st.boite.visible = true;
   },
   over(lt, u, t, S, st, S3) {
     if (st.boite) {
       const [bx, by] = S3.project(st.boite.position.clone().add(V(0, .1, 0)));
-      K.glow(bx, by, 340, '#8ba8e0', .18, 'screen');
+      K.glow(bx, by, 280, '#d0def8', .42, 'screen');
     }
   },
 });
@@ -178,10 +159,10 @@ export default beatScene(ID, {
     b001: {
       shot: 'dawn', size: 'W', on: 'father',
       cover: [
-        { f: .58, size: 'M', pt: [410, 895], on: 'father', z: 1.38, dx: 90, dy: -65 },
+        { f: .55, size: 'M', pt: [520, 860], on: 'father', z: 1.12, dx: 170, dy: 10 },
         { f: .82, size: 'W', on: 'mohammed' },
       ],
     },
-    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 1.42, dx: -75, dy: 15 },
+    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 2.15, dx: -90, dy: 20 },
   },
 });
