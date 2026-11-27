@@ -101,8 +101,17 @@ export function staged(plate, marks, { addressee = {}, act, light, cover, view, 
       for (const n of names) {
         const a = A[n], m = marks[n];
         if (!a.group.visible) continue;
-        if (['kneel', 'cross'].includes(m.pose)) {
+        if (m.pose === 'cross') {
           liftCloth(a, (m.o?.seat ?? 0) + .09);
+          a.group.updateMatrixWorld(true);
+        } else if (m.pose === 'kneel') {
+          const floorY = (m.o?.seat ?? 0) + .01;
+          for (let pass = 0; pass < 2; pass++) for (const bn of ['SkirtBack1', 'SkirtBack2']) {
+            const b = a.B[bn]; if (!b) continue;
+            b.updateWorldMatrix(true, false);
+            const tip = b.localToWorld(V(0, -1, 0));
+            if (tip.y < floorY) aim(b, tip, tip.clone().setY(floorY + .02));
+          }
           a.group.updateMatrixWorld(true);
         } else if (m.pose !== 'lie' && m.pose !== 'step' && !st.actcheck?.carried?.includes(n)) {
           const support = st.actcheck?.supports?.[n] ?? (m.tread != null && ST ? ST.y(m.tread) : 0);
