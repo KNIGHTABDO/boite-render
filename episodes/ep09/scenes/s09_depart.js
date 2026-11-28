@@ -73,16 +73,16 @@ function makePackProps(S3) {
 function buryFace(a, sob) {
   const B = a.B;
   // Three-quarter, not folded away from the lens. The face stays in both hands.
-  B.spine.rotation.x += .38;
+  B.spine.rotation.x += .46;
   B.chest.rotation.x += .16 + .02 * sob;
-  B.neck.rotation.x += .22;
+  B.neck.rotation.x += .26;
   a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
     const sign = s === 'L' ? 1 : -1;
-    const spot = () => B.head.localToWorld(new THREE.Vector3(sign * .11, .02, .1));
-    for (let i = 0; i < 3; i++) PO.reach(a, s, spot(), { grip: 0, pole: [sign * .7, .08, .35] });
+    const spot = () => B.head.localToWorld(new THREE.Vector3(sign * .09, -.005, .15));
+    for (let i = 0; i < 3; i++) PO.reach(a, s, spot(), { grip: 0, pole: [sign * .95, -.1, .3] });
     PO.fingers(a, s, .2, { thumb: .12, spread: .06 });
-    aim(B['hand' + s], PO.handPts(a, s).palm, B.head.localToWorld(new THREE.Vector3(sign * .04, .03, .06)));
+    aim(B['hand' + s], PO.handPts(a, s).palm, B.head.localToWorld(new THREE.Vector3(sign * .02, .0, .04)));
   }
 }
 
@@ -187,17 +187,29 @@ const bags = {
     still('i_sacoche_faucille', u, [.48, .5, 1.02, .5, .52, 1.06]);
     const c = K.c;
     c.save();
-    c.fillStyle = '#c4a574';
-    c.strokeStyle = '#3a2a1a';
-    c.lineWidth = 3.5;
+    // Soft canvas sack: shaded body, gathered neck, tied cord. No ink outline (it read as a placeholder).
+    c.translate(1460, 850); c.rotate(-.12);
+    const gr = c.createRadialGradient(-50, -30, 20, 0, 10, 190);
+    gr.addColorStop(0, '#d8bf8e'); gr.addColorStop(.6, '#a98a5c'); gr.addColorStop(1, '#5e4a30');
+    c.fillStyle = 'rgba(20,14,8,.35)';
+    c.beginPath(); c.ellipse(10, 78, 175, 26, 0, 0, Math.PI * 2); c.fill();
+    c.fillStyle = gr;
     c.beginPath();
-    c.ellipse(1460, 860, 170, 78, -.15, 0, Math.PI * 2);
-    c.fill();
-    c.stroke();
+    c.moveTo(-28, -70);
+    c.bezierCurveTo(-120, -50, -175, 10, -160, 55);
+    c.bezierCurveTo(-140, 92, 140, 98, 165, 55);
+    c.bezierCurveTo(180, 10, 120, -52, 28, -70);
+    c.closePath(); c.fill();
+    c.fillStyle = '#b89a68';
     c.beginPath();
-    c.moveTo(1360, 810);
-    c.quadraticCurveTo(1460, 740, 1560, 820);
-    c.stroke();
+    c.moveTo(-28, -70); c.lineTo(-44, -112); c.quadraticCurveTo(0, -126, 44, -110); c.lineTo(28, -70); c.closePath(); c.fill();
+    c.strokeStyle = 'rgba(70,52,30,.55)'; c.lineWidth = 2.2;
+    for (const [x0, x1] of [[-70, -100], [-20, -30], [40, 60], [90, 120]]) {
+      c.beginPath(); c.moveTo(x0 * .3, -62); c.quadraticCurveTo(x0, 0, x1, 70); c.stroke();
+    }
+    c.strokeStyle = '#6b4a26'; c.lineWidth = 5;
+    c.beginPath(); c.moveTo(-34, -78); c.quadraticCurveTo(0, -66, 34, -78); c.stroke();
+    c.beginPath(); c.moveTo(10, -72); c.quadraticCurveTo(30, -40, 22, -18); c.stroke();
     c.restore();
     return { vignette: .35, paper: .15 };
   },
