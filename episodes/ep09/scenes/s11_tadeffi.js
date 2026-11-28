@@ -78,7 +78,7 @@ const pa = staged('patio_matin', {
   // Both stay on the left tiles, clear of the well. Fatma is still at the door when the scratch is heard.
   zoubida: { height: 1.6, at: [720, 940], face: [480, 1060], seed: 7, look: 'fatma', lookMax: 1.2 },
   fatma: { height: 1.58, at: [460, 1060], face: [720, 940], seed: 11, look: 'zoubida', lookMax: 1.15,
-    walk: { to: [620, 990], t0: B(0)[0] + 2.2, t1: B(0)[0] + 5.6 } },
+    walk: { to: [655, 972], t0: B(0)[0] + .6, t1: B(0)[0] + 3.6 } },
 }, {
   light: PATIO_LT,
   addressee: { zoubida: 'fatma', fatma: 'zoubida' },
@@ -120,7 +120,7 @@ const pa = staged('patio_matin', {
 const ch_lie = staged('chambre_jour', {
   mohammed: { at: [1320, 640], face: [1330, 760], pose: 'lie',
     o: { top: TOP, turn: 0, hands: 'belly', headTurn: .9, pillow: .1, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
-  fatma: { height: 1.58, at: [640, 1020], face: [1160, 760], walk: { to: [1160, 760], t0: B(2)[0], t1: B(2)[0] + 5.2 },
+  fatma: { height: 1.58, at: [640, 1020], face: [1160, 760], walk: { to: [1110, 815], t0: B(2)[0], t1: B(2)[0] + 5.2 },
     seed: 11,     look: (t, st, S3) => st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)).lerp(S3.cam.position, .3), lookMax: .85 },
   zoubida: { height: 1.6, at: [980, 1050], face: 'mohammed', yaw: -1.2, pose: 'kneel',
     o: { grounded: true, lean: .14, avoid: CHEST }, hands: false, seed: 7,
@@ -235,8 +235,8 @@ const ch_sit = staged('chambre_jour', {
     if (!drinking && !pointing) lapHands(mo, t, 3);
 
     if (IN(5, t) && !pointing) {
-      mo.B.spine.rotation.x += .22;
-      mo.B.neck.rotation.x += .14;
+      mo.B.spine.rotation.x += .34;   // r03: visible lean-in to sniff
+      mo.B.neck.rotation.x += .2;
       mo.B.head.rotation.x += .1;
       mo.B.chest.rotation.x += .08;
     }
@@ -268,7 +268,7 @@ const ch_sit = staged('chambre_jour', {
       const sip = Math.max(0, Math.sin((t - B(9)[0]) * 2.4));
       mo.B.head.rotation.x -= .12;
       mo.B.chest.updateWorldMatrix(false, true);
-      const lip = front(mo, 'upperArmL', .16 * km, .06 * km, -.2 * km);
+      const lip = front(mo, 'head', .16 * km, .02 * km, -.24 * km);   // r03: bowl at the mouth, not the chest
       bowl.position.copy(lip);
       bowl.rotation.order = 'YXZ';
       bowl.rotation.y = mo.group.rotation.y + .35;
@@ -291,10 +291,10 @@ export default beatScene(ID, {
   shots: { pa, ch_lie, ch_sit },
   plan: {
     b069: { shot: 'pa', size: 'M', on: 'zoubida', pt: [600, 1000], z: 1.4 },
-    b070: { shot: 'pa', size: 'CU', on: 'zoubida', pt: [720, 940], z: 2.8, dy: -24 },
+    b070: { shot: 'pa', size: 'CU', on: 'zoubida', pt: [720, 940], z: 2.8, dy: -24, segs: [[.35, 'i_bol_tadeffi', { move: 'push' }]] },
     b071: { shot: 'ch_lie', size: 'W', on: 'mohammed', insAt: .25 },
     b072: { shot: 'ch_lie', size: 'M', on: 'fatma', pt: [1160, 760], z: 1.7 },
-    b073: { shot: 'ch_lie', size: 'W', on: 'zoubida' },
+    b073: { shot: 'ch_lie', size: 'W', on: 'zoubida', segs: [[.3, 'i_beignets_miel', { move: 'push' }]] },
     b074: { shot: 'ch_sit', size: 'M', on: 'mohammed', pt: [1280, 700], z: 1.9 },
     b075: { shot: 'ch_sit', size: 'W', on: 'mohammed' },
     b076: { shot: 'ch_sit', size: 'W', on: 'zoubida' },

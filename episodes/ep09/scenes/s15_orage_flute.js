@@ -81,7 +81,7 @@ const nu1 = staged('chambre_nuit', {
       pillow: .03, tuck: .1 + bury * .16, headTurn, turn: roll,
     });
     blanketOn(S3, st, mo, {
-      top: TOP, col: 0x6e4038, along: .7 - .38 * pull, w: .5, l: .64, h: .055, lift: .13 + .03 * pull,
+      top: TOP, col: 0x6e4038, along: .7 - .2 * pull, w: .5, l: .64, h: .055, lift: .13 + .015 * pull,
     });
     mo.B.chest.rotation.z += restl ? Math.sin(t * .7) * .05 : 0;
     mo.B.chest.rotation.x += fear ? .04 * pull : (bury > .2 ? .06 * bury : 0);
@@ -147,8 +147,8 @@ export default beatScene(ID, {
   shots: { nu1, storm },
   fadeIn: .7,
   plan: {
-    b094: { shot: 'nu1', size: 'M', on: 'mohammed', z: 2.6, dx: 20, dy: 40 },
-    b095: { shot: 'storm' },
+    b094: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 3.6, dx: 20, dy: 30 },
+    b095: { shot: 'storm', segs: [[.02, 'p10_orage_djinn', { move: 'push' }]] },
     b096: { move: 'rise' },
     b097: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 5.6, dx: 0, dy: 18 },
     b098: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 5.0, dx: 0, dy: 10 },

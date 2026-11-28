@@ -40,7 +40,7 @@ function citronProp() {
 const pe = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .4 },
   zoubida: {
-    height: 1.58, at: [1100, 800], face: 'cam', pose: 'kneel', hands: false,
+    height: 1.58, at: [1165, 770], face: [1500, 980], pose: 'kneel', hands: false,
     o: { grounded: true, lean: .2, seat: .016 }, seed: 7, talk: 0,
     look: (t, st) => at(st.A.mohammed, 'head'),
     lookMax: .45,
@@ -118,7 +118,7 @@ const pa = staged('patio_matin', {
 const ch = staged('chambre_jour', {
   mohammed: { ...BED, lids: .5 },
   zoubida: {
-    height: 1.58, at: [1100, 800], face: 'cam', pose: 'kneel', hands: false,
+    height: 1.58, at: [1165, 770], face: [1500, 980], pose: 'kneel', hands: false,
     o: { grounded: true, lean: .18, seat: .016 }, seed: 7,
     look: (t, st) => {
       const up = sm(B(3)[0] + 1.8, B(3)[0] + 3.0, t);
@@ -153,7 +153,7 @@ export default beatScene(ID, {
   plan: {
     b015: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.55, dy: 48 },
     b016: { shot: 'pa', size: 'M', on: 'rahma', pt: [475, 930], z: 2.15, dy: 20 },
-    b017: { shot: 'pa', size: 'M', on: 'fatma', pt: [1625, 937], z: 2.2, dy: 16 },
+    b017: { shot: 'pa', size: 'M', on: 'fatma', pt: [1625, 937], z: 2.2, dy: 16, segs: [[.4, 'i_citron_menthe', { move: 'push' }]] },
     b018: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.7, dy: 8 },
   },
 });

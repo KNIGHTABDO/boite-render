@@ -306,12 +306,12 @@ const sh2 = staged('aicha_pauvre', {
 export default beatScene(ID, {
   shots: { sh1, sh2 },
   plan: {
-    b131: { shot: 'sh1', size: 'M', on: 'aicha', z: 1.8, dx: -90, dy: 12 },
+    b131: { shot: 'sh1', size: 'W', on: 'aicha' },
     b132: { move: 'push' },   // painting p14_seffah_arafi auto-picked via b.still
     b133: { shot: 'sh1', size: 'CU', on: 'aicha', z: 3.4, dx: -16, dy: -14 },
     b134: { shot: 'sh1', size: 'M', on: 'zoubida', z: 1.38, dx: 20, dy: 36 },
-    b135: { shot: 'sh1', size: 'CU', on: 'zoubida', z: 3.35, dy: -12 },
-    b136: { shot: 'sh1', size: 'CU', on: 'aicha', z: 3.4, dy: -10 },
-    b137: { shot: 'sh2', size: 'M', on: 'aicha', z: 1.22, dx: -20, dy: 48 },
+    b135: { shot: 'sh1', size: 'CU', on: 'zoubida', z: 3.9, dy: -16 },
+    b136: { shot: 'sh1', size: 'CU', on: 'aicha', z: 3.4, dy: -10, segs: [[.45, 'sh1', { size: 'CU', on: 'zoubida', z: 3.6, dy: -14 }]] },
+    b137: { shot: 'sh2', size: 'M', on: 'aicha', z: 1.22, dx: 40, dy: 48 },
   },
 });

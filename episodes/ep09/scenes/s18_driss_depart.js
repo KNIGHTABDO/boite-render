@@ -244,10 +244,10 @@ export default beatScene(ID, {
   shots: { ch1, pa1, ch2, pa2 },
   plan: {
     b110: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.85, dy: 8, insAt: .56 },
-    b111: { shot: 'pa1', size: 'M', on: 'zoubida', z: 1.85, dy: 36, insAt: .68 },
-    b112: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.28, dx: 120, dy: 48 },
-    b113: { shot: 'ch2', size: 'M', on: 'mohammed', z: 2.05, dy: 20 },
-    b114: { shot: 'pa2', size: 'M', on: 'fatma', z: 1.85, dx: -200, dy: 16 },
-    b115: { shot: 'pa2', size: 'CU', on: 'zoubida', z: 3.45, dx: 8, dy: -12 },
+    b111: { shot: 'pa1', size: 'M', on: 'zoubida', z: 1.85, dy: 36, noIns: true, segs: [[.02, 'i_jarre_eau', { move: 'push' }]] },
+    b112: { shot: 'ch2', size: 'M', on: 'zoubida', z: 2.0, dx: 80, dy: 20 },
+    b113: { shot: 'ch2', size: 'CU', on: 'mohammed', z: 3.4, dy: -10, segs: [[.3, 'i_mouchoir_argent', { move: 'push' }]] },
+    b114: { shot: 'pa2', size: 'CU', on: 'fatma', z: 3.4, dx: 0, dy: -10 },
+    b115: { shot: 'pa2', size: 'M', on: 'zoubida', z: 1.7, dx: 60, dy: 10 },
   },
 });

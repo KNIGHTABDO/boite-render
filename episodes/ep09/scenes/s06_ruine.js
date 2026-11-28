@@ -21,6 +21,7 @@ import { staged } from '../lib/autostage.js';
 import { cradleFace } from '../lib/fix8_lie.js';
 import { armsDown } from '../lib/fix9_C.js';
 import { divanBoy } from '../lib/fix9_L.js';
+import { carryHand } from '../lib/fix9_K.js';
 import { beatScene, allLines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's06_ruine', L = allLines(ID), B = i => L[i] || [0, 0];
@@ -112,7 +113,7 @@ const nu1 = staged('chambre_nuit', {
 
     // Tabla on the open floor, clear of the painted lamp table and of her shins.
     const tbl = st.tbl ||= (() => { const m = PR.tabla({ r: .24, h: .28 }); S3.scene.add(m); return m; })();
-    const tblP = S3.floorAt(860, 965);
+    const tblP = S3.floorAt(1060, 990);
     S3.prop(tbl, tblP.x, 0, tblP.z, 0); tbl.visible = true;
 
     const tray = st.tea ||= makeTeaSet(S3);
@@ -151,8 +152,12 @@ const nu1 = staged('chambre_nuit', {
       armsDown(zo, t, 7);
       zo.B.chest.rotation.x += .04;
     }
+    // r03: puzzled tilt up toward the father while he stands silent (b028–b029).
+    if (IN(1, t) || IN(2, t)) { zo.B.head.rotation.z += .16; zo.B.head.rotation.x -= .08; zo.B.head.updateWorldMatrix(false, true); }
 
-    armsDown(fa, t, 5);
+    // r03: relaxed, slightly asymmetric hang instead of the flared A-pose.
+    carryHand(fa, 'R', -1, { fwd: .07 + .015 * Math.sin(t * .6), out: .13, drop: .6 });
+    carryHand(fa, 'L', 1, { fwd: .03, out: .14, drop: .62 });
     fa.B.chest.rotation.z += .03 * Math.sin(t * .5);
     fa.B.head.rotation.z += .045 * Math.sin(t * .62 + .8);
     fa.B.head.rotation.x += .05 * Math.sin(t * .74);
@@ -298,12 +303,12 @@ export default beatScene(ID, {
   plan: {
     b027: { shot: 'pa', size: 'M', on: 'zoubida', pt: [690, 800], segs: [[.48, 'nu1', {}]], cover: [{ f: .48, shot: 'nu1', size: 'W', on: 'zoubida' }] },
     b028: { shot: 'nu1', size: 'W', on: 'zoubida' },
-    b029: { shot: 'nu1', size: 'CU', on: 'father', z: 3.2, dx: 30, dy: 10 },
+    b029: { shot: 'nu1', size: 'CU', on: 'father', z: 3.9, dx: 30, dy: 10 },
     b030: { shot: 'nu1', size: 'W', on: 'zoubida' },
     b031: { shot: 'nu1', size: 'CU', on: 'zoubida', z: 3.4, dx: -16, dy: 6 },
     b032: { shot: 'nu2', size: 'W', on: 'zoubida' },
     b033: { shot: 'nu2', size: 'W', on: 'father' },
     b034: { shot: 'nu2', size: 'W', on: 'father' },
-    b035: { shot: 'nu2', size: 'CU', on: 'father', z: 2.55, dy: -18, insAt: .5, insMove: 'push' },
+    b035: { shot: 'nu2', size: 'CU', on: 'father', z: 1.8, dy: 30, insAt: .5, insMove: 'push' },
   },
 });

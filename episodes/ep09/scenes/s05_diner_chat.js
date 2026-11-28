@@ -126,7 +126,7 @@ const nu1 = staged('chambre_nuit', {
 const nu2 = staged('chambre_nuit', {
   mohammed: { ...BED, lids: .38 },
   father: {
-    height: 1.76, at: [1170, 760], face: [1420, 760], pose: 'kneel', hands: false,
+    height: 1.76, at: [1290, 772], face: [1420, 760], pose: 'kneel', hands: false,
     o: { grounded: true, lean: .22 }, seed: 5, talk: 0, lids: .5,
     lookMax: .42,
     look: (t, st) => {
@@ -145,7 +145,7 @@ const nu2 = staged('chambre_nuit', {
     const nod = sm(B(1)[0] + 10.4, B(1)[0] + 11.1, t) * (1 - sm(B(1)[0] + 11.5, B(1)[0] + 12.1, t));
     const away = sm(B(1)[0] + 12.0, B(1)[0] + 13.8, t);
     turnToward(fa, S3.cam.position, mo.group.position, away > .5 ? .3 : .8);
-    fa.B.spine.rotation.x += .12 * touch;
+    fa.B.spine.rotation.x += .2 * touch;
     fa.B.chest.rotation.x += .06 * touch;
     fa.B.neck.rotation.x += .2 * nod;
     fa.B.chest.updateWorldMatrix(false, true);
@@ -166,7 +166,7 @@ const nu3 = staged('chambre_nuit', {
     lids: t => IN(4, t) || IN(6, t) ? .55 : .4,
   },
   father: {
-    height: 1.76, at: [600, 880], face: [780, 940], pose: 'kneel', hands: false,
+    height: 1.76, at: [600, 880], face: [760, 1080], pose: 'kneel', hands: false,
     o: { grounded: true, lean: .2 }, seed: 5, lids: .35,
     lookMax: .38,
     look: (t, st) => t < B(4)[0] ? [780, 940, .55] : at(st.A.mohammed, 'head'),
@@ -298,9 +298,9 @@ const nu3 = staged('chambre_nuit', {
 export default beatScene(ID, {
   shots: { nu1, nu2, nu3 },
   plan: {
-    b019: { shot: 'nu1', size: 'M', on: 'zoubida', pt: [640, 800], z: 1.2, dy: 30 },
+    b019: { shot: 'nu1', size: 'M', on: 'zoubida', pt: [640, 800], z: 1.2, dy: 30, segs: [[.3, 'i_lampe_petrole', { move: 'push' }]] },
     b020: { shot: 'nu2', size: 'M', on: 'father', z: 1.85, dx: 10, dy: 28 },
-    b021: { shot: 'nu3', size: 'M', on: 'father', pt: [780, 900], z: 1.35, dy: 24 },
+    b021: { shot: 'nu3', size: 'M', on: 'father', pt: [780, 900], z: 1.35, dy: 24, segs: [[.55, 'i_plat_safran', { move: 'push' }]] },
     b022: { shot: 'nu3', size: 'W', on: 'father' },
     b023: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 4.05, dx: 24, dy: 40 },
     b024: { shot: 'nu3', size: 'M', on: 'father', pt: [960, 780], z: 1.05, dy: 10 },

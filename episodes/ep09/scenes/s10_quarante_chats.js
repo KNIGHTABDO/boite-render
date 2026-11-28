@@ -108,7 +108,7 @@ const ch = staged('chambre_jour', {
     // b058: curious head tilt. Hands stay in the lap — a chest reach read as a fist in the eye.
     if (IN(1, t)) {
       const q = full(1);
-      moAim = { z: .42 * q, x: -.04 * q };
+      moAim = { z: .18 * q, x: -.04 * q };
     }
 
     // b059: she startles upright out of the daze. Both hands leave the cheek.
@@ -241,7 +241,7 @@ export default beatScene(ID, {
   plan: {
     b057: { shot: 'ch_lie', size: 'W', on: 'mohammed', segs: [[.55, 'ch']],
       cover: [{ f: .55, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: -30, dy: -30 }] },
-    b058: { shot: 'ch', size: 'CU', on: 'mohammed', z: 4.2, dx: 130, dy: -10 },
+    b058: { shot: 'ch', size: 'M', on: 'mohammed', z: 2.1, dx: 60, dy: 10 },
     b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.6, dx: -80, dy: -28 },
     b060: { shot: 'ch', size: 'CU', on: 'mohammed', z: 4.2, dx: 130, dy: -10 },
     b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.45 },

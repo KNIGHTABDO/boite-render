@@ -51,7 +51,7 @@ const ch1 = staged('chambre_jour', {
     mutter: t => sm(B(0)[0] + 2.6, B(0)[0] + 3.4, t) * (1 - sm(B(0)[0] + 4.8, B(0)[0] + 5.6, t)),
   },
   zoubida: {
-    at: [1160, 820], face: [1400, 600], pose: 'kneel', hands: false,
+    at: [1250, 770], face: [1360, 640], pose: 'kneel', hands: false,
     o: { grounded: true, lean: .12, avoid: CHEST },
     seed: 7,
     look: (t, st, S3) => at(st.A.mohammed, 'head').lerp(S3.cam.position, .5),
@@ -187,7 +187,7 @@ const ch2 = staged('chambre_jour', {
     } else if (grin) {
       zo.B.head.rotation.z += .06 * Math.sin(t * 1.6);
       zo.B.chest.rotation.x += .02 * Math.sin(t * 1.2);
-      const pinch = front(zo, 'chest', .26 * kz, .14 * kz, .06 * kz + .02 * Math.sin(t * 2.6) * kz);
+      const pinch = front(zo, 'chest', .26 * kz, .16 * kz, -.06 * kz + .02 * Math.sin(t * 2.6) * kz);
       clampReach(zo, 'R', pinch, { grip: .02, pole: [-.4, .12, .2] });
       PO.fingers(zo, 'R', .45, { spread: .12 });
       const gestL = front(zo, 'chest', .2 * kz, -.14 * kz, -.02 * kz);
@@ -273,6 +273,8 @@ const pa3 = staged('patio_matin', {
     const vo = st.A.voisine, k = vo.group.scale.y / 1.6;
     // The patio robe is already hot magenta (hue ~330), not the yellow the old dye looked for.
     dyeGarment(vo, { hue: 328, span: 28, to: 318, minS: .28, lit: .55 });
+    // The woman1 robe texture is mustard (hue ~45). Dye it plum.
+    dyeGarment(vo, { hue: 48, span: 10, to: 300, minS: .25, lit: .5 });
     const c = t - B(7)[0];
     const nod = .55 + .45 * Math.max(0, Math.sin(c * 2.6));
     vo.B.spine.rotation.x += .06 * nod;

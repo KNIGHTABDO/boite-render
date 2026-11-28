@@ -110,7 +110,10 @@ const pe1 = staged('chambre_penombre', {
     const knee = PO.hipToWorld(mo, .14 * k, .02 * k, .2 * k);
     clampReach(mo, 'L', knee, { grip: .01, pole: [.28, .04, .14] });
     PO.fingers(mo, 'L', .28, { spread: .12 });
-    const lid = bxP.clone().add(V(.04, .2, .06));
+    // r03: fingertips rest on the near rim (boy's side), above the wood, and drift slowly along it.
+    const toBoy = V(mo.group.position.x - bxP.x, 0, mo.group.position.z - bxP.z).normalize();
+    const along = V(-toBoy.z, 0, toBoy.x);
+    const lid = bxP.clone().addScaledVector(toBoy, .02).addScaledVector(along, .05 * Math.sin(t * .5)).add(V(0, .19, 0));
     clampReach(mo, 'R', lid, { grip: .01, pole: [-.35, .35, .45] });
     PO.fingers(mo, 'R', .22, { spread: .2 });
     PO.look(mo, lid, .8, { max: .7 });

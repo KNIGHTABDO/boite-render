@@ -78,7 +78,7 @@ const paths = {
   ownCover: true,
   async load() { await loadStill('p12_sentiers_nuit'); },
   fn(lt, u) {
-    still('p12_sentiers_nuit', u, [.5, .38, 1, .5, .4, 1]);
+    still('p12_sentiers_nuit', u, [.74, .7, 1.75, .8, .72, 2.05]);
     return { vignette: .5, paper: .2 };
   },
 };
@@ -87,7 +87,7 @@ export default beatScene(ID, {
   shots: { ch, paths },
   plan: {
     b099: { move: 'push' },
-    b100: { shot: 'ch', size: 'M', on: 'mohammed', z: 2.5, dx: 16, dy: 36 },
+    b100: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.6, dx: 16, dy: 30 },
     b101: { shot: 'paths' },
   },
 });

@@ -200,6 +200,7 @@ const tj2 = staged('rue_tijani', {
         head.y = Math.max(head.y, hers.y - .1);
         return head;
       }
+      if (t < B(9)[0]) return spot(S3, st, 'portal', 360, 780, 420);
       return 'mohammed';
     },
     lookMax: t => t < B(8)[0] ? .5 : .4,
@@ -253,6 +254,7 @@ const tj2 = staged('rue_tijani', {
       zo.B.chest.updateWorldMatrix(false, true);
     }
     // b124 is a close-up on her. Step him sideways out of that crop so his head is not sliced.
+    if (t >= B(9)[0] && t < B(10)[0]) { zo.group.position.x += 1.6; zo.group.updateMatrixWorld(true); }
     if (t >= B(8)[0] && t < B(9)[0]) {
       const cam = S3.cam.position, away = mo.group.position.clone().sub(cam);
       away.y = 0;
@@ -268,16 +270,16 @@ const tj2 = staged('rue_tijani', {
 export default beatScene(ID, {
   shots: { tj1, lg, tj2 },
   plan: {
-    b116: { shot: 'tj1', size: 'W', on: 'zoubida', insAt: .62 },
-    b117: { shot: 'tj1', size: 'W', on: 'zoubida' },
-    b118: { shot: 'tj1', size: 'W', on: 'zoubida' },
+    b116: { shot: 'tj1', size: 'W', on: 'zoubida', noIns: true, segs: [[.02, 'i_provisions_olives', { move: 'pan' }], [.5, 'i_tronc_tijani', { move: 'push' }]] },
+    b117: { shot: 'tj1', size: 'W', on: 'zoubida', segs: [[.02, 'i_tronc_tijani', { move: 'pull' }]] },
+    b118: { shot: 'tj1', size: 'M', on: 'zoubida', z: 1.8, dy: 20 },
     b119: { shot: 'lg', size: 'W', on: 'zoubida' },
-    b120: { shot: 'lg', size: 'M', on: 'marchand', z: 1.45, dy: -85 },
-    b121: { shot: 'lg', size: 'W', on: 'zoubida' },
-    b122: { shot: 'tj2', size: 'W', on: 'mohammed', insAt: .45 },
-    b123: { shot: 'tj2', size: 'CU', on: 'mohammed', z: 3.5, dx: -30, dy: 8 },
+    b120: { shot: 'lg', size: 'CU', on: 'marchand', z: 3.2, dy: -10 },
+    b121: { shot: 'lg', size: 'M', on: 'zoubida', z: 1.6, dx: 60, dy: 0 },
+    b122: { shot: 'tj2', size: 'W', on: 'mohammed', noIns: true, segs: [[.02, 'i_portail_bronze', { move: 'push' }]] },
+    b123: { shot: 'tj2', size: 'CU', on: 'mohammed', z: 4.0, dx: -30, dy: -12, segs: [[.5, 'i_portail_bronze', { move: 'pull' }]] },
     b124: { shot: 'tj2', size: 'CU', on: 'zoubida' },
     b125: { shot: 'tj2', size: 'CU', on: 'mohammed' },
-    b126: { shot: 'tj2', size: 'M', on: 'zoubida', z: 1.4, dx: -160 },
+    b126: { shot: 'tj2', size: 'M', on: 'zoubida', z: 1.4, dx: -160, segs: [[.3, 'i_tronc_tijani', { move: 'pull' }]] },
   },
 });

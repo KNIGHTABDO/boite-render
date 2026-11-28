@@ -97,20 +97,21 @@ const ch = staged('chambre_nuit', {
       zo.B.chest.rotation.x += .05;
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        reachClamped(zo, s, front(zo, 'chest', .26 * kz, -sg * .11 * kz, (-.08 + w) * kz), { grip: 0, pole: [sg * .45, -.1, .18] });
+        reachClamped(zo, s, front(zo, 'chest', .2 * kz, -sg * .045 * kz, (-.06 + w) * kz), { grip: 0, pole: [sg * .45, -.1, .18] });
         PO.fingers(zo, s, .35, { spread: .12 });
       }
     } else if (IN(7, t)) {
       // Father steady calming hand gesture
       const ph = .5 + .5 * Math.sin(t * 2.2);
-      reachClamped(fa, 'R', front(fa, 'root', .24 * kf, .16 * kf, (.04 + .03 * ph) * kf), { grip: 0, pole: [-.18, -.02, .08] });
+      reachClamped(fa, 'R', front(fa, 'root', (.3 + .04 * ph) * kf, (.12 + .05 * ph) * kf, (.1 + .09 * ph) * kf), { grip: 0, pole: [-.18, -.02, .08] });
       PO.palmTo(fa, 'R', .8, V(0, -1, .3));
+      fa.B.head.rotation.x += .06 * ph; fa.B.head.updateWorldMatrix(false, true);
       PO.fingers(fa, 'R', .12, { spread: .2 });
     } else if (IN(8, t)) {
       // Zoubida gestures sharply toward her chest / wrists ("ces maudits bracelets")
       const ph = Math.sin((t - B(8)[0]) * 4.5) * .5 + .5;
       zo.B.chest.rotation.x += .05;
-      reachClamped(zo, 'R', front(zo, 'chest', .22 * kz, .22 * kz, -.06 * kz), { grip: 0, pole: [-.2, -.04, .12] });
+      reachClamped(zo, 'R', front(zo, 'chest', (.18 + .06 * ph) * kz, (.2 - .06 * ph) * kz, (-.06 + .05 * ph) * kz), { grip: 0, pole: [-.2, -.04, .12] });
       PO.fingers(zo, 'R', .22, { spread: .25 });
       reachClamped(zo, 'L', front(zo, 'root', .16 * kz, -.28 * kz, .02 * kz), { grip: 0, pole: [.22, -.04, .1] });
       PO.palmTo(zo, 'L', .7, V(0, 1, .2)); PO.fingers(zo, 'L', .15, { spread: .3 });
@@ -135,10 +136,10 @@ export default beatScene(ID, {
     b039: { shot: 'ch', size: 'W', on: 'father' },
     b040: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
     b041: { move: 'sink' },   // painting p03_moissonneurs — headroom above the turban
-    b042: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
-    b043: { shot: 'ch', size: 'W', on: 'father' },
-    b044: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
+    b042: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.6, dx: 120, dy: 0 },
+    b043: { shot: 'ch', size: 'M', on: 'father', z: 2.0, dx: -40, dy: 20 },
+    b044: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.6, dx: 120, dy: 0 },
     b045: { shot: 'ch', size: 'W', on: 'father', insAt: 0, insMove: 'push', segs: [[.55, 'i_bracelets_vente', { move: 'push' }], [.7, 'ch', {}]] },
-    b046: { shot: 'ch', size: 'M', on: 'father', z: 2.0, dx: 40, dy: 20 },
+    b046: { shot: 'ch', size: 'CU', on: 'father', z: 2.6, dx: -120, dy: 30 },
   },
 });

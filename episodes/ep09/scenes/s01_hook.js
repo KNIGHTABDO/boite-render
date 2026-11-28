@@ -123,8 +123,8 @@ const dawn = staged('chambre_jour', {
       fa.B.chest.updateWorldMatrix(false, true);
     }
     // Right hand clear of the hip with the sickle; left hand out so the sack hangs beside the leg.
-    carryHand(fa, 'R', -1, { fwd: .08, out: .22, drop: .52 });
-    carryHand(fa, 'L', 1, { fwd: .02, out: .26, drop: .6 });
+    carryHand(fa, 'R', -1, { fwd: .16, out: .15, drop: .5 });
+    carryHand(fa, 'L', 1, { fwd: .04, out: .17, drop: .58 });
     PO.fingers(fa, 'R', .72);
     PO.fingers(fa, 'L', .62);
     fa.group.updateMatrixWorld(true);
@@ -171,6 +171,7 @@ export default beatScene(ID, {
   shots: { dawn, nuit },
   plan: {
     b001: { shot: 'dawn', size: 'W', on: 'father' },
-    b002: { shot: 'nuit', size: 'M', on: 'mohammed', z: 2.1, dx: 10, dy: 60 },
+    // r03: the painted divan dwarfs a 6-year-old at true scale; the hook's coffin line plays on the painting instead.
+    b002: { shot: 'p08_boite_cercueil', move: 'push' },
   },
 });

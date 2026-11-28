@@ -201,9 +201,9 @@ export default beatScene(ID, {
   shots: { ch, esc },
   plan: {
     b085: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.4, dx: 80, dy: -8 },
-    b086: { shot: 'ch', size: 'M', on: 'mohammed', z: 2.2, dx: -50, dy: 28 },
+    b086: { shot: 'ch', size: 'M', on: 'mohammed', z: 2.2, dx: -50, dy: 28, segs: [[.3, 'i_pain_olives', { move: 'push' }]] },
     // Wide enough that the bare tabla, the chipped pot and both glasses stay in frame.
     b087: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.25, dx: 20, dy: 70, insAt: .54 },
-    b088: { shot: 'esc', size: 'W', on: 'zoubida' },
+    b088: { shot: 'esc', size: 'W', on: 'zoubida', segs: [[.45, 'i_portail_bronze', { move: 'push' }]] },
   },
 });

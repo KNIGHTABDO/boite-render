@@ -131,7 +131,7 @@ export default beatScene(ID, {
   plan: {
     b127: { shot: 'ap', size: 'W', on: 'aicha' },
     b128: { shot: 'ap', size: 'W', on: 'aicha' },
-    b129: { shot: 'ap', size: 'W', on: 'mohammed', insAt: .14 },
-    b130: { shot: 'ap', size: 'W', on: 'aicha' },
+    b129: { shot: 'ap', size: 'W', on: 'mohammed', insAt: .14, segs: [[.55, 'ap', { size: 'CU', on: 'mohammed', z: 3.4, dy: -10 }]] },
+    b130: { shot: 'ap', size: 'W', on: 'aicha', segs: [[.02, 'i_theiere_email', { move: 'push' }]] },
   },
 });

@@ -213,9 +213,9 @@ export default beatScene(ID, {
   plan: {
     b079: { shot: 'ch1', size: 'W', on: 'mohammed' },
     b080: { shot: 'pa', size: 'W', on: 'rahma' },
-    b081: { shot: 'ch1', size: 'M', on: 'zoubida', z: 3.0, dx: -30, dy: -10 },
-    b082: { shot: 'pa', size: 'M', on: 'rahma', pt: [1080, 960], z: 2.35, dy: -20 },
-    b083: { shot: 'pa', size: 'CU', on: 'mohammed', pt: [560, 1045], z: 3.4, dy: -28, insAt: 0, segs: [[.52, 'i_trompette_ramadan', { move: 'push' }], [.7, 'pa', {}]] },
-    b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.65, dx: -20 },
+    b081: { shot: 'ch1', size: 'CU', on: 'zoubida', z: 3.0, dx: -30, dy: -10 },
+    b082: { shot: 'pa', size: 'CU', on: 'rahma', pt: [1080, 960], z: 2.35, dy: -20 },
+    b083: { shot: 'pa', size: 'CU', on: 'mohammed', pt: [560, 1045], z: 3.4, dy: -28, segs: [[.52, 'i_trompette_ramadan', { move: 'push' }], [.7, 'pa', {}]] },
+    b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 2.1, dx: -20 },
   },
 });

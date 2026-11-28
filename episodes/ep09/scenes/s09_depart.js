@@ -94,7 +94,7 @@ function slumped(a) {
   B.neck.rotation.x += .28;
   a.group.updateMatrixWorld(true);
   for (const [s, sg] of [['L', 1], ['R', -1]]) {
-    reachHand(a, s, PO.hipToWorld(a, sg * .26 * k, .015 * k, .14 * k), { grip: .02, pole: [sg * .45, -.2, .18] });
+    reachHand(a, s, PO.hipToWorld(a, sg * .24 * k, .085 * k, .2 * k), { grip: .02, pole: [sg * .45, -.2, .18] });
     PO.fingers(a, s, .22, { spread: .1 });
   }
 }
@@ -220,7 +220,7 @@ export default beatScene(ID, {
   plan: {
     // The 1.3s auto insert had already ended by the luggage line (local ~11.4). Hold the painting across that line.
     b052: { move: 'push', noIns: true, segs: [
-      [7.0 / dur(0), 'bags', { move: 'face' }],
+      [7.0 / dur(0), 'i_sacoche_faucille', { move: 'push' }],   // r03: the 3D sack read as a toy; painted insert instead
       [11.3 / dur(0), 'p06_pere_aube', { move: 'push' }],
     ] },
     // Provisions insert covers the olives/figs/flour clause (the 28s tile); qarchalas follows its own word.
@@ -230,7 +230,7 @@ export default beatScene(ID, {
       [15.4 / dur(1), 'ch1'],
     ] },
     b054: { shot: 'ch2', size: 'W', on: 'zoubida' },
-    b055: { shot: 'pa', size: 'W', on: 'father' },
+    b055: { shot: 'pa', size: 'M', on: 'father', z: 1.6 },
     b056: { shot: 'ch2', size: 'W', on: 'zoubida' },
   },
 });
