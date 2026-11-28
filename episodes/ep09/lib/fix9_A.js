@@ -17,7 +17,7 @@ export function boyBed(S3, st, t, headTurn = -.45, blanket = 0x8a3d34) {
   const mo = st.A.mohammed;
   // The heels land a few centimetres past the painted divan's back edge. A fixed
   // nudge toward the camera (+z) brings them onto the mattress without leaving the divan.
-  if (!st.mo0) { st.mo0 = mo.group.position.clone(); st.mo0.z += .28; }
+  if (!st.mo0) { st.mo0 = mo.group.position.clone(); st.mo0.z += .5; }
   lieOnBed(mo, {
     top: .28, feet: [-.97, .24],
     origin: st.mo0,
