@@ -19,7 +19,7 @@ export function boyBed(S3, st, t, headTurn = -.45, blanket = 0x8a3d34) {
   // nudge toward the camera (+z) brings them onto the mattress without leaving the divan.
   if (!st.mo0) { st.mo0 = mo.group.position.clone(); st.mo0.z += .28; }
   lieOnBed(mo, {
-    top: .28, feet: [.22, -.97],
+    top: .28, feet: [-.97, .24],
     origin: st.mo0,
     hands: 'belly', pillow: .1, tuck: .12, headTurn,
   });

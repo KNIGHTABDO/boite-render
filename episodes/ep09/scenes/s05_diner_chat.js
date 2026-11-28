@@ -209,7 +209,7 @@ const nu3 = staged('chambre_nuit', {
       const sob = .5 + .5 * Math.sin(t * 7.5);
       mo.B.chest.rotation.x += .08 + .04 * sob;
       mo.B.chest.updateWorldMatrix(false, true);
-      handsToFace(mo, .75 + .2 * sob);
+      handsToFace(mo, (.55 + .15 * sob));
       const fmo = st.faces.find(x => x[0] === mo);
       if (fmo) fmo[3] = { sad: .95 };
     }
@@ -303,6 +303,6 @@ export default beatScene(ID, {
     b023: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 3.3, dx: 40, dy: 8 },
     b024: { shot: 'nu3', size: 'M', on: 'father', z: 1.7, dx: 30, dy: 18 },
     b025: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 3.3, dx: 48, dy: 8 },
-    b026: { shot: 'nu3', size: 'M', on: 'father', z: 1.42, dx: 24, dy: 20 },
+    b026: { shot: 'nu3', size: 'M', on: 'father', z: 1.3, dx: 24, dy: 20 },
   },
 });
