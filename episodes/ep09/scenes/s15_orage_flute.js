@@ -1,139 +1,139 @@
 // s15 "L'orage et la flûte".
-// b094 chambre_nuit (fadeIn 0.7): Mohammed lies alone in the dark bedroom, tossing and turning restlessly under the blanket.
-// b095 patio_nuit (cast: []): empty storm-lashed courtyard with flickering lightning flashes, wind gusts, and slanted rain.
-// b096 painting p10_orage_djinn: unearthly flute melody forged underwater by a mad djinn above the storm roofs.
-// b097 chambre_nuit: Mohammed pulls the blanket up toward his chin in terror, eyes wide as lightning flickers through the shutters.
-// b098 chambre_nuit: trembling, he murmurs the Sourate de l'Unité three times, drops his face into the cushion, and falls asleep.
-import * as PO from '../../../engine/poses.js';
-import * as PR from '../../../engine/props3d.js';
+// b094 chambre_nuit (fadeIn 0.7): Mohammed lies lengthwise on the right divan, head on the painted pillow, tossing under a blanket.
+// b095 patio_nuit (cast: []): the ritual plate is graded into a dark storm — candles and the open door covered, hard rain, lightning.
+// b096 painting p10_orage_djinn: unearthly flute melody (unchanged; the r01 note on it was a minor).
+// b097 chambre_nuit: he pulls the blanket up to his chin, eyes wide.
+// b098 chambre_nuit: he murmurs, then turns his face into the pillow and sleeps.
 import * as K from '../../../engine/core.js';
 import { staged } from '../lib/autostage.js';
-import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
-import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
+import { lieTurn, blanketOn, lowerHands, DIVAN_AT, DIVAN_FEET, BED_TOP, BOY_H } from '../lib/fix9_D.js';
+import { openFace, seatHead } from '../lib/fix9_B.js';
+import { beatScene, lines, sm } from '../lib/beatscene.js';
 
 const ID = 's15_orage_flute', L = lines(ID), B = i => L[i] || [0, 0];
 
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
-const TOP = .26;
+const TOP = BED_TOP;
 
-function clampReach(a, side, target, o) {
-  const sh = at(a, 'upperArm' + side);
-  const len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
-  const d = target.clone().sub(sh);
-  if (d.length() > len * .85) target = sh.clone().addScaledVector(d.normalize(), len * .85);
-  return PO.reach(a, side, target, o);
+function bolt(t, peaks) {
+  let f = 0;
+  for (const p of peaks) { const d = t - p; f = Math.max(f, Math.exp(-d * d * 14)); }
+  return K.clamp(f, 0, 1);
 }
 
-function lightningPulse(t) {
-  const f1 = Math.max(0, Math.sin(t * 7.3)) ** 10 * Math.max(0, Math.sin(t * 2.1 + .4));
-  const f2 = Math.max(0, Math.sin(t * 13.7 + 1.8)) ** 14 * Math.max(0, Math.cos(t * 1.7));
-  return K.clamp(f1 * 1.1 + f2 * .9, 0, 1);
+// Plate patio_nuit is 2752×1536, drawn with a 3.5% crop into 1920×1080. Door and candle
+// bboxes were measured on the warm pixels of that plate.
+function platePx(px, py) {
+  const pw = 2752, ph = 1536, crop = .035;
+  return [
+    (px - pw * crop) / (pw * (1 - 2 * crop)) * K.W,
+    (py - ph * crop) / (ph * (1 - 2 * crop)) * K.H,
+  ];
 }
 
-// b094, b097, b098: Mohammed in bed (chambre_nuit)
+// b094, b097, b098: Mohammed lengthwise on the painted divan.
 const nu1 = staged('chambre_nuit', {
   mohammed: {
-    at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, pillow: .08, mattress: MATTRESS, avoid: CHEST },
+    at: DIVAN_AT, face: Math.atan2(DIVAN_FEET[0], DIVAN_FEET[1]), pose: 'lie', height: BOY_H,
+    o: { top: TOP, hands: 'belly', headTurn: 0, pillow: .03, mattress: MATTRESS, avoid: CHEST },
     seed: 3, talk: 0,
     lids: t => {
-      if (t >= B(4)[0] + 3.0) return .25 + .72 * sm(B(4)[0] + 3.4, B(4)[1] - 1.0, t);
-      if (t >= B(3)[0]) return .05;
-      return .5 + .22 * Math.sin(t * 1.4);
+      if (t >= B(4)[0] + 4.2) return .2 + .78 * sm(B(4)[0] + 4.4, B(4)[0] + 6.2, t);
+      if (t >= B(3)[0]) return 0;
+      return .35 + .2 * Math.sin(t * 1.1);
     },
-    mutter: t => (t >= B(4)[0] && t < B(4)[0] + 3.8) ? .7 : 0,
+    mutter: t => (t >= B(4)[0] && t < B(4)[0] + 4.0) ? .85 : 0,
   },
 }, {
   light: { key: '#90a6d4', keyI: .85, sky: '#36446b', ground: '#211c26', fillI: .42, shadow: .25 },
   fx: { vignette: .74 },
   over(lt, u, t) {
-    if (t < B(3)[0] || t >= B(4)[0] + 4.5) return;
-    const fl = lightningPulse(t) * (t < B(4)[0] ? 1 : .45);
-    if (fl <= .04) return;
+    if (t < B(3)[0] || t >= B(4)[0] + 4.2) return;
+    const fl = bolt(t, [B(3)[0] + .4, B(3)[0] + 4.8, B(3)[0] + 6.5]);
+    if (fl <= .05) return;
     const c = K.c;
     c.save(); c.globalCompositeOperation = 'screen';
-    c.fillStyle = `rgba(195,218,255,${.22 * fl})`;
-    c.fillRect(0, 0, K.W, K.H);
+    c.fillStyle = `rgba(200, 220, 255, ${.28 * fl})`;
+    c.fillRect(-40, -40, K.W + 80, K.H + 80);
     c.restore();
   },
   act(lt, t, S, st, S3) {
-    const mo = st.A.mohammed, km = mo.group.scale.y / 1.6;
+    st.G.apply = () => {};
+    const mo = st.A.mohammed;
     const restl = t < B(1)[0];
     const fear = t >= B(3)[0] && t < B(4)[0];
-    const sleep = t >= B(4)[0] ? sm(B(4)[0] + 3.2, B(4)[0] + 5.8, t) : 0;
-    const fl = fear ? lightningPulse(t) : 0;
-    S3.key.intensity = .85 + 1.3 * fl;
-    lieOnBed(mo, {
-      top: TOP, feet: [.5, .87],
-      origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.14,
-    });
-    pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b485e });
-    st.cover ||= PR.blanket({ w: .42, l: .58, h: .065, col: 0x8a3a2c });
-    const pullUp = fear ? sm(B(3)[0], B(3)[0] + .8, t) : (t >= B(4)[0] ? 1 - .35 * sleep : 0);
-    const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
-    const along = .28 - .11 * pullUp;
-    S3.prop(st.cover, hp.x + Math.sin(ry) * along, TOP + .032 - .004, hp.z + Math.cos(ry) * along, ry);
-    st.cover.visible = true;
+    const bury = t >= B(4)[0] ? sm(B(4)[0] + 4.0, B(4)[0] + 6.2, t) : 0;
+    const pull = fear ? sm(B(3)[0], B(3)[0] + 2.4, t) : (t >= B(4)[0] ? 1 - .2 * bury : 0);
+    const fl = fear ? bolt(t, [B(3)[0] + .4, B(3)[0] + 4.8]) : 0;
+    S3.key.intensity = .85 + 1.6 * fl;
 
-    if (restl) {
-      mo.B.chest.rotation.z += .07 * Math.sin(t * 1.6);
-      mo.B.head.rotation.y += .22 * Math.sin(t * 1.9);
-      mo.B.chest.rotation.x += .016 * Math.sin(t * 2.2);
-    } else if (fear) {
-      const shiv = Math.sin(t * 15) * .018;
-      mo.B.chest.rotation.z += shiv;
-      mo.B.head.rotation.y += .12 * Math.sin(t * 1.3) + shiv * .5;
-      mo.B.chest.rotation.x += .02 * Math.sin(t * 3.1);
-      const hy = at(mo, 'head').y;
-      for (const [sd, sg] of [['L', 1], ['R', -1]]) {
-        const tg = front(mo, 'chest', .04 * km, -sg * .19 * km, .22 * km);
-        tg.y = Math.min(tg.y, hy + .03);
-        clampReach(mo, sd, tg, { grip: .02, pole: [sg * .65, .05, .25] });
-        PO.fingers(mo, sd, .45, { spread: .1 });
-      }
-    } else {
-      const shiv = (1 - sleep) * Math.sin(t * 12) * .014;
-      mo.B.chest.rotation.z += shiv;
-      mo.B.head.rotation.y -= .30 * sleep;
-      mo.B.head.rotation.z += .05 * sleep;
-      mo.B.chest.rotation.x += .012 * Math.sin(t * 1.5);
-    }
+    const home = (st.mo0 ||= mo.group.position.clone());
+    // A full side-roll lifts the upper foot off the mattress and turns the face away from the lens.
+    const roll = restl ? Math.sin(t * .55) * .1 : bury * .08;
+    const headTurn = restl ? Math.sin(t * .85 + .6) * .35 : (fear ? -.08 + .1 * Math.sin(t * 2.2) : .1 + bury * .4);
+    lieTurn(mo, {
+      top: TOP, feet: DIVAN_FEET, origin: home,
+      hands: bury > .6 ? 'side' : (pull > .35 ? 'chest' : 'belly'),
+      pillow: .03, tuck: .1 + bury * .16, headTurn, turn: roll,
+    });
+    blanketOn(S3, st, mo, {
+      top: TOP, col: 0x5c3844, along: .68 - .42 * pull, w: .34, l: .46, h: .05, lift: .08,
+    });
+    mo.B.chest.rotation.z += restl ? Math.sin(t * .7) * .05 : 0;
+    mo.B.chest.rotation.x += fear ? .04 * pull : (bury > .2 ? .06 * bury : 0);
+    if (bury > .2) mo.B.head.rotation.x += .1 * bury;
+    openFace(mo, S3.cam.position);
+    seatHead(mo, TOP + .03);
+    lowerHands(mo, .05);
     mo.B.chest.updateWorldMatrix(false, true);
   },
 });
 
-// b095: Empty courtyard at night during violent storm (plate-only shot with lightning & rain)
+// b095: storm over the night courtyard. The plate is the ritual court; the overlay kills the candles,
+// the incense glow and the open door, and puts a hard rain plus lightning on top.
 const storm = staged('patio_nuit', {}, {
-  fx: { vignette: .78, grade: 'rgba(18,28,62,.24)' },
+  fx: { vignette: .84, grade: 'rgba(8, 14, 36, .45)' },
   view: (lt, u, t) => {
     const a = sm(B(1)[0], B(1)[1], t);
-    const jolt = Math.sin(t * 26) * 4 * (Math.max(0, Math.sin(t * 3.8)) ** 6);
-    return [960 + jolt, 540 - 38 * a + jolt * .5, 1.07 + .09 * a];
+    const jolt = Math.sin(t * 26) * 6 * (Math.max(0, Math.sin(t * 3.2)) ** 4);
+    return [960 + jolt, 520 - 20 * a + jolt * .4, 1.08 + .06 * a];
   },
   over(lt, u, t) {
-    const c = K.c, fl = lightningPulse(t);
+    const c = K.c, fl = bolt(t, [11.85, 14.4, 16.25, 18.6]);
+    const door0 = platePx(1300, 540), door1 = platePx(1620, 840);
+    const floor = platePx(1400, 1040);
     c.save();
-    if (fl > .03) {
-      c.globalCompositeOperation = 'screen';
-      const g = c.createRadialGradient(960, 220, 40, 960, 420, 1100);
-      g.addColorStop(0, `rgba(220,235,255,${.65 * fl})`);
-      g.addColorStop(1, 'rgba(110,150,230,0)');
-      c.fillStyle = g;
-      c.fillRect(0, 0, K.W, K.H);
-    }
+    c.globalCompositeOperation = 'multiply';
+    c.fillStyle = 'rgb(38, 52, 84)';
+    c.fillRect(-300, -300, K.W + 600, K.H + 600);
+    c.globalCompositeOperation = 'source-over';
+    c.fillStyle = 'rgba(20, 16, 24, .94)';
+    c.fillRect(door0[0], door0[1], door1[0] - door0[0], door1[1] - door0[1]);
+    c.strokeStyle = 'rgba(6, 4, 8, .95)';
+    c.lineWidth = 5;
+    const mx = (door0[0] + door1[0]) / 2;
+    c.beginPath(); c.moveTo(mx, door0[1]); c.lineTo(mx, door1[1]); c.stroke();
+    c.fillStyle = 'rgba(12, 16, 32, .84)';
+    c.beginPath(); c.ellipse(floor[0], floor[1], 520, 230, 0, 0, Math.PI * 2); c.fill();
     c.globalCompositeOperation = 'screen';
-    c.strokeStyle = `rgba(180,205,240,${.26 + .24 * fl})`;
-    c.lineWidth = 1.6;
+    c.strokeStyle = `rgba(190, 214, 245, ${.5 + .3 * fl})`;
+    c.lineWidth = 2.1;
     c.beginPath();
-    for (let i = 0; i < 90; i++) {
-      const rx = ((K.hash(i, 1) * 2100 + t * (480 + (i % 5) * 60)) % 2100) - 90;
-      const ry = ((K.hash(i, 2) * 1200 + t * (1350 + (i % 4) * 180)) % 1200) - 60;
+    for (let i = 0; i < 170; i++) {
+      const rx = ((K.hash(i, 1) * 2500 + t * (700 + (i % 5) * 90)) % 2500) - 250;
+      const ry = ((K.hash(i, 2) * 1500 + t * (1600 + (i % 4) * 220)) % 1500) - 200;
       c.moveTo(rx, ry);
-      c.lineTo(rx - 22, ry + 78);
+      c.lineTo(rx - 52, ry + 100);
     }
     c.stroke();
+    if (fl > .04) {
+      const g = c.createRadialGradient(980, 180, 30, 960, 480, 1200);
+      g.addColorStop(0, `rgba(230, 240, 255, ${.75 * fl})`);
+      g.addColorStop(1, 'rgba(120, 160, 230, 0)');
+      c.fillStyle = g;
+      c.fillRect(-200, -200, K.W + 400, K.H + 400);
+    }
     c.restore();
   },
 });
@@ -142,10 +142,10 @@ export default beatScene(ID, {
   shots: { nu1, storm },
   fadeIn: .7,
   plan: {
-    b094: { shot: 'nu1', size: 'M', on: 'mohammed', z: 2.2, dx: -50, dy: -35 },
+    b094: { shot: 'nu1', size: 'M', on: 'mohammed', z: 4.4, dx: 10, dy: 30 },
     b095: { shot: 'storm' },
     b096: { move: 'rise' },
-    b097: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 3.4, dx: -65, dy: -45 },
-    b098: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 3.6, dx: -55, dy: -40 },
+    b097: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 5.6, dx: 0, dy: 18 },
+    b098: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 5.0, dx: 0, dy: 10 },
   },
 });

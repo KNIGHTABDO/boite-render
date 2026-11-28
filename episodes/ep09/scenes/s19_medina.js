@@ -1,61 +1,45 @@
 // s19 "À travers la médina".
 // Rooms: rue_tijani (b116–b118, b122–b126), rue_legumes (b119–b121).
-// Cast & placements:
-//   - tj1 (rue_tijani, b116–b118): mohammed walks [960, 760] -> [1150, 875], zoubida (costume: 'haik') walks [1220, 730] -> [1440, 875] beside the right zellige wall & bronze offering grille.
-//   - lg  (rue_legumes, b119–b121): marchand on the right near the vegetable crates at [1340, 855] facing 3/4 toward zoubida (costume: 'haik') at [1040, 860] and mohammed at [820, 880].
-//   - tj2 (rue_tijani, b122–b125): zoubida (costume: 'haik') at [1040, 855] and mohammed at [830, 860] facing 3/4 toward camera and the monumental bronze portal on the left wall [490, 760].
-// Beat actions:
-//   - b116: Mohammed walks eagerly ahead; Zoubida reaches her right hand into the bronze offering hole on the right wall (ins: tronc_tijani).
-//   - b117: Zoubida leans her cheek toward the carved woodwork; Mohammed leans to kiss the cool mosaic dado below.
-//   - b118: Zoubida looks down tenderly at Mohammed and calls him along.
-//   - b119: Zoubida pokes toward the pepper and tomato crates; marchand steps/leans forward angrily.
-//   - b120: Furious marchand waves his hands at Zoubida ("Cette marchandise n'est pas à vendre !").
-//   - b121: Dignified Zoubida turns away while Mohammed tugs her sleeve/haik toward screen-left.
-//   - b122: Both pause gazing up at the towering bronze-studded portal on the left wall (ins: portail_bronze).
-//   - b123: Mohammed points up toward the portal asking who owns the great house.
-//   - b124: Zoubida glances cautiously left explaining it is an office of the Christians.
-//   - b125: Mohammed asks innocently if he will speak their language when grown.
-//   - b126: Zoubida gives a quick protective tug toward l'enfant ("Dieu te préserve !").
+//   tj1: Mohammed walks ahead; Zoubida stops at the right zellige wall and puts her hand in the bronze grille,
+//        then presses her cheek to the carved frame while Mohammed kisses the dado.
+//   lg:  Zoubida at the vegetable stall, the marchand leaning in; then she turns away and Mohammed tugs her haik.
+//   tj2: both look up at the left bronze portal; Mohammed points at it; Zoubida tugs him clear of it.
 import * as PO from '../../../engine/poses.js';
 import { staged } from '../lib/autostage.js';
-import { castScale, faceCam, sealHaik, stride } from '../lib/fix8c.js';
-import { haikTuck } from '../lib/fix8_G4.js';
-import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
+import { castScale, sealHaik } from '../lib/fix8c.js';
+import { beatScene, lines, sm, at, front, dirW, heightAt, V } from '../lib/beatscene.js';
+import { contact, easeClose, yawTo, armsDown } from '../lib/fix9_F.js';
+import { clearArms, faceLens, keepFacing, pointClamp, slideOff } from '../lib/fix9_J.js';
 
 const ID = 's19_medina', L = lines(ID), B = i => L[i] || [0, 0];
-const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
 
-/** Clamp every IK reach target to <= 0.85 * armLen so IK error stays < 0.03. */
-function reach85(a, side, target, o = {}) {
-  const sh = at(a, 'upperArm' + side);
-  const len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
-  const d = target.clone().sub(sh), max = len * .85;
-  const tgt = d.length() > max ? sh.clone().addScaledVector(d.normalize(), max) : target;
-  return PO.reach(a, side, tgt, o);
+function spot(S3, st, key, fx, fy, topPy) {
+  st.spots ||= {};
+  if (!st.spots[key]) {
+    const h = heightAt(S3, fx, fy, topPy);
+    st.spots[key] = S3.floorAt(fx, fy).setY(h);
+  }
+  return st.spots[key];
 }
 
-function hand85(a, side, { fwd = .16, out = .08, drop = .18, curl = .25, spread = .15 } = {}) {
-  const k = a.group.scale.y / 1.6, sg = side === 'L' ? 1 : -1;
-  const sh = at(a, 'upperArm' + side);
-  const lat = sh.clone().sub(at(a, 'chest')).setY(0);
-  if (lat.lengthSq() < 1e-8) lat.copy(dirW(a, sg, 0, 0)); else lat.normalize();
-  const tg = sh.clone().addScaledVector(lat, out * k).addScaledVector(dirW(a, 0, 0, 1), fwd * k).add(V(0, -drop * k, 0));
-  reach85(a, side, tg, { grip: .015, pole: [sg * .45, .02, -.28] });
-  if (curl != null) PO.fingers(a, side, curl, { spread });
-}
-
-// b116–b118: rue_tijani right zellige wall & bronze offering grille
+// b116–b118: rue_tijani, right zellige wall and the bronze offering grille.
 const tj1 = staged('rue_tijani', {
   mohammed: {
-    at: [960, 760], face: [1150, 880], seed: 3, lookMax: .55,
-    walk: { to: [1150, 875], t0: B(0)[0] + .2, t1: B(0)[0] + 4.8 },
-    look: t => IN(0, t) && t < B(0)[0] + 5.0 ? [1120 + 200 * Math.sin(t * 1.7), 860, 1.1]
-      : IN(1, t) ? [1480, 935, .85] : 'zoubida',
+    at: [960, 760], face: [1200, 880], seed: 3,
+    walk: { to: [1180, 890], t0: B(0)[0] + .2, t1: B(0)[0] + 4.6 },
+    look: (t, st, S3) => t >= B(1)[0] && t < B(2)[0] ? spot(S3, st, 'dado', 1600, 920, 620) : null,
+    lookMax: t => t >= B(1)[0] && t < B(2)[0] ? .4 : .45,
   },
   zoubida: {
-    at: [1220, 730], face: [1440, 875], costume: 'haik', seed: 7, lookMax: .55,
-    walk: { to: [1440, 875], t0: B(0)[0] + .4, t1: B(0)[0] + 5.4 },
-    look: t => IN(2, t) ? 'mohammed' : [1520, 950, 1.25],
+    at: [1220, 730], face: [1560, 900], costume: 'haik', seed: 7,
+    walk: { to: [1500, 905], t0: B(0)[0] + .35, t1: B(0)[0] + 5.2 },
+    look: (t, st, S3) => {
+      if (t >= B(2)[0]) return 'mohammed';
+      if (t >= B(1)[0]) return spot(S3, st, 'wood', 1580, 910, 340);
+      if (t >= B(0)[0] + 5.2) return spot(S3, st, 'grille', 1560, 910, 380);
+      return null;
+    },
+    lookMax: .7,
   },
 }, {
   addressee: { zoubida: 'mohammed', narrator: 'zoubida' },
@@ -63,61 +47,61 @@ const tj1 = staged('rue_tijani', {
     const { mohammed: mo, zoubida: zo } = st.A;
     castScale(mo); castScale(zo);
     sealHaik(zo);
-    st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
+    st.actcheck = { exposed: { zoubida: ['handR', 'foreArmR'] } };
+    const hole = spot(S3, st, 'grille', 1560, 910, 380);
+    const wood = spot(S3, st, 'wood', 1580, 910, 340);
+    const dado = spot(S3, st, 'dado', 1600, 920, 620);
 
-    if (t > B(0)[0] + .2 && t < B(0)[0] + 4.8) stride(mo, t, B(0)[0] + .2, 2.2, 1);
-    if (t > B(0)[0] + .4 && t < B(0)[0] + 5.4) stride(zo, t, B(0)[0] + .4, 1.5, 1);
+    clearArms(zo);
+    if (t < B(0)[0] + 5.3) return;   // the walk owns the legs until they arrive
 
-    // Turn 3/4 toward the right zellige wall + camera once they arrive
-    const turnW = sm(B(0)[0] + 5.0, B(0)[0] + 6.0, t);
-    if (turnW > 0) {
-      const wall = S3.floorAt(1560, 960);
-      const yZ = Math.atan2(wall.x - zo.group.position.x, wall.z - zo.group.position.z);
-      const yM = Math.atan2(wall.x - mo.group.position.x, wall.z - mo.group.position.z);
-      zo.group.rotation.y += Math.atan2(Math.sin(yZ - zo.group.rotation.y), Math.cos(yZ - zo.group.rotation.y)) * turnW;
-      mo.group.rotation.y += Math.atan2(Math.sin(yM - mo.group.rotation.y), Math.cos(yM - mo.group.rotation.y)) * turnW;
-      zo.group.updateMatrixWorld(true); mo.group.updateMatrixWorld(true);
-    }
+    armsDown(mo);
 
-    haikTuck(zo);
-    hand85(mo, 'L', { fwd: .22, out: .15, drop: .26, curl: .2 });
-    hand85(mo, 'R', { fwd: .22, out: .15, drop: .24, curl: .2 });
-
-    // b116: Zoubida slips her right hand out toward the offering grille
-    const offer = sm(B(0)[0] + 6.2, B(0)[0] + 7.2, t) * (1 - sm(B(1)[0] - .2, B(1)[0] + .4, t));
-    if (offer > 0) {
-      const grille = S3.floorAt(1560, 875).setY(1.15);
-      reach85(zo, 'R', front(zo, 'chest', .22, 0, -.12).lerp(grille, offer), { grip: .015, pole: [-.9, .2, .5] });
-      PO.fingers(zo, 'R', .18, { spread: .2 });
+    // b116: right hand into the offering hole, body 3/4 to the grille.
+    if (t < B(1)[0]) {
+      easeClose(zo, hole, .4, sm(B(0)[0] + 5.2, B(0)[0] + 5.7, t));
+      yawTo(zo, hole, .8);
+      zo.B.spine.rotation.x += .06;
+      zo.B.chest.updateWorldMatrix(false, true);
+      contact(zo, 'R', hole, { grip: .005, pole: [-.55, .25, .35] });
+      PO.fingers(zo, 'R', .12, { spread: .18 });
+      return;
     }
-    // b117: Zoubida leans cheek toward woodwork; Mohammed leans to kiss the cool mosaic
-    if (IN(1, t)) {
-      const pray = sm(B(1)[0], B(1)[0] + .7, t);
-      zo.B.spine.rotation.x += .08 * pray;
-      zo.B.head.rotation.z -= .14 * pray;
-      mo.B.spine.rotation.x += .14 * pray;
-      mo.B.neck.rotation.x -= .08 * pray;
-      zo.B.chest.updateWorldMatrix(false, true); mo.B.chest.updateWorldMatrix(false, true);
-      hand85(zo, 'R', { fwd: .20, out: .04, drop: .12, curl: .15 });
+    // b117: cheek on the carved frame; the boy, too short for the grille, kisses the dado.
+    if (t < B(2)[0]) {
+      const u = sm(B(1)[0], B(1)[0] + .28, t);
+      easeClose(zo, wood, .34, u);
+      yawTo(zo, wood, .62);
+      zo.B.spine.rotation.x += .2 * u;
+      zo.B.spine.rotation.z -= .16 * u;
+      zo.B.head.rotation.z -= .38 * u;
+      zo.B.chest.updateWorldMatrix(false, true);
+      easeClose(mo, dado, .42, u);
+      slideOff(mo, zo, .62);
+      yawTo(mo, dado, .9);
+      mo.B.spine.rotation.x += .82 * u;
+      mo.B.neck.rotation.x += .28 * u;
+      mo.B.chest.updateWorldMatrix(false, true);
+      armsDown(mo);
+      return;
     }
-    // b118: Zoubida turns gently back to Mohammed
-    if (IN(2, t)) {
-      faceCam(zo, S3.cam, .65);
-      hand85(zo, 'L', { fwd: .22, out: .05, drop: .14, curl: .12, spread: .3 });
-    }
+    // b118: she turns back down to him.
+    yawTo(zo, mo.group.position, .7);
+    zo.B.neck.rotation.x += .1;
+    zo.B.chest.updateWorldMatrix(false, true);
   },
 });
 
-// b119–b121: rue_legumes vegetable stall confrontation
+// b119–b121: the pepper and tomato stall.
 const lg = staged('rue_legumes', {
-  marchand: { at: [1340, 855], face: 'cam', yaw: -.72, seed: 13, look: 'zoubida', lookMax: .55 },
+  marchand: { at: [1380, 830], face: 'zoubida', seed: 13, look: 'zoubida', lookMax: .6 },
   zoubida: {
-    at: [1040, 860], face: 'cam', yaw: .72, costume: 'haik', seed: 7, lookMax: .55,
-    look: t => IN(3, t) ? [1380, 880, .85] : 'marchand',
+    at: [1160, 890], face: 'cam', costume: 'haik', seed: 7, lookMax: .32,
+    look: (t, st, S3) => t < B(5)[0] ? spot(S3, st, 'crate', 1520, 860, 640) : null,
   },
   mohammed: {
-    at: [820, 880], face: 'cam', yaw: .65, seed: 3, lookMax: .6,
-    look: t => IN(4, t) ? 'marchand' : 'zoubida',
+    at: [960, 905], face: 'zoubida', seed: 3, lookMax: .55,
+    look: t => t < B(5)[0] ? 'zoubida' : 'zoubida',
   },
 }, {
   addressee: { marchand: 'zoubida', zoubida: 'marchand', narrator: 'zoubida' },
@@ -125,59 +109,101 @@ const lg = staged('rue_legumes', {
     const { marchand: ma, zoubida: zo, mohammed: mo } = st.A;
     castScale(ma); castScale(zo); castScale(mo);
     sealHaik(zo);
-    st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
-    haikTuck(zo);
+    st.actcheck = { exposed: { zoubida: ['handR', 'foreArmR'] } };
+    const crate = spot(S3, st, 'crate', 1520, 860, 640);
+    clearArms(zo);
+    armsDown(mo);
 
-    const poke = IN(3, t) ? sm(B(3)[0] + 1.5, B(3)[0] + 2.4, t) : 0;
-    const anger = IN(4, t) ? sm(B(4)[0], B(4)[0] + .4, t) : IN(3, t) ? .35 * poke : .45;
-    const tug = IN(5, t) ? sm(B(5)[0] + 1.6, B(5)[0] + 2.4, t) : 0;
-
-    // Marchand angry reaction near the crates
-    ma.B.spine.rotation.x += .08 * anger;
-    ma.B.head.rotation.y += .07 * Math.sin(t * 7.5) * (IN(4, t) ? 1 : .2);
-    ma.B.chest.updateWorldMatrix(false, true);
-    const waveL = .06 * Math.sin(t * 6.2), waveR = .06 * Math.cos(t * 6.2);
-    hand85(ma, 'L', { fwd: .22 + .06 * anger, out: .12, drop: .12 - .08 * anger + waveL, curl: .15, spread: .35 });
-    hand85(ma, 'R', { fwd: .24 + .06 * anger, out: .12, drop: .10 - .08 * anger + waveR, curl: .15, spread: .35 });
-
-    // Zoubida pokes toward crates (b119), stands dignified (b120-b121), shifts slightly left when tugged
-    if (poke > 0) {
-      const crate = S3.floorAt(1430, 825).setY(.85);
-      const bob = V(0, .03 * Math.sin(t * 5.4), .03 * Math.cos(t * 4.5));
-      reach85(zo, 'R', front(zo, 'chest', .22, 0, -.12).lerp(crate.add(bob), poke), { grip: .015, pole: [-.9, .2, .5] });
-      PO.fingers(zo, 'R', .22, { spread: .25 });
-    } else if (IN(5, t)) {
-      zo.B.neck.rotation.x -= .08;
+    // b119: she pokes the pyramids; he leans in and blocks her.
+    if (t < B(4)[0]) {
+      const u = sm(B(3)[0], B(3)[0] + .3, t);
+      easeClose(zo, crate, .48, u);
+      yawTo(zo, crate, .85);
+      zo.B.spine.rotation.x += .1 * u;
       zo.B.chest.updateWorldMatrix(false, true);
-      faceCam(zo, S3.cam, .65);
+      const bob = crate.clone().add(V(0, .035 * Math.sin(t * 5.2), 0));
+      contact(zo, 'R', bob, { grip: .01, pole: [-.45, .15, .3] });
+      PO.fingers(zo, 'R', .3, { spread: .22 });
+      faceLens(zo, S3.cam.position, 28);
+      easeClose(ma, zo.group.position, .72, u);
+      yawTo(ma, zo.group.position, 1);
+      ma.B.spine.rotation.x += .3 * u;
+      ma.B.chest.updateWorldMatrix(false, true);
+      const k = ma.group.scale.y / 1.6;
+      for (const [s, sg] of [['L', 1], ['R', -1]]) {
+        const wave = .05 * Math.sin(t * 7 + sg);
+        contact(ma, s, front(ma, 'chest', .34 * k, -sg * .16 * k, .06 * k + wave), { grip: 0, pole: [sg * .4, .12, .2] });
+        PO.fingers(ma, s, .12, { spread: .4 });
+      }
+      return;
     }
-
-    // Mohammed watches, then tugs Zoubida's left sleeve/haik away in b121
-    if (tug > 0) {
-      zo.group.position.x -= .08 * tug;
-      zo.group.updateMatrixWorld(true);
-      const sleeve = at(zo, 'root').add(V(-.14, .82, .08));
-      reach85(mo, 'R', front(mo, 'chest', .18, 0, -.12).lerp(sleeve, tug), { grip: .02, pole: [-.9, .2, .5] });
-      PO.fingers(mo, 'R', .75);
-      hand85(mo, 'L', { fwd: .22, out: .15, drop: .22, curl: .25 });
-      mo.B.spine.rotation.z += .07 * tug;
-      mo.B.chest.updateWorldMatrix(false, true);
-    } else {
-      hand85(mo, 'L', { fwd: .22, out: .15, drop: .26, curl: .2 });
-      hand85(mo, 'R', { fwd: .22, out: .15, drop: .26, curl: .2 });
+    // b120: he stays furious (coverage is his close-up).
+    if (t < B(5)[0]) {
+      yawTo(ma, zo.group.position, 1);
+      ma.B.spine.rotation.x += .26;
+      ma.B.head.rotation.y += .06 * Math.sin(t * 8);
+      ma.B.chest.updateWorldMatrix(false, true);
+      const k = ma.group.scale.y / 1.6;
+      for (const [s, sg] of [['L', 1], ['R', -1]]) {
+        const wave = .07 * Math.sin(t * 8 + sg * 1.4);
+        contact(ma, s, front(ma, 'chest', .32 * k, -sg * .18 * k, .1 * k + wave), { grip: 0, pole: [sg * .45, .1, .2] });
+        PO.fingers(ma, s, .1, { spread: .45 });
+      }
+      faceLens(zo, S3.cam.position, 28);
+      return;
     }
+    // b121: she turns away, chin up; he stands against her and tugs the haik toward screen-left.
+    const u = sm(B(5)[0], B(5)[0] + .3, t);
+    const away = S3.floorAt(620, 800);
+    // A full turn away from the stall puts both faces past the lens. They still shift
+    // screen-left, chin up, and the boy still grips the haik; the bodies stay on the camera.
+    yawTo(zo, away, u * .15);
+    faceLens(zo, S3.cam.position, 1);
+    zo.B.spine.rotation.x -= .06 * u;
+    zo.B.neck.rotation.x -= .1 * u;
+    zo.B.chest.updateWorldMatrix(false, true);
+    zo.group.position.x -= .16 * u;
+    easeClose(mo, zo.group.position, .48, u);
+    mo.group.position.x -= .16 * u;
+    slideOff(mo, zo, .5);
+    faceLens(mo, S3.cam.position, 1);
+    mo.group.updateMatrixWorld(true);
+    const hip = at(zo, 'root'), to = mo.group.position.clone().sub(hip).setY(0);
+    if (to.lengthSq() > 1e-6) to.normalize();
+    // His own right-front, not a reach across the chest (that put the forearm through the torso).
+    const cloth = at(mo, 'upperArmR').clone()
+      .addScaledVector(dirW(mo, -1, 0, 0), .14)
+      .addScaledVector(dirW(mo, 0, 0, 1), .18)
+      .add(V(0, -.02, 0));
+    if (to.lengthSq() > .5) cloth.addScaledVector(to, -.08);
+    contact(mo, 'R', cloth, { grip: 0, pole: [-.55, .4, .25], frac: .86 });
+    PO.fingers(mo, 'R', .72);
+    mo.B.spine.rotation.z += .12 * u;
+    mo.B.chest.updateWorldMatrix(false, true);
+    yawTo(ma, zo.group.position, 1);
   },
 });
 
-// b122–b126: rue_tijani monumental bronze portal on left wall
+// b122–b126: the monumental bronze portal on the left.
 const tj2 = staged('rue_tijani', {
   zoubida: {
-    at: [1040, 855], face: 'cam', yaw: -.35, costume: 'haik', seed: 7, lookMax: .55,
-    look: t => IN(6, t) || IN(8, t) ? [520, 910, 1.7] : 'mohammed',
+    at: [1120, 860], face: 'cam', yaw: -.4, costume: 'haik', seed: 7,
+    look: (t, st, S3) => {
+      if (t < B(8)[0]) return spot(S3, st, 'portal', 480, 750, 185);
+      if (t >= B(10)[0]) {
+        const head = st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0));
+        const hers = st.A.zoubida.B.head.getWorldPosition(V(0, 0, 0));
+        head.y = Math.max(head.y, hers.y - .1);
+        return head;
+      }
+      return 'mohammed';
+    },
+    lookMax: t => t < B(8)[0] ? .5 : .4,
   },
   mohammed: {
-    at: [830, 860], face: 'cam', yaw: -.22, seed: 3, lookMax: .58,
-    look: t => IN(6, t) || IN(7, t) ? [490, 910, 1.85] : 'zoubida',
+    at: [970, 875], face: 'cam', yaw: -.15, seed: 3,
+    look: (t, st, S3) => t < B(8)[0] ? spot(S3, st, 'portal', 480, 750, 185) : 'zoubida',
+    lookMax: t => t < B(8)[0] ? .5 : .7,
   },
 }, {
   addressee: { mohammed: 'zoubida', zoubida: 'mohammed', narrator: 'mohammed' },
@@ -185,49 +211,50 @@ const tj2 = staged('rue_tijani', {
     const { zoubida: zo, mohammed: mo } = st.A;
     castScale(zo); castScale(mo);
     sealHaik(zo);
-    st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
-    haikTuck(zo);
+    st.actcheck = { exposed: { zoubida: ['handR', 'foreArmR'] } };
+    const door = spot(S3, st, 'portal', 480, 750, 185);
+    // Hands stay inside the haik, on the belly, so a close-up doesn't crop a claw at the frame edge.
+    clearArms(zo);
+    armsDown(mo);
 
-    // Base relaxed arms on Mohammed (outward/forward, zero torso intersection)
-    const km = mo.group.scale.y / 1.6;
-    reach85(mo, 'L', PO.hipToWorld(mo, .18 * km, .04 * km, .22 * km), { grip: .015, pole: [.9, .2, .5] });
-    PO.fingers(mo, 'L', .2);
-    reach85(mo, 'R', PO.hipToWorld(mo, -.18 * km, .04 * km, .22 * km), { grip: .015, pole: [-.9, .2, .5] });
-    PO.fingers(mo, 'R', .2);
-
-    // b122: awe gazing up at the bronze portal
-    if (IN(6, t)) {
-      mo.B.neck.rotation.x -= .14;
-      mo.B.head.rotation.x -= .10;
-      mo.B.chest.updateWorldMatrix(false, true);
+    // b122: a small turn toward the portal, still on the camera, then the head looks up.
+    if (t < B(7)[0]) {
+      yawTo(mo, door, .38);
+      yawTo(zo, door, .32);
+      keepFacing(mo, S3.cam.position, 46);
+      keepFacing(zo, S3.cam.position, 46);
+      return;
     }
-    // b123: Mohammed points up toward the portal (outward/forward, kept well clear of torso)
-    if (IN(7, t)) {
-      const p = sm(B(7)[0], B(7)[0] + .45, t);
-      const sh = at(mo, 'upperArmL');
-      const startL = PO.hipToWorld(mo, .18 * km, .06 * km, .22 * km);
-      const pt = sh.clone().addScaledVector(dirW(mo, .35, .24, .88), .36 * km);
-      reach85(mo, 'L', startL.lerp(pt, p), { grip: .01, pole: [.9, .2, .5] });
-      PO.fingers(mo, 'L', .75, { each: [.7, 0, 1, 1, 1] });
+    // b123: right arm stays the screen-left one (he still faces the camera) and points up at the portal.
+    if (t < B(8)[0]) {
+      const u = sm(B(7)[0], B(7)[0] + .22, t);
+      yawTo(mo, door, .3);
+      keepFacing(mo, S3.cam.position, 46);
+      keepFacing(zo, S3.cam.position, 46);
+      pointClamp(mo, door, u, 'R');
+      PO.fingers(mo, 'R', .85, { each: [.7, 0, 1, 1, 1] });
+      return;
     }
-    // b124: Zoubida glances cautiously toward portal/alley
-    if (IN(8, t)) {
-      zo.B.head.rotation.y -= .08 * Math.sin((t - B(8)[0]) * 1.4);
+    // b126: she grips his shoulder and draws him in. Head stays high enough that the veil doesn't cover her eyes.
+    if (t >= B(10)[0]) {
+      const u = sm(B(10)[0], B(10)[0] + .25, t);
+      easeClose(mo, zo.group.position, .38, u);
+      yawTo(zo, mo.group.position, .55);
+      const sleeve = at(mo, 'upperArmR');
+      contact(zo, 'R', sleeve, { grip: .0, pole: [-.35, .12, .25], frac: .98 });
+      PO.fingers(zo, 'R', .5);
+      zo.B.spine.rotation.z += .06 * u;
       zo.B.chest.updateWorldMatrix(false, true);
-      hand85(zo, 'R', { fwd: .22, out: .15, drop: .16, curl: .22 });
     }
-    // b125: Mohammed tilts head curiously up at mother
-    if (IN(9, t)) {
-      mo.B.head.rotation.z += .07;
-      mo.B.neck.rotation.x -= .08;
-      mo.B.chest.updateWorldMatrix(false, true);
-    }
-    // b126: Zoubida quick protective tug toward Mohammed
-    if (IN(10, t)) {
-      const p = sm(B(10)[0], B(10)[0] + .4, t);
-      const tgt = at(mo, 'upperArmR').add(V(0, -.04, .04));
-      reach85(zo, 'L', front(zo, 'chest', .22, .15, -.12).lerp(tgt, p), { grip: .02, pole: [.9, .2, .5] });
-      PO.fingers(zo, 'L', .35);
+    // b124 is a close-up on her. Step him sideways out of that crop so his head is not sliced.
+    if (t >= B(8)[0] && t < B(9)[0]) {
+      const cam = S3.cam.position, away = mo.group.position.clone().sub(cam);
+      away.y = 0;
+      if (away.lengthSq() > 1e-4) {
+        away.normalize();
+        mo.group.position.addScaledVector(V(-away.z, 0, away.x), 1.7);
+        mo.group.updateMatrixWorld(true);
+      }
     }
   },
 });
@@ -242,9 +269,9 @@ export default beatScene(ID, {
     b120: { shot: 'lg', size: 'M', on: 'marchand', z: 1.45, dy: -85 },
     b121: { shot: 'lg', size: 'W', on: 'zoubida' },
     b122: { shot: 'tj2', size: 'W', on: 'mohammed', insAt: .45 },
-    b123: { shot: 'tj2', size: 'CU', on: 'mohammed' },
+    b123: { shot: 'tj2', size: 'CU', on: 'mohammed', dx: -110 },
     b124: { shot: 'tj2', size: 'CU', on: 'zoubida' },
     b125: { shot: 'tj2', size: 'CU', on: 'mohammed' },
-    b126: { shot: 'tj2', size: 'CU', on: 'zoubida' },
+    b126: { shot: 'tj2', size: 'M', on: 'zoubida', z: 1.4, dx: -160 },
   },
 });

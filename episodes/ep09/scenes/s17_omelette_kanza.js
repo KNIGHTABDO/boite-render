@@ -9,9 +9,11 @@
 // b109 patio_matin: voisine (en robe prune) delivers her deadpan serious nod and quip.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
-import { staged, THREE } from '../lib/autostage.js';
+import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
-import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
+import { dyeGarment, hangSash, reachClamp } from '../lib/fix9_E.js';
+import { faceLens, pinCloth } from '../lib/fix9_J.js';
+import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's17_omelette_kanza', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
@@ -35,80 +37,84 @@ function lap(a, side, k, drift = 0) {
   PO.fingers(a, side, .28, { spread: .12 });
 }
 
-function tintRobe(a, hex, amt = .75) {
-  if (a._tintedHex === hex) return;
-  a._tintedHex = hex;
-  const [tr, tg, tb] = [(hex >> 16) & 255, (hex >> 8) & 255, hex & 255];
-  a.group.traverse(o => {
-    if (!o.isMesh || !o.material.map || o.material.side === THREE.BackSide) return;
-    const img = o.material.map.image, w = img.width, h = img.height;
-    const cv = new OffscreenCanvas(w, h), g = cv.getContext('2d');
-    g.drawImage(img, 0, 0);
-    const d = g.getImageData(0, 0, w, h), px = d.data;
-    for (let i = 0; i < px.length; i += 4) {
-      const r = px[i], gg = px[i + 1], b = px[i + 2];
-      const mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), v = mx / 255, sat = mx ? (mx - mn) / mx : 0;
-      if (v < .55 || sat > .36 || sat < .05) continue;
-      const k = amt * Math.min(1, (v - .55) / .12) * Math.min(1, (.36 - sat) / .08), lum = (r + gg + b) / 3 / 225;
-      px[i] = r + (Math.min(255, tr * lum) - r) * k;
-      px[i + 1] = gg + (Math.min(255, tg * lum) - gg) * k;
-      px[i + 2] = b + (Math.min(255, tb * lum) - b) * k;
-    }
-    g.putImageData(d, 0, 0);
-    const tex = new THREE.CanvasTexture(cv), m0 = o.material.map;
-    tex.flipY = m0.flipY; tex.colorSpace = THREE.SRGBColorSpace; tex.wrapS = m0.wrapS; tex.wrapT = m0.wrapT;
-    const m = o.material.clone(); m.map = tex; m.needsUpdate = true; o.material = m;
-  });
-}
-
-// b102: Zoubida wakes Mohammed gently in the morning sun
+// b102: Zoubida kneels on the floor beside the right divan and taps Mohammed awake; he yawns.
 const ch1 = staged('chambre_jour', {
   mohammed: {
-    at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, pillow: .08, mattress: MATTRESS, avoid: CHEST },
+    at: [1340, 648], face: [1200, 820], pose: 'lie',
+    o: { top: TOP, turn: .1, hands: 'belly', headTurn: -.2, pillow: .08, mattress: MATTRESS, avoid: CHEST },
     seed: 3, talk: 0,
-    lids: t => .88 * (1 - sm(B(0)[0] + 1.8, B(0)[0] + 4.2, t)),
+    lids: t => {
+      const wake = sm(B(0)[0] + 1.4, B(0)[0] + 3.4, t);
+      const yawn = sm(B(0)[0] + 2.6, B(0)[0] + 3.5, t) * (1 - sm(B(0)[0] + 5.0, B(0)[0] + 5.8, t));
+      return .9 * (1 - wake) + .25 * yawn;
+    },
+    mutter: t => sm(B(0)[0] + 2.6, B(0)[0] + 3.4, t) * (1 - sm(B(0)[0] + 4.8, B(0)[0] + 5.6, t)),
   },
   zoubida: {
-    at: [1100, 780], face: 'cam', yaw: .55, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST },
+    at: [1210, 760], face: 'mohammed', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .16, avoid: CHEST },
     seed: 7,
-    look: (t, st) => {
-      const p = at(st.A.mohammed, 'head').clone();
-      p.y = Math.max(p.y, at(st.A.zoubida, 'head').y - .22);
-      return p;
-    },
-    lookMax: .7,
+    look: (t, st) => at(st.A.mohammed, 'head'),
+    lookMax: .75,
   },
 }, {
   act(lt, t, S, st, S3) {
-    const { mohammed: mo, zoubida: zo } = st.A, kz = zo.group.scale.y / 1.6;
+    const { mohammed: mo, zoubida: zo } = st.A, kz = zo.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;
     lieOnBed(mo, {
-      top: TOP, feet: [.5, .87],
-      origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .08, tuck: .22, headTurn: -.14,
+      top: TOP, feet: [.18, -.98],
+      origin: (st.mo0 ||= mo.group.position.clone()),
+      hands: 'belly', pillow: .08, tuck: .16, headTurn: -.22, sink: 0,
     });
     pillowUnder(S3, st, mo, { top: TOP, h: .08, col: 0x3b5875 });
-    st.cover ||= PR.blanket({ w: .4, l: .56, h: .06, col: 0xb24a34 });
-    const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
-    S3.prop(st.cover, hp.x + Math.sin(ry) * .28, TOP + .03 - .004, hp.z + Math.cos(ry) * .28, ry);
+    // Blanket stays on the chest so the feet sit on the mattress, not under the red cloth.
+    st.cover ||= PR.blanket({ w: .32, l: .3, h: .045, col: 0xb24a34 });
+    const chest = mo.B.chest.getWorldPosition(V(0, 0, 0));
+    S3.prop(st.cover, chest.x, TOP + .03, chest.z, mo.group.rotation.y);
     st.cover.visible = true;
+    st.cover.userData.ambient = true;
+    st.pillow.userData.ambient = true;
+    for (const n of ['SkirtFront2', 'SkirtBack2']) if (mo.B[n]) mo.B[n].scale.y *= .78;
+    for (const [s, sg] of [['L', 1], ['R', -1]]) {
+      mo.B['foot' + s].rotation.x = -.15;
+      mo.B['foot' + s].rotation.z = sg * .08;
+    }
 
-    const wake = sm(B(0)[0] + 1.5, B(0)[0] + 4.5, t);
-    mo.B.chest.rotation.x += .015 * Math.sin(t * 1.6);
-    mo.B.head.rotation.y -= .12 * wake;
+    const yawn = sm(B(0)[0] + 2.4, B(0)[0] + 3.4, t) * (1 - sm(B(0)[0] + 4.8, B(0)[0] + 5.8, t));
+    // A full head-throw lifts the skull off the pillow. The mouth still opens; the tilt stays small.
+    mo.B.neck.rotation.x -= .04 * yawn;
+    mo.B.head.rotation.x -= .025 * yawn;
+    mo.B.head.rotation.z += .04 * Math.sin(t * 1.4) * yawn;
     mo.B.chest.updateWorldMatrix(false, true);
+    // Hands stay beside the ribs, low, so the forearm clears the torso and the chest band stays on the mattress.
+    const sideL = dirW(mo, 1, 0, 0), sideR = dirW(mo, -1, 0, 0);
+    const bellyL = at(mo, 'chest').addScaledVector(sideL, .14 * km).add(V(0, .01 * km, .04));
+    const stretch = at(mo, 'upperArmL').clone().addScaledVector(sideL, .16 * km).add(V(0, .05 * km, .03));
+    const bellyR = at(mo, 'chest').addScaledVector(sideR, .14 * km).add(V(0, .01 * km, .04));
+    reachClamp(mo, 'L', bellyL.clone().lerp(stretch, yawn), { grip: .02, pole: [.35, .04, .08] });
+    PO.fingers(mo, 'L', .15, { spread: .2 });
+    reachClamp(mo, 'R', bellyR, { grip: .02, pole: [-.32, .04, .08] });
+    PO.fingers(mo, 'R', .2, { spread: .12 });
+    // The chest band sits ~3.8cm off the mattress. A 1.1cm drop brings it inside 3cm
+    // and leaves the back, head and heels inside their own contact band.
+    mo.group.position.y -= .011;
+    mo.group.updateMatrixWorld(true);
 
-    const tap = sm(B(0)[0] + .2, B(0)[0] + .9, t) * (1 - sm(B(0)[0] + 2.8, B(0)[0] + 3.8, t));
-    const pat = .025 * Math.sin(t * 9) * tap;
-    zo.B.chest.rotation.x += .07 * tap;
-    zo.B.chest.rotation.z += .02 * Math.sin(t * 1.1);
+    // Body toward the lens; the head still turns toward him within lookMax.
+    faceLens(zo, S3.cam.position, 1);
+    hangSash(zo);
+    const tap = sm(B(0)[0] - .5, B(0)[0] + .35, t) * (1 - sm(B(0)[0] + 2.2, B(0)[0] + 3.1, t));
+    const pat = .03 * Math.sin(t * 9) * tap;
+    zo.B.spine.rotation.x += .2 * tap;
+    zo.B.chest.rotation.x += .08 * tap;
     zo.B.chest.updateWorldMatrix(false, true);
-    lap(zo, 'R', kz, .01 * Math.sin(t * 1.2));
-    const shTg = at(mo, 'upperArmL').clone().add(V(0, .08 + pat, .03));
-    const restL = PO.hipToWorld(zo, .15 * kz, .06 * kz, .21 * kz);
-    clampReach(zo, 'L', restL.clone().lerp(shTg, tap), { grip: .02, pole: [.45, .12, .25] });
-    PO.fingers(zo, 'L', .22, { spread: .16 });
+    const shoulder = at(mo, 'upperArmL').clone().add(V(0, .06 + pat, .02));
+    const thigh = PO.hipToWorld(zo, -.2 * kz, .02 * kz, .16 * kz);
+    reachClamp(zo, 'R', thigh.clone().lerp(shoulder, tap), { grip: .015, pole: [-.35, .15, .2] });
+    PO.fingers(zo, 'R', .18 + .1 * tap, { spread: .16 });
+    const park = PO.hipToWorld(zo, .22 * kz, .0 * kz, .12 * kz);
+    reachClamp(zo, 'L', park, { grip: .02, pole: [.3, .02, .05] });
+    PO.fingers(zo, 'L', .25, { spread: .1 });
+    pinCloth(zo, 0);
   },
 });
 
@@ -204,61 +210,65 @@ const pa1 = staged('patio_matin', {
   },
 });
 
-// b107: Courtyard neighbours woman1 + woman2 (varied height & robe tint) laughing together
+// b107: taller terracotta woman1 and shorter sage woman2, three-quarter toward camera, laughing
 const pa2 = staged('patio_matin', {
   woman1: {
-    at: [790, 990], face: 'woman2', yaw: -.28, height: 1.64, seed: 11, talk: 0,
-    look: 'woman2', lookMax: .65,
+    at: [880, 1005], face: [1080, 1160], height: 1.67, seed: 11, talk: 0,
+    look: 'woman2', lookMax: .7,
   },
   woman2: {
-    at: [1220, 995], face: 'woman1', yaw: .28, height: 1.55, seed: 13, talk: 0,
-    look: 'woman1', lookMax: .65,
+    at: [1140, 1012], face: [940, 1160], height: 1.53, seed: 13, talk: 0,
+    look: 'woman1', lookMax: .7,
   },
 }, {
   act(lt, t, S, st) {
     const { woman1: w1, woman2: w2 } = st.A;
-    tintRobe(w1, 0xb25442, .75);
-    tintRobe(w2, 0x457a70, .75);
-    for (const [a, ph, f, sd] of [[w1, 0, 11, 'R'], [w2, 1.4, 13, 'L']]) {
+    dyeGarment(w1, { hue: 40, span: 14, to: 10, minS: .38 });
+    dyeGarment(w2, { hue: 348, span: 16, to: 168, minS: .36 });
+    for (const [a, ph, f, sd] of [[w1, 0, 9, 'R'], [w2, 1.6, 11, 'L']]) {
       const k = a.group.scale.y / 1.6, osd = sd === 'L' ? 'R' : 'L';
       const sg = sd === 'L' ? 1 : -1, osg = -sg;
       const sh = Math.sin(t * f + ph);
-      a.B.chest.rotation.x += .05 * sh;
-      a.B.chest.rotation.z += .04 * Math.sin(t * 2.1 + ph);
-      a.B.neck.rotation.x -= .10;
-      a.B.head.rotation.z += sg * .08;
+      a.B.spine.rotation.x -= .06;
+      a.B.chest.rotation.x += .07 * sh;
+      a.B.chest.rotation.z += .05 * Math.sin(t * 2.2 + ph);
+      a.B.neck.rotation.x -= .12;
+      a.B.head.rotation.z += sg * .1 * Math.sin(t * 2.4 + ph);
       a.B.chest.updateWorldMatrix(false, true);
-      const hi = front(a, 'chest', .22 * k, -sg * .15 * k, (.03 + .02 * sh) * k);
-      const lo = front(a, 'root', .20 * k, -osg * .16 * k, (.06 + .015 * Math.cos(t * 2.5 + ph)) * k);
-      clampReach(a, sd, hi, { grip: .02, pole: [sg * .52, .05, .28] });
-      clampReach(a, osd, lo, { grip: .02, pole: [osg * .48, .05, .22] });
-      PO.fingers(a, sd, .22, { spread: .22 });
-      PO.fingers(a, osd, .32, { spread: .12 });
+      const hi = front(a, 'chest', .28 * k, -sg * .2 * k, (.08 + .04 * sh) * k);
+      const lo = front(a, 'chest', .22 * k, -osg * .22 * k, (-.06 + .02 * Math.cos(t * 2.6 + ph)) * k);
+      reachClamp(a, sd, hi, { grip: .02, pole: [sg * .4, .12, .2] });
+      reachClamp(a, osd, lo, { grip: .02, pole: [osg * .35, .08, .15] });
+      PO.fingers(a, sd, .16, { spread: .28 });
+      PO.fingers(a, osd, .22, { spread: .18 });
     }
   },
 });
 
-// b109: Distinct extra variant (voisine) with deadpan serious nod
+// b109: voisine in a plum robe, turned toward the other neighbours, nodding at her cheek
 const pa3 = staged('patio_matin', {
   voisine: {
-    at: [960, 985], face: 'cam', yaw: .18, height: 1.56, seed: 19, lids: .22,
+    at: [1020, 990], face: [760, 1120], height: 1.58, seed: 19, lids: .15,
+    look: [740, 1000, 1.45], lookMax: .65,
   },
 }, {
   act(lt, t, S, st) {
     const vo = st.A.voisine, k = vo.group.scale.y / 1.6;
-    tintRobe(vo, 0x4f4578, .8);
-    const nod = Math.max(0, Math.sin((t - B(7)[0]) * 2.2)) * sm(B(7)[0] + .3, B(7)[0] + .8, t);
-    vo.B.neck.rotation.x += .12 * nod;
-    vo.B.head.rotation.x += .14 * nod;
-    vo.B.head.rotation.z += .04;
-    vo.B.chest.rotation.z += .02 * Math.sin(t * .9);
+    dyeGarment(vo, { hue: 40, span: 14, to: 322, minS: .38 });
+    const c = t - B(7)[0];
+    const nod = Math.max(0, Math.sin(c * 2.3));
+    vo.B.spine.rotation.z += .04;
+    vo.B.neck.rotation.x += .22 * nod;
+    vo.B.head.rotation.x += .2 * nod;
+    vo.B.head.rotation.z += .05;
     vo.B.chest.updateWorldMatrix(false, true);
-    const lTg = front(vo, 'root', .22 * k, -.17 * k, .04 * k);
-    const rTg = front(vo, 'chest', .24 * k, .16 * k, (-.08 + .02 * Math.sin(t * 2.0)) * k);
-    clampReach(vo, 'L', lTg, { grip: .02, pole: [.52, .05, .22] });
-    clampReach(vo, 'R', rTg, { grip: .02, pole: [-.52, .05, .24] });
-    PO.fingers(vo, 'L', .34, { spread: .1 });
-    PO.fingers(vo, 'R', .2, { spread: .2 });
+    const cheek = at(vo, 'head').addScaledVector(dirW(vo, -1, 0, 0), .1 * k).addScaledVector(dirW(vo, 0, 0, 1), .06 * k).add(V(0, .03 * k, 0));
+    reachClamp(vo, 'R', cheek, { grip: .01, pole: [-.35, .2, .15] });
+    PO.fingers(vo, 'R', .35, { spread: .08 });
+    const down = at(vo, 'upperArmL');
+    const len = down.distanceTo(at(vo, 'foreArmL')) + at(vo, 'foreArmL').distanceTo(at(vo, 'handL'));
+    reachClamp(vo, 'L', down.clone().addScaledVector(dirW(vo, 1, 0, 0), .08 * k).add(V(0, -.78 * len, 0)), { grip: 0, pole: [.25, .04, -.25] });
+    PO.fingers(vo, 'L', .32, { spread: .1 });
   },
 });
 
@@ -266,13 +276,13 @@ export default beatScene(ID, {
   shots: { ch1, ch2, pa1, pa2, pa3 },
   fadeIn: .7,
   plan: {
-    b102: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.65, dx: 95, dy: -20 },
+    b102: { shot: 'ch1', size: 'M', on: 'zoubida', z: 2.05, dx: 70, dy: 10 },
     b103: { shot: 'ch2', size: 'CU', on: 'mohammed', z: 3.1, dx: 20, dy: -20 },
     b104: { shot: 'ch2', size: 'CU', on: 'zoubida', z: 2.5, dx: 40, dy: -30 },
     b105: { shot: 'pa1', size: 'M', on: 'rahma', z: 1.75, dy: -20 },
     b106: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.65, dx: 70, dy: -25 },
-    b107: { shot: 'pa2', size: 'M', on: 'woman1', z: 1.35, dx: 160, dy: -20 },
+    b107: { shot: 'pa2', size: 'M', on: 'woman1', z: 2.05, dx: 140, dy: 16 },
     b108: { move: 'push' },
-    b109: { shot: 'pa3', size: 'CU', on: 'voisine', z: 2.6, dy: -25 },
+    b109: { shot: 'pa3', size: 'CU', on: 'voisine', z: 2.9, dy: 12 },
   },
 });

@@ -1,124 +1,125 @@
 // s20 "La misère de Lalla Aïcha".
-// Room: aicha_pauvre (b127–b130).
-// Cast & placements:
-//   - ap (aicha_pauvre, b127–b130): aicha (default) cross-legged at [1180, 855] near the right mattress & kettle;
-//     zoubida kneeling at [800, 845] facing aicha; mohammed cross-legged at [560, 880] near the left mattress.
-//     Brass tea tray with teapot and two tea glasses sits on the bare floor between aicha and zoubida.
-// Beat actions:
-//   - b127: Lalla Aïcha welcomes them gently from the floor with an open palm beside her tray and kettle.
-//   - b128: Quiet stillness as Mohammed and Zoubida look slowly across the stripped, bare room.
-//   - b129: Mohammed glances up toward the pale clock mark on the back wall, then listens as a kitten cries outside (ins: tache_horloge).
-//   - b130: With quiet dignity, Aïcha leans forward, lifts the teapot, and pours tea into a glass on the brass tray.
-import * as THREE from 'three';
+// Room: aicha_pauvre (b127–b130). All three cross-legged on the open tiles.
+//   Aïcha welcomes with an open right palm, Zoubida looks across the bare room,
+//   then Aïcha leans in and pours tea on the brass tray between them.
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { castScale } from '../lib/fix8c.js';
-import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
+import { beatScene, lines, sm, at, V } from '../lib/beatscene.js';
+import { contact, easeClose, yawTo, lapHands, hemOnce } from '../lib/fix9_F.js';
+import { plantCross, slideOff } from '../lib/fix9_J.js';
 
 const ID = 's20_aicha_misere', L = lines(ID), B = i => L[i] || [0, 0];
-const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
-
-/** Clamp every IK reach target to <= 0.85 * armLen so IK error stays < 0.03. */
-function reach85(a, side, target, o = {}) {
-  const sh = at(a, 'upperArm' + side);
-  const len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
-  const d = target.clone().sub(sh), max = len * .85;
-  const tgt = d.length() > max ? sh.clone().addScaledVector(d.normalize(), max) : target;
-  return PO.reach(a, side, tgt, o);
-}
-
-/** Relaxed lap hand for grounded kneeling actors. */
-function lap85(a, side, k, drift = 0) {
-  const sg = side === 'L' ? 1 : -1;
-  const tg = PO.hipToWorld(a, sg * .18 * k, .08 * k + drift, .24 * k);
-  reach85(a, side, tg, { grip: .02, pole: [sg * .9, .2, .5] });
-  PO.fingers(a, side, .32, { spread: .12 });
-}
 
 const ap = staged('aicha_pauvre', {
   aicha: {
-    at: [1180, 855], face: 'cam', yaw: -.45, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 9,
-    look: t => IN(3, t) ? 'zoubida' : IN(1, t) ? [920, 845, 1.05] : 'zoubida', lookMax: .6,
+    at: [1180, 850], face: 'zoubida', pose: 'cross', hands: false, o: { lean: .04, hands: false }, seed: 9,
+    look: (t, st) => t >= B(3)[0] && st.trayPos ? st.trayPos.clone().setY(.16) : 'zoubida', lookMax: .55,
   },
   zoubida: {
-    at: [800, 855], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08 }, seed: 7,
-    look: t => IN(1, t) ? [1150, 845, .85] : IN(2, t) ? [940, 845, 1.35] : 'aicha', lookMax: .6,
+    at: [800, 855], face: 'aicha', pose: 'cross', hands: false, o: { lean: .04, hands: false }, seed: 7,
+    look: (t, st) => {
+      if (t >= B(1)[0] && t < B(2)[0]) {
+        const u = Math.min(1, (t - B(1)[0]) / 9);
+        return [360 + u * 280, 740 - u * 40, .45 + u * .35];
+      }
+      if (t >= B(3)[0] && st.trayPos) return st.trayPos.clone().setY(.18);
+      return 'aicha';
+    },
+    lookMax: t => (t >= B(1)[0] && t < B(2)[0]) ? .7 : .5,
   },
   mohammed: {
-    height: 1.1, at: [560, 875], face: 'cam', yaw: .45, pose: 'kneel', o: { grounded: true, lean: .08, hip: .24, spread: .045 }, seed: 3,
-    look: t => IN(1, t) ? [720, 855, 1.05] : IN(2, t) ? (t < B(2)[0] + 6.5 ? [920, 845, 1.55] : [450, 880, 1.35]) : 'aicha', lookMax: .6,
+    height: 1.1, at: [460, 920], face: 'aicha', pose: 'cross', hands: false,
+    o: { lean: .04, hands: false }, seed: 3,
+    look: (t, st) => {
+      if (t >= B(1)[0] && t < B(2)[0]) return [340, 780, .38];
+      if (t >= B(3)[0] && st.trayPos) return st.trayPos.clone().setY(.16);
+      return 'aicha';
+    },
+    lookMax: t => (t >= B(1)[0] && t < B(2)[0]) ? .4 : .5,
   },
 }, {
   addressee: { narrator: 'aicha' },
   act(lt, t, S, st, S3) {
     const { aicha: ai, zoubida: zo, mohammed: mo } = st.A;
     for (const a of [ai, zo, mo]) castScale(a);
-    mo.group.position.y -= .01;
-    mo.group.updateMatrixWorld(true);
-    const ka = ai.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6, km = mo.group.scale.y / 1.6;
+    for (const a of [ai, zo, mo]) plantCross(a, 0);
+    for (const a of [ai, zo, mo]) hemOnce(S3, st, a);
 
-    // Tea service on the bare floor just in front of Aïcha
     if (!st.tea) {
-      const p = ai.home.clone().lerp(zo.home, .34);
+      const p = ai.home.clone().lerp(zo.home, .5);
+      p.z += .34;   // open floor in front of the crossed knees, centered between them
       st.trayPos = p.clone();
-      st.tray = S3.prop(PR.tray({ r: .21, col: 0xc89a3a }), p.x, 0, p.z, 0);
-      st.pot = S3.prop(PR.teapot({ col: 0xbeb7a6 }), p.x + .06, .03, p.z - .02, -.8);
-      st.g1 = S3.prop(PR.teaGlass({ fill: .45 }), p.x - .07, .03, p.z + .04, 0);
-      st.g2 = S3.prop(PR.teaGlass({ fill: .45 }), p.x - .03, .03, p.z - .06, 0);
+      st.tray = S3.prop(PR.tray({ r: .27, col: 0xc89a3a }), p.x, .01, p.z, .2);
+      st.pot = S3.prop(PR.teapot({ col: 0xc9b48a }), p.x + .02, .05, p.z + .02, .5);
+      st.g1 = S3.prop(PR.teaGlass({ fill: .35 }), p.x - .12, .05, p.z + .05, 0);
+      st.g2 = S3.prop(PR.teaGlass({ fill: .2 }), p.x + .11, .05, p.z - .08, 0);
+      for (const m of [st.pot, st.g1, st.g2]) m.scale.setScalar(1.7);
       st.jet = S3.prop(PR.stream(), 0, 0, 0);
+      st.jet.visible = false;
       st.tea = true;
     }
 
-    // Default relaxed lap hands + subtle breathing
-    for (const [a, k, sd] of [[ai, ka, 0], [zo, kz, 1.4], [mo, km, 2.7]]) {
-      for (const s of ['L', 'R']) lap85(a, s, k, .006 * Math.sin(t * .9 + sd + (s === 'L' ? 0 : 1.5)));
-      a.B.chest.rotation.x += .015 * Math.sin(t * 1.1 + sd);
+    lapHands(ai); lapHands(zo); lapHands(mo);
+    for (const [a, sd] of [[ai, 0], [zo, 1.3], [mo, 2.4]]) {
+      a.B.chest.rotation.x += .02 * Math.sin(t * 1.05 + sd);
       a.B.chest.updateWorldMatrix(false, true);
     }
 
-    // b127: Aïcha welcomes them gently from the floor
-    if (IN(0, t)) {
-      const w = sm(B(0)[0], B(0)[0] + .7, t) * (1 - sm(B(0)[1] - .6, B(0)[1], t));
-      const palm = front(ai, 'chest', .22 * ka, -.16 * ka, -.14 * ka);
-      const restL = PO.hipToWorld(ai, .15 * ka, .07 * ka, .22 * ka);
-      reach85(ai, 'L', restL.lerp(palm, w), { grip: .015, pole: [.38, -.2, .16] });
-      PO.palmTo(ai, 'L', w, V(0, 1, .3));
-      PO.fingers(ai, 'L', .12, { spread: .35 });
-      ai.B.neck.rotation.x += .04 * Math.sin(t * 1.6) * w;
-      ai.B.chest.updateWorldMatrix(false, true);
+    // b127: open right palm toward the guests, beside the tray. Left hand stays on the lap.
+    if (t >= B(0)[0] - .15 && t < B(1)[0] - .2) {
+      const w = sm(B(0)[0] - .25, B(0)[0] + .3, t);
+      const sh = at(ai, 'upperArmR'), guest = at(zo, 'chest');
+      const dir = guest.sub(sh);
+      dir.y = Math.min(dir.y, -.04);
+      const len = dir.length() || 1;
+      const reach = Math.min(.52 * (ai.group.scale.y / 1.6), len);
+      const tgt = sh.clone().addScaledVector(dir.multiplyScalar(1 / len), reach);
+      contact(ai, 'R', tgt, { grip: 0, pole: [-.4, .02, .18] });
+      PO.palmTo(ai, 'R', w, V(0, .7, .55));
+      PO.fingers(ai, 'R', .05, { spread: .48 });
     }
 
-    // b128–b129: quiet contemplation of the bare walls and the pale clock mark
-    if (IN(1, t) || IN(2, t)) {
-      mo.B.head.rotation.z += .05 * Math.sin(t * .7);
-      zo.B.head.rotation.z -= .04 * Math.sin(t * .6 + 1);
-      mo.B.chest.updateWorldMatrix(false, true);
+    // b128: Zoubida turns her shoulders to scan the stripped room. Mohammed looks across, not up at the ceiling.
+    if (t >= B(1)[0] && t < B(2)[0]) {
+      const u = sm(B(1)[0], B(1)[0] + 1.1, t);
+      yawTo(zo, S3.floorAt(380, 750), .6 * u);
+      yawTo(mo, S3.floorAt(360, 780), .35 * u);
+      zo.B.spine.rotation.y -= .08 * u;
+      mo.B.spine.rotation.y -= .05 * u;
       zo.B.chest.updateWorldMatrix(false, true);
+      mo.B.chest.updateWorldMatrix(false, true);
     }
 
-    // b130: Aïcha leans gently forward, lifts the teapot, and pours tea onto the brass tray
-    const pour = IN(3, t) ? sm(B(3)[0] + .5, B(3)[0] + 1.5, t) * (1 - sm(B(3)[1] - .5, B(3)[1], t)) : 0;
-    const p = st.trayPos;
-    if (pour > .05) {
-      ai.B.spine.rotation.x += .1 * pour;
-      ai.B.chest.rotation.x += .06 * pour;
+    // b130: she is already leaned in as the line starts, then the pot tilts into the near glass.
+    if (t >= B(3)[0] - .6) {
+      const approach = sm(B(3)[0] - .6, B(3)[0] - .05, t);
+      easeClose(ai, st.trayPos, .4, approach);
+      slideOff(ai, zo, .7);
+      yawTo(ai, st.trayPos, .85);
+      ai.B.spine.rotation.x += .26 * approach;
+      ai.B.chest.rotation.x += .08 * approach;
       ai.B.chest.updateWorldMatrix(false, true);
-      const restPos = V(p.x + .06, .03, p.z - .02);
-      const pourPos = V(p.x - .01, .21, p.z + .01);
-      const cur = restPos.clone().lerp(pourPos, pour);
-      S3.prop(st.pot, cur.x, cur.y, cur.z, -1.35);
-      st.pot.rotation.x = .38 * pour;
-      st.pot.updateMatrixWorld(true);
-      const handle = st.pot.localToWorld(st.pot.userData.handle.clone());
-      reach85(ai, 'R', handle, { grip: .015, pole: [-.45, -.1, .2] });
-      PO.fingers(ai, 'R', .7);
-      const spout = st.pot.localToWorld(st.pot.userData.spout.clone());
-      const rim = st.g1.localToWorld(st.g1.userData.rim.clone());
-      PR.stream(st.jet, spout, rim, { r: .0025, col: 0xa8641e });
-      st.jet.visible = pour > .45;
+      zo.B.spine.rotation.x += .05 * approach;
+      mo.B.spine.rotation.x += .06 * approach;
+      const sh = at(ai, 'upperArmR');
+      const arm = sh.distanceTo(at(ai, 'foreArmR')) + at(ai, 'foreArmR').distanceTo(at(ai, 'handR'));
+      const handleNow = st.pot.localToWorld(st.pot.userData.handle.clone());
+      const pouring = t >= B(3)[0] - .02 && sh.distanceTo(handleNow) < arm * .92;
+      if (!pouring) {
+        contact(ai, 'R', handleNow, { grip: .02, pole: [-.32, .1, .12], frac: .86 });
+        PO.fingers(ai, 'R', .55);
+        st.jet.visible = false;
+      } else {
+        const tilt = .18 + .62 * sm(B(3)[0] - .02, B(3)[0] + .7, t);
+        const r = PO.pour(ai, st.pot, st.g1, { side: 'R', lift: .11, tilt, yaw: 1.05, gaze: true });
+        PR.stream(st.jet, r.spout, r.land, { r: .0045, col: 0xa8641e });
+        st.jet.visible = tilt > .4;
+      }
     } else {
-      S3.prop(st.pot, p.x + .06, .03, p.z - .02, -.8);
+      const p = st.trayPos;
+      S3.prop(st.pot, p.x + .02, .05, p.z + .02, .5);
       st.pot.rotation.x = 0;
       st.jet.visible = false;
     }

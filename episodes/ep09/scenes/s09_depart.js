@@ -18,7 +18,7 @@ import * as PR from '../../../engine/props3d.js';
 import { aim } from '../../../engine/ik.js';
 import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
-import { reachHand, holdGaze } from '../lib/fix9_B.js';
+import { reachHand, holdGaze, openFace, seatHead } from '../lib/fix9_B.js';
 import { beatScene, allLines, at, front, V } from '../lib/beatscene.js';
 
 const ID = 's09_depart', L = allLines(ID), B = i => L[i] || [0, 0];
@@ -30,7 +30,8 @@ const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const TOP = .26;
 const FEET = [.9, .16];
 const BED = {
-  at: [1240, 640], face: Math.atan2(FEET[0], FEET[1]), pose: 'lie', height: 1.28,
+  // Hip is right of the pillow so the shorter cast-height body stays inside the painted mattress.
+  at: [1325, 640], face: Math.atan2(FEET[0], FEET[1]), pose: 'lie', height: 1.1,
   o: { top: TOP, turn: .1, hands: 'belly', headTurn: 0, pillow: .04, mattress: MATTRESS, avoid: CHEST },
   seed: 3, talk: 0, lids: .08,
 };
@@ -43,7 +44,7 @@ function bed(S3, st, t, watch) {
     hands: 'belly', pillow: .04, tuck: .16, headTurn: watch ? 0 : -.08,
   });
   pillowUnder(S3, st, mo, { top: TOP, h: .035, col: 0xc5d4e4, w: .32, d: .22 });
-  mo.B.chest.rotation.x += .012 * Math.sin(t * 1.5);
+  mo.B.chest.rotation.x += .008 * Math.sin(t * 1.5);
   mo.B.chest.updateWorldMatrix(false, true);
 }
 
@@ -61,21 +62,20 @@ function makePackProps(S3) {
   return g;
 }
 
-/** Folded over her knees, both palms on the eyes, elbows dropped in. */
+/** Folded over her knees, palms on the cheeks. Wrists stay wide of the torso so the forearm does not pass through it. */
 function buryFace(a, sob) {
   const B = a.B;
-  B.spine.rotation.x += .85;
-  B.chest.rotation.x += .42 + .04 * sob;
-  B.neck.rotation.x += .48;
+  B.spine.rotation.x += .7;
+  B.chest.rotation.x += .3 + .03 * sob;
+  B.neck.rotation.x += .4;
   a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
     const sign = s === 'L' ? 1 : -1;
-    const spot = () => B.head.localToWorld(new THREE.Vector3(sign * .04, .055, .15));
-    for (let i = 0; i < 4; i++) {
-      PO.reach(a, s, spot(), { grip: 0, pole: [sign * .48, -.3, .22] });
-      aim(B['hand' + s], PO.handPts(a, s).end, B.head.localToWorld(new THREE.Vector3(sign * .012, .1, .06)));
-    }
-    PO.fingers(a, s, .06, { thumb: .05, spread: .05 });
+    // Wrist stays wide of the torso. The palm then turns in so it sits within 12cm of the head.
+    const spot = () => B.head.localToWorld(new THREE.Vector3(sign * .13, .03, .09));
+    for (let i = 0; i < 3; i++) PO.reach(a, s, spot(), { grip: 0, pole: [sign * .95, .05, .5] });
+    PO.fingers(a, s, .2, { thumb: .12, spread: .06 });
+    aim(B['hand' + s], PO.handPts(a, s).palm, B.head.localToWorld(new THREE.Vector3(sign * .05, .04, .05)));
   }
 }
 
@@ -127,8 +127,13 @@ const ch2 = staged('chambre_jour', {
     const zo = st.A.zoubida, mo = st.A.mohammed;
     bed(S3, st, t, zo);
     if (IN(2, t)) buryFace(zo, .5 + .5 * Math.sin(t * 2.2));
-    else slumped(zo);
+    else {
+      slumped(zo);
+      // Slumped profile was past 100° from the lens. Keep the body, turn the face back just enough.
+      openFace(zo, S3.cam.position);
+    }
     PO.look(mo, at(zo, 'head'), .95, { max: 1.15 });
+    seatHead(mo, TOP + .04);
   },
 });
 
@@ -149,14 +154,14 @@ const pa = staged('patio_matin', {
       B9.upperArmR.rotation.x *= 1.5;
     }
     B9.chest.updateWorldMatrix(false, true);
-    // Canvas provisions sack in the left hand; the right arm keeps the walk swing.
-    const carry = front(fa, 'chest', .16 * k, -.24 * k, -.2 * k);
-    reachHand(fa, 'L', carry, { grip: .03, pole: [.5, -.05, .22] });
-    PO.fingers(fa, 'L', .4, { thumb: .35 });
+    // Sack hangs from the left hand at the hip. A chest-high hold put its box over the face.
+    const carry = front(fa, 'chest', .06 * k, -.4 * k, -.55 * k);
+    reachHand(fa, 'L', carry, { grip: .03, pole: [.55, -.2, .15] });
+    PO.fingers(fa, 'L', .45, { thumb: .4 });
     PO.settle(fa, 0);
-    const sack = st.sack ||= PR.cushion({ w: .36, d: .24, h: .3, col: 0xe6d8bc });
+    const sack = st.sack ||= PR.cushion({ w: .28, d: .2, h: .22, col: 0xe6d8bc });
     const palm = PO.handPts(fa, 'L').palm;
-    S3.prop(sack, palm.x, palm.y - .02, palm.z, fa.group.rotation.y + .4);
+    S3.prop(sack, palm.x, palm.y - .14, palm.z, fa.group.rotation.y + .4);
     sack.visible = true;
   },
 });

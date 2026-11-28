@@ -15,9 +15,11 @@ import { boyBed, BOY_H, BED_AT, sideArms } from '../lib/fix9_A.js';
 import { beatScene, lines, at, dirW, orient, V } from '../lib/beatscene.js';
 
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
+/** Painted right-divan top (plate px). Same quad the other chambre scenes use. */
+const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const BED = {
   at: BED_AT, face: [1180, 700], pose: 'lie', height: BOY_H, seed: 3, talk: 0,
-  o: { top: .28, hands: 'belly', headTurn: .5, pillow: .1 },
+  o: { top: .28, hands: 'belly', headTurn: .5, pillow: .1, mattress: MATTRESS },
 };
 
 /** Crescent iron sickle with wooden grip; origin at handle, blade rises along +y. */
@@ -89,7 +91,9 @@ function boiteProp() {
 
 // b001: Dawn gloom in chambre_jour
 const dawn = staged('chambre_jour', {
-  mohammed: { ...BED, lids: .2, look: 'father', lookMax: .95 },
+  // headTurn in boyBed carries the glance toward the room. A look: target after the lie
+  // solve lifts the skull off the pillow, so the gaze stays inside the lie pose.
+  mohammed: { ...BED, lids: .2 },
   father: {
     height: 1.76, at: [1040, 780], face: [460, 900], seed: 5, talk: 0,
     walk: { to: [460, 900], t0: .08, t1: B(0)[0] + 5.4 },
@@ -100,7 +104,7 @@ const dawn = staged('chambre_jour', {
   light: { key: '#d4c4a4', keyI: 1.15, sky: '#8a94b0', ground: '#3a342c', fillI: .72, shadow: .16, dir: [1.2, 3.2, .6] },
   fx: { grade: 'rgba(90, 100, 140, 0.28)', gradeOp: 'multiply', vignette: .55 },
   act(lt, t, S, st, S3) {
-    const mo = boyBed(S3, st, t, .55, 0x6b3a3a);
+    const mo = boyBed(S3, st, t, 1.15, 0x6b3a3a);
     lift(mo, .16);
     const fa = st.A.father, k = fa.group.scale.y / 1.6;
     const back = t >= B(0)[0] + 5.2;
@@ -132,13 +136,12 @@ const nuit = staged('chambre_nuit', {
   mohammed: {
     ...BED,
     lids: t => .12 + .5 * (Math.max(0, Math.sin(t * .7 + .4)) ** 12),
-    look: [980, 760, .45], lookMax: .8,
   },
 }, {
   light: { key: '#c5d4f0', keyI: 1.05, sky: '#3a4468', ground: '#241e28', fillI: .55, shadow: .12, dir: [2.2, 2.8, -.4] },
   fx: { grade: 'rgba(40, 48, 80, 0.22)', gradeOp: 'multiply', vignette: .62 },
   act(lt, t, S, st, S3) {
-    const mo = boyBed(S3, st, t, .35, 0x5a3038);
+    const mo = boyBed(S3, st, t, 1.15, 0x5a3038);
     lift(mo, .2);
     st.boite ||= S3.prop(boiteProp());
     const bp = st.boitePos ||= S3.floorAt(1160, 710);
@@ -163,6 +166,6 @@ export default beatScene(ID, {
         { f: .82, size: 'W', on: 'mohammed' },
       ],
     },
-    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 2.15, dx: -90, dy: 20 },
+    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 2.42, dx: -90, dy: 20 },
   },
 });

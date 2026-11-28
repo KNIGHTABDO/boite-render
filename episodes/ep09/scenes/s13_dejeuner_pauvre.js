@@ -11,7 +11,8 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { pillowUnder } from '../lib/fix8_lie.js';
-import { sealHaik } from '../lib/fix8c.js';
+import { sealHaik, stride } from '../lib/fix8c.js';
+import { haikVeil } from '../lib/fix9_D.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
@@ -81,14 +82,15 @@ function buildLunchGroup() {
   return g;
 }
 
+const TEA = [1090, 748];
 const ch = staged('chambre_jour', {
-  mohammed: { at: [1345, 690], face: 'cam', yaw: -.82, pose: 'cross',
+  mohammed: { at: [1345, 690], face: 'zoubida', yaw: -.35, pose: 'cross',
     o: { seat: TOP, floor: TOP, lean: .08, hands: false, mattress: MATTRESS, avoid: CHEST },
-    hands: false, seed: 3, look: (t) => IN(0, t) ? [1140, 790, .4] : 'zoubida', lookMax: .62,
+    hands: false, seed: 3, look: (t) => IN(2, t) ? [...TEA, .45] : (IN(0, t) ? [...TEA, .4] : 'zoubida'), lookMax: .62,
     mutter: t => IN(1, t) ? 1.8 * Math.max(0, Math.sin(t * 4.5)) : 0 },
-  zoubida: { at: [960, 730], face: 'cam', yaw: .88, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7,
-    look: (t) => IN(2, t) ? [1140, 790, .35] : 'mohammed', lookMax: .62 },
+  zoubida: { at: [960, 740], face: TEA, pose: 'kneel',
+    o: { grounded: true, lean: .1, avoid: CHEST }, hands: false, seed: 7,
+    look: (t) => IN(2, t) ? [...TEA, .48] : 'mohammed', lookMax: .7 },
 }, {
   light: DIM_DAY,
   act(lt, t, S, st, S3) {
@@ -98,10 +100,10 @@ const ch = staged('chambre_jour', {
     lapRest(mo, t, 3);
     lapRest(zo, t, 7);
 
-    // Low tabla on floor between them
-    const tp = S3.floorAt(1140, 790);
-    st.tabla ||= S3.prop(PR.tabla({ r: .26, h: .23 }), tp.x, 0, tp.z);
-    const tblTop = .23;
+    // Low bare-wood tabla in front of Zoubida (lighter top so it doesn't vanish into the rug).
+    const tp = S3.floorAt(...TEA);
+    st.tabla ||= S3.prop(PR.tabla({ r: .3, h: .28, col: 0xc4a06a, rimCol: 0x8a5a32 }), tp.x, 0, tp.z);
+    const tblTop = st.tabla.userData.top;
 
     // Lunch props (b085-b086)
     st.lunch ||= S3.prop(buildLunchGroup(), tp.x, tblTop, tp.z);
@@ -144,17 +146,20 @@ const ch = staged('chambre_jour', {
       mo.B.chest.rotation.x += .06 * eat;
     }
 
-    // b087: Zoubida silently sets the enamel teapot on the bare wood, then sits back quiet
+    // b087: from the first frames her hand is on the teapot, eyes on the wood, not back in her lap.
     if (IN(2, t)) {
-      const place = win(2, .05, .42, t);
-      if (place > .02) {
-        zo.B.chest.rotation.x += .08 * place;
-        const potTop = V(tp.x - .04, tblTop + .15, tp.z);
-        const rest = PO.hipToWorld(zo, -.17 * kz, .09 * kz, .23 * kz);
-        reach85(zo, 'R', rest.lerp(potTop, place), { grip: .02, pole: [-.48, .08, .28] });
-        PO.fingers(zo, 'R', .4, { thumb: .3 });
-      }
-      zo.B.neck.rotation.x += .1 * win(2, .4, .95, t);
+      const place = sm(B(2)[0] - .05, B(2)[0] + .25, t);
+      zo.B.chest.rotation.x += .16 * place;
+      zo.B.spine.rotation.x += .08 * place;
+      st.pot.updateMatrixWorld(true);
+      const grip = st.pot.localToWorld(st.pot.userData.handle.clone());
+      grip.y = Math.max(grip.y, tblTop + .08);
+      const rest = PO.hipToWorld(zo, -.12 * kz, .16 * kz, .2 * kz);
+      reach85(zo, 'R', rest.lerp(grip, place), { grip: .02, pole: [-.4, .2, .3] });
+      PO.fingers(zo, 'R', .35 + .25 * place, { thumb: .3 });
+      const glass = V(tp.x + .09, tblTop + .06, tp.z + .05);
+      reach85(zo, 'L', PO.hipToWorld(zo, .14 * kz, .12 * kz, .18 * kz).lerp(glass, place * .85), { grip: .02, pole: [.4, .12, .25] });
+      PO.fingers(zo, 'L', .3, { thumb: .22 });
     }
 
     mo.B.chest.updateWorldMatrix(false, true);
@@ -162,20 +167,34 @@ const ch = staged('chambre_jour', {
   },
 });
 
-// b088: escalier, Zoubida in her white haik descending alone
+// b088: escalier. She starts lower than the landing (tread 4 cropped her head) and walks down.
 const esc = staged('escalier', {
-  zoubida: { tread: 4, off: 0, face: 'down', costume: 'haik', seed: 7,
-    climb: { to: 1, t0: B(3)[0] + .3, t1: B(3)[1] - .2 }, look: 'cam', lookMax: .45 },
+  zoubida: { tread: 2, off: .05, face: 'down', costume: 'haik', seed: 7,
+    climb: { to: 0, t0: B(3)[0] + .15, t1: B(3)[1] - .15 },
+    look: [980, 1000, .45], lookMax: .7 },
 }, {
   stairs: ESCALIER,
   light: STAIR_LT,
-  act(lt, t, S, st) {
+  // Keep the top of the plate in frame, then follow her down the right flight.
+  view(lt, u, t) {
+    const [t0, t1] = B(3), k = sm(t0, t1, t), z = 1.16;
+    return [1260 + 40 * k, 540 / z + 8 + 210 * k, z];
+  },
+  act(lt, t, S, st, S3) {
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
+    const [t0, t1] = B(3);
     sealHaik(zo);
-    for (const [side, sign] of [['L', 1], ['R', -1]]) {
-      reach85(zo, side, PO.hipToWorld(zo, sign * .09 * kz, .16 * kz, .13 * kz), { grip: .01, pole: [sign * .16, .08, .02] });
-      PO.fingers(zo, side, .3);
-    }
+    if (t > t0 && t < t1) stride(zo, t, t0, 1.7, 1);
+    zo.B.spine.rotation.x += .14;
+    zo.B.chest.rotation.x += .06;
+    // Hands hold the haik closed. The right elbow sits a little lower, where the drape is wider than the ribs.
+    reach85(zo, 'R', PO.hipToWorld(zo, -.07 * kz, .28 * kz, .16 * kz), { grip: .02, pole: [-.28, .12, .16] });
+    reach85(zo, 'L', PO.hipToWorld(zo, .1 * kz, .3 * kz, .16 * kz), { grip: .02, pole: [.3, .15, .12] });
+    PO.fingers(zo, 'R', .4, { thumb: .3 });
+    PO.fingers(zo, 'L', .35, { thumb: .25 });
+    PO.drapeRobe(zo, zo.group.position.y + .2);
+    haikVeil(S3, st, zo);
+    zo.B.head.rotation.x += .22;
     st.actcheck = { supports: { zoubida: zo.group.position.y } };
   },
 });
@@ -185,7 +204,8 @@ export default beatScene(ID, {
   plan: {
     b085: { shot: 'ch', size: 'CU', on: 'mohammed', z: 2.25, dx: -15, dy: -15 },
     b086: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.4, dx: -75, dy: 15 },
-    b087: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.9, dx: 70, dy: 30, insAt: .35 },
+    // z was 1.9, which still showed the whole room. insAt lands the chipped-teapot insert on the 34s tile.
+    b087: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.8, dx: 55, dy: 48, insAt: .54 },
     b088: { shot: 'esc', size: 'W', on: 'zoubida' },
   },
 });

@@ -28,28 +28,29 @@ const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const TOP = .26;
 const BED = {
-  at: [1350, 694], face: [1280, 560], pose: 'lie', height: 1.32,
-  o: { top: TOP, turn: .2, hands: 'belly', headTurn: -.35, pillow: .12, mattress: MATTRESS, avoid: CHEST },
+  at: [1320, 640], face: [1330, 720], pose: 'lie',
+  o: { top: TOP, turn: 0, hands: 'belly', headTurn: -.15, pillow: .1, mattress: MATTRESS, avoid: CHEST },
   seed: 3, talk: 0,
 };
 
 function reachClamped(a, side, target, opt) { return reachClamp(a, side, target, opt); }
 
 const ch = staged('chambre_nuit', {
-  father: { height: 1.76, at: [720, 910], face: 'zoubida', yaw: .42, pose: 'kneel', o: { grounded: true, lean: .12, avoid: CHEST }, seed: 5, hands: false, look: 'zoubida', lookMax: .8 },
-  zoubida: { height: 1.6, at: [1020, 915], face: 'father', yaw: -.42, pose: 'kneel', o: { grounded: true, lean: .18, avoid: CHEST }, seed: 7, hands: false, look: 'father', lookMax: .8 },
+  father: { height: 1.76, at: [740, 820], face: 'zoubida', yaw: .42, pose: 'kneel', o: { grounded: true, lean: .12, avoid: CHEST }, seed: 5, hands: false, look: 'zoubida', lookMax: .8 },
+  zoubida: { height: 1.6, at: [1040, 820], face: 'father', yaw: -.42, pose: 'kneel', o: { grounded: true, lean: .18, avoid: CHEST }, seed: 7, hands: false, look: 'father', lookMax: .8 },
   mohammed: BED,
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
   act(lt, t, S, st, S3) {
     const mo = st.A.mohammed;
     lieOnBed(mo, {
-      top: TOP, feet: [1.15, .22],
-      origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-      hands: 'belly', pillow: .12, tuck: .16, headTurn: -.35,
+      top: TOP, feet: [.2, .92],
+      origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.02, 0, 0)),
+      hands: 'belly', pillow: .1, tuck: .12, headTurn: -.12,
     });
-    pillowUnder(S3, st, mo, { top: TOP, h: .14, col: 0xd9c7a4, w: .48, d: .34 });
-    mo.B.chest.rotation.x += .01 * Math.sin(t * 1.4);
+    pillowUnder(S3, st, mo, { top: TOP, h: .1, col: 0xd9c7a4, w: .42, d: .3 });
+    mo.B.chest.rotation.x -= .06;
+    mo.B.spine.rotation.z += .03 * Math.sin(t * 1.15);
     mo.B.chest.updateWorldMatrix(false, true);
 
     const { father: fa, zoubida: zo } = st.A;
@@ -141,15 +142,15 @@ export default beatScene(ID, {
   shots: { ch },
   plan: {
     b036: { shot: 'ch', size: 'CU', on: 'zoubida' },
-    b037: { shot: 'ch', size: 'M', on: 'father', dy: 70 },
+    b037: { shot: 'ch', size: 'M', on: 'father', z: 1.45 },
     b038: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b039: { shot: 'ch', size: 'W', on: 'father' },
-    b040: { shot: 'ch', size: 'M', on: 'zoubida', dy: 50 },
+    b040: { shot: 'ch', size: 'W', on: 'zoubida' },
     b041: { move: 'sink' },   // painting p03_moissonneurs — headroom above the turban
     b042: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b043: { shot: 'ch', size: 'W', on: 'father' },
     b044: { shot: 'ch', size: 'CU', on: 'zoubida' },
     b045: { shot: 'ch', size: 'W', on: 'father', insMove: 'push' },
-    b046: { shot: 'ch', size: 'CU', on: 'father', dy: 40 },
+    b046: { shot: 'ch', size: 'CU', on: 'father', z: 2.5, dy: -28 },
   },
 });

@@ -29,8 +29,8 @@ const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const TOP = .26;
 const BED = {
-  at: [1350, 694], face: [1280, 560], pose: 'lie', height: 1.32,
-  o: { top: TOP, turn: .2, hands: 'belly', headTurn: -.4, pillow: .12, mattress: MATTRESS, avoid: CHEST },
+  at: [1320, 640], face: [1330, 720], pose: 'lie',
+  o: { top: TOP, turn: 0, hands: 'belly', headTurn: -.15, pillow: .1, mattress: MATTRESS, avoid: CHEST },
   seed: 3, talk: 0,
 };
 
@@ -67,12 +67,13 @@ function makeTeaSet(S3) {
 function bed(S3, st, t) {
   const mo = st.A.mohammed;
   lieOnBed(mo, {
-    top: TOP, feet: [1.15, .22],
-    origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-    hands: 'belly', pillow: .12, tuck: .16, headTurn: -.35,
+    top: TOP, feet: [.2, .92],
+    origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.02, 0, 0)),
+    hands: 'belly', pillow: .1, tuck: .12, headTurn: -.12,
   });
-  pillowUnder(S3, st, mo, { top: TOP, h: .14, col: 0xd9c7a4, w: .48, d: .34 });
-  mo.B.chest.rotation.x += .01 * Math.sin(t * 1.4);
+  pillowUnder(S3, st, mo, { top: TOP, h: .1, col: 0xd9c7a4, w: .42, d: .3 });
+  mo.B.chest.rotation.x -= .06;
+  mo.B.spine.rotation.z += .03 * Math.sin(t * 1.15);
   mo.B.chest.updateWorldMatrix(false, true);
 }
 
@@ -81,6 +82,7 @@ const pa = staged('patio_nuit', {
   zoubida: {
     height: 1.6, at: [740, 790], face: [980, 700], seed: 7,
     walk: { to: [980, 700], t0: 0, t1: B(0)[0] + 4.2 },
+    look: (t, st, S3) => S3.cam.position.clone(), lookMax: 1.6,
   },
 }, {
   act(lt, t, S, st, S3) {
@@ -102,8 +104,9 @@ const pa = staged('patio_nuit', {
 
 // chambre_nuit standing — Zoubida brings tray, father refuses grave by wall, she sets tray down
 const nu1 = staged('chambre_nuit', {
-  father: { height: 1.76, at: [500, 880], face: 'zoubida', seed: 5, talk: 0, look: 'zoubida', lookMax: .8 },
-  zoubida: { height: 1.6, at: [1040, 920], face: [620, 1060], seed: 7, talk: .35, look: 'father', lookMax: .85 },
+  father: { height: 1.76, at: [520, 760], face: 'zoubida', seed: 5, talk: 0, look: 'zoubida', lookMax: .8 },
+  zoubida: { height: 1.6, at: [1000, 800], face: 'cam', seed: 7, talk: .35,
+    look: (t, st, S3) => IN(2, t) ? 'father' : S3.cam.position.clone(), lookMax: 1.15 },
   mohammed: BED,
 }, {
   addressee: { father: 'zoubida', zoubida: 'father' },
@@ -130,14 +133,14 @@ const nu1 = staged('chambre_nuit', {
 
     if (setDown < .92) {
       if (setDown > .04) {
-        zo.B.spine.rotation.x += .22 * Math.sin(setDown * Math.PI);
-        zo.B.chest.rotation.x += .28 * Math.sin(setDown * Math.PI);
+        zo.B.spine.rotation.x += .08 * Math.sin(setDown * Math.PI);
+        zo.B.chest.rotation.x += .1 * Math.sin(setDown * Math.PI);
         zo.B.chest.updateWorldMatrix(false, true);
       }
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
         const rim = trayPos.clone().addScaledVector(dirW(zo, sg, 0, 0), .2 * kz).add(V(0, .03 * kz, 0));
-        reachClamped(zo, s, rim, { grip: .01, pole: [sg * .22, -.16, .08] });
+        reachClamped(zo, s, rim, { grip: .01, pole: [sg * .62, .22, .38] });
         PO.fingers(zo, s, .38, { thumb: .3, spread: .12 });
       }
     } else if (IN(4, t)) {
@@ -148,7 +151,7 @@ const nu1 = staged('chambre_nuit', {
       reachClamped(zo, 'R', front(zo, 'chest', .16 * kz, .08 * kz, .1 * kz), { grip: 0, pole: [-.16, .04, .1] });
       PO.palmTo(zo, 'R', .75, dirW(zo, 0, .25, 1));
       PO.fingers(zo, 'R', .16, { spread: .22 });
-      reachClamped(zo, 'L', front(zo, 'root', .14 * kz, -.18 * kz, -.36 * kz), { grip: .02, pole: [.16, -.04, .04] });
+      reachClamped(zo, 'L', front(zo, 'root', .06 * kz, -.32 * kz, -.1 * kz), { grip: .02, pole: [.55, .16, .28] });
     } else {
       armsDown(zo, t, 7);
       zo.B.chest.rotation.x += .04;
@@ -295,11 +298,11 @@ const nu2 = staged('chambre_nuit', {
 export default beatScene(ID, {
   shots: { pa, nu1, nu2 },
   plan: {
-    b027: { shot: 'pa', size: 'M', on: 'zoubida', pt: [860, 730], segs: [[.48, 'nu1', {}]], cover: [{ f: .48, shot: 'nu1', size: 'M', on: 'zoubida' }] },
-    b028: { shot: 'nu1', size: 'M', on: 'zoubida' },
-    b029: { shot: 'nu1', size: 'CU', on: 'father' },
-    b030: { shot: 'nu1', size: 'M', on: 'zoubida' },
-    b031: { shot: 'nu1', size: 'CU', on: 'zoubida' },
+    b027: { shot: 'pa', size: 'M', on: 'zoubida', pt: [860, 730], segs: [[.48, 'nu1', {}]], cover: [{ f: .48, shot: 'nu1', size: 'W', on: 'zoubida' }] },
+    b028: { shot: 'nu1', size: 'W', on: 'zoubida' },
+    b029: { shot: 'nu1', size: 'CU', on: 'father', z: 2.8, dy: -48 },
+    b030: { shot: 'nu1', size: 'W', on: 'zoubida' },
+    b031: { shot: 'nu1', size: 'CU', on: 'zoubida', z: 2.6, dy: -42 },
     b032: { shot: 'nu2', size: 'W', on: 'zoubida' },
     b033: { shot: 'nu2', size: 'W', on: 'father' },
     b034: { shot: 'nu2', size: 'W', on: 'father' },

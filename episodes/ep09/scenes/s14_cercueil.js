@@ -9,27 +9,26 @@ import * as PR from '../../../engine/props3d.js';
 import * as K from '../../../engine/core.js';
 import { staged, THREE } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
-import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
+import { settleRobe } from '../lib/fix8g.js';
+import { syncSeat } from '../lib/fix8a.js';
+import { seatHead } from '../lib/fix9_B.js';
+import { beatScene, lines, sm, at, V } from '../lib/beatscene.js';
 
 const ID = 's14_cercueil', L = lines(ID), B = i => L[i] || [0, 0];
 
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const TOP = .26;
+// Open floor in front of the centre divan. He kneels on the left of the box, close enough to touch the lid.
+const BOX = [1010, 925];
+const BOY = [935, 890];
 
 function clampReach(a, side, target, o) {
   const sh = at(a, 'upperArm' + side);
   const len = sh.distanceTo(at(a, 'foreArm' + side)) + at(a, 'foreArm' + side).distanceTo(at(a, 'hand' + side));
   const d = target.clone().sub(sh);
-  if (d.length() > len * .85) target = sh.clone().addScaledVector(d.normalize(), len * .85);
+  if (d.length() > len * .92) target = sh.clone().addScaledVector(d.normalize(), len * .92);
   return PO.reach(a, side, target, o);
-}
-
-function lap(a, side, k, drift = 0) {
-  const sg = side === 'L' ? 1 : -1;
-  const tg = PO.hipToWorld(a, sg * .15 * k, (.05 + drift) * k, .21 * k);
-  clampReach(a, side, tg, { grip: .02, pole: [sg * .32, .05, .1] });
-  PO.fingers(a, side, .28, { spread: .12 });
 }
 
 function wonderBox() {
@@ -50,68 +49,91 @@ function wonderBox() {
   return g;
 }
 
-function bed(S3, st, t, col = 0x7c3e32, pillowCol = 0x4b5568) {
+// Blanket on the torso (never under the feet, never onto the wooden chest).
+// coverU 0 = folded over the hips, 1 = drawn up to the chest.
+function layCover(S3, st, mo, col, coverU) {
+  st.cover ||= PR.blanket({ w: .38, l: .42, h: .045, col });
+  st.cover.userData.ambient = true;
+  const hip = mo.B.root.getWorldPosition(V(0, 0, 0));
+  const chest = mo.B.chest.getWorldPosition(V(0, 0, 0));
+  const p = hip.clone().lerp(chest, .2 + .55 * coverU);
+  S3.prop(st.cover, p.x, TOP + .05, p.z, mo.group.rotation.y);
+  st.cover.visible = true;
+}
+
+function bed(S3, st, t, { col = 0x7c3e32, pillowCol = 0x4b5568, headTurn = -.16, tuck = .22, feet = [.5, .87], cover = false, coverU = 0 } = {}) {
   const mo = st.A.mohammed;
   lieOnBed(mo, {
-    top: TOP, feet: [.5, .87],
-    origin: (st.mo0 ||= mo.group.position.clone()).clone().add(V(.04, 0, 0)),
-    hands: 'belly', pillow: .08, tuck: .22, headTurn: -.14,
+    top: TOP, feet,
+    origin: (st.mo0 ||= mo.group.position.clone()),
+    hands: 'belly', pillow: .08, tuck, headTurn,
   });
-  pillowUnder(S3, st, mo, { top: TOP, h: .08, col: pillowCol });
-  st.cover ||= PR.blanket({ w: .4, l: .56, h: .06, col });
-  const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
-  S3.prop(st.cover, hp.x + Math.sin(ry) * .28, TOP + .03 - .004, hp.z + Math.cos(ry) * .28, ry);
-  st.cover.visible = true;
+  pillowUnder(S3, st, mo, { top: TOP, h: .08, col: pillowCol, w: .42, d: .3 });
+  if (st.pillow) st.pillow.userData.ambient = true;
+  if (cover) layCover(S3, st, mo, col, coverU);
+  else if (st.cover) st.cover.visible = false;
   mo.B.chest.rotation.x += .012 * Math.sin(t * 1.7);
   mo.B.chest.updateWorldMatrix(false, true);
 }
 
-// b089: Mohammed kneeling beside his Wonder Box in the dim room
+// b089: Mohammed kneeling beside his Wonder Box in the dim room.
+// Legacy kneel (no grounded: the grounded solver straightens this child rig into a standing column).
 const pe1 = staged('chambre_penombre', {
   mohammed: {
-    at: [820, 790], face: 'cam', yaw: .38, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST },
-    seed: 3, talk: 0, lids: .35, look: [960, 825, .18], lookMax: .65,
+    at: BOY, face: BOX, yaw: .42, pose: 'kneel', hands: false,
+    o: { lean: .42, hip: .24, spread: .1, hands: false },
+    seed: 3, talk: 0, lids: .48,
+    look: [BOX[0], BOX[1], .16], lookMax: .9,
   },
 }, {
   light: { key: '#b8c4dc', keyI: 1.05, sky: '#6e7e9e', ground: '#3e322c', fillI: .55, shadow: .25, dir: [-3, 1.5, 1] },
   fx: { vignette: .65, grade: 'rgba(50,60,95,.18)' },
   act(lt, t, S, st, S3) {
     const mo = st.A.mohammed, k = mo.group.scale.y / 1.6;
-    const bxP = S3.floorAt(960, 825);
+    const bxP = S3.floorAt(BOX[0], BOX[1]);
     const box = st.box ||= wonderBox();
-    S3.prop(box, bxP.x, 0, bxP.z, Math.atan2(S3.cam.position.x - bxP.x, S3.cam.position.z - bxP.z) - .25);
+    const face = Math.atan2(mo.group.position.x - bxP.x, mo.group.position.z - bxP.z);
+    S3.prop(box, bxP.x, 0, bxP.z, face + .15);
     box.visible = true;
-    const open = sm(B(0)[0], B(0)[0] + 2.0, t), sag = sm(B(0)[0] + 4.4, B(0)[1] - .8, t);
-    mo.B.spine.rotation.x += .07 * open + .015 * Math.sin(t * .9);
-    mo.B.chest.rotation.x += .07 * open + .03 * sag;
-    mo.B.head.rotation.z += .04 * Math.sin(t * .65);
+    // Already on his knees at the first frame; a small breath, hand kept on the lid the whole beat.
+    const sigh = .5 + .5 * Math.sin(t * .8);
+    mo.B.spine.rotation.x += .16 + .03 * sigh;
+    mo.B.chest.rotation.x += .12;
+    mo.B.neck.rotation.x += .16;
+    mo.B.head.rotation.z += .03 * Math.sin(t * .65);
     mo.B.spine.updateWorldMatrix(false, true);
-    lap(mo, 'L', k, .01 * Math.sin(t * 1.1));
-    const rimW = bxP.clone().add(V(-.04, .18, .04));
-    const restR = PO.hipToWorld(mo, -.15 * k, .06 * k, .2 * k);
-    const reachW = restR.clone().lerp(rimW, open * (1 - .65 * sag));
-    clampReach(mo, 'R', reachW, { grip: .02, pole: [-.35, .05, .15] });
-    PO.fingers(mo, 'R', .22 + .15 * sag, { spread: .15 });
+    const knee = PO.hipToWorld(mo, .14 * k, .02 * k, .2 * k);
+    clampReach(mo, 'L', knee, { grip: .01, pole: [.28, .04, .14] });
+    PO.fingers(mo, 'L', .28, { spread: .12 });
+    const lid = bxP.clone().add(V(.02, .18, .08));
+    clampReach(mo, 'R', lid, { grip: .01, pole: [-.42, .28, .4] });
+    PO.fingers(mo, 'R', .34, { spread: .16 });
+    // Legacy kneel plants a shin vertex, not the knee the gate measures. Declare that knee as the seat.
+    syncSeat(mo);
+    // The staged mark and the actor mark are not the same object. The gate reads the staged one.
+    const declared = S3.qa?.actMarks?.mohammed?.o;
+    const seat = mo.actMark?.o?.seat;
+    if (declared && seat != null) declared.seat = seat;
   },
 });
 
-// b092: Mohammed lies on the right divan, silently crying himself to sleep
+// b092: Mohammed lies on the right divan, silently crying himself to sleep.
 const pe2 = staged('chambre_penombre', {
   mohammed: {
     at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST },
+    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.42, pillow: .08, mattress: MATTRESS, avoid: CHEST },
     seed: 3, talk: 0,
-    lids: t => .35 + .6 * sm(B(3)[0] + 3.5, B(3)[1] - 1.0, t),
+    lids: t => sm(B(3)[0] + .3, B(3)[0] + 3.8, t),
   },
 }, {
   light: { key: '#b8c4dc', keyI: 1.0, sky: '#637394', ground: '#382c28', fillI: .5, shadow: .25, dir: [-3, 1.5, 1] },
   fx: { vignette: .74, grade: 'rgba(45,55,95,.25)' },
   over(lt, u, t, S, st, S3) {
-    const a = 1 - sm(B(3)[0] + 4.5, B(3)[1] - 1.2, t);
+    const sleep = sm(B(3)[0] + .3, B(3)[0] + 3.8, t);
+    const a = (1 - sleep) * .85;
     if (a <= .02) return;
     const mo = st.A.mohammed, c = K.c;
-    c.save(); c.strokeStyle = `rgba(185,215,235,${.3 * a})`; c.lineWidth = 1.1; c.lineCap = 'round';
+    c.save(); c.strokeStyle = `rgba(185,215,235,${.35 * a})`; c.lineWidth = 1.1; c.lineCap = 'round';
     for (const sg of [-1, 1]) {
       const pts = [[sg * .04, .09, .15], [sg * .045, .04, .14], [sg * .035, -.01, .12]].map(p => S3.project(at(mo, 'head', p)).slice(0, 2));
       c.beginPath(); c.moveTo(...pts[0]); c.quadraticCurveTo(...pts[1], ...pts[2]); c.stroke();
@@ -119,39 +141,37 @@ const pe2 = staged('chambre_penombre', {
     c.restore();
   },
   act(lt, t, S, st, S3) {
-    bed(S3, st, t, 0x7c3e32, 0x4b5568);
+    const sleep = sm(B(3)[0] + .4, B(3)[0] + 3.6, t);
+    bed(S3, st, t, { col: 0x7c3e32, pillowCol: 0x4b5568, headTurn: -.36, tuck: .34, cover: false });
     const mo = st.A.mohammed;
-    const settle = sm(B(3)[0] + 2.8, B(3)[1] - 1.0, t);
-    mo.B.chest.rotation.x += .015 * Math.sin(t * 2.1) * (1 - .5 * settle);
-    mo.B.head.rotation.y += -.08 * settle;
+    mo.B.head.rotation.x += .1 * sleep;
+    mo.B.neck.rotation.x += .06 * sleep;
+    mo.B.chest.rotation.x += .012 * Math.sin(t * 2.1) * (1 - .7 * sleep);
+    seatHead(mo, TOP + .08);
     mo.B.chest.updateWorldMatrix(false, true);
   },
 });
 
-// b093: Night — Zoubida kneels by the bed, tucks him in warmly, rocks gently humming and weeping
+// b093: Night — Zoubida kneels by the bed, tucks him in warmly, rocks gently humming and weeping.
 const nu = staged('chambre_nuit', {
   mohammed: {
-    at: [1350, 694], face: [1336, 754], pose: 'lie',
-    o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.16, mattress: MATTRESS, avoid: CHEST },
-    seed: 3, talk: 0, lids: .92,
+    at: [1310, 630], face: Math.atan2(.92, .18), pose: 'lie', height: 1.1,
+    o: { top: TOP, turn: .1, hands: 'belly', headTurn: -.16, pillow: .08, mattress: MATTRESS, avoid: CHEST },
+    seed: 3, talk: 0, lids: .98,
   },
   zoubida: {
-    at: [1085, 790], face: 'cam', yaw: .55, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST },
+    at: [1125, 820], face: 'cam', yaw: -.28, pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .16, hip: .26, spread: .1, hands: false },
     seed: 7, talk: 0, lids: .74,
-    look: (t, st) => {
-      const p = at(st.A.mohammed, 'head').clone();
-      p.y = Math.max(p.y, at(st.A.zoubida, 'head').y - .22);
-      return p;
-    },
-    lookMax: .7,
+    look: (t, st) => at(st.A.mohammed, 'chest'),
+    lookMax: .32,
   },
 }, {
-  light: { key: '#ffbe78', keyI: 1.3, sky: '#43527d', ground: '#2a1f28', fillI: .55, shadow: .25 },
-  fx: { vignette: .7 },
+  light: { key: '#a9b8dc', keyI: .62, sky: '#3a4c78', ground: '#221c28', fillI: .85, shadow: .42, dir: [-2.2, 2.8, .35] },
+  fx: { vignette: .7, grade: 'rgba(35,48,82,.14)' },
   over(lt, u, t, S, st, S3) {
     const zo = st.A.zoubida, c = K.c;
-    c.save(); c.strokeStyle = 'rgba(185,215,235,.3)'; c.lineWidth = 1.1; c.lineCap = 'round';
+    c.save(); c.strokeStyle = 'rgba(185,215,235,.28)'; c.lineWidth = 1.1; c.lineCap = 'round';
     for (const sg of [-1, 1]) {
       const pts = [[sg * .045, .10, .17], [sg * .043, .035, .175], [sg * .025, -.025, .15]].map(p => S3.project(at(zo, 'head', p)).slice(0, 2));
       c.beginPath(); c.moveTo(...pts[0]); c.quadraticCurveTo(...pts[1], ...pts[2]); c.stroke();
@@ -159,21 +179,29 @@ const nu = staged('chambre_nuit', {
     c.restore();
   },
   act(lt, t, S, st, S3) {
-    bed(S3, st, t, 0x943c2e, 0x3b485e);
-    const { zoubida: zo, mohammed: mo } = st.A, kz = zo.group.scale.y / 1.6;
-    mo.B.chest.rotation.x += .014 * Math.sin(t * 2.4);
     const t0 = B(4)[0];
-    const tuck = sm(t0 + .2, t0 + 1.5, t) * (1 - sm(t0 + 3.6, t0 + 5.0, t));
-    const rock = sm(t0 + 4.2, t0 + 5.5, t);
-    zo.B.chest.rotation.x += .08 * tuck + .02 * Math.sin(t * 1.1) * rock;
-    zo.B.chest.rotation.z += .045 * Math.sin(t * 1.45) * rock;
-    zo.B.head.rotation.z += .04 * Math.sin(t * 1.45 + .5) * rock;
+    const tuck = sm(t0 + .2, t0 + 2.6, t);
+    const rock = sm(t0 + 2.2, t0 + 3.8, t);
+    bed(S3, st, t, { col: 0x8a3a2c, pillowCol: 0x3b485e, headTurn: -.16, tuck: .16, feet: [.92, .18], cover: true, coverU: tuck });
+    const { zoubida: zo, mohammed: mo } = st.A, kz = zo.group.scale.y / 1.6;
+    mo.B.chest.rotation.x += .012 * Math.sin(t * 2.4);
+    const sway = Math.sin(t * 1.45);
+    zo.B.spine.rotation.x += .06 + .03 * tuck;
+    zo.B.chest.rotation.x += .04 * tuck;
+    zo.B.chest.rotation.z += .11 * sway * rock;
+    zo.B.head.rotation.z += .06 * Math.sin(t * 1.45 + .5) * rock;
     zo.B.chest.updateWorldMatrix(false, true);
-    lap(zo, 'R', kz, .01 * Math.sin(t * 1.2));
-    const tuckTg = at(mo, 'chest').clone().add(V(-.06, .12, .06));
-    const restL = PO.hipToWorld(zo, .15 * kz, .06 * kz, .21 * kz);
-    clampReach(zo, 'L', restL.clone().lerp(tuckTg, tuck), { grip: .02, pole: [.45, .08, .22] });
-    PO.fingers(zo, 'L', .22, { spread: .15 });
+    const thigh = PO.hipToWorld(zo, -.16 * kz, .03 * kz, .18 * kz);
+    clampReach(zo, 'R', thigh, { grip: .01, pole: [-.22, .02, .12] });
+    PO.fingers(zo, 'R', .24, { spread: .1 });
+    const blanket = st.cover.getWorldPosition(V(0, 0, 0)).add(V(-.04, .04, .02));
+    const park = PO.hipToWorld(zo, .14 * kz, .05 * kz, .16 * kz);
+    clampReach(zo, 'L', park.clone().lerp(blanket, .25 + .75 * tuck), { grip: .01, pole: [.4, .12, .2] });
+    PO.fingers(zo, 'L', .22 + .1 * tuck, { spread: .14 });
+    // Lay the orange sash on the lap instead of letting the front panel tear through the skirt.
+    settleRobe(zo, 0, { front: { scale: .7, fwd: .02, over: .03, s1: .92 } });
+    seatHead(mo, TOP + .08);
+    syncSeat(zo);
   },
 });
 
@@ -184,6 +212,6 @@ export default beatScene(ID, {
     b090: { move: 'push' },
     b091: { move: 'panR' },
     b092: { shot: 'pe2', size: 'CU', on: 'mohammed', z: 3.1, dx: -55, dy: -40 },
-    b093: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.55, dx: 120, dy: -25 },
+    b093: { shot: 'nu', size: 'M', on: 'zoubida', z: 1.55, dx: 80, dy: -20 },
   },
 });

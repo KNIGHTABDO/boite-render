@@ -16,9 +16,10 @@ import { boyBed, BOY_H, BED_AT, lapRest } from '../lib/fix9_A.js';
 import { beatScene, lines, sm, at, dirW, orient, V } from '../lib/beatscene.js';
 
 const ID = 's04_remedes', L = lines(ID), B = i => L[i] || [0, 0];
+const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const BED = {
   at: BED_AT, face: [1180, 700], pose: 'lie', height: BOY_H, seed: 3, talk: 0,
-  o: { top: .28, hands: 'belly', headTurn: .45, pillow: .1 },
+  o: { top: .28, hands: 'belly', headTurn: .45, pillow: .1, mattress: MATTRESS },
 };
 
 const PEN_LIGHT = { key: '#ffd8b0', keyI: 1.05, sky: '#636888', ground: '#2e2522', fillI: .62, shadow: .08, dir: [.5, 4.2, .35] };
@@ -43,20 +44,21 @@ function citronProp() {
 
 // b015: Zoubida sits beside Mohammed on a low floor mat in chambre_penombre
 const pe = staged('chambre_penombre', {
-  mohammed: { ...BED, lids: .4, look: 'zoubida', lookMax: .75 },
+  mohammed: { ...BED, lids: .4 },
   zoubida: {
-    height: 1.52, at: [1168, 742], face: 'mohammed', pose: 'kneel', hands: false,
-    o: { lean: .08 }, seed: 7, talk: 0,
+    height: 1.58, at: [1168, 742], face: 'cam', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .08, seat: .07 }, seed: 7, talk: 0,
     look: (t, st) => at(st.A.mohammed, 'head'),
-    lookMax: .65,
+    lookMax: .28,
   },
 }, {
   light: PEN_LIGHT,
   fx: PEN_FX,
   act(lt, t, S, st, S3) {
-    boyBed(S3, st, t, .5);
+    boyBed(S3, st, t, 1.15);
     const zo = st.A.zoubida;
     st.mat ||= S3.prop(PR.mattress({ w: .72, d: .48, h: .07, col: 0x6e3c28 }));
+    st.mat.userData.ambient = true;
     S3.prop(st.mat, zo.group.position.x, 0, zo.group.position.z, zo.group.rotation.y);
     zo.B.chest.rotation.x += .012 * Math.sin(t * 1.3);
     zo.B.chest.updateWorldMatrix(false, true);
@@ -67,11 +69,11 @@ const pe = staged('chambre_penombre', {
 // b016–b017: Courtyard gallery — Rahma left arcade, Fatma right arcade
 const pa = staged('patio_matin', {
   rahma: {
-    height: 1.62, at: [390, 730], face: [900, 980], seed: 11,
+    height: 1.6, at: [520, 920], face: [900, 980], seed: 11,
     look: [900, 980, 1.15], lookMax: .6,
   },
   fatma: {
-    height: 1.7, at: [1740, 700], face: [1100, 960], seed: 13,
+    height: 1.58, at: [1720, 780], face: [1100, 980], seed: 13,
     look: [1100, 960, 1.2], lookMax: .55,
   },
 }, {
@@ -100,13 +102,14 @@ const pa = staged('patio_matin', {
       ft.B.chest.updateWorldMatrix(false, true);
       const restL = at(ft, 'upperArmL').addScaledVector(dirW(ft, 1, 0, 0), .14 * kf).add(V(0, -.4 * kf, 0));
       const restR = at(ft, 'upperArmR').addScaledVector(dirW(ft, -1, 0, 0), .14 * kf).add(V(0, -.4 * kf, 0));
-      const lHold = at(ft, 'chest').addScaledVector(dirW(ft, 1, 0, 0), .28 * kf).addScaledVector(dirW(ft, 0, 0, 1), .16 * kf).add(V(0, -.06 * kf, 0));
-      const rGest = at(ft, 'chest').addScaledVector(dirW(ft, -1, 0, 0), .26 * kf).addScaledVector(dirW(ft, 0, 0, 1), .18 * kf).add(V(0, .06 * kf, 0));
+      // Mint stays beside the hip. Held at the chest, the sprigs cross the face in the frame.
+      const lHold = at(ft, 'upperArmL').addScaledVector(dirW(ft, 1, 0, 0), .26 * kf).add(V(0, -.38 * kf, .04 * kf));
+      const rGest = at(ft, 'upperArmR').addScaledVector(dirW(ft, -1, 0, 0), .24 * kf).add(V(0, -.22 * kf, .1 * kf));
       reachClamp(ft, 'L', restL.lerp(lHold, g), { grip: .04, pole: [.4, .05, .2] });
       reachClamp(ft, 'R', restR.lerp(rGest, g), { grip: .03, pole: [-.4, .15, .2] });
       PO.fingers(ft, 'L', .55); PO.fingers(ft, 'R', .18, { spread: .3 });
       ft.group.updateMatrixWorld(true);
-      orient(st.mint, PO.handPts(ft, 'L').palm, dirW(ft, .25, .42, .88), V(0, 0, 1));
+      orient(st.mint, PO.handPts(ft, 'L').palm, dirW(ft, 1, -.45, .1), V(0, 0, 1));
       orient(st.citron, PO.handPts(ft, 'R').palm, dirW(ft, 0, 1, .2), V(0, 0, 1));
     }
   },
@@ -116,8 +119,8 @@ const pa = staged('patio_matin', {
 const ch = staged('chambre_jour', {
   mohammed: { ...BED, lids: .5 },
   zoubida: {
-    height: 1.52, at: [1168, 742], face: 'mohammed', pose: 'kneel', hands: false,
-    o: { lean: .06 }, seed: 7,
+    height: 1.58, at: [1168, 742], face: 'cam', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .06 }, seed: 7,
     look: (t, st) => {
       const up = sm(B(3)[0] + 1.8, B(3)[0] + 3.0, t);
       const h = at(st.A.zoubida, 'head');
@@ -128,7 +131,7 @@ const ch = staged('chambre_jour', {
 }, {
   light: { key: '#ffe4b4', keyI: 1.65, sky: '#b8c8df', ground: '#7c664c', fillI: .9, shadow: .25, dir: [2, 3, 1] },
   act(lt, t, S, st, S3) {
-    boyBed(S3, st, t, .4);
+    boyBed(S3, st, t, 1.15);
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
     lapRest(zo);
     const sigh = sm(B(3)[0] + 1.6, B(3)[0] + 2.8, t);

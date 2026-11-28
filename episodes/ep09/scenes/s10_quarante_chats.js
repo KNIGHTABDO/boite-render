@@ -16,7 +16,7 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
-import { aimHead, fingerLips, holdGaze, reachHand } from '../lib/fix9_B.js';
+import { aimHead, fingerLips, holdGaze, openFace, reachHand } from '../lib/fix9_B.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's10_quarante_chats', L = lines(ID), B = i => L[i] || [0, 0];
@@ -81,11 +81,11 @@ const ch_lie = staged('chambre_jour', {
 });
 
 const ch = staged('chambre_jour', {
-  mohammed: { at: [1350, 694], face: 'zoubida', pose: 'cross',
+  mohammed: { at: [1400, 670], face: 'zoubida', pose: 'cross',
     o: { seat: TOP, floor: TOP, lean: .06, hands: false, mattress: MATTRESS, avoid: CHEST },
     hands: false, seed: 3, look: () => null },
-  // Floor beside the right divan — she was kneeling on the back mattress, out of reach.
-  zoubida: { at: [1272, 778], face: 'mohammed', pose: 'kneel',
+  // A step left of his shoulder. Dead in front of him, her back covered 29% of his chest.
+  zoubida: { at: [1200, 810], face: 'mohammed', pose: 'kneel',
     o: { grounded: true, lean: .1, avoid: CHEST }, hands: false, seed: 7, look: () => null },
 }, {
   light: MORNING,
@@ -213,8 +213,8 @@ const ch = staged('chambre_jour', {
     // b068: she is beside the bed now, so the reach lands on him instead of empty air
     if (IN(11, t)) {
       const q = full(11);
-      zo.B.spine.rotation.x += .22 * q;
-      zo.B.chest.rotation.x += .12 * q;
+      zo.B.spine.rotation.x += .08 * q;
+      zo.B.chest.rotation.x += .06 * q;
       zoAim = { x: .1 * q };
       const arm = at(mo, 'upperArmL').add(V(0, .04 * km, 0));
       reachHand(zo, 'L', arm, { grip: .02, pole: [.4, .2, .35], max: .99 });
@@ -228,6 +228,8 @@ const ch = staged('chambre_jour', {
     zo.B.chest.updateWorldMatrix(false, true);
     aimHead(mo, at(zo, 'head'), moAim);
     aimHead(zo, at(mo, 'head'), zoAim);
+    // She looks at him, which on this plate is away from the lens. Yaw the face back on every beat.
+    openFace(zo, S3.cam.position, 92);
     // Head cues land after the gaze, so any finger/cheek target is solved on the head the camera sees.
     if (IN(4, t)) {
       reachHand(zo, 'R', front(zo, 'head', .1 * kz, .08 * kz, .02 * kz), { grip: 0, pole: [-.3, .5, .35], max: .99 });
@@ -249,19 +251,20 @@ export default beatScene(ID, {
     b057: { shot: 'ch_lie', size: 'W', on: 'mohammed', segs: [[.55, 'ch']],
       cover: [{ f: .55, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: -30, dy: -30 }] },
     b058: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 5.6, dx: 0, dy: -12 },
+    b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
     b060: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 3.1, dx: 0, dy: -6 },
+    b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.6, dx: 0, dy: -28 },
     // Hold the beignets insert through the honey line (the 40.9s tile fell after the 1.2s cut).
     b062: { move: 'panR', noIns: true, segs: [
       [6.05 / d062, 'i_beignets_miel', { move: 'push' }],
       [9.35 / d062, 'p07_quarante_chats', { move: 'panR' }],
     ] },
-    b063: { shot: 'ch', size: 'CU', on: 'zoubida', z: 5.6, dx: 0, dy: -12 },
+    b063: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
     b064: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
     b065: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.7, dx: 70, dy: -8 },
-    b066: { shot: 'ch', size: 'CU', on: 'zoubida', z: 5.8, dx: 0, dy: -10 },
+    // Same close framing as the other hush shots, shifted so the boy's head centre falls outside the frame.
+    b066: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
     b067: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b068: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.8, dx: 30, dy: -8 },
+    b068: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
   },
 });
