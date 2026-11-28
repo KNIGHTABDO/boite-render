@@ -20,11 +20,12 @@ export function armsDown(a, t, seed = 0) {
     const sh = at(a, 'upperArm' + s);
     const len = sh.distanceTo(at(a, 'foreArm' + s)) + at(a, 'foreArm' + s).distanceTo(at(a, 'hand' + s));
     const sw = .012 * Math.sin(t * .85 + seed + sg);
+    // Short of a straight hang so the elbow stays soft instead of a pinned A-pose.
     const tg = sh.clone()
-      .addScaledVector(dirW(a, sg, 0, 0), .09 * k)
-      .addScaledVector(dirW(a, 0, 0, 1), (.05 + sw) * k)
-      .add(V(0, -.9 * len, 0));
-    PO.reach(a, s, tg, { grip: 0, pole: [sg * .22, .04, -.35] });
+      .addScaledVector(dirW(a, sg, 0, 0), .13 * k)
+      .addScaledVector(dirW(a, 0, 0, 1), (.1 + sw) * k)
+      .add(V(0, -.68 * len, 0));
+    PO.reach(a, s, tg, { grip: 0, pole: [sg * .35, .12, -.2] });
     PO.fingers(a, s, .34, { spread: .08 });
   }
 }
@@ -34,7 +35,7 @@ export function lapHands(a, t, seed = 0) {
   const k = a.group.scale.y / 1.6;
   for (const [s, sg] of [['L', 1], ['R', -1]]) {
     const bob = .008 * k * Math.sin(t * .9 + seed + sg);
-    const tg = PO.hipToWorld(a, sg * .15 * k, .035 * k + bob, .32 * k);
+    const tg = PO.hipToWorld(a, sg * .14 * k, .02 * k + bob, .16 * k);
     reachClamp(a, s, tg, { grip: .02, pole: [sg * .18, -.06, .06] });
     PO.fingers(a, s, .2, { thumb: .18, spread: .14 });
   }
@@ -46,7 +47,10 @@ export function steamAt(S3, st, key, origin, t) {
   if (!bag[key]) {
     const g = new THREE.Group(), puffs = [];
     for (let i = 0; i < 5; i++) {
-      const m = new THREE.Mesh(new THREE.SphereGeometry(.02, 6, 4), PR.toon(0xf6f3ec));
+      const m = new THREE.Mesh(
+        new THREE.SphereGeometry(.016, 6, 4),
+        new THREE.MeshBasicMaterial({ color: 0xf7f4ee, transparent: true, opacity: .22, depthWrite: false }),
+      );
       g.add(m); puffs.push(m);
     }
     S3.scene.add(g);
@@ -55,11 +59,12 @@ export function steamAt(S3, st, key, origin, t) {
   bag[key].forEach((m, i) => {
     const u = ((t * .42 + i * .2) % 1);
     m.position.set(
-      origin.x + Math.sin(t * 1.7 + i * 1.6) * .04,
-      origin.y + .02 + u * .34,
-      origin.z + Math.cos(t * 1.3 + i) * .04,
+      origin.x + Math.sin(t * 1.7 + i * 1.6) * .03,
+      origin.y + .1 + u * .26,
+      origin.z + Math.cos(t * 1.3 + i) * .03,
     );
-    m.scale.setScalar(.5 + u * 1.7);
+    m.scale.setScalar(.35 + u * .7);
+    m.material.opacity = .08 + (1 - u) * .2;
     m.visible = true;
   });
 }

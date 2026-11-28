@@ -13,8 +13,9 @@ import * as PO from '../../../engine/poses.js';
 import { staged } from '../lib/autostage.js';
 import { still, loadStill } from '../lib/stage.js';
 import { dim } from '../lib/fix8_R31AE.js';
-import { boyBed, BOY_H, BED_AT, lapRest, sideArms, handToBelly } from '../lib/fix9_A.js';
-import { beatScene, lines, sm, at, dirW, V } from '../lib/beatscene.js';
+import { boyBed, BOY_H, BED_AT, lapRest, handToBelly } from '../lib/fix9_A.js';
+import { reachClamp, turnToward, carryHand } from '../lib/fix9_K.js';
+import { beatScene, lines, sm, at, front, V } from '../lib/beatscene.js';
 
 const { c, W, H, hash, glow } = K;
 const ID = 's03_reveil', L = lines(ID), B = i => L[i] || [0, 0];
@@ -29,25 +30,19 @@ const BED = {
 const PEN_LIGHT = { key: '#ffd8b0', keyI: 1.05, sky: '#5a5e80', ground: '#2a2220', fillI: .62, shadow: .08, dir: [.4, 4.2, .3] };
 const PEN_FX = { grade: 'rgba(42, 46, 78, 0.32)', gradeOp: 'multiply', vignette: .62 };
 
-function reachClamp(a, side, target, opt = {}) {
-  const sh = at(a, 'upperArm' + side), el = at(a, 'foreArm' + side), hd = at(a, 'hand' + side);
-  const len = sh.distanceTo(el) + el.distanceTo(hd), d = target.clone().sub(sh), max = len * .85;
-  if (d.length() > max) target = sh.clone().addScaledVector(d.normalize(), max);
-  return PO.reach(a, side, target, opt);
-}
-
-// b004–b005: Zoubida whispers to a dark motionless shadow near the doorway, then both step back toward the threshold
+// b004–b005: Zoubida whispers to a dark motionless shadow near the doorway, then both drift to the threshold
 const pe1 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: t => t < B(0)[0] + 4 ? .7 : .4 },
   zoubida: {
-    height: 1.58, at: [560, 840], face: 'woman1', seed: 7, talk: 0,
-    walk: { to: [420, 860], t0: B(1)[0] + 9.4, t1: B(1)[0] + 12.2 },
-    look: 'woman1', lookMax: .5,
+    height: 1.58, at: [720, 820], face: 'woman1', seed: 7, talk: 0,
+    walk: { to: [520, 880], t0: B(1)[0] + 5.5, t1: B(1)[0] + 11.2 },
+    look: (t, st) => t < B(1)[0] + 5.5 ? 'woman1' : [360, 960, 1.45],
+    lookMax: .6,
   },
   woman1: {
-    height: 1.6, at: [380, 900], face: [200, 960], seed: 11, talk: 0,
-    walk: { to: [200, 980], t0: B(1)[0] + 9.0, t1: B(1)[0] + 11.8 },
-    lookMax: .2,
+    height: 1.6, at: [430, 900], face: 'zoubida', seed: 11, talk: 0,
+    walk: { to: [360, 940], t0: B(1)[0] + 5.2, t1: B(1)[0] + 10.8 },
+    lookMax: .25,
   },
 }, {
   light: PEN_LIGHT,
@@ -60,17 +55,22 @@ const pe1 = staged('chambre_penombre', {
     // Stay visible through the painting dissolve; hiding her makes the gate miss a named actor.
     const gone = t > B(2)[0] + 1.2;
     if (gone) { zo.group.visible = false; sh.group.visible = false; return; }
-    const wh = 1 - sm(B(1)[0] + 9.0, B(1)[0] + 9.6, t);
+    const wh = 1 - sm(B(1)[0] + 5.2, B(1)[0] + 5.8, t);
     if (wh > 0) {
-      zo.B.spine.rotation.x += .16 * wh;
+      zo.B.spine.rotation.x += .14 * wh;
       zo.B.chest.updateWorldMatrix(false, true);
-      const mouthTgt = at(zo, 'head').addScaledVector(dirW(zo, 0, 0, 1), .14 * kz).addScaledVector(dirW(zo, -1, 0, 0), .1 * kz).add(V(0, -.04 * kz, 0));
-      reachClamp(zo, 'R', mouthTgt, { grip: .01, pole: [-.4, -.05, .35] });
+      const mouthTgt = front(zo, 'head', .12 * kz, -.1 * kz, -.05 * kz);
+      reachClamp(zo, 'R', mouthTgt, { grip: .01, pole: [-.35, -.04, .3] });
       PO.fingers(zo, 'R', .15, { spread: .2 });
-      const soft = at(zo, 'upperArmL').addScaledVector(dirW(zo, 1, 0, 0), .1 * kz).add(V(0, -.32 * kz, 0));
-      reachClamp(zo, 'L', soft, { grip: 0, pole: [.3, .05, -.2] });
-      sideArms(sh, t, 0);
-    } else { sideArms(zo, t, .05); sideArms(sh, t, .04); }
+      carryHand(zo, 'L', 1, { fwd: .04, out: .16, drop: .34 });
+      carryHand(sh, 'R', -1, { fwd: .04, out: .14, drop: .38 });
+      carryHand(sh, 'L', 1, { fwd: .04, out: .14, drop: .38 });
+    } else {
+      carryHand(zo, 'R', -1, { fwd: .06, out: .16, drop: .36 });
+      carryHand(zo, 'L', 1, { fwd: .06, out: .16, drop: .36 });
+      carryHand(sh, 'R', -1, { fwd: .04, out: .14, drop: .38 });
+      carryHand(sh, 'L', 1, { fwd: .04, out: .14, drop: .38 });
+    }
   },
 });
 
@@ -97,29 +97,29 @@ const p01 = {
 const pe2 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .55 },
   zoubida: {
-    height: 1.58, at: [480, 680], face: [1140, 720], seed: 7, talk: 0,
-    walk: { to: [1140, 720], t0: B(3)[0] + .2, t1: B(3)[0] + 5.2 },
+    // Open floor in front of the divans, same depth the whole way so she does not shrink.
+    height: 1.58, at: [620, 900], face: [1040, 860], seed: 7, talk: 0,
+    walk: { to: [1020, 860], t0: B(3)[0] + .25, t1: B(3)[0] + 5.2 },
     look: (t, st) => at(st.A.mohammed, 'head'),
-    lookMax: .22,
+    lookMax: .4,
   },
 }, {
   light: PEN_LIGHT,
   fx: PEN_FX,
   act(lt, t, S, st, S3) {
-    boyBed(S3, st, t, 1.15);
+    const mo = boyBed(S3, st, t, 1.15);
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
-    // The path faces the back wall. Turn the body toward the lens so the face stays readable.
-    const cam = S3.cam.position;
-    zo.group.rotation.y = Math.atan2(cam.x - zo.group.position.x, cam.z - zo.group.position.z);
-    zo.group.updateMatrixWorld(true);
-    const bend = sm(B(3)[0] + 5.0, B(3)[0] + 6.6, t);
-    zo.group.position.y += .02 * (1 - bend);
-    zo.B.spine.rotation.x += .08 * bend;
+    // Three-quarter toward the bed, not square to the lens.
+    turnToward(zo, S3.cam.position, mo.group.position, .38);
+    const bend = sm(B(3)[0] + 4.4, B(3)[0] + 6.2, t);
+    zo.B.spine.rotation.x += .08 + .16 * bend;
+    zo.B.chest.rotation.x += .04 * bend;
     zo.B.chest.updateWorldMatrix(false, true);
-    const reach = at(zo, 'upperArmR').addScaledVector(dirW(zo, -1, 0, 0), .2 * kz).add(V(0, -.28 * kz, .08 * kz));
-    reachClamp(zo, 'R', reach, { grip: .03, pole: [-.5, .05, .2] });
-    const soft = at(zo, 'upperArmL').addScaledVector(dirW(zo, 1, 0, 0), .12 * kz).add(V(0, -.34 * kz, 0));
-    reachClamp(zo, 'L', soft, { grip: 0, pole: [.25, .05, -.15] });
+    const toward = front(zo, 'chest', .26 * kz, .16 * kz, -.02 * kz);
+    const park = front(zo, 'root', .1 * kz, .18 * kz, -.3 * kz);
+    reachClamp(zo, 'R', park.clone().lerp(toward, .4 + .6 * bend), { grip: .02, pole: [-.35, .02, .1] });
+    carryHand(zo, 'L', 1, { fwd: .06, out: .14, drop: .34 });
+    PO.fingers(zo, 'R', .2, { spread: .1 });
   },
 });
 
@@ -130,10 +130,10 @@ const pe3 = staged('chambre_penombre', {
     lids: t => IN(4, t) ? .35 : IN(6, t) ? .3 : IN(8, t) ? .28 : .4,
   },
   zoubida: {
-    height: 1.58, at: [1160, 748], face: 'cam', pose: 'kneel', hands: false,
-    o: { grounded: true, lean: .08 }, seed: 7,
+    height: 1.58, at: [1100, 800], face: 'cam', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .2 }, seed: 7,
     look: (t, st) => at(st.A.mohammed, 'head'),
-    lookMax: .32,
+    lookMax: .45,
   },
 }, {
   light: PEN_LIGHT,
@@ -141,24 +141,27 @@ const pe3 = staged('chambre_penombre', {
   act(lt, t, S, st, S3) {
     const mo = boyBed(S3, st, t, 1.15);
     const { zoubida: zo } = st.A, kz = zo.group.scale.y / 1.6;
+    turnToward(zo, S3.cam.position, mo.group.position, .35);
     if (IN(4, t) || IN(6, t) || IN(8, t)) handToBelly(mo);
     zo.B.chest.rotation.x += .012 * Math.sin(t * 1.4);
     zo.B.chest.updateWorldMatrix(false, true);
     lapRest(zo);
     if (IN(5, t)) {
       const u = sm(B(5)[0], B(5)[0] + .8, t);
+      zo.B.spine.rotation.x += .1 * u;
       zo.B.chest.updateWorldMatrix(false, true);
-      const out = PO.hipToWorld(zo, -.3 * kz, .14 * kz, .34 * kz);
-      const brow = at(mo, 'head').clone().addScaledVector(dirW(zo, -1, 0, 0), .1 * kz);
-      reachClamp(zo, 'R', out.lerp(brow, u), { grip: .03, pole: [-.65, .18, .12] });
-      PO.fingers(zo, 'R', .15, { spread: .15 });
+      const lap = PO.hipToWorld(zo, -.16 * kz, .06 * kz, .16 * kz);
+      const offer = front(zo, 'chest', .22 * kz, .2 * kz, -.04 * kz);
+      reachClamp(zo, 'R', lap.lerp(offer, u), { grip: .02, pole: [-.34, .02, .08] });
+      PO.fingers(zo, 'R', .2, { spread: .1 });
     } else if (IN(7, t)) {
-      const wipe = sm(B(7)[0] + .6, B(7)[0] + 1.6, t) * (1 - sm(B(7)[1] - 1.4, B(7)[1] - .3, t));
-      zo.B.spine.rotation.x += .06;
+      const wipe = sm(B(7)[0] + .4, B(7)[0] + 1.4, t) * (1 - sm(B(7)[1] - 1.2, B(7)[1] - .2, t));
+      zo.B.spine.rotation.x += .05;
       zo.B.chest.updateWorldMatrix(false, true);
-      const cheek = at(zo, 'head').addScaledVector(dirW(zo, -1, 0, 0), .1 * kz).addScaledVector(dirW(zo, 0, 0, 1), .08 * kz).add(V(0, .02 * kz, 0));
-      const lap = PO.hipToWorld(zo, -.16 * kz, .06 * kz, .2 * kz);
-      reachClamp(zo, 'R', lap.lerp(cheek, Math.max(wipe, .15)), { grip: .01, pole: [-.4, .05, .3] });
+      // In front of the cheek, clear of the scarf.
+      const cheek = front(zo, 'head', .12 * kz, .16 * kz, -.04 * kz);
+      const lap = PO.hipToWorld(zo, -.16 * kz, .06 * kz, .18 * kz);
+      reachClamp(zo, 'R', lap.lerp(cheek, Math.max(wipe, .2)), { grip: .01, pole: [-.25, .02, .2] });
       PO.fingers(zo, 'R', .18, { spread: .12 });
     }
   },
@@ -169,9 +172,9 @@ const pe4 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .35 },
   zoubida: {
     height: 1.58, at: [1120, 760], face: [240, 950], seed: 7, talk: 1,
-    walk: { to: [420, 900], t0: B(9)[0] + .25, t1: B(9)[0] + 2.7 },
-    look: (t, st) => t < B(9)[0] + 1.1 ? at(st.A.mohammed, 'head') : [240, 960, 1.4],
-    lookMax: .6,
+    walk: { to: [480, 900], t0: B(9)[0] + .2, t1: B(9)[0] + 2.6 },
+    look: (t, st) => t < B(9)[0] + .35 ? at(st.A.mohammed, 'head') : [400, 960, 1.5],
+    lookMax: .7,
   },
 }, {
   light: PEN_LIGHT,
@@ -179,9 +182,12 @@ const pe4 = staged('chambre_penombre', {
   act(lt, t, S, st, S3) {
     boyBed(S3, st, t, 1.15);
     const zo = st.A.zoubida;
-    // Arms stay down at the sides. A raised wave folded the forearm through the robe.
+    // Lean into the hurry. Hands stay wide of the sash.
+    zo.B.spine.rotation.x += .16;
+    zo.B.chest.rotation.x -= .04;
     zo.B.chest.updateWorldMatrix(false, true);
-    sideArms(zo, t, .06);
+    carryHand(zo, 'R', -1, { fwd: .04, out: .38, drop: .44 });
+    carryHand(zo, 'L', 1, { fwd: .02, out: .4, drop: .46 });
     const fz = st.faces.find(x => x[0] === zo);
     if (fz) fz[3] = { smile: .45 };
   },
@@ -215,13 +221,13 @@ export default beatScene(ID, {
     b004: { shot: 'pe1', size: 'W', on: 'zoubida' },
     b005: { shot: 'pe1', size: 'W', on: 'zoubida' },
     b006: { shot: 'p01', dissolve: true },
-    b007: { shot: 'pe2', size: 'M', on: 'zoubida', pt: [900, 740], z: 1.18, dx: 20, dy: 36 },
-    b008: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 2.45, dx: -20, dy: 10 },
-    b009: { shot: 'pe3', size: 'CU', on: 'zoubida', z: 1.9, dy: 8 },
-    b010: { shot: 'pe3', size: 'M', on: 'zoubida', z: 1.35, dx: 30, dy: 24 },
-    b011: { shot: 'pe3', size: 'M', on: 'zoubida', z: 1.35, dx: 30, dy: 24 },
-    b012: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 2.45, dx: -10, dy: 10 },
-    b013: { shot: 'pe4', size: 'M', on: 'zoubida', pt: [700, 860], z: 1.2, dx: -40, dy: 20 },
+    b007: { shot: 'pe2', size: 'M', on: 'zoubida', pt: [860, 880], z: 1.45, dy: 28 },
+    b008: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 3.9, dx: 110, dy: 24 },
+    b009: { shot: 'pe3', size: 'CU', on: 'zoubida', z: 2.45, dx: -30, dy: 12 },
+    b010: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 3.9, dx: 110, dy: 24 },
+    b011: { shot: 'pe3', size: 'M', on: 'zoubida', z: 1.7, dx: 20, dy: 40 },
+    b012: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 3.9, dx: 110, dy: 24 },
+    b013: { shot: 'pe4', size: 'M', on: 'zoubida', pt: [780, 880], z: 1.45, dy: 24 },
     b014: { shot: 'p02' },
   },
 });

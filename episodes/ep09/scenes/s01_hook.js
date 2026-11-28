@@ -11,7 +11,8 @@ import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { glow as lift } from '../lib/fix8_R31AE.js';
-import { boyBed, BOY_H, BED_AT, sideArms } from '../lib/fix9_A.js';
+import { boyBed, BOY_H, BED_AT } from '../lib/fix9_A.js';
+import { carryHand } from '../lib/fix9_K.js';
 import { beatScene, lines, at, dirW, orient, V } from '../lib/beatscene.js';
 
 const ID = 's01_hook', L = lines(ID), B = i => L[i] || [0, 0];
@@ -38,7 +39,7 @@ function faucilleProp() {
 function sacProp() {
   const g = new THREE.Group();
   const body = new THREE.Mesh(new THREE.SphereGeometry(.14, 14, 10), PR.toon(0xa38760));
-  body.scale.set(.85, 1.3, .72); body.position.y = -.18;
+  body.scale.set(.7, 1.05, .58); body.position.set(.05, -.2, 0);
   const neck = new THREE.Mesh(new THREE.CylinderGeometry(.032, .05, .06, 10), PR.toon(0x8e724d));
   neck.position.y = -.02;
   const cord = new THREE.Mesh(new THREE.TorusGeometry(.036, .006, 6, 14), PR.toon(0x4b3826));
@@ -56,10 +57,11 @@ function sacocheProp() {
   flap.position.set(0, .05, .004);
   const buckle = new THREE.Mesh(new THREE.BoxGeometry(.025, .022, .012), PR.toon(0xc8a040));
   buckle.position.set(0, .01, .038);
-  const strap = new THREE.Mesh(new THREE.CylinderGeometry(.007, .007, .58, 6), PR.toon(0x3a2414));
-  strap.position.set(-.02, .36, .01);
-  strap.rotation.z = .62;
-  strap.rotation.x = .15;
+  // Short tab on the bag. A long cylinder read as a rod floating behind the shoulder.
+  const strap = new THREE.Mesh(new THREE.BoxGeometry(.014, .15, .02), PR.toon(0x3a2414));
+  strap.position.set(.01, .11, -.02);
+  strap.rotation.x = -.45;
+  strap.rotation.z = .18;
   g.add(body, flap, buckle, strap);
   g.traverse(o => { if (o.isMesh) o.castShadow = true; });
   return g;
@@ -95,9 +97,10 @@ const dawn = staged('chambre_jour', {
   // solve lifts the skull off the pillow, so the gaze stays inside the lie pose.
   mohammed: { ...BED, lids: .2 },
   father: {
-    height: 1.76, at: [1040, 780], face: [460, 900], seed: 5, talk: 0,
-    walk: { to: [460, 900], t0: .08, t1: B(0)[0] + 5.4 },
-    lookMax: .85,
+    height: 1.76, at: [1000, 760], face: [580, 800], seed: 5, talk: 0,
+    // Stop inside the doorway, not on the lens, so the wide keeps his feet in frame.
+    walk: { to: [580, 800], t0: .08, t1: B(0)[0] + 5.4 },
+    lookMax: .7,
     look: (t, st) => t >= B(0)[0] + 5.2 ? at(st.A.mohammed, 'head') : null,
   },
 }, {
@@ -108,15 +111,20 @@ const dawn = staged('chambre_jour', {
     lift(mo, .16);
     const fa = st.A.father, k = fa.group.scale.y / 1.6;
     const back = t >= B(0)[0] + 5.2;
-    // Open the chest a little toward the room so the sickle in the right hand reads in three-quarter,
-    // then at the threshold twist the shoulders back toward Mohammed without facing the lens.
-    fa.group.rotation.y += back ? -.15 : .42;
-    fa.group.updateMatrixWorld(true);
+    // Walk faces the door. At the threshold, shoulders turn back toward the bed; the body stays upright.
     if (back) {
-      fa.B.chest.rotation.y += .42;
+      const head = at(mo, 'head');
+      const yCam = Math.atan2(S3.cam.position.x - fa.group.position.x, S3.cam.position.z - fa.group.position.z);
+      const yBed = Math.atan2(head.x - fa.group.position.x, head.z - fa.group.position.z);
+      let d = yBed - yCam; while (d > Math.PI) d -= Math.PI * 2; while (d < -Math.PI) d += Math.PI * 2;
+      fa.group.rotation.y = yCam + Math.max(-.5, Math.min(.5, d));
+      fa.group.updateMatrixWorld(true);
+      fa.B.chest.rotation.y += .22;
       fa.B.chest.updateWorldMatrix(false, true);
     }
-    sideArms(fa, t, back ? .02 : .07);
+    // Right hand clear of the hip with the sickle; left hand out so the sack hangs beside the leg.
+    carryHand(fa, 'R', -1, { fwd: .04, out: .34, drop: .46 });
+    carryHand(fa, 'L', 1, { fwd: -.04, out: .46, drop: .55 });
     PO.fingers(fa, 'R', .72);
     PO.fingers(fa, 'L', .62);
     fa.group.updateMatrixWorld(true);
@@ -124,10 +132,10 @@ const dawn = staged('chambre_jour', {
     st.sac ||= S3.prop(sacProp());
     st.sacoche ||= S3.prop(sacocheProp());
     const pR = PO.handPts(fa, 'R').palm, pL = PO.handPts(fa, 'L').palm;
-    orient(st.faucille, pR, dirW(fa, -.15, .95, .15), V(0, 0, 1));
-    orient(st.sac, pL.clone().add(V(0, -.06, 0)), dirW(fa, .15, -1, .05), V(1, 0, 0));
-    const hip = at(fa, 'root').addScaledVector(dirW(fa, -1, 0, 0), .2 * k).addScaledVector(dirW(fa, 0, 0, -1), .08 * k);
-    S3.prop(st.sacoche, hip.x, hip.y + .02 * k, hip.z, fa.group.rotation.y);
+    orient(st.faucille, pR, dirW(fa, .35, .92, .2), V(0, 0, 1));
+    orient(st.sac, pL.clone().add(V(0, -.02, 0)), dirW(fa, -.1, -1, .05), V(1, 0, 0));
+    const hip = at(fa, 'root').addScaledVector(dirW(fa, 0, 0, -1), .14 * k).add(V(0, .06 * k, 0));
+    S3.prop(st.sacoche, hip.x, hip.y, hip.z, fa.group.rotation.y + .4);
   },
 });
 
@@ -144,7 +152,8 @@ const nuit = staged('chambre_nuit', {
     const mo = boyBed(S3, st, t, 1.15, 0x5a3038);
     lift(mo, .2);
     st.boite ||= S3.prop(boiteProp());
-    const bp = st.boitePos ||= S3.floorAt(1160, 710);
+    // Tiles in front of the divan, clear of the mattress edge.
+    const bp = st.boitePos ||= S3.floorAt(1080, 800);
     S3.prop(st.boite, bp.x, 0, bp.z, -.4);
     st.boite.visible = true;
   },
@@ -159,13 +168,7 @@ const nuit = staged('chambre_nuit', {
 export default beatScene(ID, {
   shots: { dawn, nuit },
   plan: {
-    b001: {
-      shot: 'dawn', size: 'W', on: 'father',
-      cover: [
-        { f: .55, size: 'M', pt: [520, 860], on: 'father', z: 1.12, dx: 170, dy: 10 },
-        { f: .82, size: 'W', on: 'mohammed' },
-      ],
-    },
-    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 2.42, dx: -90, dy: 20 },
+    b001: { shot: 'dawn', size: 'W', on: 'father' },
+    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 3.35, dx: 20, dy: 36 },
   },
 });

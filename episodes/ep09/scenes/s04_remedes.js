@@ -13,7 +13,8 @@ import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { menthe } from '../lib/props7.js';
 import { boyBed, BOY_H, BED_AT, lapRest } from '../lib/fix9_A.js';
-import { beatScene, lines, sm, at, dirW, orient, V } from '../lib/beatscene.js';
+import { reachClamp, turnToward } from '../lib/fix9_K.js';
+import { beatScene, lines, sm, at, front, dirW, orient, V } from '../lib/beatscene.js';
 
 const ID = 's04_remedes', L = lines(ID), B = i => L[i] || [0, 0];
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
@@ -24,13 +25,6 @@ const BED = {
 
 const PEN_LIGHT = { key: '#ffd8b0', keyI: 1.05, sky: '#636888', ground: '#2e2522', fillI: .62, shadow: .08, dir: [.5, 4.2, .35] };
 const PEN_FX = { grade: 'rgba(46, 50, 82, 0.28)', gradeOp: 'multiply', vignette: .58 };
-
-function reachClamp(a, side, target, opt = {}) {
-  const sh = at(a, 'upperArm' + side), el = at(a, 'foreArm' + side), hd = at(a, 'hand' + side);
-  const len = sh.distanceTo(el) + el.distanceTo(hd), d = target.clone().sub(sh), max = len * .85;
-  if (d.length() > max) target = sh.clone().addScaledVector(d.normalize(), max);
-  return PO.reach(a, side, target, opt);
-}
 
 function citronProp() {
   const g = new THREE.Group();
@@ -46,18 +40,19 @@ function citronProp() {
 const pe = staged('chambre_penombre', {
   mohammed: { ...BED, lids: .4 },
   zoubida: {
-    height: 1.58, at: [1168, 742], face: 'cam', pose: 'kneel', hands: false,
-    o: { grounded: true, lean: .08, seat: .07 }, seed: 7, talk: 0,
+    height: 1.58, at: [1100, 800], face: 'cam', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .2, seat: .016 }, seed: 7, talk: 0,
     look: (t, st) => at(st.A.mohammed, 'head'),
-    lookMax: .28,
+    lookMax: .45,
   },
 }, {
   light: PEN_LIGHT,
   fx: PEN_FX,
   act(lt, t, S, st, S3) {
-    boyBed(S3, st, t, 1.15);
+    const mo = boyBed(S3, st, t, 1.15);
     const zo = st.A.zoubida;
-    st.mat ||= S3.prop(PR.mattress({ w: .72, d: .48, h: .07, col: 0x6e3c28 }));
+    turnToward(zo, S3.cam.position, mo.group.position, .32);
+    st.mat ||= S3.prop(PR.mat({ w: 1.15, d: .9, col: 0x6a4630 }));
     st.mat.userData.ambient = true;
     S3.prop(st.mat, zo.group.position.x, 0, zo.group.position.z, zo.group.rotation.y);
     zo.B.chest.rotation.x += .012 * Math.sin(t * 1.3);
@@ -69,12 +64,13 @@ const pe = staged('chambre_penombre', {
 // b016–b017: Courtyard gallery — Rahma left arcade, Fatma right arcade
 const pa = staged('patio_matin', {
   rahma: {
-    height: 1.6, at: [520, 920], face: [900, 980], seed: 11,
-    look: [900, 980, 1.15], lookMax: .6,
+    // Foreground of the left arcade so a medium reads at adult scale.
+    height: 1.6, at: [520, 1020], face: [980, 1000], seed: 11,
+    look: [980, 1000, 1.35], lookMax: .7,
   },
   fatma: {
-    height: 1.58, at: [1720, 780], face: [1100, 980], seed: 13,
-    look: [1100, 960, 1.2], lookMax: .55,
+    height: 1.58, at: [1360, 1010], face: [900, 1000], seed: 13,
+    look: [900, 1000, 1.35], lookMax: .65,
   },
 }, {
   light: { key: '#ffe4b4', keyI: 2.0, sky: '#cbd9ee', ground: '#8f7759', fillI: 1.15, shadow: .28, dir: [2, 3, 1] },
@@ -83,14 +79,15 @@ const pa = staged('patio_matin', {
     const { rahma: ra, fatma: ft } = st.A, kr = ra.group.scale.y / 1.6, kf = ft.group.scale.y / 1.6;
     // b016: Rahma leans slightly forward, right hand cupped near mouth calling kindly
     const call = sm(B(1)[0] - 1.4, B(1)[0] - .15, t) * (1 - sm(B(1)[1] - .2, B(1)[1] + .2, t));
-    ra.B.spine.rotation.x += .38 * call;
+    ra.B.spine.rotation.x += .34 * call;
+    ra.B.chest.rotation.x += .08 * call;
     ra.B.chest.updateWorldMatrix(false, true);
-    const cup = at(ra, 'head').addScaledVector(dirW(ra, -1, 0, 0), .16 * kr).addScaledVector(dirW(ra, 0, 0, 1), .04 * kr).add(V(0, -.01 * kr, 0));
-    const restR = at(ra, 'upperArmR').addScaledVector(dirW(ra, -1, 0, 0), .14 * kr).add(V(0, -.4 * kr, 0));
-    reachClamp(ra, 'R', restR.lerp(cup, call), { grip: .01, pole: [-.4, .05, .2] });
-    PO.fingers(ra, 'R', .28, { spread: .35 });
-    const back = at(ra, 'upperArmL').addScaledVector(dirW(ra, 1, 0, 0), .16 * kr).addScaledVector(dirW(ra, 0, 0, -1), .06 * kr).add(V(0, -.28 * kr, 0));
-    reachClamp(ra, 'L', back, { grip: 0, pole: [.3, .05, -.3] });
+    const cup = front(ra, 'head', .14 * kr, .18 * kr, -.08 * kr);
+    const restR = front(ra, 'root', .08 * kr, .22 * kr, -.34 * kr);
+    reachClamp(ra, 'R', restR.lerp(cup, call), { grip: .01, pole: [-.35, .02, .1] });
+    PO.fingers(ra, 'R', .22, { spread: .4 });
+    const warm = front(ra, 'chest', .14 * kr, -.24 * kr, -.12 * kr);
+    reachClamp(ra, 'L', warm, { grip: 0, pole: [.2, .02, .1] });
     // b017: Fatma holds mint in left hand and lemon peel out in the right, leaning from the arcade
     const g = sm(B(2)[0] - 1.2, B(2)[0] + .1, t);
     st.mint ||= S3.prop(menthe());
@@ -98,15 +95,16 @@ const pa = staged('patio_matin', {
     st.mint.visible = g > .02;
     st.citron.visible = g > .02;
     if (g > .02) {
-      ft.B.spine.rotation.x += .32 * g;
+      ft.B.spine.rotation.x += .3 * g;
+      ft.B.chest.rotation.x += .06 * g;
       ft.B.chest.updateWorldMatrix(false, true);
-      const restL = at(ft, 'upperArmL').addScaledVector(dirW(ft, 1, 0, 0), .14 * kf).add(V(0, -.4 * kf, 0));
-      const restR = at(ft, 'upperArmR').addScaledVector(dirW(ft, -1, 0, 0), .14 * kf).add(V(0, -.4 * kf, 0));
-      // Mint stays beside the hip. Held at the chest, the sprigs cross the face in the frame.
-      const lHold = at(ft, 'upperArmL').addScaledVector(dirW(ft, 1, 0, 0), .26 * kf).add(V(0, -.38 * kf, .04 * kf));
-      const rGest = at(ft, 'upperArmR').addScaledVector(dirW(ft, -1, 0, 0), .24 * kf).add(V(0, -.22 * kf, .1 * kf));
-      reachClamp(ft, 'L', restL.lerp(lHold, g), { grip: .04, pole: [.4, .05, .2] });
-      reachClamp(ft, 'R', restR.lerp(rGest, g), { grip: .03, pole: [-.4, .15, .2] });
+      const restL = front(ft, 'root', .08 * kf, -.22 * kf, -.34 * kf);
+      const restR = front(ft, 'root', .08 * kf, .24 * kf, -.34 * kf);
+      // Wide of the face: +r is her right, so the right hand stays on that side.
+      const lHold = front(ft, 'chest', .14 * kf, -.28 * kf, -.16 * kf);
+      const rGest = front(ft, 'chest', .14 * kf, .28 * kf, -.12 * kf);
+      reachClamp(ft, 'L', restL.lerp(lHold, g), { grip: .04, pole: [.32, .02, .08] });
+      reachClamp(ft, 'R', restR.lerp(rGest, g), { grip: .03, pole: [-.32, .02, .08] });
       PO.fingers(ft, 'L', .55); PO.fingers(ft, 'R', .18, { spread: .3 });
       ft.group.updateMatrixWorld(true);
       orient(st.mint, PO.handPts(ft, 'L').palm, dirW(ft, 1, -.45, .1), V(0, 0, 1));
@@ -119,8 +117,8 @@ const pa = staged('patio_matin', {
 const ch = staged('chambre_jour', {
   mohammed: { ...BED, lids: .5 },
   zoubida: {
-    height: 1.58, at: [1168, 742], face: 'cam', pose: 'kneel', hands: false,
-    o: { grounded: true, lean: .06 }, seed: 7,
+    height: 1.58, at: [1100, 800], face: 'cam', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .18, seat: .016 }, seed: 7,
     look: (t, st) => {
       const up = sm(B(3)[0] + 1.8, B(3)[0] + 3.0, t);
       const h = at(st.A.zoubida, 'head');
@@ -131,8 +129,9 @@ const ch = staged('chambre_jour', {
 }, {
   light: { key: '#ffe4b4', keyI: 1.65, sky: '#b8c8df', ground: '#7c664c', fillI: .9, shadow: .25, dir: [2, 3, 1] },
   act(lt, t, S, st, S3) {
-    boyBed(S3, st, t, 1.15);
+    const mo = boyBed(S3, st, t, 1.15);
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
+    turnToward(zo, S3.cam.position, mo.group.position, .45);
     lapRest(zo);
     const sigh = sm(B(3)[0] + 1.6, B(3)[0] + 2.8, t);
     zo.B.chest.rotation.x += .02 * Math.sin(t * 1.4) - .03 * sigh;
@@ -151,9 +150,9 @@ const ch = staged('chambre_jour', {
 export default beatScene(ID, {
   shots: { pe, pa, ch },
   plan: {
-    b015: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.32, dx: 36, dy: 28 },
-    b016: { shot: 'pa', size: 'M', on: 'rahma', z: 1.85, dx: 10, dy: 48 },
-    b017: { shot: 'pa', size: 'M', on: 'fatma', z: 1.85, dx: -10, dy: 40 },
-    b018: { shot: 'ch', size: 'CU', on: 'zoubida', z: 1.75, dy: -15 },
+    b015: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.55, dy: 48 },
+    b016: { shot: 'pa', size: 'M', on: 'rahma', pt: [520, 1020], z: 2.15, dy: 20 },
+    b017: { shot: 'pa', size: 'M', on: 'fatma', pt: [1360, 1010], z: 2.2, dy: 16 },
+    b018: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.7, dy: 8 },
   },
 });

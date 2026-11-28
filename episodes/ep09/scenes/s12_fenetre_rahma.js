@@ -38,7 +38,13 @@ function makeBedProps(S3, st, mo) {
 
 const ch1 = staged('chambre_jour', {
   mohammed: { at: [1120, 900], face: 'cam', seed: 3 },
-  zoubida: { height: 1.6, at: [740, 740], face: 'mohammed', seed: 7, look: 'mohammed', lookMax: 1.05 },
+  zoubida: { height: 1.6, at: [740, 740], face: 'mohammed', yaw: -.35, seed: 7,
+    look: (t, st) => {
+      if (!IN(2, t)) return 'mohammed';
+      const p = st.A.zoubida.B.head.getWorldPosition(V(0, 0, 0));
+      p.x -= .55; p.y += .25; p.z += .4;
+      return p;
+    }, lookMax: 1.15 },
 }, {
   light: ROOM_LT,
   addressee: { zoubida: 'mohammed' },
@@ -69,15 +75,15 @@ const ch1 = staged('chambre_jour', {
 
     if (IN(2, t)) {
       const q = sm(B(2)[0], B(2)[0] + .35, t);
-      const nod = .08 * Math.sin(t * 2.2) * q;
-      zo.B.chest.rotation.x += .06 * q;
-      zo.B.head.rotation.x += nod;
+      zo.B.chest.rotation.x -= .04 * q;
+      zo.B.head.rotation.x -= .06 * q;
       zo.B.chest.updateWorldMatrix(false, true);
-      reach85(zo, 'R', front(zo, 'chest', .22 * kz, .18 * kz, .04 * kz), { grip: 0, pole: [-.18, -.02, .1] });
-      PO.palmTo(zo, 'R', .9, V(.1, .45, .85));
-      PO.fingers(zo, 'R', .05, { spread: .42 });
-      reach85(zo, 'L', front(zo, 'root', .06 * kz, -.32 * kz, -.1 * kz), { grip: .02, pole: [.55, .16, .28] });
-      PO.fingers(zo, 'L', .3, { spread: .1 });
+      // Open palm out in front of the chest, clear of the eye.
+      reach85(zo, 'R', front(zo, 'chest', .4 * kz, .34 * kz, -.12 * kz), { grip: 0, pole: [-.15, -.04, .12] });
+      PO.palmTo(zo, 'R', .95, V(.45, .2, .85));
+      PO.fingers(zo, 'R', .04, { spread: .5 });
+      reach85(zo, 'L', front(zo, 'root', .08 * kz, -.28 * kz, -.16 * kz), { grip: .02, pole: [.4, .1, .2] });
+      PO.fingers(zo, 'L', .28, { spread: .12 });
     }
     mo.B.chest.updateWorldMatrix(false, true);
     zo.B.chest.updateWorldMatrix(false, true);
@@ -86,11 +92,13 @@ const ch1 = staged('chambre_jour', {
 
 // Rahma on the sunlit tiles in front of the well, not on the masonry. Mohammed answers from the left arch.
 const pa = staged('patio_matin', {
-  mohammed: { at: [560, 1045], face: 'rahma', seed: 3,
-    look: (t, st, S3) => IN(4, t) ? S3.cam.position.clone() : 'rahma', lookMax: 1.25 },
-  rahma: { height: 1.6, at: [1080, 960], face: 'mohammed', seed: 9,
-    // Plate y 420 is above the patio horizon, so floorAt is null. Look up in world space.
-    look: (t, st) => IN(3, t) ? at(st.A.rahma, 'head').clone().add(V(0, 1.35, .25)) : 'mohammed', lookMax: .9 },
+  mohammed: { at: [560, 1045], face: 'rahma', yaw: .55, seed: 3,
+    look: (t, st, S3) => {
+      const p = st.A.rahma.B.head.getWorldPosition(V(0, 0, 0));
+      return IN(4, t) ? p.lerp(S3.cam.position, .6) : p;
+    }, lookMax: t => IN(4, t) ? 1.7 : 1.1,
+    mutter: t => IN(4, t) && t > B(4)[0] + 2.0 ? 1.7 : 0 },
+  rahma: { height: 1.6, at: [1080, 960], face: 'mohammed', seed: 9, look: 'mohammed', lookMax: .9 },
 }, {
   light: PATIO_LT,
   addressee: { rahma: 'mohammed', mohammed: 'rahma' },
@@ -127,23 +135,17 @@ const pa = staged('patio_matin', {
     }
 
     if (IN(4, t)) {
-      const startle = sm(B(4)[0], B(4)[0] + .35, t) * (1 - sm(B(4)[0] + 2.2, B(4)[0] + 3.0, t));
-      const lgh = sm(B(4)[0] + 2.4, B(4)[0] + 3.4, t);
-      if (startle > .02) {
-        mo.B.chest.rotation.x += .12 * startle;
-        mo.B.neck.rotation.x -= .2 * startle;
-        mo.B.head.rotation.z += .1 * startle;
-      }
+      const lgh = sm(B(4)[0] + .6, B(4)[0] + 1.6, t);
       if (lgh > .02) {
-        const bob = Math.sin(t * 14);
-        mo.B.spine.rotation.x += .12 * lgh;
-        mo.B.chest.rotation.x += (.14 + .07 * bob) * lgh;
-        mo.B.neck.rotation.x -= .1 * lgh;
-        mo.B.head.rotation.x -= .12 * lgh;
+        const bob = Math.sin(t * 11);
+        mo.B.spine.rotation.x -= .06 * lgh;
+        mo.B.chest.rotation.x -= (.08 + .05 * bob) * lgh;
+        mo.B.head.rotation.x += .28 * lgh;
+        mo.B.head.rotation.z += .08 * bob * lgh;
         mo.B.chest.updateWorldMatrix(false, true);
         for (const [s, sg] of [['L', 1], ['R', -1]]) {
-          reach85(mo, s, front(mo, 'head', .12 * km, -sg * .08 * km, -.06 * km), { grip: .03, pole: [sg * .2, .02, .1] });
-          PO.fingers(mo, s, .4, { spread: .1 });
+          reach85(mo, s, front(mo, 'chest', .16 * km, -sg * .22 * km, .02 * km), { grip: 0, pole: [sg * .2, -.04, .1] });
+          PO.fingers(mo, s, .15, { spread: .35 });
         }
       }
     }
@@ -154,12 +156,12 @@ const pa = staged('patio_matin', {
 
 // Zoubida kneels on the stone beside the mattress, clear of the round table.
 const ch2 = staged('chambre_jour', {
-  mohammed: { at: [1320, 690], face: 'zoubida', yaw: -.2, pose: 'cross',
+  mohammed: { at: [1380, 680], face: 'zoubida', yaw: .45, pose: 'cross',
     o: { seat: TOP, floor: TOP, lean: .06, hands: false, mattress: MATTRESS, avoid: CHEST },
     hands: false, seed: 3, look: 'zoubida', lookMax: .7,
     mutter: t => 2.8 * sm(B(5)[0] + 4.2, B(5)[0] + 5.2, t) },
-  zoubida: { height: 1.6, at: [1230, 800], face: 'mohammed', pose: 'kneel',
-    o: { grounded: true, lean: .1, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .75 },
+  zoubida: { height: 1.6, at: [1220, 790], face: 'mohammed', yaw: -.7, pose: 'kneel',
+    o: { grounded: true, lean: .12, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .8 },
 }, {
   light: ROOM_LT,
   addressee: { zoubida: 'mohammed' },
@@ -209,9 +211,9 @@ export default beatScene(ID, {
   plan: {
     b079: { shot: 'ch1', size: 'W', on: 'mohammed' },
     b080: { shot: 'pa', size: 'W', on: 'rahma' },
-    b081: { shot: 'ch1', size: 'CU', on: 'zoubida', z: 4.2 },
-    b082: { shot: 'pa', size: 'M', on: 'rahma', pt: [1080, 960], z: 1.4 },
-    b083: { shot: 'pa', size: 'CU', on: 'mohammed', pt: [600, 970], insAt: .46 },
-    b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.28 },
+    b081: { shot: 'ch1', size: 'CU', on: 'zoubida', z: 6.2, dx: 24, dy: -50 },
+    b082: { shot: 'pa', size: 'M', on: 'rahma', pt: [1080, 960], z: 2.35, dy: -20 },
+    b083: { shot: 'pa', size: 'CU', on: 'mohammed', pt: [560, 1045], z: 3.4, dy: -28, insAt: 0, segs: [[.52, 'i_trompette_ramadan', { move: 'push' }], [.7, 'pa', {}]] },
+    b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.65, dx: -20 },
   },
 });
