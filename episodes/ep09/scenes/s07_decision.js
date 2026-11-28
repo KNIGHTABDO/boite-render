@@ -36,13 +36,13 @@ const BED = {
 function reachClamped(a, side, target, opt) { return reachClamp(a, side, target, opt); }
 
 const ch = staged('chambre_nuit', {
-  father: { height: 1.76, at: [760, 910], face: 'zoubida', yaw: .85, pose: 'kneel', o: { grounded: true, lean: .1, avoid: CHEST }, seed: 5, hands: false, look: 'zoubida', lookMax: .9 },
-  zoubida: { height: 1.6, at: [1040, 910], face: 'father', yaw: -.85, pose: 'kneel', o: { grounded: true, lean: .12, avoid: CHEST }, seed: 7, hands: false,
+  father: { height: 1.76, at: [760, 910], face: 'cam', yaw: .6, pose: 'kneel', o: { grounded: true, lean: .1, avoid: CHEST }, seed: 5, hands: false, look: 'zoubida', lookMax: .9 },
+  zoubida: { height: 1.6, at: [1040, 910], face: 'cam', yaw: -.6, pose: 'kneel', o: { grounded: true, lean: .12, avoid: CHEST }, seed: 7, hands: false,
     look: (t, st) => {
       const p = st.A.father.B.head.getWorldPosition(V(0, 0, 0));
       const lift = sm(.15, B(0)[0] + .85, t);
       if (t < B(1)[0] - .05) p.y -= .28 * (1 - lift);
-      else if (IN(2, t)) p.y += .45;
+      else if (IN(2, t)) p.y += .1;
       return p;
     }, lookMax: 1.15 },
   mohammed: BED,
@@ -60,10 +60,10 @@ const ch = staged('chambre_nuit', {
 
     lapHands(fa, t, 5);
     lapHands(zo, t, 7);
-    // Bow from the pre-roll. Negative spine pitch folds the chest forward.
-    zo.B.spine.rotation.x -= .18;
-    zo.B.chest.rotation.x -= .1;
-    fa.B.spine.rotation.x -= .06;
+    // Bow from the pre-roll. Positive spine pitch folds the chest forward (engine/poses.js rail()).
+    zo.B.spine.rotation.x += .2;
+    zo.B.chest.rotation.x += .1;
+    fa.B.spine.rotation.x += .05;
     fa.B.chest.rotation.x += .012 * Math.sin(t * .6);
 
     if (IN(0, t) || t < B(0)[0]) {
@@ -82,8 +82,8 @@ const ch = staged('chambre_nuit', {
       }
     } else if (IN(4, t)) {
       const u = sm(B(4)[0], B(4)[0] + .45, t);
-      zo.B.spine.rotation.x -= .12 * u;
-      zo.B.chest.rotation.x -= .1 * u;
+      zo.B.spine.rotation.x += .12 * u;
+      zo.B.chest.rotation.x += .08 * u;
       zo.B.chest.updateWorldMatrix(false, true);
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
@@ -129,16 +129,16 @@ const ch = staged('chambre_nuit', {
 export default beatScene(ID, {
   shots: { ch },
   plan: {
-    b036: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.3, dx: -70, dy: -42 },
-    b037: { shot: 'ch', size: 'CU', on: 'father', z: 4.4, dx: -70, dy: -40 },
-    b038: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.3, dx: -70, dy: -42 },
+    b036: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
+    b037: { shot: 'ch', size: 'M', on: 'father', z: 2.1, dy: 20 },
+    b038: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
     b039: { shot: 'ch', size: 'W', on: 'father' },
-    b040: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.2, dx: -55, dy: -36 },
+    b040: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
     b041: { move: 'sink' },   // painting p03_moissonneurs — headroom above the turban
-    b042: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.3, dx: -60, dy: -48 },
+    b042: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
     b043: { shot: 'ch', size: 'W', on: 'father' },
-    b044: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.3, dx: -60, dy: -48 },
+    b044: { shot: 'ch', size: 'M', on: 'zoubida', z: 1.9, dy: 0 },
     b045: { shot: 'ch', size: 'W', on: 'father', insAt: 0, insMove: 'push', segs: [[.55, 'i_bracelets_vente', { move: 'push' }], [.7, 'ch', {}]] },
-    b046: { shot: 'ch', size: 'CU', on: 'father', z: 3.6, dx: -80, dy: -55 },
+    b046: { shot: 'ch', size: 'M', on: 'father', z: 2.0, dx: 40, dy: 20 },
   },
 });

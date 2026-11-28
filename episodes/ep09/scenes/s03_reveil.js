@@ -35,13 +35,13 @@ const pe1 = staged('chambre_penombre', {
   mohammed: { ...BED, lids: t => t < B(0)[0] + 4 ? .7 : .4 },
   zoubida: {
     height: 1.58, at: [720, 820], face: 'woman1', seed: 7, talk: 0,
-    walk: { to: [520, 880], t0: B(1)[0] + 5.5, t1: B(1)[0] + 11.2 },
+    walk: { to: [380, 850], t0: B(1)[0] + 5.5, t1: B(1)[0] + 11.2 },
     look: (t, st) => t < B(1)[0] + 5.5 ? 'woman1' : [360, 960, 1.45],
     lookMax: .6,
   },
   woman1: {
     height: 1.6, at: [430, 900], face: 'zoubida', seed: 11, talk: 0,
-    walk: { to: [360, 940], t0: B(1)[0] + 5.2, t1: B(1)[0] + 10.8 },
+    walk: { to: [130, 900], t0: B(1)[0] + 4.6, t1: B(1)[0] + 9.6 },
     lookMax: .25,
   },
 }, {
@@ -118,7 +118,7 @@ const pe2 = staged('chambre_penombre', {
     const toward = front(zo, 'chest', .26 * kz, .16 * kz, -.02 * kz);
     const park = front(zo, 'root', .1 * kz, .18 * kz, -.3 * kz);
     reachClamp(zo, 'R', park.clone().lerp(toward, .4 + .6 * bend), { grip: .02, pole: [-.35, .02, .1] });
-    carryHand(zo, 'L', 1, { fwd: .06, out: .14, drop: .34 });
+    carryHand(zo, 'L', 1, { fwd: .1, out: .2, drop: .5 });
     PO.fingers(zo, 'R', .2, { spread: .1 });
   },
 });
@@ -130,8 +130,8 @@ const pe3 = staged('chambre_penombre', {
     lids: t => IN(4, t) ? .35 : IN(6, t) ? .3 : IN(8, t) ? .28 : .4,
   },
   zoubida: {
-    height: 1.58, at: [1100, 800], face: 'cam', pose: 'kneel', hands: false,
-    o: { grounded: true, lean: .2 }, seed: 7,
+    height: 1.58, at: [1120, 780], face: 'cam', pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .2, seat: .05 }, seed: 7,
     look: (t, st) => at(st.A.mohammed, 'head'),
     lookMax: .45,
   },
@@ -186,8 +186,9 @@ const pe4 = staged('chambre_penombre', {
     zo.B.spine.rotation.x += .16;
     zo.B.chest.rotation.x -= .04;
     zo.B.chest.updateWorldMatrix(false, true);
-    carryHand(zo, 'R', -1, { fwd: .04, out: .38, drop: .44 });
-    carryHand(zo, 'L', 1, { fwd: .02, out: .4, drop: .46 });
+    // Asymmetric stride swing, not a symmetric splay.
+    carryHand(zo, 'R', -1, { fwd: .16, out: .2, drop: .5 });
+    carryHand(zo, 'L', 1, { fwd: -.12, out: .22, drop: .52 });
     const fz = st.faces.find(x => x[0] === zo);
     if (fz) fz[3] = { smile: .45 };
   },
@@ -221,13 +222,13 @@ export default beatScene(ID, {
     b004: { shot: 'pe1', size: 'W', on: 'zoubida' },
     b005: { shot: 'pe1', size: 'W', on: 'zoubida' },
     b006: { shot: 'p01', dissolve: true },
-    b007: { shot: 'pe2', size: 'M', on: 'zoubida', pt: [860, 880], z: 1.45, dy: 28 },
+    b007: { shot: 'pe2', size: 'M', on: 'zoubida', pt: [860, 880], z: 1.2, dy: 44 },
     b008: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 3.9, dx: 110, dy: 24 },
     b009: { shot: 'pe3', size: 'CU', on: 'zoubida', z: 2.45, dx: -30, dy: 12 },
     b010: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 3.9, dx: 110, dy: 24 },
     b011: { shot: 'pe3', size: 'M', on: 'zoubida', z: 1.7, dx: 20, dy: 40 },
     b012: { shot: 'pe3', size: 'CU', on: 'mohammed', z: 3.9, dx: 110, dy: 24 },
-    b013: { shot: 'pe4', size: 'M', on: 'zoubida', pt: [780, 880], z: 1.45, dy: 24 },
+    b013: { shot: 'pe4', size: 'M', on: 'zoubida', pt: [780, 880], z: 1.2, dy: 40 },
     b014: { shot: 'p02' },
   },
 });

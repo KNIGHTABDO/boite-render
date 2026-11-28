@@ -10,6 +10,7 @@ import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { pillowUnder } from '../lib/fix8_lie.js';
 import { reachClamp, lapHands } from '../lib/fix9_C.js';
+import { turnToward } from '../lib/fix9_K.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's12_fenetre_rahma', L = lines(ID), B = i => L[i] || [0, 0];
@@ -42,7 +43,7 @@ const ch1 = staged('chambre_jour', {
     look: (t, st) => {
       if (!IN(2, t)) return 'mohammed';
       const p = st.A.zoubida.B.head.getWorldPosition(V(0, 0, 0));
-      p.x -= .55; p.y += .25; p.z += .4;
+      p.x -= .55; p.y += .02; p.z += .4;
       return p;
     }, lookMax: 1.15 },
 }, {
@@ -59,7 +60,7 @@ const ch1 = staged('chambre_jour', {
         mo.B.chest.rotation.x -= .06 * str;
         mo.B.chest.updateWorldMatrix(false, true);
         for (const [s, sg] of [['L', 1], ['R', -1]]) {
-          const up = front(mo, 'head', .02 * km, -sg * .42 * km, .38 * km);
+          const up = front(mo, 'head', .06 * km, -sg * .3 * km, .42 * km);
           reach85(mo, s, up, { grip: 0, pole: [sg * .15, -.35, .02] });
           PO.fingers(mo, s, .04, { spread: .45 });
         }
@@ -102,12 +103,13 @@ const pa = staged('patio_matin', {
 }, {
   light: PATIO_LT,
   addressee: { rahma: 'mohammed', mohammed: 'rahma' },
-  act(lt, t, S, st) {
+  act(lt, t, S, st, S3) {
     const { mohammed: mo, rahma: ra } = st.A;
     const km = mo.group.scale.y / 1.6, kr = ra.group.scale.y / 1.6;
+    turnToward(ra, S3.cam.position, mo.group.position, .75);
 
     if (IN(1, t)) {
-      const q = win(1, .04, .96, t), sw = Math.sin(t * 6.2);
+      const q = win(1, .04, .5, t), sw = Math.sin(t * 6.2);
       ra.B.chest.rotation.x += .04 * q;
       ra.B.chest.updateWorldMatrix(false, true);
       reach85(ra, 'R', front(ra, 'head', .06 * kr, .46 * kr, (.22 + .06 * sw) * kr), { grip: 0, pole: [-.15, -.2, .05] });
@@ -211,7 +213,7 @@ export default beatScene(ID, {
   plan: {
     b079: { shot: 'ch1', size: 'W', on: 'mohammed' },
     b080: { shot: 'pa', size: 'W', on: 'rahma' },
-    b081: { shot: 'ch1', size: 'CU', on: 'zoubida', z: 6.2, dx: 24, dy: -50 },
+    b081: { shot: 'ch1', size: 'M', on: 'zoubida', z: 3.0, dx: -30, dy: -10 },
     b082: { shot: 'pa', size: 'M', on: 'rahma', pt: [1080, 960], z: 2.35, dy: -20 },
     b083: { shot: 'pa', size: 'CU', on: 'mohammed', pt: [560, 1045], z: 3.4, dy: -28, insAt: 0, segs: [[.52, 'i_trompette_ramadan', { move: 'push' }], [.7, 'pa', {}]] },
     b084: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.65, dx: -20 },

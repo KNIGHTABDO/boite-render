@@ -16,6 +16,7 @@ import { pillowUnder } from '../lib/fix8_lie.js';
 import { walk } from '../lib/acts.js';
 import { reachClamp, lapHands, steamAt } from '../lib/fix9_C.js';
 import { divanBoy } from '../lib/fix9_L.js';
+import { turnToward } from '../lib/fix9_K.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
 const ID = 's11_tadeffi', L = lines(ID), B = i => L[i] || [0, 0];
@@ -84,6 +85,8 @@ const pa = staged('patio_matin', {
   act(lt, t, S, st, S3) {
     const { zoubida: zo, fatma: fa } = st.A;
     const kz = zo.group.scale.y / 1.6;
+    turnToward(fa, S3.cam.position, zo.group.position, .75);
+    turnToward(zo, S3.cam.position, fa.group.position, .9);
     const bowl = makeSoupBowl(S3, st);
     const ctr = holdBowl(fa, bowl, { fwd: .3, up: -.2, side: .16, tilt: .2 });
     steamAt(S3, st, 'pa', ctr, t);
@@ -118,7 +121,7 @@ const ch_lie = staged('chambre_jour', {
   mohammed: { at: [1320, 640], face: [1330, 760], pose: 'lie',
     o: { top: TOP, turn: 0, hands: 'belly', headTurn: .9, pillow: .1, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
   fatma: { height: 1.58, at: [640, 1020], face: [1160, 760], walk: { to: [1160, 760], t0: B(2)[0], t1: B(2)[0] + 5.2 },
-    seed: 11,     look: (t, st, S3) => st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)).lerp(S3.cam.position, .55), lookMax: 1.35 },
+    seed: 11,     look: (t, st, S3) => st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)).lerp(S3.cam.position, .3), lookMax: .85 },
   zoubida: { height: 1.6, at: [980, 1050], face: 'mohammed', yaw: -1.2, pose: 'kneel',
     o: { grounded: true, lean: .14, avoid: CHEST }, hands: false, seed: 7,
     look: (t, st, S3) => st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0)).lerp(S3.cam.position, .65), lookMax: 1.6 },
@@ -131,7 +134,7 @@ const ch_lie = staged('chambre_jour', {
     divanBoy(S3, st, t, { headTurn: IN(4, t) ? .35 : 1.05, top: TOP });
     makeBedProps(S3, st, mo, false);
 
-    if (t >= B(2)[0] + 5.2) faceToward(fa, at(mo, 'head'));
+    if (t >= B(2)[0] + 5.2) turnToward(fa, S3.cam.position, at(mo, 'head'), .5);
 
     const bowl = makeSoupBowl(S3, st);
     const ctr = holdBowl(fa, bowl, { fwd: IN(3, t) ? .34 : .3, up: -.18, side: .12, tilt: .3 });
@@ -139,15 +142,15 @@ const ch_lie = staged('chambre_jour', {
     lapHands(zo, t, 7);
 
     if (IN(3, t)) {
-      fa.B.spine.rotation.x -= .12;
-      fa.B.chest.rotation.x -= .08;
-      fa.B.head.rotation.x -= .08;
+      fa.B.spine.rotation.x += .14;
+      fa.B.chest.rotation.x += .08;
+      fa.B.head.rotation.x += .12;
       fa.B.chest.updateWorldMatrix(false, true);
     }
     if (IN(4, t)) {
       const q = sm(B(4)[0], B(4)[0] + .45, t);
-      zo.B.spine.rotation.x -= .16 * q;
-      zo.B.chest.rotation.x -= .1 * q;
+      zo.B.spine.rotation.x += .2 * q;
+      zo.B.chest.rotation.x += .1 * q;
       zo.B.chest.updateWorldMatrix(false, true);
       const bun = st.bun ||= S3.prop(PR.bread({ r: .06 }), 0, 0, 0);
       const hand = front(zo, 'chest', .34 * kz, .16 * kz, -.02 * kz);
@@ -199,6 +202,8 @@ const ch_sit = staged('chambre_jour', {
   act(lt, t, S, st, S3) {
     const { mohammed: mo, fatma: fa, zoubida: zo } = st.A;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
+    turnToward(fa, S3.cam.position, mo.group.position, .7);
+    if (t < B(7)[0] + 1.3) turnToward(zo, S3.cam.position, mo.group.position, .8);
     makeBedProps(S3, st, mo, true);
 
     const exitT0 = B(7)[0] + 1.3, exitT1 = B(7)[1] - .15;
@@ -213,8 +218,8 @@ const ch_sit = staged('chambre_jour', {
     const drinking = t >= B(9)[0] + .15;
     const bowl = makeSoupBowl(S3, st);
     if (!drinking) {
-      const offer = IN(8, t) ? .22 : IN(5, t) ? .1 : 0;
-      const ctr = holdBowl(fa, bowl, { fwd: .28 + offer, up: IN(5, t) ? -.08 : -.18, side: .1, tilt: IN(5, t) ? .45 : .22 });
+      const offer = IN(8, t) ? .22 : IN(5, t) ? .2 : 0;
+      const ctr = holdBowl(fa, bowl, { fwd: .28 + offer, up: IN(5, t) ? -.15 : -.18, side: .1, tilt: IN(5, t) ? .45 : .22 });
       steamAt(S3, st, 'sit', ctr, t);
       if (IN(8, t)) {
         fa.B.spine.rotation.x += .14;
@@ -230,27 +235,27 @@ const ch_sit = staged('chambre_jour', {
     if (!drinking && !pointing) lapHands(mo, t, 3);
 
     if (IN(5, t) && !pointing) {
-      mo.B.spine.rotation.x -= .14;
-      mo.B.neck.rotation.x -= .12;
-      mo.B.head.rotation.x -= .1;
-      mo.B.chest.rotation.x -= .06;
+      mo.B.spine.rotation.x += .22;
+      mo.B.neck.rotation.x += .14;
+      mo.B.head.rotation.x += .1;
+      mo.B.chest.rotation.x += .08;
     }
 
     if (IN(6, t) && !leaving) {
       zo.B.chest.rotation.x += .1;
       zo.B.chest.updateWorldMatrix(false, true);
-      reach85(zo, 'R', front(zo, 'chest', .2 * kz, .1 * kz, .08 * kz), { grip: 0, pole: [-.2, .04, .1] });
+      reach85(zo, 'R', front(zo, 'chest', .26 * kz, .14 * kz, .28 * kz), { grip: 0, pole: [-.25, -.1, .1] });
       PO.palmTo(zo, 'R', .85, dirW(zo, 0, .3, 1));
       PO.fingers(zo, 'R', .12, { spread: .28 });
       reach85(zo, 'L', front(zo, 'root', .12 * kz, -.18 * kz, -.32 * kz), { grip: .02, pole: [.18, -.04, .04] });
       // Fatma swears with the free hand; the other stays on the bowl via a second reach after holdBowl
-      reach85(fa, 'R', front(fa, 'chest', .28 * (fa.group.scale.y / 1.6), .16 * (fa.group.scale.y / 1.6), .1 * (fa.group.scale.y / 1.6)), { grip: 0, pole: [-.2, .02, .1] });
+      reach85(fa, 'R', front(fa, 'chest', .26 * (fa.group.scale.y / 1.6), .16 * (fa.group.scale.y / 1.6), .26 * (fa.group.scale.y / 1.6)), { grip: 0, pole: [-.25, -.1, .1] });
       PO.palmTo(fa, 'R', .8, V(0, .7, .6));
       PO.fingers(fa, 'R', .1, { spread: .35 });
     }
     if (pointing) {
       faceToward(mo, at(zo, 'chest'));
-      mo.B.spine.rotation.x -= .06;
+      mo.B.spine.rotation.x += .06;
       mo.B.chest.updateWorldMatrix(false, true);
       lapHands(mo, t, 3);
       reach85(mo, 'R', at(zo, 'chest'), { grip: 0, pole: [-.15, .12, .25] });
@@ -261,14 +266,13 @@ const ch_sit = staged('chambre_jour', {
 
     if (drinking) {
       const sip = Math.max(0, Math.sin((t - B(9)[0]) * 2.4));
-      mo.B.spine.rotation.x -= .04;
-      mo.B.head.rotation.x += .06;
+      mo.B.head.rotation.x -= .12;
       mo.B.chest.updateWorldMatrix(false, true);
       const lip = front(mo, 'upperArmL', .16 * km, .06 * km, -.2 * km);
       bowl.position.copy(lip);
       bowl.rotation.order = 'YXZ';
       bowl.rotation.y = mo.group.rotation.y + .35;
-      bowl.rotation.x = .55 + .1 * sip;
+      bowl.rotation.x = .85 + .15 * sip;
       bowl.updateMatrixWorld(true);
       bowl.visible = true;
       steamAt(S3, st, 'sit', lip.clone().add(V(0, .18, 0)), t);
@@ -291,7 +295,7 @@ export default beatScene(ID, {
     b071: { shot: 'ch_lie', size: 'W', on: 'mohammed', insAt: .25 },
     b072: { shot: 'ch_lie', size: 'M', on: 'fatma', pt: [1160, 760], z: 1.7 },
     b073: { shot: 'ch_lie', size: 'W', on: 'zoubida' },
-    b074: { shot: 'ch_sit', size: 'CU', on: 'mohammed', z: 3.2, dx: -36, dy: -20 },
+    b074: { shot: 'ch_sit', size: 'M', on: 'mohammed', pt: [1280, 700], z: 1.9 },
     b075: { shot: 'ch_sit', size: 'W', on: 'mohammed' },
     b076: { shot: 'ch_sit', size: 'W', on: 'zoubida' },
     b077: { shot: 'ch_sit', size: 'M', on: 'fatma', z: 1.85, dx: 30 },

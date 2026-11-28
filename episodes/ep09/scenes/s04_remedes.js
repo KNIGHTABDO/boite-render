@@ -65,12 +65,12 @@ const pe = staged('chambre_penombre', {
 const pa = staged('patio_matin', {
   rahma: {
     // Foreground of the left arcade so a medium reads at adult scale.
-    height: 1.6, at: [520, 1020], face: [980, 1000], seed: 11,
-    look: [980, 1000, 1.35], lookMax: .7,
+    height: 1.6, at: [475, 930], face: [1625, 937], seed: 11,
+    look: [1625, 937, 1.35], lookMax: .7,
   },
   fatma: {
-    height: 1.58, at: [1360, 1010], face: [900, 1000], seed: 13,
-    look: [900, 1000, 1.35], lookMax: .65,
+    height: 1.58, at: [1625, 937], face: [475, 930], seed: 13,
+    look: [475, 930, 1.35], lookMax: .65,
   },
 }, {
   light: { key: '#ffe4b4', keyI: 2.0, sky: '#cbd9ee', ground: '#8f7759', fillI: 1.15, shadow: .28, dir: [2, 3, 1] },
@@ -79,14 +79,15 @@ const pa = staged('patio_matin', {
     const { rahma: ra, fatma: ft } = st.A, kr = ra.group.scale.y / 1.6, kf = ft.group.scale.y / 1.6;
     // b016: Rahma leans slightly forward, right hand cupped near mouth calling kindly
     const call = sm(B(1)[0] - 1.4, B(1)[0] - .15, t) * (1 - sm(B(1)[1] - .2, B(1)[1] + .2, t));
-    ra.B.spine.rotation.x += .34 * call;
+    ra.B.spine.rotation.x += .42 * call;
     ra.B.chest.rotation.x += .08 * call;
     ra.B.chest.updateWorldMatrix(false, true);
     const cup = front(ra, 'head', .14 * kr, .18 * kr, -.08 * kr);
     const restR = front(ra, 'root', .08 * kr, .22 * kr, -.34 * kr);
     reachClamp(ra, 'R', restR.lerp(cup, call), { grip: .01, pole: [-.35, .02, .1] });
     PO.fingers(ra, 'R', .22, { spread: .4 });
-    const warm = front(ra, 'chest', .14 * kr, -.24 * kr, -.12 * kr);
+    // One cupped hand only: the left arm hangs relaxed at her side.
+    const warm = front(ra, 'root', .06 * kr, -.24 * kr, -.36 * kr);
     reachClamp(ra, 'L', warm, { grip: 0, pole: [.2, .02, .1] });
     // b017: Fatma holds mint in left hand and lemon peel out in the right, leaning from the arcade
     const g = sm(B(2)[0] - 1.2, B(2)[0] + .1, t);
@@ -151,8 +152,8 @@ export default beatScene(ID, {
   shots: { pe, pa, ch },
   plan: {
     b015: { shot: 'pe', size: 'M', on: 'zoubida', z: 1.55, dy: 48 },
-    b016: { shot: 'pa', size: 'M', on: 'rahma', pt: [520, 1020], z: 2.15, dy: 20 },
-    b017: { shot: 'pa', size: 'M', on: 'fatma', pt: [1360, 1010], z: 2.2, dy: 16 },
+    b016: { shot: 'pa', size: 'M', on: 'rahma', pt: [475, 930], z: 2.15, dy: 20 },
+    b017: { shot: 'pa', size: 'M', on: 'fatma', pt: [1625, 937], z: 2.2, dy: 16 },
     b018: { shot: 'ch', size: 'CU', on: 'zoubida', z: 2.7, dy: 8 },
   },
 });

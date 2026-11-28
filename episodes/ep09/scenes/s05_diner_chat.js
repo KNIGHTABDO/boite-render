@@ -71,8 +71,9 @@ const WARM_LIGHT = { key: '#ffcb7e', keyI: 1.35, sky: '#6b6d8f', ground: '#3b2c2
 const nu1 = staged('chambre_nuit', {
   mohammed: { ...BED, lids: .4 },
   zoubida: {
-    height: 1.6, at: [820, 830], face: 'cam', seed: 7, talk: 0,
-    look: () => [660, 760, 1.35],
+    height: 1.6, at: [790, 800], face: [660, 740], pose: 'kneel', hands: false,
+    o: { grounded: true, lean: .2 }, seed: 7, talk: 0,
+    look: () => [660, 760, .6],
     lookMax: .28,
   },
   father: {
@@ -93,8 +94,8 @@ const nu1 = staged('chambre_nuit', {
     const lit = sm(B(0)[0] + 5.4, B(0)[0] + 6.8, t);
     st.lamp.userData.flame.visible = lit > .04;
     st.lamp.userData.flame.scale.setScalar(.3 + .6 * lit * (1 + .08 * Math.sin(t * 14)));
-    carryHand(fa, 'R', -1, { fwd: .1, out: .2, drop: .36 });
-    carryHand(fa, 'L', 1, { fwd: .1, out: .2, drop: .36 });
+    carryHand(fa, 'R', -1, { fwd: .06, out: .2, drop: .52 });
+    carryHand(fa, 'L', 1, { fwd: .06, out: .2, drop: .52 });
     turnToward(zo, S3.cam.position, st.lamp.position, .22);
     const reachU = sm(B(0)[0] - .4, B(0)[0] + 1.2, t) * (1 - sm(B(0)[0] + 7.2, B(0)[0] + 8.4, t));
     zo.B.spine.rotation.x += .1 * Math.max(reachU, .35);
@@ -103,7 +104,7 @@ const nu1 = staged('chambre_nuit', {
     const wick = st.lamp.position.clone().add(V(.02, .08, .02));
     reachClamp(zo, 'R', down.lerp(wick, Math.max(reachU, .45)), { grip: .02, pole: [-.35, .02, .1] });
     PO.fingers(zo, 'R', .45);
-    carryHand(zo, 'L', 1, { fwd: .02, out: .34, drop: .42 });
+    lapRest(zo);
     dim(fa, .72 + .28 * lit);
     dim(zo, .75 + .25 * lit);
   },
@@ -125,7 +126,7 @@ const nu1 = staged('chambre_nuit', {
 const nu2 = staged('chambre_nuit', {
   mohammed: { ...BED, lids: .38 },
   father: {
-    height: 1.76, at: [1140, 790], face: 'cam', pose: 'kneel', hands: false,
+    height: 1.76, at: [1170, 760], face: [1420, 760], pose: 'kneel', hands: false,
     o: { grounded: true, lean: .22 }, seed: 5, talk: 0, lids: .5,
     lookMax: .42,
     look: (t, st) => {
@@ -143,7 +144,7 @@ const nu2 = staged('chambre_nuit', {
     const touch = sm(B(1)[0] + 5.2, B(1)[0] + 6.6, t) * (1 - sm(B(1)[0] + 11.2, B(1)[0] + 12.2, t));
     const nod = sm(B(1)[0] + 10.4, B(1)[0] + 11.1, t) * (1 - sm(B(1)[0] + 11.5, B(1)[0] + 12.1, t));
     const away = sm(B(1)[0] + 12.0, B(1)[0] + 13.8, t);
-    turnToward(fa, S3.cam.position, mo.group.position, away > .5 ? .2 : .38);
+    turnToward(fa, S3.cam.position, mo.group.position, away > .5 ? .3 : .8);
     fa.B.spine.rotation.x += .12 * touch;
     fa.B.chest.rotation.x += .06 * touch;
     fa.B.neck.rotation.x += .2 * nod;
@@ -179,20 +180,19 @@ const nu3 = staged('chambre_nuit', {
 }, {
   light: WARM_LIGHT,
   act(lt, t, S, st, S3) {
-    const mo = boyBed(S3, st, t, IN(6, t) ? 1.35 : 1.15);
+    const mo = boyBed(S3, st, t, t >= B(4)[0] ? .35 : 1.15);
     const { father: fa, zoubida: zo } = st.A, kf = fa.group.scale.y / 1.6;
     const tbPos = st.tbPos ||= S3.floorAt(780, 940);
     st.tabla ||= S3.prop(PR.tabla({ r: .28, h: .24 }));
     st.plat ||= S3.prop(platSafranProp());
-    st.lamp ||= S3.prop(petrolLampProp());
-    for (const o of [st.tabla, st.plat, st.lamp]) o.userData.ambient = true;
+    st.lampPt ||= S3.floorAt(660, 740).add(V(0, .56, 0));
+    for (const o of [st.tabla, st.plat]) o.userData.ambient = true;
     S3.prop(st.tabla, tbPos.x, 0, tbPos.z, 0);
     S3.prop(st.plat, tbPos.x, .24, tbPos.z + .02, 0);
-    S3.prop(st.lamp, tbPos.x - .02, .24, tbPos.z - .04, 0);
     const toBoy = t >= B(4)[0];
     if (toBoy) {
-      turnToward(fa, S3.cam.position, mo.group.position, .22);
-      turnToward(zo, S3.cam.position, mo.group.position, .2);
+      turnToward(fa, S3.cam.position, mo.group.position, .45);
+      turnToward(zo, S3.cam.position, mo.group.position, .35);
     }
     const heavy = toBoy ? .3 : 1;
     fa.B.spine.rotation.x += .05 * heavy;
@@ -244,8 +244,9 @@ const nu3 = staged('chambre_nuit', {
           const u = clamp((dt - 9.6) / 1.2);
           p.copy(pStop);
           yaw = yawTo(pStop, parents) + .35;
-          fluff = 1 + .22 * u;
-          pitch = .1 - .25 * u;
+          fluff = 1 + .45 * u;
+          sc = .9 + .12 * u;
+          pitch = .1 - .4 * u;
         } else {
           const u = clamp((dt - 13.2) / 3.8), ph = (dt - 13.2) * 16;
           p.copy(pStop).lerp(pOut, u);
@@ -263,8 +264,8 @@ const nu3 = staged('chambre_nuit', {
     }
   },
   over(lt, u, t, S, st, S3) {
-    if (st.lamp) {
-      const [lx, ly] = S3.project(st.lamp.position.clone().add(V(0, .14, 0)));
+    if (st.lampPt) {
+      const [lx, ly] = S3.project(st.lampPt);
       glow(lx, ly, 160, '#ffcb68', .22, 'screen');
     }
     if (st.cat && st.cat.root.visible) {
@@ -297,13 +298,13 @@ const nu3 = staged('chambre_nuit', {
 export default beatScene(ID, {
   shots: { nu1, nu2, nu3 },
   plan: {
-    b019: { shot: 'nu1', size: 'M', on: 'zoubida', pt: [760, 820], z: 1.4, dy: 20 },
+    b019: { shot: 'nu1', size: 'M', on: 'zoubida', pt: [640, 800], z: 1.2, dy: 30 },
     b020: { shot: 'nu2', size: 'M', on: 'father', z: 1.85, dx: 10, dy: 28 },
     b021: { shot: 'nu3', size: 'M', on: 'father', pt: [780, 900], z: 1.35, dy: 24 },
     b022: { shot: 'nu3', size: 'W', on: 'father' },
     b023: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 4.05, dx: 24, dy: 40 },
-    b024: { shot: 'nu3', size: 'M', on: 'father', z: 1.55, dy: 28 },
+    b024: { shot: 'nu3', size: 'M', on: 'father', pt: [960, 780], z: 1.05, dy: 10 },
     b025: { shot: 'nu3', size: 'CU', on: 'mohammed', z: 4.05, dx: 24, dy: 40 },
-    b026: { shot: 'nu3', size: 'M', on: 'father', z: 1.18, dy: 16 },
+    b026: { shot: 'nu3', size: 'M', on: 'father', pt: [960, 780], z: 1.05, dy: 10 },
   },
 });

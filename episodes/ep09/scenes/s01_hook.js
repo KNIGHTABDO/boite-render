@@ -97,9 +97,9 @@ const dawn = staged('chambre_jour', {
   // solve lifts the skull off the pillow, so the gaze stays inside the lie pose.
   mohammed: { ...BED, lids: .2 },
   father: {
-    height: 1.76, at: [1000, 760], face: [580, 800], seed: 5, talk: 0,
+    height: 1.76, at: [1000, 760], face: [240, 900], seed: 5, talk: 0,
     // Stop inside the doorway, not on the lens, so the wide keeps his feet in frame.
-    walk: { to: [580, 800], t0: .08, t1: B(0)[0] + 5.4 },
+    walk: { to: [240, 900], t0: .08, t1: B(0)[0] + 5.4 },
     lookMax: .7,
     look: (t, st) => t >= B(0)[0] + 5.2 ? at(st.A.mohammed, 'head') : null,
   },
@@ -123,8 +123,8 @@ const dawn = staged('chambre_jour', {
       fa.B.chest.updateWorldMatrix(false, true);
     }
     // Right hand clear of the hip with the sickle; left hand out so the sack hangs beside the leg.
-    carryHand(fa, 'R', -1, { fwd: .04, out: .34, drop: .46 });
-    carryHand(fa, 'L', 1, { fwd: -.04, out: .46, drop: .55 });
+    carryHand(fa, 'R', -1, { fwd: .08, out: .22, drop: .52 });
+    carryHand(fa, 'L', 1, { fwd: .02, out: .26, drop: .6 });
     PO.fingers(fa, 'R', .72);
     PO.fingers(fa, 'L', .62);
     fa.group.updateMatrixWorld(true);
@@ -149,11 +149,13 @@ const nuit = staged('chambre_nuit', {
   light: { key: '#c5d4f0', keyI: 1.05, sky: '#3a4468', ground: '#241e28', fillI: .55, shadow: .12, dir: [2.2, 2.8, -.4] },
   fx: { grade: 'rgba(40, 48, 80, 0.22)', gradeOp: 'multiply', vignette: .62 },
   act(lt, t, S, st, S3) {
+    // Night plate: the head overhung the right mattress edge, so slide the boy toward the divan centre.
+    if (!st.mo0) { st.mo0 = st.A.mohammed.group.position.clone(); st.mo0.z += 1.0; st.mo0.x -= .38; }
     const mo = boyBed(S3, st, t, 1.15, 0x5a3038);
     lift(mo, .2);
     st.boite ||= S3.prop(boiteProp());
     // Tiles in front of the divan, clear of the mattress edge.
-    const bp = st.boitePos ||= S3.floorAt(1080, 800);
+    const bp = st.boitePos ||= S3.floorAt(1300, 830);
     S3.prop(st.boite, bp.x, 0, bp.z, -.4);
     st.boite.visible = true;
   },
@@ -169,6 +171,6 @@ export default beatScene(ID, {
   shots: { dawn, nuit },
   plan: {
     b001: { shot: 'dawn', size: 'W', on: 'father' },
-    b002: { shot: 'nuit', size: 'CU', on: 'mohammed', z: 3.35, dx: 20, dy: 36 },
+    b002: { shot: 'nuit', size: 'M', on: 'mohammed', z: 2.1, dx: 10, dy: 60 },
   },
 });

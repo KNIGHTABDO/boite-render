@@ -99,7 +99,7 @@ const nu1 = staged('chambre_nuit', {
   zoubida: { height: 1.6, at: [960, 850], face: 'father', yaw: 1.05, seed: 7, talk: .35,
     look: (t, st, S3) => {
       const f = st.A.father.B.head.getWorldPosition(V(0, 0, 0));
-      if (t >= B(3)[0] - .45 && t < B(3)[0] + 1.7) { const p = S3.floorAt(835, 910); p.y = .35; return p.lerp(S3.cam.position, .4); }
+      if (t >= B(3)[0] - .45 && t < B(3)[0] + 1.7) { const p = S3.floorAt(860, 965); p.y = .35; return p.lerp(S3.cam.position, .4); }
       return f.lerp(S3.cam.position, .45);
     }, lookMax: 1.15 },
   mohammed: BED,
@@ -112,7 +112,7 @@ const nu1 = staged('chambre_nuit', {
 
     // Tabla on the open floor, clear of the painted lamp table and of her shins.
     const tbl = st.tbl ||= (() => { const m = PR.tabla({ r: .24, h: .28 }); S3.scene.add(m); return m; })();
-    const tblP = S3.floorAt(835, 910);
+    const tblP = S3.floorAt(860, 965);
     S3.prop(tbl, tblP.x, 0, tblP.z, 0); tbl.visible = true;
 
     const tray = st.tea ||= makeTeaSet(S3);
@@ -207,8 +207,8 @@ const nu2 = staged('chambre_nuit', {
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
         const tap = s === 'L' ? Math.max(0, beat) : Math.max(0, -beat);
-        const cheekPt = zo.B.head.localToWorld(V(sg * .1, .09, .08));
-        const templePt = zo.B.head.localToWorld(V(sg * .12, .14 + .02 * Math.sin(phase * 12 + sg), .04));
+        const cheekPt = zo.B.head.localToWorld(V(sg * .09, .085, .08));
+        const templePt = zo.B.head.localToWorld(V(sg * .1, .13 + .015 * Math.sin(phase * 12 + sg), .02));
         const tg = cheekPt.lerp(templePt, hair);
         reachClamped(zo, s, tg, { grip: 0, pole: [sg * .9, .2, .5] });
         PO.fingers(zo, s, .15 + .35 * hair, { spread: .35 * (1 - hair) });
@@ -259,10 +259,10 @@ const nu2 = staged('chambre_nuit', {
       // Zoubida collapsed forward face in hands, father kneeling beside her
       st.G.apply = () => {};
       const sob = .5 + .5 * Math.sin(t * 1.9);
-      zo.B.spine.rotation.x -= .16;
-      zo.B.chest.rotation.x -= .14 + .02 * sob;
-      zo.B.neck.rotation.x -= .1;
-      zo.B.head.rotation.x -= .08;
+      zo.B.spine.rotation.x += .34;
+      zo.B.chest.rotation.x += .22 + .03 * sob;
+      zo.B.neck.rotation.x += .22;
+      zo.B.head.rotation.x += .14;
       zo.B.chest.updateWorldMatrix(false, true);
       cradleFace(zo, { mode: 'eyes', bow: .12, u: sob });
 
@@ -298,12 +298,12 @@ export default beatScene(ID, {
   plan: {
     b027: { shot: 'pa', size: 'M', on: 'zoubida', pt: [690, 800], segs: [[.48, 'nu1', {}]], cover: [{ f: .48, shot: 'nu1', size: 'W', on: 'zoubida' }] },
     b028: { shot: 'nu1', size: 'W', on: 'zoubida' },
-    b029: { shot: 'nu1', size: 'CU', on: 'father', z: 2.8, dy: -48 },
+    b029: { shot: 'nu1', size: 'CU', on: 'father', z: 3.2, dx: 30, dy: 10 },
     b030: { shot: 'nu1', size: 'W', on: 'zoubida' },
     b031: { shot: 'nu1', size: 'CU', on: 'zoubida', z: 3.4, dx: -16, dy: 6 },
     b032: { shot: 'nu2', size: 'W', on: 'zoubida' },
     b033: { shot: 'nu2', size: 'W', on: 'father' },
     b034: { shot: 'nu2', size: 'W', on: 'father' },
-    b035: { shot: 'nu2', size: 'CU', on: 'father', z: 2.55, dy: -18, insAt: 0, insMove: 'push', segs: [[.55, 'i_mouchoir_argent', { move: 'push' }], [.72, 'nu2', {}]] },
+    b035: { shot: 'nu2', size: 'CU', on: 'father', z: 2.55, dy: -18, insAt: .5, insMove: 'push' },
   },
 });
