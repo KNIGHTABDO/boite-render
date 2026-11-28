@@ -8,6 +8,7 @@ import * as K from '../../../engine/core.js';
 import { staged } from '../lib/autostage.js';
 import { lieTurn, blanketOn, lowerHands, DIVAN_AT, DIVAN_FEET, BED_TOP, BOY_H } from '../lib/fix9_D.js';
 import { openFace, seatHead } from '../lib/fix9_B.js';
+import { paintLids } from '../lib/fix9_M.js';
 import { beatScene, lines, sm } from '../lib/beatscene.js';
 
 const ID = 's15_orage_flute', L = lines(ID), B = i => L[i] || [0, 0];
@@ -48,7 +49,9 @@ const nu1 = staged('chambre_nuit', {
 }, {
   light: { key: '#90a6d4', keyI: .85, sky: '#36446b', ground: '#211c26', fillI: .42, shadow: .25 },
   fx: { vignette: .74 },
-  over(lt, u, t) {
+  over(lt, u, t, S, st, S3) {
+    const mo = st?.A?.mohammed;
+    if (mo && t >= B(4)[0] + 4.2) paintLids(S3, mo, sm(B(4)[0] + 4.4, B(4)[0] + 6.2, t));
     if (t < B(3)[0] || t >= B(4)[0] + 4.2) return;
     const fl = bolt(t, [B(3)[0] + .4, B(3)[0] + 4.8, B(3)[0] + 6.5]);
     if (fl <= .05) return;
@@ -70,15 +73,15 @@ const nu1 = staged('chambre_nuit', {
 
     const home = (st.mo0 ||= mo.group.position.clone());
     // A full side-roll lifts the upper foot off the mattress and turns the face away from the lens.
-    const roll = restl ? Math.sin(t * .55) * .1 : bury * .08;
-    const headTurn = restl ? Math.sin(t * .85 + .6) * .35 : (fear ? -.08 + .1 * Math.sin(t * 2.2) : .1 + bury * .4);
+    const roll = restl ? Math.sin(t * .7) * .08 : bury * .06;
+    const headTurn = restl ? Math.sin(t * .85 + .6) * .4 : (fear ? -.05 + .12 * Math.sin(t * 2.2) : .08 + bury * .55);
     lieTurn(mo, {
       top: TOP, feet: DIVAN_FEET, origin: home,
       hands: bury > .6 ? 'side' : (pull > .35 ? 'chest' : 'belly'),
       pillow: .03, tuck: .1 + bury * .16, headTurn, turn: roll,
     });
     blanketOn(S3, st, mo, {
-      top: TOP, col: 0x5c3844, along: .68 - .42 * pull, w: .34, l: .46, h: .05, lift: .08,
+      top: TOP, col: 0x6e4038, along: .7 - .38 * pull, w: .5, l: .64, h: .055, lift: .13 + .03 * pull,
     });
     mo.B.chest.rotation.z += restl ? Math.sin(t * .7) * .05 : 0;
     mo.B.chest.rotation.x += fear ? .04 * pull : (bury > .2 ? .06 * bury : 0);
@@ -93,7 +96,7 @@ const nu1 = staged('chambre_nuit', {
 // b095: storm over the night courtyard. The plate is the ritual court; the overlay kills the candles,
 // the incense glow and the open door, and puts a hard rain plus lightning on top.
 const storm = staged('patio_nuit', {}, {
-  fx: { vignette: .84, grade: 'rgba(8, 14, 36, .45)' },
+  fx: { vignette: .62, grade: 'rgba(12, 18, 40, .18)' },
   view: (lt, u, t) => {
     const a = sm(B(1)[0], B(1)[1], t);
     const jolt = Math.sin(t * 26) * 6 * (Math.max(0, Math.sin(t * 3.2)) ** 4);
@@ -104,9 +107,11 @@ const storm = staged('patio_nuit', {}, {
     const door0 = platePx(1300, 540), door1 = platePx(1620, 840);
     const floor = platePx(1400, 1040);
     c.save();
+    c.globalAlpha = .32;
     c.globalCompositeOperation = 'multiply';
-    c.fillStyle = 'rgb(38, 52, 84)';
+    c.fillStyle = 'rgb(90, 110, 150)';
     c.fillRect(-300, -300, K.W + 600, K.H + 600);
+    c.globalAlpha = 1;
     c.globalCompositeOperation = 'source-over';
     c.fillStyle = 'rgba(20, 16, 24, .94)';
     c.fillRect(door0[0], door0[1], door1[0] - door0[0], door1[1] - door0[1]);
@@ -117,14 +122,14 @@ const storm = staged('patio_nuit', {}, {
     c.fillStyle = 'rgba(12, 16, 32, .84)';
     c.beginPath(); c.ellipse(floor[0], floor[1], 520, 230, 0, 0, Math.PI * 2); c.fill();
     c.globalCompositeOperation = 'screen';
-    c.strokeStyle = `rgba(190, 214, 245, ${.5 + .3 * fl})`;
-    c.lineWidth = 2.1;
+    c.strokeStyle = `rgba(220, 232, 255, ${.72 + .2 * fl})`;
+    c.lineWidth = 2.4;
     c.beginPath();
-    for (let i = 0; i < 170; i++) {
-      const rx = ((K.hash(i, 1) * 2500 + t * (700 + (i % 5) * 90)) % 2500) - 250;
-      const ry = ((K.hash(i, 2) * 1500 + t * (1600 + (i % 4) * 220)) % 1500) - 200;
+    for (let i = 0; i < 420; i++) {
+      const rx = ((K.hash(i, 1) * 2600 + t * (900 + (i % 5) * 120)) % 2600) - 300;
+      const ry = ((K.hash(i, 2) * 1600 + t * (1900 + (i % 4) * 260)) % 1600) - 240;
       c.moveTo(rx, ry);
-      c.lineTo(rx - 52, ry + 100);
+      c.lineTo(rx - 70, ry + 130);
     }
     c.stroke();
     if (fl > .04) {
@@ -142,7 +147,7 @@ export default beatScene(ID, {
   shots: { nu1, storm },
   fadeIn: .7,
   plan: {
-    b094: { shot: 'nu1', size: 'M', on: 'mohammed', z: 4.4, dx: 10, dy: 30 },
+    b094: { shot: 'nu1', size: 'M', on: 'mohammed', z: 2.6, dx: 20, dy: 40 },
     b095: { shot: 'storm' },
     b096: { move: 'rise' },
     b097: { shot: 'nu1', size: 'CU', on: 'mohammed', z: 5.6, dx: 0, dy: 18 },

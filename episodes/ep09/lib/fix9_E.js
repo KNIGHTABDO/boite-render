@@ -50,13 +50,16 @@ function paintMap(a, key, fn) {
   const m = mesh.material.clone(); m.map = tex; m.needsUpdate = true; mesh.material = m;
 }
 
-/** Shift a garment hue (yellow robe, pink robe) onto another hue. Skin and low-sat cloth stay. */
-export function dyeGarment(a, { hue, span = 12, to, minS = .4 }) {
-  paintMap(a, '_dye' + to, px => {
+/** Shift a garment hue (yellow robe, pink robe) onto another hue. Skin and low-sat cloth stay.
+ *  `lit` scales lightness (1 keeps the old color; below 1 darkens, used for a plum robe). */
+export function dyeGarment(a, { hue, span = 12, to, minS = .4, lit = 1 }) {
+  paintMap(a, '_dye' + to + ':' + lit, px => {
     for (let i = 0; i < px.length; i += 4) {
       const [h, s, l] = hsl(px[i], px[i + 1], px[i + 2]);
-      if (s < minS || l < .16 || l > .9 || !hueNear(h, hue, span)) continue;
-      const [r, g, b] = fromHsl(to, Math.min(.72, Math.max(.4, s * .9)), l);
+      if (s < minS || l < .16 || l > .92 || !hueNear(h, hue, span)) continue;
+      const nl = lit === 1 ? l : Math.min(.48, Math.max(.12, l * lit));
+      const ns = lit === 1 ? Math.min(.72, Math.max(.4, s * .9)) : Math.min(.5, Math.max(.32, s * .65));
+      const [r, g, b] = fromHsl(to, ns, nl);
       px[i] = r; px[i + 1] = g; px[i + 2] = b;
     }
   });

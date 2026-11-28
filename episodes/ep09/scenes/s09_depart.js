@@ -16,7 +16,9 @@ import * as THREE from 'three';
 import * as PO from '../../../engine/poses.js';
 import * as PR from '../../../engine/props3d.js';
 import { aim } from '../../../engine/ik.js';
+import * as K from '../../../engine/core.js';
 import { staged } from '../lib/autostage.js';
+import { still, loadStill } from '../lib/stage.js';
 import { lieOnBed, pillowUnder } from '../lib/fix8_lie.js';
 import { reachHand, holdGaze, openFace, seatHead } from '../lib/fix9_B.js';
 import { beatScene, allLines, at, front, V } from '../lib/beatscene.js';
@@ -30,9 +32,9 @@ const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
 const TOP = .26;
 const FEET = [.9, .16];
 const BED = {
-  // Hip is right of the pillow so the shorter cast-height body stays inside the painted mattress.
-  at: [1325, 640], face: Math.atan2(FEET[0], FEET[1]), pose: 'lie', height: 1.1,
-  o: { top: TOP, turn: .1, hands: 'belly', headTurn: 0, pillow: .04, mattress: MATTRESS, avoid: CHEST },
+  // Near edge of the right divan. A mark at the back cushion made the cast-height boy a doll in the pillows.
+  at: [1360, 672], face: Math.atan2(FEET[0], FEET[1]), pose: 'lie', height: 1.1,
+  o: { top: TOP, turn: .1, hands: 'belly', headTurn: .2, pillow: .04, mattress: MATTRESS, avoid: CHEST },
   seed: 3, talk: 0, lids: .08,
 };
 
@@ -41,7 +43,7 @@ function bed(S3, st, t, watch) {
   lieOnBed(mo, {
     top: TOP, feet: FEET,
     origin: (st.mo0 ||= mo.group.position.clone()),
-    hands: 'belly', pillow: .04, tuck: .16, headTurn: watch ? 0 : -.08,
+    hands: 'belly', pillow: .04, tuck: .2, headTurn: watch ? .35 : .12,
   });
   pillowUnder(S3, st, mo, { top: TOP, h: .035, col: 0xc5d4e4, w: .32, d: .22 });
   mo.B.chest.rotation.x += .008 * Math.sin(t * 1.5);
@@ -50,14 +52,19 @@ function bed(S3, st, t, watch) {
 
 function makePackProps(S3) {
   const g = new THREE.Group();
-  const mat = PR.mat({ w: .7, d: .5, col: 0xc8b07a });
-  const sack = PR.cushion({ w: .42, d: .3, h: .26, col: 0xe4d7be });
-  sack.position.set(.02, .02, 0);
-  const b1 = PR.bread({ r: .11 }); b1.position.set(-.22, .02, .08);
-  const b2 = PR.bread({ r: .1 }); b2.position.set(-.2, .1, .02);
-  const bowl = PR.bowl({ r: .13, h: .07, food: 0x1a140e }); bowl.position.set(.2, .02, -.06);
-  g.add(mat, sack, b1, b2, bowl);
-  g.scale.setScalar(1.35);
+  const mat = PR.mat({ w: .86, d: .62, col: 0xc8b07a });
+  // Canvas sack: wide, low, open mouth. The old cushion was a closed white block.
+  const sack = new THREE.Mesh(new THREE.SphereGeometry(.2, 14, 10), PR.toon(0xcbb892));
+  sack.scale.set(1.2, .48, .9);
+  sack.position.set(.02, .1, .02);
+  const mouth = new THREE.Mesh(new THREE.CircleGeometry(.11, 14), PR.toon(0x4a3a28));
+  mouth.rotation.x = -Math.PI / 2;
+  mouth.position.set(.02, .2, .02);
+  const b1 = PR.bread({ r: .1 }); b1.position.set(-.32, .05, .14);
+  const b2 = PR.bread({ r: .09 }); b2.position.set(-.18, .07, .2);
+  const bowl = PR.bowl({ r: .12, h: .065, food: 0x1a140e }); bowl.position.set(.32, .02, .1);
+  g.add(mat, sack, mouth, b1, b2, bowl);
+  g.scale.setScalar(1.2);
   S3.scene.add(g);
   return g;
 }
@@ -65,17 +72,17 @@ function makePackProps(S3) {
 /** Folded over her knees, palms on the cheeks. Wrists stay wide of the torso so the forearm does not pass through it. */
 function buryFace(a, sob) {
   const B = a.B;
-  B.spine.rotation.x += .7;
-  B.chest.rotation.x += .3 + .03 * sob;
-  B.neck.rotation.x += .4;
+  // Three-quarter, not folded away from the lens. The face stays in both hands.
+  B.spine.rotation.x += .38;
+  B.chest.rotation.x += .16 + .02 * sob;
+  B.neck.rotation.x += .22;
   a.group.updateMatrixWorld(true);
   for (const s of ['L', 'R']) {
     const sign = s === 'L' ? 1 : -1;
-    // Wrist stays wide of the torso. The palm then turns in so it sits within 12cm of the head.
-    const spot = () => B.head.localToWorld(new THREE.Vector3(sign * .13, .03, .09));
-    for (let i = 0; i < 3; i++) PO.reach(a, s, spot(), { grip: 0, pole: [sign * .95, .05, .5] });
+    const spot = () => B.head.localToWorld(new THREE.Vector3(sign * .11, .02, .1));
+    for (let i = 0; i < 3; i++) PO.reach(a, s, spot(), { grip: 0, pole: [sign * .7, .08, .35] });
     PO.fingers(a, s, .2, { thumb: .12, spread: .06 });
-    aim(B['hand' + s], PO.handPts(a, s).palm, B.head.localToWorld(new THREE.Vector3(sign * .05, .04, .05)));
+    aim(B['hand' + s], PO.handPts(a, s).palm, B.head.localToWorld(new THREE.Vector3(sign * .04, .03, .06)));
   }
 }
 
@@ -93,7 +100,7 @@ function slumped(a) {
 }
 
 const ch1 = staged('chambre_jour', {
-  zoubida: { at: [850, 830], face: 'cam', yaw: .18, pose: 'kneel', o: { grounded: true, lean: .22, avoid: CHEST }, seed: 7, hands: false, lids: .1 },
+  zoubida: { at: [850, 860], face: [980, 980], pose: 'kneel', o: { grounded: true, lean: .16, avoid: CHEST }, seed: 7, hands: false, lids: .1 },
   mohammed: BED,
 }, {
   act(lt, t, S, st, S3) {
@@ -107,30 +114,31 @@ const ch1 = staged('chambre_jour', {
     zo.B.spine.rotation.x += .28;
     zo.B.chest.rotation.x += .34;
     zo.B.chest.updateWorldMatrix(false, true);
-    const sackTop = pos.clone().add(V(.02, .32, .04));
-    const loaf = pos.clone().add(V(-.2, .18, .06));
+    const sackMouth = pos.clone().add(V(.02, .22, .04));
+    const loaf = pos.clone().add(V(-.28, .1, .12));
     const ph = .5 + .5 * Math.sin(t * 1.6);
-    reachHand(zo, 'L', sackTop.clone().add(V(.06, .02, 0)), { grip: .01, pole: [.5, .1, .3] });
-    reachHand(zo, 'R', sackTop.clone().lerp(loaf, .35 + .4 * ph), { grip: .01, pole: [-.5, .1, .3] });
+    reachHand(zo, 'L', sackMouth.clone().add(V(.04, -.02, 0)), { grip: .01, pole: [.45, .15, .25] });
+    reachHand(zo, 'R', sackMouth.clone().lerp(loaf, .25 + .55 * ph), { grip: .01, pole: [-.45, .12, .25] });
     PO.fingers(zo, 'L', .32, { thumb: .28 });
     PO.fingers(zo, 'R', .26, { thumb: .2 });
-    PO.look(zo, sackTop.clone().add(V(0, -k * .05, 0)), .9, { max: .95 });
+    PO.look(zo, sackMouth.clone().add(V(0, -k * .05, 0)), .9, { max: .95 });
   },
 });
 
 const ch2 = staged('chambre_jour', {
-  zoubida: { at: [840, 875], face: [700, 820], pose: 'kneel', o: { grounded: true, lean: .16, avoid: CHEST }, seed: 7, hands: false, lids: .35 },
+  zoubida: { at: [860, 900], face: [1100, 1020], pose: 'kneel', o: { grounded: true, lean: .12, avoid: CHEST }, seed: 7, hands: false, lids: .35 },
   mohammed: { ...BED, lids: .02 },
 }, {
   act(lt, t, S, st, S3) {
     holdGaze(st);
     const zo = st.A.zoubida, mo = st.A.mohammed;
     bed(S3, st, t, zo);
-    if (IN(2, t)) buryFace(zo, .5 + .5 * Math.sin(t * 2.2));
-    else {
+    if (IN(2, t)) {
+      buryFace(zo, .5 + .5 * Math.sin(t * 2.2));
+      openFace(zo, S3.cam.position, 72);
+    } else {
       slumped(zo);
-      // Slumped profile was past 100° from the lens. Keep the body, turn the face back just enough.
-      openFace(zo, S3.cam.position);
+      openFace(zo, S3.cam.position, 72);
     }
     PO.look(mo, at(zo, 'head'), .95, { max: 1.15 });
     seatHead(mo, TOP + .04);
@@ -139,39 +147,68 @@ const ch2 = staged('chambre_jour', {
 
 const pa = staged('patio_matin', {
   father: {
-    height: 1.76, at: [980, 870], face: [500, 890],
-    walk: { to: [500, 890], t0: B(3)[0] - 2.8, t1: B(3)[1] - .25 },
+    height: 1.76, at: [860, 980], face: [460, 1060],
+    walk: { to: [460, 1060], t0: B(3)[0] - .4, t1: B(3)[0] + 9 },
   },
 }, {
   light: { key: 0xb8c4e8, keyI: 1.5, sky: 0x93a6d4, ground: 0x5a5a6a, fillI: 1.05, shadow: .3, dir: [1, 6, 1] },
   act(lt, t, S, st, S3) {
     const fa = st.A.father, B9 = fa.B, k = fa.group.scale.y / 1.6;
-    const w = t >= B(3)[0] - 2.8 && t < B(3)[1] - .25;
+    const w = t >= B(3)[0] - .4 && t < B(3)[0] + 9;
     if (w) {
-      B9.spine.rotation.x += .12;
+      B9.spine.rotation.x += .14;
       B9.chest.rotation.x += .06;
-      for (const n of ['thighL', 'thighR']) B9[n].rotation.x *= 1.45;
-      B9.upperArmR.rotation.x *= 1.5;
+      for (const n of ['thighL', 'thighR']) B9[n].rotation.x *= 1.7;
+      B9.upperArmR.rotation.z = -.55 + .35 * Math.sin(t * 7);
+      B9.foreArmR.rotation.x = .4;
     }
     B9.chest.updateWorldMatrix(false, true);
-    // Sack hangs from the left hand at the hip. A chest-high hold put its box over the face.
-    const carry = front(fa, 'chest', .06 * k, -.4 * k, -.55 * k);
-    reachHand(fa, 'L', carry, { grip: .03, pole: [.55, -.2, .15] });
-    PO.fingers(fa, 'L', .45, { thumb: .4 });
+    // Dark canvas sack held out from the hip so it reads against the pale wall.
+    const carry = front(fa, 'chest', .04 * k, -.48 * k, -.42 * k);
+    reachHand(fa, 'L', carry, { grip: .03, pole: [.6, -.15, .2] });
+    PO.fingers(fa, 'L', .5, { thumb: .45 });
     PO.settle(fa, 0);
-    const sack = st.sack ||= PR.cushion({ w: .28, d: .2, h: .22, col: 0xe6d8bc });
+    const sack = st.sack ||= (() => {
+      const s = new THREE.Mesh(new THREE.SphereGeometry(.16, 14, 10), PR.toon(0x6b4428));
+      s.scale.set(1.05, .85, .75);
+      return s;
+    })();
     const palm = PO.handPts(fa, 'L').palm;
-    S3.prop(sack, palm.x, palm.y - .14, palm.z, fa.group.rotation.y + .4);
+    S3.prop(sack, palm.x, palm.y - .1, palm.z, fa.group.rotation.y + .4);
     sack.visible = true;
   },
 });
 
+// The painted insert shows the palm bag and the sickle only. A canvas sack sits on the ledge with them.
+const bags = {
+  ownCover: true,
+  async load() { await loadStill('i_sacoche_faucille'); },
+  fn(lt, u) {
+    still('i_sacoche_faucille', u, [.48, .5, 1.02, .5, .52, 1.06]);
+    const c = K.c;
+    c.save();
+    c.fillStyle = '#c4a574';
+    c.strokeStyle = '#3a2a1a';
+    c.lineWidth = 3.5;
+    c.beginPath();
+    c.ellipse(1460, 860, 170, 78, -.15, 0, Math.PI * 2);
+    c.fill();
+    c.stroke();
+    c.beginPath();
+    c.moveTo(1360, 810);
+    c.quadraticCurveTo(1460, 740, 1560, 820);
+    c.stroke();
+    c.restore();
+    return { vignette: .35, paper: .15 };
+  },
+};
+
 export default beatScene(ID, {
-  shots: { ch1, ch2, pa },
+  shots: { ch1, ch2, pa, bags },
   plan: {
     // The 1.3s auto insert had already ended by the luggage line (local ~11.4). Hold the painting across that line.
     b052: { move: 'push', noIns: true, segs: [
-      [7.0 / dur(0), 'i_sacoche_faucille', { move: 'face' }],
+      [7.0 / dur(0), 'bags', { move: 'face' }],
       [11.3 / dur(0), 'p06_pere_aube', { move: 'push' }],
     ] },
     // Provisions insert covers the olives/figs/flour clause (the 28s tile); qarchalas follows its own word.

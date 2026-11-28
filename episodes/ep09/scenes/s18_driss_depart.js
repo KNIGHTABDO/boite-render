@@ -19,7 +19,7 @@ import { staged } from '../lib/autostage.js';
 import { castScale, sealHaik, stride } from '../lib/fix8c.js';
 import { haikOut } from '../lib/fix8_G4.js';
 import { armsSoft, quietHaikBelt, reachClamp } from '../lib/fix9_E.js';
-import { faceLens } from '../lib/fix9_J.js';
+import { faceLens, keepFacing } from '../lib/fix9_J.js';
 import { beatScene, lines, sm, at, front, dirW, yawTo, V } from '../lib/beatscene.js';
 
 const ID = 's18_driss_depart', L = lines(ID), B = i => L[i] || [0, 0];
@@ -95,9 +95,9 @@ const ch1 = staged('chambre_jour', {
 const WALK_T0 = B(1)[0] + 1.4, WALK_T1 = B(1)[1] - 1.1;
 const pa1 = staged('patio_matin', {
   zoubida: {
-    at: [1180, 945], face: 'cam', yaw: -.5, seed: 7, lookMax: .55,
-    walk: { to: [880, 985], t0: WALK_T0, t1: WALK_T1 },
-    look: t => t < WALK_T0 ? [1230, 980, .85] : [820, 1005, 1.3],
+    at: [1380, 930], face: [900, 1020], seed: 7, lookMax: .55,
+    walk: { to: [900, 1010], t0: WALK_T0, t1: WALK_T1 },
+    look: t => t < WALK_T0 ? [1480, 860, .7] : [860, 1040, 1.15],
   },
 }, {
   addressee: { narrator: 'zoubida' },
@@ -116,22 +116,22 @@ const pa1 = staged('patio_matin', {
     zo.B.spine.rotation.x += .16 * Math.max(lift, walking ? .7 : 0);
     zo.B.spine.rotation.z += walking ? -.05 * Math.sin((t - WALK_T0) * 5) : .04 * lift;
     zo.B.chest.updateWorldMatrix(false, true);
-    // Bucket bail in the right hand, held out from the skirt so it reads beside the well.
-    hand85(zo, 'R', { fwd: .16 + sw, out: .22, drop: .28 - .06 * lift, curl: .7, spread: .04 });
-    hand85(zo, 'L', { fwd: .1 - sw, out: .16, drop: .38, curl: .2, spread: .12 });
+    // The bail hangs from a lowered hand so the full bucket reads as heavy, beside the skirt.
+    hand85(zo, 'R', { fwd: .06 + sw, out: .14, drop: .56 - .04 * lift, curl: .78, spread: .02 });
+    hand85(zo, 'L', { fwd: .08 - sw * .4, out: .12, drop: .46, curl: .22, spread: .1 });
     const hR = PO.handPts(zo, 'R').palm;
     const side = dirW(zo, -1, 0, 0);
-    S3.prop(st.bucket, hR.x + side.x * .06, Math.max(.04, hR.y - .28 * kz), hR.z + side.z * .06, zo.group.rotation.y);
+    S3.prop(st.bucket, hR.x + side.x * .04, Math.max(.02, hR.y - .2 * kz), hR.z + side.z * .04, zo.group.rotation.y);
     st.bucket.visible = true;
   },
 });
 
 // b112–b113: Zoubida in haik instructs Mohammed; Mohammed finds crumpled handkerchief & blows nose
 const ch2 = staged('chambre_jour', {
-  zoubida: { at: [680, 885], face: 'mohammed', costume: 'haik', seed: 7, look: 'mohammed', lookMax: .7 },
+  zoubida: { at: [720, 960], face: 'mohammed', costume: 'haik', seed: 7, look: 'mohammed', lookMax: .55 },
   mohammed: {
-    at: [1240, 830], face: [1360, 960], seed: 3, lookMax: .75,
-    look: t => IN(3, t) ? [1400, 680, .42] : 'zoubida',
+    at: [1280, 960], face: 'cam', yaw: .4, seed: 3, lookMax: .4,
+    look: t => IN(3, t) ? [1400, 680, .55] : 'zoubida',
   },
 }, {
   addressee: { zoubida: 'mohammed', narrator: 'mohammed' },
@@ -142,22 +142,21 @@ const ch2 = staged('chambre_jour', {
     quietHaikBelt(zo);
     zo.group.visible = !IN(3, t);   // clean frame on Mohammed for b113
     st.actcheck = { exposed: { zoubida: ['handL', 'handR', 'foreArmL', 'foreArmR'] } };
-    st.hanky ||= S3.prop(new THREE.Mesh(new THREE.SphereGeometry(.038, 10, 8).scale(1.3, .5, 1.1), PR.toon(0xf2ede0)), 0, 0, 0);
+    st.hanky ||= S3.prop(new THREE.Mesh(new THREE.SphereGeometry(.032, 8, 6).scale(1.4, .5, 1.1), PR.toon(0xf7f1e4)), 0, 0, 0);
 
     // Zoubida (b112): tuck the front cheek fold, then a speaking gesture toward Mohammed
     if (IN(2, t)) {
       const tuck = sm(B(2)[0], B(2)[0] + .5, t) * (1 - sm(B(2)[0] + 1.6, B(2)[0] + 2.4, t));
       const talk = sm(B(2)[0] + 1.5, B(2)[0] + 2.3, t);
       const kz = zo.group.scale.y / 1.6;
-      zo.B.chest.rotation.y += .06 * Math.sin(t * 1.8) * talk;
-      zo.B.head.rotation.z += .05 * Math.sin(t * 2.2);
+      zo.B.chest.rotation.y += .05 * Math.sin(t * 1.8) * talk;
+      zo.B.neck.rotation.x -= .06 * talk;
+      zo.B.head.rotation.z += .04 * Math.sin(t * 2.2);
       zo.B.chest.updateWorldMatrix(false, true);
-      const cheek = at(zo, 'head').addScaledVector(dirW(zo, 1, 0, 0), .14 * kz).addScaledVector(dirW(zo, 0, 0, 1), .12 * kz).add(V(0, -.04 * kz, 0));
-      const shL = at(zo, 'upperArmL');
-      const park = shL.clone().addScaledVector(dirW(zo, 1, 0, 0), .16 * kz).addScaledVector(dirW(zo, 0, 0, 1), .08 * kz).add(V(0, -.38 * kz, 0));
-      reachClamp(zo, 'L', park.clone().lerp(cheek, tuck), { grip: .01, pole: [.45, .08, -.2] });
-      PO.fingers(zo, 'L', .2, { spread: .12 });
-      haikOut(zo, 'R', -.04 + .05 * Math.sin(t * 3.4) * talk, .06, .22 + .04 * talk, .18);
+      // Fold stays at the chest opening. A reach to the cheek pulled the haik over her eyes.
+      // Both hands stay in the front opening. A reach across the chest put the forearm through the torso.
+      haikOut(zo, 'L', -.16 + .04 * tuck, .08, .15, .28);
+      haikOut(zo, 'R', -.14, .06, .16 + .02 * talk, .2);
     }
 
     // Mohammed (b112 listen -> b113 hunt under cushion, blow nose, wipe on djellaba)
@@ -171,24 +170,23 @@ const ch2 = staged('chambre_jour', {
       const hunt = sm(-.3, .45, c3) * (1 - sm(2.6, 3.4, c3));
       const blow = sm(3.4, 4.1, c3) * (1 - sm(6.4, 7.1, c3));
       const wipe = sm(6.9, 7.6, c3);
-      mo.B.spine.rotation.x += .16 * hunt + .06 * blow;
-      mo.B.chest.rotation.x += .08 * hunt + .04 * Math.sin(t * 10) * blow;
-      mo.B.head.rotation.y += .09 * Math.sin(t * 14) * blow;
+      mo.B.spine.rotation.x += .42 * hunt + .1 * blow;
+      mo.B.chest.rotation.x += .16 * hunt + .06 * Math.sin(t * 10) * blow;
+      mo.B.head.rotation.x += .12 * blow;
+      mo.B.head.rotation.y += .06 * Math.sin(t * 14) * blow;
       mo.B.chest.updateWorldMatrix(false, true);
 
-      const cushion = S3.floorAt(1390, 690).setY(.42);
-      // Beside the cheek and below the chin, so the cloth reads as the blow without covering the face.
-      const noseSpot = at(mo, 'head')
-        .addScaledVector(dirW(mo, -1, 0, 0), .2 * km)
-        .addScaledVector(dirW(mo, 0, 0, 1), .04 * km)
-        .add(V(0, -.2 * km, 0));
+      keepFacing(mo, S3.cam.position, 48);
+      const cushion = S3.floorAt(1390, 680).setY(.5);
+      // In front of the chest, under the chin: high enough to read as the blow, clear of the torso capsule.
+      const noseSpot = PO.hipToWorld(mo, -.26 * km, .12 * km, .08 * km);
       const wipeSpot = at(mo, 'upperArmR').clone().addScaledVector(dirW(mo, -1, 0, 0), .16 * km).addScaledVector(dirW(mo, 0, 0, 1), .08 * km).add(V(0, -.28 * km + .05 * Math.sin(t * 6) * wipe, 0));
       const downR = at(mo, 'upperArmR').clone().addScaledVector(dirW(mo, -1, 0, 0), .12 * km).add(V(0, -.4 * km, 0));
       let tgR = downR.clone();
       if (hunt > 0) tgR.lerp(cushion, hunt);
       if (blow > 0) tgR.lerp(noseSpot, blow);
       if (wipe > 0) tgR.lerp(wipeSpot, wipe);
-      reachClamp(mo, 'R', tgR, { grip: .02, pole: [-.35, .15, .15] });
+      reachClamp(mo, 'R', tgR, { grip: .02, pole: [-.65, .35, .4] });
       PO.fingers(mo, 'R', hunt > .5 ? .55 : .25, { spread: .1 });
       const downL = at(mo, 'upperArmL').clone().addScaledVector(dirW(mo, 1, 0, 0), .12 * km).add(V(0, -.42 * km, 0));
       reachClamp(mo, 'L', downL, { grip: 0, pole: [.25, .05, -.2] });
@@ -196,7 +194,7 @@ const ch2 = staged('chambre_jour', {
 
       const palmR = PO.handPts(mo, 'R').palm;
       S3.prop(st.hanky, palmR.x, palmR.y, palmR.z, t);
-      st.hanky.visible = c3 > 1.8 && c3 < 7.0;
+      st.hanky.visible = c3 > .6 && c3 < 8.2;
     }
   },
 });
@@ -208,7 +206,7 @@ const pa2 = staged('patio_matin', {
     // A full look at Fatma puts the face past the lens. Glance between her and the camera.
     look: (t, st, S3) => st.A.fatma.B.head.getWorldPosition(V()).lerp(S3.cam.position, .62),
   },
-  fatma: { at: [1720, 740], face: [1200, 1000], seed: 11, look: 'zoubida', lookMax: .7 },
+  fatma: { at: [1360, 780], face: [1100, 980], seed: 11, look: 'zoubida', lookMax: .7 },
 }, {
   addressee: { fatma: 'zoubida', zoubida: 'fatma' },
   act(lt, t, S, st, S3) {
@@ -220,7 +218,7 @@ const pa2 = staged('patio_matin', {
 
     const eager = sm(B(4)[0] - .6, B(4)[0] + .3, t);
     const listen = IN(5, t) ? .65 + .2 * Math.sin(t * 2.2) : eager;
-    fa.B.spine.rotation.x += .28 * listen;
+    fa.B.spine.rotation.x += .42 * listen;
     fa.B.chest.rotation.z += .04 * Math.sin(t * 2.4) * listen;
     fa.B.head.rotation.z += .05 * Math.sin(t * 1.7);
     fa.B.chest.updateWorldMatrix(false, true);
@@ -231,14 +229,14 @@ const pa2 = staged('patio_matin', {
     // The build yaw faces Fatma, which leaves the face past the lens for the whole patio shot.
     // Body stays on the camera; look() still turns the head toward her, inside lookMax.
     faceLens(zo, S3.cam.position, 1);
-    zo.B.neck.rotation.x -= .16 * chat;
-    zo.B.head.rotation.x -= .1 * chat;
+    zo.B.neck.rotation.x -= .28 * chat;
+    zo.B.head.rotation.x -= .16 * chat;
     zo.B.head.rotation.z += .06 * Math.sin(t * 2.3) * Math.max(chat, .25);
     zo.B.chest.rotation.y += .06 * Math.sin(t * 1.8) * chat;
     zo.B.chest.updateWorldMatrix(false, true);
-    const bob = .05 * Math.sin(t * 3.6);
-    haikOut(zo, 'R', -.02 + bob, .08, .24, .16);
-    haikOut(zo, 'L', -.16, -.04, .16, .35);
+    const bob = .04 * Math.sin(t * 3.6) * chat;
+    haikOut(zo, 'R', -.06 + bob, .1, .2, .12);
+    haikOut(zo, 'L', -.08, .14, .2, .25);
   },
 });
 
@@ -246,10 +244,10 @@ export default beatScene(ID, {
   shots: { ch1, pa1, ch2, pa2 },
   plan: {
     b110: { shot: 'ch1', size: 'M', on: 'zoubida', z: 1.85, dy: 8, insAt: .56 },
-    b111: { shot: 'pa1', size: 'M', on: 'zoubida', z: 1.75, dy: 55, insAt: .68, cover: [{ f: .32, size: 'M', on: 'zoubida', z: 1.75, dy: 55, pt: [960, 980] }] },
-    b112: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.42, dx: 170, dy: 24 },
-    b113: { shot: 'ch2', size: 'M', on: 'mohammed', z: 1.7, dy: 36 },
-    b114: { shot: 'pa2', size: 'M', on: 'fatma', z: 1.7, dx: -240, dy: 28 },
-    b115: { shot: 'pa2', size: 'CU', on: 'zoubida', z: 2.55, dx: 30, dy: 18 },
+    b111: { shot: 'pa1', size: 'M', on: 'zoubida', z: 1.85, dy: 36, insAt: .68 },
+    b112: { shot: 'ch2', size: 'M', on: 'zoubida', z: 1.28, dx: 120, dy: 48 },
+    b113: { shot: 'ch2', size: 'M', on: 'mohammed', z: 2.05, dy: 20 },
+    b114: { shot: 'pa2', size: 'M', on: 'fatma', z: 1.85, dx: -200, dy: 16 },
+    b115: { shot: 'pa2', size: 'CU', on: 'zoubida', z: 3.45, dx: 8, dy: -12 },
   },
 });

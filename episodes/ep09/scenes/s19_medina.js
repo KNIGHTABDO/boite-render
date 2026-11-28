@@ -25,21 +25,25 @@ function spot(S3, st, key, fx, fy, topPy) {
 // b116–b118: rue_tijani, right zellige wall and the bronze offering grille.
 const tj1 = staged('rue_tijani', {
   mohammed: {
-    at: [960, 760], face: [1200, 880], seed: 3,
-    walk: { to: [1180, 890], t0: B(0)[0] + .2, t1: B(0)[0] + 4.6 },
-    look: (t, st, S3) => t >= B(1)[0] && t < B(2)[0] ? spot(S3, st, 'dado', 1600, 920, 620) : null,
-    lookMax: t => t >= B(1)[0] && t < B(2)[0] ? .4 : .45,
-  },
-  zoubida: {
-    at: [1220, 730], face: [1560, 900], costume: 'haik', seed: 7,
-    walk: { to: [1500, 905], t0: B(0)[0] + .35, t1: B(0)[0] + 5.2 },
+    at: [820, 1020], face: [1400, 860], seed: 3,
+    walk: { to: [1160, 940], t0: .25, t1: B(0)[0] + 4.4 },
     look: (t, st, S3) => {
-      if (t >= B(2)[0]) return 'mohammed';
-      if (t >= B(1)[0]) return spot(S3, st, 'wood', 1580, 910, 340);
-      if (t >= B(0)[0] + 5.2) return spot(S3, st, 'grille', 1560, 910, 380);
+      if (t >= B(1)[0] && t < B(2)[0]) return spot(S3, st, 'dado', 1600, 920, 700);
+      if (t < B(1)[0]) return [900 + 180 * Math.sin(t * 1.2), 640, 1.35];
       return null;
     },
-    lookMax: .7,
+    lookMax: t => t >= B(1)[0] && t < B(2)[0] ? .55 : .6,
+  },
+  zoubida: {
+    at: [1040, 860], face: [1560, 900], costume: 'haik', seed: 7,
+    walk: { to: [1480, 900], t0: .7, t1: B(0)[0] + 5.0 },
+    look: (t, st, S3) => {
+      if (t >= B(2)[0]) return 'mohammed';
+      if (t >= B(1)[0]) return spot(S3, st, 'wood', 1580, 910, 480);
+      if (t >= B(0)[0] + 4.6) return spot(S3, st, 'grille', 1560, 900, 520);
+      return null;
+    },
+    lookMax: .65,
   },
 }, {
   addressee: { zoubida: 'mohammed', narrator: 'zoubida' },
@@ -48,19 +52,19 @@ const tj1 = staged('rue_tijani', {
     castScale(mo); castScale(zo);
     sealHaik(zo);
     st.actcheck = { exposed: { zoubida: ['handR', 'foreArmR'] } };
-    const hole = spot(S3, st, 'grille', 1560, 910, 380);
-    const wood = spot(S3, st, 'wood', 1580, 910, 340);
-    const dado = spot(S3, st, 'dado', 1600, 920, 620);
+    const hole = spot(S3, st, 'grille', 1560, 900, 520);
+    const wood = spot(S3, st, 'wood', 1580, 910, 480);
+    const dado = spot(S3, st, 'dado', 1600, 920, 700);
 
     clearArms(zo);
-    if (t < B(0)[0] + 5.3) return;   // the walk owns the legs until they arrive
-
     armsDown(mo);
+    if (t < B(0)[0] + 5.0) return;   // the walk owns the legs until they arrive
 
     // b116: right hand into the offering hole, body 3/4 to the grille.
     if (t < B(1)[0]) {
-      easeClose(zo, hole, .4, sm(B(0)[0] + 5.2, B(0)[0] + 5.7, t));
-      yawTo(zo, hole, .8);
+      easeClose(zo, hole, .32, sm(B(0)[0] + 4.8, B(0)[0] + 5.3, t));
+      yawTo(zo, hole, .45);
+      keepFacing(zo, S3.cam.position, 46);
       zo.B.spine.rotation.x += .06;
       zo.B.chest.updateWorldMatrix(false, true);
       contact(zo, 'R', hole, { grip: .005, pole: [-.55, .25, .35] });
@@ -70,16 +74,17 @@ const tj1 = staged('rue_tijani', {
     // b117: cheek on the carved frame; the boy, too short for the grille, kisses the dado.
     if (t < B(2)[0]) {
       const u = sm(B(1)[0], B(1)[0] + .28, t);
-      easeClose(zo, wood, .34, u);
-      yawTo(zo, wood, .62);
-      zo.B.spine.rotation.x += .2 * u;
-      zo.B.spine.rotation.z -= .16 * u;
-      zo.B.head.rotation.z -= .38 * u;
+      easeClose(zo, wood, .22, u);
+      yawTo(zo, wood, .4);
+      keepFacing(zo, S3.cam.position, 46);
+      zo.B.spine.rotation.x += .16 * u;
+      zo.B.spine.rotation.z -= .22 * u;
+      zo.B.head.rotation.z -= .5 * u;
       zo.B.chest.updateWorldMatrix(false, true);
-      easeClose(mo, dado, .42, u);
-      slideOff(mo, zo, .62);
-      yawTo(mo, dado, .9);
-      mo.B.spine.rotation.x += .82 * u;
+      easeClose(mo, dado, .24, u);
+      slideOff(mo, zo, .48);
+      yawTo(mo, dado, 1);
+      mo.B.spine.rotation.x += .95 * u;
       mo.B.neck.rotation.x += .28 * u;
       mo.B.chest.updateWorldMatrix(false, true);
       armsDown(mo);
@@ -94,10 +99,10 @@ const tj1 = staged('rue_tijani', {
 
 // b119–b121: the pepper and tomato stall.
 const lg = staged('rue_legumes', {
-  marchand: { at: [1380, 830], face: 'zoubida', seed: 13, look: 'zoubida', lookMax: .6 },
+  marchand: { at: [1520, 760], face: 'zoubida', seed: 13, look: 'zoubida', lookMax: .6 },
   zoubida: {
     at: [1160, 890], face: 'cam', costume: 'haik', seed: 7, lookMax: .32,
-    look: (t, st, S3) => t < B(5)[0] ? spot(S3, st, 'crate', 1520, 860, 640) : null,
+    look: (t, st, S3) => t < B(5)[0] ? spot(S3, st, 'crate', 1580, 820, 760) : null,
   },
   mohammed: {
     at: [960, 905], face: 'zoubida', seed: 3, lookMax: .55,
@@ -110,7 +115,7 @@ const lg = staged('rue_legumes', {
     castScale(ma); castScale(zo); castScale(mo);
     sealHaik(zo);
     st.actcheck = { exposed: { zoubida: ['handR', 'foreArmR'] } };
-    const crate = spot(S3, st, 'crate', 1520, 860, 640);
+    const crate = spot(S3, st, 'crate', 1580, 820, 760);
     clearArms(zo);
     armsDown(mo);
 
@@ -125,16 +130,17 @@ const lg = staged('rue_legumes', {
       contact(zo, 'R', bob, { grip: .01, pole: [-.45, .15, .3] });
       PO.fingers(zo, 'R', .3, { spread: .22 });
       faceLens(zo, S3.cam.position, 28);
-      easeClose(ma, zo.group.position, .72, u);
+      easeClose(ma, crate, .55, u);
+      slideOff(ma, zo, .85);
       yawTo(ma, zo.group.position, 1);
-      ma.B.spine.rotation.x += .3 * u;
+      ma.B.spine.rotation.x += .22 * u;
       ma.B.chest.updateWorldMatrix(false, true);
       const k = ma.group.scale.y / 1.6;
-      for (const [s, sg] of [['L', 1], ['R', -1]]) {
-        const wave = .05 * Math.sin(t * 7 + sg);
-        contact(ma, s, front(ma, 'chest', .34 * k, -sg * .16 * k, .06 * k + wave), { grip: 0, pole: [sg * .4, .12, .2] });
-        PO.fingers(ma, s, .12, { spread: .4 });
-      }
+      contact(ma, 'R', front(ma, 'chest', .3 * k, .16 * k, .02 * k + .04 * Math.sin(t * 6)), { grip: 0, pole: [-.35, .1, .18] });
+      PO.fingers(ma, 'R', .15, { spread: .35 });
+      armsDown(ma);
+      contact(ma, 'R', front(ma, 'chest', .3 * k, .16 * k, .02 * k + .04 * Math.sin(t * 6)), { grip: 0, pole: [-.35, .1, .18] });
+      PO.fingers(ma, 'R', .15, { spread: .35 });
       return;
     }
     // b120: he stays furious (coverage is his close-up).
@@ -144,11 +150,12 @@ const lg = staged('rue_legumes', {
       ma.B.head.rotation.y += .06 * Math.sin(t * 8);
       ma.B.chest.updateWorldMatrix(false, true);
       const k = ma.group.scale.y / 1.6;
-      for (const [s, sg] of [['L', 1], ['R', -1]]) {
-        const wave = .07 * Math.sin(t * 8 + sg * 1.4);
-        contact(ma, s, front(ma, 'chest', .32 * k, -sg * .18 * k, .1 * k + wave), { grip: 0, pole: [sg * .45, .1, .2] });
-        PO.fingers(ma, s, .1, { spread: .45 });
-      }
+      const wave = .06 * Math.sin(t * 8);
+      contact(ma, 'R', front(ma, 'chest', .32 * k, .18 * k, .08 * k + wave), { grip: 0, pole: [-.4, .12, .18] });
+      PO.fingers(ma, 'R', .08, { spread: .4 });
+      armsDown(ma);
+      contact(ma, 'R', front(ma, 'chest', .32 * k, .18 * k, .08 * k + wave), { grip: 0, pole: [-.4, .12, .18] });
+      PO.fingers(ma, 'R', .08, { spread: .4 });
       faceLens(zo, S3.cam.position, 28);
       return;
     }
@@ -163,24 +170,21 @@ const lg = staged('rue_legumes', {
     zo.B.neck.rotation.x -= .1 * u;
     zo.B.chest.updateWorldMatrix(false, true);
     zo.group.position.x -= .16 * u;
-    easeClose(mo, zo.group.position, .48, u);
-    mo.group.position.x -= .16 * u;
-    slideOff(mo, zo, .5);
-    faceLens(mo, S3.cam.position, 1);
+    easeClose(mo, zo.group.position, .4, u);
+    mo.group.position.x -= .12 * u;
+    slideOff(mo, zo, .42);
+    keepFacing(mo, S3.cam.position, 50);
     mo.group.updateMatrixWorld(true);
-    const hip = at(zo, 'root'), to = mo.group.position.clone().sub(hip).setY(0);
-    if (to.lengthSq() > 1e-6) to.normalize();
-    // His own right-front, not a reach across the chest (that put the forearm through the torso).
-    const cloth = at(mo, 'upperArmR').clone()
-      .addScaledVector(dirW(mo, -1, 0, 0), .14)
-      .addScaledVector(dirW(mo, 0, 0, 1), .18)
-      .add(V(0, -.02, 0));
-    if (to.lengthSq() > .5) cloth.addScaledVector(to, -.08);
-    contact(mo, 'R', cloth, { grip: 0, pole: [-.55, .4, .25], frac: .86 });
+    const hem = at(zo, 'root').clone().add(V(0, .42, 0));
+    const cloth = hem.lerp(at(mo, 'upperArmR'), .25);
+    contact(mo, 'R', cloth, { grip: .02, pole: [-.4, .25, .2], frac: .9 });
     PO.fingers(mo, 'R', .72);
     mo.B.spine.rotation.z += .12 * u;
     mo.B.chest.updateWorldMatrix(false, true);
     yawTo(ma, zo.group.position, 1);
+    ma.B.spine.rotation.x += .12;
+    ma.B.chest.updateWorldMatrix(false, true);
+    armsDown(ma);
   },
 });
 
@@ -189,7 +193,7 @@ const tj2 = staged('rue_tijani', {
   zoubida: {
     at: [1120, 860], face: 'cam', yaw: -.4, costume: 'haik', seed: 7,
     look: (t, st, S3) => {
-      if (t < B(8)[0]) return spot(S3, st, 'portal', 480, 750, 185);
+      if (t < B(8)[0]) return spot(S3, st, 'portal', 360, 780, 420);
       if (t >= B(10)[0]) {
         const head = st.A.mohammed.B.head.getWorldPosition(V(0, 0, 0));
         const hers = st.A.zoubida.B.head.getWorldPosition(V(0, 0, 0));
@@ -202,7 +206,7 @@ const tj2 = staged('rue_tijani', {
   },
   mohammed: {
     at: [970, 875], face: 'cam', yaw: -.15, seed: 3,
-    look: (t, st, S3) => t < B(8)[0] ? spot(S3, st, 'portal', 480, 750, 185) : 'zoubida',
+    look: (t, st, S3) => t < B(8)[0] ? spot(S3, st, 'portal', 360, 780, 420) : 'zoubida',
     lookMax: t => t < B(8)[0] ? .5 : .7,
   },
 }, {
@@ -212,7 +216,7 @@ const tj2 = staged('rue_tijani', {
     castScale(zo); castScale(mo);
     sealHaik(zo);
     st.actcheck = { exposed: { zoubida: ['handR', 'foreArmR'] } };
-    const door = spot(S3, st, 'portal', 480, 750, 185);
+    const door = spot(S3, st, 'portal', 360, 780, 420);
     // Hands stay inside the haik, on the belly, so a close-up doesn't crop a claw at the frame edge.
     clearArms(zo);
     armsDown(mo);
@@ -232,7 +236,9 @@ const tj2 = staged('rue_tijani', {
       keepFacing(mo, S3.cam.position, 46);
       keepFacing(zo, S3.cam.position, 46);
       pointClamp(mo, door, u, 'R');
-      PO.fingers(mo, 'R', .85, { each: [.7, 0, 1, 1, 1] });
+      PO.fingers(mo, 'R', .95, { each: [1, 0, 1, 1, 1] });
+      zo.group.position.x += 1.6;
+      zo.group.updateMatrixWorld(true);
       return;
     }
     // b126: she grips his shoulder and draws him in. Head stays high enough that the veil doesn't cover her eyes.
@@ -269,7 +275,7 @@ export default beatScene(ID, {
     b120: { shot: 'lg', size: 'M', on: 'marchand', z: 1.45, dy: -85 },
     b121: { shot: 'lg', size: 'W', on: 'zoubida' },
     b122: { shot: 'tj2', size: 'W', on: 'mohammed', insAt: .45 },
-    b123: { shot: 'tj2', size: 'CU', on: 'mohammed', dx: -110 },
+    b123: { shot: 'tj2', size: 'CU', on: 'mohammed', z: 3.5, dx: -30, dy: 8 },
     b124: { shot: 'tj2', size: 'CU', on: 'zoubida' },
     b125: { shot: 'tj2', size: 'CU', on: 'mohammed' },
     b126: { shot: 'tj2', size: 'M', on: 'zoubida', z: 1.4, dx: -160 },

@@ -75,10 +75,13 @@ export function hemOnce(S3, st, a) {
   const fwd = at(a, 'footL').add(at(a, 'footR')).multiplyScalar(.5).sub(hip);
   fwd.y = 0;
   m.position.set(hip.x, .002, hip.z);
+  if (!m.userData.base) m.userData.base = m.scale.clone();
+  // The lathe is cut to the ankle span. Crossed knees sit wider than that and poke through the robe.
+  m.scale.set(m.userData.base.x * 1.55, 1.05, m.userData.base.z * 1.35);
   if (fwd.lengthSq() > 1e-4) {
     const len = fwd.length();
     fwd.multiplyScalar(1 / len);
-    m.position.addScaledVector(fwd, Math.max(.04, len * .2));
+    m.position.addScaledVector(fwd, Math.max(.04, len * .15));
     m.rotation.y = Math.atan2(fwd.x, fwd.z);
   }
 }

@@ -61,8 +61,8 @@ function makeBedProps(S3, st, mo, seated) {
 const ch_lie = staged('chambre_jour', {
   mohammed: { at: [1350, 694], face: [1336, 754], pose: 'lie',
     o: { top: TOP, turn: .12, hands: 'belly', headTurn: -.08, pillow: .08, mattress: MATTRESS, avoid: CHEST }, seed: 3, talk: 0 },
-  zoubida: { at: [1000, 685], face: 'cam', yaw: .65, pose: 'kneel',
-    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .56 },
+  zoubida: { at: [1140, 820], face: 'mohammed', height: 1.6, pose: 'kneel',
+    o: { grounded: true, lean: .06, avoid: CHEST }, hands: false, seed: 7, look: 'mohammed', lookMax: .56 },
 }, {
   light: MORNING,
   act(lt, t, S, st, S3) {
@@ -85,8 +85,8 @@ const ch = staged('chambre_jour', {
     o: { seat: TOP, floor: TOP, lean: .06, hands: false, mattress: MATTRESS, avoid: CHEST },
     hands: false, seed: 3, look: () => null },
   // A step left of his shoulder. Dead in front of him, her back covered 29% of his chest.
-  zoubida: { at: [1200, 810], face: 'mohammed', pose: 'kneel',
-    o: { grounded: true, lean: .1, avoid: CHEST }, hands: false, seed: 7, look: () => null },
+  zoubida: { at: [1160, 860], face: 'mohammed', height: 1.6, pose: 'kneel',
+    o: { grounded: true, lean: .08, avoid: CHEST }, hands: false, seed: 7, look: () => null },
 }, {
   light: MORNING,
   act(lt, t, S, st, S3) {
@@ -105,23 +105,18 @@ const ch = staged('chambre_jour', {
       mo.B.spine.rotation.x -= .08 * u;
     }
 
-    // b058: curious head tilt, held for the whole question
+    // b058: curious head tilt. Hands stay in the lap — a chest reach read as a fist in the eye.
     if (IN(1, t)) {
       const q = full(1);
-      moAim = { z: .5 * q, x: .06 * q };
-      reachHand(mo, 'R', front(mo, 'chest', .2 * km, .12 * km, .02 * km), { grip: 0, pole: [-.4, .15, .25] });
-      PO.palmTo(mo, 'R', q * .8, V(0, 1, .15));
-      PO.fingers(mo, 'R', .12, { spread: .35 });
+      moAim = { z: .42 * q, x: -.04 * q };
     }
 
-    // b059: startle out of the daze — shoulders up, head back, hand at the chest
+    // b059: she startles upright out of the daze. Both hands leave the cheek.
     if (IN(2, t)) {
       const q = full(2);
-      zo.B.spine.rotation.x -= .22 * q;
-      zo.B.chest.rotation.x -= .1 * q;
-      zoAim = { x: -.2 * q, z: -.1 * q };
-      reachHand(zo, 'R', front(zo, 'chest', .16 * kz, .1 * kz, .1 * kz), { grip: 0, pole: [-.35, .25, .3] });
-      PO.fingers(zo, 'R', .12, { spread: .28 });
+      zo.B.spine.rotation.x -= .32 * q;
+      zo.B.chest.rotation.x -= .14 * q;
+      zoAim = { x: -.28 * q, z: -.06 * q };
     }
 
     // b060: solemn chin lift
@@ -154,15 +149,13 @@ const ch = staged('chambre_jour', {
       PO.fingers(zo, 'L', .1, { spread: .32 });
     }
 
-    // b064: firm proud nod, chest out
+    // b064: firm proud nod, hands in the lap. A forward reach put the fist on his nose.
     if (IN(7, t)) {
       const q = full(7);
       const nod = Math.max(0, Math.sin((t - B(7)[0]) * 4.2));
-      mo.B.spine.rotation.x -= .18 * q;
+      mo.B.spine.rotation.x -= .2 * q;
       mo.B.chest.rotation.x -= .12 * q;
-      moAim = { x: -.28 * q + .22 * nod * q };
-      reachHand(mo, 'R', front(mo, 'chest', .18 * km, .1 * km, .04 * km), { grip: 0, pole: [-.4, .1, .2] });
-      PO.fingers(mo, 'R', .4, { thumb: .25 });
+      moAim = { x: -.36 * q + .24 * nod * q };
     }
 
     // b065: she laughs (first two clauses), he claps through the middle, then her finger goes to her lips
@@ -185,8 +178,9 @@ const ch = staged('chambre_jour', {
         mo.B.chest.rotation.x += .04 * Math.sin(t * 14) * clapW;
         const sep = (.05 + .16 * Math.abs(Math.sin(t * 12))) * clapW;
         for (const [s, sg] of [['L', 1], ['R', -1]]) {
-          reachHand(mo, s, front(mo, 'chest', .22 * km, -sg * sep * km, .06 * km), { grip: 0, pole: [sg * .4, .2, .25] });
-          PO.fingers(mo, s, .06, { spread: .12 });
+          const clap = at(mo, 'chest').add(V(0, -.04 * km, 0)).addScaledVector(dirW(mo, 0, 0, 1), .16 * km).addScaledVector(dirW(mo, sg, 0, 0), -sep * km);
+          reachHand(mo, s, clap, { grip: 0, pole: [sg * .45, .15, .3] });
+          PO.fingers(mo, s, .12, { spread: .08 });
         }
       }
       if (hushW > .01) fingerLips(zo, 'R');
@@ -199,15 +193,12 @@ const ch = staged('chambre_jour', {
       zoAim = { x: .06, z: .05 };
     }
 
-    // b067: beaming hopeful nod — chin up, open hand, not the proud fist of b064
+    // b067: hopeful nod, hands down. The open palm was landing beside his eye.
     if (IN(10, t)) {
       const q = full(10);
       const nod = Math.sin((t - B(10)[0]) * 3.4);
-      mo.B.spine.rotation.x -= .1 * q;
-      moAim = { x: -.18 * q + .2 * nod * q, z: .08 * q };
-      reachHand(mo, 'R', front(mo, 'chest', .2 * km, .14 * km, .08 * km), { grip: 0, pole: [-.35, .2, .25] });
-      PO.palmTo(mo, 'R', q, V(0, 1, .15));
-      PO.fingers(mo, 'R', .08, { spread: .4 });
+      mo.B.spine.rotation.x -= .12 * q;
+      moAim = { x: -.22 * q + .22 * nod * q, z: .06 * q };
     }
 
     // b068: she is beside the bed now, so the reach lands on him instead of empty air
@@ -229,7 +220,7 @@ const ch = staged('chambre_jour', {
     aimHead(mo, at(zo, 'head'), moAim);
     aimHead(zo, at(mo, 'head'), zoAim);
     // She looks at him, which on this plate is away from the lens. Yaw the face back on every beat.
-    openFace(zo, S3.cam.position, 92);
+    openFace(zo, S3.cam.position, 62);
     // Head cues land after the gaze, so any finger/cheek target is solved on the head the camera sees.
     if (IN(4, t)) {
       reachHand(zo, 'R', front(zo, 'head', .1 * kz, .08 * kz, .02 * kz), { grip: 0, pole: [-.3, .5, .35], max: .99 });
@@ -250,21 +241,21 @@ export default beatScene(ID, {
   plan: {
     b057: { shot: 'ch_lie', size: 'W', on: 'mohammed', segs: [[.55, 'ch']],
       cover: [{ f: .55, shot: 'ch', size: 'M', on: 'mohammed', z: 1.45, dx: -30, dy: -30 }] },
-    b058: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
-    b060: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.6, dx: 0, dy: -28 },
+    b058: { shot: 'ch', size: 'CU', on: 'mohammed', z: 4.2, dx: 130, dy: -10 },
+    b059: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.6, dx: -80, dy: -28 },
+    b060: { shot: 'ch', size: 'CU', on: 'mohammed', z: 4.2, dx: 130, dy: -10 },
+    b061: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.45 },
     // Hold the beignets insert through the honey line (the 40.9s tile fell after the 1.2s cut).
     b062: { move: 'panR', noIns: true, segs: [
       [6.05 / d062, 'i_beignets_miel', { move: 'push' }],
       [9.35 / d062, 'p07_quarante_chats', { move: 'panR' }],
     ] },
-    b063: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
-    b064: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b065: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.7, dx: 70, dy: -8 },
+    b063: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.6, dx: -90, dy: -24 },
+    b064: { shot: 'ch', size: 'CU', on: 'mohammed', z: 4.2, dx: 130, dy: -10 },
+    b065: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.05, dx: 20, dy: 16 },
     // Same close framing as the other hush shots, shifted so the boy's head centre falls outside the frame.
-    b066: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
-    b067: { shot: 'ch', size: 'CU', on: 'mohammed', z: 6, dx: 0, dy: -8 },
-    b068: { shot: 'ch', size: 'CU', on: 'zoubida', z: 4.4, dx: -55, dy: -40 },
+    b066: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.6, dx: -90, dy: -24 },
+    b067: { shot: 'ch', size: 'CU', on: 'mohammed', z: 4.2, dx: 130, dy: -10 },
+    b068: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.6, dx: -80, dy: -24 },
   },
 });

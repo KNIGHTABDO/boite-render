@@ -8,7 +8,7 @@ import { staged } from '../lib/autostage.js';
 import { castScale } from '../lib/fix8c.js';
 import { beatScene, lines, sm, at, V } from '../lib/beatscene.js';
 import { contact, easeClose, yawTo, lapHands, hemOnce } from '../lib/fix9_F.js';
-import { plantCross, slideOff } from '../lib/fix9_J.js';
+import { keepFacing, plantCross, slideOff } from '../lib/fix9_J.js';
 
 const ID = 's20_aicha_misere', L = lines(ID), B = i => L[i] || [0, 0];
 
@@ -20,24 +20,24 @@ const ap = staged('aicha_pauvre', {
   zoubida: {
     at: [800, 855], face: 'aicha', pose: 'cross', hands: false, o: { lean: .04, hands: false }, seed: 7,
     look: (t, st) => {
-      if (t >= B(1)[0] && t < B(2)[0]) {
-        const u = Math.min(1, (t - B(1)[0]) / 9);
-        return [360 + u * 280, 740 - u * 40, .45 + u * .35];
+      if (t >= B(1)[0] && t < B(3)[0]) {
+        const u = ((t - B(1)[0]) % 7) / 7;
+        return [300 + u * 420, 700, .42 + .2 * Math.sin(u * Math.PI)];
       }
       if (t >= B(3)[0] && st.trayPos) return st.trayPos.clone().setY(.18);
       return 'aicha';
     },
-    lookMax: t => (t >= B(1)[0] && t < B(2)[0]) ? .7 : .5,
+    lookMax: t => (t >= B(1)[0] && t < B(3)[0]) ? .75 : .5,
   },
   mohammed: {
     height: 1.1, at: [460, 920], face: 'aicha', pose: 'cross', hands: false,
     o: { lean: .04, hands: false }, seed: 3,
     look: (t, st) => {
-      if (t >= B(1)[0] && t < B(2)[0]) return [340, 780, .38];
+      if (t >= B(1)[0] && t < B(3)[0]) return [340, 760, .4];
       if (t >= B(3)[0] && st.trayPos) return st.trayPos.clone().setY(.16);
       return 'aicha';
     },
-    lookMax: t => (t >= B(1)[0] && t < B(2)[0]) ? .4 : .5,
+    lookMax: t => (t >= B(1)[0] && t < B(3)[0]) ? .5 : .5,
   },
 }, {
   addressee: { narrator: 'aicha' },
@@ -49,7 +49,7 @@ const ap = staged('aicha_pauvre', {
 
     if (!st.tea) {
       const p = ai.home.clone().lerp(zo.home, .5);
-      p.z += .34;   // open floor in front of the crossed knees, centered between them
+      p.z += .36;   // in front of the knees, still inside Aïcha's reach when she leans in
       st.trayPos = p.clone();
       st.tray = S3.prop(PR.tray({ r: .27, col: 0xc89a3a }), p.x, .01, p.z, .2);
       st.pot = S3.prop(PR.teapot({ col: 0xc9b48a }), p.x + .02, .05, p.z + .02, .5);
@@ -81,13 +81,16 @@ const ap = staged('aicha_pauvre', {
       PO.fingers(ai, 'R', .05, { spread: .48 });
     }
 
-    // b128: Zoubida turns her shoulders to scan the stripped room. Mohammed looks across, not up at the ceiling.
-    if (t >= B(1)[0] && t < B(2)[0]) {
+    // b128–b129: shoulders follow the look across the bare wall and the mattresses.
+    if (t >= B(1)[0] && t < B(3)[0]) {
       const u = sm(B(1)[0], B(1)[0] + 1.1, t);
-      yawTo(zo, S3.floorAt(380, 750), .6 * u);
-      yawTo(mo, S3.floorAt(360, 780), .35 * u);
-      zo.B.spine.rotation.y -= .08 * u;
-      mo.B.spine.rotation.y -= .05 * u;
+      const sweep = .5 + .5 * Math.sin((t - B(1)[0]) * .7);
+      yawTo(zo, S3.floorAt(340 + sweep * 180, 740), .55 * u);
+      yawTo(mo, S3.floorAt(360, 760), .4 * u);
+      keepFacing(mo, S3.cam.position, 55);
+      keepFacing(zo, S3.cam.position, 58);
+      zo.B.spine.rotation.y -= .12 * u * (.4 + sweep);
+      mo.B.spine.rotation.y -= .06 * u;
       zo.B.chest.updateWorldMatrix(false, true);
       mo.B.chest.updateWorldMatrix(false, true);
     }
@@ -95,7 +98,7 @@ const ap = staged('aicha_pauvre', {
     // b130: she is already leaned in as the line starts, then the pot tilts into the near glass.
     if (t >= B(3)[0] - .6) {
       const approach = sm(B(3)[0] - .6, B(3)[0] - .05, t);
-      easeClose(ai, st.trayPos, .4, approach);
+      easeClose(ai, st.trayPos, .32, approach);
       slideOff(ai, zo, .7);
       yawTo(ai, st.trayPos, .85);
       ai.B.spine.rotation.x += .26 * approach;
@@ -103,19 +106,16 @@ const ap = staged('aicha_pauvre', {
       ai.B.chest.updateWorldMatrix(false, true);
       zo.B.spine.rotation.x += .05 * approach;
       mo.B.spine.rotation.x += .06 * approach;
-      const sh = at(ai, 'upperArmR');
-      const arm = sh.distanceTo(at(ai, 'foreArmR')) + at(ai, 'foreArmR').distanceTo(at(ai, 'handR'));
-      const handleNow = st.pot.localToWorld(st.pot.userData.handle.clone());
-      const pouring = t >= B(3)[0] - .02 && sh.distanceTo(handleNow) < arm * .92;
-      if (!pouring) {
-        contact(ai, 'R', handleNow, { grip: .02, pole: [-.32, .1, .12], frac: .86 });
+      if (approach < .95) {
+        const handle = st.pot.localToWorld(st.pot.userData.handle.clone());
+        contact(ai, 'R', handle, { grip: .02, pole: [-.32, .1, .12], frac: .86 });
         PO.fingers(ai, 'R', .55);
         st.jet.visible = false;
       } else {
-        const tilt = .18 + .62 * sm(B(3)[0] - .02, B(3)[0] + .7, t);
-        const r = PO.pour(ai, st.pot, st.g1, { side: 'R', lift: .11, tilt, yaw: 1.05, gaze: true });
-        PR.stream(st.jet, r.spout, r.land, { r: .0045, col: 0xa8641e });
-        st.jet.visible = tilt > .4;
+        const tilt = .42 + .16 * sm(B(3)[0] + .2, B(3)[0] + .8, t);
+        const r = PO.pour(ai, st.pot, st.g2, { side: 'R', lift: .04, tilt, yaw: 2.05, gaze: false });
+        PR.stream(st.jet, r.spout, r.land, { r: .012, col: 0x7a3e10 });
+        st.jet.visible = true;
       }
     } else {
       const p = st.trayPos;

@@ -5,10 +5,11 @@ import * as PR from '../../../engine/props3d.js';
 import * as K from '../../../engine/core.js';
 import { V } from './beatscene.js';
 
-// Hip on the right divan. A mark on the pillow (1230) leaves the chest off the painted mattress.
-// Feet run along the divan, short of the wooden chest. Scale is the cast height.
-export const DIVAN_AT = [1310, 630];
-export const DIVAN_FEET = [.92, .18];
+// Hip on the right divan, mid-mattress (not the back cushion). Feet run down the
+// divan toward the camera, so the body follows the painted mattress instead of
+// lying across its back edge. Scale is the cast height.
+export const DIVAN_AT = [1330, 655];
+export const DIVAN_FEET = [.16, .99];
 export const BED_TOP = .26;
 export const BOY_H = 1.1;
 

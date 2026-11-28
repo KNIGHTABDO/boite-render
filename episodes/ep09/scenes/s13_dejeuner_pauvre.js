@@ -12,7 +12,6 @@ import * as PR from '../../../engine/props3d.js';
 import { staged } from '../lib/autostage.js';
 import { pillowUnder } from '../lib/fix8_lie.js';
 import { sealHaik, stride } from '../lib/fix8c.js';
-import { haikVeil } from '../lib/fix9_D.js';
 import { ESCALIER } from '../lib/stairs.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
 
@@ -23,7 +22,7 @@ const win = (i, a, b, t) => { const [t0, t1] = B(i), D = t1 - t0; return sm(t0 +
 const TOP = .26;
 const MATTRESS = [[1188, 574], [1450, 574], [1455, 688], [1308, 690]];
 const CHEST = [[1450, 580], [1830, 580], [1830, 850], [1450, 850]];
-const DIM_DAY = { dir: [2, 3, 1], key: '#e5d4b6', keyI: 1.75, sky: '#aebed4', ground: '#78634a', fillI: .95, shadow: .3 };
+const DIM_DAY = { dir: [2, 3, 1], key: '#cbb892', keyI: 1.15, sky: '#8a9bb4', ground: '#5c4a38', fillI: .62, shadow: .38 };
 const STAIR_LT = { dir: [2, 3, 1], key: '#ffe4b4', keyI: 2.0, sky: '#cbd9ee', ground: '#8f7759', fillI: 1.15, shadow: .24 };
 
 function reach85(a, side, target, opt) {
@@ -38,9 +37,9 @@ function lapRest(a, t, seed = 0) {
   const k = a.group.scale.y / 1.6;
   for (const [s, sg] of [['L', 1], ['R', -1]]) {
     const bob = .01 * k * Math.sin(t * 1.1 + seed + (sg > 0 ? 0 : 1.6));
-    const tg = PO.hipToWorld(a, sg * .17 * k, .09 * k + bob, .23 * k);
-    reach85(a, s, tg, { grip: .02, pole: [sg * .4, .06, .15] });
-    PO.fingers(a, s, .26 + .04 * Math.sin(t * .9 + sg), { thumb: .22, spread: .16 });
+    const tg = PO.hipToWorld(a, sg * .18 * k, .02 * k + bob, .2 * k);
+    reach85(a, s, tg, { grip: .02, pole: [sg * .35, -.04, .12] });
+    PO.fingers(a, s, .16 + .03 * Math.sin(t * .9 + sg), { thumb: .12, spread: .2 });
   }
 }
 
@@ -50,10 +49,7 @@ function makeBedProps(S3, st, mo) {
     const back = dirW(mo, 0, 0, -1), hp = mo.B.root.getWorldPosition(V(0, 0, 0));
     S3.prop(st.pillow, hp.x + back.x * .24, TOP + .055 - .004, hp.z + back.z * .24, mo.group.rotation.y);
   }
-  st.cover ||= PR.blanket({ w: .42, l: .54, h: .055, col: 0xb23a2a });
-  const hp = mo.B.root.getWorldPosition(V(0, 0, 0)), ry = mo.group.rotation.y;
-  S3.prop(st.cover, hp.x + Math.sin(ry) * .26, TOP + .028 - .004, hp.z + Math.cos(ry) * .26, ry);
-  st.cover.visible = true;
+  if (st.cover) st.cover.visible = false;
 }
 
 function buildLunchGroup() {
@@ -95,6 +91,7 @@ const ch = staged('chambre_jour', {
   light: DIM_DAY,
   act(lt, t, S, st, S3) {
     const { mohammed: mo, zoubida: zo } = st.A;
+    zo.noDarkLid = true;
     const km = mo.group.scale.y / 1.6, kz = zo.group.scale.y / 1.6;
     makeBedProps(S3, st, mo);
     lapRest(mo, t, 3);
@@ -111,7 +108,7 @@ const ch = staged('chambre_jour', {
     st.lunch.visible = !isTea;
 
     // Hand-held beignet when Mohammed eats in b086
-    st.beignet ||= S3.prop(new THREE.Mesh(new THREE.TorusGeometry(.026, .011, 10, 18), PR.toon(0xd49a4a)), 0, 0, 0);
+    st.beignet ||= S3.prop(new THREE.Mesh(new THREE.TorusGeometry(.04, .016, 10, 18), PR.toon(0xd49a4a)), 0, 0, 0);
     st.beignet.visible = false;
 
     // Tea props (b087): chipped enamel teapot + 2 glasses directly on bare wood (no tray, no kettle)
@@ -123,9 +120,9 @@ const ch = staged('chambre_jour', {
     // b085: glum on the mattress, chin lowered
     if (IN(0, t)) {
       const q = win(0, .05, .95, t);
-      mo.B.spine.rotation.x += .08 * q;
-      mo.B.neck.rotation.x += .15 * q;
-      mo.B.head.rotation.x += .1 * q;
+      mo.B.spine.rotation.x += .14 * q;
+      mo.B.neck.rotation.x += .22 * q;
+      mo.B.head.rotation.x += .16 * q;
     }
 
     // b086: chews joylessly on a bland beignet
@@ -169,7 +166,7 @@ const ch = staged('chambre_jour', {
 
 // b088: escalier. She starts lower than the landing (tread 4 cropped her head) and walks down.
 const esc = staged('escalier', {
-  zoubida: { tread: 2, off: .05, face: 'down', costume: 'haik', seed: 7,
+  zoubida: { tread: 2, off: .05, face: 'down', costume: 'haik', height: 1.6, seed: 7,
     climb: { to: 0, t0: B(3)[0] + .15, t1: B(3)[1] - .15 },
     look: [980, 1000, .45], lookMax: .7 },
 }, {
@@ -183,18 +180,19 @@ const esc = staged('escalier', {
   act(lt, t, S, st, S3) {
     const zo = st.A.zoubida, kz = zo.group.scale.y / 1.6;
     const [t0, t1] = B(3);
+    zo.noDarkLid = true;
     sealHaik(zo);
     if (t > t0 && t < t1) stride(zo, t, t0, 1.7, 1);
-    zo.B.spine.rotation.x += .14;
-    zo.B.chest.rotation.x += .06;
-    // Hands hold the haik closed. The right elbow sits a little lower, where the drape is wider than the ribs.
-    reach85(zo, 'R', PO.hipToWorld(zo, -.07 * kz, .28 * kz, .16 * kz), { grip: .02, pole: [-.28, .12, .16] });
-    reach85(zo, 'L', PO.hipToWorld(zo, .1 * kz, .3 * kz, .16 * kz), { grip: .02, pole: [.3, .15, .12] });
-    PO.fingers(zo, 'R', .4, { thumb: .3 });
-    PO.fingers(zo, 'L', .35, { thumb: .25 });
+    zo.B.spine.rotation.x += .1;
+    zo.B.chest.rotation.x += .04;
+    // Hands hold the wrap in at the ribs. The flat chest panel read as a white rectangle.
+    reach85(zo, 'R', PO.hipToWorld(zo, -.08 * kz, .18 * kz, .14 * kz), { grip: .02, pole: [-.3, .08, .14] });
+    reach85(zo, 'L', PO.hipToWorld(zo, .098 * kz, .2 * kz, .132 * kz), { grip: .02, pole: [.32, .1, .12] });
+    PO.fingers(zo, 'R', .35, { thumb: .25 });
+    PO.fingers(zo, 'L', .3, { thumb: .2 });
     PO.drapeRobe(zo, zo.group.position.y + .2);
-    haikVeil(S3, st, zo);
-    zo.B.head.rotation.x += .22;
+    if (st.veil) st.veil.visible = false;
+    zo.B.head.rotation.x += .08;
     st.actcheck = { supports: { zoubida: zo.group.position.y } };
   },
 });
@@ -202,10 +200,10 @@ const esc = staged('escalier', {
 export default beatScene(ID, {
   shots: { ch, esc },
   plan: {
-    b085: { shot: 'ch', size: 'CU', on: 'mohammed', z: 2.25, dx: -15, dy: -15 },
-    b086: { shot: 'ch', size: 'M', on: 'mohammed', z: 1.4, dx: -75, dy: 15 },
-    // z was 1.9, which still showed the whole room. insAt lands the chipped-teapot insert on the 34s tile.
-    b087: { shot: 'ch', size: 'CU', on: 'zoubida', z: 3.8, dx: 55, dy: 48, insAt: .54 },
+    b085: { shot: 'ch', size: 'CU', on: 'mohammed', z: 3.4, dx: 80, dy: -8 },
+    b086: { shot: 'ch', size: 'M', on: 'mohammed', z: 2.2, dx: -50, dy: 28 },
+    // Wide enough that the bare tabla, the chipped pot and both glasses stay in frame.
+    b087: { shot: 'ch', size: 'M', on: 'zoubida', z: 2.25, dx: 20, dy: 70, insAt: .54 },
     b088: { shot: 'esc', size: 'W', on: 'zoubida' },
   },
 });

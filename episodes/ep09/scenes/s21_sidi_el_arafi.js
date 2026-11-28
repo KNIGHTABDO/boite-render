@@ -23,6 +23,7 @@ import { staged } from '../lib/autostage.js';
 import { castScale, sealHaik, stride } from '../lib/fix8c.js';
 import { settleRobe } from '../lib/fix8g.js';
 import { beatScene, lines, sm, at, front, dirW, V } from '../lib/beatscene.js';
+import { keepFacing } from '../lib/fix9_J.js';
 
 const ID = 's21_sidi_el_arafi', L = lines(ID), B = i => L[i] || [0, 0];
 const IN = (i, t) => t >= B(i)[0] - .15 && t < (B(i + 1)[0] || B(i)[1] + .3);
@@ -40,8 +41,8 @@ function reach85(a, side, target, o = {}) {
 /** Hands on the thighs, below the sash, for grounded kneeling actors. */
 function lap85(a, side, k, drift = 0) {
   const sg = side === 'L' ? 1 : -1;
-  const tg = PO.hipToWorld(a, sg * .16 * k, -.02 * k + drift, .15 * k);
-  reach85(a, side, tg, { grip: .02, pole: [sg * .9, .2, .5] });
+  const tg = PO.hipToWorld(a, sg * .2 * k, .04 * k + drift, .28 * k);
+  reach85(a, side, tg, { grip: .02, pole: [sg * .55, .08, .35] });
   PO.fingers(a, side, .28, { spread: .14 });
 }
 
@@ -96,7 +97,7 @@ function plantRise(a, rise) {
 }
 
 function cradle(ai, ka, lift) {
-  const bundle = front(ai, 'root', (.16 + .06 * lift) * ka, 0, (.02 + .16 * lift) * ka);
+  const bundle = front(ai, 'root', (.34 + .04 * lift) * ka, .16 * ka, -.08 * ka);
   for (const s of ['L', 'R']) {
     const sg = s === 'L' ? 1 : -1;
     reach85(ai, s, bundle.clone().addScaledVector(dirW(ai, sg, 0, 0), .07 * ka), { grip: .012, pole: [sg * .55, .15, .35] });
@@ -110,8 +111,8 @@ function cradle(ai, ka, lift) {
 const sh1 = staged('aicha_pauvre', {
   aicha: {
     at: [1180, 855], face: 'zoubida', yaw: .22, pose: 'kneel', o: { grounded: true, lean: .08, spread: .04 }, seed: 9,
-    look: t => DOWN(t) ? [1080, 990, .04] : 'zoubida',
-    lookMax: t => DOWN(t) ? 1.2 : .6,
+    look: t => DOWN(t) ? [1080, 1020, .02] : 'zoubida',
+    lookMax: t => DOWN(t) ? 1.15 : .7,
   },
   zoubida: {
     at: [800, 855], face: 'aicha', yaw: -.22, pose: 'kneel', o: { grounded: true, lean: .1, spread: .04 }, seed: 7,
@@ -123,10 +124,10 @@ const sh1 = staged('aicha_pauvre', {
       }
       return 'aicha';
     },
-    lookMax: t => DOWN(t) || IN(3, t) ? 1.15 : .6,
+    lookMax: t => DOWN(t) || IN(3, t) ? 1.05 : .75,
   },
   mohammed: {
-    height: 1.1, at: [560, 920], face: 'cam', yaw: .16, pose: 'kneel', o: { grounded: true, lean: .06, hip: .24, spread: .045 }, seed: 3,
+    height: 1.1, at: [520, 980], face: 'cam', yaw: -.35, pose: 'kneel', o: { grounded: true, lean: .08, hip: .24, spread: .045 }, seed: 3,
     look: t => {
       if (DOWN(t)) return [620, 1020, .03];
       if (IN(3, t)) {
@@ -169,12 +170,23 @@ const sh1 = staged('aicha_pauvre', {
       a.B.chest.rotation.x += .012 * Math.sin(t * 1.1 + sd);
       a.B.chest.updateWorldMatrix(false, true);
     }
+    keepFacing(mo, S3.cam.position, 48);
+
+    if (DOWN(t)) {
+      for (const a of [ai, zo, mo]) {
+        a.B.spine.rotation.x += .22;
+        a.B.chest.rotation.x += .1;
+        a.B.chest.updateWorldMatrix(false, true);
+      }
+    }
 
     // b133: Aïcha speaks quietly; Zoubida listens, leaning in a little
     if (IN(2, t)) {
       const w = sm(B(2)[0], B(2)[0] + .6, t);
-      ai.B.neck.rotation.x += .05 * Math.sin(t * 1.8) * w;
-      zo.B.spine.rotation.x += .14;
+      const nod = Math.max(0, Math.sin((t - B(2)[0]) * 2.2));
+      ai.B.spine.rotation.x += .16 * nod * w;
+      ai.B.chest.rotation.x += .1 * nod;
+      zo.B.spine.rotation.x += .1;
       zo.B.chest.rotation.x += .05 * Math.sin(t * 1.3);
       ai.B.chest.updateWorldMatrix(false, true);
       zo.B.chest.updateWorldMatrix(false, true);
@@ -189,13 +201,11 @@ const sh1 = staged('aicha_pauvre', {
     if (IN(3, t)) {
       const c3 = t - B(3)[0];
       const nod = Math.sin(Math.min(Math.PI, Math.max(0, c3) * 2.8));
-      zo.B.spine.rotation.x += .2 * nod;
-      zo.B.chest.rotation.x += .12 * nod;
-      zo.B.neck.rotation.x += .16 * nod;
-      const sigh = sm(B(3)[0] + .15, B(3)[0] + 1.0, t);
-      mo.B.spine.rotation.x += .3 * sigh;
-      mo.B.chest.rotation.x += .22 * sigh;
-      mo.B.neck.rotation.x += .2 * sigh;
+      zo.B.spine.rotation.x += .42 * nod;
+      zo.B.chest.rotation.x += .22 * nod;
+      const sigh = sm(B(3)[0] + .1, B(3)[0] + .7, t);
+      mo.B.spine.rotation.x += .55 * sigh;
+      mo.B.chest.rotation.x += .32 * sigh;
       zo.B.chest.updateWorldMatrix(false, true);
       mo.B.chest.updateWorldMatrix(false, true);
     }
@@ -203,15 +213,15 @@ const sh1 = staged('aicha_pauvre', {
     // b135: Zoubida leans earnestly toward Aïcha, both palms open in the space between them
     if (IN(4, t)) {
       const w = sm(B(4)[0], B(4)[0] + .45, t);
-      zo.B.spine.rotation.x += .4 * w;
-      zo.B.chest.rotation.x += .16 * w;
+      zo.B.spine.rotation.x += .48 * w;
+      zo.B.chest.rotation.x += .2 * w;
       zo.B.chest.updateWorldMatrix(false, true);
       for (const s of ['L', 'R']) {
         const sg = s === 'L' ? 1 : -1;
-        const p = front(zo, 'chest', .48 * kz, -sg * .2 * kz, .05 * kz);
-        reach85(zo, s, p, { grip: .01, pole: [sg * .42, -.12, .22] });
-        PO.palmTo(zo, s, w, V(0, .45, 1));
-        PO.fingers(zo, s, .04, { spread: .55 });
+        const p = front(zo, 'chest', .42 * kz, -sg * .22 * kz, .02 * kz);
+        reach85(zo, s, p, { grip: .01, pole: [sg * .35, .02, .2] });
+        PO.palmTo(zo, s, w, V(0, .85, .35));
+        PO.fingers(zo, s, .02, { spread: .7 });
       }
     }
 
@@ -221,10 +231,11 @@ const sh1 = staged('aicha_pauvre', {
       ai.B.spine.rotation.x += .08 * w;
       ai.B.neck.rotation.x += .04 * Math.sin(t * 1.5) * w;
       ai.B.chest.updateWorldMatrix(false, true);
-      const p = front(ai, 'chest', .5 * ka, .08 * ka, .1 * ka);
-      reach85(ai, 'R', p, { grip: .01, pole: [-.4, -.1, .2] });
-      PO.palmTo(ai, 'R', w, V(0, .55, 1));
-      PO.fingers(ai, 'R', .04, { spread: .6 });
+      lap85(ai, 'L', ka);
+      const p = front(ai, 'chest', .4 * ka, .16 * ka, .04 * ka);
+      reach85(ai, 'R', p, { grip: .01, pole: [-.32, .04, .18] });
+      PO.palmTo(ai, 'R', w, V(0, .9, .3));
+      PO.fingers(ai, 'R', .02, { spread: .65 });
     }
 
     settleRobe(ai, 0);
@@ -237,19 +248,19 @@ const W0 = B(6)[0] + 2.8, W1 = B(6)[1] - .4;
 const DOOR = [1580, 930];
 const sh2 = staged('aicha_pauvre', {
   aicha: {
-    at: [1160, 850], face: DOOR, seed: 9, lookMax: .45,
-    walk: { to: [1480, 910], t0: W0, t1: W1 },
-    look: [1580, 900, 1.05],
+    at: [1220, 860], face: DOOR, seed: 9, lookMax: .4,
+    walk: { to: [1500, 920], t0: W0, t1: W1 },
+    look: [1580, 940, .95],
   },
   zoubida: {
-    at: [900, 860], face: DOOR, costume: 'haik', seed: 7, lookMax: .45,
-    walk: { to: [1240, 890], t0: W0, t1: W1 },
-    look: [1580, 900, 1.05],
+    at: [860, 780], face: DOOR, costume: 'haik', seed: 7, lookMax: .45,
+    walk: { to: [1180, 860], t0: W0, t1: W1 },
+    look: [1580, 940, 1.05],
   },
   mohammed: {
-    at: [640, 910], face: DOOR, seed: 3, lookMax: .4,
-    walk: { to: [980, 930], t0: W0, t1: W1 },
-    look: [1580, 900, .72],
+    at: [560, 1000], face: 'cam', yaw: -.2, seed: 3, lookMax: .45,
+    walk: { to: [900, 980], t0: W0, t1: W1 },
+    look: [1580, 960, .85],
   },
 }, {
   addressee: { narrator: 'aicha' },
@@ -258,7 +269,7 @@ const sh2 = staged('aicha_pauvre', {
     for (const a of [ai, zo, mo]) castScale(a);
 
     if (!st.tea) {
-      const p = S3.floorAt(900, 680);
+      const p = S3.floorAt(720, 560);
       st.tray = S3.prop(PR.tray({ r: .2, col: 0xc89a3a }), p.x, 0, p.z, .4);
       st.pot = S3.prop(PR.teapot({ col: 0xbeb7a6 }), p.x + .05, .034, p.z - .02, -.6);
       st.cloth = S3.prop(foldedCloth(), 0, 0, 0);
@@ -276,10 +287,12 @@ const sh2 = staged('aicha_pauvre', {
     holdHaikShut(zo);
     const ka = ai.group.scale.y / 1.6;
     const mid = cradle(ai, ka, walking ? 1 : rise);
-    S3.prop(st.cloth, mid.x, mid.y, mid.z, ai.group.rotation.y);
-    st.cloth.rotation.x = -.55 * (1 - (walking ? 1 : rise));
-    st.cloth.rotation.z = .08;
+    st.cloth.scale.setScalar(1.35);
+    S3.prop(st.cloth, mid.x, mid.y + .04, mid.z, ai.group.rotation.y);
+    st.cloth.rotation.x = -.35 * (1 - (walking ? 1 : rise));
+    st.cloth.rotation.z = .12;
     st.cloth.visible = true;
+    keepFacing(mo, S3.cam.position, 52);
 
     const km = mo.group.scale.y / 1.6;
     for (const s of ['L', 'R']) {
@@ -293,12 +306,12 @@ const sh2 = staged('aicha_pauvre', {
 export default beatScene(ID, {
   shots: { sh1, sh2 },
   plan: {
-    b131: { shot: 'sh1', size: 'W', on: 'aicha' },
+    b131: { shot: 'sh1', size: 'M', on: 'aicha', z: 1.8, dx: -90, dy: 12 },
     b132: { move: 'push' },   // painting p14_seffah_arafi auto-picked via b.still
-    b133: { shot: 'sh1', size: 'W', on: 'aicha' },
-    b134: { shot: 'sh1', size: 'W', on: 'mohammed' },
-    b135: { shot: 'sh1', size: 'W', on: 'zoubida' },
-    b136: { shot: 'sh1', size: 'W', on: 'aicha' },
-    b137: { shot: 'sh2', size: 'W', on: 'aicha' },
+    b133: { shot: 'sh1', size: 'CU', on: 'aicha', z: 3.4, dx: -16, dy: -14 },
+    b134: { shot: 'sh1', size: 'M', on: 'zoubida', z: 1.38, dx: 20, dy: 36 },
+    b135: { shot: 'sh1', size: 'CU', on: 'zoubida', z: 3.35, dy: -12 },
+    b136: { shot: 'sh1', size: 'CU', on: 'aicha', z: 3.4, dy: -10 },
+    b137: { shot: 'sh2', size: 'M', on: 'aicha', z: 1.22, dx: -20, dy: 48 },
   },
 });
